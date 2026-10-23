@@ -11,6 +11,7 @@ Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes
 - For Qwen and Kimi, build progress, take a hit, save and continue before clearing. The room must not count as flawless. The Constitution's refused hit must not break progress.
 - For Llama and Doubao, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
 - For GLM, use the pocket Book of Secrets, Car Battery, a zero-charge item and an item with a custom use callback. Links must stay at three or fewer and reset when leaving the room.
+- For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. For GLM, duplicate use callbacks in one frame must add only one link per player while separate players can each gain a link. Distinct-wrapper stub coverage passes; these engine checks remain pending.
 - Check Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, multishot, familiars, D4, transformations, costume-changing items, EID and Reactions Port Pack. Cache-based code alone is not compatibility evidence.
 - Repeat in base Repentance and Repentance+, finish full runs, then close the game. Do not publish to Workshop before acceptance and art-permission review.
 

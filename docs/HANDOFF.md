@@ -2,6 +2,12 @@
 
 Updated 2026-10-23 (Japan time), v0.5-dev. PR #5 is merged. Its implementation and the earlier v0.4 observations are separate evidence; passing CI does not establish in-game correctness.
 
+## Roster callback identity follow-up
+
+The roster expansion at `0573b2f` keyed transient charge by weak Lua object references. Different wrappers for the same engine player could split Grok momentum, Mistral tailwind and GLM's same-frame active-use guard. Transient records now use `GetPtrHash`, with initialization-seed and observed roster-type checks for pointer reuse and character changes. They retain no entity references and reset on game start and exit. Persistent mode/progress storage and the original four character modules are unchanged.
+
+The new multi-wrapper Grok regression fails on `0573b2f` (10 damage instead of 12.5) and passes with this fix. Offline coverage also checks cache/HUD agreement, garbage collection, Mistral's 60-update boundary, GLM duplicate callbacks and Car Battery, separate co-op players, room/run resets, reused pointers and observed roster-type changes. The full suite passes: 48 Lua files, five XML files, asset checks and nine stub suites. This is not an engine reproduction or gameplay acceptance. In-game charge stability, active-item interactions, character changes and co-op remain pending. See [GetPtrHash API documentation](https://wofsauge.github.io/IsaacDocs/rep/GlobalFunctions.html#getptrhash).
+
 ## Model roster and portrait expansion: engine acceptance pending
 
 The owner's latest request prioritizes redesigned portraits and playable mainstream model families. The expansion now covers eleven normal families plus the existing two tainted characters: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, and GLM. The nine additions have normal forms only. All new code, documentation and UI text is English as requested. See [MODEL_ROSTER.md](MODEL_ROSTER.md) for the implemented mechanics, limits and evidence boundaries.

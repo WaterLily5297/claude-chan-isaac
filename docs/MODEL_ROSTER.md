@@ -28,6 +28,8 @@ Hold MAP in a cleared room to see a full illustration and instructions. Release 
 
 Progress is stored under `Risk.state.modelRoster` by player slot and model key. Modes, clear counters, hit state and awarded room seeds survive save/continue. A fresh run resets them. A changed player type gets fresh state when next used. Slots follow the existing mod's co-op convention; joining/leaving players and character-changing items still need engine tests.
 
+Grok momentum, Mistral wind and GLM's same-frame use guard are transient. They share a record across Lua wrappers via `GetPtrHash`, guarded by `InitSeed` and the observed roster player type. Game start/exit clears the records; momentum and wind also reset on entering another room. These charges are intentionally not saved. The guard detects an observed type change, not an unobserved change away and back between callbacks.
+
 Damage, firing interval, range, speed and tear flags use engine cache callbacks. The new roster does not generate extra tears recursively. Cache-based damage applies to weapon types that use player damage, but this is not proof of Brimstone, Technology, knife, bomb or familiar compatibility. Tear flags have the normal engine's weapon-specific limits. Reactions Port Pack fallback registration covers all registered characters while preserving explicit support.
 
 Damage cancelled by this mod's earlier Constitution callback does not reach roster bookkeeping. Fake damage is ignored. Other mods cancelling a later damage callback remain an engine integration case. GLM counts active-use callbacks, excludes Car Battery repeats, and deduplicates a frame; this is not an engine-wide guarantee that every third-party item consumed a charge.
@@ -41,6 +43,8 @@ All thirteen gameplay sheets now follow the selected portrait identities: hair, 
 ## Evidence
 
 Offline coverage tests each new mechanic, numerical bounds, mode/hit continuation with recreated entities and module state, co-op separation, duplicate room awards, Car Battery duplication, fresh runs and unchanged DeepSeek identification. Asset checks verify file existence, PNG dimensions and animation frame bounds. These tests do not establish attractive animation, game feel, real JSON restart persistence or a successful engine run.
+
+Distinct-wrapper fixtures additionally verify that charge survives callback reference changes and garbage collection, cache/HUD values agree, and GLM deduplicates callbacks for one player while allowing another player's use. Pointer reuse with a new initialization seed and observed roster-type changes reset temporary charge. The multi-wrapper Grok case fails before the identity fix on `0573b2f` and passes afterward. These fixtures model documented reference behavior; they do not reproduce actual engine timing.
 
 Engine acceptance is pending: all eleven normal selections plus both tainted selections; every direction and special pose; MAP dossier; mode controls with trinkets; item rerolls and costumes; actual application restart; base Repentance and Repentance+; weapon families; and co-op. No Workshop publication.
 
