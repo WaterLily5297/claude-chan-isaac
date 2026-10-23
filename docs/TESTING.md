@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## Native Thought adapters (source candidate; no engine acceptance)
+
+Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and weapon-specific engine matrix. The owner currently permits source/offline work only. Ordinary tears, single-hit/released-ring lasers, repeated-hit beams, flying knives and Dr. Fetus now have source paths; Ludovico and repeated-hit beams use six-update windows. The earlier Rice checklist below describes the initial tear-only candidate. Epic Fetus, melee, delayed bursts and familiar attribution remain unimplemented adapter work.
+
+Verify actual callback order, damage refresh behavior, charged releases during food lockout, continuous fork update order, 1M Context decay, pause and mid-window save/continue before accepting any native weapon case. Source field assertions do not establish damage dealt, player appearance, steering or engine serialization. This follow-up does not pass the costume matrix.
+
 ## Rice First (source candidate; engine acceptance pending)
 
 Current owner constraint: source work and offline validation only. Keep this engine checklist pending until the owner resumes game testing.
