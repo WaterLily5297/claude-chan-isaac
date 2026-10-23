@@ -3,10 +3,12 @@ local root = arg[1]
 function include(name) return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua") end
 ModCallbacks = setmetatable({}, { __index = function(_, key) return key end })
 CallbackPriority = { DEFAULT = 0, LATE = 1000 }
-CacheFlag = {}
+CacheFlag = {CACHE_SPEED=1}
 ActiveSlot = { SLOT_POCKET = 2 }
 EntityType = { ENTITY_TEAR = 2 }
 function Color(...) return {...} end
+Input={IsActionPressed=function() return false end}
+ButtonAction={ACTION_DROP=11}
 function GetPtrHash(player) return player end
 
 local callbacks = {}
@@ -34,6 +36,11 @@ local function player(kind, swarm)
     function p:GetData() return self.data end
     function p:HasCollectible(id) return id == 745 and self.swarm end
     function p:SetPocketActiveItem() end
+    function p:IsDead() return false end
+    function p:AreControlsEnabled() return true end
+    function p:GetShootingInput() return {LengthSquared=function() return 0 end} end
+    function p:AddCacheFlags() end
+    function p:EvaluateItems() end
     return p
 end
 local deepseek, claude = player(42, true), player(41, true)
@@ -62,6 +69,11 @@ function RNG() return {SetSeed = function() end, RandomFloat = function() return
 function Game() return {
     GetFrameCount = function() return frame end,
     GetNumPlayers = function() return 2 end,
+    IsPaused=function() return false end,
+    GetRoom=function() return {IsClear=function() return true end} end,
+    GetLevel=function() return {GetDungeonPlacementSeed=function() return 1 end,
+        GetStage=function() return 1 end,GetStageType=function() return 0 end,
+        GetCurrentRoomDesc=function() return {SpawnSeed=1,SafeGridIndex=1} end} end,
     GetSeeds = function() return {GetStartSeed = function() return 123 end} end,
     GetHUD = function() return {ShowItemText = function() end} end,
 } end
@@ -71,7 +83,11 @@ include("scripts.items.subagent_swarm"):Init(mod)
 include("scripts.characters.claude_chan"):Init(mod, risk)
 include("scripts.characters.claude_chan_b"):Init(mod, risk)
 include("scripts.characters.deepseek_chan"):Init(mod, risk)
+include("scripts.characters.deepseek_rice"):Init(mod,risk,{Remaining=function() return 0 end})
 fire("MC_POST_GAME_STARTED", false)
+local function think()
+    for _=1,150 do frame=frame+1; fire("MC_POST_UPDATE") end
+end
 
 local function shot(owner)
     spawned = {}
@@ -81,21 +97,23 @@ local function shot(owner)
         Variant = 0, Position = {}, Velocity = {Rotated = function(_, angle) return angle end}}
     function t:Remove() self.removed = true end
     function t:Exists() return not self.removed end
+    local data={}; function t:GetData() return data end
     fire("MC_POST_FIRE_TEAR", t)
     return t
 end
 
--- Baseline spawns two Swarm tears before DeepSeek removes the natural tear.
+-- Normal Rice First removes random shot cancellation; tainted is still legacy.
 enemies, roll = 10, 0.1
 local cancelled = shot(deepseek)
-assert(cancelled.removed, "the busy roll must cancel the natural tear")
-assert(#spawned == 0, "a busy shot must not leave Subagent Swarm tears behind")
+assert(not cancelled.removed, "normal shots must no longer be cancelled")
+assert(#spawned == 2, "normal shots still resolve before Swarm")
 deepseek.kind = 142
 shot(deepseek)
 assert(#spawned == 0, "a busy tainted shot must cancel both character forks and Swarm")
 deepseek.kind = 42
 
-enemies, roll, frame = 0, 0.99, 150
+enemies, roll = 0, 0.99
+think()
 local thought = shot(deepseek)
 assert(thought.CollisionDamage == 8, "Deep Think must resolve before inspecting child damage")
 assert(#spawned == 2 and spawned[1].CollisionDamage == 4 and spawned[2].CollisionDamage == 4,
@@ -143,6 +161,7 @@ local function effectShot(owner, multiplier)
         HomingFriction=0.08, KnockbackMultiplier=1.4}
     function original:Exists() return not self.removed end
     function original:Remove() self.removed=true end
+    local data={}; function original:GetData() return data end
     fire('MC_POST_FIRE_TEAR',original)
     return original
 end
@@ -166,10 +185,10 @@ assert(vanilla.Scale==1.7 and vanilla.CollisionDamage==10, 'fork must not mutate
 deepseek.kind=142; deepseek.swarm=false
 inherited(effectShot(deepseek),2)
 deepseek.swarm=true; inherited(effectShot(deepseek),4)
-deepseek.kind=42; frame=300
-local boosted=effectShot(deepseek); assert(boosted.Scale==2.55); inherited(boosted,2)
+deepseek.kind=42; think()
+local boosted=effectShot(deepseek); assert(boosted.Scale==1.7 and boosted.CollisionDamage==20); inherited(boosted,2)
 enemies,roll=10,0.1
-local blocked=effectShot(deepseek); assert(blocked.removed and #spawned==0)
+local blocked=effectShot(deepseek); assert(not blocked.removed and #spawned==2)
 print("OK: Swarm shot resolution, player isolation and resolved fork effects/flight")
 
 -- Summary Stapler supplies its multiplier before the real character callbacks.

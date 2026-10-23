@@ -83,43 +83,23 @@ local function tear(owner)
 end
 p.GetData = function(pl) pl.data = pl.data or {}; return pl.data end
 other.GetData = p.GetData
-include("scripts.characters.deepseek_chan"):Init(mod, risk)
+local deepseekModule = arg[2] and dofile(arg[2]) or include("scripts.characters.deepseek_chan")
+deepseekModule:Init(mod, risk)
 fire("MC_POST_GAME_STARTED", false)
 assert(p.pocket == 801 and other.pocket == 801, "normal DeepSeek-chan starts with Lunch Break")
 p.pocket = 900; fire("MC_POST_GAME_STARTED", true); assert(p.pocket == 900, "continue keeps the pocket item")
 fire("MC_EVALUATE_CACHE", p, CacheFlag.CACHE_DAMAGE); assert(p.Damage == 9)
-FRAME = 0; local t0 = tear(p); fire("MC_POST_FIRE_TEAR", t0); assert(t0.CollisionDamage == 4, "no thinking yet")
-FRAME = 15; local t1 = tear(p); fire("MC_POST_FIRE_TEAR", t1); assert(t1.CollisionDamage == 4, "under 1 s is not thinking")
-FRAME = 315; local t2 = tear(p); fire("MC_POST_FIRE_TEAR", t2)
-assert(t2.CollisionDamage == 8, "5 s of thinking (capped) doubles damage")
-fire("MC_POST_RENDER"); assert(draws[#draws] == "Thought for 5 s")
-enemies, roll = 10, 0.2
-FRAME = 400; local t3 = tear(p); fire("MC_POST_FIRE_TEAR", t3)
-assert(t3.removed, "server busy with 10 enemies at roll 0.2 (< 25%)")
-roll = 0.3; local t4 = tear(p); fire("MC_POST_FIRE_TEAR", t4)
-assert(not t4.removed, "busy chance is capped at 25%")
+-- Rice mechanics have their own lifecycle suite. Normal fire is no longer cancelled here.
+enemies, roll = 10, 0
+local t = tear(p); fire("MC_POST_FIRE_TEAR", t)
+assert(not t.removed and t.CollisionDamage == 4, "normal shots must not use legacy busy/thought")
 p.kind = 142; enemies, roll = 0, 0.99
 local fork = tear(p); fire("MC_POST_FIRE_TEAR", fork)
 assert(#spawned == 2 and spawned[1].CollisionDamage == 2 and spawned[1].velocity == -12, "tainted forks two 50% tears")
 fire("MC_EVALUATE_CACHE", p, CacheFlag.CACHE_DAMAGE); assert(math.abs(p.Damage - 9 * 0.8) < 1e-9)
 p.kind = 42
--- 摸鱼: standing still 5 s in a cleared room recharges the pocket Lunch Break by one.
-ActiveSlot.SLOT_POCKET = 2
-p.Velocity = { Length = function() return 0 end }
-p.charge = 2
-p.GetActiveItem = function() return 801 end
-p.GetActiveCharge = function(pl) return pl.charge end
-p.SetActiveCharge = function(pl, c) pl.charge = c end
-ROOMCLEAR = false
-for _ = 1, 200 do fire("MC_POST_PEFFECT_UPDATE", p) end
-assert(p.charge == 2, "no slacking during a fight")
-ROOMCLEAR = true
-for _ = 1, 149 do fire("MC_POST_PEFFECT_UPDATE", p) end
-assert(p.charge == 2, "not yet 5 s")
-fire("MC_POST_PEFFECT_UPDATE", p); assert(p.charge == 3, "5 s of slacking: +1 charge")
-p.charge = 6; for _ = 1, 300 do fire("MC_POST_PEFFECT_UPDATE", p) end
-assert(p.charge == 6, "never above the item's 6 charges")
-print("OK: DeepSeek-chan Deep Think, server busy, slacking off, pocket item and tainted forks")
+assert(callbacks.MC_POST_PEFFECT_UPDATE == nil, "remove unlimited empty-room pocket charging")
+print("OK: DeepSeek normal pocket/stats, removed legacy mechanics and retained tainted forks")
 
 callbacks = {}
 local seeded
