@@ -51,6 +51,7 @@ CallbackPriority = { DEFAULT = 0, LATE = 1000 }
 EntityType = { ENTITY_PLAYER = 1, ENTITY_TEAR = 2, ENTITY_PROJECTILE = 9, ENTITY_CLOTTY = 15 }
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_RANGE = 2, CACHE_SHOTSPEED = 4, CACHE_SPEED = 8, CACHE_TEARCOLOR = 16, CACHE_FIREDELAY = 32, CACHE_FLYING = 64 }
 ActiveSlot = { SLOT_PRIMARY = 0, SLOT_POCKET = 2 }
+UseFlag = { USE_CARBATTERY = 32 }
 EntityFlag = { FLAG_FRIENDLY = 1 }
 DamageFlag = { DAMAGE_RED_HEARTS = 32, DAMAGE_IV_BAG = 4096, DAMAGE_FAKE = 2097152 }
 function Color(...) return { ... } end
@@ -63,6 +64,7 @@ function EntityRef(e) return e end
 
 local items = { ["Ban Hammer"] = 733, ["Residential IP"] = 734, ["Compact"] = 735, ["You're Absolutely Right!"] = 736, ["9.9 Yuan Relay"] = 737, ["Ultrathink"] = 738, ["1M Context"] = 739, ["Silent Update"] = 740, ["--dangerously-skip-permissions"] = 741, ["All Tests Passing"] = 742, ["Vibe Coding"] = 743, ["Banked Reset"] = 744, ["Subagent Swarm"] = 745, ["The Constitution"] = 746, ["Support Ticket"] = 748, ["Opus Mode"] = 747, ["Lunch Break"] = 749 }
 local playerItems = {}
+items["Summary Stapler"] = 750
 Isaac = {}
 function Isaac.GetItemIdByName(n) return items[n] or -1 end
 function Isaac.GetTrinketIdByName(n) return ({ ["529 Overloaded"] = 190, ["Hardcoded Output"] = 191, ["Thinking Cleared"] = 192, ["Welcome Notice"] = 193, ["Status Page"] = 194, ["Appeal Form"] = 195 })[n] or -1 end
@@ -143,6 +145,7 @@ function Game()
         } end,
         ShakeScreen = function() end,
         GetFrameCount = function() return FRAME end,
+        IsPaused = function() return false end,
         GetRoom = function() return { IsFirstVisit = function() return FIRSTVISIT ~= false end, GetDoor = function(_, slot) return DOORS[slot] end, SetClear = function(_, v) ROOMCLEAR = v end, IsClear = function() return ROOMCLEAR end, GetFrameCount = function() return ROOMFRAME end, GetCenterPos = function() return { 0, 0 } end } end,
     }
 end
@@ -172,6 +175,10 @@ FRAME = 0
 local realInclude = include
 include = function(name) local m = realInclude(name); if name == "scripts.risk" and not RISK_REF then RISK_REF = m end; return m end
 dofile(root .. "/main.lua")
+
+-- Verify the new active is actually registered through the entry point.
+assert(fire("MC_USE_ITEM", 750, 750, nil, player, 0).Discharge == false,
+    "Summary Stapler must preserve charge in an empty room")
 include = realInclude
 local Risk = include("scripts.risk") -- fresh copy just for reading constants; real state lives in main's instance
 

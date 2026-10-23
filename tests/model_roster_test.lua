@@ -1,6 +1,9 @@
 -- Real module callbacks with independent lifecycle, boundary and co-op fixtures.
 local root=arg[1]
-function include(n) return dofile(root.."/"..n:gsub("%.","/")..".lua") end
+function include(n)
+    if n=='scripts.characters.model_roster' and arg[2] then return dofile(arg[2]) end
+    return dofile(root.."/"..n:gsub("%.","/")..".lua")
+end
 local names={"GPT-chan","Gemini-chan","Grok-chan","Qwen-chan","Llama-chan","Mistral-chan","Doubao-chan","Kimi-chan","GLM-chan"}
 Isaac={GetItemIdByName=function() return -1 end, GetTrinketIdByName=function() return -1 end,
     GetPillEffectByName=function() return -1 end}
@@ -21,7 +24,9 @@ CollectibleType={COLLECTIBLE_BOOK_OF_SECRETS=777,COLLECTIBLE_DECK_OF_CARDS=778}
 function GetPtrHash(p) return p.pointer end
 function Color(...) return {...} end
 local trigger=false
-Input={IsActionTriggered=function() return trigger end}
+local pressed, paused, hudVisible = {}, false, true
+Input={IsActionTriggered=function() return trigger end,
+    IsActionPressed=function(_, controller) return pressed[controller] == true end}
 local callbacks={}
 local mod={AddCallback=function(_,id,fn) callbacks[id]=fn end}
 local function fire(id,...) if callbacks[id] then return callbacks[id](mod,...) end end
@@ -35,9 +40,10 @@ function Isaac.RenderText(text) rendered[#rendered+1]=text end
 function Game() return {
     GetNumPlayers=function() return #players end,
     GetFrameCount=function() return frame end,
+    IsPaused=function() return paused end,
     GetLevel=function() return {GetDungeonPlacementSeed=function() return floor end,
         GetCurrentRoomDesc=function() return {SpawnSeed=room} end} end,
-    GetHUD=function() return {ShowItemText=function() end,IsVisible=function() return true end} end,
+    GetHUD=function() return {ShowItemText=function() end,IsVisible=function() return hudVisible end} end,
 } end
 local nextPointer=0
 local function player(name)
@@ -47,7 +53,7 @@ local function player(name)
     function p:GetPlayerType() return self.kind end
     function p:ToPlayer() return self end
     function p:IsDead() return self.dead end
-    function p:AreControlsEnabled() return true end
+    function p:AreControlsEnabled() return self.controls ~= false end
     function p:GetFireDirection() return self.shoot end
     function p:AddBlueFlies(n) self.flies=self.flies+n end
     function p:AddHearts(n) self.hearts=math.min(4,self.hearts+n) end
@@ -65,6 +71,7 @@ local R=include('scripts.characters.model_roster')
 R:Init(mod,risk)
 local function start(...)
     players={...}; room=101; floor=200; frame=0; trigger=false
+    pressed={}; paused=false; hudVisible=true
     fire('MC_POST_GAME_STARTED',false)
 end
 local function clear()
@@ -75,9 +82,20 @@ local function near(a,b) assert(math.abs(a-b)<1e-8,tostring(a)..' ~= '..tostring
 -- Different Lua references may point at the same engine entity. Forward both
 -- reads and writes while keeping the wrapper's table identity distinct.
 local function wrap(p) return setmetatable({}, {__index=p, __newindex=p}) end
+local function input(p, down)
+    frame=frame+1; pressed[p.ControllerIndex]=down; trigger=down
+    fire('MC_POST_PEFFECT_UPDATE',wrap(p)); trigger=false
+end
+local function tap(p)
+    input(p,false)
+    local before=p.Damage
+    input(p,true)
+    near(p.Damage,before) -- Pressing to begin a hold must not change mode.
+    input(p,false)
+end
 local p=player('GPT-chan'); start(p)
 near(p.Damage,13.5); near(p.MaxFireDelay,11)
-trigger=true; fire('MC_POST_PEFFECT_UPDATE',p); trigger=false
+tap(p)
 near(p.Damage,8.5); near(p.MaxFireDelay,7)
 -- A recreated entity and module must read the stored mode, not entity data.
 fire('MC_PRE_GAME_EXIT'); p=player('GPT-chan'); players={p}
@@ -87,7 +105,7 @@ near(p.Damage,8.5)
 start(p); near(p.Damage,13.5)
 
 p=player('Gemini-chan'); start(p); assert(p.TearFlags==1); near(p.Damage,12)
-trigger=true; fire('MC_POST_PEFFECT_UPDATE',p); trigger=false
+tap(p)
 assert(p.TearFlags==2); near(p.Damage,9)
 p=player('Grok-chan'); start(p); p.speed=1
 for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',p) end
@@ -192,4 +210,27 @@ near(other.Damage,12.5)
 other.kind=Isaac.GetPlayerTypeByName('Mistral-chan',false); other:EvaluateItems()
 other.kind=Isaac.GetPlayerTypeByName('Grok-chan',false); other:EvaluateItems()
 near(other.Damage,10)
-print('OK: nine model mechanics, wrapper identity, lifecycle bounds, co-op isolation and duplicate effects')
+-- Long native DROP holds do not activate the mode ability at either edge.
+p=player('GPT-chan'); other=player('Gemini-chan'); other.ControllerIndex=3
+start(p,other); input(p,false); input(other,false)
+for _=1,50 do input(p,true); near(p.Damage,13.5) end
+input(p,false); near(p.Damage,13.5)
+tap(other); near(other.Damage,9); near(p.Damage,13.5)
+
+-- The paused render path must cancel even when the HUD is hidden and no
+-- gameplay update occurs until after the pause menu closes.
+input(p,true); paused=true; hudVisible=false; fire('MC_POST_RENDER')
+paused=false; hudVisible=true; input(p,false); near(p.Damage,13.5)
+tap(p); near(p.Damage,8.5)
+input(p,true); room=room+1; fire('MC_POST_NEW_ROOM')
+input(p,false); near(p.Damage,8.5)
+tap(p); near(p.Damage,13.5)
+
+-- Persist the selected mode, never an unfinished press across continue.
+input(p,true); fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true)
+input(p,false); near(p.Damage,13.5)
+input(p,true); p.controls=false; input(p,true); p.controls=true
+input(p,false); near(p.Damage,13.5)
+tap(p); near(p.Damage,8.5)
+assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
+print('OK: nine model mechanics, DROP tap/hold lifecycle, co-op isolation and duplicate effects')

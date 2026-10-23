@@ -7,6 +7,7 @@ CacheFlag = {}
 ActiveSlot = { SLOT_POCKET = 2 }
 EntityType = { ENTITY_TEAR = 2 }
 function Color(...) return {...} end
+function GetPtrHash(player) return player end
 
 local callbacks = {}
 local mod = {}
@@ -106,7 +107,7 @@ shot(deepseek)
 assert(#spawned == 4, "tainted forks and Swarm add two each without recursive growth")
 deepseek.kind = 42
 
-claude.data.ccUsage = {value = 100, limited = 90}
+claude.data.ccUsage.value, claude.data.ccUsage.limited = 100, 90
 local limited = shot(claude)
 assert(limited.CollisionDamage == 1.6)
 assert(#spawned == 2 and spawned[1].CollisionDamage == 0.8,
@@ -121,7 +122,7 @@ assert(weekly.CollisionDamage == 1 and spawned[1].CollisionDamage == 0.5,
 assert(risk.state.weeklyUsed == 220, "generated tears must not consume another weekly shot")
 
 claude.kind = 41
-claude.data.ccUsage = {value = 0, limited = 0}
+claude.data.ccUsage.value, claude.data.ccUsage.limited = 0, 0
 local ordinary = shot(claude)
 assert(ordinary.CollisionDamage == 4 and spawned[1].CollisionDamage == 2)
 assert(claude.data.ccUsage.value == 8, "keep the existing double-usage accounting")
@@ -133,10 +134,10 @@ assert(#spawned == 0, "ignore a non-player spawner")
 
 -- Engine item effects are already present on the natural tear. Use unusual
 -- flight values and a high-bit flag so defaults or a truncated mask cannot pass.
-local function effectShot(owner)
+local function effectShot(owner, multiplier)
     spawned={}
     local original={SpawnerEntity=owner, Variant=7, Position={},
-        Velocity={Rotated=function(_,a) return a end}, CollisionDamage=10, Color='modified',
+        Velocity={Rotated=function(_,a) return a end}, CollisionDamage=10*(multiplier or 1), Color='modified',
         TearFlags=(1 << 1) | (1 << 3) | (1 << 4) | (1 << 52),
         Scale=1.7, Height=-27, FallingSpeed=-4.5, FallingAcceleration=0.17,
         HomingFriction=0.08, KnockbackMultiplier=1.4}
@@ -170,3 +171,57 @@ local boosted=effectShot(deepseek); assert(boosted.Scale==2.55); inherited(boost
 enemies,roll=10,0.1
 local blocked=effectShot(deepseek); assert(blocked.removed and #spawned==0)
 print("OK: Swarm shot resolution, player isolation and resolved fork effects/flight")
+
+-- Summary Stapler supplies its multiplier before the real character callbacks.
+-- This models the native FireTear handoff; engine timing still needs acceptance.
+UseFlag = { USE_CARBATTERY = 32 }
+EntityFlag = { FLAG_FRIENDLY = 1 }
+local summaryShot, absorbed
+local delta = { LengthSquared = function() return 1 end }
+local position = setmetatable({}, { __sub = function() return delta end })
+local aim = { LengthSquared = function() return 1 end, Resized = function() return {} end }
+local function prepare(owner)
+    owner.Position = position
+    owner.GetShootingInput = function() return aim end
+    owner.FireTear = function(p, pos, velocity, eye, tractor, streak, source, multiplier)
+        assert(p == owner and source == owner and multiplier == 2)
+        summaryShot = effectShot(owner, multiplier)
+        return summaryShot
+    end
+    absorbed = 0
+    Isaac.GetRoomEntities = function()
+        local result = {}
+        for i = 1, 4 do
+            local bullet = { Position = position, InitSeed = i, Index = i,
+                Variant = 0, SubType = 0, ProjectileFlags = 0, ChangeFlags = 0,
+                SpawnerEntity = { ToNPC = function() return { HasEntityFlags = function() return false end } end } }
+            function bullet:ToProjectile() return self end
+            function bullet:Exists() return true end
+            function bullet:IsDead() return false end
+            function bullet:HasEntityFlags() return false end
+            function bullet:Remove() absorbed = absorbed + 1 end
+            result[#result + 1] = bullet
+        end
+        return result
+    end
+end
+include("scripts.items.summary_stapler"):Init(mod)
+local stapler = callbacks[#callbacks].fn
+claude.kind, claude.swarm = 41, true
+claude.data.ccUsage.value, claude.data.ccUsage.limited = 100, 90
+prepare(claude)
+assert(stapler(mod, -1, nil, claude, 0).Discharge and absorbed == 4)
+assert(summaryShot.CollisionDamage == 8, 'summary must respect Claude limited damage')
+inherited(summaryShot, 2)
+claude.data.ccUsage.value, claude.data.ccUsage.limited = 0, 0
+stapler(mod, -1, nil, claude, 0)
+assert(claude.data.ccUsage.value == 8, 'summary and Swarm keep ordinary usage accounting')
+deepseek.kind, deepseek.swarm, enemies, roll = 142, true, 0, 0.99
+prepare(deepseek)
+stapler(mod, -1, nil, deepseek, 0)
+inherited(summaryShot, 4)
+enemies, roll = 10, 0.1
+stapler(mod, -1, nil, deepseek, 0)
+assert(summaryShot.removed and #spawned == 0, 'busy summary must not leave fork children')
+assert(absorbed == 8, 'defensive absorption remains valid even when the shot is cancelled')
+print('OK: Summary Stapler with real Claude limits, Swarm inheritance and DeepSeek forks/cancellation')
