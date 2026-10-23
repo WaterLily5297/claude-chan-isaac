@@ -68,13 +68,15 @@ Isaac.Spawn = function(_, _, _, _, velocity)
     local t = { velocity = velocity }
     function t:ToTear() return self end
     function t:ResetSpriteScale() self.spriteScale=self.Scale end
+    local data={}; function t:GetData() return data end
     spawned[#spawned + 1] = t
     return t
 end
 function Isaac.GetScreenHeight() return 270 end
 function Isaac.RenderText(text) draws[#draws + 1] = text end
 local function tear(owner)
-    return { SpawnerEntity = { ToPlayer = function() return owner end }, CollisionDamage = 4,
+    local data={}
+    return { GetData=function() return data end, SpawnerEntity = { ToPlayer = function() return owner end }, CollisionDamage = 4,
         Scale = 1, Variant = 0, Position = {}, Color = "c",
         TearFlags = 0, Height = -10, FallingSpeed = 0, FallingAcceleration = 0.5,
         HomingFriction = 0, KnockbackMultiplier = 1,

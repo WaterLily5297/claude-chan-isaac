@@ -4,6 +4,7 @@ function include(name) return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lu
 ModCallbacks = setmetatable({}, { __index = function(_, key) return key end })
 CallbackPriority = { DEFAULT = 0, LATE = 1000 }
 CacheFlag = {CACHE_SPEED=1}
+TearFlags={TEAR_LUDOVICO="ludo"}
 ActiveSlot = { SLOT_POCKET = 2 }
 EntityType = { ENTITY_TEAR = 2 }
 function Color(...) return {...} end
@@ -61,6 +62,7 @@ Isaac = {
             HomingFriction=0, KnockbackMultiplier=1}
         function t:ToTear() return self end
         function t:ResetSpriteScale() self.spriteScale=self.Scale end
+        local data={}; function t:GetData() return data end
         spawned[#spawned + 1] = t
         return t
     end,
@@ -98,6 +100,7 @@ local function shot(owner)
     function t:Remove() self.removed = true end
     function t:Exists() return not self.removed end
     local data={}; function t:GetData() return data end
+    function t:HasTearFlags() return false end
     fire("MC_POST_FIRE_TEAR", t)
     return t
 end
@@ -162,6 +165,7 @@ local function effectShot(owner, multiplier)
     function original:Exists() return not self.removed end
     function original:Remove() self.removed=true end
     local data={}; function original:GetData() return data end
+    function original:HasTearFlags() return false end
     fire('MC_POST_FIRE_TEAR',original)
     return original
 end

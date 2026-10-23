@@ -17,6 +17,7 @@ package.preload.json=function() return {
     decode=function() return copy(saved) end,
 } end
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
+TearFlags={TEAR_LUDOVICO="ludo"}
 CacheFlag={CACHE_SPEED=1}; CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}
 ButtonAction={ACTION_DROP=11,ACTION_SHOOTLEFT=4,ACTION_SHOOTRIGHT=5,ACTION_SHOOTUP=6,ACTION_SHOOTDOWN=7}
 InputHook={IS_ACTION_PRESSED=0,IS_ACTION_TRIGGERED=1,GET_ACTION_VALUE=2}
@@ -88,7 +89,8 @@ end
 local function shot(p)
     local data={}
     local t={SpawnerEntity=p,CollisionDamage=4,Scale=1.7,TearFlags=1<<52,
-        GetData=function() return data end, Exists=function() return true end}
+        GetData=function() return data end, Exists=function() return true end,
+        HasTearFlags=function() return false end}
     fire("MC_POST_FIRE_TEAR",t)
     return t
 end

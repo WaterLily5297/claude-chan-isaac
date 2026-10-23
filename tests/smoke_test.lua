@@ -122,6 +122,7 @@ function Isaac.Spawn(t, v, st, pos, vel)
         local tr = { vel = vel }
         function tr:ToTear() return self end
         function tr:ResetSpriteScale() self.spriteScale=self.Scale end
+        local data={}; function tr:GetData() return data end
         return tr
     end
     return makeNpc(false)
@@ -158,6 +159,7 @@ local function fire(id, param, ...)
         local tear = ...
         -- Shared entity API for the lightweight tear fixtures below.
         tear.Exists = tear.Exists or function(self) return not self.removed end
+        local data={}; tear.GetData=tear.GetData or function() return data end
     end
     local ret
     local selected = {}
