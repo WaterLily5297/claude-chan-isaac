@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased model roster candidate (2026-10-23)
+
+- Owner-requested portrait overhaul: thirteen full illustrations for eleven normal families and both existing tainted characters, imported into menus, transitions and clear-room MAP dossiers.
+- Nine new normal characters: GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, and GLM. Each has a distinct bounded gameplay loop; see `docs/MODEL_ROSTER.md` for exact values and source boundaries.
+- Per-player saved progress, duplicate-room reward protection, current-run transient meters and extended Reactions Port Pack fallback support. Existing DeepSeek direct-connection behavior is preserved.
+- Normal portraits adapted from credited ZipZipPipe illustrations; approved tainted designs subtly darkened. All thirteen gameplay sheets now match the selected portrait hair, costume and accessories. Separate art credits, source hashes and edit prompts are recorded. No video frames or official avatars are included. Animation polish and engine acceptance remain pending; no Workshop publication.
+
 ## v0.5-dev
 
 Characters (owner request: normal + tainted for both; DeepSeek-chan is unrelated to IPs):

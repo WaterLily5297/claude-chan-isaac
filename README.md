@@ -2,9 +2,11 @@
 
 A parody mod for **The Binding of Isaac: Repentance / Repentance+**.
 
+**Experimental roster candidate:** eleven model families, eleven ZipZipPipe-based normal portraits, two darker tainted portraits, nine additional playable normal characters and in-game dossiers. Hold MAP in a cleared room to view the current character's portrait and instructions. See [the roster and mechanics](docs/MODEL_ROSTER.md), [pending engine checks](docs/TESTING.md), and [art terms](resources/ART_LICENSE.md). All thirteen gameplay skins now follow the selected portrait identities; animation polish and engine acceptance remain pending; this is not a Workshop release.
+
 Every floor hands you a random proxy IP. The more people share it, the higher your **risk score** (风控值). The higher the risk, the tougher the enemies get, and killed enemies start coming back as "new accounts".
 
-> Fan work. Not affiliated with or endorsed by Anthropic. No official logos or brand assets are used.
+> Fan work. Not affiliated with or endorsed by Anthropic. Character illustrations are credited fan-art derivatives; see the separate art terms.
 
 [中文](#中文) · [日本語](#日本語)
 
