@@ -1,12 +1,13 @@
 -- Experimental model-family characters. All persistent progress lives in Risk.state.
 -- No changes to DeepSeek's direct connection or either existing character module.
 local C = include("scripts.constants")
+local DropTap = include("scripts.characters.drop_tap")
 local Roster = {}
 Roster.definitions = {
     {key="gpt", name="GPT-chan", title="Deliberate / Instant", color={0.4,1,0.75},
-     lines={"Tap DROP: switch inference mode.", "Deliberate: +35% damage, slower tears.", "Instant: faster tears, -15% damage."}},
+     lines={"Tap/release DROP: switch mode.", "Deliberate: +35% damage, slower tears.", "Instant: faster tears, -15% damage."}},
     {key="gemini", name="Gemini-chan", title="Two modalities", color={0.7,0.6,1},
-     lines={"Tap DROP: switch Prism / Echo.", "Prism: piercing tears, +20% damage.", "Echo: homing tears, faster fire."}},
+     lines={"Tap/release DROP: Prism / Echo.", "Prism: piercing tears, +20% damage.", "Echo: homing tears, faster fire."}},
     {key="grok", name="Grok-chan", title="Live momentum", color={1,0.3,0.35},
      lines={"Keep moving to build momentum.", "Up to +25% damage after 5 seconds.", "Standing still drains momentum."}},
     {key="qwen", name="Qwen-chan", title="Task chain", color={0.8,0.5,1},
@@ -38,6 +39,7 @@ end
 function Roster:Init(mod, Risk)
     local ready = false
     local transient = {}
+    local dropTap = DropTap.New()
     local function slot(player)
         for i = 0, Game():GetNumPlayers() - 1 do
             if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then return tostring(i) end
@@ -87,6 +89,7 @@ function Roster:Init(mod, Risk)
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         transient = {}
+        dropTap:Reset()
         if not continued then Risk.state.modelRoster = {} end
         ready = true
         each(function(p, def, s)
@@ -99,8 +102,11 @@ function Roster:Init(mod, Risk)
             refresh(p)
         end)
     end)
-    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() ready=false; transient={} end)
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
+        ready=false; transient={}; dropTap:Reset()
+    end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+        dropTap:Reset()
         if not ready then return end
         each(function(p, def, s)
             local key=roomKey()
@@ -112,6 +118,7 @@ function Roster:Init(mod, Risk)
         end)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
+        dropTap:Reset()
         if not ready then return end
         each(function(p, _, s) s.awards={}; refresh(p) end)
     end)
@@ -149,11 +156,11 @@ function Roster:Init(mod, Risk)
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_,p)
         if not ready then return end
         local def=self:Find(p)
-        if not def or p:IsDead() then return end
+        if not def or p:IsDead() then dropTap:Forget(p); return end
         local s,t=state(p,def),temp(p)
-        if not s then return end
-        if (def.key=="gpt" or def.key=="gemini") and p:AreControlsEnabled()
-            and Input.IsActionTriggered(ButtonAction.ACTION_DROP,p.ControllerIndex) then
+        if not s then dropTap:Forget(p); return end
+        local switchMode = dropTap:Poll(p, def.key=="gpt" or def.key=="gemini")
+        if switchMode then
             s.mode=1-s.mode; refresh(p)
             Game():GetHUD():ShowItemText(def.name, def.key=="gpt"
                 and (s.mode==0 and "Deliberate" or "Instant") or (s.mode==0 and "Prism" or "Echo"))
@@ -217,6 +224,9 @@ function Roster:Init(mod, Risk)
         local s=state(p,def); s.links=math.min(3,s.links+1); refresh(p)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+        -- Player updates stop while paused; cancel pending gestures here even
+        -- when the HUD is hidden, so releasing after a menu never toggles mode.
+        if Game():IsPaused() then dropTap:Reset(); return end
         if not ready or not Game():GetHUD():IsVisible() then return end
         each(function(p,def,s)
             local i=tonumber(slot(p)) or 0
