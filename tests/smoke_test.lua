@@ -5,7 +5,13 @@ package.path = root .. "/?.lua;" .. package.path
 local callbacks = {}
 local saved
 local mod = {}
-function mod:AddCallback(id, fn, param) table.insert(callbacks, { id = id, fn = fn, param = param }) end
+function mod:AddCallback(id, fn, param)
+    table.insert(callbacks, { id = id, fn = fn, param = param, priority = 0, order = #callbacks + 1 })
+end
+function mod:AddPriorityCallback(id, priority, fn, param)
+    self:AddCallback(id, fn, param)
+    callbacks[#callbacks].priority = priority
+end
 function mod:SaveData(s) saved = s end
 function mod:HasData() return saved ~= nil end
 function mod:LoadData() return saved end
@@ -38,6 +44,7 @@ DoorSlot = { NUM_DOOR_SLOTS = 8 }
 TearFlags = { TEAR_HOMING = "homing", TEAR_PIERCING = "piercing", TEAR_SPECTRAL = "spectral", TEAR_POISON = "poison", TEAR_SLOW = "slow" }
 PickupVariant = { PICKUP_COLLECTIBLE = 100, PICKUP_LOCKEDCHEST = 60, PICKUP_COIN = 20 }
 ModCallbacks = setmetatable({}, { __index = function(_, k) return k end })
+CallbackPriority = { DEFAULT = 0, LATE = 1000 }
 EntityType = { ENTITY_PLAYER = 1, ENTITY_TEAR = 2, ENTITY_PROJECTILE = 9, ENTITY_CLOTTY = 15 }
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_RANGE = 2, CACHE_SHOTSPEED = 4, CACHE_SPEED = 8, CACHE_TEARCOLOR = 16, CACHE_FIREDELAY = 32, CACHE_FLYING = 64 }
 ActiveSlot = { SLOT_PRIMARY = 0, SLOT_POCKET = 2 }
@@ -131,12 +138,23 @@ function Game()
 end
 
 local function fire(id, param, ...)
+    if id == "MC_POST_FIRE_TEAR" then
+        local tear = ...
+        -- Shared entity API for the lightweight tear fixtures below.
+        tear.Exists = tear.Exists or function(self) return not self.removed end
+    end
     local ret
+    local selected = {}
     for _, cb in ipairs(callbacks) do
         if cb.id == id and (cb.param == nil or param == nil or cb.param == param) then
-            ret = cb.fn(mod, ...) or ret
+            selected[#selected + 1] = cb
         end
     end
+    table.sort(selected, function(a, b)
+        if a.priority == b.priority then return a.order < b.order end
+        return a.priority < b.priority
+    end)
+    for _, cb in ipairs(selected) do ret = cb.fn(mod, ...) or ret end
     return ret
 end
 
