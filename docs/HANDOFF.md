@@ -1,8 +1,49 @@
 # Handoff for Claude and contributors
 
-Updated 2026-10-23 (Japan time), v0.4-dev. This is a Codex implementation handoff. No separate Claude session reviewed these changes; no Claude CLI or connected Claude service was available.
+Updated 2026-10-23 (Japan time), v0.5-dev. PR #5 is merged. Its implementation and the earlier v0.4 observations are separate evidence; passing CI does not establish in-game correctness.
+
+## Model roster and portrait expansion: engine acceptance pending
+
+The owner's latest request prioritizes redesigned portraits and playable mainstream model families. The expansion now covers eleven normal families plus the existing two tainted characters: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, and GLM. The nine additions have normal forms only. All new code, documentation and UI text is English as requested. See [MODEL_ROSTER.md](MODEL_ROSTER.md) for the implemented mechanics, limits and evidence boundaries.
+
+The owner confirmed exactly eleven families, selected ZipZipPipe's AI-personification designs for normal portraits, and retained the generated tainted designs with slightly deeper colors. Eleven source illustrations were hash-checked against the public source catalog and adapted with the built-in image tool for transparency and logo replacement. These are edited derivatives, not untouched author originals. All thirteen selected portraits now feed selection busts, stage portraits and clear-room MAP dossiers. Source URLs, input hashes and exact edit prompts are in `portrait-prompts.json` and `tainted-portrait-prompts.json`.
+
+All thirteen gameplay skins have been regenerated using the selected ZipZipPipe portraits as identity references. Hair, clothing and accessories now correspond to those portraits. `tools/pack_selected_sprites.py` packs reviewed source frames into 512x512 engine atlases with binary alpha and transparent gutters. Gemini body-frame repair replaces accidental light orbs with clothed headless bodies. The original normal and tainted Claude/DeepSeek sheets were also redrawn at the owner's request; tainted forms retain the approved crimson/black-gold and deep teal/white designs. Directional accuracy, alternate arm poses, lower special poses and engine animation acceptance remain unfinished; identity alignment is not animation acceptance. The discarded fifteen-family draft is preserved locally as commit `2909e8a` on `codex/model-roster-generated-draft`; it was not installed or published.
+
+The candidate incorporates fixes #6-#10. Offline checks pass: 48 Lua files, five content XML files, eleven-family asset registration and nine stub suites. Gameplay, save/restart, all poses, weapons and co-op remain unverified in the engine. The installed application remains the earlier four-fix build `204861f`; this portrait candidate has not been installed. No Workshop publication or independent reviewer approval is claimed.
+
+Artist-source access limitation: Bilibili returned HTTP 412 during direct checking. The source catalog records the author's sharing/recreation statement, and the existing project records non-commercial design terms. Preserve that distinction and do not relabel all art as MIT or a blanket Creative Commons license.
+
+Before installing, make and hash-verify a fresh backup of the installed `204861f` application files using the owner's private backup workflow. Do not overwrite saves, another mod or the preserved `215df90` drafts. Record the exact installed candidate commit separately. Fetch main before publishing; main was still `1143ff1` when this work began.
+
+## Earlier integration candidate: offline checks only
+
+This local candidate combines tainted reaction fallback protection (#6), Vibe Coding bill persistence (#7), Overloaded run reset (#8), Swarm shot resolution (#9), and Opus wallet-cache correction (#10), all based on main `1143ff1`. The source changes merge together; overlapping documentation additions were retained. The combined suite passes 45 Lua syntax checks, five XML files, deterministic asset checks and all eight stub suites. Individual PR CI results do not constitute CI or engine evidence for this combined tree. All gameplay acceptance rows remain pending. No new item or character content is included, and no separate contributor has reviewed these follow-up fixes.
+
+Before the roster request, the four-fix candidate `204861f` was installed and reached the Repentance+ title screen. The five-fix candidate had not been installed or launched. Direct keyboard input, the system on-screen keyboard, and temporary windowed/focus-pause settings did not establish controlled entry into a run. The game was closed and temporary preferences restored. A working game-control path remains required before recording character, save/continue, animation, weapon or co-op acceptance. The later owner request authorizes development of new content while this evidence gap remains open.
+
+The owner now also permits direct work on main. Keep changes reviewable and preserve collaborators' work; this permission does not change the backup, engine-evidence or Workshop release gates.
+
+## Tainted reaction-pack compatibility follow-up
+
+- Reactions Port Pack fallback protection now includes both normal and both tainted characters. Unknown tainted characters previously received the pack's default Isaac reaction costume.
+- Existing explicit character support, vanilla entries and default costumes are preserved. No other mod's files or configuration are changed.
+- A focused stub regression failed on the previous implementation and passes with the fix; the complete `bash tools/check.sh` suite also passes (41 Lua files, XML/assets and four stub suites).
+- This fix still needs a game check of both tainted characters during a reaction animation. It has not been independently reviewed or merged. Do not infer a visual pass from the stub regression.
 
 ## v0.5-dev (Claude session, 2026-10-23) - not yet run in game
+
+### Overloaded run-lifecycle follow-up
+
+The v0.5 baseline keeps the outage deadline in module-local state, while the game frame counter resets for a new run. Quitting during an outage could therefore weaken tears in a later run for much longer than two seconds. The follow-up clears the deadline on game start and exit. A focused stub test reproduces the failure on `1143ff1` and passes after the fix, covering the 60-frame boundary, dropping the trinket, a new run and continue. The full offline suite passes (42 Lua files, five stub suites). Actual engine verification remains pending; this adds no new gameplay content and does not change the intended outage duration.
+
+### Subagent Swarm shot-resolution follow-up
+
+The baseline registers Swarm before the character firing callbacks. It creates children before DeepSeek can cancel a busy shot and before Claude applies limited damage, allowing the children to survive or bypass the parent's penalty. Swarm now keeps its existing early usage billing but creates children at `CallbackPriority.LATE`, skipping removed tears and copying the damage/color after this mod's normal-priority character callbacks. A focused regression fails on `1143ff1` and passes with the fix for normal/tainted busy cancellation, Deep Think, both Claude limits, the additive fork count and player isolation. Full offline checks pass (42 Lua files, five stub suites). This does not add laser/knife/bomb support or complete tear-flag inheritance. Engine verification, including priority/removal behavior and interaction with other mods' late callbacks, remains pending.
+
+### Opus Mode wallet-cache follow-up
+
+Opus Mode previously calculated cached damage from the last player-update notification flag. A cache evaluation before that update could use the wrong multiplier after acquisition, a coin change, or reacquisition following a reroll. Damage now reads the player's current coin count directly; billing and notification transitions are unchanged. The focused regression fails on main `1143ff1` and passes with the fix, covering empty and funded wallets, stale flags, item removal/reacquisition and separate players. These are stub checks, not evidence of actual engine callback timing. In-game acquisition, coin pickup/spending, D4 and continue still require validation. The previously prepared combined fixes #6-#9 have reached the Repentance+ title screen, but gameplay input has not been established; startup does not satisfy the four-character acceptance gate.
 
 Owner requests: normal and tainted versions of both characters; DeepSeek-chan is unrelated to IPs, so her design was revisited; fix the sprites; fix bugs; item/character changes from X/Bilibili memes. Branch `claude/meme-update`.
 
@@ -15,7 +56,7 @@ Owner requests: normal and tainted versions of both characters; DeepSeek-chan is
 - **Runtime probe** now needs a Claude-chan run and swaps a Support Ticket into her pocket. Its recorded passes below were on the v0.4 DeepSeek build.
 - Stub tests cover all of the above (`bash tools/check.sh`). In-game checks: `docs/TESTING.md` "v0.5 focused checks".
 
-## Implemented content
+## Historical v0.4 implementation (superseded where noted above)
 
 - PR #1 (collaboration/CI) and PR #2 (RORICO444 item icons) were reviewed and merged, preserving contribution history. PR #2 was retargeted from `setup/collaboration` to `main` after #1 merged.
 - Support Ticket: six-charge shop active; pay 3 coins for risk -20. Insufficient coins or zero risk preserve money and charge. Car Battery cannot bill twice.
@@ -29,7 +70,7 @@ Owner requests: normal and tainted versions of both characters; DeepSeek-chan is
 
 - Fixed simultaneous caption triggers: room and floor events now queue chapters instead of overwriting them. Pending keys live in `Risk.state.storyPending` and survive save/load; their seen bits are set when they begin. Legacy saves remain supported.
 
-## Actual validation
+## Historical v0.4 actual validation (not a v0.5 pass)
 
 - `bash tools/check.sh` passes under Lua 5.3 (`texlua`) and Python 3.10 on Windows: all four Lua tests, syntax, XML and assets. CI runs the same checks. Regression cases include item boundaries, Car Battery, co-op shared risk, floor seeding, early approval, saved chapters and optional reaction-pack fallbacks.
 - Repentance+ 1.9.7.17 loaded both custom characters in the existing mod installation with the owner's other mods enabled. Claude's front/rear appearance and DeepSeek's front/rear/right shooting appearance were inspected. Blue DeepSeek tears, orange Claude tears and Claude's usage-limit HUD were observed. The final corrected Claude rear silhouette rendered complete.
@@ -45,7 +86,7 @@ Owner requests: normal and tainted versions of both characters; DeepSeek-chan is
 
 ## Remaining release checks
 
-- Normal Repentance, local co-op, complete runs to Mom and the no-hit bonus in real combat remain to be checked. The Car Battery and positive-risk insufficient-funds cases above now have engine evidence; additional synergies remain open.
+- Normal Repentance, local co-op and complete runs to Mom remain to be checked. The former DeepSeek no-hit risk bonus was removed in v0.5 and must not be restored to satisfy an obsolete fixture. The Car Battery and positive-risk insufficient-funds cases above have historical v0.4 engine evidence; repeat them on v0.5.
 - Inspect all walking/shooting directions, hurt/death/flying frames, boss/stage transition portraits, skin-colour items, transformations and more D4 outcomes. The art is usable first-pass work, not final animation polish. Separate hair costumes may be needed to preserve the design through skin-changing items.
 - Check the final chapter and approved caption with ordinary room transitions, and test all languages at different screen/HUD settings. Saved-state logic has regression coverage; only a subset of chapters has been observed in game.
 - The pre-existing `stackable items v2` startup error (`resources/scripts/main.lua:154: table index is nil`) still occurs. Another existing mod's entities2 assertion and resource-cache shutdown warnings are unrelated. Do not change or disable unrelated mods without checking with the owner.
@@ -65,3 +106,9 @@ Owner requests: normal and tainted versions of both characters; DeepSeek-chan is
 Code/item icons are MIT. Character design/art terms are separate in `resources/ART_LICENSE.md`; credits include ZipZipPipe and 上善无形. No official logos. Enemies are infrastructure and abuse mechanisms, not populations. Keep notes, credentials, personal images, saves, machine paths and backup contents outside GitHub.
 
 The owner supplied Bilibili video BV1yUJZ6WEpg as inspiration. Its public page/API could not be retrieved in this session, so no downloadable-file or licence inspection is claimed and no video pixels were used. Do not operate login dialogs or use credentials supplied in chat.
+
+## Vibe Coding persistence follow-up (2026-10-23)
+
+On the v0.5 baseline `1143ff1`, the floor-hit flag lived only in `player:GetData()`. A continuation recreates that data, incorrectly waiving the next floor's API bill. The follow-up stores flags by player slot in the existing shared `Risk.state` save and ignores startup `NEW_LEVEL` callbacks until the run state has loaded. It does not enable risk mechanics for DeepSeek-chan.
+
+The new lifecycle regression fails on the baseline and passes with the fix. It covers fresh entity/module state after continue, separate player bills, no-hit floors, startup ordering and a new run. The smoke serializer stub now preserves nested tables without aliasing. All offline checks pass (42 Lua files and five stub suites). These are simulated lifecycle checks; real application-restart persistence and co-op roster changes still need engine verification.

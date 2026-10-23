@@ -1,0 +1,24 @@
+{
+  "original_prompts": [
+    {
+      "key": "claude_b",
+      "name": "Tainted Claude-chan",
+      "prompt": "Use case: identity-preserve. Create the tainted alternate version of this exact Claude-chan full-body portrait for the same game. Preserve her recognizable face, sunflower hair ornament, elegant anatomy, overall pose, book, and premium anime illustration quality. Change the hair to deep crimson, dress to layered charcoal and black with restrained dark red and antique gold trim, make the sunflower slightly wilted, book cover worn and closed with red ribbon, expression quietly defiant and tired but beautiful. Keep full body and shoes visible. No injuries, no blood, no letters, no company logos. Actual transparent RGBA isolated character, no backdrop or glow. This is the tainted alternate of the credited ZipZipPipe design, noncommercial derivative."
+    },
+    {
+      "key": "deepseek_b",
+      "name": "Tainted DeepSeek-chan",
+      "prompt": "Use case: identity-preserve. Create the tainted alternate of this exact DeepSeek-chan full-body illustration for the same game. Preserve her recognizable face, flowing hair, whale-fin hair ornaments, graceful pose, teacup, maid silhouette, natural anatomy and refined anime painting quality. Change the navy hair and dress to rich dark teal and turquoise, white apron to pale icy cyan, eyes bright aqua, add elegant silver geometric embroidery, expression more confident and playful. Keep every part of the full body and shoes visible. No text, no logos, no extra characters, no UI. Actual transparent RGBA cutout with no surrounding glow or scene. Noncommercial derivative of the whale girl by Shangshan Wuxing and maid design by ZipZipPipe, CC BY-NC-SA."
+    }
+  ],
+  "color_revision": [
+    {
+      "key": "claude_b",
+      "prompt": "Use case: identity-preserve. Edit target: the provided Tainted Claude-chan illustration. User likes this exact design and requests only slightly deeper colors. Darken the crimson hair and charcoal dress midtones subtly, approximately 8 percent, with slightly richer burgundy shadows. Keep the exact face, expression, pose, anatomy, silhouette, sunflower, book, costume details, gold embroidery, dimensions and framing unchanged. Keep face, eyes and gold highlights legible. No new objects or redesign. Preserve real transparent alpha background; no backdrop, glow or vignette. This is a noncommercial derivative of the credited ZipZipPipe character design."
+    },
+    {
+      "key": "deepseek_b",
+      "prompt": "Use case: identity-preserve. Edit target: the provided Tainted DeepSeek-chan illustration. User likes this exact design and requests only slightly deeper colors. Darken the blue-teal hair and teal dress midtones subtly, approximately 8 percent, with slightly richer deep ocean shadows. Keep the exact face, expression, pose, anatomy, silhouette, whale fins, teacup, costume details, silver embroidery, dimensions and framing unchanged. Keep face, eyes and icy apron highlights legible. No new objects or redesign. Preserve real transparent alpha background; no backdrop, glow or vignette. Noncommercial derivative of the whale girl by Shangshan Wuxing and maid design by ZipZipPipe, CC BY-NC-SA."
+    }
+  ]
+}

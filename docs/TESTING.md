@@ -1,6 +1,20 @@
 # In-game test checklist
 
-Everything so far has only been checked against a stubbed API. One pass through this list in the real game (about 15 minutes) tells us what actually works.
+## Eleven-family expansion acceptance (all pending)
+
+Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes.
+
+- Select all eleven normal families and both existing tainted characters. Check the correct name, bust, stage portrait and full MAP dossier. No missing textures or duplicate menu entries.
+- Inspect every new skin facing front, right, rear and left, while walking, firing, holding an item, flying, hurt and dead. Check for clipping, stray neighboring pixels, incorrect back views and doubled heads. Alternate arm poses remain provisional.
+- For GPT and Gemini, tap DROP through both modes, then save/quit/close/restart/continue. The mode must persist. Check the original DROP behavior with held trinkets and controller input.
+- For Grok and Mistral, reach maximum movement/firing charge, stop, change rooms, and start a new run. Temporary charge must reset and stay bounded.
+- For Qwen and Kimi, build progress, take a hit, save and continue before clearing. The room must not count as flawless. The Constitution's refused hit must not break progress.
+- For Llama and Doubao, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
+- For GLM, use the pocket Book of Secrets, Car Battery, a zero-charge item and an item with a custom use callback. Links must stay at three or fewer and reset when leaving the room.
+- Check Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, multishot, familiars, D4, transformations, costume-changing items, EID and Reactions Port Pack. Cache-based code alone is not compatibility evidence.
+- Repeat in base Repentance and Repentance+, finish full runs, then close the game. Do not publish to Workshop before acceptance and art-permission review.
+
+Offline tests, historical v0.4 engine observations, and v0.5 runtime validation are separate evidence. See HANDOFF.md for their scope. The checks below are acceptance targets, not claims that they passed.
 
 ## Setup
 
@@ -15,7 +29,7 @@ Useful console commands: `giveitem <name>` for items, `giveitem t<name>` for tri
 
 | # | Test | Expected | OK? |
 |---|---|---|---|
-| 1 | Character select | Claude-chan is listed (looks like Isaac for now) | |
+| 1 | Character select | Claude-chan is listed with the custom character artwork | |
 | 2 | Start as Claude-chan | Ban Hammer in the pocket slot; orange tears; IP + Risk + Usage on the bottom-left | |
 | 3 | Shoot non-stop for ~20 s | "Usage limit reached", grey weak tears for 5 s, then meter resets | |
 | 4 | `stage 2`, `stage 3` | New IP each floor, risk goes up | |
@@ -52,6 +66,14 @@ Useful console commands: `giveitem <name>` for items, `giveitem t<name>` for tri
 
 Items most likely to need fixes: **#17** (doors may re-close while enemies are alive) and the placeholder Relay Slime (#6b).
 
+Overloaded lifecycle acceptance (pending): trigger an outage late in a disposable run, quit during its two-second window, then start a new run without closing the application and acquire the trinket. Tears must have normal damage until that new run's first outage. Also test save/continue, dropping the trinket during an outage, and normal recovery at two seconds. Offline lifecycle coverage does not mark these engine checks as passed.
+
+Subagent Swarm resolution acceptance (pending): test both DeepSeek characters with Swarm in a populated room. A server-busy shot must leave neither a natural tear nor Swarm children; a successful normal shot after five seconds of Deep Think must give children half its boosted damage. On both Claude characters, children must deal half the already-limited parent's damage and share its grey color. Check normal DeepSeek plus Swarm produces three total tears, while tainted DeepSeek plus Swarm produces five, with no recursive growth. In co-op, a non-holder must not gain children from the holder. Also test another mod's late tear callback; this mod's late registration does not establish universal ordering across third-party callbacks. These assertions have stub coverage only, not a recorded engine pass.
+
+### Opus Mode immediate wallet state
+
+Acquire Opus Mode at zero coins and inspect the damage stat before and after the next player update; its multiplier should be x0.6 throughout. Repeat with positive coins for x1.8. Pick up a coin, spend the last coin, and trigger a damage-cache refresh in the same frame: the refreshed value must use the current wallet. Reroll away and reacquire the item after changing the wallet, and repeat after a real save/quit/continue. In co-op, check each owner separately. The regression uses stub cache calls and stale notification flags; it does not prove the game's callback order or cover weapon-family billing.
+
 ### API checked against the community docs (wofsauge/IsaacDocs, 2026-10-22)
 
 These calls exist with the signatures the mod uses, so they shouldn't crash: `GridEntityDoor:TryUnlock(player, force)`, `IsLocked()`, `Open()`; `EntityPickup:TryOpenChest(player)`; `Entity:AddCharmed(ref, -1)` (−1 = permanent, the ally follows you between rooms); `AddConfusion`, `AddFreeze`; `Room:SetClear`, `GetFrameCount`, `GetCenterPos`; `EntityPlayer:SetPocketActiveItem`, `GetActiveCharge`, `SetActiveCharge`, `AddSoulHearts`, `HasTrinket`; `EntityTear:AddTearFlags`; `MC_USE_PILL (effect, player, flags)`; `MC_USE_ITEM` returning `true` plays the use animation; `MC_ENTITY_TAKE_DMG` returning a value skips later callbacks (so The Constitution's refused hit adds no risk).
@@ -59,6 +81,12 @@ These calls exist with the signatures the mod uses, so they shouldn't crash: `Gr
 What the docs can't tell us is whether the gameplay *feels* right. That's what this checklist is for.
 
 ## v0.4 focused checks
+
+### Vibe Coding persistence acceptance (pending)
+
+In a disposable run, hold Vibe Coding and 40 coins, take a hit, save and quit, close the application, then continue and change floors. Coins must remain 40 on continue and become 30 on the next floor. Repeat without a hit: coins stay 40. On the following no-hit floor no second bill is due. Repeat with two players: only the damaged holder pays. Include The Constitution's refused first hit, and check a fresh run does not inherit the previous run's hit flag. The lifecycle regression is stub coverage; it does not mark these engine checks as passed.
+
+### Other v0.4 checks
 
 - *(v0.4 DeepSeek-chan check superseded by the v0.5 redesign below.)*
 - `giveitem Support Ticket`: with 2 coins or risk 0, no coins/charge spent; with 3 coins and positive risk, spend 3 and lower risk by up to 20. Repeat with Car Battery.
@@ -69,6 +97,8 @@ What the docs can't tell us is whether the gameplay *feels* right. That's what t
 - Repentance+ 1.9.7.17 gameplay startup was observed on 2026-10-23. This is not evidence of a full-run pass, normal Repentance compatibility or local co-op correctness.
 
 ## v0.5 focused checks (characters)
+
+With Reactions Port Pack enabled, trigger a pickup/reaction for each of the four characters. Their custom skins must remain visible instead of receiving the pack's default Isaac face. Explicit character support supplied by the pack must remain intact. The tainted fallback regression currently has stub coverage; in-game visual verification remains pending.
 
 | # | Test | Expected | OK? |
 |---|---|---|---|
