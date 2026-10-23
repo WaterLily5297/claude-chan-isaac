@@ -1,5 +1,26 @@
 # Changelog
 
+## Unreleased DROP tap/hold correction (2026-10-24)
+
+- GPT/Gemini switch mode on a short DROP release rather than immediately on press. Long holds do not switch, and native input remains available for dropping and pocket cycling.
+- Cancel pending gestures across pause, transitions, lost control, death, continue and observed identity/controller changes. Preserve saved mode and existing balance. Offline input regressions pass; keyboard/controller and native-drop engine acceptance remain pending.
+
+## Unreleased hurt-pose correction
+
+- Fit all thirteen registered skins' shared hurt-pose cell to the measured vanilla envelope and ground anchor instead of filling a 64px storage cell. Correct Llama's truncated source crop without redrawing its art.
+- Source hashes and surrounding atlas pixels are unchanged. The offline regression fails on the previous thirteen skins and passes exact rebuilt corrections. Hit and the four other transitions sharing this cell still need engine acceptance; no runtime installation or Workshop publication.
+
+## Community-meme design and character reference review
+
+- Replace the capability-based character draft with twenty-two meme-led proposals. Source strength and blocked-video limits are explicit; none of these replacement loops is implemented yet.
+- Pin three public character/template repositories and inspect vanilla hurt-frame geometry. The oversized hurt-pose bug is still open; no third-party artwork was imported.
+
+## Unreleased Summary Stapler candidate
+
+- First of fifty additional collectibles: Summary Stapler, a four-charge treasure active. Absorbs at most twelve nearby ordinary hostile bullets and emits one native tear with a bounded multiplier. Preserves native tear effects and this mod's limits/forks; no weapon or costume replacement, empty-use charge loss, quota reset or Car Battery repeat.
+- Original geometric stapler/paper icon using the existing item-icon generator; English description. Theme: summary-based compaction from [Claude context documentation](https://platform.claude.com/docs/en/build-with-claude/context-editing). Bilibili swarm leads and access limits, 22-form loops, nine darker tainted directions and all fifty item designs are recorded in `docs/EXPANSION_DESIGN.md`.
+- Source implementation and offline tests only. No installation, engine acceptance or Workshop publication.
+
 ## Unreleased model roster candidate (2026-10-23)
 
 - Owner-requested portrait overhaul: thirteen full illustrations for eleven normal families and both existing tainted characters, imported into menus, transitions and clear-room MAP dossiers.
