@@ -37,7 +37,7 @@ end
 
 function Roster:Init(mod, Risk)
     local ready = false
-    local transient = setmetatable({}, {__mode="k"})
+    local transient = {}
     local function slot(player)
         for i = 0, Game():GetNumPlayers() - 1 do
             if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then return tostring(i) end
@@ -56,8 +56,14 @@ function Roster:Init(mod, Risk)
         return s
     end
     local function temp(player)
-        local s = transient[player]
-        if not s then s = {momentum=0, wind=0, toolFrame=-1}; transient[player] = s end
+        -- Callbacks can wrap the same engine entity in different Lua objects.
+        -- Keep only scalar identity, and reject a reused pointer or changed type.
+        local pointer, seed, kind = GetPtrHash(player), player.InitSeed, player:GetPlayerType()
+        local s = transient[pointer]
+        if not s or s.seed ~= seed or s.kind ~= kind then
+            s = {seed=seed, kind=kind, momentum=0, wind=0, toolFrame=-1}
+            transient[pointer] = s
+        end
         return s
     end
     local function refresh(player)
@@ -80,7 +86,7 @@ function Roster:Init(mod, Risk)
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
-        transient = setmetatable({}, {__mode="k"})
+        transient = {}
         if not continued then Risk.state.modelRoster = {} end
         ready = true
         each(function(p, def, s)
