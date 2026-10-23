@@ -3,6 +3,7 @@
 -- down to 30% after 3 seconds.
 
 local Constants = include("scripts.constants")
+local ThoughtAttacks = include("scripts.characters.thought_attacks")
 
 local MillionContext = {}
 
@@ -24,7 +25,7 @@ function MillionContext:Init(mod)
         end
 
         local data = tear:GetData()
-        data.ccBaseDamage = data.ccBaseDamage or tear.CollisionDamage
+        data.ccBaseDamage = data.ccBaseDamage or ThoughtAttacks.BaseDamage(tear)
         local rot = math.max(MIN_DAMAGE, 1 - tear.FrameCount / ROT_FRAMES)
         tear.CollisionDamage = data.ccBaseDamage * rot
     end)
