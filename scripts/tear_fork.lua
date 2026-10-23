@@ -1,6 +1,7 @@
 -- Copy resolved shot properties without firing another player attack callback.
 -- Entity links, collision history, attached targets and mod-private data are not clones.
 local TearFork = {}
+local ThoughtAttacks = include("scripts.characters.thought_attacks")
 
 function TearFork.Copy(parent, child, damageMultiplier)
     child.CollisionDamage = parent.CollisionDamage * damageMultiplier
@@ -13,6 +14,7 @@ function TearFork.Copy(parent, child, damageMultiplier)
     child.KnockbackMultiplier = parent.KnockbackMultiplier
     child.Scale = parent.Scale
     child:ResetSpriteScale()
+    ThoughtAttacks.CopyLease(parent,child)
 end
 
 return TearFork
