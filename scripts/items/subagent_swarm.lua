@@ -10,7 +10,22 @@ local SPREAD = 15
 local SUBAGENT_DAMAGE = 0.5
 
 function SubagentSwarm:Init(mod)
+    -- Keep billing before Claude's normal shot accounting and limit checks.
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+        local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+        if not player or not player:HasCollectible(Constants.Item.SUBAGENT_SWARM) then
+            return
+        end
+
+        local usage = player:GetData().ccUsage
+        if usage and usage.limited == 0 and player:GetPlayerType() == Constants.Player.CLAUDE_CHAN then
+            usage.value = math.min(100, usage.value + 4)
+        end
+    end)
+
+    -- Resolve cancellation, character limits and damage modifiers before copying.
+    mod:AddPriorityCallback(ModCallbacks.MC_POST_FIRE_TEAR, CallbackPriority.LATE, function(_, tear)
+        if not tear:Exists() then return end
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if not player or not player:HasCollectible(Constants.Item.SUBAGENT_SWARM) then
             return
@@ -23,11 +38,6 @@ function SubagentSwarm:Init(mod)
                 sub.CollisionDamage = tear.CollisionDamage * SUBAGENT_DAMAGE
                 sub.Color = tear.Color
             end
-        end
-
-        local usage = player:GetData().ccUsage
-        if usage and usage.limited == 0 and player:GetPlayerType() == Constants.Player.CLAUDE_CHAN then
-            usage.value = math.min(100, usage.value + 4)
         end
     end)
 end

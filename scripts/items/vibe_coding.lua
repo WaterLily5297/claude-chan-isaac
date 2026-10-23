@@ -19,11 +19,22 @@ local EFFECTS = {
     TearFlags.TEAR_SLOW,
 }
 
-function VibeCoding:Init(mod)
+function VibeCoding:Init(mod, Risk)
     local rng = RNG()
+    local started = false
+
+    local function mistakes()
+        Risk.state.vibeMistakes = Risk.state.vibeMistakes or {}
+        return Risk.state.vibeMistakes
+    end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         rng:SetSeed(math.max(1, Game():GetSeeds():GetStartSeed() + 1986), 35)
+        started = true -- Risk has already reset or loaded the shared run state.
+    end)
+
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
+        started = false
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
@@ -42,24 +53,33 @@ function VibeCoding:Init(mod)
     -- "Make no mistakes": any hit on this floor counts as a mistake.
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
         local player = entity:ToPlayer()
-        if player then player:GetData().ccVibeMistake = true end
+        if not player or not started then return end
+        for i = 0, Game():GetNumPlayers() - 1 do
+            if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then
+                -- Save by player slot; entity pointers and GetData do not survive continue.
+                mistakes()[tostring(i)] = true
+                break
+            end
+        end
     end, EntityType.ENTITY_PLAYER)
 
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
+        -- The engine also emits NEW_LEVEL before GAME_STARTED on startup.
+        if not started then return end
+        local hit = mistakes()
         for i = 0, Game():GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
-            local data = player:GetData()
             local bill = math.floor(player:GetNumCoins() * BILL_SHARE)
             if player:HasCollectible(Constants.Item.VIBE_CODING) and bill > 0 then
-                if data.ccVibeMistake then
+                if hit[tostring(i)] then
                     player:AddCoins(-bill)
                     Game():GetHUD():ShowItemText("API bill", string.format("-%d coins", bill))
                 else
                     Game():GetHUD():ShowItemText("Made no mistakes", "API bill waived this floor")
                 end
             end
-            data.ccVibeMistake = false
         end
+        Risk.state.vibeMistakes = {}
     end)
 end
 
