@@ -204,6 +204,14 @@ local pack = {CostumeSets = {Disabled = {IDs = {"Disabled"}},
 compat:Register(pack)
 assert(fallback[41] == custom, "preserve explicit character support")
 assert(#fallback[42].Apply == 0 and #fallback[42].Remove == 0)
+for _, id in ipairs({141, 142}) do
+    assert(fallback[id] and #fallback[id].Apply == 0 and #fallback[id].Remove == 0,
+        "tainted characters must opt out of the default Isaac reaction costume")
+end
+local taintedCustom = {Apply = {123}, Remove = {122}}
+fallback[141] = taintedCustom
+compat:Register(pack)
+assert(fallback[141] == taintedCustom, "preserve explicit tainted character support")
 assert(fallback.Default.Apply[1] == 159 and fallback[0].Apply[1] == 1)
 local entry = fallback[42]; compat:Register(pack); assert(fallback[42] == entry)
 
