@@ -1,6 +1,6 @@
 # In-game test checklist
 
-Everything so far has only been checked against a stubbed API. One pass through this list in the real game (about 15 minutes) tells us what actually works.
+Offline tests, historical v0.4 engine observations, and v0.5 runtime validation are separate evidence. See HANDOFF.md for their scope. The checks below are acceptance targets, not claims that they passed.
 
 ## Setup
 
@@ -15,7 +15,7 @@ Useful console commands: `giveitem <name>` for items, `giveitem t<name>` for tri
 
 | # | Test | Expected | OK? |
 |---|---|---|---|
-| 1 | Character select | Claude-chan is listed (looks like Isaac for now) | |
+| 1 | Character select | Claude-chan is listed with the custom character artwork | |
 | 2 | Start as Claude-chan | Ban Hammer in the pocket slot; orange tears; IP + Risk + Usage on the bottom-left | |
 | 3 | Shoot non-stop for ~20 s | "Usage limit reached", grey weak tears for 5 s, then meter resets | |
 | 4 | `stage 2`, `stage 3` | New IP each floor, risk goes up | |
@@ -69,6 +69,8 @@ What the docs can't tell us is whether the gameplay *feels* right. That's what t
 - Repentance+ 1.9.7.17 gameplay startup was observed on 2026-10-23. This is not evidence of a full-run pass, normal Repentance compatibility or local co-op correctness.
 
 ## v0.5 focused checks (characters)
+
+With Reactions Port Pack enabled, trigger a pickup/reaction for each of the four characters. Their custom skins must remain visible instead of receiving the pack's default Isaac face. Explicit character support supplied by the pack must remain intact. The tainted fallback regression currently has stub coverage; in-game visual verification remains pending.
 
 | # | Test | Expected | OK? |
 |---|---|---|---|
