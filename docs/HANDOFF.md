@@ -4,6 +4,10 @@ Updated 2026-10-23 (Japan time), v0.4-dev. This is a Codex implementation handof
 
 ## v0.5-dev (Claude session, 2026-10-23) - not yet run in game
 
+### Subagent Swarm shot-resolution follow-up
+
+The baseline registers Swarm before the character firing callbacks. It creates children before DeepSeek can cancel a busy shot and before Claude applies limited damage, allowing the children to survive or bypass the parent's penalty. Swarm now keeps its existing early usage billing but creates children at `CallbackPriority.LATE`, skipping removed tears and copying the damage/color after this mod's normal-priority character callbacks. A focused regression fails on `1143ff1` and passes with the fix for normal/tainted busy cancellation, Deep Think, both Claude limits, the additive fork count and player isolation. Full offline checks pass (42 Lua files, five stub suites). This does not add laser/knife/bomb support or complete tear-flag inheritance. Engine verification, including priority/removal behavior and interaction with other mods' late callbacks, remains pending.
+
 Owner requests: normal and tainted versions of both characters; DeepSeek-chan is unrelated to IPs, so her design was revisited; fix the sprites; fix bugs; item/character changes from X/Bilibili memes. Branch `claude/meme-update`.
 
 - **DeepSeek-chan redesign.** `Risk:IsActive()` is false when every player is DeepSeek-chan (normal or tainted): risk reads 0, never rises, no IP roll, no ban story, HUD shows 直连. In co-op with anyone else the system runs normally. Her own mechanics: Deep Think, Server busy, pocket **Lunch Break**. The Support Ticket is no longer her pocket item (still a shop item).
