@@ -7,8 +7,8 @@ local originals={
      lines={"Watch your usage and account risk.","Ban Hammer controls a crowded room."}},
     {id=C.Player.CLAUDE_CHAN_B,key="claude_b",name="Tainted Claude-chan",title="Weekly allowance",
      lines={"A limited weekly budget per floor.","Banked Reset restores the allowance."}},
-    {id=C.Player.DEEPSEEK_CHAN,key="deepseek",name="DeepSeek-chan",title="Deep Think",
-     lines={"Pause your shots to think deeply.","Direct connection: no proxy risk."}},
+    {id=C.Player.DEEPSEEK_CHAN,key="deepseek",name="DeepSeek-chan",title="Rice First",
+     lines={"Tap/release DROP: spend one rice bowl.","Two-second meal: full Thought, +0.15 speed.","Earn a bowl every two combat clears."}},
     {id=C.Player.DEEPSEEK_CHAN_B,key="deepseek_b",name="Tainted DeepSeek-chan",title="Open Source",
      lines={"Fork every shot into a small fan.","Popularity brings server congestion."}},
 }

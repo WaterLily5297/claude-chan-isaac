@@ -1,0 +1,196 @@
+-- Rice First: a saved, personal meal economy. No proxy or risk mechanics.
+local C = include("scripts.constants")
+local HudText = include("scripts.hud_text")
+local DropTap = include("scripts.characters.drop_tap")
+local Rice = {}
+
+local function normal(p)
+    return p and C.Player.DEEPSEEK_CHAN >= 0 and p:GetPlayerType() == C.Player.DEEPSEEK_CHAN
+end
+local function integer(v, maximum, fallback)
+    if type(v) ~= "number" or v ~= v or v < 0 or v > maximum or v ~= math.floor(v) then return fallback end
+    return math.floor(v)
+end
+local function fresh()
+    return {version=1, bowls=1, clears=0, thought=0, speed=0, lunch=false, awards={}}
+end
+
+function Rice:Init(mod, Risk, Meal)
+    local ready, bindings, slots = false, {}, {}
+    local drop = DropTap.New()
+    local function allStates()
+        if type(Risk.state.deepseekRice) ~= "table" then Risk.state.deepseekRice = {} end
+        return Risk.state.deepseekRice
+    end
+    local function refresh(p)
+        p:AddCacheFlags(CacheFlag.CACHE_SPEED)
+        p:EvaluateItems()
+    end
+    local function bind()
+        local all, nextBindings, nextSlots = allStates(), {}, {}
+        for i=0,Game():GetNumPlayers()-1 do
+            local p, key = Isaac.GetPlayer(i), tostring(i)
+            local pointer, previous = GetPtrHash(p), slots[key]
+            if normal(p) then
+                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
+                local s = all[key]
+                if type(s) ~= "table" or s.version ~= 1
+                    or not integer(s.bowls,2) or not integer(s.clears,1)
+                    or not integer(s.thought,150) or not integer(s.speed,180) then
+                    s=fresh(); all[key]=s
+                end
+                s.lunch = s.lunch == true
+                if type(s.awards) ~= "table" then s.awards={} end
+                local b = bindings[pointer]
+                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                    b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
+                end
+                b.state=s; nextBindings[pointer]=b
+            else
+                -- Observed character changes discard the former form's rewards.
+                all[key]=nil
+                if bindings[pointer] then refresh(p) end
+            end
+            nextSlots[key]={pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
+        end
+        for key in pairs(all) do if not nextSlots[key] then all[key]=nil end end
+        bindings, slots = nextBindings, nextSlots
+    end
+    local function binding(p)
+        if not ready or not normal(p) then return end
+        local b=bindings[GetPtrHash(p)]
+        if b and b.seed == p.InitSeed then return b end
+    end
+    local function roomIdentity()
+        local level=Game():GetLevel()
+        local floor=tostring(level:GetDungeonPlacementSeed())..":"..level:GetStage()..":"..level:GetStageType()
+        local desc=level:GetCurrentRoomDesc()
+        return floor, tostring(desc.SpawnSeed)..":"..tostring(desc.SafeGridIndex)
+    end
+    local function observeRoom(s)
+        local floor, room=roomIdentity()
+        if s.floor ~= floor then s.floor=floor; s.awards={}; s.room=nil end
+        if s.room ~= room then s.room=room; s.armed=false end
+        if not Game():GetRoom():IsClear() then s.armed=true end
+    end
+    local function each(fn)
+        for i=0,Game():GetNumPlayers()-1 do
+            local p=Isaac.GetPlayer(i)
+            local b=binding(p)
+            if b then fn(p,b,i) end
+        end
+    end
+
+    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
+        ready=true; bindings={}; slots={}; drop:Reset()
+        if not continued then Risk.state.deepseekRice={} end
+        bind()
+        each(function(p,b)
+            observeRoom(b.state)
+            -- A missing/corrupt shared timer cannot manufacture a completed meal.
+            if Meal:Remaining(p) <= 0 then b.state.lunch=false end
+            refresh(p)
+        end)
+    end)
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
+        ready=false; bindings={}; slots={}; drop:Reset()
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+        drop:Reset()
+        if not ready then return end
+        bind()
+        each(function(_,b) b.volley=nil; observeRoom(b.state) end)
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function() drop:Reset() end)
+    mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_,p,flag)
+        local b=binding(p)
+        if b and flag == CacheFlag.CACHE_SPEED and b.state.speed > 0 then
+            p.MoveSpeed=p.MoveSpeed+0.15
+        end
+    end)
+    mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
+        if not ready then return end
+        bind()
+        each(function(p,b)
+            local s=b.state
+            observeRoom(s)
+            if p:IsDead() or not s.armed or s.awards[s.room] then return end
+            s.awards[s.room]=true; s.armed=false
+            s.clears=s.clears+1
+            if s.clears == 2 then s.clears=0; s.bowls=math.min(2,s.bowls+1) end
+        end)
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+        if not ready then return end
+        bind()
+        local now=Game():GetFrameCount()
+        if Game():IsPaused() then
+            drop:Reset()
+            each(function(_,b) b.frame=now end)
+            return
+        end
+        each(function(p,b)
+            local s=b.state
+            observeRoom(s)
+            if p:IsDead() then
+                drop:Forget(p)
+                local hadSpeed=s.speed>0
+                s.lunch=false; s.speed=0; s.thought=0; b.frame=now; b.volley=nil
+                if hadSpeed then refresh(p) end
+                return
+            end
+            local advanced=now>b.frame
+            if now<b.frame then b.volley=nil; drop:Forget(p) end
+            b.frame=now
+            if advanced then
+                if s.speed>0 then
+                    s.speed=s.speed-1
+                    if s.speed==0 then refresh(p) end
+                end
+                if s.lunch and Meal:Remaining(p)==0 then
+                    s.lunch=false; s.thought=150; s.speed=180
+                    refresh(p)
+                elseif Meal:Remaining(p)==0 and p:AreControlsEnabled()
+                    and p:GetShootingInput():LengthSquared()==0 and b.attackFrame~=now then
+                    s.thought=math.min(150,s.thought+1)
+                end
+            end
+            if drop:Poll(p,true) and s.bowls>0 and not s.lunch and Meal:Remaining(p)==0 then
+                local duration=p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 30 or 60
+                if Meal:Start(p,duration) then
+                    s.bowls=s.bowls-1; s.lunch=true
+                end
+            end
+        end)
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_,tear)
+        local p=tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+        local b=p and binding(p)
+        if not b or p:IsDead() or Game():IsPaused() or not tear:Exists() then return end
+        local data=tear:GetData()
+        if data.ccRiceResolved then return end
+        data.ccRiceResolved=true
+        local now=Game():GetFrameCount()
+        if not b.volley or b.volley.frame~=now then
+            b.volley={frame=now, multiplier=1+b.state.thought/150}
+            b.state.thought=0
+        end
+        b.attackFrame=now
+        -- Keep native scale, flags, costumes and flight. LATE Swarm copies this damage.
+        tear.CollisionDamage=tear.CollisionDamage*b.volley.multiplier
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+        if not ready then return end
+        if Game():IsPaused() then drop:Reset() end
+        if not Game():GetHUD():IsVisible() then return end
+        each(function(p,b,i)
+            local s=b.state
+            local text=string.format("Thought %.1fs  Rice %d/2",s.thought/30,s.bowls)
+            if s.lunch then text=text..string.format("  Lunch %.1fs",Meal:Remaining(p)/30) end
+            HudText:Draw(text,50,Isaac.GetScreenHeight()-40-i*12,0.45,0.75,1,1)
+        end)
+    end)
+end
+
+return Rice
