@@ -3,6 +3,7 @@
 -- For Claude-chan, the subagents burn usage too: each tear costs double.
 
 local Constants = include("scripts.constants")
+local TearFork = include("scripts.tear_fork")
 
 local SubagentSwarm = {}
 
@@ -35,8 +36,7 @@ function SubagentSwarm:Init(mod)
             local sub = Isaac.Spawn(EntityType.ENTITY_TEAR, tear.Variant, 0, tear.Position,
                 tear.Velocity:Rotated(angle), player):ToTear()
             if sub then
-                sub.CollisionDamage = tear.CollisionDamage * SUBAGENT_DAMAGE
-                sub.Color = tear.Color
+                TearFork.Copy(tear, sub, SUBAGENT_DAMAGE)
             end
         end
     end)
