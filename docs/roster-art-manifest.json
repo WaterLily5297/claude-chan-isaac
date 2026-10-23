@@ -1,0 +1,84 @@
+[
+  {
+    "key": "claude",
+    "portrait_sha256": "2870d9420f71acc57f7c956be9336f18d56829a0b27a09ff96893068b0bf95fd",
+    "sprite_sha256": "ddbacafde8afe615adf40d6d8a91d7110def328c1a9a18575a01a6ae587df18f",
+    "packed_sprite_sha256": "109c903e1aee3b179456d4bf24f5df547db0614b1c524bbf0c97c3686657ada5",
+    "movement_source_sha256": "bf9dcaeb4b73dd6dd23919d1de296034aec30267935f00cb261cee504cb7a216"
+  },
+  {
+    "key": "deepseek",
+    "portrait_sha256": "95187218d1b35ab97c4add73cde739a7bc6ec7da2a1537daff21e81abf902d8d",
+    "sprite_sha256": "4dc9b761cebb6309a804737e8becad83131fa1771da46f60bce3f142caa168a3",
+    "packed_sprite_sha256": "dae2197c98aa2f421d74d0ce768c292620ffdb658d40fcc2d62413171e403532",
+    "movement_source_sha256": "0fc32a2b6e92c95356ca4101d55864e754dcd2dffbaa7633d316bf978eb2e5ee"
+  },
+  {
+    "key": "gpt",
+    "portrait_sha256": "324a7b0f58020a42006bb1e0145ecae4f140e855d0980126e2ace660348896e1",
+    "sprite_sha256": "950a9bacd9c32f0b1ad347210a4ddc810c2bdd12b1fd44abc6996d7e0be48331",
+    "packed_sprite_sha256": "274f60b292185f14689eb49d8f7b144ef7b9138065a9cfb17e2eec1bdf295227"
+  },
+  {
+    "key": "gemini",
+    "portrait_sha256": "abe1e2e41996b140b733c72f6835ca54daa178a537a766a60365a758579d1aa9",
+    "sprite_sha256": "e2e919a4707ff7f5cd475a6160acd21582082c5e2b250689a96422142b2f4ded",
+    "packed_sprite_sha256": "dfc9390c3490733c496aca6710f31f3d3ac91ec37bf25199b9d4002f56993e9a"
+  },
+  {
+    "key": "grok",
+    "portrait_sha256": "d0af816200360d46e29c9e4e0fc3eaaa190e05010900fbd3470e2836550a35f6",
+    "sprite_sha256": "22e6f304b9de1e71b2724bf65314705735733131ff28c08ced8858d8d0967c2c",
+    "packed_sprite_sha256": "b1d3b509ee7313db4e1e1be137084a035ae7a9fbbb37d2a28b563c17f2cf9708"
+  },
+  {
+    "key": "qwen",
+    "portrait_sha256": "7e184e70bab27072ebd4ae111b4f2c2d4719d39f1e69301dbfb3845f2778375c",
+    "sprite_sha256": "f069fd9c69b87d9862350a98f6e8516f707b0d6065b171e38addeb7ee5307c52",
+    "packed_sprite_sha256": "ba0fb9c34ca817f0518f4a23ee8db4ca0d6600978a2c6272387630fe3eb7fcac"
+  },
+  {
+    "key": "llama",
+    "portrait_sha256": "31ed8d9b643ba64bfeea1a5f8d71a0a11173e2bfa39bdffe2b77c73807e6a04f",
+    "sprite_sha256": "0c803ea0970df6614f8c912c63881f0e5eadaa78d66f9d5d650a318065ec72f8",
+    "packed_sprite_sha256": "077118893891f72b4235468d24bfc0717d2511a0d585bbc8badd1fe085a7e579"
+  },
+  {
+    "key": "mistral",
+    "portrait_sha256": "8e1952abae501742b99662c41f7112b87a5f4757188b697973abc281cc66d1a8",
+    "sprite_sha256": "7aca2d2d1ce01d4ac80349bbfa630178890ff758f75f938137689d62ceaf00e2",
+    "packed_sprite_sha256": "d5523043b1a8e5b9d08e5ecf04f8d950f3156a27252d51994e06e901562a2f1d"
+  },
+  {
+    "key": "doubao",
+    "portrait_sha256": "bf5a86389de78070a0b39e268d6165715541bf7a7ed69256ccb5d5b423115e56",
+    "sprite_sha256": "34e9713e07f8538aa8b9859ebcb2558b83ffd91fc3e4f04ae790af184a2e3725",
+    "packed_sprite_sha256": "362338db13a399373181d00281af07099f31e83ae62ece2602deddcbbbb20799"
+  },
+  {
+    "key": "kimi",
+    "portrait_sha256": "1ef863d8b831ec3e9a8a8bce0ece34e861b29047b5ceb88fc4dc257c6f8d7fc7",
+    "sprite_sha256": "b1efec3d017e9e6ee28c3e7283cec465894d893b54af2c2d7389b209ce0a6625",
+    "packed_sprite_sha256": "a589c0c653bfb950d57f5fe4a4fa1887397d5e4499d9b12151ef767d0f1e178c"
+  },
+  {
+    "key": "glm",
+    "portrait_sha256": "352f9d539f96df28de96411287bf3c833c78414f7977eca2f6865e11336c6d82",
+    "sprite_sha256": "e3ad27bda24556c794e3f050c3f28b5d61834384a8a815c70fb89588f8023d7c",
+    "packed_sprite_sha256": "6ed53667c415eab4ed9147928c37f3bba2be8c63f882fd8c690d01c465189495"
+  },
+  {
+    "key": "claude_b",
+    "portrait_sha256": "07fb2b1f55ae4d52848aa6e79c01ad0e1800c21253fc2da2dae196e4b4314124",
+    "sprite_sha256": "d8a6e646fc51c624db2adaf7600c8c4c81b148e70a37accd82b1100720d4ff52",
+    "packed_sprite_sha256": "15ef6203231cc58cc7d1e5c7634f3e0bc97d676ed9a7f35b69a026784e9abb65",
+    "movement_source_sha256": "73540b7808dfdf3ea6a9bcf948fd13e1b216f59f325611c376127b04b80b467b"
+  },
+  {
+    "key": "deepseek_b",
+    "portrait_sha256": "0622dd93329fa9c7d7fec0a620f900874dd6ea5ee21783f015a281a5e5e1b406",
+    "sprite_sha256": "7ef7b5a923e8aeafc169d22764a7d8f3a1dc00740abb60b9cfc38d9384ee6202",
+    "packed_sprite_sha256": "90845f37b8807c7a9cb02025378e83b03daf1fc575f2a7c285a1849c22c53b80",
+    "movement_source_sha256": "58f60549c1a3b67a1a19ac042af4b94cb9a56249780488cc74584a4826635ec2"
+  }
+]

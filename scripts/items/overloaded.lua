@@ -15,6 +15,13 @@ local MANUAL_DAMAGE = 0.5
 function Overloaded:Init(mod)
     local outageUntil = 0
 
+    -- Frame counts belong to one run; an old deadline must not penalize a new one.
+    local function resetOutage()
+        outageUntil = 0
+    end
+    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, resetOutage)
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, resetOutage)
+
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if player and Game():GetFrameCount() < outageUntil

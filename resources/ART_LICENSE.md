@@ -6,8 +6,8 @@ The MIT license in the project root covers **code only**. It does not cover the 
 
 | Character | Designer | Terms |
 |---|---|---|
-| Claude-chan (and other AI-musume added later, except DeepSeek) | [ZipZipPipe](https://space.bilibili.com/4168597) · [Pixiv《AI娘化》#148186519](https://www.pixiv.net/artworks/148186519) | Credit the author, non-commercial use only (the author's own statement, not a Creative Commons license). |
-| DeepSeek-chan (if added) | Original whale girl by 上善无形, maid version by ZipZipPipe | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/): credit both, non-commercial, share derivatives alike. |
+| Claude-chan | [ZipZipPipe](https://space.bilibili.com/4168597) · [Pixiv《AI娘化》#148186519](https://www.pixiv.net/artworks/148186519) | Credit the author, non-commercial use only (the author's own statement, not a Creative Commons license). |
+| DeepSeek-chan | Original whale girl by 上善无形, maid version by ZipZipPipe | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/): credit both, non-commercial, share derivatives alike. |
 
 Sprites in this mod that depict these characters are derivatives of those designs and are released under the same conditions: **credit the original designers, non-commercial only**. Rights to the designs stay with their authors.
 
@@ -17,8 +17,32 @@ Sprites in this mod that depict these characters are derivatives of those design
 
 The 32x32 icon set was contributed by RORICO444 in PR #2. The Support Ticket icon is generated from original geometric primitives. These icons do not incorporate third-party character artwork.
 
-The character atlases and derived UI portraits/names are generated first-pass fan artwork, with design references credited above. See `docs/ART_GENERATION.md`. They do not bundle any Bilibili video frames or downloaded character illustrations. Treat these character assets under the non-commercial design terms above rather than the item icons' MIT terms. No original template illustration is distributed. The tainted (裏) character sheets and portraits (`*_b.png`, `content/gfx/ai_portraits_b.png`) are recolours of those character assets and fall under the same non-commercial design terms.
+## Selected normal portraits (2026-10-23)
 
-## Trademarks
+All eleven normal portraits follow the owner's selected **ZipZipPipe AI-personification series**: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Seed / Doubao, Kimi and GLM. The source illustrations are credited to [ZipZipPipe](https://www.pixiv.net/users/18604994). DeepSeek additionally credits [Shangshan Wuxing](https://www.pixiv.net/users/62155430) for the original whale girl and ZipZipPipe for the maid adaptation, under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+Most source images come from [AI personifications, Pixiv 148186519](https://www.pixiv.net/artworks/148186519); Seed / Doubao comes from the [artist's 2026-08-15 post](https://www.bilibili.com/opus/1236803362705375305). The public [ai-girls catalog](https://github.com/shuaizenge/ai-girls/blob/main/catalog.json) supplied retrieval paths and file hashes. The catalog is a curator, not the rights owner. Each downloaded source matched its recorded SHA-256. Individual records and prompts are in `docs/portrait-prompts.json`.
+
+The catalog points to the artist's [sharing and recreation statement](https://www.bilibili.com/video/BV1bARXBYEZz/) and the [DeepSeek CC statement](https://www.bilibili.com/video/BV1tE9XBbErS/). Direct Bilibili checks returned HTTP 412 on 2026-10-23. This session therefore records the catalog attribution and the project's existing non-commercial terms without claiming a fresh direct verification or a standard license for every character. Retain author credit and non-commercial use. Do not infer CC0, MIT or blanket CC BY-NC-SA for other characters.
+
+The shipped portraits are **edited derivatives** made using the built-in image tool: white backgrounds were made transparent and explicit company emblems were replaced with generic ornaments. Mechanical resizing supplies menu busts, transition portraits and dossier images. Original source bytes are preserved in the local reference collection; they are not presented as newly generated original designs.
+
+## Tainted portraits and gameplay sheets
+
+The owner retained the generated tainted Claude and DeepSeek designs and requested slightly deeper colors. Their original and color-revision prompts are in `docs/tainted-portrait-prompts.json`. These remain derivatives of the credited character designs and follow their corresponding non-commercial terms.
+
+The original four characters have also been redrawn rather than left as the old recolors. All thirteen sheets are image-tool adaptations of the selected ZipZipPipe portraits, using the prior generated gameplay sheets as layout references. Credit ZipZipPipe for all selected designs and retain the inherited Shangshan Wuxing / ZipZipPipe and CC BY-NC-SA 4.0 notices for the DeepSeek-derived layout artwork. This does not impose a blanket license on the original source illustrations. Exact prompts and source hashes are in `docs/sprite-prompts.json`; atlas hashes are in `docs/roster-art-manifest.json`. Identity alignment is implemented, while directional and special-pose animation still need engine acceptance.
+
+No voices, Bilibili video frames or official avatar downloads are bundled. AI generation does not establish exclusive ownership or substitute for design permission. Workshop publication remains pending gameplay and art acceptance.
+
+## Original-character movement revision
+
+The four original characters received an additional built-in image-tool movement pass using the already selected portraits as design references. It replaces head, walking, carrying and carry-head cells only. Exact prompts are in `docs/original-movement-prompts.json`; generated source hashes and packed atlas hashes are in `docs/roster-art-manifest.json`. These remain non-commercial design derivatives under the credits and terms above. Mechanical cropping, nearest-neighbor resizing and packing retain the generated alpha. Locally extracted vanilla artwork was used only to inspect layout and is not included in the contribution.
+
+## Hurt-pose packing correction
+
+The hurt-pose correction mechanically repacks the existing thirteen generated sources into the measured base-animation envelope and ground anchor. Llama uses a corrected source crop to retain its existing hands and feet. No new artwork, external pixels or source-image edits were used; original source hashes are unchanged and packed hashes are updated in the art manifest. The same design credits and non-commercial terms continue to apply.
+
+## Trademark notice
 
 "Claude", "GPT", "DeepSeek" and other model names belong to their respective owners. This is an unofficial fan parody, not affiliated with or endorsed by Anthropic or any other company.

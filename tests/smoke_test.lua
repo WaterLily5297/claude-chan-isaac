@@ -5,31 +5,40 @@ package.path = root .. "/?.lua;" .. package.path
 local callbacks = {}
 local saved
 local mod = {}
-function mod:AddCallback(id, fn, param) table.insert(callbacks, { id = id, fn = fn, param = param }) end
+function mod:AddCallback(id, fn, param)
+    table.insert(callbacks, { id = id, fn = fn, param = param, priority = 0, order = #callbacks + 1 })
+end
+function mod:AddPriorityCallback(id, priority, fn, param)
+    self:AddCallback(id, fn, param)
+    callbacks[#callbacks].priority = priority
+end
 function mod:SaveData(s) saved = s end
 function mod:HasData() return saved ~= nil end
 function mod:LoadData() return saved end
 function RegisterMod() return mod end
+function GetPtrHash(entity) return entity end
 
 function include(name)
     return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua")
 end
 
--- tiny json stub
+-- Snapshot stub preserves nested run-state tables without sharing references.
+-- Real JSON serialization remains an engine acceptance check.
 package.preload.json = function()
+    local snapshots = {}
+    local function copy(value)
+        if type(value) ~= "table" then return value end
+        local result = {}
+        for key, entry in pairs(value) do result[key] = copy(entry) end
+        return result
+    end
     return {
         encode = function(t)
-            local parts = {}
-            for k, v in pairs(t) do parts[#parts + 1] = k .. "=" .. tostring(v) end
-            return table.concat(parts, ";")
+            snapshots[#snapshots + 1] = copy(t)
+            return tostring(#snapshots)
         end,
         decode = function(s)
-            local t = {}
-            for k, v in s:gmatch("(%w+)=([^;]+)") do
-                if v == "true" then v = true elseif v == "false" then v = false else v = tonumber(v) or v end
-                t[k] = v
-            end
-            return t
+            return copy(assert(snapshots[tonumber(s)], "invalid snapshot"))
         end,
     }
 end
@@ -38,19 +47,26 @@ DoorSlot = { NUM_DOOR_SLOTS = 8 }
 TearFlags = { TEAR_HOMING = "homing", TEAR_PIERCING = "piercing", TEAR_SPECTRAL = "spectral", TEAR_POISON = "poison", TEAR_SLOW = "slow" }
 PickupVariant = { PICKUP_COLLECTIBLE = 100, PICKUP_LOCKEDCHEST = 60, PICKUP_COIN = 20 }
 ModCallbacks = setmetatable({}, { __index = function(_, k) return k end })
+CallbackPriority = { DEFAULT = 0, LATE = 1000 }
 EntityType = { ENTITY_PLAYER = 1, ENTITY_TEAR = 2, ENTITY_PROJECTILE = 9, ENTITY_CLOTTY = 15 }
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_RANGE = 2, CACHE_SHOTSPEED = 4, CACHE_SPEED = 8, CACHE_TEARCOLOR = 16, CACHE_FIREDELAY = 32, CACHE_FLYING = 64 }
 ActiveSlot = { SLOT_PRIMARY = 0, SLOT_POCKET = 2 }
+UseFlag = { USE_CARBATTERY = 32 }
 EntityFlag = { FLAG_FRIENDLY = 1 }
 DamageFlag = { DAMAGE_RED_HEARTS = 32, DAMAGE_IV_BAG = 4096, DAMAGE_FAKE = 2097152 }
 function Color(...) return { ... } end
 SoundEffect = { SOUND_POWERUP_SPEWER = 132 }
 function SFXManager() return { Play = function(_, id) print("  SFX:", id) end } end
 Vector = { Zero = { 0, 0 } }
+Input = { IsActionPressed = function() return false end }
+ButtonAction = { ACTION_MAP = 11, ACTION_SHOOTLEFT = 4, ACTION_SHOOTRIGHT = 5,
+    ACTION_SHOOTUP = 6, ACTION_SHOOTDOWN = 7 }
+InputHook = { IS_ACTION_PRESSED = 0, IS_ACTION_TRIGGERED = 1, GET_ACTION_VALUE = 2 }
 function EntityRef(e) return e end
 
 local items = { ["Ban Hammer"] = 733, ["Residential IP"] = 734, ["Compact"] = 735, ["You're Absolutely Right!"] = 736, ["9.9 Yuan Relay"] = 737, ["Ultrathink"] = 738, ["1M Context"] = 739, ["Silent Update"] = 740, ["--dangerously-skip-permissions"] = 741, ["All Tests Passing"] = 742, ["Vibe Coding"] = 743, ["Banked Reset"] = 744, ["Subagent Swarm"] = 745, ["The Constitution"] = 746, ["Support Ticket"] = 748, ["Opus Mode"] = 747, ["Lunch Break"] = 749 }
 local playerItems = {}
+items["Summary Stapler"] = 750
 Isaac = {}
 function Isaac.GetItemIdByName(n) return items[n] or -1 end
 function Isaac.GetTrinketIdByName(n) return ({ ["529 Overloaded"] = 190, ["Hardcoded Output"] = 191, ["Thinking Cleared"] = 192, ["Welcome Notice"] = 193, ["Status Page"] = 194, ["Appeal Form"] = 195 })[n] or -1 end
@@ -75,6 +91,7 @@ local player = { HasCollectible = function(_, id) return playerItems[id] end,
     AddCacheFlags = function() end,
     EvaluateItems = function(self) self.Damage = 3.5; for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end end }
 player.ToPlayer = function(self) return self end
+player.IsDead = function() return false end
 player.TryRemoveTrinket = function(_, id) if HELD_TRINKET == id then HELD_TRINKET = nil; return true end return false end
 function Isaac.GetPlayer() return player end
 
@@ -101,7 +118,13 @@ function Isaac.GetFreeNearPosition(p) return p end
 function Isaac.Spawn(t, v, st, pos, vel)
     spawned = spawned + 1
     if t == 15 then local n = makeNpc(false); n.Type = 15; SPAWNED[#SPAWNED + 1] = n; return n end
-    if t == 2 then local tr = { vel = vel }; function tr:ToTear() return self end; return tr end
+    if t == 2 then
+        local tr = { vel = vel }
+        function tr:ToTear() return self end
+        function tr:ResetSpriteScale() self.spriteScale=self.Scale end
+        local data={}; function tr:GetData() return data end
+        return tr
+    end
     return makeNpc(false)
 end
 function Isaac.GetRoomEntities() return roomEntities end
@@ -126,17 +149,30 @@ function Game()
         } end,
         ShakeScreen = function() end,
         GetFrameCount = function() return FRAME end,
+        IsPaused = function() return false end,
         GetRoom = function() return { IsFirstVisit = function() return FIRSTVISIT ~= false end, GetDoor = function(_, slot) return DOORS[slot] end, SetClear = function(_, v) ROOMCLEAR = v end, IsClear = function() return ROOMCLEAR end, GetFrameCount = function() return ROOMFRAME end, GetCenterPos = function() return { 0, 0 } end } end,
     }
 end
 
 local function fire(id, param, ...)
+    if id == "MC_POST_FIRE_TEAR" then
+        local tear = ...
+        -- Shared entity API for the lightweight tear fixtures below.
+        tear.Exists = tear.Exists or function(self) return not self.removed end
+        local data={}; tear.GetData=tear.GetData or function() return data end
+    end
     local ret
+    local selected = {}
     for _, cb in ipairs(callbacks) do
         if cb.id == id and (cb.param == nil or param == nil or cb.param == param) then
-            ret = cb.fn(mod, ...) or ret
+            selected[#selected + 1] = cb
         end
     end
+    table.sort(selected, function(a, b)
+        if a.priority == b.priority then return a.order < b.order end
+        return a.priority < b.priority
+    end)
+    for _, cb in ipairs(selected) do ret = cb.fn(mod, ...) or ret end
     return ret
 end
 
@@ -144,6 +180,10 @@ FRAME = 0
 local realInclude = include
 include = function(name) local m = realInclude(name); if name == "scripts.risk" and not RISK_REF then RISK_REF = m end; return m end
 dofile(root .. "/main.lua")
+
+-- Verify the new active is actually registered through the entry point.
+assert(fire("MC_USE_ITEM", 750, 750, nil, player, 0).Discharge == false,
+    "Summary Stapler must preserve charge in an empty room")
 include = realInclude
 local Risk = include("scripts.risk") -- fresh copy just for reading constants; real state lives in main's instance
 
@@ -329,6 +369,8 @@ playerItems[745] = true
 local before = spawned
 pdata.ccUsage.value = 0
 local main = { SpawnerEntity = player, CollisionDamage = 3.5, Variant = 0, Position = {}, Color = "c",
+    Scale = 1, TearFlags = 0, Height = -10, FallingSpeed = 0, FallingAcceleration = 0.5,
+    HomingFriction = 0, KnockbackMultiplier = 1,
     Velocity = { Rotated = function(_, a) return "rotated " .. a end } }
 fire("MC_POST_FIRE_TEAR", nil, main)
 print("  subagent tears spawned:", spawned - before, "usage per shot:", pdata.ccUsage.value)
@@ -530,11 +572,14 @@ do
     print("  tainted Claude-chan weekly limit: ok")
 
     -- Lunch Break.
+    for _ = 1, 90 do FRAME = FRAME + 1; fire("MC_POST_UPDATE") end
     local hearts, foe = player.hearts, makeNpc(false)
     roomEntities = { foe }; player.FireDelay = 0
     fire("MC_USE_ITEM", 749, 749, nil, player)
     assert(player.hearts == hearts + 2 and player.FireDelay == 90 and foe.slowed == 90)
     print("  Lunch Break: ok")
+    -- Expire the separate food penalty before the independent outage scenario.
+    for _ = 1, 90 do FRAME = FRAME + 1; fire("MC_POST_UPDATE") end
 
     -- 529 Overloaded: manual coding at 50% instead of no shooting.
     HELD_TRINKET = 190; ROOMCLEAR = false; roomEntities = { makeNpc(false) }
@@ -550,7 +595,7 @@ do
     print("  529 Overloaded manual coding: ok")
 
     -- Vibe Coding: make no mistakes waives the bill.
-    playerItems[743] = true; player.coins = 40; pdata.ccVibeMistake = false
+    playerItems[743] = true; player.coins = 40
     stage = 5; fire("MC_POST_NEW_LEVEL"); assert(player.coins == 40, "no hit on the floor: bill waived")
     fire("MC_ENTITY_TAKE_DMG", EntityType.ENTITY_PLAYER, player, 1, 0, {})
     stage = 6; fire("MC_POST_NEW_LEVEL"); assert(player.coins == 30, "a hit on the floor: bill charged")

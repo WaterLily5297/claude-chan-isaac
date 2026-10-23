@@ -1,0 +1,105 @@
+{
+  "entries": [
+    {
+      "key": "gpt",
+      "prompt": "Use case: style-transfer. Image 1 is the EDIT TARGET: the exact 512 by 512 game sprite atlas. Image 2 is the character DESIGN REFERENCE only: ZipZipPipe GPT white dragon girl. Replace the mint scholar identity in EVERY occupied sprite of image 1 with the identity of image 2: long white-lilac hair, two compact white dragon horns, violet eyes, white and pale lavender dress, small dragon wings and tail in full-body special poses. No green clothing. Preserve image 1's square canvas, exact proportional frame positions, number of frames and empty black-looking TRANSPARENT regions. Do not make a poster. Do not add any new frames. Render crisp small Isaac-style pixel sprites with dark outlines. Top row six HEAD ONLY sprites occupy the first six 32x32 cells: front, front firing, right, right firing, rear hair-only, rear hair-only. Rear heads must have NO faces. Other tiny body-only cells must remain HEADLESS clothed bodies. Keep all large special action pose locations, ghost, death and effects unchanged except character colors/identity. Keep sprites inside original frame bounds with transparent gutters. Never shift or enlarge a cell. Preserve actual RGBA transparent background. No grid, labels, logos or background. This is a noncommercial adaptation credited to ZipZipPipe.",
+      "repair_prompt": null,
+      "source_sha256": "950a9bacd9c32f0b1ad347210a4ddc810c2bdd12b1fd44abc6996d7e0be48331",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "gemini",
+      "prompt": "Use case: style-transfer. Image 1 is the EDIT TARGET: the exact 512 by 512 game sprite atlas. Image 2 is the character DESIGN REFERENCE only: ZipZipPipe Gemini purple-blue cat girl. Replace the previous star scholar identity in EVERY occupied sprite of image 1 with the identity of image 2: long blue-violet gradient hair, two compact cat ears, mismatched pink and gold eyes, navy and white short costume with star ornaments, purple-blue cat tail in full-body poses. No horns or wings. Preserve image 1's square canvas, exact proportional frame positions, number of frames and empty black-looking TRANSPARENT regions. Do not make a poster. Do not add any new frames. Render crisp small Isaac-style pixel sprites with dark outlines. Top row six HEAD ONLY sprites occupy the first six 32x32 cells: front, front firing, right, right firing, rear hair-only, rear hair-only. Rear heads must have NO faces. Other tiny body-only cells must remain HEADLESS clothed bodies. Keep all large special action pose locations, ghost, death and effects unchanged except character colors/identity. Keep sprites inside original frame bounds with transparent gutters. Never shift or enlarge a cell. Preserve actual RGBA transparent background. No grid, labels, logos or background. This is a noncommercial adaptation credited to ZipZipPipe.",
+      "repair_prompt": "Use case: precise-object-edit. This is an RGBA game sprite atlas. Fix ONLY the small body-only frames along the second row and the four small diamonds in the first row: replace each glowing diamond/orb with a HEADLESS navy-and-purple clothed torso with skirt, shoes and arms, matching the headless dress bodies already present in the third row. Preserve each frame's position, number and size, square canvas, all heads and large action poses. No heads on body frames. Keep actual transparency. Do not shift any other pixel region. No text or grid.",
+      "source_sha256": "e2e919a4707ff7f5cd475a6160acd21582082c5e2b250689a96422142b2f4ded",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "grok",
+      "prompt": "Use case: style-transfer. Image 1 is the EDIT TARGET: the exact 512 by 512 game sprite atlas. Image 2 is the character DESIGN REFERENCE only: ZipZipPipe Grok blonde gothic girl. Replace the black-haired red-streak identity in EVERY occupied sprite of image 1 with the identity of image 2: long golden blonde twin tails, black hair bows, tiny black bat-wing ornaments, blue eyes, black and burgundy gothic dress, small gold crown. No black hair or red streak. Do not add a large axe to small walking cells. Every tiny walking-body row must depict a headless black-and-red dressed torso and shoes, never a jewel, orb or star. Preserve image 1's square canvas, exact proportional frame positions, number of frames and empty black-looking TRANSPARENT regions. Do not make a poster. Do not add any new frames. Render crisp small Isaac-style pixel sprites with dark outlines. Top row six HEAD ONLY sprites occupy the first six 32x32 cells: front, front firing, right, right firing, rear hair-only, rear hair-only. Rear heads must have NO faces. Other tiny body-only cells must remain HEADLESS clothed bodies. Keep all large special action pose locations, ghost, death and effects unchanged except character colors/identity. Keep sprites inside original frame bounds with transparent gutters. Never shift or enlarge a cell. Preserve actual RGBA transparent background. No grid, labels, logos or background. This is a noncommercial adaptation credited to ZipZipPipe.",
+      "repair_prompt": null,
+      "source_sha256": "22e6f304b9de1e71b2724bf65314705735733131ff28c08ced8858d8d0967c2c",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "qwen",
+      "prompt": "Use case: style-transfer. Image 1 EDIT TARGET exact game sprite atlas. Image 2 DESIGN REFERENCE. Change every occupied character sprite to this ZipZipPipe identity: blue-lavender long hair with side braid, small tilted blue hat, violet eyes, white and deep blue Chinese-style long dress, gold edging and fan motif. Do not keep dark purple hair.. Preserve exact square canvas and proportional placement of every frame, frame counts, size and transparent gaps. Crisp Isaac pixel art. First six 32x32 head cells: front, front firing, right profile, right firing, rear hair-only, rear hair-only. Rear heads no face. Every tiny walking body in rows below must be HEADLESS CLOTHED TORSO WITH SHOES, never a head or gem or orb. Preserve all special poses, ghost and effects positions. Keep sprites within original frame bounds. No grid, labels, logos. Actual transparent background. Noncommercial credited adaptation.",
+      "repair_prompt": null,
+      "source_sha256": "f069fd9c69b87d9862350a98f6e8516f707b0d6065b171e38addeb7ee5307c52",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "llama",
+      "prompt": "Use case: style-transfer. Image 1 EDIT TARGET exact game sprite atlas. Image 2 DESIGN REFERENCE. Change every occupied character sprite to this ZipZipPipe identity: cream-white long fluffy hair, two alpaca ears, sleepy lavender eyes, oversized ivory hoodie and cream skirt, tiny alpaca slippers. No green clothing.. Preserve exact square canvas and proportional placement of every frame, frame counts, size and transparent gaps. Crisp Isaac pixel art. First six 32x32 head cells: front, front firing, right profile, right firing, rear hair-only, rear hair-only. Rear heads no face. Every tiny walking body in rows below must be HEADLESS CLOTHED TORSO WITH SHOES, never a head or gem or orb. Preserve all special poses, ghost and effects positions. Keep sprites within original frame bounds. No grid, labels, logos. Actual transparent background. Noncommercial credited adaptation.",
+      "repair_prompt": null,
+      "source_sha256": "0c803ea0970df6614f8c912c63881f0e5eadaa78d66f9d5d650a318065ec72f8",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "mistral",
+      "prompt": "Use case: style-transfer. Image 1 EDIT TARGET exact game sprite atlas. Image 2 DESIGN REFERENCE. Change every occupied character sprite to this ZipZipPipe identity: golden-orange long hair with red tips, pointed cat ears, large red musketeer hat with white feather, cream and red dress with gold details, red boots. No dark hair.. Preserve exact square canvas and proportional placement of every frame, frame counts, size and transparent gaps. Crisp Isaac pixel art. First six 32x32 head cells: front, front firing, right profile, right firing, rear hair-only, rear hair-only. Rear heads no face. Every tiny walking body in rows below must be HEADLESS CLOTHED TORSO WITH SHOES, never a head or gem or orb. Preserve all special poses, ghost and effects positions. Keep sprites within original frame bounds. No grid, labels, logos. Actual transparent background. Noncommercial credited adaptation.",
+      "repair_prompt": null,
+      "source_sha256": "7aca2d2d1ce01d4ac80349bbfa630178890ff758f75f938137689d62ceaf00e2",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "doubao",
+      "prompt": "Use case: style-transfer. Image 1 EDIT TARGET exact game sprite atlas. Image 2 DESIGN REFERENCE. Change every occupied character sprite to this ZipZipPipe identity: purple-blue side ponytail, cyan hair ends, purple eyes, white/cyan/violet futuristic cropped outfit and skirt, white sneakers, plain badge, no brand logos. No brown hair.. Preserve exact square canvas and proportional placement of every frame, frame counts, size and transparent gaps. Crisp Isaac pixel art. First six 32x32 head cells: front, front firing, right profile, right firing, rear hair-only, rear hair-only. Rear heads no face. Every tiny walking body in rows below must be HEADLESS CLOTHED TORSO WITH SHOES, never a head or gem or orb. Preserve all special poses, ghost and effects positions. Keep sprites within original frame bounds. No grid, labels, logos. Actual transparent background. Noncommercial credited adaptation.",
+      "repair_prompt": null,
+      "source_sha256": "34e9713e07f8538aa8b9859ebcb2558b83ffd91fc3e4f04ae790af184a2e3725",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "kimi",
+      "prompt": "Use case: style-transfer. Image 1 EDIT TARGET exact game sprite atlas. Image 2 DESIGN REFERENCE. Change every occupied character sprite to this ZipZipPipe identity: long silver-white hair, navy bow and crescent ornament, pale violet eyes, navy and white moon-and-stars maid dress. No dark hair.. Preserve exact square canvas and proportional placement of every frame, frame counts, size and transparent gaps. Crisp Isaac pixel art. First six 32x32 head cells: front, front firing, right profile, right firing, rear hair-only, rear hair-only. Rear heads no face. Every tiny walking body in rows below must be HEADLESS CLOTHED TORSO WITH SHOES, never a head or gem or orb. Preserve all special poses, ghost and effects positions. Keep sprites within original frame bounds. No grid, labels, logos. Actual transparent background. Noncommercial credited adaptation.",
+      "repair_prompt": null,
+      "source_sha256": "b1efec3d017e9e6ee28c3e7283cec465894d893b54af2c2d7389b209ce0a6625",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "glm",
+      "prompt": "Use case: style-transfer. Image 1 EDIT TARGET exact game sprite atlas. Image 2 DESIGN REFERENCE. Change every occupied character sprite to this ZipZipPipe identity: long black hair, fluffy black ears with white interior, gray eyes, black-white long dress, dark hairband and tiny sleeping-mask accessory, black book. No green clothing.. Preserve exact square canvas and proportional placement of every frame, frame counts, size and transparent gaps. Crisp Isaac pixel art. First six 32x32 head cells: front, front firing, right profile, right firing, rear hair-only, rear hair-only. Rear heads no face. Every tiny walking body in rows below must be HEADLESS CLOTHED TORSO WITH SHOES, never a head or gem or orb. Preserve all special poses, ghost and effects positions. Keep sprites within original frame bounds. No grid, labels, logos. Actual transparent background. Noncommercial credited adaptation.",
+      "repair_prompt": null,
+      "source_sha256": "e3ad27bda24556c794e3f050c3f28b5d61834384a8a815c70fb89588f8023d7c",
+      "generator": "Built-in image tool",
+      "reference": "Selected ZipZipPipe portrait; prior generated gameplay atlas for layout."
+    },
+    {
+      "key": "claude",
+      "prompt": "Use case: style-transfer. Image 1 is the old GAME SPRITE ATLAS to upgrade. Image 2 is the selected ZipZipPipe Claude design reference. Redraw every occupied sprite with polished chibi pixel art: flowing orange-copper hair, warm eyes, sunflower ornament, ivory and orange dress from reference, expressive appealing face, clean readable silhouette and dark fine outlines. Preserve exact atlas layout and proportional positions, 512 square canvas, all blank space. Top row six HEAD ONLY cells: front, front firing, RIGHT PROFILE, right firing, BACK HAIR ONLY, back hair only. No faces in rear views. All tiny body cells HEADLESS clothed torsos and shoes, NO heads or orbs. Preserve large special poses at the same positions. More beautiful and consistent with the new reference, no generic Isaac bald face. Pixel art readable at 32px. All space around sprites truly transparent. No colored matte halos, grid, labels or company logos. Noncommercial ZipZipPipe derivative.",
+      "source_sha256": "ddbacafde8afe615adf40d6d8a91d7110def328c1a9a18575a01a6ae587df18f",
+      "generator": "Built-in image tool",
+      "reference": "Selected portrait and original gameplay sheet"
+    },
+    {
+      "key": "deepseek",
+      "prompt": "Use case: style-transfer. Image 1 is the old GAME SPRITE ATLAS to upgrade. Image 2 is the selected ZipZipPipe DeepSeek design reference. Redraw every occupied sprite with polished chibi pixel art: long dark blue hair with bright blue tips, blue eyes, whale-fin hair ornaments, blue and white maid dress from reference, expressive appealing face, clean readable silhouette and dark fine outlines. Preserve exact atlas layout and proportional positions, 512 square canvas, all blank space. Top row six HEAD ONLY cells: front, front firing, RIGHT PROFILE, right firing, BACK HAIR ONLY, back hair only. No faces in rear views. All tiny body cells HEADLESS clothed torsos and shoes, NO heads or orbs. Preserve large special poses at the same positions. More beautiful and consistent with the new reference, no generic Isaac bald face. Pixel art readable at 32px. All space around sprites truly transparent. No colored matte halos, grid, labels or company logos. Noncommercial Shangshan Wuxing / ZipZipPipe derivative, CC BY-NC-SA.",
+      "source_sha256": "4dc9b761cebb6309a804737e8becad83131fa1771da46f60bce3f142caa168a3",
+      "generator": "Built-in image tool",
+      "reference": "Selected portrait and original gameplay sheet"
+    },
+    {
+      "key": "claude_b",
+      "prompt": "Use case: style-transfer. Image 1 is the old GAME SPRITE ATLAS to upgrade. Image 2 is the approved tainted Claude portrait design reference. Redraw every occupied sprite with polished chibi pixel art: deep crimson long hair, warm amber eyes, dark gold sunflower ornament, charcoal-black gothic dress with crimson lining and fine gold embroidery from reference, expressive appealing face, clean readable silhouette and dark fine outlines. Preserve exact atlas layout and proportional positions, 512 square canvas, all blank space. Top row six HEAD ONLY cells: front, front firing, RIGHT PROFILE, right firing, BACK HAIR ONLY, back hair only. No faces in rear views. All tiny body cells HEADLESS clothed torsos and shoes, NO heads or orbs. Preserve large special poses at the same positions. More beautiful and consistent with the new reference, no generic Isaac bald face. Pixel art readable at 32px. All space around sprites truly transparent. No colored matte halos, grid, labels or company logos. Noncommercial ZipZipPipe derivative.",
+      "source_sha256": "d8a6e646fc51c624db2adaf7600c8c4c81b148e70a37accd82b1100720d4ff52",
+      "generator": "Built-in image tool",
+      "reference": "Selected portrait and original gameplay sheet"
+    },
+    {
+      "key": "deepseek_b",
+      "prompt": "Use case: style-transfer. Image 1 is the old GAME SPRITE ATLAS to upgrade. Image 2 is the approved tainted DeepSeek portrait design reference. Redraw every occupied sprite with polished chibi pixel art: flowing dark navy hair with deep teal tips, vivid cyan eyes, whale-fin hair ornaments and white ruffled maid headband, dark teal and white layered maid dress with silver accents from reference, expressive appealing face, clean readable silhouette and dark fine outlines. Preserve exact atlas layout and proportional positions, 512 square canvas, all blank space. Top row six HEAD ONLY cells: front, front firing, RIGHT PROFILE, right firing, BACK HAIR ONLY, back hair only. No faces in rear views. All tiny body cells HEADLESS clothed torsos and shoes, NO heads or orbs. Preserve large special poses at the same positions. More beautiful and consistent with the new reference, no generic Isaac bald face. Pixel art readable at 32px. All space around sprites truly transparent. No colored matte halos, grid, labels or company logos. Noncommercial Shangshan Wuxing / ZipZipPipe derivative, CC BY-NC-SA.",
+      "source_sha256": "7ef7b5a923e8aeafc169d22764a7d8f3a1dc00740abb60b9cfc38d9384ee6202",
+      "generator": "Built-in image tool",
+      "reference": "Selected portrait and original gameplay sheet"
+    }
+  ],
+  "limits": "Identity-aligned derivatives. Directional animation, alternate arms and special poses still require engine acceptance."
+}

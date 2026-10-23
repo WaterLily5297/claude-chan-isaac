@@ -1,5 +1,6 @@
 <ItemPools>
     <Pool Name="treasure">
+        <Item Name="Summary Stapler" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Ban Hammer" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Residential IP" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Compact" Weight="1" DecreaseBy="1" RemoveOn="0.1" />

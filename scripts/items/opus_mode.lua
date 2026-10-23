@@ -50,7 +50,8 @@ function OpusMode:Init(mod)
 
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
         if flag == CacheFlag.CACHE_DAMAGE and player:HasCollectible(Constants.Item.OPUS_MODE) then
-            local mult = player:GetData().ccOpusBroke and FALLBACK_MULT or OPUS_MULT
+            -- Cache evaluation may precede the next wallet notification update.
+            local mult = player:GetNumCoins() == 0 and FALLBACK_MULT or OPUS_MULT
             player.Damage = player.Damage * mult
         end
     end)

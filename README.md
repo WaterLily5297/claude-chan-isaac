@@ -2,9 +2,13 @@
 
 A parody mod for **The Binding of Isaac: Repentance / Repentance+**.
 
+**Expansion in development:** [22-form community-meme gameplay](docs/CHARACTER_GAMEPLAY.md) and [50 additional collectible designs](docs/EXPANSION_DESIGN.md). Summary Stapler is the first locally implemented item: a four-charge active that compresses nearby ordinary hostile bullets into one slow native tear. It keeps normal tear effects, character limits and forks; empty use preserves charge and Car Battery does not repeat it. Thirteen forms and eighteen collectibles are currently registered. The remaining expansion designs are not implemented, and current engine acceptance remains pending.
+
+**Experimental roster candidate:** eleven model families, eleven ZipZipPipe-based normal portraits, two darker tainted portraits, nine additional playable normal characters and in-game dossiers. Hold MAP in a cleared room to view the current character's portrait and instructions. See [the roster and mechanics](docs/MODEL_ROSTER.md), [pending engine checks](docs/TESTING.md), and [art terms](resources/ART_LICENSE.md). All thirteen gameplay skins now follow the selected portrait identities; animation polish and engine acceptance remain pending; this is not a Workshop release.
+
 Every floor hands you a random proxy IP. The more people share it, the higher your **risk score** (风控值). The higher the risk, the tougher the enemies get, and killed enemies start coming back as "new accounts".
 
-> Fan work. Not affiliated with or endorsed by Anthropic. No official logos or brand assets are used.
+> Fan work. Not affiliated with or endorsed by Anthropic. Character illustrations are credited fan-art derivatives; see the separate art terms.
 
 [中文](#中文) · [日本語](#日本語)
 
@@ -13,9 +17,9 @@ Every floor hands you a random proxy IP. The more people share it, the higher yo
 | | |
 |---|---|
 | **Claude-chan** (playable) | Range +1.5 (long context window), Shot Speed +0.2, Speed −0.1, 2 red + 1 soul heart, orange tears. Starts with **Ban Hammer** as a pocket item. **Usage limit:** every tear fills a usage meter that drains slowly; when it's full, her tears deal 40% damage for 5 seconds. **Account age (账号满月):** +0.2 damage for every floor reached without being Suspended (max +1.6); a suspension resets it ("Banned again" / 又封了). *Custom orange-haired sprite atlas and portraits; animation polish is in progress.* |
-| **Tainted Claude-chan** (裏 / playable) | **Weekly limit (周限额):** instead of the usage meter, 220 tears per floor; past it, tears deal 25% until the next floor. Damage ×1.25, Range +1.5, Shot Speed +0.2. Starts with pocket **Banked Reset**, which refills the quota. Crimson "banned" recolour of her sprites. |
+| **Tainted Claude-chan** (裏 / playable) | **Weekly limit (周限额):** instead of the usage meter, 220 tears per floor; past it, tears deal 25% until the next floor. Damage ×1.25, Range +1.5, Shot Speed +0.2. Starts with pocket **Banked Reset**, which refills the quota. Redrawn crimson-haired skin with a black-and-gold dress. |
 | **DeepSeek-chan** (playable) | **Direct connection (直连):** she needs no proxy, so in a DeepSeek-only run there is no IP, no risk and no risk-based difficulty. **Deep Think (深度思考):** not shooting builds up to 5 s of thought; the next tear deals up to ×2 and the HUD reads "Thought for N s". **Server busy (服务器繁忙):** the more enemies in the room, the more often a tear doesn't go out (3% per enemy, max 25%). **Slacking off (摸鱼):** standing still for 5 s in a cleared room recharges Lunch Break by one. Starts with pocket **Lunch Break**; damage ×0.9, blue tears. |
-| **Tainted DeepSeek-chan** (裏 / playable) | Direct connection too. **Open Source (开源):** every tear is forked into two extra tears at ±12° (50% damage). Busier servers: 5% per enemy, max 40%. Damage ×0.8. Teal recolour of her sprites. |
+| **Tainted DeepSeek-chan** (裏 / playable) | Direct connection too. **Open Source (开源):** every tear is forked into two extra tears at ±12° (50% damage). Busier servers: 5% per enemy, max 40%. Damage ×0.8. Redrawn deep-teal and white maid skin. |
 | **Lunch Break** (DeepSeek-chan's pocket active, 6 charges) | "飯食ってくる / 去吃饭了": heals one red heart and slows every enemy for 3 s, but you stop shooting for 3 s. |
 | **The Appeal Queue** | Four short, localised story captions during a run; chapter progress survives save/continue. |
 | **Risk score** | 0–100. At **90+ your account is Suspended**: damage ×0.75 until risk drops. Each floor rolls an IP: crowded relay IPs add more risk. Getting hit +1, clearing a room without a hit −1. Shown at the bottom-left of the HUD. |

@@ -33,14 +33,6 @@ local function isClaude(player)
         and player:GetPlayerType() == Constants.Player.CLAUDE_CHAN
 end
 
-local function getUsage(player)
-    local data = player:GetData()
-    if not data.ccUsage then
-        data.ccUsage = { value = 0, limited = 0 }
-    end
-    return data.ccUsage
-end
-
 local function anyClaude()
     for i = 0, Game():GetNumPlayers() - 1 do
         if isClaude(Isaac.GetPlayer(i)) then return true end
@@ -62,7 +54,36 @@ function ClaudeChan:Init(mod, Risk)
     local ready = false
     local function age() return Risk.state.accountAge or 0 end
 
-    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() ready = true end)
+    local function getUsage(player)
+        local data = player:GetData()
+        for i = 0, Game():GetNumPlayers() - 1 do
+            if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then
+                -- Slots survive continue; pointers and entity data do not.
+                local all = Risk.state.claudeUsage
+                if type(all) ~= "table" then all = {}; Risk.state.claudeUsage = all end
+                local key = tostring(i)
+                if type(all[key]) ~= "table" then
+                    all[key] = { value = 0, limited = 0 }
+                end
+                -- Compact, Banked Reset and Swarm mutate this same saved table.
+                data.ccUsage = all[key]
+                return all[key]
+            end
+        end
+        -- An entity outside the player list must not borrow another player's slot.
+        data.ccUsage = data.ccUsage or { value = 0, limited = 0 }
+        return data.ccUsage
+    end
+
+    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
+        -- Risk has already loaded or reset its state, before any item use or shot.
+        if not continued then Risk.state.claudeUsage = {} end
+        ready = true
+        for i = 0, Game():GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            if isClaude(player) then getUsage(player) end
+        end
+    end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() ready = false end)
 
     -- POST_NEW_LEVEL also fires before the run starts; only count real floors.
@@ -102,6 +123,7 @@ function ClaudeChan:Init(mod, Risk)
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+        if not ready then return end
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if not isClaude(player) then return end
 
@@ -121,6 +143,7 @@ function ClaudeChan:Init(mod, Risk)
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
+        if not ready then return end
         if not isClaude(player) then return end
 
         if age() > 0 and Risk:IsSuspended() then
@@ -141,7 +164,7 @@ function ClaudeChan:Init(mod, Risk)
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-        if not Game():GetHUD():IsVisible() then return end
+        if not ready or not Game():GetHUD():IsVisible() then return end
 
         for i = 0, Game():GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)

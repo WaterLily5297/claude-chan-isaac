@@ -3,15 +3,19 @@
 -- any explicitly supplied character support intact; never clear item costumes.
 local Constants = include("scripts.constants")
 local Compatibility = {}
+local ModelRoster = include("scripts.characters.model_roster")
 
 function Compatibility:Register(pack)
     if type(pack) ~= "table" or type(pack.CostumeSets) ~= "table" then return end
+    local ids={Constants.Player.CLAUDE_CHAN,Constants.Player.DEEPSEEK_CHAN,
+        Constants.Player.CLAUDE_CHAN_B,Constants.Player.DEEPSEEK_CHAN_B}
+    for _,def in ipairs(ModelRoster.definitions) do ids[#ids+1]=def.id end
     for _, set in pairs(pack.CostumeSets) do
         if type(set) == "table" and type(set.IDs) == "table" then
             for _, name in ipairs(set.IDs) do
                 local costumes = set[name]
                 if type(costumes) == "table" and type(costumes.Default) == "table" then
-                    for _, id in ipairs({Constants.Player.CLAUDE_CHAN, Constants.Player.DEEPSEEK_CHAN}) do
+                    for _, id in ipairs(ids) do
                         if id >= 0 and costumes[id] == nil then
                             costumes[id] = { Apply = {}, Remove = {} }
                         end

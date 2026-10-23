@@ -5,8 +5,11 @@ local Constants = include("scripts.constants")
 local Eid = {}
 
 local descriptions = {
+    [Constants.Item.SUMMARY_STAPLER] = {
+        en_us = { "Summary Stapler", "4 room charges#Absorbs up to 12 ordinary hostile bullets within 120 units#Fires one slow tear: damage x(1 + bullets / 4), up to x4 before other modifiers#Uses normal tear effects, character limits and forks#Empty use keeps charge; Car Battery does not repeat#Does not replace your weapon or reset usage" },
+    },
     [Constants.Item.LUNCH_BREAK] = {
-        en_us = { "Lunch Break", "Heals 1 red heart#All enemies are slowed for 3 seconds#You can't shoot for 3 seconds" },
+        en_us = { "Lunch Break", "Heals 1 red heart#All enemies are slowed for 3 seconds#Shooting input is blocked for 3 seconds; movement stays available#Cannot reuse during a food break#Car Battery does not repeat this item" },
         zh_cn = { "去吃饭了", "回复1颗红心#所有敌人减速3秒#3秒内无法射击" },
         ja_jp = { "飯食ってくる", "赤ハート1つ回復#すべての敵を3秒間スロウ#3秒間涙を撃てない" },
     },
@@ -150,9 +153,9 @@ local characterDescriptions = {
         ja_jp = { "裏Claudeちゃん", "ダメージ×1.25、射程+1.5、弾速+0.2#初期ポケットアイテム：バンク済みリセット#週間上限：1フロア220発まで。超えると次のフロアまで涙のダメージ25%#デザイン：ZipZipPipe" },
     },
     [Constants.Player.DEEPSEEK_CHAN] = {
-        en_us = { "DeepSeek-chan", "Direct connection: no proxy, no IP, no risk (when playing alone)#Deep Think: not shooting builds thought (up to 5 s); the next tear deals up to x2 damage#Server busy: the more enemies, the more often a tear doesn't go out (up to 25%)#Slacking off: standing still for 5 s in a cleared room recharges Lunch Break by 1#Starts with Lunch Break (pocket); damage x0.9, blue tears#Design: 上善无形 / ZipZipPipe" },
-        zh_cn = { "DeepSeek娘", "直连：无需代理，没有IP和风控（单人时）#深度思考：不射击时积累思考（最多5秒），下一发伤害最高×2#服务器繁忙：敌人越多，眼泪越常发不出去（最高25%）#摸鱼：在已清理的房间站着不动5秒，去吃饭了充能+1#初始口袋道具：去吃饭了；伤害×0.9，蓝色眼泪#角色设计：上善无形 / ZipZipPipe" },
-        ja_jp = { "DeepSeekちゃん", "直結：プロキシもIPも風控値もなし（1人プレイ時）#深度思考：撃たずにいると思考がたまり（最大5秒）、次の一発が最大2倍#サーバー混雑：敵が多いほど涙が出ないことがある（最大25%）#サボり（摸鱼）：クリア済みの部屋で5秒じっとしていると飯食ってくるのチャージ+1#初期ポケット：飯食ってくる。ダメージ×0.9、青い涙#デザイン：上善无形 / ZipZipPipe" },
+        en_us = { "DeepSeek-chan", "Rice First: start with 1 bowl (cap 2); gain 1 per 2 unique combat clears#Tap/release DROP: spend 1 bowl for a 2-second meal (1 second with Birthright), without healing#Finish eating: full Thought and +0.15 speed for 6 seconds#Stop firing to store up to 5 seconds of Thought; the next native attack deals up to x2 damage#Starts with Lunch Break (pocket); damage x0.9; no random shot deletion or idle recharge#Direct connection: no proxy risk in a DeepSeek-only run#Tears, released rings, thrown knives and Dr. Fetus bombs snapshot Thought#Repeated-hit beams and controlled tears use 0.2-second windows#Epic Fetus, melee, familiars and delayed bursts remain experimental#Design credits: see ART_LICENSE.md" },
+        zh_cn = { "DeepSeek-chan", "Rice First: start with 1 bowl (cap 2); gain 1 per 2 unique combat clears#Tap/release DROP: spend 1 bowl for a 2-second meal (1 second with Birthright), without healing#Finish eating: full Thought and +0.15 speed for 6 seconds#Stop firing to store up to 5 seconds of Thought; the next native attack deals up to x2 damage#Starts with Lunch Break (pocket); damage x0.9; no random shot deletion or idle recharge#Direct connection: no proxy risk in a DeepSeek-only run#Tears, released rings, thrown knives and Dr. Fetus bombs snapshot Thought#Repeated-hit beams and controlled tears use 0.2-second windows#Epic Fetus, melee, familiars and delayed bursts remain experimental#Design credits: see ART_LICENSE.md" },
+        ja_jp = { "DeepSeek-chan", "Rice First: start with 1 bowl (cap 2); gain 1 per 2 unique combat clears#Tap/release DROP: spend 1 bowl for a 2-second meal (1 second with Birthright), without healing#Finish eating: full Thought and +0.15 speed for 6 seconds#Stop firing to store up to 5 seconds of Thought; the next native attack deals up to x2 damage#Starts with Lunch Break (pocket); damage x0.9; no random shot deletion or idle recharge#Direct connection: no proxy risk in a DeepSeek-only run#Tears, released rings, thrown knives and Dr. Fetus bombs snapshot Thought#Repeated-hit beams and controlled tears use 0.2-second windows#Epic Fetus, melee, familiars and delayed bursts remain experimental#Design credits: see ART_LICENSE.md" },
     },
     [Constants.Player.DEEPSEEK_CHAN_B] = {
         en_us = { "Tainted DeepSeek-chan", "Direct connection: no proxy, no IP, no risk (when playing alone)#Open Source: every tear is forked into 2 extra tears at ±12° (50% damage)#Server busy more often: up to 40%#Damage x0.8, cyan tears#Design: 上善无形 / ZipZipPipe" },

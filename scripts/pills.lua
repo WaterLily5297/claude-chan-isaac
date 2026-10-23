@@ -18,7 +18,7 @@ local function refresh(player)
     player:EvaluateItems()
 end
 
-function Pills:Init(mod)
+function Pills:Init(mod, MealBreak)
     mod:AddCallback(ModCallbacks.MC_USE_PILL, function(_, _, player)
         player:GetData().ccCatGirl = true
         refresh(player)
@@ -26,8 +26,8 @@ function Pills:Init(mod)
     end, Constants.Pill.CAT_GIRL)
 
     mod:AddCallback(ModCallbacks.MC_USE_PILL, function(_, _, player)
+        if not MealBreak:Start(player, FOOD_BREAK_FRAMES) then return end
         player:AddHearts(FOOD_HEAL)
-        player.FireDelay = math.max(player.FireDelay, FOOD_BREAK_FRAMES)
         Game():GetHUD():ShowItemText("Brb, getting food", "")
     end, Constants.Pill.GETTING_FOOD)
 

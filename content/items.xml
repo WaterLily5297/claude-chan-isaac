@@ -1,4 +1,5 @@
 <items gfxroot="gfx/items/" version="1">
+    <active name="Summary Stapler" description="Keep the important bits" gfx="collectibles/summary_stapler.png" maxcharges="4" quality="2" tags="offensive" />
     <active name="Ban Hammer" description="Permanently suspended" gfx="collectibles/ban_hammer.png" maxcharges="4" quality="3" tags="offensive" />
     <passive name="Residential IP" description="Clean connection" gfx="collectibles/residential_ip.png" quality="2" />
     <active name="Compact" description="Compacting conversation..." gfx="collectibles/compact.png" maxcharges="3" quality="2" />
