@@ -1,6 +1,62 @@
 # Handoff for Claude and contributors
 
-Updated 2026-10-23 (Japan time), v0.5-dev. PR #5 is merged. Its implementation and the earlier v0.4 observations are separate evidence; passing CI does not establish in-game correctness.
+Updated 2026-10-24 (Japan time), v0.5-dev. PR #5 is merged. Its implementation and the earlier v0.4 observations are separate evidence; passing CI does not establish in-game correctness.
+
+## GitHub synchronization checkpoint (2026-10-24)
+
+The owner's explicit request to synchronize GitHub supersedes the earlier GitHub input-conflict hold. The synchronization candidate collects the six local commits through `63a580b`: Claude usage persistence, head/carry alignment, Summary Stapler, community-meme designs, hurt-pose packing and DROP tap/hold compatibility. It is based on the published `01a0f2d` candidate and preserves main's `1143ff1` history. Earlier references below to unpublished source describe those work sessions, not the status of this synchronization candidate.
+
+The candidate is being synchronized through the authenticated GitHub web interface because command-line Git has no available authentication. Web commits can have different commit IDs; compare the complete Git tree against the local candidate after fetching. Publication, CI status and runtime deployment are separate checkpoints. The installed runtime remains `aa8bd46`; this synchronization does not install or validate the game. The independent game-control interruption remains unresolved. No private saves, local backup contents or credentials are included.
+
+## DROP tap/hold compatibility (2026-10-24)
+
+GPT/Gemini previously switched mode on the press edge, including when the player intended to hold DROP to discard a trinket. Their shared observer now accepts a release 1–12 gameplay frames after an observed new press, with no action on press or after a longer hold. It reads IsActionPressed and never installs an input override or calls an inventory-drop function. Native input remains available; short-tap pocket cycling can still occur alongside the custom action and needs engine review.
+
+Pending gestures are transient, keyed by player pointer with seed, character type and controller guards. They reset on new run/continue, exit, room/floor transitions, disabled controls, death, unsupported character, player loss and observed pause. The render callback cancels a paused gesture even with a hidden HUD, when gameplay updates may be stopped. A button already held when observation begins must be released and pressed again. Existing selected modes remain saved; no schema or balance change and no DeepSeek risk mechanism.
+
+The real roster callback regression fails against 5f97401 because pressing DROP changes damage from 13.5 to 8.5 before release. The corrected module passes the release/hold, hidden-HUD pause, room boundary, continue and co-op cases. A focused helper suite covers timing boundaries, same-frame duplicates, fresh wrappers, seed/type/controller changes, death, disabled input and frame rollback. Full checks pass: 54 Lua files, five XML files, deterministic assets and twelve stub suites. These are offline input observations; actual keyboard/controller timing, dropping, pocket cycling and mod interoperability remain unverified. Source is unpublished and uninstalled.
+
+## Hurt-pose packing correction
+
+The thirteen registered skins now fit the shared hurt-pose cell into the measured vanilla 28x32 envelope, horizontally centered and ending at local y=55 relative to pivot (32,56). The earlier generic 58px fit enlarged the whole pose and placed it too low. Llama additionally used a source crop ending through its face; its hurt source now includes the existing hands and feet. This is deterministic packing of the same generated art, not a redraw, new source image or costume override.
+
+The new `tools/verify_hurt_poses.py` failed on all thirteen previous atlases at d1c0daf. It now passes the measured envelope/anchor checks, exact byte rebuilds from the recorded source hashes and an outside-cell pixel comparison for all thirteen registered skins. The before/after engineering preview was inspected, including the Llama crop correction and one squash/stretch sample. Full standard checks pass: 52 Lua files, five XML files, deterministic assets and eleven stub suites. The optional Pillow review tool is separate from CI, which does not execute this geometry review.
+
+Only pixels inside (128,192)-(192,256) changed. The inspected base animation also reuses that cell in Death, FallIn, JumpOut and DeathTeleport, so those transitions join Hit in pending engine acceptance. Other special cells are unchanged and may need separate size/pose repair. This fixes the source packing defect but does not prove item-costume interaction, engine interpolation or current runtime behavior. No runtime installation, GitHub update or game automation occurred.
+
+## Community-meme design and public character references
+
+The owner explicitly corrected the capability-based design: prioritize Claude bans/Dario frustration, DeepSeek rice and Liang Wenfeng/Wengu, and GPT perceived downgrade/Tibo reset. CHARACTER_GAMEPLAY.md revision 2 now defines twenty-two proposed loops with resources, input, drawbacks, persistence and Birthright targets. Other families remain researched candidates with confidence/access limits in COMMUNITY_MEME_RESEARCH.md. No claim of majority consensus, watched blocked videos or completed gameplay implementation.
+
+EXPANSION_DESIGN.md tracks fifty additional collectibles, with rice assigned to DeepSeek and the Tibo reset item to GPT. Only Summary Stapler is implemented, locally at c7488d8; forty-nine further items and nine tainted forms are still designs. Existing dossiers must continue describing actual code until each family migration lands.
+
+MOD_CHARACTER_REFERENCES.md pins three public template/tool repositories and records their license boundaries. They were read, not executed or imported. Local vanilla Hit frames use a 64px complete-pose cell at (128,192), pivot (32,56), with squash/stretch. The previous 58px fit matched the owner's oversized-head report; the later source correction is recorded above. Engine acceptance is still pending. Earlier head/carry fixes did not cover this cell.
+
+Latest fetched main remains 1143ff1. Local work is ahead of the last verified remote candidate 01a0f2d and installed runtime aa8bd46. No runtime overwrite, new backup, GitHub mutation, game test or Workshop publication occurred during this research. Existing game-control and GitHub input-conflict holds remain unresolved; do not bypass them with a different control channel.
+
+## Summary Stapler candidate
+
+Summary Stapler is the first of the requested fifty additional collectibles: four charges, nearest twelve ordinary hostile projectiles within 120 units, one native speed-6 tear at multiplier 1 + count/4. Empty use and Car Battery do not discharge. The damage multiplier is supplied at FireTear creation; resolved flags, damage, scale and color are not overwritten afterward. Existing character limits/forks apply, including possible DeepSeek cancellation after defensive absorption. The icon extends the established geometric item-art system.
+
+This brings the local source to eighteen collectibles and thirteen forms. Forty-nine further collectibles and nine tainted forms remain unimplemented. These changes are unpublished and uninstalled. No current engine acceptance or Workshop release.
+
+Offline validation passes: 52 Lua files, five XML files, deterministic assets and eleven stub suites. New cases cover empty use, Car Battery, radius/count boundaries, deterministic nearest selection, special/friendly/source-less exclusion, co-op ownership and native-shot handoff. An integration fixture invokes the real Claude, DeepSeek and Swarm callbacks after the modeled native multiplier, preserving limits, cancellation and fork inheritance. It does not establish engine callback timing or actual projectile flags.
+
+## Costume alignment and expanded scope
+
+Latest scope: eleven normal and eleven tainted forms, richer mechanics and fifty additional collectibles. The scope remains in progress as recorded above. The owner requires vanilla item appearance compatibility; see [COSTUME_COMPATIBILITY.md](COSTUME_COMPATIBILITY.md).
+
+The nine added normal skins now share the reviewed head envelope/baseline and a head-only carry cell. This corrects packing geometry, not proven facial-overlay alignment. Original-four final sheets, body cells and unrelated poses are unchanged. The candidate builds on the unpublished save fix; GitHub and runtime have not received either update. Older records do not establish current synchronization.
+
+Validation: all thirteen atlases rebuild byte-for-byte; original-four files are unchanged and the nine other sheets differ only in the seven head cells and carry-head region. The offline front/carry comparison visibly removes the oversized carry character. Full checks pass: 50 Lua files, five XML files, assets and ten stub suites. Some hair/hat silhouettes still obscure small bodies; anatomy, asymmetry, clothing and costume occlusion remain art-review work. No runtime files were modified.
+
+## Normal Claude usage persistence
+
+Normal Claude's usage and five-second penalty previously lived only in `GetData`, allowing save/continue to discard them. They now live in `Risk.state.claudeUsage`, keyed by player slot. `ccUsage` remains an alias to the same saved table so Compact, Banked Reset and Swarm keep their existing behavior. The game-start callback binds aliases after Risk loads state and before the first shot/item use. New runs clear saved meters; old saves without a meter start at zero. Inactive callbacks no longer mutate usage. Tainted weekly accounting is unchanged.
+
+The new process-style regression fails on `01a0f2d` with "continue must not erase an active usage limit". After the fix it covers separate co-op meters, remaining penalty frames, wrapper identity, immediate item-use/save, character-type changes, penalty expiry, drain cadence, fresh runs and old saves. Existing Swarm coverage still verifies double billing and limited child damage. Full offline checks pass: 50 Lua files, five XML files, assets and ten stub suites. SaveData/LoadData are exercised with detached snapshot serialization; actual engine JSON, restart, player-slot stability, Clicker and twin/subplayer behavior remain acceptance work.
+
+The [Entity.GetData documentation](https://wofsauge.github.io/IsaacDocs/rep/Entity.html#getdata) confirms that entity data does not survive exiting to the menu. This change preserves game-frame countdowns, not real-world elapsed time, and does not change weapon coverage or claim engine acceptance.
 
 ## Original four-character movement polish
 

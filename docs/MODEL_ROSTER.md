@@ -24,11 +24,15 @@ The following are fictional gameplay interpretations, not a performance ranking 
 
 Hold MAP in a cleared room to see a full illustration and instructions. Release to close. Combat does not display the large portrait. The dossier currently shows one local player's requested card at a time.
 
+GPT/Gemini mode switching occurs only when a short DROP press is released, after 1–12 gameplay frames. A longer hold never switches modes. The observer leaves native input alone, including trinket dropping and pocket cycling; actual engine combinations still need testing. A key held through start/continue, room transition, pause or control reassignment must be released before a new tap can qualify. The upcoming meme-based replacement designs in CHARACTER_GAMEPLAY.md are not implemented by this input correction.
+
 ## State and compatibility
 
 Progress is stored under `Risk.state.modelRoster` by player slot and model key. Modes, clear counters, hit state and awarded room seeds survive save/continue. A fresh run resets them. A changed player type gets fresh state when next used. Slots follow the existing mod's co-op convention; joining/leaving players and character-changing items still need engine tests.
 
 Grok momentum, Mistral wind and GLM's same-frame use guard are transient. They share a record across Lua wrappers via `GetPtrHash`, guarded by `InitSeed` and the observed roster player type. Game start/exit clears the records; momentum and wind also reset on entering another room. These charges are intentionally not saved. The guard detects an observed type change, not an unobserved change away and back between callbacks.
+
+DROP gestures use a separate reusable observer with pointer/seed/type/controller identity. Pending input never enters Risk.state. New run/continue, exit, room/floor changes, loss of control, death and observed pause cancel a gesture. Selected mode persistence is unchanged. This observes [held action state](https://wofsauge.github.io/IsaacDocs/rep/Input.html#isactionpressed) and [pause state](https://wofsauge.github.io/IsaacDocs/rep/Game.html#ispaused); it does not consume the native action or claim support for unobserved controller events.
 
 Damage, firing interval, range, speed and tear flags use engine cache callbacks. The new roster does not generate extra tears recursively. Cache-based damage applies to weapon types that use player damage, but this is not proof of Brimstone, Technology, knife, bomb or familiar compatibility. Tear flags have the normal engine's weapon-specific limits. Reactions Port Pack fallback registration covers all registered characters while preserving explicit support.
 

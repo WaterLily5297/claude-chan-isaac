@@ -1,5 +1,33 @@
 # In-game test checklist
 
+## DROP tap/hold compatibility (engine acceptance pending)
+
+For GPT and Gemini separately, test keyboard and controller: a short press must leave mode unchanged while down and switch once on release; a long hold must drop the intended vanilla trinket/pocket pickup without switching. Repeat when holding multiple pocket items, including native short-tap cycling. The observer does not suppress that cycling, so record any undesirable double action rather than marking it passed from Lua coverage.
+
+Test releases after pause, hidden-HUD pause, a big-book animation, disabled controls, room/floor transition, death/revive, save/quit/continue, controller reassignment and character change. No interrupted gesture may switch mode. Once controls return, release and make a fresh tap to verify recovery. Repeat with two players on separate controllers, then supported shared-controller/twin arrangements and other input mods. Verify the chosen mode persists across continue but an unfinished press does not. The 1–12-frame threshold is a source rule, not a measured vanilla drop threshold; assess actual feel and latency before acceptance.
+
+The helper and real roster callback tests cover release timing, long holds, interruption cancellation, fresh wrappers and player/controller isolation. The updated roster regression fails against the previous model_roster.lua at 5f97401 before its release assertion, then passes with this correction. No native input hooks or inventory-drop calls are installed. These facts do not prove native dropping or controller behavior in the engine.
+
+## Hurt-pose correction (source fixed, engine acceptance pending)
+
+The owner reports all characters developing an oversized head after damage. Exact runtime revision and item setup were not captured. Source now corrects the measured shared-cell envelope/anchor in all thirteen skins and restores Llama's full source pose. No current-engine reproduction or acceptance is claimed. Compare every form with vanilla Isaac at the same scale, then repeat real damage with face costumes, flight, size items and transformations. Capture pre-hit, all Hit frames and recovery. Check pivot stability, full-body pose, costume retention and no stale color/scale. Also test Death, FallIn, JumpOut and DeathTeleport, which reuse this cell. Repeat without and with Reactions Port Pack. Historical v0.4 evidence does not pass this case.
+
+Offline reproduction requires Pillow plus the recorded generated sources, kept outside the repository. Run `python tools/verify_hurt_poses.py SOURCE_DIRECTORY MOVEMENT_SOURCE_DIRECTORY REVIEW_OUTPUT_DIRECTORY --before-ref d1c0daf`. This fails the geometry contract on the old thirteen skins and passes the corrected ones, verifying source/packed hashes, exact atlas rebuilding and pixel equality outside the shared hurt cell. It writes an engineering comparison and JSON evidence; it neither installs files nor runs the game. CI's standard asset checks do not execute this optional source-dependent review.
+
+## Summary Stapler acceptance (pending)
+
+Give Summary Stapler in a disposable run. Verify four room charges, empty use preserving charge, nearest-first absorption capped at twelve within 120 units, and exclusion of special-flag/variant, friendly, player/familiar, dead or source-less projectiles. Aim diagonally and use without shooting; check the speed-6 native tear and base damage multiplier 1 + count/4. Car Battery must neither absorb a second batch nor fire again. Verify co-op ownership and both active slots.
+
+Test homing, piercing, spectral, explosive, split/orbit/controlled tear items and Tractor Beam. Brimstone, knives, lasers and bombs must remain the primary weapon; the active emits a separate tear and must not replace their appearance. Check native callback timing with Swarm, Claude's usage/limited damage, tainted quota, Deep Think, and DeepSeek cancellation/forks. Successful absorption consumes charge even if character logic cancels the retaliation. Test save/restart with the item charged and discharged, room transition, reroll/removal and the costume matrix. Special modded projectiles that look ordinary may need explicit compatibility rules; generic filtering does not prove every other mod is safe.
+
+## Vanilla item appearance acceptance (pending)
+
+Run the per-form matrix in [COSTUME_COMPATIBILITY.md](COSTUME_COMPATIBILITY.md): isolated items, mixed pickup orders, flight, scale, transformations, removal, reroll, restart and co-op/type changes. The nine added normal skins have an offline head/carry alignment correction; this is not engine acceptance. Existing four-character art and the planned nine tainted forms require the same matrix. Record screenshots and exact versions; Lua tests and texture dimensions cannot establish visual compatibility.
+
+## Normal Claude usage save acceptance (pending)
+
+As normal Claude, save with a partially filled meter, close the process, restart and continue. The meter must resume rather than clear. Repeat during the five-second limited-damage interval and confirm the remaining game-frame countdown and 40% damage. Repeat with two Claude players at different usage levels, with Swarm (including the first continued shot), after Compact, and immediately after Banked Reset. Continue must preserve the item changes and keep players independent. Verify a fresh run resets both meters and an older save without usage fields loads safely. Check Clicker away/back, co-op join/leave, and supported twin/subplayer forms separately; the slot-keyed stub does not prove their engine identity behavior. The penalty expires through gameplay frames; offline wall-clock time is not credited.
+
 ## Original character movement revision (engine acceptance pending)
 
 Inspect normal and tainted Claude/DeepSeek at actual gameplay scale. Check idle and firing faces in all directions, mirrored left profiles, rear silhouettes, body/head attachment during walking, and carrying an item while walking. Confirm the carry-head frame does not produce a second body. Test body visibility against dark rooms and with costumes. Compare save/continue appearance, then inspect retained flying, hurt, death and special poses for style and alignment differences. The offline preview and atlas checks do not complete these tests.
