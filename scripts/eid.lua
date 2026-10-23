@@ -9,7 +9,7 @@ local descriptions = {
         en_us = { "Summary Stapler", "4 room charges#Absorbs up to 12 ordinary hostile bullets within 120 units#Fires one slow tear: damage x(1 + bullets / 4), up to x4 before other modifiers#Uses normal tear effects, character limits and forks#Empty use keeps charge; Car Battery does not repeat#Does not replace your weapon or reset usage" },
     },
     [Constants.Item.LUNCH_BREAK] = {
-        en_us = { "Lunch Break", "Heals 1 red heart#All enemies are slowed for 3 seconds#You can't shoot for 3 seconds" },
+        en_us = { "Lunch Break", "Heals 1 red heart#All enemies are slowed for 3 seconds#Shooting input is blocked for 3 seconds; movement stays available#Cannot reuse during a food break#Car Battery does not repeat this item" },
         zh_cn = { "去吃饭了", "回复1颗红心#所有敌人减速3秒#3秒内无法射击" },
         ja_jp = { "飯食ってくる", "赤ハート1つ回復#すべての敵を3秒間スロウ#3秒間涙を撃てない" },
     },
