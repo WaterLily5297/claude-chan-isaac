@@ -60,6 +60,12 @@ What the docs can't tell us is whether the gameplay *feels* right. That's what t
 
 ## v0.4 focused checks
 
+### Vibe Coding persistence acceptance (pending)
+
+In a disposable run, hold Vibe Coding and 40 coins, take a hit, save and quit, close the application, then continue and change floors. Coins must remain 40 on continue and become 30 on the next floor. Repeat without a hit: coins stay 40. On the following no-hit floor no second bill is due. Repeat with two players: only the damaged holder pays. Include The Constitution's refused first hit, and check a fresh run does not inherit the previous run's hit flag. The lifecycle regression is stub coverage; it does not mark these engine checks as passed.
+
+### Other v0.4 checks
+
 - *(v0.4 DeepSeek-chan check superseded by the v0.5 redesign below.)*
 - `giveitem Support Ticket`: with 2 coins or risk 0, no coins/charge spent; with 3 coins and positive risk, spend 3 and lower risk by up to 20. Repeat with Car Battery.
 - See story chapters at run start, stage 3, stage 5, and the next room after successful review. Save and continue: completed chapters stay completed. Hide the HUD: captions hide too.

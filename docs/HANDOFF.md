@@ -65,3 +65,9 @@ Owner requests: normal and tainted versions of both characters; DeepSeek-chan is
 Code/item icons are MIT. Character design/art terms are separate in `resources/ART_LICENSE.md`; credits include ZipZipPipe and 上善无形. No official logos. Enemies are infrastructure and abuse mechanisms, not populations. Keep notes, credentials, personal images, saves, machine paths and backup contents outside GitHub.
 
 The owner supplied Bilibili video BV1yUJZ6WEpg as inspiration. Its public page/API could not be retrieved in this session, so no downloadable-file or licence inspection is claimed and no video pixels were used. Do not operate login dialogs or use credentials supplied in chat.
+
+## Vibe Coding persistence follow-up (2026-10-23)
+
+On the v0.5 baseline `1143ff1`, the floor-hit flag lived only in `player:GetData()`. A continuation recreates that data, incorrectly waiving the next floor's API bill. The follow-up stores flags by player slot in the existing shared `Risk.state` save and ignores startup `NEW_LEVEL` callbacks until the run state has loaded. It does not enable risk mechanics for DeepSeek-chan.
+
+The new lifecycle regression fails on the baseline and passes with the fix. It covers fresh entity/module state after continue, separate player bills, no-hit floors, startup ordering and a new run. The smoke serializer stub now preserves nested tables without aliasing. All offline checks pass (42 Lua files and five stub suites). These are simulated lifecycle checks; real application-restart persistence and co-op roster changes still need engine verification.
