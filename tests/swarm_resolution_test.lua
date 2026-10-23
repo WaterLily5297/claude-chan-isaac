@@ -48,8 +48,11 @@ Isaac = {
     GetPlayer = function(i) return i == 0 and deepseek or claude end,
     CountEnemies = function() return enemies end,
     Spawn = function(_, _, _, _, velocity, owner)
-        local t = {Velocity = velocity, SpawnerEntity = owner}
+        local t = {Velocity = velocity, SpawnerEntity = owner, TearFlags=0,
+            Scale=1, Height=-10, FallingSpeed=0, FallingAcceleration=0.5,
+            HomingFriction=0, KnockbackMultiplier=1}
         function t:ToTear() return self end
+        function t:ResetSpriteScale() self.spriteScale=self.Scale end
         spawned[#spawned + 1] = t
         return t
     end,
@@ -72,6 +75,8 @@ fire("MC_POST_GAME_STARTED", false)
 local function shot(owner)
     spawned = {}
     local t = {SpawnerEntity = owner, CollisionDamage = 4, Color = "natural", Scale = 1,
+        TearFlags=0, Height=-10, FallingSpeed=0, FallingAcceleration=0.5,
+        HomingFriction=0, KnockbackMultiplier=1,
         Variant = 0, Position = {}, Velocity = {Rotated = function(_, angle) return angle end}}
     function t:Remove() self.removed = true end
     function t:Exists() return not self.removed end
@@ -125,4 +130,43 @@ shot(deepseek)
 assert(#spawned == 0, "another player's Swarm must not leak to a non-holder")
 shot({ToPlayer = function() return nil end})
 assert(#spawned == 0, "ignore a non-player spawner")
-print("OK: Swarm respects four-character shot resolution, fan size and player isolation")
+
+-- Engine item effects are already present on the natural tear. Use unusual
+-- flight values and a high-bit flag so defaults or a truncated mask cannot pass.
+local function effectShot(owner)
+    spawned={}
+    local original={SpawnerEntity=owner, Variant=7, Position={},
+        Velocity={Rotated=function(_,a) return a end}, CollisionDamage=10, Color='modified',
+        TearFlags=(1 << 1) | (1 << 3) | (1 << 4) | (1 << 52),
+        Scale=1.7, Height=-27, FallingSpeed=-4.5, FallingAcceleration=0.17,
+        HomingFriction=0.08, KnockbackMultiplier=1.4}
+    function original:Exists() return not self.removed end
+    function original:Remove() self.removed=true end
+    fire('MC_POST_FIRE_TEAR',original)
+    return original
+end
+local function inherited(original, count)
+    assert(#spawned==count, 'inheritance must not change the fan size')
+    for _,child in ipairs(spawned) do
+        assert(child.TearFlags==original.TearFlags, 'fork loses native tear effects')
+        assert(child.Scale==original.Scale and child.spriteScale==original.Scale,
+            'fork must display the resolved parent size')
+        assert(child.Height==original.Height and child.FallingSpeed==original.FallingSpeed
+            and child.FallingAcceleration==original.FallingAcceleration, 'fork loses the flight arc')
+        assert(child.HomingFriction==original.HomingFriction
+            and child.KnockbackMultiplier==original.KnockbackMultiplier, 'fork loses effect parameters')
+        assert(child.CollisionDamage==original.CollisionDamage*0.5 and child.Color==original.Color)
+        assert(child.SpawnerEntity==original.SpawnerEntity, 'fork owner must remain unchanged')
+    end
+end
+claude.kind=0; claude.swarm=true
+local vanilla=effectShot(claude); inherited(vanilla,2)
+assert(vanilla.Scale==1.7 and vanilla.CollisionDamage==10, 'fork must not mutate its parent')
+deepseek.kind=142; deepseek.swarm=false
+inherited(effectShot(deepseek),2)
+deepseek.swarm=true; inherited(effectShot(deepseek),4)
+deepseek.kind=42; frame=300
+local boosted=effectShot(deepseek); assert(boosted.Scale==2.55); inherited(boosted,2)
+enemies,roll=10,0.1
+local blocked=effectShot(deepseek); assert(blocked.removed and #spawned==0)
+print("OK: Swarm shot resolution, player isolation and resolved fork effects/flight")

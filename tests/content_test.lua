@@ -67,6 +67,7 @@ EntityType.ENTITY_TEAR = 2
 Isaac.Spawn = function(_, _, _, _, velocity)
     local t = { velocity = velocity }
     function t:ToTear() return self end
+    function t:ResetSpriteScale() self.spriteScale=self.Scale end
     spawned[#spawned + 1] = t
     return t
 end
@@ -75,6 +76,8 @@ function Isaac.RenderText(text) draws[#draws + 1] = text end
 local function tear(owner)
     return { SpawnerEntity = { ToPlayer = function() return owner end }, CollisionDamage = 4,
         Scale = 1, Variant = 0, Position = {}, Color = "c",
+        TearFlags = 0, Height = -10, FallingSpeed = 0, FallingAcceleration = 0.5,
+        HomingFriction = 0, KnockbackMultiplier = 1,
         Velocity = { Rotated = function(_, a) return a end },
         Remove = function(t) t.removed = true end }
 end

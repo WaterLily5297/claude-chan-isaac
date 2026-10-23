@@ -113,7 +113,12 @@ function Isaac.GetFreeNearPosition(p) return p end
 function Isaac.Spawn(t, v, st, pos, vel)
     spawned = spawned + 1
     if t == 15 then local n = makeNpc(false); n.Type = 15; SPAWNED[#SPAWNED + 1] = n; return n end
-    if t == 2 then local tr = { vel = vel }; function tr:ToTear() return self end; return tr end
+    if t == 2 then
+        local tr = { vel = vel }
+        function tr:ToTear() return self end
+        function tr:ResetSpriteScale() self.spriteScale=self.Scale end
+        return tr
+    end
     return makeNpc(false)
 end
 function Isaac.GetRoomEntities() return roomEntities end
@@ -352,6 +357,8 @@ playerItems[745] = true
 local before = spawned
 pdata.ccUsage.value = 0
 local main = { SpawnerEntity = player, CollisionDamage = 3.5, Variant = 0, Position = {}, Color = "c",
+    Scale = 1, TearFlags = 0, Height = -10, FallingSpeed = 0, FallingAcceleration = 0.5,
+    HomingFriction = 0, KnockbackMultiplier = 1,
     Velocity = { Rotated = function(_, a) return "rotated " .. a end } }
 fire("MC_POST_FIRE_TEAR", nil, main)
 print("  subagent tears spawned:", spawned - before, "usage per shot:", pdata.ccUsage.value)
