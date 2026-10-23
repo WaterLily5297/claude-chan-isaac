@@ -52,6 +52,8 @@ Useful console commands: `giveitem <name>` for items, `giveitem t<name>` for tri
 
 Items most likely to need fixes: **#17** (doors may re-close while enemies are alive) and the placeholder Relay Slime (#6b).
 
+Overloaded lifecycle acceptance (pending): trigger an outage late in a disposable run, quit during its two-second window, then start a new run without closing the application and acquire the trinket. Tears must have normal damage until that new run's first outage. Also test save/continue, dropping the trinket during an outage, and normal recovery at two seconds. Offline lifecycle coverage does not mark these engine checks as passed.
+
 ### API checked against the community docs (wofsauge/IsaacDocs, 2026-10-22)
 
 These calls exist with the signatures the mod uses, so they shouldn't crash: `GridEntityDoor:TryUnlock(player, force)`, `IsLocked()`, `Open()`; `EntityPickup:TryOpenChest(player)`; `Entity:AddCharmed(ref, -1)` (−1 = permanent, the ally follows you between rooms); `AddConfusion`, `AddFreeze`; `Room:SetClear`, `GetFrameCount`, `GetCenterPos`; `EntityPlayer:SetPocketActiveItem`, `GetActiveCharge`, `SetActiveCharge`, `AddSoulHearts`, `HasTrinket`; `EntityTear:AddTearFlags`; `MC_USE_PILL (effect, player, flags)`; `MC_USE_ITEM` returning `true` plays the use animation; `MC_ENTITY_TAKE_DMG` returning a value skips later callbacks (so The Constitution's refused hit adds no risk).

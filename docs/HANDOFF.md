@@ -4,6 +4,10 @@ Updated 2026-10-23 (Japan time), v0.4-dev. This is a Codex implementation handof
 
 ## v0.5-dev (Claude session, 2026-10-23) - not yet run in game
 
+### Overloaded run-lifecycle follow-up
+
+The v0.5 baseline keeps the outage deadline in module-local state, while the game frame counter resets for a new run. Quitting during an outage could therefore weaken tears in a later run for much longer than two seconds. The follow-up clears the deadline on game start and exit. A focused stub test reproduces the failure on `1143ff1` and passes after the fix, covering the 60-frame boundary, dropping the trinket, a new run and continue. The full offline suite passes (42 Lua files, five stub suites). Actual engine verification remains pending; this adds no new gameplay content and does not change the intended outage duration.
+
 Owner requests: normal and tainted versions of both characters; DeepSeek-chan is unrelated to IPs, so her design was revisited; fix the sprites; fix bugs; item/character changes from X/Bilibili memes. Branch `claude/meme-update`.
 
 - **DeepSeek-chan redesign.** `Risk:IsActive()` is false when every player is DeepSeek-chan (normal or tainted): risk reads 0, never rises, no IP roll, no ban story, HUD shows 直连. In co-op with anyone else the system runs normally. Her own mechanics: Deep Think, Server busy, pocket **Lunch Break**. The Support Ticket is no longer her pocket item (still a shop item).
