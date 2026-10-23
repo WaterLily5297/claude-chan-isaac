@@ -35,6 +35,10 @@ The original four characters have also been redrawn rather than left as the old 
 
 No voices, Bilibili video frames or official avatar downloads are bundled. AI generation does not establish exclusive ownership or substitute for design permission. Workshop publication remains pending gameplay and art acceptance.
 
+## Original-character movement revision
+
+The four original characters received an additional built-in image-tool movement pass using the already selected portraits as design references. It replaces head, walking, carrying and carry-head cells only. Exact prompts are in `docs/original-movement-prompts.json`; generated source hashes and packed atlas hashes are in `docs/roster-art-manifest.json`. These remain non-commercial design derivatives under the credits and terms above. Mechanical cropping, nearest-neighbor resizing and packing retain the generated alpha. Locally extracted vanilla artwork was used only to inspect layout and is not included in the contribution.
+
 ## Trademark notice
 
 "Claude", "GPT", "DeepSeek" and other model names belong to their respective owners. This is an unofficial fan parody, not affiliated with or endorsed by Anthropic or any other company.
