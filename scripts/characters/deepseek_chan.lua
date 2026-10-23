@@ -23,6 +23,7 @@
 
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
+local TearFork = include("scripts.tear_fork")
 
 local DeepSeek = {}
 
@@ -113,8 +114,7 @@ function DeepSeek:Init(mod)
                 local fork = Isaac.Spawn(EntityType.ENTITY_TEAR, tear.Variant, 0, tear.Position,
                     tear.Velocity:Rotated(angle), player):ToTear()
                 if fork then
-                    fork.CollisionDamage = tear.CollisionDamage * FORK_DAMAGE
-                    fork.Color = tear.Color
+                    TearFork.Copy(tear, fork, FORK_DAMAGE)
                 end
             end
         end
