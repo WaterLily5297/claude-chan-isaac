@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased native Thought adapters (2026-10-24)
+
+- Apply normal DeepSeek Thought to native lasers, flying knives and Dr. Fetus bombs, preserving original weapons and visual/effect fields. Repeated-hit beams and controlled tears use saved six-update windows; single-hit beams and released rings snapshot one attack.
+- Stop persistent attacks from regenerating their own Thought. Raw continuous forks inherit the parent factor without paying again, and cleanup removes transient factors before exit. 1M Context snapshots the unboosted continuous baseline, preventing permanent compounded bonuses.
+- Fifteen offline suites pass, including a regression that fails against the earlier tear-only Rice module. Epic Fetus, melee, delayed bursts, familiars, conflicting damage writers and engine validation remain pending. No runtime or Workshop changes.
+
 ## Unreleased Rice First source candidate (2026-10-24)
 
 - Normal DeepSeek earns rice from unique combat clears and spends a bowl on a short DROP release. A two-second meal grants full Thought and six seconds of +0.15 speed; Birthright halves meal duration. The intrinsic meal never heals. Personal counters, remaining bonuses and pending meals survive continue.

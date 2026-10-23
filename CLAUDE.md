@@ -1,19 +1,12 @@
-# Notes for Claude
+# Instructions for Claude and contributors
 
-Several people work on this repo: the owner and their friends in China, each possibly with their own Claude session. Read [docs/HANDOFF.md](docs/HANDOFF.md) before changing anything; it has the project state, file layout, conventions and the content rules.
+Read docs/HANDOFF.md first. It is the current consolidated checkpoint. docs/HANDOFF_HISTORY_2026-10-24.md preserves historical evidence and must not be treated as current acceptance.
 
-## Working here
-
-- Reply in the language the person writes in (usually Chinese, sometimes Japanese or English).
-- **Never push to `main` directly.** Work on a branch named `<person>/<topic>` and open a pull request. Fetch `main` first; others may have pushed since.
-- Keep each PR to one item, enemy or fix.
-- Before committing, run `bash tools/check.sh`. It needs Lua 5.3+ (`apt-get install -y lua5.4`; if that fails, `texlua` from TeX Live also works and the script finds it). CI runs the same script on every PR.
-- Adding an item, trinket, pill or enemy: follow the checklist in [CONTRIBUTING.md](CONTRIBUTING.md) (same as HANDOFF's "New item checklist"). Player-facing text needs English, Simplified Chinese and Japanese.
-- Repentance+ smoke tests have been run; see docs/HANDOFF.md for exact observations and remaining gaps. Do not extend that evidence to untested features or versions.
-- When the project state changes (something tested in game, a system finished), update `docs/HANDOFF.md` in the same PR.
-
-## Content rules (agreed with the owner)
-
-- Enemies are abuse mechanisms (shared proxies, mass accounts, bots), never people or nationalities.
-- No reference to Grok's July 2025 offensive content.
-- No official company logos. Free and non-commercial. Credit ZipZipPipe (Claude-chan); DeepSeek-chan also needs 上善无形 and CC BY-NC-SA 4.0. Art is not MIT.
+- New code, comments, Markdown and interface text use English, as explicitly requested by the owner. Reply in the user's conversational language.
+- Fetch main and inspect local status before work. Preserve all collaborator commits and uncommitted drafts. Prefer a focused branch and PR. The owner authorized the 2026-10-24 consolidation/main merge; this is not Workshop permission.
+- Run `bash tools/check.sh` before committing. Update docs/HANDOFF.md and relevant acceptance records with each material change.
+- Current testing is source/offline only. Do not launch/control or deploy to the game until the owner resumes engine testing. CI/stubs, historical v0.4 game evidence and current engine acceptance are distinct.
+- Never restore DeepSeek proxy/IP/risk mechanics. Do not serialize engine entities; version and isolate player state. Preserve native weapons, costumes, size and transformations.
+- Enemies represent fictional abuse mechanisms, not people or nationalities. Meme parody is not a factual allegation. No reference to Grok's July 2025 offensive content.
+- No official company logos, private uploads, credentials from chat or premature Workshop release. Code is MIT; character designs/art are not. Read resources/ART_LICENSE.md and preserve credits/non-commercial conditions.
+- Before an authorized runtime replacement, follow the owner's E:/ba allowlist and hash-verification workflow. Keep backup contents and private paths out of public commits.
