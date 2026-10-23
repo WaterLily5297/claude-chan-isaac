@@ -2,7 +2,17 @@
 
 Updated 2026-10-24 (Japan time), v0.5-dev. PR #5 is merged. Its implementation and the earlier v0.4 observations are separate evidence; passing CI does not establish in-game correctness.
 
-## GitHub synchronization checkpoint (2026-10-24)
+## Meal lifecycle follow-up (2026-10-24)
+
+After the synchronized `413d02d` candidate, the DeepSeek migration review found two shared prerequisites: Lunch Break repeated its healing under Car Battery, and food effects had no saved countdown or input lock. `scripts/meal_break.lua` now owns versioned per-player countdowns in `Risk.state.mealBreaks`. Lunch Break and Brb, Getting Food both start a ninety-gameplay-update meal. Lunch Break refuses another use during an existing meal without spending charge; a food pill can refresh the countdown, retaining its normal heal. Car Battery neither heals nor slows a second time.
+
+Only the four directional shooting actions are overridden, returning the documented boolean or numeric type. The hot input callback performs no room/player scan and no state mutation. Movement, bombs, active/pocket use, DROP and menu input are untouched. Paused input is not overridden. Remaining time survives continue and room/floor transitions; new runs reset it. Duplicate update calls do not advance it twice; an observed dead player or replacement entity cannot pass the timer to a new co-op player. A meal does not shorten a longer existing FireDelay. No character-type changes, blindfold costumes, sprite replacements or REPENTOGON dependency are introduced.
+
+The focused regression fails on `413d02d` at the repeated Car Battery heal, then passes the actual corrected item/pill/input callbacks and detached-save restart scenario. Full checks pass: 56 Lua files, five XML files, deterministic assets and thirteen stub suites. This proves the callback contract, not universal weapon suppression: an already emitted attack remains alive, a charged release may need engine-specific handling, and other mods reading Input directly bypass this hook. Verify the cases in TESTING.md before acceptance. The Rice / Peak-Valley replacement, attack accounting and the remaining expansion are still pending; current DeepSeek thought, busy and slacking mechanics are unchanged. Runtime is still `aa8bd46`; no installation or engine test occurred.
+
+References: [input callback contract](https://wofsauge.github.io/IsaacDocs/rep/enums/ModCallbacks.html#mc_input_action), [dynamic shooting FAQ](https://wofsauge.github.io/IsaacDocs/rep/faq/Lua.html#how-do-i-prevent-the-player-from-shooting-arbitrarily). The vanilla FAQ's type-change workaround was not used because it would disturb the requested costume and character compatibility.
+
+## Completed GitHub checkpoint before the meal follow-up
 
 The owner's explicit request to synchronize GitHub supersedes the earlier GitHub input-conflict hold. The synchronization candidate collects the six local commits through `63a580b`: Claude usage persistence, head/carry alignment, Summary Stapler, community-meme designs, hurt-pose packing and DROP tap/hold compatibility. It is based on the published `01a0f2d` candidate and preserves main's `1143ff1` history. Earlier references below to unpublished source describe those work sessions, not the status of this synchronization candidate.
 

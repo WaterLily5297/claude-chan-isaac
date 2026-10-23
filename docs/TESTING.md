@@ -1,5 +1,15 @@
 # In-game test checklist
 
+## Shared food countdown (engine acceptance pending)
+
+Use Lunch Break as normal DeepSeek and as a vanilla character, then use Brb, Getting Food. Verify the three-second directional shooting lock while movement, vulnerability, bombs, active/pocket use and DROP remain available. Use Car Battery: one heal, one slowdown, one meal only. A second Lunch Break use during a meal must preserve charge and grant no extra heal; a food pill can refresh the meal. Verify a longer existing shooting cooldown is not shortened.
+
+Save/quit/restart at one second and just before expiry. Each player must retain only their own remaining time; pause and menu time must not advance it. Cross rooms/floors, die/revive, change character, leave/join co-op and test two players sharing a controller. No permanent lock, wrong-owner lock or forgotten timer is acceptable. Test keyboard and analog aiming separately, including pause-menu confirmation.
+
+Repeat while charging Brimstone, Technology X, Monstro's Lung and Chocolate Milk, and with Mom's Knife, Dr. Fetus, Epic Fetus, continuous lasers, Ludovico, Marked, familiars and a shot-producing active. Record whether a charged release leaks through, whether existing controlled attacks remain steerable and whether another input mod bypasses or overrides the hook. Existing attacks are not deleted and programmatic FireTear calls are not intercepted. These cases are deliberately not passed by the input stub. Evaluate the intended distinction between blocking new normal shots and preserving already-emitted/active-item attacks before the new Rice ability uses this service.
+
+Offline `tests/meal_break_test.lua` uses the real item/pill/input modules plus detached save snapshots. It covers typed hook returns, non-shooting pass-through, Car Battery, overlap, exact countdown expiry, duplicate updates, pause, continue, migration and player identity. The old item module from `413d02d` fails its first Car Battery assertion. Actual engine JSON, charged-release timing and co-op slot identity remain unverified.
+
 ## DROP tap/hold compatibility (engine acceptance pending)
 
 For GPT and Gemini separately, test keyboard and controller: a short press must leave mode unchanged while down and switch once on release; a long hold must drop the intended vanilla trinket/pocket pickup without switching. Repeat when holding multiple pocket items, including native short-tap cycling. The observer does not suppress that cycling, so record any undesirable double action rather than marking it passed from Lua coverage.
