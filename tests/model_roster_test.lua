@@ -18,7 +18,7 @@ EntityType={ENTITY_PLAYER=1,ENTITY_PROJECTILE=9}; Direction={NO_DIRECTION=-1}
 ProjectileFlags={CANT_HIT_PLAYER=1}
 ButtonAction={ACTION_DROP=1,ACTION_MAP=2}; ActiveSlot={SLOT_POCKET=2}
 CollectibleType={COLLECTIBLE_BOOK_OF_SECRETS=777,COLLECTIBLE_DECK_OF_CARDS=778}
-function GetPtrHash(p) return p end
+function GetPtrHash(p) return p.pointer end
 function Color(...) return {...} end
 local trigger=false
 Input={IsActionTriggered=function() return trigger end}
@@ -30,7 +30,8 @@ local players={}
 local risk={state={}}
 function Isaac.GetPlayer(i) return players[i+1] end
 function Isaac.GetScreenHeight() return 270 end
-function Isaac.RenderText() end
+local rendered={}
+function Isaac.RenderText(text) rendered[#rendered+1]=text end
 function Game() return {
     GetNumPlayers=function() return #players end,
     GetFrameCount=function() return frame end,
@@ -38,9 +39,11 @@ function Game() return {
         GetCurrentRoomDesc=function() return {SpawnSeed=room} end} end,
     GetHUD=function() return {ShowItemText=function() end,IsVisible=function() return true end} end,
 } end
+local nextPointer=0
 local function player(name)
+    nextPointer=nextPointer+1
     local p={kind=Isaac.GetPlayerTypeByName(name,false),speed=0,shoot=-1,flies=0,hearts=2,dead=false,
-        Position={},ControllerIndex=0,pocket=0}
+        Position={},ControllerIndex=0,pocket=0,pointer=nextPointer,InitSeed=nextPointer*101}
     function p:GetPlayerType() return self.kind end
     function p:ToPlayer() return self end
     function p:IsDead() return self.dead end
@@ -69,6 +72,9 @@ local function clear()
 end
 local function hit(p) fire('MC_ENTITY_TAKE_DMG',p,1,0) end
 local function near(a,b) assert(math.abs(a-b)<1e-8,tostring(a)..' ~= '..tostring(b)) end
+-- Different Lua references may point at the same engine entity. Forward both
+-- reads and writes while keeping the wrapper's table identity distinct.
+local function wrap(p) return setmetatable({}, {__index=p, __newindex=p}) end
 local p=player('GPT-chan'); start(p)
 near(p.Damage,13.5); near(p.MaxFireDelay,11)
 trigger=true; fire('MC_POST_PEFFECT_UPDATE',p); trigger=false
@@ -141,4 +147,49 @@ p=player('DeepSeek-chan'); start(p)
 assert(R:Find(p)==nil and next(risk.state.modelRoster)==nil)
 p.kind=142; assert(R:Find(p)==nil)
 p.kind=0; assert(R:Find(p)==nil)
-print('OK: nine model mechanics, bounds, independent co-op state, continued progress and duplicate effects')
+
+-- Each update uses a new wrapper; cache and HUD must see the same charge.
+p=player('Grok-chan'); other=player('Grok-chan'); start(p,other); p.speed=1
+for _=1,150 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
+wrap(p):EvaluateItems(); near(p.Damage,12.5); near(other.Damage,10)
+collectgarbage('collect'); wrap(p):EvaluateItems(); near(p.Damage,12.5)
+rendered={}; fire('MC_POST_RENDER')
+assert(rendered[1]=='Grok-chan: Momentum 10/10')
+assert(rendered[2]=='Grok-chan: Momentum 0/10')
+room=room+1; fire('MC_POST_NEW_ROOM'); near(p.Damage,10)
+for _=1,15 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
+near(p.Damage,10.25)
+fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true); near(p.Damage,10)
+
+p=player('Mistral-chan'); other=player('Mistral-chan'); start(p,other)
+p.speed=1; p.shoot=0
+for _=1,59 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
+assert(p.TearFlags==0)
+fire('MC_POST_PEFFECT_UPDATE',wrap(p)); wrap(p):EvaluateItems()
+assert(p.TearFlags==4 and other.TearFlags==0)
+rendered={}; fire('MC_POST_RENDER'); assert(rendered[1]=='Mistral-chan: Tailwind')
+room=room+1; fire('MC_POST_NEW_ROOM'); assert(p.TearFlags==0)
+for _=1,60 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
+assert(p.TearFlags==4); start(p); assert(p.TearFlags==0)
+
+p=player('GLM-chan'); other=player('GLM-chan'); start(p,other); frame=7
+fire('MC_USE_ITEM',1,nil,wrap(p),0)
+fire('MC_USE_ITEM',1,nil,wrap(p),0)
+fire('MC_USE_ITEM',1,nil,wrap(p),UseFlag.USE_CARBATTERY)
+near(p.Damage,11.2); near(other.Damage,10)
+fire('MC_USE_ITEM',1,nil,wrap(other),0); near(other.Damage,11.2)
+frame=8; fire('MC_USE_ITEM',1,nil,wrap(p),0); near(p.Damage,12.4)
+
+-- Reused pointers and an observed character change must not inherit charge.
+p=player('Grok-chan'); start(p); p.speed=1
+for _=1,150 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
+near(p.Damage,12.5)
+other=player('Grok-chan'); other.pointer=p.pointer; players={other}
+other:EvaluateItems(); near(other.Damage,10)
+other.speed=1
+for _=1,150 do fire('MC_POST_PEFFECT_UPDATE',wrap(other)) end
+near(other.Damage,12.5)
+other.kind=Isaac.GetPlayerTypeByName('Mistral-chan',false); other:EvaluateItems()
+other.kind=Isaac.GetPlayerTypeByName('Grok-chan',false); other:EvaluateItems()
+near(other.Damage,10)
+print('OK: nine model mechanics, wrapper identity, lifecycle bounds, co-op isolation and duplicate effects')
