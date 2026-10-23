@@ -11,7 +11,8 @@ function Compatibility:Register(pack)
             for _, name in ipairs(set.IDs) do
                 local costumes = set[name]
                 if type(costumes) == "table" and type(costumes.Default) == "table" then
-                    for _, id in ipairs({Constants.Player.CLAUDE_CHAN, Constants.Player.DEEPSEEK_CHAN}) do
+                    for _, id in ipairs({Constants.Player.CLAUDE_CHAN, Constants.Player.DEEPSEEK_CHAN,
+                        Constants.Player.CLAUDE_CHAN_B, Constants.Player.DEEPSEEK_CHAN_B}) do
                         if id >= 0 and costumes[id] == nil then
                             costumes[id] = { Apply = {}, Remove = {} }
                         end
