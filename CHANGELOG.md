@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased Rice First source candidate (2026-10-24)
+
+- Normal DeepSeek earns rice from unique combat clears and spends a bowl on a short DROP release. A two-second meal grants full Thought and six seconds of +0.15 speed; Birthright halves meal duration. The intrinsic meal never heals. Personal counters, remaining bonuses and pending meals survive continue.
+- Remove normal random shot deletion and idle pocket charging. Same-frame tear pellets share one Thought payment, with resolved damage inherited by Swarm and native tear fields unchanged. English HUD, dossier and EID descriptions reflect the actual candidate.
+- Fourteen offline suites pass, including meal/save/room/co-op and callback-order regressions. Non-tear and persistent-attack accounting, tainted Peak / Valley, current-engine validation and costume acceptance remain pending. Owner currently requests source/offline work only.
+
 ## Unreleased meal lifecycle correction (2026-10-24)
 
 - Lunch Break and Brb, Getting Food share a per-player saved three-second countdown. Suppress directional shooting queries during the meal, preserve movement and other controls, and restore the remaining countdown on continue without changing character types or costumes.
