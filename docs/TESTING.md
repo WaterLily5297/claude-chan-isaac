@@ -52,6 +52,10 @@ Useful console commands: `giveitem <name>` for items, `giveitem t<name>` for tri
 
 Items most likely to need fixes: **#17** (doors may re-close while enemies are alive) and the placeholder Relay Slime (#6b).
 
+### Opus Mode immediate wallet state
+
+Acquire Opus Mode at zero coins and inspect the damage stat before and after the next player update; its multiplier should be x0.6 throughout. Repeat with positive coins for x1.8. Pick up a coin, spend the last coin, and trigger a damage-cache refresh in the same frame: the refreshed value must use the current wallet. Reroll away and reacquire the item after changing the wallet, and repeat after a real save/quit/continue. In co-op, check each owner separately. The regression uses stub cache calls and stale notification flags; it does not prove the game's callback order or cover weapon-family billing.
+
 ### API checked against the community docs (wofsauge/IsaacDocs, 2026-10-22)
 
 These calls exist with the signatures the mod uses, so they shouldn't crash: `GridEntityDoor:TryUnlock(player, force)`, `IsLocked()`, `Open()`; `EntityPickup:TryOpenChest(player)`; `Entity:AddCharmed(ref, -1)` (−1 = permanent, the ally follows you between rooms); `AddConfusion`, `AddFreeze`; `Room:SetClear`, `GetFrameCount`, `GetCenterPos`; `EntityPlayer:SetPocketActiveItem`, `GetActiveCharge`, `SetActiveCharge`, `AddSoulHearts`, `HasTrinket`; `EntityTear:AddTearFlags`; `MC_USE_PILL (effect, player, flags)`; `MC_USE_ITEM` returning `true` plays the use animation; `MC_ENTITY_TAKE_DMG` returning a value skips later callbacks (so The Constitution's refused hit adds no risk).
