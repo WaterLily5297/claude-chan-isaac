@@ -561,7 +561,21 @@ def lunch_break():
     return c
 
 
+def summary_stapler():
+    """Original orange stapler over paper, using the existing geometric icon system."""
+    c = clear()
+    rect(c, 7, 16, 25, 25, "P")
+    rect(c, 10, 18, 22, 18, "T")
+    rect(c, 10, 21, 20, 21, "T")
+    rrect(c, 5, 22, 24, 26, 1, "m")
+    rrect(c, 5, 6, 12, 23, 2, "M")
+    rrect(c, 6, 5, 26, 12, 2, "O")
+    rect(c, 22, 12, 25, 15, "M")
+    return c
+
+
 SPRITES = {
+    "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
     "support_ticket": support_ticket,
     "ban_hammer": ban_hammer,

@@ -38,7 +38,8 @@ def pack(source, key):
         bounds = piece.getchannel('A').point(lambda a: 255 if a >= 128 else 0).getbbox()
         assert bounds, (key, box)
         piece = piece.crop(bounds)
-        piece.thumbnail((limit, limit), Image.Resampling.NEAREST)
+        size = (limit, limit) if isinstance(limit, int) else limit
+        piece.thumbnail(size, Image.Resampling.NEAREST)
         target = Image.new('RGBA', (cell, cell))
         y = (cell-piece.height)//2 if bottom is None else bottom-piece.height
         target.alpha_composite(piece, ((cell-piece.width)//2, y))
@@ -57,7 +58,9 @@ def pack(source, key):
             box = (cuts[j], 0, cuts[j+1], 115)
         else:
             box = (i*step, 0, (i+1)*step, step)
-        frame(box, (i*32, 0), bottom=30)
+        # Match the reviewed head envelope and chin baseline. Costumes keep
+        # engine pivots; pushing the head down to row 30 misaligns that anchor.
+        frame(box, (i*32, 0), limit=(28, 26), bottom=27)
     # The alternate front head must not become a body or a rear view.
     out.paste(out.crop((0, 0, 32, 32)), (256, 0))
     for row in (1, 2):
@@ -94,8 +97,22 @@ def pack(source, key):
             y0, y1 = ((4+row*2)*step, (6+row*2)*step)
             if key in ORIGINALS:
                 y0, y1 = [(335, 510), (512, 655), (657, 808)][row]
+            # Hit uses a complete pose at (128,192), pivot (32,56).
+            # A 64px storage cell is not a 64px character: the measured vanilla
+            # pose is 28x32, with its visible bottom at 55 before squash/stretch.
+            hit = row == 1 and column == 2
+            if hit and key == 'llama':
+                # This source row sits below the nominal grid; the generic
+                # crop stops through the face and discards the hands/feet.
+                y0, y1 = 490, 654
             frame((column*2*step, y0, (column+1)*2*step, y1),
-                  (column*64, 128+row*64), cell=64, limit=58)
+                  (column*64, 128+row*64), cell=64,
+                  limit=(28, 32) if hit else 58, bottom=55 if hit else None)
+    # PickupWalk crops a head at (256,128), pivot (32,44), rather than a
+    # complete character. Preserve the same chin offset as the 32px head.
+    carry_head = Image.new('RGBA', (64, 64))
+    carry_head.alpha_composite(out.crop((0, 0, 32, 32)), (16, 16))
+    out.paste(carry_head, (256, 128))
     return out
 
 
