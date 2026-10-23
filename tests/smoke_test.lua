@@ -10,26 +10,29 @@ function mod:SaveData(s) saved = s end
 function mod:HasData() return saved ~= nil end
 function mod:LoadData() return saved end
 function RegisterMod() return mod end
+function GetPtrHash(entity) return entity end
 
 function include(name)
     return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua")
 end
 
--- tiny json stub
+-- Snapshot stub preserves nested run-state tables without sharing references.
+-- Real JSON serialization remains an engine acceptance check.
 package.preload.json = function()
+    local snapshots = {}
+    local function copy(value)
+        if type(value) ~= "table" then return value end
+        local result = {}
+        for key, entry in pairs(value) do result[key] = copy(entry) end
+        return result
+    end
     return {
         encode = function(t)
-            local parts = {}
-            for k, v in pairs(t) do parts[#parts + 1] = k .. "=" .. tostring(v) end
-            return table.concat(parts, ";")
+            snapshots[#snapshots + 1] = copy(t)
+            return tostring(#snapshots)
         end,
         decode = function(s)
-            local t = {}
-            for k, v in s:gmatch("(%w+)=([^;]+)") do
-                if v == "true" then v = true elseif v == "false" then v = false else v = tonumber(v) or v end
-                t[k] = v
-            end
-            return t
+            return copy(assert(snapshots[tonumber(s)], "invalid snapshot"))
         end,
     }
 end
@@ -550,7 +553,7 @@ do
     print("  529 Overloaded manual coding: ok")
 
     -- Vibe Coding: make no mistakes waives the bill.
-    playerItems[743] = true; player.coins = 40; pdata.ccVibeMistake = false
+    playerItems[743] = true; player.coins = 40
     stage = 5; fire("MC_POST_NEW_LEVEL"); assert(player.coins == 40, "no hit on the floor: bill waived")
     fire("MC_ENTITY_TAKE_DMG", EntityType.ENTITY_PLAYER, player, 1, 0, {})
     stage = 6; fire("MC_POST_NEW_LEVEL"); assert(player.coins == 30, "a hit on the floor: bill charged")
