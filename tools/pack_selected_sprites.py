@@ -1,0 +1,122 @@
+"""Pack image-tool-generated frames into engine cells without drawing new art.
+
+Usage: python tools/pack_selected_sprites.py SOURCE_DIRECTORY
+Inputs are the thirteen selected square PNG atlases. Coordinates are reviewed at
+1254x1254. This performs cropping, nearest-neighbor sizing and atlas packing;
+it does not establish correct engine animation or weapon compatibility.
+"""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+from PIL import Image
+from fix_character_cells import main_component
+
+ROOT = Path(__file__).resolve().parent.parent
+KEYS = ('claude', 'deepseek', 'claude_b', 'deepseek_b',
+        'gpt', 'gemini', 'grok', 'qwen', 'llama', 'mistral', 'doubao', 'kimi', 'glm')
+ORIGINALS = KEYS[:4]
+HEADS = {
+    'claude': ([0, 96, 188, 283, 382, 487], [0, 1, 3, 3, 4, 4]),
+    'deepseek': ([0, 100, 200, 300, 395, 495, 595], [0, 1, 2, 3, 4, 5]),
+    'claude_b': ([0, 105, 209, 315, 418, 523, 630], [0, 1, 2, 2, 4, 5]),
+    'deepseek_b': ([0, 100, 199, 301, 400, 498, 597], [0, 1, 2, 2, 4, 5]),
+}
+
+
+def pack(source, key):
+    source = source.convert('RGBA').resize((1254, 1254), Image.Resampling.NEAREST)
+    # Pixel sprites use binary coverage. Generated files contain near-invisible
+    # alpha=1 matte specks that some atlas previews incorrectly display brightly.
+    source.putalpha(source.getchannel('A').point(lambda a: 255 if a >= 128 else 0))
+    source = Image.alpha_composite(Image.new('RGBA', source.size), source)
+    out = source.resize((512, 512), Image.Resampling.NEAREST)
+    out.paste(Image.new('RGBA', (512, 320)), (0, 0))
+
+    def frame(box, position, cell=32, limit=28, bottom=None):
+        piece = main_component(source.crop(tuple(round(v) for v in box)))
+        bounds = piece.getchannel('A').point(lambda a: 255 if a >= 128 else 0).getbbox()
+        assert bounds, (key, box)
+        piece = piece.crop(bounds)
+        piece.thumbnail((limit, limit), Image.Resampling.NEAREST)
+        target = Image.new('RGBA', (cell, cell))
+        y = (cell-piece.height)//2 if bottom is None else bottom-piece.height
+        target.alpha_composite(piece, ((cell-piece.width)//2, y))
+        out.paste(target, position)
+        return target
+
+    step = 1254/16
+    for i in range(6):
+        if key in HEADS:
+            cuts, mapping = HEADS[key]
+            j = mapping[i]
+            box = (cuts[j], 0, cuts[j+1], 98)
+        elif key == 'llama':
+            cuts = [0, 104, 211, 313, 408, 512, 616]
+            j = [0, 1, 2, 2, 4, 5][i]
+            box = (cuts[j], 0, cuts[j+1], 115)
+        else:
+            box = (i*step, 0, (i+1)*step, step)
+        frame(box, (i*32, 0), bottom=30)
+    # The alternate front head must not become a body or a rear view.
+    out.paste(out.crop((0, 0, 32, 32)), (256, 0))
+    for row in (1, 2):
+        for column in range(16):
+            if key == 'llama':
+                j = column % 14
+                y0, y1 = ((123, 211) if row == 1 else (216, 299))
+                box = (j*1254/14, y0, (j+1)*1254/14, y1)
+            elif key in ORIGINALS:
+                y0, y1 = ((103, 178) if row == 1 else (181, 264))
+                if key == 'deepseek_b':
+                    y0, y1 = ((99, 161) if row == 1 else (165, 239))
+                if key == 'claude_b':
+                    j = column % 14
+                    box = (j*1254/14, y0, (j+1)*1254/14, y1)
+                elif key == 'deepseek' and row == 1 and column < 8:
+                    j = column % 7
+                    box = (j*80, y0, (j+1)*80, y1)
+                else:
+                    box = (column*step, y0, (column+1)*step, y1)
+            else:
+                box = (column*step, row*step, (column+1)*step, (row+1)*step)
+            frame(box, (column*32, row*32), limit=20, bottom=26)
+    for column in (0, 1, 8, 9):
+        if key in ('llama', 'glm') or key in ORIGINALS:
+            out.paste(out.crop((column*32, 64, (column+1)*32, 96)), (column*32, 96))
+        else:
+            frame((column*step, 3*step, (column+1)*step, 4*step),
+                  (column*32, 96), limit=20, bottom=26)
+    for column in (6, 7, 14, 15):
+        out.paste(out.crop(((column%2)*32, 32, (column%2+1)*32, 64)), (column*32, 0))
+    for row in range(3):
+        for column in range(5 if row == 0 else 4):
+            y0, y1 = ((4+row*2)*step, (6+row*2)*step)
+            if key in ORIGINALS:
+                y0, y1 = [(335, 510), (512, 655), (657, 808)][row]
+            frame((column*2*step, y0, (column+1)*2*step, y1),
+                  (column*64, 128+row*64), cell=64, limit=58)
+    return out
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('source', type=Path)
+    args = parser.parse_args()
+    manifest_path = ROOT/'docs/roster-art-manifest.json'
+    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    for key in KEYS:
+        source = args.source/(key+'.png')
+        atlas = pack(Image.open(source), key)
+        gamekey = key.replace('_b', 'chan_b') if key.endswith('_b') else key+'chan'
+        target = ROOT/f'resources/gfx/characters/costumes/character_{gamekey}.png'
+        atlas.save(target, optimize=True)
+        record = next(e for e in manifest if e['key'] == key)
+        record['sprite_sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+        record['packed_sprite_sha256'] = hashlib.sha256(target.read_bytes()).hexdigest()
+    manifest_path.write_text(json.dumps(manifest, indent=2)+'\n', encoding='utf-8')
+    print('Packed thirteen selected portrait identities; engine animation acceptance remains pending.')
+
+
+if __name__ == '__main__':
+    main()

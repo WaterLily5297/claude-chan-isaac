@@ -1,5 +1,6 @@
 """Check generated sprites without overwriting installed artwork (standard library)."""
 import ast
+import json
 from pathlib import Path
 import struct
 import subprocess
@@ -54,3 +55,22 @@ for path in (root / 'content/gfx').glob('*.anm2'):
             assert int(frame.attrib['XCrop']) + int(frame.attrib['Width']) <= width, path
             assert int(frame.attrib['YCrop']) + int(frame.attrib['Height']) <= height, path
 print('  OK: character textures, portraits, selection animations and frame bounds')
+
+# Every advertised family must be registered, selectable and have a dossier.
+roster = json.loads((root / 'docs/portrait-prompts.json').read_text(encoding='utf-8'))['entries']
+normal_names = {p.get('name') for p in players if not p.get('bSkinParent')}
+menu_names = {a.get('Name') for a in ET.parse(root / 'content/gfx/characterportraits.anm2').findall('./Animations/Animation')}
+assert {e['name'] for e in roster} == normal_names == menu_names
+assert len({e['key'] for e in roster}) == len(roster)
+for entry in roster + [{'key': 'claude_b'}, {'key': 'deepseek_b'}]:
+    key = entry['key']
+    png = (root / f'resources/gfx/ui/dossiers/{key}.png').read_bytes()
+    assert struct.unpack('>II', png[16:24]) == (384, 576), key
+    assert png[24:26] == bytes([8, 6]), key
+    actor = ET.parse(root / f'resources/gfx/ui/dossiers/{key}.anm2')
+    for sheet in actor.findall('./Content/Spritesheets/Spritesheet'):
+        assert (root / 'resources' / sheet.get('Path')).is_file(), key
+    frame = actor.find('./Animations/Animation/LayerAnimations/LayerAnimation/Frame')
+    assert (int(frame.get('Width')), int(frame.get('Height'))) == (384, 576), key
+    assert frame.get('XCrop') == '0' and frame.get('YCrop') == '0', key
+print(f'  OK: {len(roster)} playable model families, selection names and full portrait dossiers')
