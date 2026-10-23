@@ -3,13 +3,15 @@
     "key": "claude",
     "portrait_sha256": "2870d9420f71acc57f7c956be9336f18d56829a0b27a09ff96893068b0bf95fd",
     "sprite_sha256": "ddbacafde8afe615adf40d6d8a91d7110def328c1a9a18575a01a6ae587df18f",
-    "packed_sprite_sha256": "568fc0600d29e41be0ca84cb04f624272a493220e2ec0d23e20354e9587d7cdc"
+    "packed_sprite_sha256": "b2ef6510ed8643e4666cf91e4a6b5d450542038e9624c3c798590513b7ab44f7",
+    "movement_source_sha256": "bf9dcaeb4b73dd6dd23919d1de296034aec30267935f00cb261cee504cb7a216"
   },
   {
     "key": "deepseek",
     "portrait_sha256": "95187218d1b35ab97c4add73cde739a7bc6ec7da2a1537daff21e81abf902d8d",
     "sprite_sha256": "4dc9b761cebb6309a804737e8becad83131fa1771da46f60bce3f142caa168a3",
-    "packed_sprite_sha256": "f744d4543068c7575ca5f0f50494f800b59e00b235c2f22ab7d593a3c56e4e5d"
+    "packed_sprite_sha256": "f76192da71b7f7e71faa83160befd8e4cdeceee441a8468dac92d275e622d1f9",
+    "movement_source_sha256": "0fc32a2b6e92c95356ca4101d55864e754dcd2dffbaa7633d316bf978eb2e5ee"
   },
   {
     "key": "gpt",
@@ -69,12 +71,14 @@
     "key": "claude_b",
     "portrait_sha256": "07fb2b1f55ae4d52848aa6e79c01ad0e1800c21253fc2da2dae196e4b4314124",
     "sprite_sha256": "d8a6e646fc51c624db2adaf7600c8c4c81b148e70a37accd82b1100720d4ff52",
-    "packed_sprite_sha256": "0b95f369e51d89549af0052d8dd4cf66a7fce0b65392ad0189e8a430fd07f0c5"
+    "packed_sprite_sha256": "f3de7d3d55438947c38672e0eb30313f48f9700a6fcb62ae201915c158469d4e",
+    "movement_source_sha256": "73540b7808dfdf3ea6a9bcf948fd13e1b216f59f325611c376127b04b80b467b"
   },
   {
     "key": "deepseek_b",
     "portrait_sha256": "0622dd93329fa9c7d7fec0a620f900874dd6ea5ee21783f015a281a5e5e1b406",
     "sprite_sha256": "7ef7b5a923e8aeafc169d22764a7d8f3a1dc00740abb60b9cfc38d9384ee6202",
-    "packed_sprite_sha256": "b45af059a5a58c458d2acb832550d0dc65488c3ab3de93a74a34a8c6b633a956"
+    "packed_sprite_sha256": "101b238afde3799ad3b96be94af4ff979baf1823e05bdf02abc5494a936aa2dc",
+    "movement_source_sha256": "58f60549c1a3b67a1a19ac042af4b94cb9a56249780488cc74584a4826635ec2"
   }
 ]
