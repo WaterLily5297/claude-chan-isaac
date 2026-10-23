@@ -1,6 +1,7 @@
 local Constants = {}
 
 Constants.Item = {
+    SUMMARY_STAPLER = Isaac.GetItemIdByName("Summary Stapler"),
     BAN_HAMMER = Isaac.GetItemIdByName("Ban Hammer"),
     RESIDENTIAL_IP = Isaac.GetItemIdByName("Residential IP"),
     COMPACT = Isaac.GetItemIdByName("Compact"),

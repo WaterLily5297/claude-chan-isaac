@@ -5,6 +5,9 @@ local Constants = include("scripts.constants")
 local Eid = {}
 
 local descriptions = {
+    [Constants.Item.SUMMARY_STAPLER] = {
+        en_us = { "Summary Stapler", "4 room charges#Absorbs up to 12 ordinary hostile bullets within 120 units#Fires one slow tear: damage x(1 + bullets / 4), up to x4 before other modifiers#Uses normal tear effects, character limits and forks#Empty use keeps charge; Car Battery does not repeat#Does not replace your weapon or reset usage" },
+    },
     [Constants.Item.LUNCH_BREAK] = {
         en_us = { "Lunch Break", "Heals 1 red heart#All enemies are slowed for 3 seconds#You can't shoot for 3 seconds" },
         zh_cn = { "去吃饭了", "回复1颗红心#所有敌人减速3秒#3秒内无法射击" },
