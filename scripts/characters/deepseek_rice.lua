@@ -2,6 +2,7 @@
 local C = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local ThoughtAttacks = include("scripts.characters.thought_attacks")
 local Rice = {}
 
 local function normal(p)
@@ -12,7 +13,8 @@ local function integer(v, maximum, fallback)
     return math.floor(v)
 end
 local function fresh()
-    return {version=1, bowls=1, clears=0, thought=0, speed=0, lunch=false, awards={}}
+    return {version=1, bowls=1, clears=0, thought=0, speed=0, lunch=false, awards={},
+        windowRemaining=0, windowFactor=1}
 end
 
 function Rice:Init(mod, Risk, Meal)
@@ -41,10 +43,18 @@ function Rice:Init(mod, Risk, Meal)
                     s=fresh(); all[key]=s
                 end
                 s.lunch = s.lunch == true
+                s.windowRemaining=integer(s.windowRemaining,6,0)
+                if type(s.windowFactor)~="number" or s.windowFactor~=s.windowFactor
+                    or s.windowFactor<1 or s.windowFactor>2 then
+                    s.windowRemaining=0; s.windowFactor=1
+                end
                 if type(s.awards) ~= "table" then s.awards={} end
                 local b = bindings[pointer]
                 if not b or b.seed ~= p.InitSeed or b.slot ~= key then
-                    b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
+                    b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount(), clock=0}
+                    if s.windowRemaining>0 then
+                        b.window={clock=s.windowRemaining-6,multiplier=s.windowFactor}
+                    end
                 end
                 b.state=s; nextBindings[pointer]=b
             else
@@ -100,7 +110,11 @@ function Rice:Init(mod, Risk, Meal)
         drop:Reset()
         if not ready then return end
         bind()
-        each(function(_,b) b.volley=nil; observeRoom(b.state) end)
+        each(function(_,b)
+            b.volley=nil; b.window=nil; b.attackFrame=nil; b.continuousFrame=nil
+            b.state.windowRemaining=0; b.state.windowFactor=1
+            observeRoom(b.state)
+        end)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function() drop:Reset() end)
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_,p,flag)
@@ -127,7 +141,10 @@ function Rice:Init(mod, Risk, Meal)
         local now=Game():GetFrameCount()
         if Game():IsPaused() then
             drop:Reset()
-            each(function(_,b) b.frame=now end)
+            each(function(_,b)
+                b.frame=now
+                if b.continuousFrame then b.continuousFrame=now end
+            end)
             return
         end
         each(function(p,b)
@@ -136,14 +153,24 @@ function Rice:Init(mod, Risk, Meal)
             if p:IsDead() then
                 drop:Forget(p)
                 local hadSpeed=s.speed>0
-                s.lunch=false; s.speed=0; s.thought=0; b.frame=now; b.volley=nil
+                s.lunch=false; s.speed=0; s.thought=0; b.frame=now; b.volley=nil; b.window=nil
+                s.windowRemaining=0; s.windowFactor=1
                 if hadSpeed then refresh(p) end
                 return
             end
             local advanced=now>b.frame
-            if now<b.frame then b.volley=nil; drop:Forget(p) end
+            if now<b.frame then
+                b.volley=nil; b.window=nil; b.attackFrame=nil; b.continuousFrame=nil
+                s.windowRemaining=0; s.windowFactor=1
+                drop:Forget(p)
+            end
             b.frame=now
             if advanced then
+                b.clock=b.clock+1
+                if b.window then
+                    s.windowRemaining=math.max(0,6-(b.clock-b.window.clock))
+                    if s.windowRemaining==0 then s.windowFactor=1 end
+                end
                 if s.speed>0 then
                     s.speed=s.speed-1
                     if s.speed==0 then refresh(p) end
@@ -152,7 +179,9 @@ function Rice:Init(mod, Risk, Meal)
                     s.lunch=false; s.thought=150; s.speed=180
                     refresh(p)
                 elseif Meal:Remaining(p)==0 and p:AreControlsEnabled()
-                    and p:GetShootingInput():LengthSquared()==0 and b.attackFrame~=now then
+                    and p:GetShootingInput():LengthSquared()==0
+                    and b.attackFrame~=now
+                    and (not b.continuousFrame or b.continuousFrame<now-1) then
                     s.thought=math.min(150,s.thought+1)
                 end
             end
@@ -164,22 +193,38 @@ function Rice:Init(mod, Risk, Meal)
             end
         end)
     end)
-    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_,tear)
-        local p=tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
-        local b=p and binding(p)
-        if not b or p:IsDead() or Game():IsPaused() or not tear:Exists() then return end
-        local data=tear:GetData()
-        if data.ccRiceResolved then return end
-        data.ccRiceResolved=true
+    local function resolve(p,continuous)
+        local b=binding(p)
+        if not b or p:IsDead() or Game():IsPaused() then return end
         local now=Game():GetFrameCount()
         if not b.volley or b.volley.frame~=now then
-            b.volley={frame=now, multiplier=1+b.state.thought/150}
-            b.state.thought=0
+            if continuous and b.window and b.clock-b.window.clock<6 then
+                b.volley={frame=now,multiplier=b.window.multiplier}
+            else
+                b.volley={frame=now,multiplier=1+b.state.thought/150}
+                b.state.thought=0
+            end
+        end
+        if continuous and (not b.window or b.clock-b.window.clock>=6) then
+            b.window={clock=b.clock,multiplier=b.volley.multiplier}
+            b.state.windowRemaining=6; b.state.windowFactor=b.volley.multiplier
         end
         b.attackFrame=now
-        -- Keep native scale, flags, costumes and flight. LATE Swarm copies this damage.
-        tear.CollisionDamage=tear.CollisionDamage*b.volley.multiplier
-    end)
+        return b.volley.multiplier
+    end
+    ThoughtAttacks:Init(mod,{
+        Eligible=function(p) return binding(p)~=nil end,
+        Resolve=resolve,
+        WindowFactor=function(p)
+            local b=binding(p)
+            if b and b.window and b.clock-b.window.clock<6 then return b.window.multiplier end
+            return 1
+        end,
+        Active=function(p)
+            local b=binding(p)
+            if b then b.continuousFrame=Game():GetFrameCount() end
+        end,
+    })
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
