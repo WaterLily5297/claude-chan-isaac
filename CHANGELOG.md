@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased meal lifecycle correction (2026-10-24)
+
+- Lunch Break and Brb, Getting Food share a per-player saved three-second countdown. Suppress directional shooting queries during the meal, preserve movement and other controls, and restore the remaining countdown on continue without changing character types or costumes.
+- Lunch Break preserves charge during an existing meal and ignores Car Battery repeats. Offline regressions reproduce the old repeated heal and cover input isolation, pause, continue, duplicate updates, expiry and co-op identity. Charged weapons, persistent attacks and other input mods still require engine acceptance.
+
 ## Unreleased DROP tap/hold correction (2026-10-24)
 
 - GPT/Gemini switch mode on a short DROP release rather than immediately on press. Long holds do not switch, and native input remains available for dropping and pocket cycling.
