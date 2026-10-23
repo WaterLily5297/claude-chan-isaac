@@ -59,7 +59,9 @@ SoundEffect = { SOUND_POWERUP_SPEWER = 132 }
 function SFXManager() return { Play = function(_, id) print("  SFX:", id) end } end
 Vector = { Zero = { 0, 0 } }
 Input = { IsActionPressed = function() return false end }
-ButtonAction = { ACTION_MAP = 11 }
+ButtonAction = { ACTION_MAP = 11, ACTION_SHOOTLEFT = 4, ACTION_SHOOTRIGHT = 5,
+    ACTION_SHOOTUP = 6, ACTION_SHOOTDOWN = 7 }
+InputHook = { IS_ACTION_PRESSED = 0, IS_ACTION_TRIGGERED = 1, GET_ACTION_VALUE = 2 }
 function EntityRef(e) return e end
 
 local items = { ["Ban Hammer"] = 733, ["Residential IP"] = 734, ["Compact"] = 735, ["You're Absolutely Right!"] = 736, ["9.9 Yuan Relay"] = 737, ["Ultrathink"] = 738, ["1M Context"] = 739, ["Silent Update"] = 740, ["--dangerously-skip-permissions"] = 741, ["All Tests Passing"] = 742, ["Vibe Coding"] = 743, ["Banked Reset"] = 744, ["Subagent Swarm"] = 745, ["The Constitution"] = 746, ["Support Ticket"] = 748, ["Opus Mode"] = 747, ["Lunch Break"] = 749 }
@@ -89,6 +91,7 @@ local player = { HasCollectible = function(_, id) return playerItems[id] end,
     AddCacheFlags = function() end,
     EvaluateItems = function(self) self.Damage = 3.5; for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end end }
 player.ToPlayer = function(self) return self end
+player.IsDead = function() return false end
 player.TryRemoveTrinket = function(_, id) if HELD_TRINKET == id then HELD_TRINKET = nil; return true end return false end
 function Isaac.GetPlayer() return player end
 
@@ -567,11 +570,14 @@ do
     print("  tainted Claude-chan weekly limit: ok")
 
     -- Lunch Break.
+    for _ = 1, 90 do FRAME = FRAME + 1; fire("MC_POST_UPDATE") end
     local hearts, foe = player.hearts, makeNpc(false)
     roomEntities = { foe }; player.FireDelay = 0
     fire("MC_USE_ITEM", 749, 749, nil, player)
     assert(player.hearts == hearts + 2 and player.FireDelay == 90 and foe.slowed == 90)
     print("  Lunch Break: ok")
+    -- Expire the separate food penalty before the independent outage scenario.
+    for _ = 1, 90 do FRAME = FRAME + 1; fire("MC_POST_UPDATE") end
 
     -- 529 Overloaded: manual coding at 50% instead of no shooting.
     HELD_TRINKET = 190; ROOMCLEAR = false; roomEntities = { makeNpc(false) }
