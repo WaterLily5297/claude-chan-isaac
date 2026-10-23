@@ -2,6 +2,14 @@
 
 Updated 2026-10-23 (Japan time), v0.5-dev. PR #5 is merged. Its implementation and the earlier v0.4 observations are separate evidence; passing CI does not establish in-game correctness.
 
+## Forked tear property inheritance follow-up
+
+At `aa8bd46`, tainted DeepSeek forks and Subagent Swarm children copied damage/color but omitted the natural tear's effect flags, scale, flight arc and effect parameters. Both paths now use a shared `tear_fork` helper to copy `TearFlags`, `Scale`, `Height`, `FallingSpeed`, `FallingAcceleration`, `HomingFriction` and `KnockbackMultiplier` alongside the existing half damage and color. `ResetSpriteScale` updates the child animation for its copied size. Spawn ownership, fan angles, raw spawning and callback order remain unchanged; child creation does not call `FireTear` recursively.
+
+The property regression fails on `aa8bd46` with "fork loses native tear effects" and passes after the fix. It covers a vanilla Swarm holder, tainted DeepSeek with/without Swarm, normal Deep Think plus Swarm, cancellation, parent preservation and the existing four-character limits/ownership cases. Full offline checks pass: 49 Lua files, five XML files, asset checks and nine stub suites. This is field-level stub evidence. Actual homing, piercing, spectral, explosive, splitting, orbiting and controlled tear behavior remains unverified. Lasers, knives, bombs, familiar attribution and private third-party tear data are still separate compatibility work. See [EntityTear](https://wofsauge.github.io/IsaacDocs/rep/EntityTear.html) for the copied fields.
+
+The latest engine launch attempt was interrupted by the owner's physical Escape key. A subsequent read-only process check found the installed game running, but no menu, character or gameplay observation was made. Do not record an engine pass or assume the game is closed. This follow-up has not been deployed; close the game and create a fresh verified backup of the actually installed `aa8bd46` allowlist before replacing runtime files.
+
 ## Roster callback identity follow-up
 
 The roster expansion at `0573b2f` keyed transient charge by weak Lua object references. Different wrappers for the same engine player could split Grok momentum, Mistral tailwind and GLM's same-frame active-use guard. Transient records now use `GetPtrHash`, with initialization-seed and observed roster-type checks for pointer reuse and character changes. They retain no entity references and reset on game start and exit. Persistent mode/progress storage and the original four character modules are unchanged.

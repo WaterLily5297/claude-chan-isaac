@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## Fork property inheritance acceptance (pending)
+
+Test tainted DeepSeek alone, Isaac holding Subagent Swarm, tainted DeepSeek with Swarm, and normal DeepSeek's fully charged Deep Think with Swarm. Compare the natural tear and its children using Spoon Bender, Cupid's Arrow, Ouija Board, My Reflection, Ipecac and Cricket's Body. Check actual tracking, piercing, wall passage, trajectory/range, explosions and bounded splitting; copied flags alone do not prove those effects work in the engine. Deep Think children should display the boosted size and retain half the resolved parent damage. A busy shot should leave no children.
+
+Also test Tiny Planet, Anti-Gravity, Eye of the Occult and Ludovico separately: these flags can depend on engine-managed motion or controller state that is not recreated by copying fields. Record unsupported behavior explicitly rather than claiming universal tear compatibility. Recheck both Claude limits, two-player ownership, split-shot growth, other mods' tear-init callbacks and frame time under high fire rate. The new regression verifies property transfer and existing spawn counts only; it provides no FPS or engine-pass evidence.
+
 ## Eleven-family expansion acceptance (all pending)
 
 Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes.
