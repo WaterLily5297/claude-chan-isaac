@@ -11,7 +11,7 @@ The following are fictional gameplay interpretations, not a performance ranking 
 | Family | Implemented loop | Tradeoff / limit |
 |---|---|---|
 | Claude | Existing usage, account age and risk; tainted weekly allowance | Existing v0.5 rules, unchanged |
-| DeepSeek | Existing Deep Think / server busy; tainted forks | Direct connection remains untouched |
+| DeepSeek | Normal Rice First: earn bowls from clears, eat for Thought/speed; tainted retains legacy forks/congestion | Normal Thought currently resolves same-frame tear volleys; other weapon adapters and engine acceptance pending. Direct connection unchanged |
 | GPT | Tap DROP to switch Deliberate and Instant | Deliberate: 1.35x damage and 1.2x firing interval; Instant: 0.85x damage and 0.8x interval |
 | Gemini | Tap DROP to switch Prism and Echo | Prism: piercing and 1.2x damage; Echo: homing, 0.9x damage and 0.9x interval |
 | Grok | Moving builds live momentum over five seconds | Up to 25% damage; standing drains three times faster |

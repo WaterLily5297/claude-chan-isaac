@@ -2,6 +2,20 @@
 
 Updated 2026-10-24 (Japan time), v0.5-dev. PR #5 is merged. Its implementation and the earlier v0.4 observations are separate evidence; passing CI does not establish in-game correctness.
 
+## Rice First source candidate (2026-10-24)
+
+The owner now requests source work and offline validation only. Do not launch or control the game until that instruction changes. The last synchronized base is `a5011b9` on PR #16; this follow-up belongs on a separate branch/PR. Publication and exact remote-tree verification must be recorded independently of local checks. Main remains `1143ff1`; installed runtime remains the earlier `aa8bd46`. No deployment, new game test, art import or Workshop release is part of this change.
+
+Normal DeepSeek now starts with one Rice Bowl (cap two), earns one per two distinct hostile-room clears, and spends a bowl on a short DROP release. A two-second intrinsic meal does not heal or change pocket charge; completing it grants full Thought and +0.15 speed for six gameplay seconds. Birthright reduces that meal to one second. Lunch Break remains the separate charged healing active. Both use the shared food timer; another bowl cannot start during a food lockout, and a food-pill refresh delays the intrinsic completion reward until the shared timer expires. Death cancels the pending reward. Movement and vulnerability remain native.
+
+Versioned personal state in `Risk.state.deepseekRice` saves bowls, clear progress, Thought, speed time, pending completion and floor/room award identity. Idle time cannot farm bowls or pocket charges. Room re-entry, repeated clear callbacks and continue cannot pay the same room again. Observed character/slot/seed changes reset that player's economy; unchanged pointer/seed wrappers retain it. New runs and old saves without this schema start with one bowl. Corrupt counters reset the record. Timers do not advance twice in one game frame or while paused. No DeepSeek risk mechanism is restored.
+
+Not firing builds 0–150 Thought, now without the old one-second minimum. The next same-frame player tear volley consumes it for a 1–2x multiplier, before LATE Swarm copies the resolved damage. Repeated callbacks for the same tear do not multiply twice. Native size, flags, flight and player sprites are untouched. Normal random Server Busy deletion and idle pocket recharging are removed; tainted forks/congestion remain legacy until the Peak / Valley migration. Dossier, HUD and the updated EID entries are English.
+
+This is an intermediate gameplay implementation, not completed weapon compatibility. Same-frame volleys do not establish delayed-burst grouping; laser, knife, bomb, Epic Fetus, Ludovico/continuous-window and familiar accounting are still required. Meal input hooks cannot prove suppression of charged releases or programmatic attacks. Do not mark Rice First or all twenty-two forms engine-accepted. The remaining nine tainted forms, forty-nine additional items, art review and native costume acceptance are still open.
+
+Offline evidence: `tests/content_test.lua . OLD_DEEPSEEK_MODULE` fails against `a5011b9` because a normal shot is cancelled. The new Rice suite uses real meal/input/state callbacks with detached Risk save snapshots; the updated Swarm suite checks resolved damage, unchanged native fields, player isolation and retained tainted behavior. Full checks pass: 58 Lua files, five XML files, deterministic assets and fourteen stub suites. These are source/stub results only.
+
 ## Meal lifecycle follow-up (2026-10-24)
 
 After the synchronized `413d02d` candidate, the DeepSeek migration review found two shared prerequisites: Lunch Break repeated its healing under Car Battery, and food effects had no saved countdown or input lock. `scripts/meal_break.lua` now owns versioned per-player countdowns in `Risk.state.mealBreaks`. Lunch Break and Brb, Getting Food both start a ninety-gameplay-update meal. Lunch Break refuses another use during an existing meal without spending charge; a food pill can refresh the countdown, retaining its normal heal. Car Battery neither heals nor slows a second time.
