@@ -102,12 +102,25 @@ def pack(source, key):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source', type=Path)
+    parser.add_argument('--movement-source', type=Path,
+                        help='Reviewed four-character movement revisions')
     args = parser.parse_args()
     manifest_path = ROOT/'docs/roster-art-manifest.json'
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    revised = [r for r in manifest if r.get('movement_source_sha256')]
+    if revised and not args.movement_source:
+        parser.error('--movement-source is required to preserve the original-character revisions')
+    if revised:
+        from pack_original_movement import pack as pack_movement
+        for record in revised:
+            path = args.movement_source / (record['key'] + '.png')
+            if hashlib.sha256(path.read_bytes()).hexdigest() != record['movement_source_sha256']:
+                parser.error(f"Movement source hash mismatch: {record['key']}")
     for key in KEYS:
         source = args.source/(key+'.png')
         atlas = pack(Image.open(source), key)
+        if revised and key in ORIGINALS:
+            atlas = pack_movement(atlas, Image.open(args.movement_source / (key + '.png')), key)
         gamekey = key.replace('_b', 'chan_b') if key.endswith('_b') else key+'chan'
         target = ROOT/f'resources/gfx/characters/costumes/character_{gamekey}.png'
         atlas.save(target, optimize=True)
