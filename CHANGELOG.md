@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted Grok Quote Without Reading (2026-10-24)
+
+- Register Tainted Grok-chan with the deeper-colour art. Quote Without Reading: base damage 0.9x; a DROP tap quotes the nearest enemy within 220 units for six seconds (ten-second cooldown); paid hits on other enemies build Ratio (cap three), which lands on the quote as 1x damage pulses at expiry. Birthright moves half the Ratio once if the quote dies. Offline only.
+
 ## Unreleased tainted Gemini One More Edit (2026-10-24)
 
 - Register Tainted Gemini-chan with the deeper-colour art. One More Edit: base damage 0.9x; a DROP tap starts a six-second (Birthright ten) chain on the nearest enemy within 180 units; three distinct paid hits go Crop, Recolor, Export and add one 2x damage pulse, once per room. Saved per player. Offline only.

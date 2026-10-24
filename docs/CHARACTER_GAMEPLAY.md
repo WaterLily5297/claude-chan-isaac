@@ -92,6 +92,8 @@ Source status (scripts/characters/grok_check.lua): normal form implemented and r
 
 **Tainted:** Base damage 0.9x. DROP selects a target within 220 units for six seconds. Paid hits on other targets build Ratio, once per attack, cap three. At expiry the selected target receives one pulse of 1x player damage per stack; early death wastes the pulse. No retarget during the interval; ten-second cooldown from selection. Birthright transfers half the budget to one nearest surviving hostile if the original died. HUD: Ratio, pending timer. This contrasts focused verification with spreading a claim; Grok and the parody account Gork remain distinct.
 
+Source status (scripts/characters/grok_ratio.lua): implemented and registered with the deeper-colour tainted Grok art. Ratio counts distinct paid attacks (one volley or one 0.2-second beam window). Pulses are direct player hits. The Birthright transfer searches 220 units around where the quoted target died. Engine acceptance pending.
+
 ### Qwen — Everyone's Base Model / Final Final Fine-Tune
 
 **Normal:** Start with one Adapter, cap two; two unique clears earn one. DROP cycles the next adapter: Range (+60), Tempo (0.9x firing interval), Power (1.1x damage). Entering a new hostile room spends one adapter to apply that choice for the room. No adapter means normal stats. One active bonus, no stacking; preview next and current separately. Birthright: cap three. HUD: Adapters, selected/active labels.
