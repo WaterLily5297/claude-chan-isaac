@@ -17,6 +17,13 @@ function Tools.Owner(entity)
     return spawner and spawner:ToPlayer()
 end
 
+-- A player who can receive help: alive and not a co-op ghost (a dead co-op
+-- player keeps its entity and type, and IsDead() stays false).
+function Tools.Active(player)
+    return player ~= nil and not player:IsDead()
+        and not (player.IsCoopGhost and player:IsCoopGhost())
+end
+
 -- Mark a registered tear volley; call from MC_POST_FIRE_TEAR.
 function Tools.MarkVolley(tear, frame)
     local data = tear:GetData()

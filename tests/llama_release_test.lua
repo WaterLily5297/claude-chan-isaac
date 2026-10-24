@@ -74,6 +74,7 @@ local function player(pointer,seed,controller)
     function p:GetPlayerType() return self.kind end
     function p:ToPlayer() return self end
     function p:IsDead() return self.dead end
+    function p:IsCoopGhost() return self.ghost == true end
     function p:AreControlsEnabled() return true end
     function p:HasCollectible(id) return id==619 and self.birthright end
     function p:AddBlueFlies(n) self.flies=self.flies+n end
@@ -164,7 +165,11 @@ q.dead=true
 assert(state(1).releases==1,"duplicate Llamas own separate budgets")
 p.birthright=true; state().releases=1; tap(p); assert(flies()=="10,2,4,4,2","dead players are skipped: "..flies())
 p.birthright=false; q.dead=false
-players={p,q}; tick()
+-- A co-op ghost is not dead to IsDead() but cannot receive flies; the solo share applies.
+players={p,q}; tick(); q.ghost=true
+for _,x in ipairs(players) do x.flies=0 end
+state().releases=1; tap(p); assert(flies()=="4,0","a co-op ghost receives no flies: "..flies())
+q.ghost=false
 
 -- Two unique combat clears earn a Release, capped at two.
 state().releases=0

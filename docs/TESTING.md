@@ -15,6 +15,7 @@ Source fixes #63-#72 each have an offline regression; none has run in the engine
 - Vanilla Isaac with the mod enabled: no IP/Risk line other than "Direct connection", no enemy HP scaling, no Hydra or Relay Slimes.
 - Opus Mode with Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus and Ludovico: coins drain while firing.
 - Compact with Car Battery as Claude: usage rises by 50 once.
+- Co-op with one dead player (ghost): Llama's Release and Open Weights give the living player the solo four flies.
 
 ## COSTUME-LOCK-01: fixed character look (offline passed; engine pending)
 

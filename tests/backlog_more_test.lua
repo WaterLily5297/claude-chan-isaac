@@ -35,6 +35,8 @@ T("25 Open Weights: four flies solo, two each in co-op", function()
     env.use(Item.OPEN_WEIGHTS, p); assert(p.flies == 4)
     local q = env.player(100)
     env.use(Item.OPEN_WEIGHTS, p); assert(p.flies == 6 and q.flies == 2)
+    function q:IsCoopGhost() return true end
+    env.use(Item.OPEN_WEIGHTS, p); assert(p.flies == 10 and q.flies == 2, "a co-op ghost gets none; the solo share applies")
 end)
 
 T("26 Herd Bell: every third clear without flies grants one", function()
