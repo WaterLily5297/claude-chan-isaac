@@ -10,7 +10,7 @@ The following are fictional gameplay interpretations, not a performance ranking 
 
 | Family | Implemented loop | Tradeoff / limit |
 |---|---|---|
-| Claude | One More Day: per-volley usage, Appeals, account age and risk; tainted weekly allowance | Appeals from unique clears remove 40 usage; tainted unchanged |
+| Claude | One More Day: per-volley usage, Appeals, account age and risk; tainted Appeal Pending Quota and reviews | Appeals from unique clears remove 40 usage; tainted Suspended at zero Quota, Pages buy six-second combat reviews |
 | DeepSeek | Normal Rice First: earn bowls from clears, eat for Thought/speed; tainted Wenfeng / Wengu spends Peak/Valley Compute on tear forks | Normal Thought has initial native tear/laser/knife/fetus-bomb adapters and bounded continuous windows; see NATIVE_THOUGHT.md for remaining adapters and engine acceptance. Direct connection unchanged |
 | GPT | Tap DROP to switch Deliberate and Instant | Deliberate: 1.35x damage and 1.2x firing interval; Instant: 0.85x damage and 0.8x interval |
 | Gemini | Tap DROP to switch Prism and Echo | Prism: piercing and 1.2x damage; Echo: homing, 0.9x damage and 0.9x interval |

@@ -1,9 +1,11 @@
 -- Banked Reset (active, 12 charges)
 -- A rate-limit reset you can save and use whenever you choose: clears
 -- Claude-chan's usage meter (ending a usage limit early), refills Tainted
--- Claude-chan's weekly quota, and lowers your risk score by 25.
+-- Claude-chan's Quota (cancelling a pending review without returning its
+-- Page), and lowers your risk score by 25.
 
 local Constants = include("scripts.constants")
+local TaintedClaude = include("scripts.characters.claude_chan_b")
 
 local BankedReset = {}
 
@@ -16,7 +18,7 @@ function BankedReset:Init(mod, Risk)
             usage.value = 0
             usage.limited = 0
         end
-        Risk.state.weeklyUsed = 0
+        TaintedClaude.Refill(Risk, player)
         Risk:Add(-RISK_REDUCTION)
 
         Game():GetHUD():ShowItemText("Limits reset", "Thanks for your patience")

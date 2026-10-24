@@ -199,7 +199,7 @@ With Reactions Port Pack enabled, trigger a pickup/reaction for each of the four
 | C7 | Tainted DeepSeek-chan: shoot | With enough Compute each volley comes out as 3 tears in a fan and the HUD Compute drops by 2 (Valley) or 4 (Peak); at low Compute or in Saving mode only the main tear fires; still no risk HUD | |
 | C8 | Co-op: Claude-chan + DeepSeek-chan | Risk HUD and IP are back (the system only sleeps when everyone is DeepSeek-chan) | |
 | C9 | Claude-chan: `stage 2`, `stage 3` without reaching risk 90 | HUD "Account age: 2 floor(s)", damage up a little; reach 90+ risk: "Banned again", age back to 0 | |
-| C10 | Tainted Claude-chan: shoot ~220 times on one floor | HUD "Weekly limit 220 / 220", "Weekly limit reached", weak grey tears; next floor resets; pocket Banked Reset refills it | |
+| C10 | Tainted Claude-chan: shoot ~220 volleys on one floor | HUD `Quota N/220  Pages 2/2` drops by one per volley (two with Subagent Swarm); at zero `Suspended`, half damage, grey-tinted tears; DROP tap starts `Under Review: 6s` (frozen in cleared rooms/pause, cancelled by leaving) then +60 Quota; next floor refills; Banked Reset refills and cancels a review | |
 
 ### Repeatable manual engine probe
 

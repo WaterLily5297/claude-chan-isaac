@@ -5,8 +5,8 @@ local Dossiers={}
 local originals={
     {id=C.Player.CLAUDE_CHAN,key="claude",name="Claude-chan",title="One More Day",
      lines={"Usage fills per volley and drains when idle.","Tap/release DROP: an Appeal removes 40 usage.","Earn an Appeal every two combat clears."}},
-    {id=C.Player.CLAUDE_CHAN_B,key="claude_b",name="Tainted Claude-chan",title="Weekly allowance",
-     lines={"A limited weekly budget per floor.","Banked Reset restores the allowance."}},
+    {id=C.Player.CLAUDE_CHAN_B,key="claude_b",name="Tainted Claude-chan",title="Appeal Pending",
+     lines={"220 Quota per floor; volleys cost 1.","At 0: Suspended. Tap/release DROP: a Page","starts a 6s review that restores 60 Quota."}},
     {id=C.Player.DEEPSEEK_CHAN,key="deepseek",name="DeepSeek-chan",title="Rice First",
      lines={"Tap/release DROP: spend one rice bowl.","Two-second meal: full Thought, +0.15 speed.","Earn a bowl every two combat clears."}},
     {id=C.Player.DEEPSEEK_CHAN_B,key="deepseek_b",name="Tainted DeepSeek-chan",title="Wenfeng / Wengu",

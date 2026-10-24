@@ -565,17 +565,19 @@ do
     R.state.risk = 10
     print("  Claude-chan account age: ok")
 
-    -- Tainted Claude-chan weekly limit + Banked Reset.
+    -- Tainted Claude-chan Appeal Pending quota + Banked Reset.
     player.GetPlayerType = function() return 141 end
-    R.state.weeklyUsed = 219
+    fire("MC_POST_UPDATE")
+    local appeal = R.state.claudeAppeal["0"]
+    assert(appeal and appeal.quota == 220 and appeal.pages == 2, "tainted Claude binds a full allowance")
+    appeal.quota = 1
     local last = { SpawnerEntity = player, CollisionDamage = 4 }
-    fire("MC_POST_FIRE_TEAR", nil, last); assert(R.state.weeklyUsed == 220 and last.CollisionDamage == 4)
-    local over = { SpawnerEntity = player, CollisionDamage = 4 }
-    fire("MC_POST_FIRE_TEAR", nil, over); assert(over.CollisionDamage == 1, "over the weekly limit: 25%")
-    fire("MC_USE_ITEM", 744, 744, nil, player); assert(R.state.weeklyUsed == 0, "Banked Reset refills the quota")
-    R.state.weeklyUsed = 100; stage = 4; fire("MC_POST_NEW_LEVEL"); assert(R.state.weeklyUsed == 0, "new floor, new week")
+    fire("MC_POST_FIRE_TEAR", nil, last); assert(appeal.quota == 0 and last.CollisionDamage == 4)
+    fire("MC_USE_ITEM", 744, 744, nil, player); assert(appeal.quota == 220, "Banked Reset refills the quota")
+    appeal.quota = 100; stage = 4; fire("MC_POST_NEW_LEVEL"); fire("MC_POST_NEW_ROOM")
+    assert(appeal.quota == 220, "a new floor refills the quota")
     player.GetPlayerType = realType
-    print("  tainted Claude-chan weekly limit: ok")
+    print("  tainted Claude-chan appeal quota: ok")
 
     -- Lunch Break.
     for _ = 1, 90 do FRAME = FRAME + 1; fire("MC_POST_UPDATE") end
