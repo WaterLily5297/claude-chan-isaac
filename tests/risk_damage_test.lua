@@ -83,7 +83,7 @@ if mode=="all" or mode=="shields" then
     risk(50,"cancelled contact must not raise risk")
     env.clearRoom(); risk(49,"shielded room remains clean")
     enemy=freshRoom()
-    env.give(p,"CONSTITUTION"); Risk.state.constitutionBlockUsed=false
+    env.give(p,"CONSTITUTION")
     assert(env.hitPlayer(p,enemy)==false,"Constitution still refuses the first hit")
     risk(50,"Constitution block must not raise risk")
     assert(env.hitPlayer(p,enemy)==nil)
