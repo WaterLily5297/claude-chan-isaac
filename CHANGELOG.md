@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased targeted ability ownership fix (2026-10-24)
+
+- Exclude familiar contact entities from player-only target attribution. A familiar kill could incorrectly restore normal GPT's Verified status through its player spawner/parent. Native weapon ownership is preserved.
+- Add a shared attribution regression and a real GPT callback case; both fail before the fix. Full offline gate: 144 Lua files, five XML files, 46 suites. Two controlled Repentance+ engine cases passed on candidate `aae85fd`: blue-fly contact kill stays Fallback; own native-tear kill restores Verified. Physical DROP input and broader familiar/weapon coverage remain pending.
+- Record the fresh-start menu-input blocker and correct stale testing-authorization statements. No new fresh-start acceptance or Workshop release.
+
 ## Unreleased handoff audit (2026-10-24)
 
 - Normal and tainted Claude now bill usage/Quota for laser starts and Dr. Fetus bombs, sharing the frame's payment with tears; familiars, placed bombs and knives stay free.
