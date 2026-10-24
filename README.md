@@ -251,7 +251,7 @@ Type: **A*n*** = active item with *n* room charges, **P** = passive. Pools come 
 | **Banked Reset** | A12, treasure (Tainted Claude-chan's pocket) | Risk −25. Claude-chan: resets usage and ends a limit early. Tainted Claude-chan: refills Quota (a pending review is cancelled without returning its Page). |
 | **Subagent Swarm** | P, devil | Every tear spawns 2 subagent tears at ±15° (50% damage). Claude forms pay double usage / Quota. |
 | **The Constitution** | P, angel | +1 soul heart. Safety first: the first hit on each floor is refused. Helpfulness ranks last: damage ×0.9. It's a long document: speed −0.1. |
-| **Opus Mode** | P, shop | Damage ×1.8, but every 10 tears cost 1 coin. At 0 coins you fall back to a cheaper model: damage ×0.6. |
+| **Opus Mode** | P, shop | Damage ×1.8, but every 10 attacks (tears, laser starts, knife throws, Fetus bombs and so on) cost 1 coin. At 0 coins you fall back to a cheaper model: damage ×0.6. |
 | **Support Ticket** | A6, shop | Pay 3 coins: risk −20. With no coins or no risk it keeps the charge. Car Battery does not bill twice. |
 | **Lunch Break** | A6, DeepSeek-chan's pocket | "Brb, getting food": heals 1 red heart and slows all enemies for 3 seconds, but you cannot shoot for 3 seconds (you can still move). Cannot be reused during a food break. |
 

@@ -3,7 +3,12 @@ local root = arg[1]
 local callbacks = {}
 ModCallbacks = setmetatable({}, { __index = function(_, key) return key end })
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_SPEED = 2 }
-function include() return { Item = { OPUS_MODE = 747 } } end
+local paid
+function include(name)
+    if name == "scripts.characters.paid_attacks" then return { Observe = function(_, fn) paid = fn end } end
+    return { Item = { OPUS_MODE = 747 } }
+end
+EntityType = { ENTITY_LASER = 7 }
 local mod = { AddCallback = function(_, id, fn) callbacks[id] = fn end }
 dofile(root .. "/scripts/items/opus_mode.lua"):Init(mod)
 
@@ -35,4 +40,18 @@ assert(damage(player(0, {})) == 6 and damage(player(2, {})) == 18,
     "each player's cache reads that player's own wallet")
 assert(damage(player(0, {}), CacheFlag.CACHE_SPEED) == 10,
     "unrelated cache flags must not alter damage")
+-- Every weapon pays: tears, laser starts, Dr. Fetus bombs and observed attacks.
+local spent, data = 0, {}
+local owner = player(5, data)
+owner.AddCoins = function(_, n) spent = spent - n end
+local function shooter(e) e.SpawnerEntity = { ToPlayer = function() return owner end }; return e end
+for _ = 1, 3 do callbacks.MC_POST_FIRE_TEAR(mod, shooter({})) end
+for _ = 1, 3 do callbacks.MC_POST_LASER_INIT(mod, shooter({})) end
+callbacks.MC_POST_LASER_INIT(mod, shooter({ Parent = { Type = 7 } })) -- child beam: free
+callbacks.MC_POST_BOMB_INIT(mod, shooter({ IsFetus = true }))
+callbacks.MC_POST_BOMB_INIT(mod, shooter({ IsFetus = false })) -- placed bomb: free
+assert(data.ccOpusTears == 7 and spent == 0, "seven billed attacks so far")
+for _ = 1, 3 do paid(owner) end
+assert(spent == 1 and data.ccOpusTears == 0, "the tenth attack of any weapon costs a coin")
+print("PASS Opus Mode: every weapon is billed")
 print("OK: Opus immediate wallet damage, stale notification state, ownership and player isolation")

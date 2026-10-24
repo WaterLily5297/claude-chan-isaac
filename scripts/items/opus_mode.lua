@@ -1,9 +1,13 @@
 -- Opus Mode (passive, shop pool)
--- "More expensive than gold": damage x1.8, but every 10 tears cost 1 coin.
+-- "More expensive than gold": damage x1.8, but every 10 attacks cost 1 coin.
+-- An attack is a tear, a laser start, a Dr. Fetus bomb, or anything the shared
+-- paid-attack observer bills (each held-beam or Ludovico window, knife throw,
+-- swing and Epic Fetus rocket), so Brimstone or Mom's Knife never run free.
 -- Out of coins, you fall back to the cheap model: damage x0.6 until you have
 -- money again.
 
 local Constants = include("scripts.constants")
+local PaidAttacks = include("scripts.characters.paid_attacks")
 
 local OpusMode = {}
 
@@ -17,8 +21,7 @@ local function refresh(player)
 end
 
 function OpusMode:Init(mod)
-    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
-        local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+    local function bill(player)
         if not player or not player:HasCollectible(Constants.Item.OPUS_MODE) then
             return
         end
@@ -31,7 +34,21 @@ function OpusMode:Init(mod)
                 player:AddCoins(-1)
             end
         end
+    end
+    local function spawner(entity)
+        return entity.SpawnerEntity and entity.SpawnerEntity:ToPlayer()
+    end
+
+    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear) bill(spawner(tear)) end)
+    mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
+        -- Child beams (Tech X rings splitting, laser reflections) ride their parent.
+        if laser.Parent and laser.Parent.Type == EntityType.ENTITY_LASER then return end
+        bill(spawner(laser))
     end)
+    mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, function(_, bomb)
+        if bomb.IsFetus then bill(spawner(bomb)) end
+    end)
+    PaidAttacks.Observe(mod, function(player) bill(player) end)
 
     -- Switch between Opus and the fallback whenever the wallet hits or leaves 0.
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)

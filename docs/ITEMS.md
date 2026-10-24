@@ -68,7 +68,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Next Time Again | I'll do better: hit, then +50% attack | 2 | The first enemy hit you take in a room primes +50% damage on your next attack within 4 seconds |
 | One Bowl Only | First red heart in a room guards a bullet | 1 | The first red heart you pick up in a room grants one guard against an ordinary enemy bullet; Max 1 guard, 3 per floor |
 | One More Finger | Count them again: every 5th attack +1 tear | 2 | Every 5th attack fires one extra small tear at 0.3x damage; At most twice per second |
-| Opus Mode | Huge DMG up, billed in coins | 3 | Damage x1.8; Every 10 tears cost 1 coin; With 0 coins: damage x0.6 instead (cheaper model) |
+| Opus Mode | Huge DMG up, billed in coins | 3 | Damage x1.8; Every 10 attacks (tears, lasers, knives, bombs...) cost 1 coin; With 0 coins: damage x0.6 instead (cheaper model) |
 | Overtime Slides | Working late: slow the next room's enemies | 1 | Every 3rd new room cleared: the next hostile room starts with up to 3 enemies slowed for 2 seconds |
 | Pizza Glue | Sticky slowing tears. Non-toxic, apparently | 1 | 25% chance for a slowing tear (+2.5% per luck, 10% to 50%); -0.1 shot speed; Tears only: lasers, knives and bombs are not affected |
 | Please Come Back | Don't leave us: clears recharge actives | 2 | 3 new rooms cleared without using a charged active: +1 charge to your active item; Timed and zero-charge actives don't benefit |

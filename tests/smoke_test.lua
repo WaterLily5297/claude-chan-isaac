@@ -272,6 +272,9 @@ roomEntities = { proj, foe }
 pdata.ccUsage.limited = 0; pdata.ccUsage.value = 10
 fire("MC_USE_ITEM", 735, 735, nil, player)
 print("  projectile removed:", proj.removed, "enemy confused:", foe.confused, "usage:", pdata.ccUsage.value)
+assert(pdata.ccUsage.value == 60, "Compact costs Claude 50 usage")
+fire("MC_USE_ITEM", 735, 735, nil, player, UseFlag.USE_CARBATTERY)
+assert(pdata.ccUsage.value == 60, "Car Battery's repeat use must not bill Compact again")
 
 print("== absolutely right")
 playerItems[736] = true
