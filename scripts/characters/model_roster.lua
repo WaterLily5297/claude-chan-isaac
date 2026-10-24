@@ -5,7 +5,7 @@ local Roster = {}
 Roster.definitions = {
     -- External families keep only identity, dossier and tint here; mechanics live in
     -- gpt_downgrade.lua, gemini_paint.lua, grok_check.lua, qwen_adapter.lua,
-    -- llama_release.lua and mistral_pounce.lua.
+    -- llama_release.lua, mistral_pounce.lua and doubao_apology.lua.
     {key="gpt", name="GPT-chan", title="Same Name, Smaller Brain", color={0.4,1,0.75}, external=true,
      lines={"Verified: +15% damage. Clears add Routing.", "At 3 Routing, next combat: Fallback, -20%.", "Fallback: tap DROP, hit the Sanity Check 3x."}},
     {key="gemini", name="Gemini-chan", title="Nano Banana", color={0.7,0.6,1}, external=true,
@@ -18,8 +18,8 @@ Roster.definitions = {
      lines={"Tap/release DROP: spend a Release.", "Each living player gains two blue flies.", "Earn a Release every two combat clears."}},
     {key="mistral", name="Mistral-chan", title="Le Chat", color={1,0.7,0.3}, external=true,
      lines={"Move while firing for 2s: charge a Pounce.", "Tap/release DROP: forward swipe, 2x damage.", "Standing still for 1s loses the Pounce."}},
-    {key="doubao", name="Doubao-chan", title="Warm meal", color={1,0.7,0.6},
-     lines={"Every third unique combat clear:", "Recover one red heart.", "At full red health: gain 2 blue flies."}},
+    {key="doubao", name="Doubao-chan", title="Sorry, You're Right", color={1,0.7,0.6}, external=true,
+     lines={"The first enemy hit in a room: an Apology.", "Tap/release DROP within 6s: slow nearby", "enemies and clear up to four bullets."}},
     {key="kimi", name="Kimi-chan", title="Long context", color={0.55,0.65,1},
      lines={"Flawless combat clears store pages.", "Each page: +4% damage and range.", "Up to 6 pages; a hit erases 2."}},
     {key="glm", name="GLM-chan", title="Tool orchestration", color={0.3,0.95,0.7},
@@ -53,7 +53,7 @@ function Roster:Init(mod, Risk)
         if type(all) ~= "table" then all = {}; Risk.state.modelRoster = all end
         local s = all[key]
         if type(s) ~= "table" or s.key ~= def.key then
-            s = {key=def.key, pages=0, meals=0, links=0, awards={}}
+            s = {key=def.key, pages=0, links=0, awards={}}
             all[key] = s
         end
         return s
@@ -159,11 +159,6 @@ function Roster:Init(mod, Risk)
             if p:IsDead() or s.awards[key] then return end
             s.awards[key]=true
             if def.key=="kimi" and not s.hit then s.pages=math.min(6,s.pages+1)
-            elseif def.key=="doubao" then
-                s.meals=(s.meals+1)%3
-                if s.meals==0 then
-                    if p:CanPickRedHearts() then p:AddHearts(2) else p:AddBlueFlies(2,p.Position,nil) end
-                end
             end
             refresh(p)
         end)
@@ -187,7 +182,7 @@ function Roster:Init(mod, Risk)
             local value="Hold MAP: dossier"
             if def.key=="kimi" then value="Pages "..s.pages.."/6"
             elseif def.key=="glm" then value="Tools "..s.links.."/3"
-            elseif def.key=="doubao" then value="Meal "..s.meals.."/3" end
+            end
             Isaac.RenderText(def.name..": "..value,50,Isaac.GetScreenHeight()-52-i*12,1,1,1,0.9)
         end)
     end)

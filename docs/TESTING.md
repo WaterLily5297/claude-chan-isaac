@@ -26,6 +26,10 @@ Save/quit/continue in Fallback: Fallback, Routing and the spent room check retur
 
 Speed is +0.1 over Isaac. Move while firing for two seconds: HUD goes from `Charge N%` to `Pounce Ready`. Stand still for a second and it is lost. Tap/release DROP while aiming at enemies within about 80 units: each one in that line takes double your damage once, `Pounce!` appears, and `Cooldown 3s` follows. Enemies behind you, off to the side, beyond reach or behind rocks and walls are not hit. You do not move or gain invincibility. Birthright reaches about 110 units. Save/continue keeps a ready Pounce. There is no swipe animation yet; note how readable it is. Stub coverage is `tests/mistral_pounce_test.lua`.
 
+## Normal Doubao Sorry, You're Right (source candidate; engine acceptance pending)
+
+New run: HUD reads `Doubao-chan: No apology needed`. Get hit by an enemy or its bullet in a hostile room: `Apology ready`, then `Apology Ready 6s` counting down. A second hit in the same room grants nothing, even after the token expires. Blood Donation, IV Bag, Curse Room doors, spikes and your own bombs must not grant one. Tap/release DROP within six seconds: `Sorry, you're right.`; enemies within about 100 units are tinted and slowed for two seconds, and up to four nearby enemy bullets vanish. The hit's damage stays. Leaving the room drops the token. With Birthright the token reads `Apology Ready` and lasts until room exit. Save/continue keeps the token and the spent-room flag. Test two Doubaos in co-op. Stub coverage is `tests/doubao_apology_test.lua`.
+
 ## Normal Llama Please Stay Open (source candidate; engine acceptance pending)
 
 New run: HUD reads `Llama-chan: Releases 1/2  Next 0/2`, damage 0.95x. Solo, tap/release DROP: four blue flies, Releases 0/2. In co-op each living player gets two flies (at most four players). Clears no longer give flies automatically; every two unique combat clears add a Release (cap 2). Birthright gives Llama two extra flies per Release. Save/continue keeps Releases and progress. Stub coverage is `tests/llama_release_test.lua`.
@@ -116,7 +120,7 @@ Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes
 - For GPT and Gemini, tap DROP through both modes, then save/quit/close/restart/continue. The mode must persist. Check the original DROP behavior with held trinkets and controller input.
 - For Grok and Mistral, reach maximum movement/firing charge, stop, change rooms, and start a new run. Temporary charge must reset and stay bounded.
 - For Qwen and Kimi, build progress, take a hit, save and continue before clearing. The room must not count as flawless. The Constitution's refused hit must not break progress.
-- For Llama and Doubao, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
+- For Llama, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
 - For GLM, use the pocket Book of Secrets, Car Battery, a zero-charge item and an item with a custom use callback. Links must stay at three or fewer and reset when leaving the room.
 - For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. For GLM, duplicate use callbacks in one frame must add only one link per player while separate players can each gain a link. Distinct-wrapper stub coverage passes; these engine checks remain pending.
 - Check Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, multishot, familiars, D4, transformations, costume-changing items, EID and Reactions Port Pack. Cache-based code alone is not compatibility evidence.

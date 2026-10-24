@@ -18,13 +18,13 @@ The following are fictional gameplay interpretations, not a performance ranking 
 | Qwen | Everyone's Base Model: tap DROP to pick Range / Tempo / Power; a newly entered hostile room spends one Adapter on it | +60 range, 0.9x firing interval or 1.1x damage for that room only. Start 1, cap 2 (Birthright 3), one per two unique combat clears. Implemented in qwen_adapter.lua, saved in `Risk.state.qwenAdapter` |
 | Llama | Please Stay Open: tap DROP to spend a Release (start 1, cap 2, one per two unique combat clears) | Each living player, up to four, gains two blue flies; solo gets four; Birthright +2 for the owner. Base damage 0.95x. Implemented in llama_release.lua, saved in `Risk.state.llamaRelease` |
 | Mistral | Le Chat: move while firing for two seconds to charge a Pounce; tap DROP to swipe forward | 2x owner damage once per enemy in an 80-unit line (Birthright 110), walls block, three-second cooldown; standing still one second loses it. Speed +0.1. Implemented in mistral_pounce.lua |
-| Doubao | Prepare a meal every third unique combat clear | Heal one red heart; two blue flies if red health is full |
+| Doubao | Sorry, You're Right: the first enemy-caused hit in each room grants an Apology token; tap DROP to spend it | Slows enemies within 100 units for two seconds and removes the four nearest enemy bullets; token lasts six seconds (Birthright: until room exit); no health refund |
 | Kimi | Flawless combat clears preserve context pages | 4% damage and 25 range per page, maximum six; a hit erases two |
 | GLM | Active-item use establishes tool links | 12% damage per link, maximum three, reset on entering another room; pocket Book of Secrets |
 
 Hold MAP in a cleared room to see a full illustration and instructions. Release to close. Combat does not display the large portrait. The dossier currently shows one local player's requested card at a time.
 
-Gemini's Paint, GPT's Sanity Check, Grok's fact check, Qwen's adapter pick, Llama's Release and Mistral's Pounce occur only when a short DROP press is released, after 1–12 gameplay frames. A longer hold never switches modes. The observer leaves native input alone, including trinket dropping and pocket cycling; actual engine combinations still need testing. A key held through start/continue, room transition, pause or control reassignment must be released before a new tap can qualify. The upcoming meme-based replacement designs in CHARACTER_GAMEPLAY.md are not implemented by this input correction.
+Gemini's Paint, GPT's Sanity Check, Grok's fact check, Qwen's adapter pick, Llama's Release, Mistral's Pounce and Doubao's Apology occur only when a short DROP press is released, after 1–12 gameplay frames. A longer hold never switches modes. The observer leaves native input alone, including trinket dropping and pocket cycling; actual engine combinations still need testing. A key held through start/continue, room transition, pause or control reassignment must be released before a new tap can qualify. The upcoming meme-based replacement designs in CHARACTER_GAMEPLAY.md are not implemented by this input correction.
 
 ## State and compatibility
 

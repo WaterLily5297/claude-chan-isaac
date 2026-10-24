@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased normal Doubao Sorry, You're Right (2026-10-24)
+
+- Normal Doubao replaces the every-third-clear meal. The first enemy-caused hit in each hostile room grants a six-second Apology token (Birthright: until room exit); a DROP tap slows enemies within 100 units for two seconds and removes the four nearest enemy bullets. No health refund. Saved per player in `Risk.state.doubaoApology`.
+- 24 offline suites pass, including the new Doubao Apology suite. No runtime or Workshop changes; engine validation pending.
+
 ## Unreleased roster review fixes (2026-10-24)
 
 - The nine model roster families leave the proxy IP / risk account. A roster-only or DeepSeek-and-roster run has no IP or risk. In co-op with Claude or a vanilla character, only those covered players raise risk when hit, spoil a clean room or take the suspension damage penalty; DeepSeek no longer takes that penalty in co-op either.
