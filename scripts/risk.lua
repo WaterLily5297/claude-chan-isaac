@@ -192,6 +192,7 @@ function Risk:Init(mod)
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
+        hitThisRoom = false -- Do not inherit a previous run's transient latch.
         if isContinued then
             Risk:Load(mod)
         else
@@ -220,8 +221,10 @@ function Risk:Init(mod)
         hitThisRoom = false
     end)
 
-    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
-        if not covered(entity:ToPlayer()) then return end
+    -- Let ordinary damage blockers run first; refused hits are not mistakes.
+    mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, function(_, entity, _, flags)
+        if not started or not covered(entity:ToPlayer()) then return end
+        if ((flags or 0) & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES)) ~= 0 then return end
         hitThisRoom = true
         Risk:Add(1)
     end, EntityType.ENTITY_PLAYER)
