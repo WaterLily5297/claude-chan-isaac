@@ -1,6 +1,6 @@
 # Model-family roster candidate
 
-This experimental expansion covers eleven model families: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, and GLM. It is a declared working roster, not a claim that every current model or provider is represented. Existing normal and tainted Claude/DeepSeek remain; the nine additions currently have normal forms only. Model versions and service products are grouped by family.
+This experimental expansion covers eleven model families: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, and GLM. It is a declared working roster, not a claim that every current model or provider is represented. Existing normal and tainted Claude/DeepSeek remain; the nine additions now have normal and tainted source implementations (offline only). Model versions and service products are grouped by family.
 
 The owner requested a new art pass and playable model-inspired mechanics on 2026-10-23. This authorizes development of the expansion while the earlier engine acceptance matrix remains open. No Workshop release is authorized by an offline pass.
 
@@ -20,7 +20,7 @@ The following are fictional gameplay interpretations, not a performance ranking 
 | Mistral | Le Chat: move while firing for two seconds to charge a Pounce; tap DROP to swipe forward | 2x owner damage once per enemy in an 80-unit line (Birthright 110), walls block, three-second cooldown; standing still one second loses it. Speed +0.1. Implemented in mistral_pounce.lua Tainted Le Gros Chaton: speed -0.1, base 0.9x; standing without firing for two seconds bakes a Baguette (cap 2); DROP sends a slow 120-unit shockwave, 2.5x once per enemy, walls stop it, two-second cooldown (mistral_baguette.lua) |
 | Doubao | Sorry, You're Right: the first enemy-caused hit in each room grants an Apology token; tap DROP to spend it | Slows enemies within 100 units for two seconds and removes the four nearest enemy bullets; token lasts six seconds (Birthright: until room exit); no health refund Tainted I'll Do It Again: DROP starts six seconds of Confident (1.35x), then four seconds of Apology (0.85x), then ready; timers run only in combat and an enemy hit cuts Confident short (doubao_again.lua) |
 | Kimi | Another Slide Deck: each unique combat clear earns a Slide, cap six; tap DROP to present | Spends three Slides (Birthright two) on the three nearest enemies within 220 units: four seconds of slowing and +15% owner damage to them; no audience, no spend Tainted You Are the Manager: base 0.85x; DROP assigns up to three tasks to the nearest unassigned enemies within 220 units, each three 0.6x pulses two seconds apart, nine pulses per room (kimi_manager.lua) |
-| GLM | Number in Queue: each unique combat clear advances the Queue, max three; at three, tap DROP to redeem an Access Pass | +20% damage in each of the next two new hostile rooms (Birthright three); the Queue pauses while the pass is active; revisits neither spend nor stack it |
+| GLM | Number in Queue: each unique combat clear advances the Queue, max three; at three, tap DROP to redeem an Access Pass | +20% damage in each of the next two new hostile rooms (Birthright three); the Queue pauses while the pass is active; revisits neither spend nor stack it Tainted Please Retry: base 0.9x; DROP queues a two-second request on the nearest enemy within 200 units (three-second cooldown); a survivor takes 2x plus 1x per Retry, an early death adds a Retry (cap 3) (glm_retry.lua) |
 
 Hold MAP in a cleared room to see a full illustration and instructions. Release to close. Combat does not display the large portrait. The dossier currently shows one local player's requested card at a time.
 
@@ -50,7 +50,7 @@ Offline coverage drives each family's real module: numerical bounds, continuatio
 
 Distinct-wrapper fixtures additionally verify that charge survives callback reference changes and garbage collection and that cache/HUD values agree. Pointer reuse with a new initialization seed and observed roster-type changes reset temporary charge. The multi-wrapper Grok case fails before the identity fix on `0573b2f` and passes afterward. These fixtures model documented reference behavior; they do not reproduce actual engine timing.
 
-Engine acceptance is pending: all eleven normal selections plus both tainted selections; every direction and special pose; MAP dossier; mode controls with trinkets; item rerolls and costumes; actual application restart; base Repentance and Repentance+; weapon families; and co-op. No Workshop publication.
+Engine acceptance is pending: all eleven normal and eleven tainted selections; every direction and special pose; MAP dossier; mode controls with trinkets; item rerolls and costumes; actual application restart; base Repentance and Repentance+; weapon families; and co-op. No Workshop publication.
 
 ## Research boundaries
 

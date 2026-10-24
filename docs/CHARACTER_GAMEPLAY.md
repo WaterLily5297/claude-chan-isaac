@@ -152,6 +152,8 @@ Source status (scripts/characters/glm_queue.lua): normal form implemented and re
 
 **Tainted:** Base damage 0.9x. DROP selects a hostile within 200 units and schedules a two-second request. If it survives in the room, deal 2x damage and consume all Retry stacks, adding 1x per stack (cap three; max 5x total). Early target death instead gives one Retry. One pending request; three-second cooldown from selection. Exit cancels without earning a stack. Birthright: a failed request also removes one nearby ordinary hostile bullet. HUD: Retries, Request Pending. Retries are bounded and deterministic, not a random missing-shot mechanic.
 
+Source status (scripts/characters/glm_retry.lua): implemented and registered with the deeper-colour tainted GLM art. Retries are deterministic and bounded. The request damage is direct owner-sourced damage. There is no request marker sprite yet, only the HUD and caption. Engine acceptance pending.
+
 ## Implementation order and evidence
 
 1. Validate the corrected hurt-pose packing in the engine, including all five animations reusing its cell. The thirteen source atlases and offline checks are corrected; engine acceptance remains separate. The earlier physical-input interruption still prevents resumed game automation until resolved.

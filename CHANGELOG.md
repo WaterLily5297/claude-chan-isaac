@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted GLM Please Retry (2026-10-24)
+
+- Register Tainted GLM-chan with the deeper-colour art. Please Retry: damage 0.9x; a DROP tap queues a two-second request on the nearest enemy within 200 units (three-second cooldown); a surviving target takes 2x plus 1x per Retry, consuming them, and an early death adds one Retry (cap 3); Birthright failures also remove one nearby enemy bullet. Offline only.
+
 ## Unreleased tainted Kimi You Are the Manager (2026-10-24)
 
 - Register Tainted Kimi-chan with the deeper-colour art. You Are the Manager: damage 0.85x; a DROP tap assigns a task to the nearest unassigned enemy within 220 units, dealing three 0.6x pulses (Birthright 0.7x) two seconds apart; three tasks at once and nine pulses per room; exit cancels tasks without refunding the budget. Offline only.
