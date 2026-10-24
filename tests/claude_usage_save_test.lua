@@ -20,6 +20,9 @@ package.preload.json=function() return {
 } end
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
 CacheFlag={CACHE_DAMAGE=1}; ActiveSlot={SLOT_POCKET=2}
+CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}; ButtonAction={ACTION_DROP=11}
+local down, clear, room, floor = false, true, 1, 1
+Input={IsActionPressed=function() return down end}
 EntityType={ENTITY_PROJECTILE=9}; EntityFlag={FLAG_FRIENDLY=1}
 function Color(...) return {...} end
 function EntityRef(p) return p end
@@ -27,7 +30,11 @@ function GetPtrHash(p) return p.pointer end
 local nextPointer=0
 local function player(kind)
     nextPointer=nextPointer+1
-    local p={kind=kind or 41,pointer=nextPointer,data={}}
+    local p={kind=kind or 41,pointer=nextPointer,data={},InitSeed=nextPointer,ControllerIndex=0}
+    function p:IsDead() return false end
+    function p:AreControlsEnabled() return true end
+    function p:HasCollectible(id) return id==619 and self.birthright end
+    function p:GetShootingInput() return {LengthSquared=function() return self.shooting and 1 or 0 end} end
     function p:GetPlayerType() return self.kind end
     function p:GetData() return self.data end
     function p:ToPlayer() return self end
@@ -37,7 +44,11 @@ end
 Isaac={GetPlayer=function(i) return players[i+1] end,
     GetRoomEntities=function() return {} end, GetScreenHeight=function() return 270 end}
 function Game() return {GetNumPlayers=function() return #players end,
-    GetFrameCount=function() return frame end,
+    GetFrameCount=function() return frame end, IsPaused=function() return false end,
+    GetRoom=function() return {IsClear=function() return clear end} end,
+    GetLevel=function() return {GetDungeonPlacementSeed=function() return floor end,
+        GetStage=function() return 1 end, GetStageType=function() return 0 end,
+        GetCurrentRoomDesc=function() return {SpawnSeed=room,SafeGridIndex=room} end} end,
     GetHUD=function() return {ShowItemText=function() end,IsVisible=function() return true end} end} end
 local mod={}
 function mod:AddCallback(id,fn,param) callbacks[#callbacks+1]={id=id,fn=fn,param=param} end
@@ -63,7 +74,9 @@ local function module()
     include("scripts.items.banked_reset"):Init(mod,Risk)
     include("scripts.characters.claude_chan"):Init(mod,Risk)
 end
+-- Each call is a separate volley on a new frame.
 local function shot(p)
+    frame=frame+1
     local t={SpawnerEntity=p,CollisionDamage=10}
     fire("MC_POST_FIRE_TEAR",t); return t
 end
@@ -106,8 +119,15 @@ fire("MC_PRE_GAME_EXIT",true); players={player(),player()}; module(); fire("MC_P
 assert(shot(players[2]).CollisionDamage==4)
 fire("MC_POST_PEFFECT_UPDATE",players[2])
 assert(players[2].data.ccUsage.limited==0 and players[2].data.ccUsage.value==0)
-frame=6; shot(players[2]);fire("MC_POST_PEFFECT_UPDATE",players[2])
-assert(players[2].data.ccUsage.value==3,"keep the six-frame drain cadence")
+for _=1,5 do shot(players[2]); fire("MC_POST_PEFFECT_UPDATE",players[2]) end
+assert(players[2].data.ccUsage.value==20,"a paid volley's own frame never drains")
+players[2].shooting=true
+for _=1,30 do frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",players[2]) end
+assert(players[2].data.ccUsage.value==20,"held fire blocks the drain")
+players[2].shooting=false
+for _=1,30 do frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",players[2]) end
+assert(players[2].data.ccUsage.value==10,"not firing drains 10 per second")
+players[2].data.ccUsage.value=0
 
 -- A fresh run on reused player objects must not inherit their former aliases.
 fire("MC_PRE_GAME_EXIT",false); fire("MC_POST_GAME_STARTED",false)

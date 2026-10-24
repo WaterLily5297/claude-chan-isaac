@@ -135,6 +135,7 @@ shot(deepseek)
 assert(#spawned == 4, "tainted forks and Swarm add two each without recursive growth")
 become(42)
 
+frame = frame + 1
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 100, 90
 local limited = shot(claude)
 assert(limited.CollisionDamage == 1.6)
@@ -142,18 +143,24 @@ assert(#spawned == 2 and spawned[1].CollisionDamage == 0.8,
     "Swarm tears must not bypass Claude's limited damage")
 assert(spawned[1].Color == limited.Color, "children use the resolved parent color")
 assert(claude.data.ccUsage.limited == 90, "Swarm must not restart an active limit")
-claude.kind = 141
-risk.state.weeklyUsed = 220
-local weekly = shot(claude)
-assert(weekly.CollisionDamage == 1 and spawned[1].CollisionDamage == 0.5,
-    "Swarm tears must respect the tainted weekly limit")
-assert(risk.state.weeklyUsed == 220, "generated tears must not consume another weekly shot")
+claude.kind = 141; frame = frame + 1; fire("MC_POST_UPDATE")
+local appeal = risk.state.claudeAppeal["1"]
+appeal.quota = 0
+local suspended = shot(claude)
+assert(#spawned == 2 and spawned[1].CollisionDamage == suspended.CollisionDamage * 0.5,
+    "Swarm tears copy the suspended attack")
+assert(appeal.quota == 0, "suspended attacks and generated tears are free")
+appeal.quota = 10; frame = frame + 1
+shot(claude); assert(appeal.quota == 8, "Swarm adds one extra quota per paid volley")
+shot(claude); assert(appeal.quota == 8, "a same-frame pellet shares the payment")
 
 claude.kind = 41
+frame = frame + 1
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 0, 0
 local ordinary = shot(claude)
 assert(ordinary.CollisionDamage == 4 and spawned[1].CollisionDamage == 2)
-assert(claude.data.ccUsage.value == 8, "keep the existing double-usage accounting")
+assert(claude.data.ccUsage.value == 8, "Swarm doubles the volley payment")
+shot(claude); assert(claude.data.ccUsage.value == 8, "a same-frame pellet shares the payment")
 deepseek.swarm = false
 shot(deepseek)
 assert(#spawned == 0, "another player's Swarm must not leak to a non-holder")
@@ -244,6 +251,7 @@ assert(stapler(mod, -1, nil, claude, 0).Discharge and absorbed == 4)
 assert(summaryShot.CollisionDamage == 8, 'summary must respect Claude limited damage')
 inherited(summaryShot, 2)
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 0, 0
+frame = frame + 1
 stapler(mod, -1, nil, claude, 0)
 assert(claude.data.ccUsage.value == 8, 'summary and Swarm keep ordinary usage accounting')
 deepseek.swarm, enemies, roll = true, 0, 0.99

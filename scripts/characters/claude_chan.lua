@@ -3,24 +3,31 @@
 --
 -- Stats: long context window (Range +1.5), Shot Speed +0.2, Speed -0.1, orange tears.
 -- Pocket item: Ban Hammer.
--- Usage limit: every tear fills a usage meter that drains slowly over time.
--- When it fills up she hits her usage limit: for 5 seconds her tears deal
--- 40% damage, then the meter resets.
--- Account age (账号满月): every floor she reaches without being Suspended, her
--- account gets a floor older: +0.2 damage each, up to +1.6. Getting
--- Suspended resets it to zero ("Banned again" / 又封了). Based on the
--- "喜报：Claude满月啦" posts and the Bilibili song 《又封了》.
+-- One More Day: each paid volley adds 4 usage (8 with Subagent Swarm); not
+-- firing drains 10 per second. At 100 she is Limited: 40% damage for 5 seconds,
+-- then the meter resets. Appeals (start 1, cap 2, one per two unique combat
+-- clears) are spent with a DROP tap to remove 40 usage; they cannot cancel an
+-- active Limited penalty.
+-- Account age: every floor reached without being Suspended adds +0.2 damage,
+-- up to +1.6. A suspension resets it ("Banned again"); Birthright keeps it
+-- through the first suspension on each floor without cancelling the penalty.
 
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
+local DropTap = include("scripts.characters.drop_tap")
 
 local ClaudeChan = {}
 
 local USAGE_MAX = 100
 local USAGE_PER_TEAR = 4
-local USAGE_DRAIN_INTERVAL = 6      -- frames per point drained (5 points/second)
+local SWARM_USAGE = 4               -- Subagent Swarm's extra payment per volley
+local USAGE_DRAIN_INTERVAL = 3      -- frames per point drained while not firing (10/second)
 local LIMIT_FRAMES = 150            -- 5 seconds
 local LIMITED_DAMAGE_MULT = 0.4
+
+local APPEAL_START, APPEAL_MAX = 1, 2
+local CLEARS_PER_APPEAL = 2
+local APPEAL_RELIEF = 40
 
 local AGE_DAMAGE = 0.2
 local AGE_MAX = 8
@@ -31,6 +38,32 @@ local LIMITED_TEAR_COLOR = Color(0.5, 0.5, 0.5, 0.7, 0, 0, 0)
 local function isClaude(player)
     return player and Constants.Player.CLAUDE_CHAN >= 0
         and player:GetPlayerType() == Constants.Player.CLAUDE_CHAN
+end
+
+local function integer(v, maximum)
+    return type(v) == "number" and v == v and v >= 0 and v <= maximum and v == math.floor(v)
+end
+
+-- Older saves have no appeal fields; start them with the normal allowance.
+local function normalize(usage)
+    if not integer(usage.appeals, APPEAL_MAX) then usage.appeals = APPEAL_START end
+    if not integer(usage.clears, CLEARS_PER_APPEAL - 1) then usage.clears = 0 end
+    if type(usage.awards) ~= "table" then usage.awards = {} end
+    return usage
+end
+
+local function floorKey()
+    local level = Game():GetLevel()
+    return tostring(level:GetDungeonPlacementSeed())..":"..level:GetStage()..":"..level:GetStageType()
+end
+
+local function observeRoom(usage)
+    local floor = floorKey()
+    if usage.floor ~= floor then usage.floor = floor; usage.awards = {}; usage.room = nil end
+    local desc = Game():GetLevel():GetCurrentRoomDesc()
+    local room = tostring(desc.SpawnSeed)..":"..tostring(desc.SafeGridIndex)
+    if usage.room ~= room then usage.room = room; usage.armed = false end
+    if not Game():GetRoom():IsClear() then usage.armed = true end
 end
 
 local function anyClaude()
@@ -52,6 +85,8 @@ end
 
 function ClaudeChan:Init(mod, Risk)
     local ready = false
+    local drop = DropTap.New()
+    local volleys = {} -- Transient: slot -> {frame, limited}.
     local function age() return Risk.state.accountAge or 0 end
 
     local function getUsage(player)
@@ -65,29 +100,90 @@ function ClaudeChan:Init(mod, Risk)
                 if type(all[key]) ~= "table" then
                     all[key] = { value = 0, limited = 0 }
                 end
-                -- Compact, Banked Reset and Swarm mutate this same saved table.
-                data.ccUsage = all[key]
-                return all[key]
+                -- Compact and Banked Reset mutate this same saved table.
+                data.ccUsage = normalize(all[key])
+                return all[key], key
             end
         end
         -- An entity outside the player list must not borrow another player's slot.
-        data.ccUsage = data.ccUsage or { value = 0, limited = 0 }
+        data.ccUsage = normalize(data.ccUsage or { value = 0, limited = 0 })
         return data.ccUsage
+    end
+
+    local function hasBirthright()
+        for i = 0, Game():GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            if isClaude(player) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+                return true
+            end
+        end
+        return false
+    end
+
+    -- Act once per suspension. The saved latch keeps a continue from
+    -- re-judging a suspension that was already handled.
+    local function observeSuspension()
+        if not Risk:IsSuspended() then Risk.state.claudeSuspended = nil; return end
+        if Risk.state.claudeSuspended or age() == 0 then
+            Risk.state.claudeSuspended = true
+            return
+        end
+        Risk.state.claudeSuspended = true
+        local floor = floorKey()
+        if hasBirthright() and Risk.state.claudeAgeShield ~= floor then
+            Risk.state.claudeAgeShield = floor
+            Game():GetHUD():ShowItemText("Banned again", "Birthright kept your account age")
+            return
+        end
+        Risk.state.accountAge = 0
+        refreshDamage()
+        Game():GetHUD():ShowItemText("Banned again", "Account age reset to 0")
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         -- Risk has already loaded or reset its state, before any item use or shot.
         if not continued then Risk.state.claudeUsage = {} end
-        ready = true
+        ready = true; volleys = {}; drop:Reset()
         for i = 0, Game():GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
-            if isClaude(player) then getUsage(player) end
+            if isClaude(player) then observeRoom(getUsage(player)) end
         end
     end)
-    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() ready = false end)
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
+        ready = false; volleys = {}; drop:Reset()
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+        drop:Reset()
+        if not ready then return end
+        for i = 0, Game():GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            if isClaude(player) then observeRoom(getUsage(player)) end
+        end
+    end)
+
+    -- A unique clear is a newly completed hostile room on this floor.
+    mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
+        if not ready then return end
+        for i = 0, Game():GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            if isClaude(player) and not player:IsDead() then
+                local usage = getUsage(player)
+                observeRoom(usage)
+                if usage.armed and not usage.awards[usage.room] then
+                    usage.awards[usage.room] = true; usage.armed = false
+                    usage.clears = usage.clears + 1
+                    if usage.clears >= CLEARS_PER_APPEAL then
+                        usage.clears = 0
+                        usage.appeals = math.min(APPEAL_MAX, usage.appeals + 1)
+                    end
+                end
+            end
+        end
+    end)
 
     -- POST_NEW_LEVEL also fires before the run starts; only count real floors.
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
+        drop:Reset()
         if not ready or not anyClaude() or Risk:IsSuspended() then return end
         Risk.state.accountAge = math.min(AGE_MAX, age() + 1)
         refreshDamage()
@@ -127,18 +223,28 @@ function ClaudeChan:Init(mod, Risk)
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if not isClaude(player) then return end
 
-        local usage = getUsage(player)
-        if usage.limited > 0 then
+        local usage, key = getUsage(player)
+        local now = Game():GetFrameCount()
+        -- Same-frame pellets are one paid volley and share its limit state.
+        local volley = key and volleys[key]
+        if not volley or volley.frame ~= now then
+            volley = { frame = now, limited = usage.limited > 0 }
+            if key then volleys[key] = volley end
+            if not volley.limited then
+                local swarm = Constants.Item.SUBAGENT_SWARM
+                local cost = USAGE_PER_TEAR
+                    + ((swarm and swarm > 0 and player:HasCollectible(swarm)) and SWARM_USAGE or 0)
+                usage.value = usage.value + cost
+                if usage.value >= USAGE_MAX then
+                    usage.value = USAGE_MAX
+                    usage.limited = LIMIT_FRAMES
+                    Game():GetHUD():ShowItemText("Usage limit reached", "Your limit will reset soon")
+                end
+            end
+        end
+        if volley.limited then
             tear.CollisionDamage = tear.CollisionDamage * LIMITED_DAMAGE_MULT
             tear.Color = LIMITED_TEAR_COLOR
-            return
-        end
-
-        usage.value = usage.value + USAGE_PER_TEAR
-        if usage.value >= USAGE_MAX then
-            usage.value = USAGE_MAX
-            usage.limited = LIMIT_FRAMES
-            Game():GetHUD():ShowItemText("Usage limit reached", "Your limit will reset soon")
         end
     end)
 
@@ -146,24 +252,33 @@ function ClaudeChan:Init(mod, Risk)
         if not ready then return end
         if not isClaude(player) then return end
 
-        if age() > 0 and Risk:IsSuspended() then
-            Risk.state.accountAge = 0
-            refreshDamage()
-            Game():GetHUD():ShowItemText("Banned again", "Account age reset to 0")
-        end
+        observeSuspension()
 
-        local usage = getUsage(player)
+        local usage, key = getUsage(player)
+        local now = Game():GetFrameCount()
+        observeRoom(usage)
         if usage.limited > 0 then
             usage.limited = usage.limited - 1
             if usage.limited == 0 then
                 usage.value = 0
             end
-        elseif usage.value > 0 and Game():GetFrameCount() % USAGE_DRAIN_INTERVAL == 0 then
-            usage.value = usage.value - 1
+        elseif usage.value > 0 and now % USAGE_DRAIN_INTERVAL == 0 then
+            local volley = key and volleys[key]
+            local firing = player:GetShootingInput():LengthSquared() > 0
+                or (volley and volley.frame == now)
+            if not firing then usage.value = usage.value - 1 end
+        end
+
+        -- No usage means nothing to appeal: the Appeal is kept.
+        if drop:Poll(player, true) and usage.appeals > 0 and usage.limited == 0 and usage.value > 0 then
+            usage.appeals = usage.appeals - 1
+            usage.value = math.max(0, usage.value - APPEAL_RELIEF)
+            Game():GetHUD():ShowItemText("Appeal filed", "Another love letter.")
         end
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+        if Game():IsPaused() then drop:Reset() end
         if not ready or not Game():GetHUD():IsVisible() then return end
 
         for i = 0, Game():GetNumPlayers() - 1 do
@@ -172,10 +287,11 @@ function ClaudeChan:Init(mod, Risk)
                 local usage = getUsage(player)
                 local y = Isaac.GetScreenHeight() - 40 - i * 24
                 HudText:Draw(HudText:T("age", age()), 50, y - 12, 1, 0.85, 0.5, 0.9)
+                local appeals = string.format("  Appeals %d/%d", usage.appeals, APPEAL_MAX)
                 if usage.limited > 0 then
-                    HudText:Draw(HudText:T("limited", math.ceil(usage.limited / 30)), 50, y, 1, 0.3, 0.3, 1)
+                    HudText:Draw(HudText:T("limited", math.ceil(usage.limited / 30)) .. appeals, 50, y, 1, 0.3, 0.3, 1)
                 else
-                    HudText:Draw(HudText:T("usage", usage.value), 50, y, 1, 0.65, 0.3, 1)
+                    HudText:Draw(HudText:T("usage", usage.value) .. appeals, 50, y, 1, 0.65, 0.3, 1)
                 end
             end
         end

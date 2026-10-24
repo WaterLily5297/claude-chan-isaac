@@ -36,7 +36,7 @@ No adapter changes player types, player sprites, tears' visual scale, tear flags
 
 ## Offline evidence and remaining engine matrix
 
-`tests/native_thought_test.lua` invokes the real Rice, shared food, raw fork and 1M Context modules. Against `e8639cb`'s Rice module its first laser assertion fails. The candidate passes native entity callback fixtures for shared volleys, six-update expiry, duplicate calls, pause, partial-window continue, positive-damage initialization, direct/co-op ownership, knife return/rethrow, ordinary-bomb exclusion, parent/child update order, immediate-exit cleanup, parent removal, modeled engine base refresh and Context decay. Full checks now contain 62 Lua files, five XML files and sixteen stub suites.
+`tests/native_thought_test.lua` invokes the real Rice, shared food, raw fork and 1M Context modules. Against `e8639cb`'s Rice module its first laser assertion fails. The candidate passes native entity callback fixtures for shared volleys, six-update expiry, duplicate calls, pause, partial-window continue, positive-damage initialization, direct/co-op ownership, knife return/rethrow, ordinary-bomb exclusion, parent/child update order, immediate-exit cleanup, parent removal, modeled engine base refresh and Context decay. Full checks now contain 63 Lua files, five XML files and seventeen stub suites.
 
 When game testing resumes, record exact source/runtime versions and test these cases independently:
 

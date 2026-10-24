@@ -1,6 +1,6 @@
 # Community-meme character gameplay
 
-Revision 2, 2026-10-23. This replaces the capability-based draft after the owner's correction: recognizable community jokes must lead the design. **Design targets, not accepted balance.** Normal DeepSeek now has an intermediate Rice First source implementation (meal economy, save state and initial native attack adapters); full weapon adapters and engine acceptance are pending. Tainted DeepSeek Wenfeng / Wengu has a source implementation for ordinary tears. Other replacement designs remain unimplemented. Source currently registers thirteen forms; nine additional tainted forms remain unimplemented. See MODEL_ROSTER.md and the character modules for actual behavior.
+Revision 2, 2026-10-23. This replaces the capability-based draft after the owner's correction: recognizable community jokes must lead the design. **Design targets, not accepted balance.** Normal DeepSeek now has an intermediate Rice First source implementation (meal economy, save state and initial native attack adapters); full weapon adapters and engine acceptance are pending. Tainted DeepSeek Wenfeng / Wengu and normal Claude One More Day have source implementations for ordinary tears. Other replacement designs remain unimplemented. Source currently registers thirteen forms; nine additional tainted forms remain unimplemented. See MODEL_ROSTER.md and the character modules for actual behavior.
 
 The owner explicitly selected Claude bans and anger at Dario, DeepSeek free rice and Liang Wenfeng / Liang Wengu, and GPT perceived downgrades and Tibo resets. Other families have researched candidates. [COMMUNITY_MEME_RESEARCH.md](COMMUNITY_MEME_RESEARCH.md) distinguishes direct posts, secondary accounts and blocked videos. None of these samples establishes majority opinion or verifies an allegation about a person.
 
@@ -26,11 +26,15 @@ Usage runs 0–100. Paid attacks add 4; not firing drains 10 per second. At 100,
 
 Keep pocket Ban Hammer, range +60, shot speed +0.2 and speed -0.1. Each floor without suspension adds +0.2 account-age damage, cap +1.6; suspension resets it. Migrate age to per-player state. Existing Claude risk/encounter co-op behavior needs its own review. Swarm adds one extra 4-point payment per paid attack; Compact keeps its explicit bill. Birthright preserves age through the first suspension each floor without canceling its penalty. HUD: Usage, Appeals; account age belongs in the dossier/status line. Caption: `Another love letter.`
 
+Source status (scripts/characters/claude_chan.lua): implemented for tear volleys. The caption appears when an Appeal is filed. The volley that reaches 100 keeps full damage. An Appeal at zero usage is refused rather than wasted. Account age is still shared across players rather than migrated per player; Birthright shields that shared age. Engine acceptance pending.
+
 ### Tainted: Appeal Pending
 
 Start each floor with 220 Quota and two Appeal Pages, cap two. Registered attacks cost one quota and deal 1.25x damage. At zero, retain a usable 0.5x attack under Suspended. DROP while suspended spends a page and starts six seconds of active-combat review, then restores 60 quota. One review at a time. Exit cancels it without refund. Three unique clears earn a page.
 
 Keep pocket Banked Reset for immediate refill. Using it cancels any pending review without returning the page; no double payout. Swarm costs one extra quota per paid attack. New floor refills quota and pages; continue does not. Birthright restores 90 per completed review. HUD: Quota, Appeal Pages, transient `Under Review: Ns`. The contrast is preserving an old account versus surviving repeated suspensions.
+
+Source status (scripts/characters/claude_chan_b.lua): implemented for tear volleys and replaces the 220-tear weekly limit. Damage uses cache evaluation (1.25x, 0.5x Suspended), so non-tear weapons get the multiplier but pay no Quota until they have a bounded payment adapter. Saved per player in `Risk.state.claudeAppeal`. Engine acceptance pending.
 
 ## DeepSeek — rice and peak/valley scheduling
 

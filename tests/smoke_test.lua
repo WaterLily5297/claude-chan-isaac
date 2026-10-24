@@ -60,6 +60,7 @@ SoundEffect = { SOUND_POWERUP_SPEWER = 132 }
 function SFXManager() return { Play = function(_, id) print("  SFX:", id) end } end
 Vector = { Zero = { 0, 0 } }
 Input = { IsActionPressed = function() return false end }
+CollectibleType = { COLLECTIBLE_BIRTHRIGHT = 619 }
 ButtonAction = { ACTION_MAP = 11, ACTION_SHOOTLEFT = 4, ACTION_SHOOTRIGHT = 5,
     ACTION_SHOOTUP = 6, ACTION_SHOOTDOWN = 7 }
 InputHook = { IS_ACTION_PRESSED = 0, IS_ACTION_TRIGGERED = 1, GET_ACTION_VALUE = 2 }
@@ -93,6 +94,9 @@ local player = { HasCollectible = function(_, id) return playerItems[id] end,
     EvaluateItems = function(self) self.Damage = 3.5; for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end end }
 player.ToPlayer = function(self) return self end
 player.IsDead = function() return false end
+player.InitSeed, player.ControllerIndex = 1, 0
+player.AreControlsEnabled = function() return true end
+player.GetShootingInput = function() return { LengthSquared = function() return 0 end } end
 player.TryRemoveTrinket = function(_, id) if HELD_TRINKET == id then HELD_TRINKET = nil; return true end return false end
 function Isaac.GetPlayer() return player end
 
@@ -142,7 +146,9 @@ local hudVisible = true
 function Game()
     return {
         GetNumPlayers = function() return 1 end,
-        GetLevel = function() return { GetStage = function() return stage end, GetCurrentRoomDesc = function() return { SafeGridIndex = 84 } end } end,
+        GetLevel = function() return { GetStage = function() return stage end,
+            GetStageType = function() return 0 end, GetDungeonPlacementSeed = function() return 77 end,
+            GetCurrentRoomDesc = function() return { SpawnSeed = 1, SafeGridIndex = 84 } end } end,
         GetSeeds = function() return { GetStartSeed = function() return 123456 end } end,
         GetHUD = function() return {
             IsVisible = function() return hudVisible end,
@@ -560,17 +566,19 @@ do
     R.state.risk = 10
     print("  Claude-chan account age: ok")
 
-    -- Tainted Claude-chan weekly limit + Banked Reset.
+    -- Tainted Claude-chan Appeal Pending quota + Banked Reset.
     player.GetPlayerType = function() return 141 end
-    R.state.weeklyUsed = 219
+    fire("MC_POST_UPDATE")
+    local appeal = R.state.claudeAppeal["0"]
+    assert(appeal and appeal.quota == 220 and appeal.pages == 2, "tainted Claude binds a full allowance")
+    appeal.quota = 1
     local last = { SpawnerEntity = player, CollisionDamage = 4 }
-    fire("MC_POST_FIRE_TEAR", nil, last); assert(R.state.weeklyUsed == 220 and last.CollisionDamage == 4)
-    local over = { SpawnerEntity = player, CollisionDamage = 4 }
-    fire("MC_POST_FIRE_TEAR", nil, over); assert(over.CollisionDamage == 1, "over the weekly limit: 25%")
-    fire("MC_USE_ITEM", 744, 744, nil, player); assert(R.state.weeklyUsed == 0, "Banked Reset refills the quota")
-    R.state.weeklyUsed = 100; stage = 4; fire("MC_POST_NEW_LEVEL"); assert(R.state.weeklyUsed == 0, "new floor, new week")
+    fire("MC_POST_FIRE_TEAR", nil, last); assert(appeal.quota == 0 and last.CollisionDamage == 4)
+    fire("MC_USE_ITEM", 744, 744, nil, player); assert(appeal.quota == 220, "Banked Reset refills the quota")
+    appeal.quota = 100; stage = 4; fire("MC_POST_NEW_LEVEL"); fire("MC_POST_NEW_ROOM")
+    assert(appeal.quota == 220, "a new floor refills the quota")
     player.GetPlayerType = realType
-    print("  tainted Claude-chan weekly limit: ok")
+    print("  tainted Claude-chan appeal quota: ok")
 
     -- Lunch Break.
     for _ = 1, 90 do FRAME = FRAME + 1; fire("MC_POST_UPDATE") end

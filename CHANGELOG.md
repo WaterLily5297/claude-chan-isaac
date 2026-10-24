@@ -9,6 +9,16 @@
 - Bring the full roster stack to main in one PR: nine normal loops (GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, GLM), nine tainted forms and the tainted roster art. The stacked PRs #24, #27 and #29-#45 had been merged into each other's branches instead of main.
 - Regenerate the nine tainted gameplay sheets from the walk-cycle sheets (#25), which the original derivation predated. Portraits and dossiers are unchanged. 42 offline suites pass; no engine validation.
 
+## Unreleased tainted Claude Appeal Pending (2026-10-24)
+
+- Tainted Claude becomes Appeal Pending: 220 Quota and two Appeal Pages per floor; each paid tear volley costs 1 Quota (2 with Subagent Swarm) at 1.25x damage; at zero she is Suspended at 0.5x. A DROP tap while Suspended spends a Page on a six-second active-combat review that restores 60 Quota (Birthright 90); leaving the room cancels it. Three unique combat clears earn a Page.
+- Banked Reset refills Quota and cancels a pending review without returning its Page. Per-player saved state replaces the shared weekly counter; tear color is tinted. English HUD, dossier and EID text. Offline only.
+
+## Unreleased Claude Appeals (2026-10-24)
+
+- Normal Claude becomes One More Day: usage is billed once per same-frame tear volley (Subagent Swarm doubles it inside Claude's billing) and drains 10 per second only while not firing. Appeals start at 1, cap 2, and are earned every two unique combat clears; a DROP tap spends one to remove 40 usage, never during Limited.
+- Birthright keeps account age through the first suspension on each floor; a saved latch stops continue from re-judging it. English HUD, dossier, EID and caption `Another love letter.`
+- Seventeen offline suites pass, including the new Appeals suite. Account age is still shared; tainted Appeal Pending and non-tear billing remain pending. No runtime or Workshop changes.
 ## Unreleased native Thought adapters (2026-10-24)
 
 - Normal DeepSeek Thought: delayed bursts share the paid volley until the native firing cycle could repeat (floor of MaxFireDelay, cap 15 updates); Incubus and Twisted Pair tears copy a paid volley without paying; each melee swing hitbox pays once; Epic Fetus rockets pay once and their explosions are re-dealt at that factor.
