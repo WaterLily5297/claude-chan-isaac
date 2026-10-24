@@ -3,20 +3,24 @@
 --
 -- Stats: long context window (Range +1.5), Shot Speed +0.2, Speed -0.1, orange tears.
 -- Pocket item: Ban Hammer.
--- One More Day: each paid volley (tears, laser starts and Dr. Fetus bombs on
--- one frame) adds 4 usage (8 with Subagent Swarm); not
--- firing drains 10 per second. At 100 she is Limited: 40% damage for 5 seconds,
--- then the meter resets. Appeals (start 1, cap 2, one per two unique combat
+-- One More Day: each paid attack adds 4 usage (8 with Subagent Swarm): a
+-- same-frame volley of tears, laser starts and Dr. Fetus bombs, each further
+-- 0.2-second window of a held beam or Ludovico tear, a knife throw, a melee
+-- swing or an Epic Fetus rocket (scripts/characters/paid_attacks.lua). Not
+-- firing drains 10 per second. At 100 she is Limited: 40% damage on every
+-- weapon for 5 seconds, then the meter resets. Appeals (start 1, cap 2, one per two unique combat
 -- clears) are spent with a DROP tap to remove 40 usage; they cannot cancel an
 -- active Limited penalty.
--- Account age: every floor reached without being Suspended adds +0.2 damage,
--- up to +1.6. A suspension resets it ("Banned again"); Birthright keeps it
--- through the first suspension on each floor without cancelling the penalty.
+-- Account age (per player): every floor reached without being Suspended adds
+-- +0.2 damage, up to +1.6. A suspension resets it ("Banned again"); Birthright
+-- keeps it through the first suspension on each floor without cancelling the
+-- penalty. Older saves with one shared age give it to each Claude present.
 
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
 local Tint = include("scripts.characters.tear_tint")
+local PaidAttacks = include("scripts.characters.paid_attacks")
 
 local ClaudeChan = {}
 
@@ -43,9 +47,15 @@ local function integer(v, maximum)
     return type(v) == "number" and v == v and v >= 0 and v <= maximum and v == math.floor(v)
 end
 
--- Older saves have no appeal fields; start them with the normal allowance.
-local function normalize(usage)
+-- Older saves have no appeal or age fields; start them with the normal
+-- allowance. A save with the old shared age hands it to this player.
+local function normalize(usage, legacyAge)
     if not integer(usage.appeals, APPEAL_MAX) then usage.appeals = APPEAL_START end
+    if not integer(usage.age, AGE_MAX) then
+        usage.age = integer(legacyAge, AGE_MAX) and legacyAge or 0
+    end
+    if usage.ageShield ~= nil and type(usage.ageShield) ~= "string" then usage.ageShield = nil end
+    if usage.banned ~= nil and usage.banned ~= true then usage.banned = nil end
     if not integer(usage.clears, CLEARS_PER_APPEAL - 1) then usage.clears = 0 end
     if type(usage.awards) ~= "table" then usage.awards = {} end
     return usage
@@ -65,21 +75,9 @@ local function observeRoom(usage)
     if not Game():GetRoom():IsClear() then usage.armed = true end
 end
 
-local function anyClaude()
-    for i = 0, Game():GetNumPlayers() - 1 do
-        if isClaude(Isaac.GetPlayer(i)) then return true end
-    end
-    return false
-end
-
-local function refreshDamage()
-    for i = 0, Game():GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        if isClaude(player) then
-            player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-            player:EvaluateItems()
-        end
-    end
+local function refreshDamage(player)
+    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+    player:EvaluateItems()
 end
 
 function ClaudeChan:Init(mod, Risk)
@@ -87,7 +85,7 @@ function ClaudeChan:Init(mod, Risk)
     local drop = DropTap.New()
     local volleys = {} -- Transient: slot -> {frame, limited}.
     local updates = {} -- Transient: player pointer -> {seed, frame}.
-    local function age() return Risk.state.accountAge or 0 end
+    local applied = {} -- Transient: player pointer -> Limited state in the damage stat.
 
     local function getUsage(player)
         local data = player:GetData()
@@ -101,53 +99,43 @@ function ClaudeChan:Init(mod, Risk)
                     all[key] = { value = 0, limited = 0 }
                 end
                 -- Compact and Banked Reset mutate this same saved table.
-                data.ccUsage = normalize(all[key])
+                data.ccUsage = normalize(all[key], Risk.state.accountAge)
                 return all[key], key
             end
         end
         -- An entity outside the player list must not borrow another player's slot.
-        data.ccUsage = normalize(data.ccUsage or { value = 0, limited = 0 })
+        data.ccUsage = normalize(data.ccUsage or { value = 0, limited = 0 }, nil)
         return data.ccUsage
     end
 
-    local function hasBirthright()
-        for i = 0, Game():GetNumPlayers() - 1 do
-            local player = Isaac.GetPlayer(i)
-            if isClaude(player) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-                return true
-            end
-        end
-        return false
-    end
-
-    -- Act once per suspension. The saved latch keeps a continue from
-    -- re-judging a suspension that was already handled.
-    local function observeSuspension()
-        if not Risk:IsSuspended() then Risk.state.claudeSuspended = nil; return end
-        if Risk.state.claudeSuspended or age() == 0 then
-            Risk.state.claudeSuspended = true
-            return
-        end
-        Risk.state.claudeSuspended = true
+    -- Act once per suspension and player. The saved latch keeps a continue
+    -- from re-judging a suspension that was already handled.
+    local function observeSuspension(player, usage)
+        if not Risk:IsSuspended() then usage.banned = nil; return end
+        if usage.banned then return end
+        usage.banned = true
+        if usage.age == 0 then return end
         local floor = floorKey()
-        if hasBirthright() and Risk.state.claudeAgeShield ~= floor then
-            Risk.state.claudeAgeShield = floor
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and usage.ageShield ~= floor then
+            usage.ageShield = floor
             Game():GetHUD():ShowItemText("Banned again", "Birthright kept your account age")
             return
         end
-        Risk.state.accountAge = 0
-        refreshDamage()
+        usage.age = 0
+        refreshDamage(player)
         Game():GetHUD():ShowItemText("Banned again", "Account age reset to 0")
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         -- Risk has already loaded or reset its state, before any item use or shot.
         if not continued then Risk.state.claudeUsage = {} end
-        ready = true; volleys = {}; updates = {}; drop:Reset()
+        ready = true; volleys = {}; updates = {}; applied = {}; drop:Reset()
         for i = 0, Game():GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
-            if isClaude(player) then observeRoom(getUsage(player)) end
+            if isClaude(player) then observeRoom(getUsage(player)); refreshDamage(player) end
         end
+        -- The old shared age has now been handed to every Claude present.
+        Risk.state.accountAge = nil
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
         ready = false; volleys = {}; updates = {}; drop:Reset()
@@ -184,9 +172,15 @@ function ClaudeChan:Init(mod, Risk)
     -- POST_NEW_LEVEL also fires before the run starts; only count real floors.
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
         drop:Reset()
-        if not ready or not anyClaude() or Risk:IsSuspended() then return end
-        Risk.state.accountAge = math.min(AGE_MAX, age() + 1)
-        refreshDamage()
+        if not ready or Risk:IsSuspended() then return end
+        for i = 0, Game():GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            if isClaude(player) then
+                local usage = getUsage(player)
+                usage.age = math.min(AGE_MAX, usage.age + 1)
+                refreshDamage(player)
+            end
+        end
     end)
 
     -- Give the Ban Hammer as a pocket active on a fresh run only, so continuing
@@ -206,7 +200,11 @@ function ClaudeChan:Init(mod, Risk)
         if not isClaude(player) then return end
 
         if flag == CacheFlag.CACHE_DAMAGE then
-            player.Damage = player.Damage + AGE_DAMAGE * age()
+            local usage = getUsage(player)
+            player.Damage = player.Damage + AGE_DAMAGE * usage.age
+            -- Limited weakens every weapon through the damage stat.
+            applied[GetPtrHash(player)] = usage.limited > 0
+            if usage.limited > 0 then player.Damage = player.Damage * LIMITED_DAMAGE_MULT end
         elseif flag == CacheFlag.CACHE_RANGE then
             player.TearRange = player.TearRange + 1.5 * 40
         elseif flag == CacheFlag.CACHE_SHOTSPEED then
@@ -235,6 +233,7 @@ function ClaudeChan:Init(mod, Risk)
                 if usage.value >= USAGE_MAX then
                     usage.value = USAGE_MAX
                     usage.limited = LIMIT_FRAMES
+                    refreshDamage(player)
                     Game():GetHUD():ShowItemText("Usage limit reached", "Your limit will reset soon")
                 end
             end
@@ -246,18 +245,17 @@ function ClaudeChan:Init(mod, Risk)
         if not ready then return end
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if not isClaude(player) then return end
-        -- Item helpers are not new paid volleys, but an already active Limited
-        -- penalty still applies to their native tear damage.
+        -- Item helpers are not new paid volleys. Limited damage comes from the
+        -- damage stat; the grey tint only marks the weakened volley.
         local limited
         if tear:GetData().ccThoughtDerived then limited = getUsage(player).limited > 0
         else limited = bill(player).limited end
         if limited then
-            tear.CollisionDamage = tear.CollisionDamage * LIMITED_DAMAGE_MULT
             tear.Color = Tint.Apply(tear.Color, 0.5, 0.5, 0.5, 0.7)
         end
     end)
-    -- Lasers and Dr. Fetus bombs bill usage on the frame they start; a held
-    -- continuous laser pays once. Their damage is not reduced while Limited.
+    -- Lasers and Dr. Fetus bombs bill usage on the frame they start; held
+    -- beams, knives, swings and rockets bill through the shared observer.
     mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
         if not ready then return end
         local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
@@ -267,6 +265,9 @@ function ClaudeChan:Init(mod, Risk)
         if not ready or not bomb.IsFetus then return end
         local player = bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer()
         if isClaude(player) then bill(player) end
+    end)
+    PaidAttacks.Observe(mod, function(player)
+        if ready and isClaude(player) and not player:IsDead() then bill(player) end
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
@@ -282,8 +283,8 @@ function ClaudeChan:Init(mod, Risk)
             return
         end
         local now = Game():GetFrameCount()
-        observeSuspension()
         local usage, key = getUsage(player)
+        observeSuspension(player, usage)
         observeRoom(usage)
         -- Suspension and room bookkeeping are already idempotent and may
         -- observe same-frame changes. Only timed progress needs this guard.
@@ -302,6 +303,9 @@ function ClaudeChan:Init(mod, Risk)
             if not firing then usage.value = usage.value - 1 end
         end
 
+        -- Items such as Banked Reset can end Limited outside this module.
+        if (usage.limited > 0) ~= (applied[pointer] or false) then refreshDamage(player) end
+
         -- No usage means nothing to appeal: the Appeal is kept.
         if drop:Poll(player, true) and usage.appeals > 0 and usage.limited == 0 and usage.value > 0 then
             usage.appeals = usage.appeals - 1
@@ -319,7 +323,7 @@ function ClaudeChan:Init(mod, Risk)
             if isClaude(player) then
                 local usage = getUsage(player)
                 local y = Isaac.GetScreenHeight() - 40 - i * 24
-                HudText:Draw(HudText:T("age", age()), 50, y - 12, 1, 0.85, 0.5, 0.9)
+                HudText:Draw(HudText:T("age", usage.age), 50, y - 12, 1, 0.85, 0.5, 0.9)
                 local appeals = string.format("  Appeals %d/%d", usage.appeals, APPEAL_MAX)
                 if usage.limited > 0 then
                     HudText:Draw(HudText:T("limited", math.ceil(usage.limited / 30)) .. appeals, 50, y, 1, 0.3, 0.3, 1)

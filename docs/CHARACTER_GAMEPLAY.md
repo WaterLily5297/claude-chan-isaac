@@ -1,6 +1,6 @@
 # Community-meme character gameplay
 
-Revision 2, 2026-10-23. This replaces the capability-based draft after the owner's correction: recognizable community jokes must lead the design. **Design targets, not accepted balance.** Normal DeepSeek now has an intermediate Rice First source implementation (meal economy, save state and initial native attack adapters); full weapon adapters and engine acceptance are pending. Tainted DeepSeek Wenfeng / Wengu and normal Claude One More Day have source implementations for ordinary tears. Other replacement designs remain unimplemented. Source currently registers thirteen forms; nine additional tainted forms remain unimplemented. See MODEL_ROSTER.md and the character modules for actual behavior.
+Revision 2, 2026-10-23; source statuses updated 2026-10-24. This replaces the capability-based draft after the owner's correction: recognizable community jokes must lead the design. **Design targets, not accepted balance.** All 22 forms (11 normal, 11 tainted) are implemented in source with offline tests; each "Source status" line below records where the source differs from or refines the target. The only open target is tainted DeepSeek's non-tear rule, which awaits an owner decision. Engine acceptance is pending for every form. See MODEL_ROSTER.md and the character modules for actual behavior.
 
 The owner explicitly selected Claude bans and anger at Dario, DeepSeek free rice and Liang Wenfeng / Liang Wengu, and GPT perceived downgrades and Tibo resets. Other families have researched candidates. [COMMUNITY_MEME_RESEARCH.md](COMMUNITY_MEME_RESEARCH.md) distinguishes direct posts, secondary accounts and blocked videos. None of these samples establishes majority opinion or verifies an allegation about a person.
 
@@ -9,12 +9,12 @@ The owner explicitly selected Claude bans and anger at Dario, DeepSeek free rice
 - Keep the selected portrait identities and English names. Subtitles below are fictional gameplay roles. New code, descriptions, HUD, story and dossiers use English.
 - Tap DROP resolves on release; holding it preserves normal dropping. The reusable observer is implemented for current GPT/Gemini modes with a 1–12-gameplay-frame tap window, but the new abilities below are not. Pocket actives retain native input. No target means no resource spend. Test keyboard and controller, including native short-tap pocket cycling.
 - All resources and remaining timers belong to one player and survive continue. Pause/menu time does not advance timers. No duplicate reward from door re-entry, spawned children, respawned enemies or fake hits. A unique clear is a newly completed hostile room.
-- One paid attack is one volley or one 0.2-second continuous-weapon window. Derived effects cannot recursively pay or trigger themselves. Charge weapons snapshot at release. Normal DeepSeek now has initial native adapters described in NATIVE_THOUGHT.md; delayed bursts, Epic Fetus, melee, familiar ownership and engine acceptance remain required work. Other families still need migration to paid-attack accounting.
+- One paid attack is one volley or one 0.2-second continuous-weapon window. Derived effects cannot recursively pay or trigger themselves. Charge weapons snapshot at release. Normal DeepSeek now has initial native adapters described in NATIVE_THOUGHT.md; delayed bursts, Epic Fetus, melee, familiar ownership and engine acceptance remain required work. The allowance forms (Claude, tainted Claude, tainted GPT) bill every native weapon through `scripts/characters/paid_attacks.lua`; the DROP-target families count distinct paid hits with `target_tools.lua`.
 - Base stats are Isaac's before items unless specified. Normal starting health: two red and one soul heart; tainted: one red and two soul hearts, except DeepSeek retains one red and one soul heart. New normal forms get one bomb; new tainted forms get one key. Original-four pickups remain until migrated explicitly. No starting pocket active except those named below.
 - Listed multipliers replace old form multipliers; do not stack both systems accidentally. Persistent bonuses use cache evaluation. Enemy damage retains owner attribution and recursion guards. Ordinary weapons, flight, scale, costumes and transformations remain native. Never continuously replace the whole player sprite.
 - Room effects end on exit without refund. Save uses versioned per-player data, never serialized entity references. Character changes cannot transfer rewards to another form. Bosses, co-op duplicates and save/continue require specific tests.
 - At most two resource meters per form; current phase and transient labels are not extra currencies. Failure always preserves a usable main attack. No hidden random shot cancellation, permanent inventory loss or real-time waiting.
-- Birthright targets below are also unimplemented. Intrinsic abilities do not count toward the fifty additional collectibles.
+- Every Birthright listed below is implemented in source (engine acceptance pending). Intrinsic abilities do not count toward the fifty additional collectibles.
 
 ## Claude — account survival and appeals
 
@@ -26,7 +26,7 @@ Usage runs 0–100. Paid attacks add 4; not firing drains 10 per second. At 100,
 
 Keep pocket Ban Hammer, range +60, shot speed +0.2 and speed -0.1. Each floor without suspension adds +0.2 account-age damage, cap +1.6; suspension resets it. Migrate age to per-player state. Existing Claude risk/encounter co-op behavior needs its own review. Swarm adds one extra 4-point payment per paid attack; Compact keeps its explicit bill. Birthright preserves age through the first suspension each floor without canceling its penalty. HUD: Usage, Appeals; account age belongs in the dossier/status line. Caption: `Another love letter.`
 
-Source status (scripts/characters/claude_chan.lua): implemented for tear volleys, laser starts and Dr. Fetus bombs, one payment per frame; knives, rockets and held lasers after their first frame are free, and Limited weakens tears only. The caption appears when an Appeal is filed. The volley that reaches 100 keeps full damage. An Appeal at zero usage is refused rather than wasted. Account age is still shared across players rather than migrated per player; Birthright shields that shared age. Engine acceptance pending.
+Source status (scripts/characters/claude_chan.lua): implemented for every native weapon. Tear volleys, laser starts and Dr. Fetus bombs pay once per frame; `scripts/characters/paid_attacks.lua` bills each further 0.2-second window of a held repeated-hit beam or a steered Ludovico tear, each knife throw, each melee swing hitbox and each Epic Fetus rocket. Limited is a 0.4x damage-stat multiplier through cache evaluation, so it weakens every weapon; the triggering volley keeps the damage it was fired with, and an item that ends Limited (Banked Reset) restores damage on the next update. Account age is per player in `claudeUsage[slot].age`; a save with the old shared `accountAge` hands it to every Claude present on continue. Suspension is still the shared account state; each Claude judges it once with its own Birthright shield. The caption appears when an Appeal is filed. An Appeal at zero usage is refused rather than wasted. Engine acceptance pending.
 
 ### Tainted: Appeal Pending
 
@@ -34,7 +34,7 @@ Start each floor with 220 Quota and two Appeal Pages, cap two. Registered attack
 
 Keep pocket Banked Reset for immediate refill. Using it cancels any pending review without returning the page; no double payout. Swarm costs one extra quota per paid attack. New floor refills quota and pages; continue does not. Birthright restores 90 per completed review. HUD: Quota, Appeal Pages, transient `Under Review: Ns`. The contrast is preserving an old account versus surviving repeated suspensions.
 
-Source status (scripts/characters/claude_chan_b.lua): implemented and replaces the 220-tear weekly limit. Tears, laser starts and Dr. Fetus bombs share one Quota payment per frame; knives, rockets and held lasers after their first frame are free. Damage uses cache evaluation (1.25x, 0.5x Suspended), so every weapon gets the multiplier. Saved per player in `Risk.state.claudeAppeal`. Engine acceptance pending.
+Source status (scripts/characters/claude_chan_b.lua): implemented and replaces the 220-tear weekly limit. Tears, laser starts and Dr. Fetus bombs share one Quota payment per frame; held beams, Ludovico windows, knife throws, swings and Epic Fetus rockets pay through the shared paid-attack observer. Damage uses cache evaluation (1.25x, 0.5x Suspended), so every weapon gets the multiplier. Saved per player in `Risk.state.claudeAppeal`. Engine acceptance pending.
 
 ## DeepSeek — rice and peak/valley scheduling
 
@@ -72,7 +72,7 @@ Start a new run with 80 Credits, cap 80. DROP toggles Standard (1x damage, free)
 
 Floor changes and continue preserve credits, progress and banked reset. Real time does nothing. Spend an allowance before claiming the reset, or claim early for immediate pressure. Birthright raises the cap/refill to 100. HUD: Credits, Next Reset 0/3, `Tibo: Reset Ready`. No network requests.
 
-Source status (scripts/characters/gpt_reset.lua): implemented and registered with the deeper-colour tainted GPT art. A paid attack is a registered tear volley, a laser init or a Dr. Fetus bomb, one payment per frame; knives and continuous lasers past their first frame are free until a window adapter exists. Engine acceptance pending.
+Source status (scripts/characters/gpt_reset.lua): implemented and registered with the deeper-colour tainted GPT art. A paid attack is a registered tear volley, a laser init or a Dr. Fetus bomb, one payment per frame, plus the shared observer's held-beam and Ludovico windows, knife throws, swings and Epic Fetus rockets, so Full Send is never free on a non-tear build. Engine acceptance pending.
 
 ## Remaining eight families: researched candidates
 
@@ -122,17 +122,17 @@ Source status (scripts/characters/llama_hype.lua): implemented and registered wi
 
 **Normal:** Speed +0.1. Moving and firing for two seconds charges one Pounce. DROP spends it on an 80-unit forward line swipe, 2x owner damage once per target; walls stop it, cooldown three seconds. No player teleport or contact immunity. Standing for one second loses an unused pounce. Birthright: 110-unit reach. HUD: Pounce Ready.
 
-Source status (scripts/characters/mistral_pounce.lua): normal form implemented and replaces tailwind. Forward is the aim direction, else movement, else down. The line is about 20 units wide plus the enemy's size; `Room:CheckLine` in projectile mode stops it at walls and rocks. The cooldown blocks charging. There is no swipe sprite yet, only the hit and a caption. Engine acceptance pending.
+Source status (scripts/characters/mistral_pounce.lua): normal form implemented and replaces tailwind. Forward is the aim direction, else movement, else down. The line is about 20 units wide plus the enemy's size; `Room:CheckLine` in projectile mode stops it at walls and rocks. The cooldown blocks charging. The swipe shows tinted vanilla dust poofs (`scripts/characters/feedback.lua`) at its midpoint and on each hit; there is no dedicated swipe sprite. Engine acceptance pending.
 
 **Tainted:** Speed -0.1, damage 0.9x. Stand without firing for two seconds to store one Baguette, cap two. DROP spends one on a slow forward shockwave, max travel 120 units, damage 2.5x once per target; walls stop it, cooldown two seconds. Birthright: 1.5-second charge. HUD: Baguettes. A particular satire thread supports the giant-kitten/baguette joke; the approved portrait stays intact. Put exaggeration in the bread effect, not an enlarged hurt head or collision box.
 
-Source status (scripts/characters/mistral_baguette.lua): implemented and registered with the deeper-colour tainted Mistral art. The shockwave is a moving point checked each frame, not an entity, and there is no bread sprite yet, only the hits and a caption. Engine acceptance pending.
+Source status (scripts/characters/mistral_baguette.lua): implemented and registered with the deeper-colour tainted Mistral art. The shockwave is a moving point checked each frame, not an entity; golden vanilla dust poofs mark it every 24 units. There is no dedicated bread sprite. Engine acceptance pending.
 
 ### Doubao — Sorry, You're Right / I'll Do It Again
 
 **Normal:** First real enemy-caused hit in each hostile room grants one Apology token for six seconds, cap one. DROP spends it to slow enemies within 100 units for two seconds and remove up to four ordinary hostile bullets there. No health refund or cancellation of the original hit. Self-damage, fake damage and donation machines do not qualify. Birthright: token lasts until room exit. HUD: Apology Ready.
 
-Source status (scripts/characters/doubao_apology.lua): normal form implemented and replaces the meal. A hit qualifies when its source is a projectile or a non-friendly enemy, it is not fake or no-penalty damage, and the room is not clear. Only one hit per room counts, even if the first token expires unused. The four nearest projectiles within 100 units are removed. There is no visual pulse yet, only the slow tint and a caption. Engine acceptance pending.
+Source status (scripts/characters/doubao_apology.lua): normal form implemented and replaces the meal. A hit qualifies when its source is a projectile or a non-friendly enemy, it is not fake or no-penalty damage, and the room is not clear. Only one hit per room counts, even if the first token expires unused. The four nearest projectiles within 100 units are removed. Spending the Apology shows a pink vanilla dust poof at the player, plus the slow tint and a caption. Engine acceptance pending.
 
 **Tainted:** DROP starts six seconds of Confident at 1.35x damage, followed by four seconds of Apology at 0.85x, then becomes ready. Timers advance only in hostile combat. Default damage is 1x when ready. An enemy hit during Confident ends it early and starts Apology; it never cancels the damage. Birthright: Apology lasts three seconds. HUD: phase/timer. This is a deliberate overpromise/recovery cycle, not a second rice character. Indexed titles support the apology motif; no exact unviewed audio quote is claimed.
 
@@ -146,7 +146,7 @@ Source status (scripts/characters/kimi_slides.lua): normal form implemented and 
 
 **Tainted:** Base damage 0.85x. Three task slots. DROP assigns an idle slot to the nearest unassigned target within 220 units. Each task deals three 0.6x pulses, two seconds apart. Max three concurrent tasks and nine scheduled pulses per room. Early death releases the slot but not its spent budget. Exit cancels tasks; re-entry does not reset budget. Birthright: pulses 0.7x. HUD: Tasks, room budget. Office-drudge videos are leads; swarm orchestration is documented, but this does not prove a dominant community joke.
 
-Source status (scripts/characters/kimi_manager.lua): implemented and registered with the deeper-colour tainted Kimi art. Pulses are direct owner-sourced damage, not tears. The budget is spent at assignment, so a target dying early does not refund it. There is no task marker sprite yet, only the HUD and hits. Engine acceptance pending.
+Source status (scripts/characters/kimi_manager.lua): implemented and registered with the deeper-colour tainted Kimi art. Pulses are direct owner-sourced damage, not tears. The budget is spent at assignment, so a target dying early does not refund it. Each assignee gets a fading light-blue tint at assignment and on each pulse; it never hides the enemy. Engine acceptance pending.
 
 ### GLM — Number in Queue / Please Retry
 
@@ -156,7 +156,7 @@ Source status (scripts/characters/glm_queue.lua): normal form implemented and re
 
 **Tainted:** Base damage 0.9x. DROP selects a hostile within 200 units and schedules a two-second request. If it survives in the room, deal 2x damage and consume all Retry stacks, adding 1x per stack (cap three; max 5x total). Early target death instead gives one Retry. One pending request; three-second cooldown from selection. Exit cancels without earning a stack. Birthright: a failed request also removes one nearby ordinary hostile bullet. HUD: Retries, Request Pending. Retries are bounded and deterministic, not a random missing-shot mechanic.
 
-Source status (scripts/characters/glm_retry.lua): implemented and registered with the deeper-colour tainted GLM art. Retries are deterministic and bounded. The request damage is direct owner-sourced damage. There is no request marker sprite yet, only the HUD and caption. Engine acceptance pending.
+Source status (scripts/characters/glm_retry.lua): implemented and registered with the deeper-colour tainted GLM art. Retries are deterministic and bounded. The request damage is direct owner-sourced damage. The requested enemy gets a fading violet tint for the two seconds, and a completed request shows a violet poof. Engine acceptance pending.
 
 ## Implementation order and evidence
 

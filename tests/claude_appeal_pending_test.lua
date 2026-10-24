@@ -120,6 +120,11 @@ tick(); fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=true}); assert(state()
 tick(); fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=false}); fire("MC_POST_LASER_INIT",{SpawnerEntity=familiar})
 assert(state().quota==215,"placed bombs and familiars are free")
 assert(state(1).quota==220,"spending is personal")
+-- Knife throws pay one Quota through the shared observer.
+local knifeData={}
+local knife={SpawnerEntity=p,SubType=0,GetData=function() return knifeData end,IsFlying=function() return true end}
+tick(); fire("MC_POST_KNIFE_UPDATE",knife); tick(); fire("MC_POST_KNIFE_UPDATE",knife)
+assert(state().quota==214,"a knife throw pays once"); state().quota=215
 
 -- A DROP tap with Quota left keeps native DROP and spends nothing.
 tap(p); assert(state().pages==2 and state().review==nil)

@@ -3,6 +3,7 @@
 -- Saved per player: spent room budgets. Live tasks are transient.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Feedback = include("scripts.characters.feedback")
 local Manager = {}
 
 local BASE_DAMAGE = 0.85
@@ -10,6 +11,7 @@ local SLOTS = 3
 local RADIUS = 220
 local PULSES = 3
 local PULSE_FRAMES = 60 -- Two seconds between pulses.
+local TASK_TINT = Color and Color(1, 1, 1, 1, 0.1, 0.25, 0.35) or nil
 local ROOM_BUDGET = 9
 local PULSE_DAMAGE, BIRTHRIGHT_PULSE = 0.6, 0.7
 
@@ -149,6 +151,7 @@ function Manager:Init(mod, Risk)
                         if task.wait <= 0 then
                             local mult = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_PULSE or PULSE_DAMAGE
                             task.ref.Ref:TakeDamage(p.Damage * mult, 0, EntityRef(p), 0)
+                            Feedback.Mark(task.ref.Ref, TASK_TINT, PULSE_FRAMES)
                             task.left = task.left - 1
                             task.wait = PULSE_FRAMES
                         end
@@ -164,6 +167,8 @@ function Manager:Init(mod, Risk)
                 if target then
                     s.budget[room] = spent + PULSES
                     b.tasks[#b.tasks + 1] = {ref=EntityPtr(target), hash=GetPtrHash(target), left=PULSES, wait=PULSE_FRAMES}
+                    -- A light outline marks the assignee; it never hides the enemy.
+                    Feedback.Mark(target, TASK_TINT, PULSE_FRAMES)
                     Game():GetHUD():ShowItemText("Kimi-chan", "You are the manager")
                 end
             end

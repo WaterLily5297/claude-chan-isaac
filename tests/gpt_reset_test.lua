@@ -141,6 +141,14 @@ tick(); bomb(p,false); assert(state().credits==77,"ordinary bombs are free")
 tick(); shot(q); assert(state(1).credits==80,"spending is personal")
 local t=tear(p,false); tick(); fire("MC_POST_FIRE_TEAR",t); tick(); fire("MC_POST_FIRE_TEAR",t)
 assert(state().credits==76,"a duplicate callback cannot pay twice")
+-- Knife throws and held beams pay through the shared observer.
+local knifeData={}
+local knife={SpawnerEntity=p,SubType=0,GetData=function() return knifeData end,IsFlying=function() return true end}
+tick(); fire("MC_POST_KNIFE_UPDATE",knife); tick(); fire("MC_POST_KNIFE_UPDATE",knife)
+assert(state().credits==75,"a knife throw pays once in Full Send")
+local beam={SpawnerEntity=p,FrameCount=6,GetData=function() return {} end,IsCircleLaser=function() return false end}
+tick(); fire("MC_POST_LASER_UPDATE",beam); assert(state().credits==74,"a held beam pays per window")
+state().credits=76
 
 -- At zero Full Send returns to Standard and cannot be re-entered.
 state().credits=1; tick(); shot(p)

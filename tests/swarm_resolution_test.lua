@@ -137,9 +137,11 @@ become(42)
 
 frame = frame + 1
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 100, 90
+-- Limited lives in Claude's damage stat (the stub fires at 4); the tear only
+-- gets the grey tint, and Swarm children inherit the resolved parent damage.
 local limited = shot(claude)
-assert(limited.CollisionDamage == 1.6)
-assert(#spawned == 2 and spawned[1].CollisionDamage == 0.8,
+assert(limited.CollisionDamage == 4)
+assert(#spawned == 2 and spawned[1].CollisionDamage == 2,
     "Swarm tears must not bypass Claude's limited damage")
 assert(spawned[1].Color == limited.Color, "children use the resolved parent color")
 assert(claude.data.ccUsage.limited == 90, "Swarm must not restart an active limit")
@@ -248,7 +250,8 @@ claude.kind, claude.swarm = 41, true
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 100, 90
 prepare(claude)
 assert(stapler(mod, -1, nil, claude, 0).Discharge and absorbed == 4)
-assert(summaryShot.CollisionDamage == 8, 'summary must respect Claude limited damage')
+-- Limited is in the damage stat FireTear reads; the shot is not cut again.
+assert(summaryShot.CollisionDamage == 20, 'summary must not double-apply Claude limited damage')
 inherited(summaryShot, 2)
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 0, 0
 frame = frame + 1

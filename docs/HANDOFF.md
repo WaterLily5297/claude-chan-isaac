@@ -1,5 +1,18 @@
 # Claude handoff: consolidated development checkpoint
 
+## Character trait completion (2026-10-24)
+
+Source-only, offline. No game launch, runtime replacement or Workshop release. This pass closed the gaps between CHARACTER_GAMEPLAY.md targets and source:
+
+- **Every weapon pays.** New `scripts/characters/paid_attacks.lua` bills what the per-form tear/laser-start/Fetus callbacks missed: each further 0.2-second window of a held repeated-hit beam (per player, so two beams share a window), each 0.2-second window of a Ludovico tear while its owner fires, each knife throw, each melee swing hitbox and each Epic Fetus rocket. Familiar weapons, child beams, single-hit beams and derived tears are never billed. Normal Claude usage, tainted Claude Quota and tainted GPT Full Send Credits use it.
+- **Claude Limited weakens every weapon** through a 0.4x cache multiplier instead of a per-tear write. The triggering volley keeps its damage; items that end Limited (Banked Reset) restore damage on the next update.
+- **Claude account age is per player** (`claudeUsage[slot].age`, shield `ageShield`, latch `banned`). A continued save with the old shared `accountAge` gives it to each Claude present, then drops the old key. The suspension itself stays the shared account state.
+- **Starting pickups follow the shared contract**: the eight tainted roster forms that started with a bomb now start with one key (`tools/check_assets.py` enforces it).
+- **Ability feedback** (`scripts/characters/feedback.lua`): tinted vanilla dust poofs for Mistral's Pounce and Baguette wave and Doubao's Apology; fading tints on Kimi's task assignees and GLM's requested enemy. Visual only; no new sprites.
+- **EID character info** now covers all 22 forms (the nine normal roster forms were missing); normal roster ids live in `Constants.RosterPlayer` so the roster's original-form guard is unchanged.
+
+New suites: `tests/paid_attacks_test.lua`, `tests/feedback_test.lua`; Claude, tainted Claude, GPT reset, Swarm, derived-billing, usage-save, smoke and EID suites updated. Engine cases are in TESTING.md ("Every-weapon billing and ability feedback"). Still open: the owner decisions listed under "Status at a glance".
+
 ## Authorized Risk and backlog integration (2026-10-24)
 
 The owner explicitly authorized merging PR #55 and PR #56 while keeping work offline. This source integration includes both fixes and retains their separate evidence below. The earlier PR #50-54 integration remains a historical checkpoint. No game launch, runtime replacement or Workshop release is authorized by this merge; installed source remains the previously verified `2ec15ef`.
@@ -104,7 +117,7 @@ There are **22 registered forms: 11 normal and 11 tainted**, **75 collectibles**
 
 | Family | Existing behavior | Replacement status |
 |---|---|---|
-| Claude | Normal One More Day: per-volley usage, Appeals, account age with Birthright shield, risk/story, pocket Ban Hammer; tainted Appeal Pending Quota, Pages, review and Banked Reset | Normal Appeals and tainted Appeal Pending implemented (billing: tears, laser starts and Dr. Fetus bombs; knives free) |
+| Claude | Normal One More Day: per-volley usage, Appeals, account age with Birthright shield, risk/story, pocket Ban Hammer; tainted Appeal Pending Quota, Pages, review and Banked Reset | Normal Appeals and tainted Appeal Pending implemented (every native weapon pays; Limited weakens every weapon; per-player account age) |
 | DeepSeek | Normal Rice First meal economy and Thought; tainted Wenfeng / Wengu Peak/Valley Compute forks | Rice, Thought adapters and Peak/Valley source implemented; tainted forks are tear-only |
 | GPT | Normal Same Name, Smaller Brain: Verified/Fallback Routing with a DROP Sanity Check; tainted Reset Watcher Credits with a banked Tibo reset | Normal and tainted source implemented (offline only) |
 | Gemini | Normal Nano Banana: Paint marks give owner +20% damage to one enemy; owner kills leave a slowing peel; tainted One More Edit: a DROP edit chain of three paid hits exports a 2x pulse | Normal and tainted source implemented (offline only) |
@@ -183,7 +196,7 @@ Local stubs do not emulate actual native entity lifetimes, damage writers, costu
 - A scalar CollisionDamage field cannot distinguish every other mod's relative multiplier from an engine base refresh. Current logic treats a changed value as a fresh base; writer order and same-numeric refresh need engine review. A derived continuous child updated before a fresh parent window can receive its new factor one update late.
 - Save/exit callback order and persistence of actual native entities are not reproduced by stubs. Verify every position in the six-update window and exit during knife flight; do not claim a permanent-factor fix solely from fixtures.
 - Meal input hooks do not remove emitted attacks or intercept all programmatic shots. Charged releases, analog/Marked aiming, familiars and other input mods need explicit behavior decisions and testing.
-- Claude shared account/risk state and shared account age remain older designs; per-player age migration needs the risk/co-op review. Claude usage and Quota bill laser starts and Dr. Fetus bombs with the frame's tear payment; knives, Epic Fetus rockets and continuous lasers after their first frame are free, and Limited does not weaken non-tear damage. Tainted DeepSeek forks only ordinary tears; Brimstone, Technology, knives, Dr. Fetus and Ludovico builds get no forks or cost yet, and the fork volley rule (every same-frame tear forks once per payment) needs balance review with multi-shot items. Co-op slot changes and character transformations may expose state ownership gaps. Do not reintroduce DeepSeek risk to make an obsolete test pass.
+- Claude's shared account/risk state remains the older design; account age is now per player. Claude usage, Quota and tainted GPT Credits bill every native weapon through paid_attacks.lua; its knife-flight, swing-hitbox, rocket-ownership and Ludovico-steering assumptions need engine review, as does a multi-shot volley created before the Limited cache refresh. Tainted DeepSeek forks only ordinary tears; Brimstone, Technology, knives, Dr. Fetus and Ludovico builds get no forks or cost yet, and the fork volley rule (every same-frame tear forks once per payment) needs balance review with multi-shot items. Co-op slot changes and character transformations may expose state ownership gaps. Do not reintroduce DeepSeek risk to make an obsolete test pass.
 - Hurt packing is source-corrected, but native costume/scale compatibility and visual quality remain unaccepted. Some alternate poses reuse simpler source poses.
 - Existing runtime_probe.lua contains historical/destructive disposable-run fixtures and is never an automatic test. Review its guards and assumptions for the chosen current character before explicit use.
 - Old README/history sections may describe earlier behavior; current authority is this handoff, MODEL_ROSTER.md and actual source. Historical commits include a few noisy web-entry commit titles; verified file trees were preserved rather than rewriting shared history.

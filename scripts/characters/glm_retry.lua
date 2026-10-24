@@ -3,6 +3,7 @@
 -- deterministic Retry stacks. Saved per player: Retry stacks only.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Feedback = include("scripts.characters.feedback")
 local Tools = include("scripts.characters.target_tools")
 local Retry = {}
 
@@ -129,6 +130,7 @@ function Retry:Init(mod, Risk)
                     if request.remaining <= 0 then
                         b.request = nil
                         target:TakeDamage(p.Damage * (REQUEST_DAMAGE + RETRY_DAMAGE * s.retries), 0, EntityRef(p), 0)
+                        Feedback.Burst(target.Position, Color(0.8, 0.5, 1, 1, 0.2, 0, 0.3))
                         s.retries = 0
                         Game():GetHUD():ShowItemText("GLM-chan", "Request complete")
                     end
@@ -140,6 +142,7 @@ function Retry:Init(mod, Risk)
                 -- No target means no request and no cooldown.
                 if target then
                     b.request = {ref=EntityPtr(target), remaining=REQUEST_FRAMES}
+                    Feedback.Mark(target, Color(1, 1, 1, 1, 0.3, 0.1, 0.35), REQUEST_FRAMES)
                     b.cooldown = COOLDOWN_FRAMES
                     Game():GetHUD():ShowItemText("GLM-chan", "Request queued")
                 end

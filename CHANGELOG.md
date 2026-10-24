@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased character trait completion (2026-10-24)
+
+- Bill every native weapon for Claude usage, tainted Claude Quota and tainted GPT Full Send: held beams and Ludovico per 0.2-second window, knife throws, melee swings and Epic Fetus rockets (`paid_attacks.lua`).
+- Claude Limited is a 0.4x damage-stat multiplier, so it weakens every weapon. Claude account age is per player, with a migration from the old shared value.
+- Eight tainted roster forms start with one key instead of one bomb, per the shared contract; the asset check enforces it.
+- Visual-only feedback for Mistral, Doubao, Kimi and GLM abilities (vanilla poofs and fading tints). EID character info for all 22 forms.
+- New offline suites for the paid-attack observer and feedback helper; engine acceptance pending.
+
 ## Authorized Risk and backlog integration (2026-10-24)
 
 The owner explicitly authorized merging PR #55 and PR #56 while keeping work offline. This source integration includes both fixes and retains their separate evidence below. The earlier PR #50-54 integration remains a historical checkpoint. No game launch, runtime replacement or Workshop release is authorized by this merge; installed source remains the previously verified `2ec15ef`.

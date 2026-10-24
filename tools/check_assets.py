@@ -41,6 +41,16 @@ for player in players:
         if attribute == 'skin':
             assert struct.unpack('>II', data[16:24]) == (512, 512), path
 
+# Shared contract: new normal forms start with one bomb, new tainted forms
+# with one key. The original Claude and DeepSeek pickups stay as they were.
+for player in players:
+    if player.attrib['name'] in ('Claude-chan', 'DeepSeek-chan'):
+        continue
+    tainted = 'bSkinParent' in player.attrib
+    expected = ('0', '1') if tainted else ('1', '0')
+    assert (player.attrib['bombs'], player.attrib['keys']) == expected, \
+        f"Starting pickups for {player.attrib['name']} (tainted={tainted})"
+
 for path in (root / 'content/gfx').glob('*.anm2'):
     animation = ET.parse(path).getroot()
     sheets = {}
