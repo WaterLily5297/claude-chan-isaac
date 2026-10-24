@@ -1,5 +1,9 @@
 # Claude handoff: consolidated development checkpoint
 
+## Fixed character look (2026-10-24)
+
+Source-only, offline. The owner asked that characters keep their own look when picking up items, while item effects apply normally. New `scripts/characters/costume_lock.lua` clears costume layers on all 22 mod forms (never vanilla characters) after any costume-adding change: collectible count, temporary effects, trinkets, player type, item/card/pill use, new room and game start/continue, with a three-frame settle and a 30-frame sweep. Leaving a mod form restores held item costumes. `ModelRoster:AllForms()` now lists every form for this lock and the Reactions adapter. This reverses the older "let the engine apply item costumes" contract; COSTUME_COMPATIBILITY.md, ART_SPEC.md, CHARACTER_GAMEPLAY.md and CLAUDE.md now describe the fixed look. Engine case: TESTING.md COSTUME-LOCK-01 (hidden wings/mantle layer and possible one-frame flash need review).
+
 ## Vanilla compatibility pass (2026-10-24)
 
 Source-only, offline; one small PR per fix, each with a regression that fails on the old code.

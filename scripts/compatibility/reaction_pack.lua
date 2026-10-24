@@ -1,16 +1,13 @@
 -- Reactions Port Pack otherwise gives unknown characters an Isaac face.
 -- Opt only our characters out of its fallback costumes. Keep sounds/music and
--- any explicitly supplied character support intact; never clear item costumes.
-local Constants = include("scripts.constants")
+-- any explicitly supplied character support intact. Item costumes are
+-- handled by scripts/characters/costume_lock.lua.
 local Compatibility = {}
 local ModelRoster = include("scripts.characters.model_roster")
 
 function Compatibility:Register(pack)
     if type(pack) ~= "table" or type(pack.CostumeSets) ~= "table" then return end
-    local ids={Constants.Player.CLAUDE_CHAN,Constants.Player.DEEPSEEK_CHAN,
-        Constants.Player.CLAUDE_CHAN_B,Constants.Player.DEEPSEEK_CHAN_B}
-    for _,def in ipairs(ModelRoster.definitions) do ids[#ids+1]=def.id end
-    for _,id in ipairs(ModelRoster.tainted) do ids[#ids+1]=id end
+    local ids=ModelRoster:AllForms()
     for _, set in pairs(pack.CostumeSets) do
         if type(set) == "table" and type(set.IDs) == "table" then
             for _, name in ipairs(set.IDs) do

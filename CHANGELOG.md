@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased fixed character look (2026-10-24)
+
+- All 22 forms keep their own sprite: item, trinket, pill, card and transformation costumes are cleared on mod forms, while every effect, stat, flight and size change still applies (`costume_lock.lua`). Vanilla characters are untouched; leaving a mod form restores held item costumes. Engine acceptance pending.
+
 ## Unreleased owner-delegated trait decisions (2026-10-24)
 
 - Tainted DeepSeek: every non-tear native attack pays the phase's Compute price for a 1.3x off-peak boost on that attack; Saving or low Compute keeps native damage.

@@ -1,5 +1,9 @@
 # In-game test checklist
 
+## COSTUME-LOCK-01: fixed character look (offline passed; engine pending)
+
+For several mod forms (one normal, one tainted, one roster form) and vanilla Isaac as a control: pick up Sad Onion, Brimstone, Mom's Contacts, The Virus, then complete Guppy. Use The Bible (flight), Book of Belial and a Puberty/size pill. Expect the mod skin unchanged after every step while tears, damage, flight and size change as usual; Isaac shows costumes. Enter a new room, save/exit and continue: the look stays fixed. Use Clicker to become Isaac: held item costumes return. Note any one-frame costume flash and whether the Holy Mantle shield or wings are missing. Two-player co-op: only mod forms are affected.
+
 ## Authorized Risk and backlog integration (2026-10-24)
 
 The owner explicitly authorized merging PR #55 and PR #56 while keeping work offline. This source integration includes both fixes and retains their separate evidence below. The earlier PR #50-54 integration remains a historical checkpoint. No game launch, runtime replacement or Workshop release is authorized by this merge; installed source remains the previously verified `2ec15ef`.

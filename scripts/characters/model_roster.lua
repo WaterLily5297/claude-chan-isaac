@@ -38,6 +38,15 @@ for _, name in ipairs(TAINTED) do
     if id >= 0 then Roster.tainted[#Roster.tainted + 1] = id end
 end
 
+-- Every registered mod form: Claude, DeepSeek and the roster, normal and tainted.
+function Roster:AllForms()
+    local ids = {C.Player.CLAUDE_CHAN, C.Player.DEEPSEEK_CHAN,
+        C.Player.CLAUDE_CHAN_B, C.Player.DEEPSEEK_CHAN_B}
+    for _, def in ipairs(self.definitions) do ids[#ids + 1] = def.id end
+    for _, id in ipairs(self.tainted) do ids[#ids + 1] = id end
+    return ids
+end
+
 function Roster:IsFamily(player)
     if self:Find(player) then return true end
     local id = player:GetPlayerType()
