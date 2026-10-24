@@ -1,5 +1,10 @@
 # Changelog
 
+## Consensus Coin familiar sources (2026-10-24)
+
+- Recognize familiar-fired projectiles as familiar damage for Consensus Coin, including direct spawner and parent ownership links. Familiar contact and different familiar weapons share one source category.
+- Keep familiar attacks separate from player attack leases and primed bonuses. The mixed-source window, pulse damage and once-per-target limit are unchanged. Native familiar attribution remains pending engine verification.
+
 ## Stored battery charge detection (2026-10-24)
 
 - Count primary plus stored battery charge when observing an owned room-charged active use. Spending only The Battery's second bar now triggers Base Model and Access Pass and resets Please Come Back progress.

@@ -1,5 +1,7 @@
 # Claude-chan: Risk Control
 
+**Compatibility note (2026-10-24):** Consensus Coin recognizes owned familiar projectiles as familiar damage. Combine them with another eligible source from the same player for its mixed-source pulse; familiar weapons alone remain one category and do not consume your primed attack bonuses. Native familiar attribution still needs engine verification.
+
 **Compatibility note (2026-10-24):** Spending The Battery's stored second charge now counts for Base Model, Please Come Back and Access Pass. Charge rewards and item costs are unchanged. This correction is covered by offline tests; native timing and special health-charge pools still need engine verification.
 
 **Compatibility note (2026-10-24):** The Constitution keeps its one-time soul heart and once-per-floor hit block separately for each player. Existing shared-save consumption is preserved for players present on migration to avoid duplicate rewards. Stats and excluded damage are unchanged. Offline checks passed; co-op health and save/continue still need engine verification.
@@ -251,7 +253,7 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 | **You're Absolutely Right!**（おっしゃる通りです！） | P、天使部屋 | 自分にダメージを与えた敵を5秒間魅了する。ダメージは受ける。 |
 | **9.9 Yuan Relay**（9.9元の中継） | P、悪魔部屋 | ダメージ×1.5。ただし部屋ごとに30%の確率でこっそりモデルが差し替えられ、×0.5になる。取得時にリスク+15。 |
 | **Ultrathink** | A（5秒の時間チャージ）、宝箱部屋 | 同じ部屋で使うたびに深く考え、ダメージ+1／+2／+3.1999（think／megathink／ultrathink）。15%の確率で「0秒考えた」だけで何も起きない。部屋を出るとリセット。 |
-| **1M Context**（1Mコンテキスト） | P、宝箱部屋 | 射程+5。ただしコンテキスト劣化で、涙は長く飛ぶほどダメージが下がる（最低30%、ルドヴィコの涙は対象外）。 |
+| **1M Context**（1Mコンテキスト） | P、宝箱部屋 | 射程+5。ただしコンテキスト劣化で、涙は長く飛ぶほどダメージが下がる（最低30%）。 |
 | **Silent Update**（サイレントアップデート） | P、宝箱部屋 | フロアごとにダメージがこっそり×0.8〜×1.3に変わる。更新履歴はいつも「変更なし」。 |
 | **--dangerously-skip-permissions** | P、悪魔部屋 | 鍵付きの扉と宝箱が勝手に開く。部屋ごとに10%の確率で `rm -rf` が走り、部屋のピックアップがすべて消える（台座は無事）。 |
 | **All Tests Passing**（テスト全件パス） | A6、宝箱部屋 | 報酬ハッキング：部屋がクリア扱いになり扉がすべて開くが、敵はまだいる。 |
