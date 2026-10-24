@@ -21,7 +21,7 @@ package.preload.json=function() return {
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
 CacheFlag={CACHE_DAMAGE=1}; ActiveSlot={SLOT_POCKET=2}
 CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}; ButtonAction={ACTION_DROP=11}
-local down, clear, room, floor = false, true, 1, 1
+local down, clear, room, floor, paused = false, true, 1, 1, false
 Input={IsActionPressed=function() return down end}
 EntityType={ENTITY_PROJECTILE=9}; EntityFlag={FLAG_FRIENDLY=1}
 function Color(...) return {...} end
@@ -31,7 +31,7 @@ local nextPointer=0
 local function player(kind)
     nextPointer=nextPointer+1
     local p={kind=kind or 41,pointer=nextPointer,data={},InitSeed=nextPointer,ControllerIndex=0}
-    function p:IsDead() return false end
+    function p:IsDead() return self.dead or false end
     function p:AreControlsEnabled() return true end
     function p:HasCollectible(id) return id==619 and self.birthright end
     function p:GetShootingInput() return {LengthSquared=function() return self.shooting and 1 or 0 end} end
@@ -44,7 +44,7 @@ end
 Isaac={GetPlayer=function(i) return players[i+1] end,
     GetRoomEntities=function() return {} end, GetScreenHeight=function() return 270 end}
 function Game() return {GetNumPlayers=function() return #players end,
-    GetFrameCount=function() return frame end, IsPaused=function() return false end,
+    GetFrameCount=function() return frame end, IsPaused=function() return paused end,
     GetRoom=function() return {IsClear=function() return clear end} end,
     GetLevel=function() return {GetDungeonPlacementSeed=function() return floor end,
         GetStage=function() return 1 end, GetStageType=function() return 0 end,
@@ -113,7 +113,7 @@ assert(players[2].data.ccUsage.value==74)
 
 for _=1,7 do shot(players[2]) end
 assert(players[2].data.ccUsage.limited==150)
-for _=1,149 do fire("MC_POST_PEFFECT_UPDATE",wrap(players[2])) end
+for _=1,149 do frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",wrap(players[2])) end
 assert(players[2].data.ccUsage.limited==1)
 fire("MC_PRE_GAME_EXIT",true); players={player(),player()}; module(); fire("MC_POST_GAME_STARTED",true)
 assert(shot(players[2]).CollisionDamage==4)
@@ -140,4 +140,65 @@ assert(players[1].data.ccUsage.value==before,"inactive callbacks must not mutate
 -- Old saves have no usage record; initialize safely without inventing a penalty.
 saved={risk=0}; players={player()}; module();fire("MC_POST_GAME_STARTED",true)
 assert(shot(players[1]).CollisionDamage==10 and players[1].data.ccUsage.value==4)
+
+-- Timer progress belongs to gameplay frames, not callback invocation count.
+players={player(),player()}; module(); fire("MC_POST_GAME_STARTED",false)
+local p,q=players[1],players[2]
+local a,b=p.data.ccUsage,q.data.ccUsage
+a.value=100; a.limited=150; b.value=100; b.limited=90
+frame=frame+1
+fire("MC_POST_PEFFECT_UPDATE",p); fire("MC_POST_PEFFECT_UPDATE",wrap(p))
+fire("MC_POST_PEFFECT_UPDATE",q); fire("MC_POST_PEFFECT_UPDATE",wrap(q))
+assert(a.limited==149 and b.limited==89,"duplicate wrappers must not shorten either player's timer")
+paused=true; frame=frame+1
+fire("MC_POST_PEFFECT_UPDATE",p); fire("MC_POST_PEFFECT_UPDATE",q)
+assert(a.limited==149 and b.limited==89,"paused callbacks must freeze timers")
+paused=false; p.dead=true; frame=frame+1
+fire("MC_POST_PEFFECT_UPDATE",p); fire("MC_POST_PEFFECT_UPDATE",q)
+assert(a.limited==149 and b.limited==88,"a dead player's timer freezes without blocking the partner")
+p.dead=false; frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",wrap(p))
+assert(a.limited==148,"revival resumes one frame without catching up skipped time")
+for _=1,147 do
+    frame=frame+1
+    fire("MC_POST_PEFFECT_UPDATE",p); fire("MC_POST_PEFFECT_UPDATE",wrap(p))
+end
+assert(a.limited==1 and a.value==100,"duplicate callbacks must not expire the five-second limit early")
+frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",p)
+assert(a.limited==0 and a.value==0,"the final active frame expires and clears usage once")
+
+-- Drain has the same once-per-frame, pause and death contract.
+a.value=10; b.value=20; b.limited=0
+frame=frame+3-frame%3
+fire("MC_POST_PEFFECT_UPDATE",p); fire("MC_POST_PEFFECT_UPDATE",wrap(p))
+fire("MC_POST_PEFFECT_UPDATE",q); fire("MC_POST_PEFFECT_UPDATE",wrap(q))
+assert(a.value==9 and b.value==19,"a drain frame subtracts one per player")
+paused=true; frame=frame+3; fire("MC_POST_PEFFECT_UPDATE",p)
+assert(a.value==9,"pause must not drain usage")
+paused=false; p.dead=true; frame=frame+3; fire("MC_POST_PEFFECT_UPDATE",p)
+assert(a.value==9,"death must not drain usage")
+p.dead=false; p.shooting=true; frame=frame+3; fire("MC_POST_PEFFECT_UPDATE",p)
+assert(a.value==9,"held fire still blocks drainage")
+
+-- A new run may reuse the same pointer and frame; no stale timer guard survives.
+fire("MC_PRE_GAME_EXIT",false); fire("MC_POST_GAME_STARTED",false)
+a=p.data.ccUsage; a.value=100; a.limited=150
+fire("MC_POST_PEFFECT_UPDATE",p)
+assert(a.limited==149,"fresh-run lifecycle clears the transient frame guard")
+fire("MC_PRE_GAME_EXIT",true); fire("MC_POST_GAME_STARTED",true)
+a=p.data.ccUsage
+fire("MC_POST_PEFFECT_UPDATE",wrap(p))
+assert(a.limited==148,"continue at the same frame clears transient guards without erasing debt")
+for _, interruption in ipairs({"pause", "death"}) do
+    a.limited=0; a.value=60; a.appeals=1
+    down=false; frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",p)
+    down=true; frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",p)
+    paused=interruption=="pause"; p.dead=interruption=="death"
+    fire("MC_POST_PEFFECT_UPDATE",wrap(p)) -- Interrupt even after this frame was already processed.
+    paused=false; p.dead=false
+    down=false; frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",p)
+    assert(a.appeals==1 and a.value==60,"interrupted DROP release must not consume an Appeal")
+    down=true; frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",p)
+    down=false; frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",p)
+    assert(a.appeals==0 and a.value==20,"a fresh DROP gesture after recovery still works")
+end
 print("OK: Claude usage save/continue, detached entities, wrapper identity, co-op and item aliases")
