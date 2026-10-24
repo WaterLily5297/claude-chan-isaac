@@ -122,7 +122,12 @@ local function load()
         if continued then Risk:Load(mod) else Risk.state={} end
     end)
     mod:AddCallback("MC_PRE_GAME_EXIT",function(_,save) if save then Risk:Save(mod) end end)
-    include("scripts.characters.llama_hype"):Init(mod,Risk)
+    -- This lifecycle suite stubs the injected service; the real callback and
+    -- billing contract is exercised by llama_helper_billing_test.lua.
+    local backlog={FireDerived=function(p,velocity,mult,position)
+        return p:FireTear(position,velocity,false,true,false,p,mult)
+    end}
+    include("scripts.characters.llama_hype"):Init(mod,Risk,backlog)
 end
 local function tick(n)
     for _=1,n or 1 do frame=frame+1; fire("MC_POST_UPDATE") end
