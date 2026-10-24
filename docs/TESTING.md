@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## PAID-OBSERVERS-01: independent weapon consumers (offline passed; engine pending)
+
+`tests/paid_observers_test.lua` registers real Opus Mode first, as main.lua does, followed by multiple real paid-attack observers (both repeated registrations on one module and fresh includes). Main `f7d7873` fails knives, melee hitboxes and target-linked Epic Fetus rockets: later observers receive nothing. With subscriber-local transient keys, each receives one event per attack; repeated callbacks do not duplicate it, a returned knife can pay again, and a second owner and familiar weapons remain isolated. Ten attacks cost one Opus coin only when held. This exercises the service and real Opus, not every character's resource implementation or native entity lifetime.
+
+In the engine, test normal Claude usage, tainted Claude Quota, tainted GPT Full Send Credits and tainted DeepSeek Compute with Mom's Knife, Spirit Sword and Epic Fetus, first without Opus, then with Opus. Each attack must update the character meter and, separately, Opus's ten-attack coin counter. Repeat throws on the same knife, multi-shot builds, pause, room changes, co-op, familiar weapons and save/continue. Confirm actual damage and tainted DeepSeek's boost separately. Held-beam/Ludovico windows retain their existing dedicated regression and still need native acceptance.
+
 ## VANILLA-COMPAT-01: vanilla item interactions (offline passed; engine pending)
 
 Source fixes #63-#72 each have an offline regression; none has run in the engine. Check with a muted game:
