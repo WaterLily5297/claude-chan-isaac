@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## DERIVED-01: helper resource billing (offline candidate)
+
+The owner currently requests offline work only. The game remains closed and this candidate is not installed. `tests/derived_billing_test.lua` loads the real backlog, One More Finger, Please Retry, normal/tainted Claude and normal/tainted DeepSeek together. Synchronous FireTear dispatch is modeled; this is not an engine observation. On main, one helper per form changes usage/Quota/Thought/Compute from `0/220/150/12` to `4/219/0/10`. The candidate preserves those resources, keeps primes available and bills the next primary shot. Actual three-retry and fifth-shot helper schedules are covered. An active Limited penalty still weakens helper tears; a helper cannot start a new Limited interval.
+
+Pending engine retest after availability and a fresh verified backup: use both items on each of these four forms, compare helper and primary-shot resource deltas, inspect the native helper damage and flags, repeat with Swarm and 1M Context, test empty Thought/Quota/Compute and active Limited, then room exit and save/continue. Confirm no helper-induced fork/resource chain or new Lua error. Other target-ability hit attribution, Llama's helper and other Lua-fired attacks are outside this regression's acceptance scope.
+
 ## Targeted ability familiar attribution (offline passed; two controlled engine cases passed)
 
 On PR #50 candidate `aae85fd`, Repentance+ v1.9.7.17 passed a normal GPT blue-fly contact-kill negative control and an own native-tear kill positive control. The HUD showed an active Sanity Check before the familiar kill; real damage callbacks reported familiar source type 3 and tear source type 2. Fallback stayed at 2.800 after the familiar kill, then Verified returned at 4.025 after the native tear. The fixture used frozen spawned enemies, scripted placement/room clears and temporary synthetic DROP input. Physical keyboard/controller input, other familiar types and the wider matrix below remain pending. Details and unsuccessful fixture attempts are in [the engine audit](ENGINE_AUDIT_2026-10-24.md#controlled-gpt-engine-follow-up-pr-50).

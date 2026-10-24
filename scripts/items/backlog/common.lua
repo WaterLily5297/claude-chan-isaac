@@ -304,7 +304,12 @@ function Common:Init(mod, Risk)
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
-        if spawning then return end
+        if spawning then
+            -- FireTear dispatches before returning. Mark here, before the
+            -- character callbacks, so helper shots cannot spend their resources.
+            tear:GetData().ccThoughtDerived = true
+            return
+        end
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if player then attack(player, "tear", tear) end
     end)

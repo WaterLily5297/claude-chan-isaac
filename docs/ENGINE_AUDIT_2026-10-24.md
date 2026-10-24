@@ -1,5 +1,13 @@
 # Engine compatibility audit: 2026-10-24
 
+## DERIVED-01 offline follow-up
+
+The owner requested offline work while unavailable for game control. No game launch, runtime replacement or new engine acceptance occurred in this unit. The installed runtime remains main `2ec15ef`.
+
+The real backlog/character integration fixture reproduces unintended resource consumption from item helper tears: normal Claude usage +4, tainted Claude Quota -1, normal DeepSeek full Thought consumed, tainted DeepSeek Compute -2. The helper marker was missing during synchronous FireTear callback dispatch. Marking before the character callbacks and exempting normal Claude from new billing corrects the source regression. Existing Limited damage reduction remains active. Following ordinary shots, both item schedules and resource isolation across four player slots are checked offline. Two older Claude fixtures now provide the native GetData method.
+
+Focused game acceptance remains pending, including callback ordering with other mods, native damage, Swarm, Context and save/continue. This does not resolve the hurt-head report, fresh-menu coverage or the remaining weapon/costume matrix. See TESTING.md for reproducible steps.
+
 ## Scope and versions
 
 The owner resumed synchronization, local deployment and muted engine testing, then explicitly confirmed that local fixes may be tested before uploading to GitHub. Workshop publication remains unauthorized. New code, documentation and UI text remain English.
