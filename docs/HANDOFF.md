@@ -24,6 +24,12 @@ Never infer that an installed commit equals local HEAD. The local delivery inclu
 
 ## Current compatibility follow-up
 
+**Current owner constraint: offline work only.** No game launch or runtime replacement is authorized while the owner is unavailable. Installed source remains main `2ec15ef`.
+
+VIBE-01 corrects Vibe Coding's floor billing eligibility. Fake/no-penalty damage is ignored, and the observer runs at late callback priority so default-priority Sold Out bullet guards and Red Stamp contact blockers cancel the event before it marks a mistake. The real-module regression reproduces incorrect 40-to-30 coin charges on main, then checks the corrected waiver, ordinary damage, two-player isolation, clean-floor reset, late item acquisition and exit. The separate persistence regression still passes. Saved tables and the 25% bill are unchanged.
+
+This is an offline candidate, not an engine pass or a change to the risk-account mechanism. Native damage dispatch, health loss, other mods' priorities and save/continue still require the game. Independent pending PRs [#50](https://github.com/WaterLily5297/claude-chan-isaac/pull/50), [#51](https://github.com/WaterLily5297/claude-chan-isaac/pull/51), [#52](https://github.com/WaterLily5297/claude-chan-isaac/pull/52) and [#53](https://github.com/WaterLily5297/claude-chan-isaac/pull/53) cover attribution, hurt-frame evidence, timer guards and helper billing. None is included in this branch, and each needs specific merge approval. The oversized hurt-head report remains open.
+
 Normal Claude and both DeepSeek forms now compose identity and Limited tints with native tear colors instead of replacing them. The regression covers native RGB, alpha, additive offsets, item-removal cache resets and resolved Swarm inheritance. This does not fix the outstanding weapon billing, damage or costume geometry cases. Continue with the priorities in [ENGINE_AUDIT_2026-10-24.md](ENGINE_AUDIT_2026-10-24.md).
 
 ## Status at a glance (audited against main, 2026-10-24)

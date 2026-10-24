@@ -1,5 +1,13 @@
 # Engine compatibility audit: 2026-10-24
 
+## VIBE-01 offline follow-up
+
+The owner remains unavailable for game control and requests offline work. Installed runtime stays main `2ec15ef`; the game remains closed. There is no new engine observation.
+
+Source reproduction: Vibe Coding records fake/no-penalty hits as mistakes, and its default-priority observer runs before the backlog's subsequently registered hit blockers. In the real-module fixture this incorrectly charges 10 of 40 coins on the next floor despite Sold Out or Red Stamp cancelling the hit. Filtering the two flags and moving the observer to late priority corrects those cases. Ordinary damage, co-op ownership, floor reset, late item acquisition and exit remain covered; the bill amount and saved format are unchanged. Old main and separate removals of the flag filter and late priority fail the regression. Full offline gate: 46 suites, five XML files and deterministic asset checks, with 144 tracked Lua files.
+
+This candidate is directly based on main, independently of PRs #50-53. Engine callback order, actual health/coin observations, third-party later blockers and save/continue remain pending in TESTING.md. Earlier historical smoke and hurt-frame observations are not evidence for this change.
+
 ## Scope and versions
 
 The owner resumed synchronization, local deployment and muted engine testing, then explicitly confirmed that local fixes may be tested before uploading to GitHub. Workshop publication remains unauthorized. New code, documentation and UI text remain English.

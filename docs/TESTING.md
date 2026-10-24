@@ -1,5 +1,13 @@
 # In-game test checklist
 
+## VIBE-01: floor bill eligibility (offline candidate)
+
+The owner currently requests offline work only; no game session or deployment took place. `tests/vibe_damage_test.lua` loads real Vibe Coding before the real backlog, matching main.lua, and models stable callback priorities and early termination on a non-nil damage result. Fake/no-penalty hits, Sold Out bullet cancellation and Red Stamp contact cancellation leave two players at 40 coins after the floor transition; old main incorrectly charges 10 coins. Ordinary damage still charges the hit player's 25% bill once, a clean following floor waives it, and buying Vibe after a real hit does not erase that hit. Exit disables tracking. The existing Vibe persistence fixture remains separate from native save-file validation.
+
+The dispatch model follows [IsaacDocs' damage callback contract](https://wofsauge.github.io/IsaacDocs/rep/enums/ModCallbacks.html#mc_entity_take_dmg). It is not a post-health-loss event. A later external callback can still cancel damage, or an earlier callback returning true can suppress later observers; those environments are not accepted by this test.
+
+Pending engine cases: Vibe with 40 coins and no real damage; fake damage; no-penalty damage; Sold Out blocking one hostile bullet; Red Stamp blocking contact; one ordinary hit; two players with only one hit; save/exit/continue before changing floors. Observe health, guard consumption, HUD and exact coins at the next floor. Repeat representative cases on base Repentance and with the installed mod set. Other risk, trinket and character damage observers are outside this fix's acceptance scope.
+
 ## Native Thought adapters (source candidate; no engine acceptance)
 
 Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and weapon-specific engine matrix. The owner resumed muted engine testing on 2026-10-24; see [the engine audit](ENGINE_AUDIT_2026-10-24.md) for actual coverage. Ordinary tears, single-hit/released-ring lasers, repeated-hit beams, flying knives and Dr. Fetus now have source paths; Ludovico and repeated-hit beams use six-update windows. The earlier Rice checklist below describes the initial tear-only candidate. Epic Fetus, melee, delayed bursts and Incubus/Twisted Pair now have source adapters; their combat behavior still needs engine acceptance.
