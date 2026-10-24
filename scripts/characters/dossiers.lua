@@ -9,8 +9,8 @@ local originals={
      lines={"A limited weekly budget per floor.","Banked Reset restores the allowance."}},
     {id=C.Player.DEEPSEEK_CHAN,key="deepseek",name="DeepSeek-chan",title="Rice First",
      lines={"Tap/release DROP: spend one rice bowl.","Two-second meal: full Thought, +0.15 speed.","Earn a bowl every two combat clears."}},
-    {id=C.Player.DEEPSEEK_CHAN_B,key="deepseek_b",name="Tainted DeepSeek-chan",title="Open Source",
-     lines={"Fork every shot into a small fan.","Popularity brings server congestion."}},
+    {id=C.Player.DEEPSEEK_CHAN_B,key="deepseek_b",name="Tainted DeepSeek-chan",title="Wenfeng / Wengu",
+     lines={"Paid volleys add two half-damage forks.","Valley: cost 2, recovers when not firing.","Peak: cost 4. Tap/release DROP: Forks On/Saving."}},
 }
 function Dossiers:Init(mod)
     local ready=false

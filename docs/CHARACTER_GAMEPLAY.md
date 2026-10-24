@@ -1,6 +1,6 @@
 # Community-meme character gameplay
 
-Revision 2, 2026-10-23. This replaces the capability-based draft after the owner's correction: recognizable community jokes must lead the design. **Design targets, not accepted balance.** Normal DeepSeek now has an intermediate Rice First source implementation (meal economy, save state and initial native attack adapters); full weapon adapters and engine acceptance are pending. Other replacement designs remain unimplemented. Source currently registers thirteen forms; nine additional tainted forms remain unimplemented. See MODEL_ROSTER.md and the character modules for actual behavior.
+Revision 2, 2026-10-23. This replaces the capability-based draft after the owner's correction: recognizable community jokes must lead the design. **Design targets, not accepted balance.** Normal DeepSeek now has an intermediate Rice First source implementation (meal economy, save state and initial native attack adapters); full weapon adapters and engine acceptance are pending. Tainted DeepSeek Wenfeng / Wengu has a source implementation for ordinary tears. Other replacement designs remain unimplemented. Source currently registers thirteen forms; nine additional tainted forms remain unimplemented. See MODEL_ROSTER.md and the character modules for actual behavior.
 
 The owner explicitly selected Claude bans and anger at Dario, DeepSeek free rice and Liang Wenfeng / Liang Wengu, and GPT perceived downgrades and Tibo resets. Other families have researched candidates. [COMMUNITY_MEME_RESEARCH.md](COMMUNITY_MEME_RESEARCH.md) distinguishes direct posts, secondary accounts and blocked videos. None of these samples establishes majority opinion or verifies an allegation about a person.
 
@@ -47,6 +47,8 @@ Keep pocket Lunch Break's explicit charged heal/lockout as a separate active. Th
 Base damage 0.8x. Alternate twelve active-combat seconds of Valley and twelve of Peak, with visible timer. Start each floor in Valley. Empty rooms freeze the timer; continue preserves it. Start a new run with 12 Compute, cap 24. Valley recovers 3 Compute per second when not firing. Paid attacks add two native half-damage forks when affordable: cost 2 in Valley, 4 in Peak. Insufficient Compute suppresses only the extra forks.
 
 DROP toggles Forks On / Saving with a one-second cooldown. Saving keeps the primary attack and spends nothing. New floors preserve Compute while resetting phase. Forks cannot fork recursively; non-tear builds need an equivalent bounded damage budget before compatibility acceptance. Birthright raises the cap to 32. HUD: Compute, phase/timer, mode label. The decision is when computation is cheap, not whether a proxy is safe.
+
+Source status (scripts/characters/deepseek_peak.lua): implemented for ordinary tears. Valley recovery counts only in uncleared rooms, matching the frozen timer, so idling in an empty room cannot refill Compute. One payment covers a same-frame volley and every tear in it forks once. The toggle cooldown is transient. Non-tear weapons neither fork nor pay until a bounded equivalent exists. Engine acceptance pending.
 
 ## GPT — downgrade and Tibo reset
 

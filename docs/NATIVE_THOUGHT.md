@@ -32,7 +32,7 @@ No adapter changes player types, player sprites, tears' visual scale, tear flags
 
 ## Offline evidence and remaining engine matrix
 
-`tests/native_thought_test.lua` invokes the real Rice, shared food, raw fork and 1M Context modules. Against `e8639cb`'s Rice module its first laser assertion fails. The candidate passes native entity callback fixtures for shared volleys, six-update expiry, duplicate calls, pause, partial-window continue, positive-damage initialization, direct/co-op ownership, knife return/rethrow, ordinary-bomb exclusion, parent/child update order, immediate-exit cleanup, parent removal, modeled engine base refresh and Context decay. Full checks contain 60 Lua files, five XML files and fifteen stub suites.
+`tests/native_thought_test.lua` invokes the real Rice, shared food, raw fork and 1M Context modules. Against `e8639cb`'s Rice module its first laser assertion fails. The candidate passes native entity callback fixtures for shared volleys, six-update expiry, duplicate calls, pause, partial-window continue, positive-damage initialization, direct/co-op ownership, knife return/rethrow, ordinary-bomb exclusion, parent/child update order, immediate-exit cleanup, parent removal, modeled engine base refresh and Context decay. Full checks now contain 62 Lua files, five XML files and sixteen stub suites.
 
 When game testing resumes, record exact source/runtime versions and test these cases independently:
 
@@ -43,6 +43,6 @@ When game testing resumes, record exact source/runtime versions and test these c
 - Pause and save/continue in each of the six window positions. Confirm remaining time, unboosted serialization, no permanent factor and no lost/duplicated Rice reward. Test exit during a flying knife separately; entity persistence is not modeled by the stub.
 - Reactions Port Pack, native transformations/size/flight items and other mods that write projectile damage. Existing costume and hurt-pose acceptance remains open.
 
-Epic Fetus effects, melee/sword/bone attacks, delayed multi-frame bursts and familiar ownership still need adapters. They must not be marked supported by this change. Claude usage/quota and tainted DeepSeek computation still need their own migration; this module is not a claim that all forms now share complete native attack accounting.
+Epic Fetus effects, melee/sword/bone attacks, delayed multi-frame bursts and familiar ownership still need adapters. They must not be marked supported by this change. Claude usage/quota still needs its own migration, and tainted DeepSeek Compute currently forks ordinary tears only; this module is not a claim that all forms now share complete native attack accounting.
 
 API references: [initialization callback caveats](https://wofsauge.github.io/IsaacDocs/rep/enums/ModCallbacks.html#mc_post_laser_init), [laser fields](https://wofsauge.github.io/IsaacDocs/rep/EntityLaser.html), [knife flight](https://wofsauge.github.io/IsaacDocs/rep/EntityKnife.html#isflying), [fetus bomb fields](https://wofsauge.github.io/IsaacDocs/rep/EntityBomb.html), [Ludovico flag](https://wofsauge.github.io/IsaacDocs/rep/enums/TearFlags.html). These document API contracts, not this candidate's engine results.
