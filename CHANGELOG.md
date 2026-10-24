@@ -4,6 +4,7 @@
 
 - Fake/no-penalty damage and hits cancelled by default-priority shields no longer spoil Vibe Coding's floor bill waiver. Observe damage after ordinary blockers; preserve the existing 25% charge for eligible hits and per-player persistence.
 - Add real-module regressions with Sold Out and Red Stamp, ordinary hits, two-player isolation, floor reset and late acquisition. Offline only; no deployment or engine acceptance while the owner requests offline work.
+- Offline integration experiment: PR #50-54 source/test changes compose without code conflicts and pass 48 suites together. Record the four overlapping Markdown files for deliberate evidence-preserving resolution. This reporting follow-up does not merge or deploy any candidate.
 
 ## Unreleased handoff audit (2026-10-24)
 
