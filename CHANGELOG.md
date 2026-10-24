@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased roster story arcs (2026-10-24)
+
+- Add three short story captions for each of DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM (normal or tainted), on run start, stage 3 and stage 5. Seven seconds, non-blocking, once per run, co-op queued in player order, saved in `Risk.state.rosterStory` (version 1).
+- New offline suite `tests/story_roster_test.lua` (24 in total). English only; not tested in game.
+
 ## Unreleased tainted Claude Appeal Pending (2026-10-24)
 
 - Tainted Claude becomes Appeal Pending: 220 Quota and two Appeal Pages per floor; each paid tear volley costs 1 Quota (2 with Subagent Swarm) at 1.25x damage; at zero she is Suspended at 0.5x. A DROP tap while Suspended spends a Page on a six-second active-combat review that restores 60 Quota (Birthright 90); leaving the room cancels it. Three unique combat clears earn a Page.
