@@ -1,5 +1,61 @@
 # Changelog
 
+## Unreleased tainted GLM Please Retry (2026-10-24)
+
+- Register Tainted GLM-chan with the deeper-colour art. Please Retry: damage 0.9x; a DROP tap queues a two-second request on the nearest enemy within 200 units (three-second cooldown); a surviving target takes 2x plus 1x per Retry, consuming them, and an early death adds one Retry (cap 3); Birthright failures also remove one nearby enemy bullet. Offline only.
+
+## Unreleased tainted Kimi You Are the Manager (2026-10-24)
+
+- Register Tainted Kimi-chan with the deeper-colour art. You Are the Manager: damage 0.85x; a DROP tap assigns a task to the nearest unassigned enemy within 220 units, dealing three 0.6x pulses (Birthright 0.7x) two seconds apart; three tasks at once and nine pulses per room; exit cancels tasks without refunding the budget. Offline only.
+
+## Unreleased tainted Doubao I'll Do It Again (2026-10-24)
+
+- Register Tainted Doubao-chan with the deeper-colour art. I'll Do It Again: a DROP tap starts six seconds of Confident (1.35x damage), then four seconds of Apology (0.85x, Birthright three), then ready; timers run only in combat, and an enemy hit during Confident starts the Apology early. Offline only.
+
+## Unreleased tainted Mistral Le Gros Chaton (2026-10-24)
+
+- Register Tainted Mistral-chan with the deeper-colour art. Le Gros Chaton: speed -0.1, damage 0.9x; standing without firing for two seconds bakes a Baguette (cap 2, Birthright 1.5 seconds); a DROP tap sends a slow 120-unit shockwave dealing 2.5x once per enemy, stopped by walls, with a two-second cooldown. Offline only.
+
+## Unreleased tainted Llama Still Waiting (2026-10-24)
+
+- Register Tainted Llama-chan with the deeper-colour art. Still Waiting: damage 0.9x; unique combat clears add Hype (cap 3); a DROP tap spends all of it on a stationary helper that fires one 0.5x native tear per second at the nearest enemy for four seconds per Hype (Birthright five), removed on room exit. Offline only.
+
+## Unreleased tainted Qwen Final Final Fine-Tune (2026-10-24)
+
+- Register Tainted Qwen-chan with the deeper-colour art. Final Final Fine-Tune: in cleared rooms a DROP tap cycles Heavy (1.3x damage, 1.2x interval), Tiny (0.85x, 0.8x) and Balanced, locked in combat; unique clears with all three builds award +0.2 damage for the floor (Birthright +0.3), up to three. Offline only.
+
+## Unreleased tainted Grok Quote Without Reading (2026-10-24)
+
+- Register Tainted Grok-chan with the deeper-colour art. Quote Without Reading: base damage 0.9x; a DROP tap quotes the nearest enemy within 220 units for six seconds (ten-second cooldown); paid hits on other enemies build Ratio (cap three), which lands on the quote as 1x damage pulses at expiry. Birthright moves half the Ratio once if the quote dies. Offline only.
+
+## Unreleased tainted Gemini One More Edit (2026-10-24)
+
+- Register Tainted Gemini-chan with the deeper-colour art. One More Edit: base damage 0.9x; a DROP tap starts a six-second (Birthright ten) chain on the nearest enemy within 180 units; three distinct paid hits go Crop, Recolor, Export and add one 2x damage pulse, once per room. Saved per player. Offline only.
+
+## Unreleased normal GLM Number in Queue (2026-10-24)
+
+- Normal GLM replaces active-item tool links and the forced pocket Book of Secrets. Each unique combat clear advances the Queue (max three); at three, a DROP tap redeems an Access Pass giving +20% damage in each of the next two new hostile rooms (Birthright three). The Queue pauses while the pass is active; revisits never spend or stack it. Saved per player in `Risk.state.glmQueue`.
+- The roster module now keeps only identities, dossier lines and the tear tint.
+- 26 offline suites pass, including the new GLM Queue suite. No runtime or Workshop changes; engine validation pending.
+
+## Unreleased normal Kimi Another Slide Deck (2026-10-24)
+
+- Normal Kimi replaces flawless-clear pages. Each unique combat clear earns a Slide (cap six); a DROP tap spends three (Birthright two) to present to the three nearest enemies within 220 units, slowing them for four seconds and adding +15% to the owner's damage against them. No audience, no spend. Saved per player in `Risk.state.kimiSlides`.
+- 25 offline suites pass, including the new Kimi Slides suite. No runtime or Workshop changes; engine validation pending.
+
+## Unreleased normal Doubao Sorry, You're Right (2026-10-24)
+
+- Normal Doubao replaces the every-third-clear meal. The first enemy-caused hit in each hostile room grants a six-second Apology token (Birthright: until room exit); a DROP tap slows enemies within 100 units for two seconds and removes the four nearest enemy bullets. No health refund. Saved per player in `Risk.state.doubaoApology`.
+- 24 offline suites pass, including the new Doubao Apology suite. No runtime or Workshop changes; engine validation pending.
+
+## Unreleased tainted GPT Reset Watcher (2026-10-24)
+
+- Register Tainted GPT-chan with the deeper-colour tainted art. Reset Watcher: 80 Credits per run (Birthright 100); DROP toggles Standard and Full Send (1.5x, one Credit per same-frame paid attack); three unique combat clears bank one Tibo reset that the next tap claims to refill Credits. Saved per player across floors and continue. Kept out of the proxy account. English HUD, dossier and EID. Offline only.
+
+## Unreleased tainted roster art (2026-10-24)
+
+- Add deeper-colour tainted gameplay sheets, stage portraits, dossiers and menu cells for the nine newer families, derived deterministically from the normal art (including the new walk cycle) by `tools/make_roster_tainted_art.py`. Hashes are checked by the asset gate. The forms are not registered yet; each tainted mechanic PR registers its own.
+
 ## Unreleased roster review fixes (2026-10-24)
 
 - The nine model roster families leave the proxy IP / risk account. A roster-only or DeepSeek-and-roster run has no IP or risk. In co-op with Claude or a vanilla character, only those covered players raise risk when hit, spoil a clean room or take the suspension damage penalty; DeepSeek no longer takes that penalty in co-op either.

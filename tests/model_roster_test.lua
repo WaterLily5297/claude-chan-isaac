@@ -10,7 +10,7 @@ Isaac={GetItemIdByName=function() return -1 end, GetTrinketIdByName=function() r
 function Isaac.GetPlayerTypeByName(n,b)
     if n=="Claude-chan" then return b and 141 or 41 end
     if n=="DeepSeek-chan" then return b and 142 or 42 end
-    for i,name in ipairs(names) do if n==name then return 50+i end end
+    for i,name in ipairs(names) do if n==name then return b and 150+i or 50+i end end
     return -1
 end
 ModCallbacks=setmetatable({},{__index=function(_,k) return k end})
@@ -74,6 +74,7 @@ local function start(...)
     players={...}; room=101; floor=200; frame=0; trigger=false
     pressed={}; paused=false; hudVisible=true
     fire('MC_POST_GAME_STARTED',false)
+    for _,x in ipairs(players) do x:EvaluateItems() end
 end
 local function clear()
     room=room+1; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
@@ -94,8 +95,8 @@ local function tap(p)
     near(p.Damage,before) -- Pressing to begin a hold must not change mode.
     input(p,false)
 end
--- GPT, Gemini and Grok mechanics live in their own modules; the roster only tints them.
-for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan'}) do
+-- Every family keeps its mechanics in its own module; the roster only tints them.
+for _,name in ipairs(names) do
     local x=player(name); start(x)
     near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
     x.speed=1; for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',x) end
@@ -104,54 +105,11 @@ for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan'}) do
 end
 
 local p
-p=player('Qwen-chan'); local other=player('Qwen-chan'); start(p,other)
-for _=1,7 do clear() end
-near(p.Damage,13); near(other.Damage,13)
-fire('MC_ENTITY_TAKE_DMG',p,1,DamageFlag.DAMAGE_FAKE); near(p.Damage,13)
-hit(p); near(p.Damage,10); near(other.Damage,13)
-room=room+1; fire('MC_POST_NEW_ROOM'); hit(p); fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10)
-clear(); near(p.Damage,10.6)
-for _=1,5 do fire('MC_PRE_SPAWN_CLEAN_AWARD') end
-near(p.Damage,10.6)
--- A hit persists through a process-style continue, preventing a false flawless award.
-room=room+1; fire('MC_POST_NEW_ROOM'); hit(p); fire('MC_PRE_GAME_EXIT')
-p=player('Qwen-chan'); players={p}; callbacks={}; include('scripts.characters.model_roster'):Init(mod,risk)
-fire('MC_POST_NEW_ROOM'); fire('MC_POST_GAME_STARTED',true); fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10)
-
-p=player('Llama-chan'); other=player('Claude-chan'); start(p,other)
-clear(); assert(p.flies==0); clear(); assert(p.flies==2 and other.flies==2)
-fire('MC_PRE_SPAWN_CLEAN_AWARD'); assert(p.flies==2)
-near(p.Damage,9)
--- Reentering a previously awarded room cannot farm rewards.
-local old=room; clear(); room=old; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
-assert(p.flies==2)
-
-p=player('Mistral-chan'); start(p); near(p.MoveSpeed,1.15); near(p.ShotSpeed,1.25)
-p.speed=1; p.shoot=0
-for _=1,59 do fire('MC_POST_PEFFECT_UPDATE',p) end
-assert(p.TearFlags==0); fire('MC_POST_PEFFECT_UPDATE',p); assert(p.TearFlags==4)
-p.speed=0; fire('MC_POST_PEFFECT_UPDATE',p); assert(p.TearFlags==0)
-
-p=player('Doubao-chan'); start(p); clear(); clear(); assert(p.hearts==2)
-clear(); assert(p.hearts==4)
-for _=1,3 do clear() end
-assert(p.flies==2)
+-- The roster ignores hits, clears and active items; it keeps no state.
 p=player('Kimi-chan'); start(p)
-for _=1,10 do clear() end
-near(p.Damage,12.4); assert(p.TearRange==250)
-hit(p); near(p.Damage,11.6); assert(p.TearRange==200)
-fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true); near(p.Damage,11.6)
-
--- Deliberate self-damage (Blood Donation, IV Bag, sacrifice rooms) is not a mistake.
-p=player('Qwen-chan'); other=player('Kimi-chan'); start(p,other)
-for _=1,3 do clear() end
-near(p.Damage,11.8); near(other.Damage,11.2)
-fire('MC_ENTITY_TAKE_DMG',p,1,DamageFlag.DAMAGE_NO_PENALTIES)
-fire('MC_ENTITY_TAKE_DMG',other,1,DamageFlag.DAMAGE_NO_PENALTIES|32)
-near(p.Damage,11.8); near(other.Damage,11.2)
-clear(); near(p.Damage,12.4); near(other.Damage,11.6)
--- A hit from a player outside the player list must not crash.
-local stray=player('Qwen-chan'); fire('MC_ENTITY_TAKE_DMG',stray,1,0)
+for _=1,3 do clear() end; hit(p); fire('MC_USE_ITEM',1,nil,p,0); near(p.Damage,10); assert(p.TearRange==100)
+p=player('GLM-chan'); start(p); assert(p.pocket==0,'GLM starts without a forced pocket item')
+assert(risk.state.modelRoster==nil)
 
 -- Tears are tinted, so an item's own color and offsets survive.
 p=player('GPT-chan'); start(p)
@@ -160,49 +118,19 @@ p.itemColor=Color(0.5,0.5,1,0.8,0.2,0,0.3); p:EvaluateItems()
 near(p.TearColor.R,0.2); near(p.TearColor.G,0.5); near(p.TearColor.B,0.75)
 near(p.TearColor.A,0.8); near(p.TearColor.RO,0.2); near(p.TearColor.BO,0.3)
 
-p=player('GLM-chan'); start(p); assert(p.pocket==777)
-for i=1,4 do frame=i; fire('MC_USE_ITEM',1,nil,p,0) end
-near(p.Damage,13.6)
-clear(); near(p.Damage,10)
-frame=5; fire('MC_USE_ITEM',1,nil,p,32); near(p.Damage,10)
-fire('MC_USE_ITEM',1,nil,p,0); fire('MC_USE_ITEM',1,nil,p,0); near(p.Damage,11.2)
-p.pocket=123; fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true)
-assert(p.pocket==123); near(p.Damage,11.2)
-
 -- New IDs must not activate mechanics for either DeepSeek form or vanilla players.
 p=player('DeepSeek-chan'); start(p)
-assert(R:Find(p)==nil and next(risk.state.modelRoster)==nil)
+assert(R:Find(p)==nil)
 p.kind=142; assert(R:Find(p)==nil)
 p.kind=0; assert(R:Find(p)==nil)
 
--- Each update uses a new wrapper; cache and HUD must see the same charge.
-p=player('Mistral-chan'); other=player('Mistral-chan'); start(p,other)
-p.speed=1; p.shoot=0
-for _=1,59 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
-assert(p.TearFlags==0)
-fire('MC_POST_PEFFECT_UPDATE',wrap(p)); wrap(p):EvaluateItems()
-assert(p.TearFlags==4 and other.TearFlags==0)
-rendered={}; fire('MC_POST_RENDER'); assert(rendered[1]=='Mistral-chan: Tailwind')
-room=room+1; fire('MC_POST_NEW_ROOM'); assert(p.TearFlags==0)
-for _=1,60 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
-assert(p.TearFlags==4); start(p); assert(p.TearFlags==0)
-
-p=player('GLM-chan'); other=player('GLM-chan'); start(p,other); frame=7
-fire('MC_USE_ITEM',1,nil,wrap(p),0)
-fire('MC_USE_ITEM',1,nil,wrap(p),0)
-fire('MC_USE_ITEM',1,nil,wrap(p),UseFlag.USE_CARBATTERY)
-near(p.Damage,11.2); near(other.Damage,10)
-fire('MC_USE_ITEM',1,nil,wrap(other),0); near(other.Damage,11.2)
-frame=8; fire('MC_USE_ITEM',1,nil,wrap(p),0); near(p.Damage,12.4)
-
--- Reused pointers and an observed character change must not inherit charge.
-local function wind(x) x.speed=1; x.shoot=0; for _=1,60 do fire('MC_POST_PEFFECT_UPDATE',wrap(x)) end; x:EvaluateItems() end
-p=player('Mistral-chan'); start(p); wind(p); assert(p.TearFlags==4)
-other=player('Mistral-chan'); other.pointer=p.pointer; players={other}
-other:EvaluateItems(); assert(other.TearFlags==0)
-wind(other); assert(other.TearFlags==4)
-other.kind=Isaac.GetPlayerTypeByName('Kimi-chan',false); other:EvaluateItems()
-other.kind=Isaac.GetPlayerTypeByName('Mistral-chan',false); other:EvaluateItems()
-assert(other.TearFlags==0)
-assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
-print('OK: six roster mechanics, external GPT/Gemini/Grok tint, co-op isolation and duplicate effects')
+-- Tainted GPT runs its own module but is still a roster family.
+local tgpt=player('GPT-chan'); tgpt.kind=151
+assert(R:Find(tgpt)==nil and R:IsFamily(tgpt))
+tgpt.kind=141; assert(not R:IsFamily(tgpt))
+-- Every registered tainted form is a family; the list holds exactly the implemented ones.
+local TAINTED_COUNT=9
+assert(#R.tainted==TAINTED_COUNT)
+for i=1,TAINTED_COUNT do tgpt.kind=150+i; assert(R:Find(tgpt)==nil and R:IsFamily(tgpt)) end
+for id in pairs(callbacks) do assert(id=='MC_EVALUATE_CACHE', 'roster registers only the tint: '..id) end
+print('OK: roster identities, tint-only callbacks for all nine families and protected existing characters')

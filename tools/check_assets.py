@@ -62,7 +62,7 @@ normal_names = {p.get('name') for p in players if not p.get('bSkinParent')}
 menu_names = {a.get('Name') for a in ET.parse(root / 'content/gfx/characterportraits.anm2').findall('./Animations/Animation')}
 assert {e['name'] for e in roster} == normal_names == menu_names
 assert len({e['key'] for e in roster}) == len(roster)
-for entry in roster + [{'key': 'claude_b'}, {'key': 'deepseek_b'}]:
+for entry in roster + [{'key': e['key'] + '_b'} for e in roster]:
     key = entry['key']
     png = (root / f'resources/gfx/ui/dossiers/{key}.png').read_bytes()
     assert struct.unpack('>II', png[16:24]) == (384, 576), key
@@ -73,4 +73,7 @@ for entry in roster + [{'key': 'claude_b'}, {'key': 'deepseek_b'}]:
     frame = actor.find('./Animations/Animation/LayerAnimations/LayerAnimation/Frame')
     assert (int(frame.get('Width')), int(frame.get('Height'))) == (384, 576), key
     assert frame.get('XCrop') == '0' and frame.get('YCrop') == '0', key
+alt_names = {a.get('Name') for a in ET.parse(root / 'content/gfx/characterportraitsalt.anm2').findall('./Animations/Animation')}
+assert alt_names == normal_names, 'every family needs a tainted menu cell'
 print(f'  OK: {len(roster)} playable model families, selection names and full portrait dossiers')
+subprocess.run([sys.executable, str(root / 'tools/make_roster_tainted_art.py'), '--check'], check=True)

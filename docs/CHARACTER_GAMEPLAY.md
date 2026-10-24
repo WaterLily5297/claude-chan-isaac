@@ -68,6 +68,8 @@ Start a new run with 80 Credits, cap 80. DROP toggles Standard (1x damage, free)
 
 Floor changes and continue preserve credits, progress and banked reset. Real time does nothing. Spend an allowance before claiming the reset, or claim early for immediate pressure. Birthright raises the cap/refill to 100. HUD: Credits, Next Reset 0/3, `Tibo: Reset Ready`. No network requests.
 
+Source status (scripts/characters/gpt_reset.lua): implemented and registered with the deeper-colour tainted GPT art. A paid attack is a registered tear volley, a laser init or a Dr. Fetus bomb, one payment per frame; knives and continuous lasers past their first frame are free until a window adapter exists. Engine acceptance pending.
+
 ## Remaining eight families: researched candidates
 
 These roles are concrete proposals. Their source strength varies; do not present all as equally established community memes. All unspecified form multipliers are 1x. Room damage bonuses apply only to their owner. Birthright does not add an unrelated second system.
@@ -80,6 +82,8 @@ Source status (scripts/characters/gemini_paint.lua): normal form implemented and
 
 **Tainted:** Base damage 0.9x. DROP starts a six-second Edit chain on a target within 180 units. Three distinct paid hits advance Crop, Recolor, Export; the third adds one 2x damage pulse. One completed chain per room. DROP can erase progress and retarget. Early target death does not complete a partial chain; select again. Bosses need not die. Birthright extends the timer to ten seconds. HUD: edit step/timer. The banana name is documented; the endless-edit exaggeration is original parody.
 
+Source status (scripts/characters/gemini_edit.lua): implemented and registered with the deeper-colour tainted Gemini art. Steps count distinct paid attacks like GPT's Sanity Check, so one multi-tear volley or one 0.2-second beam window is one step. The pulse is a direct hit credited to the player. Engine acceptance pending.
+
 ### Grok — Is This True? / Quote Without Reading
 
 **Normal:** Once per hostile room, DROP challenges the nearest vulnerable target within 220 units for six seconds. Owner damage is 1.3x to it, 0.9x to others. Its defeat or three distinct paid hits verifies it, ends the modifiers and grants +0.15 speed for that room. Timeout gives nothing. Birthright: verification removes up to three nearby ordinary hostile bullets once. HUD: Check progress/timer.
@@ -88,41 +92,67 @@ Source status (scripts/characters/grok_check.lua): normal form implemented and r
 
 **Tainted:** Base damage 0.9x. DROP selects a target within 220 units for six seconds. Paid hits on other targets build Ratio, once per attack, cap three. At expiry the selected target receives one pulse of 1x player damage per stack; early death wastes the pulse. No retarget during the interval; ten-second cooldown from selection. Birthright transfers half the budget to one nearest surviving hostile if the original died. HUD: Ratio, pending timer. This contrasts focused verification with spreading a claim; Grok and the parody account Gork remain distinct.
 
+Source status (scripts/characters/grok_ratio.lua): implemented and registered with the deeper-colour tainted Grok art. Ratio counts distinct paid attacks (one volley or one 0.2-second beam window). Pulses are direct player hits. The Birthright transfer searches 220 units around where the quoted target died. Engine acceptance pending.
+
 ### Qwen — Everyone's Base Model / Final Final Fine-Tune
 
 **Normal:** Start with one Adapter, cap two; two unique clears earn one. DROP cycles the next adapter: Range (+60), Tempo (0.9x firing interval), Power (1.1x damage). Entering a new hostile room spends one adapter to apply that choice for the room. No adapter means normal stats. One active bonus, no stacking; preview next and current separately. Birthright: cap three. HUD: Adapters, selected/active labels.
 
+Source status (scripts/characters/qwen_adapter.lua): normal form implemented and replaces the flawless chain. A "new hostile room" is one not yet seen in combat this floor, so re-entering an unfinished fight does not spend twice. Engine acceptance pending.
+
 **Tainted:** DROP in a cleared room chooses Heavy (1.3x damage, 1.2x firing interval), Tiny (0.85x damage, 0.8x interval) or Balanced (1x). Choice locks in combat. Three unique clears using three different builds grant +0.2 damage for the floor, max three awards. Repeating a build does not advance the three-bit checklist; award resets it. New floor clears progress/bonus. Birthright: +0.3 per award. HUD: Build, Variants 0/3. The source is community enthusiasm for variants and derivatives, not an accusation that another product is stolen.
+
+Source status (scripts/characters/qwen_finetune.lua): implemented and registered with the deeper-colour tainted Qwen art. A clear counts the build active when the room's award fires. The award bonus is flat damage added before the build multiplier. Engine acceptance pending.
 
 ### Llama — Please Stay Open / Still Waiting
 
 **Normal:** Start with one Release, cap two; earn one every two unique clears. DROP spends one to grant two blue flies to each living player, max four recipients; solo gets four flies. Base damage 0.95x. Flies cannot generate release progress; duplicate Llamas own separate budgets. Birthright gives the owner two extra flies. HUD: Releases.
 
+Source status (scripts/characters/llama_release.lua): normal form implemented and replaces the automatic flies. Recipients are the first four living players in slot order. Engine acceptance pending.
+
 **Tainted:** Base damage 0.9x. Start with zero Hype, cap three; each unique clear adds one. DROP spends all hype to create one stationary helper for four seconds per stack. It fires one native 0.5x tear per second. Max one helper; replacement discards remaining duration. Room exit removes it. Birthright: five seconds per stack. HUD: Hype. The contrast is sharing a small release now versus saving anticipation for a longer release, without claims about Meta's future policy.
+
+Source status (scripts/characters/llama_hype.lua): implemented and registered with the deeper-colour tainted Llama art. The helper is a position, not an entity; its tears are native player tears fired with `FireTear` and a 0.5x damage multiplier, so tear effects follow the engine's rules. Engine acceptance pending, including how FireTear tears interact with weapon replacements.
 
 ### Mistral — Le Chat / Le Gros Chaton
 
 **Normal:** Speed +0.1. Moving and firing for two seconds charges one Pounce. DROP spends it on an 80-unit forward line swipe, 2x owner damage once per target; walls stop it, cooldown three seconds. No player teleport or contact immunity. Standing for one second loses an unused pounce. Birthright: 110-unit reach. HUD: Pounce Ready.
 
+Source status (scripts/characters/mistral_pounce.lua): normal form implemented and replaces tailwind. Forward is the aim direction, else movement, else down. The line is about 20 units wide plus the enemy's size; `Room:CheckLine` in projectile mode stops it at walls and rocks. The cooldown blocks charging. There is no swipe sprite yet, only the hit and a caption. Engine acceptance pending.
+
 **Tainted:** Speed -0.1, damage 0.9x. Stand without firing for two seconds to store one Baguette, cap two. DROP spends one on a slow forward shockwave, max travel 120 units, damage 2.5x once per target; walls stop it, cooldown two seconds. Birthright: 1.5-second charge. HUD: Baguettes. A particular satire thread supports the giant-kitten/baguette joke; the approved portrait stays intact. Put exaggeration in the bread effect, not an enlarged hurt head or collision box.
+
+Source status (scripts/characters/mistral_baguette.lua): implemented and registered with the deeper-colour tainted Mistral art. The shockwave is a moving point checked each frame, not an entity, and there is no bread sprite yet, only the hits and a caption. Engine acceptance pending.
 
 ### Doubao — Sorry, You're Right / I'll Do It Again
 
 **Normal:** First real enemy-caused hit in each hostile room grants one Apology token for six seconds, cap one. DROP spends it to slow enemies within 100 units for two seconds and remove up to four ordinary hostile bullets there. No health refund or cancellation of the original hit. Self-damage, fake damage and donation machines do not qualify. Birthright: token lasts until room exit. HUD: Apology Ready.
 
+Source status (scripts/characters/doubao_apology.lua): normal form implemented and replaces the meal. A hit qualifies when its source is a projectile or a non-friendly enemy, it is not fake or no-penalty damage, and the room is not clear. Only one hit per room counts, even if the first token expires unused. The four nearest projectiles within 100 units are removed. There is no visual pulse yet, only the slow tint and a caption. Engine acceptance pending.
+
 **Tainted:** DROP starts six seconds of Confident at 1.35x damage, followed by four seconds of Apology at 0.85x, then becomes ready. Timers advance only in hostile combat. Default damage is 1x when ready. An enemy hit during Confident ends it early and starts Apology; it never cancels the damage. Birthright: Apology lasts three seconds. HUD: phase/timer. This is a deliberate overpromise/recovery cycle, not a second rice character. Indexed titles support the apology motif; no exact unviewed audio quote is claimed.
+
+Source status (scripts/characters/doubao_again.lua): implemented and registered with the deeper-colour tainted Doubao art. The hit rule matches normal Doubao's qualifying-hit rule. The phase is saved so a continued run keeps its multiplier. Engine acceptance pending.
 
 ### Kimi — Another Slide Deck / You Are the Manager
 
 **Normal:** Each unique clear earns one Slide, cap six. DROP spends three to mark up to three nearest vulnerable enemies within 220 units for four seconds; slow them and increase owner damage by 15%. No targets means no spend. One presentation per owner; a new one replaces the old. Use a subtle outline, never an opaque screen-covering slide. Birthright: cost two. HUD: Slides.
 
+Source status (scripts/characters/kimi_slides.lua): normal form implemented and replaces flawless-clear pages. The +15% applies to the owner's damage against presented enemies only, re-dealt like Gemini's Paint. The outline is a light blue slow tint. The deck ends early once every presented enemy is gone. Engine acceptance pending.
+
 **Tainted:** Base damage 0.85x. Three task slots. DROP assigns an idle slot to the nearest unassigned target within 220 units. Each task deals three 0.6x pulses, two seconds apart. Max three concurrent tasks and nine scheduled pulses per room. Early death releases the slot but not its spent budget. Exit cancels tasks; re-entry does not reset budget. Birthright: pulses 0.7x. HUD: Tasks, room budget. Office-drudge videos are leads; swarm orchestration is documented, but this does not prove a dominant community joke.
+
+Source status (scripts/characters/kimi_manager.lua): implemented and registered with the deeper-colour tainted Kimi art. Pulses are direct owner-sourced damage, not tears. The budget is spent at assignment, so a target dying early does not refund it. There is no task marker sprite yet, only the HUD and hits. Engine acceptance pending.
 
 ### GLM — Number in Queue / Please Retry
 
 **Normal:** Each unique clear advances Queue, max three. At three, DROP redeems an Access Pass: +20% damage for the next two new hostile rooms. Queue pauses while the pass is active. It cannot stack or expire through cleared-room revisits. Birthright: three rooms. HUD: Queue or remaining Access rooms. No real purchases or real-time waiting.
 
+Source status (scripts/characters/glm_queue.lua): normal form implemented and replaces tool links and the pocket Book of Secrets. A new hostile room is the first combat in a room not yet entered in combat this floor; a pass redeemed mid-fight starts with the next one. Clears are paused while pass rooms remain or the current room is boosted. Engine acceptance pending.
+
 **Tainted:** Base damage 0.9x. DROP selects a hostile within 200 units and schedules a two-second request. If it survives in the room, deal 2x damage and consume all Retry stacks, adding 1x per stack (cap three; max 5x total). Early target death instead gives one Retry. One pending request; three-second cooldown from selection. Exit cancels without earning a stack. Birthright: a failed request also removes one nearby ordinary hostile bullet. HUD: Retries, Request Pending. Retries are bounded and deterministic, not a random missing-shot mechanic.
+
+Source status (scripts/characters/glm_retry.lua): implemented and registered with the deeper-colour tainted GLM art. Retries are deterministic and bounded. The request damage is direct owner-sourced damage. There is no request marker sprite yet, only the HUD and caption. Engine acceptance pending.
 
 ## Implementation order and evidence
 
