@@ -1,5 +1,7 @@
 # Claude-chan: Risk Control
 
+**Compatibility note (2026-10-24):** Knife throws, melee swings and Epic Fetus rockets notify character resource meters and Opus Mode independently. Each consumer handles an attack once; an unowned Opus Mode cannot suppress character billing. Costs are unchanged. Offline regression passed; engine verification is pending.
+
 『The Binding of Isaac: Repentance / Repentance+』向けのパロディキャラクターMODです。AIモデルを擬人化した11人の「〜ちゃん」が登場し、それぞれ通常版と裏（Tainted）版の2つの形態を持ちます。さらに、コミュニティのミームをもとにした新アイテムが91個追加されます。
 
 [English](README.md) · **日本語** · [中文](README.zh-CN.md)

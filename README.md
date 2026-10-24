@@ -1,5 +1,7 @@
 # Claude-chan: Risk Control
 
+**Compatibility note (2026-10-24):** Knife throws, melee swings and Epic Fetus rockets notify character resource meters and Opus Mode independently. Each consumer handles an attack once; an unowned Opus Mode cannot suppress character billing. Costs are unchanged. Offline regression passed; engine verification is pending.
+
 A parody character mod for **The Binding of Isaac: Repentance / Repentance+**, featuring eleven AI-model "-chan" characters, each with a normal and a tainted form, and 91 new items built from community memes.
 
 **English** · [日本語](README.ja.md) · [中文](README.zh-CN.md)

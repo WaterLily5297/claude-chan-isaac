@@ -1,5 +1,10 @@
 # Changelog
 
+## Paid-attack subscriber isolation (2026-10-24)
+
+- Give each paid-attack subscriber its own transient once-per-attack marker. Opus Mode no longer prevents later character consumers from observing knives, melee swings or Epic Fetus rockets, including when Opus is not owned.
+- Keep per-throw reset, duplicate suppression, familiar exclusions, native weapons and all costs unchanged. Real Opus plus multiple real shared-service registrations reproduce the old failure and pass the fix. Offline only; native combat and save/continue remain pending.
+
 ## Unreleased meme gameplay batch 1 (2026-10-24)
 
 - Add four meme collectibles, all built on native systems: Em Dash (native piercing, +0.16 shot speed per copy), Blueberry (every third tear gains the native quad split; counted separately from Strawberry), Benchmaxxed (+1.5 damage per copy in boss, mini-boss, challenge and Boss Rush rooms, x0.9 per copy elsewhere, re-evaluated each room) and I Panicked (A6, devil pool: lethal native damage to non-bosses, 15% max HP to bosses, deletes loose consumables; pedestals, trinkets, chests and shop items are safe).

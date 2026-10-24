@@ -6,9 +6,9 @@ This section is the current summary for the next agent (GPT/Codex or Claude). It
 
 ### Progress at a glance
 
-- **Main:** PR #65 (meme batch 1) on top of PR #75, plus this handoff. `bash tools/check.sh` passes: 169 tracked Lua files, 5 XML files, deterministic asset checks and 59 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
-- **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** The only engine evidence is the 22-form console smoke run, the tear-color fix and one tainted DeepSeek Continue (ENGINE_AUDIT_2026-10-24.md). Everything merged after PR #49, including meme batch 1, is offline-only.
-- **Installed runtime:** older than main (last verified install `2ec15ef`). Never assume the installed commit equals main.
+- **Source baseline:** main `f7d7873` includes PR #65 and PR #77. PAID-OBSERVERS-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 170 tracked Lua files, 5 XML files, deterministic asset checks and 60 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
+- **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
+- **Installed runtime:** last verified deployment `f211e1e` (406 tracked files), preceding this compatibility pass. No deployment occurred for PAID-OBSERVERS-01. Never assume the installed commit equals main.
 
 ### Implemented features (source)
 
@@ -59,6 +59,12 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 - **English** for in-game text, code, comments and Markdown; reply to the owner in their language (usually Japanese or Chinese).
 - **One small PR per change, based on main, no stacks.** Stacked PRs once got merged into intermediate branches and stranded work. Check the base is main before asking for a merge. The owner allows the agent to merge its own PR when the base is main, check.sh/CI pass, there is no blocking bug, the change is vanilla-compatible and it does not decide an open design question.
 - Update this section, the dated log below and the matching TESTING.md case in the same PR as each material change.
+
+## PAID-OBSERVERS-01: weapon subscriber isolation (2026-10-24)
+
+Source-only follow-up based directly on main `f7d7873`. Opus registers the shared paid-attack service before every character. A single entity data key meant Opus marked knives, swing hitboxes and rockets even when not owned, so later character consumers never saw those attacks. Each Observe registration now owns a separate transient table key, including repeated registrations through the same module instance. Native entities, costs, continuous-window rules and saved tables are unchanged.
+
+All three new regression modes fail on the old service and pass with the fix. The real Opus counter still charges one coin per ten attacks when held; every later subscriber receives one event, duplicate callbacks stay suppressed, and return/rethrow, two owners and familiars are covered. A module-shared-key mutant and a missing-return-reset mutant fail. Full gate: 60 suites and 170 tracked Lua files. This does not prove actual character meters, engine weapon lifetimes or damage. TESTING.md PAID-OBSERVERS-01 lists those pending cases. No game launch or runtime replacement occurred. The owner-requested handoff permits merging focused main-based compatibility fixes after checks; PR #76 remains a separate open design choice.
 
 ## Meme gameplay batch 1 (2026-10-24)
 
