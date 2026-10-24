@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased roster stack landing (2026-10-24)
+
+- Bring the full roster stack to main in one PR: nine normal loops (GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, GLM), nine tainted forms and the tainted roster art. The stacked PRs #24, #27 and #29-#45 had been merged into each other's branches instead of main.
+- Regenerate the nine tainted gameplay sheets from the walk-cycle sheets (#25), which the original derivation predated. Portraits and dossiers are unchanged. 40 offline suites pass; no engine validation.
+
 ## Unreleased tainted GLM Please Retry (2026-10-24)
 
 - Register Tainted GLM-chan with the deeper-colour art. Please Retry: damage 0.9x; a DROP tap queues a two-second request on the nearest enemy within 200 units (three-second cooldown); a surviving target takes 2x plus 1x per Retry, consuming them, and an early death adds one Retry (cap 3); Birthright failures also remove one nearby enemy bullet. Offline only.
