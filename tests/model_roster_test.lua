@@ -94,8 +94,8 @@ local function tap(p)
     near(p.Damage,before) -- Pressing to begin a hold must not change mode.
     input(p,false)
 end
--- GPT, Gemini, Grok, Qwen, Llama, Mistral and Doubao mechanics live in their own modules; the roster only tints them.
-for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan','Mistral-chan','Doubao-chan'}) do
+-- Eight families keep their mechanics in their own modules; the roster only tints them.
+for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan','Mistral-chan','Doubao-chan','Kimi-chan'}) do
     local x=player(name); start(x)
     near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
     x.speed=1; for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',x) end
@@ -103,44 +103,10 @@ for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-ch
     rendered={}; fire('MC_POST_RENDER'); assert(#rendered==0,name..' draws its own HUD line')
 end
 
-local p
-p=player('Kimi-chan'); local other=player('Kimi-chan'); start(p,other)
-for _=1,7 do clear() end
-near(p.Damage,12.4); near(other.Damage,12.4)
-fire('MC_ENTITY_TAKE_DMG',p,1,DamageFlag.DAMAGE_FAKE); near(p.Damage,12.4)
-hit(p); near(p.Damage,11.6); near(other.Damage,12.4)
-room=room+1; fire('MC_POST_NEW_ROOM'); hit(p); fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10.8)
-clear(); near(p.Damage,11.2)
-for _=1,5 do fire('MC_PRE_SPAWN_CLEAN_AWARD') end
-near(p.Damage,11.2)
--- A hit persists through a process-style continue, preventing a false flawless award.
-room=room+1; fire('MC_POST_NEW_ROOM'); hit(p); fire('MC_PRE_GAME_EXIT')
-p=player('Kimi-chan'); players={p}; callbacks={}; include('scripts.characters.model_roster'):Init(mod,risk)
-fire('MC_POST_NEW_ROOM'); fire('MC_POST_GAME_STARTED',true); fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10.4)
-
-p=player('Kimi-chan'); other=player('Claude-chan'); start(p,other)
-clear(); clear(); near(p.Damage,10.8)
-fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10.8)
--- Reentering a previously awarded room cannot farm rewards.
-local old=room; room=old-1; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
-near(p.Damage,10.8)
-room=old; clear(); near(p.Damage,11.2)
-
+local p, other
+-- External families ignore hits and clears in the roster; no stray state either.
 p=player('Kimi-chan'); start(p)
-for _=1,10 do clear() end
-near(p.Damage,12.4); assert(p.TearRange==250)
-hit(p); near(p.Damage,11.6); assert(p.TearRange==200)
-fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true); near(p.Damage,11.6)
-
--- Deliberate self-damage (Blood Donation, IV Bag, sacrifice rooms) is not a mistake.
-p=player('Kimi-chan'); other=player('Kimi-chan'); start(p,other)
-for _=1,3 do clear() end
-near(p.Damage,11.2); near(other.Damage,11.2)
-fire('MC_ENTITY_TAKE_DMG',p,1,DamageFlag.DAMAGE_NO_PENALTIES)
-fire('MC_ENTITY_TAKE_DMG',other,1,DamageFlag.DAMAGE_NO_PENALTIES|32)
-near(p.Damage,11.2); near(other.Damage,11.2)
-clear(); near(p.Damage,11.6); near(other.Damage,11.6)
--- A hit from a player outside the player list must not crash.
+for _=1,3 do clear() end; hit(p); near(p.Damage,10); assert(p.TearRange==100)
 local stray=player('Kimi-chan'); fire('MC_ENTITY_TAKE_DMG',stray,1,0)
 
 -- Tears are tinted, so an item's own color and offsets survive.
@@ -175,4 +141,4 @@ fire('MC_USE_ITEM',1,nil,wrap(other),0); near(other.Damage,11.2)
 frame=8; fire('MC_USE_ITEM',1,nil,wrap(p),0); near(p.Damage,12.4)
 
 assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
-print('OK: Kimi and GLM roster mechanics, external tint for the other seven, co-op isolation and duplicate effects')
+print('OK: GLM roster mechanics, external tint for the other eight, co-op isolation and duplicate effects')

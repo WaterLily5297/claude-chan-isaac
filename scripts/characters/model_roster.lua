@@ -5,7 +5,7 @@ local Roster = {}
 Roster.definitions = {
     -- External families keep only identity, dossier and tint here; mechanics live in
     -- gpt_downgrade.lua, gemini_paint.lua, grok_check.lua, qwen_adapter.lua,
-    -- llama_release.lua, mistral_pounce.lua and doubao_apology.lua.
+    -- llama_release.lua, mistral_pounce.lua, doubao_apology.lua and kimi_slides.lua.
     {key="gpt", name="GPT-chan", title="Same Name, Smaller Brain", color={0.4,1,0.75}, external=true,
      lines={"Verified: +15% damage. Clears add Routing.", "At 3 Routing, next combat: Fallback, -20%.", "Fallback: tap DROP, hit the Sanity Check 3x."}},
     {key="gemini", name="Gemini-chan", title="Nano Banana", color={0.7,0.6,1}, external=true,
@@ -20,8 +20,8 @@ Roster.definitions = {
      lines={"Move while firing for 2s: charge a Pounce.", "Tap/release DROP: forward swipe, 2x damage.", "Standing still for 1s loses the Pounce."}},
     {key="doubao", name="Doubao-chan", title="Sorry, You're Right", color={1,0.7,0.6}, external=true,
      lines={"The first enemy hit in a room: an Apology.", "Tap/release DROP within 6s: slow nearby", "enemies and clear up to four bullets."}},
-    {key="kimi", name="Kimi-chan", title="Long context", color={0.55,0.65,1},
-     lines={"Flawless combat clears store pages.", "Each page: +4% damage and range.", "Up to 6 pages; a hit erases 2."}},
+    {key="kimi", name="Kimi-chan", title="Another Slide Deck", color={0.55,0.65,1}, external=true,
+     lines={"Each combat clear earns a Slide (up to 6).", "Tap/release DROP: spend 3 to present to the", "3 nearest enemies: slowed, +15% your damage."}},
     {key="glm", name="GLM-chan", title="Tool orchestration", color={0.3,0.95,0.7},
      lines={"Using an active item builds a tool link.", "Each link: +12% damage, up to 3.", "Links expire on entering another room."}},
 }
@@ -53,7 +53,7 @@ function Roster:Init(mod, Risk)
         if type(all) ~= "table" then all = {}; Risk.state.modelRoster = all end
         local s = all[key]
         if type(s) ~= "table" or s.key ~= def.key then
-            s = {key=def.key, pages=0, links=0, awards={}}
+            s = {key=def.key, links=0}
             all[key] = s
         end
         return s
@@ -94,7 +94,7 @@ function Roster:Init(mod, Risk)
         ready = true
         each(function(p, def, s)
             local key = roomKey()
-            if s.room ~= key then s.room=key; s.hit=false; s.links=0 end
+            if s.room ~= key then s.room=key; s.links=0 end
 
             if not continued and def.key == "glm" then
                 p:SetPocketActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_SECRETS, ActiveSlot.SLOT_POCKET, false)
@@ -110,15 +110,10 @@ function Roster:Init(mod, Risk)
         each(function(p, def, s)
             local key=roomKey()
             if s.room ~= key then
-                s.room=key; s.hit=false; s.links=0
-
+                s.room=key; s.links=0
                 refresh(p)
             end
         end)
-    end)
-    mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
-        if not ready then return end
-        each(function(p, _, s) s.awards={}; refresh(p) end)
     end)
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, p, flag)
         local def=self:Find(p)
@@ -128,40 +123,14 @@ function Roster:Init(mod, Risk)
         local key=def.key
         if flag == CacheFlag.CACHE_DAMAGE then
             local mult=1
-            if key=="kimi" then mult=1+s.pages*0.04
-            elseif key=="glm" then mult=1+s.links*0.12 end
+            if key=="glm" then mult=1+s.links*0.12 end
             p.Damage=p.Damage*mult
-        elseif flag==CacheFlag.CACHE_RANGE and key=="kimi" then p.TearRange=p.TearRange+s.pages*25
         elseif flag==CacheFlag.CACHE_TEARCOLOR then
             -- Tint rather than replace, so item colors (Ipecac, Spoon Bender) stay readable.
             local c, k = p.TearColor, def.color
             if c then p.TearColor=Color(c.R*k[1],c.G*k[2],c.B*k[3],c.A,c.RO,c.GO,c.BO)
             else p.TearColor=Color(k[1],k[2],k[3],1,0,0,0) end
         end
-    end)
-    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_,entity,_,flags)
-        if not ready then return end
-        local p=entity:ToPlayer()
-        local def=p and self:Find(p)
-        if not def then return end
-        -- Fake hits and deliberate self-damage (Blood Donation, IV Bag, sacrifice
-        -- rooms) are not mistakes, matching vanilla no-hit bookkeeping.
-        if (flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES))~=0 then return end
-        local s=state(p,def)
-        if not s then return end
-        s.hit=true; s.pages=math.max(0,s.pages-2)
-        refresh(p)
-    end,EntityType.ENTITY_PLAYER)
-    mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
-        if not ready then return end
-        each(function(p,def,s)
-            local key=roomKey()
-            if p:IsDead() or s.awards[key] then return end
-            s.awards[key]=true
-            if def.key=="kimi" and not s.hit then s.pages=math.min(6,s.pages+1)
-            end
-            refresh(p)
-        end)
     end)
     mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_,_,_,p,flags)
         if not ready then return end
@@ -180,8 +149,7 @@ function Roster:Init(mod, Risk)
             if def.external then return end
             local i=tonumber(slot(p)) or 0
             local value="Hold MAP: dossier"
-            if def.key=="kimi" then value="Pages "..s.pages.."/6"
-            elseif def.key=="glm" then value="Tools "..s.links.."/3"
+            if def.key=="glm" then value="Tools "..s.links.."/3"
             end
             Isaac.RenderText(def.name..": "..value,50,Isaac.GetScreenHeight()-52-i*12,1,1,1,0.9)
         end)
