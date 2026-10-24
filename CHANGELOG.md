@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased backlog run cleanup (2026-10-24)
+
+- Clear module-local temporary backlog effects at exit and start/continue, independently of initial room callback order. Remove only owned preview decoys; preserve native familiars and persistent tables. Cleanup does not synthesize room-entry events or rewards.
+- Regress stale Kitten repulsion, preview decoys, banana peels, contact stamps, Community Note exposure, pending One Bowl pickups and Consensus source history. All 49 offline suites pass; native save/continue and entity lifetime still need engine validation. This main-based fix is independent of the Risk damage candidate.
+
 ## Authorized compatibility integration (2026-10-24)
 
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
