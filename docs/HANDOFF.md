@@ -18,6 +18,8 @@ All 75 collectibles, 12 trinkets and 4 pills already had English EID text; tests
 
 ## Integrated source and next work
 
+**Player documentation (2026-10-24):** README.md (English), README.ja.md (Japanese) and README.zh-CN.md (Simplified Chinese) document every implemented system, all 22 forms (stats, pocket items, abilities, Birthright) and all 75 collectibles, 12 trinkets and 4 pills, taken from source and EID text. Update all three whenever a mechanic, number or item changes. They describe source behavior, not engine acceptance.
+
 ### Historical candidate record: RISK-01
 
 Based directly on merged main `d91eee7`, the Risk damage observer now ignores fake/no-penalty events, runs after ordinary-priority blockers, and ignores callbacks outside an active run. Start/continue resets its transient room-hit latch. The real-module regression reproduces main's incorrect 50-to-51 risk increase for fake and shield-cancelled damage, and passes with the fix; removing each of the four guards independently fails. The full offline gate passes 49 suites and 147 tracked Lua files. Save schema, ordinary damage/clean-room amounts and Claude/vanilla coverage are unchanged; DeepSeek and all roster families remain outside Risk.
