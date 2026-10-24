@@ -27,6 +27,11 @@ Constants.Item = {
     SEAHORSE_EMOJI = Isaac.GetItemIdByName("Seahorse Emoji"),
     TEMPERATURE_DIAL = Isaac.GetItemIdByName("Temperature Dial"),
     DEEP_RESEARCH = Isaac.GetItemIdByName("Deep Research"),
+    -- Meme gameplay batch (2026-10-24).
+    EM_DASH = Isaac.GetItemIdByName("Em Dash"),
+    BLUEBERRY = Isaac.GetItemIdByName("Blueberry"),
+    BENCHMAXXED = Isaac.GetItemIdByName("Benchmaxxed"),
+    I_PANICKED = Isaac.GetItemIdByName("I Panicked"),
     -- Fifty-row backlog (docs/EXPANSION_DESIGN.md), rows 02-50.
     REJECTION_LETTER = Isaac.GetItemIdByName("Rejection Letter"),
     RED_STAMP = Isaac.GetItemIdByName("Dario's Red Stamp"),

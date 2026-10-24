@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased meme gameplay batch 1 (2026-10-24)
+
+- Add four meme collectibles, all built on native systems: Em Dash (native piercing, +0.16 shot speed per copy), Blueberry (every third tear gains the native quad split; counted separately from Strawberry), Benchmaxxed (+1.5 damage per copy in boss, mini-boss, challenge and Boss Rush rooms, x0.9 per copy elsewhere, re-evaluated each room) and I Panicked (A6, devil pool: lethal native damage to non-bosses, 15% max HP to bosses, deletes loose consumables; pedestals, trinkets, chests and shop items are safe).
+- Original 32x32 icons from tools/make_placeholders.py, EID text, pickup lines, docs/ITEMS.md and all three READMEs. New offline suite tests/meme_batch_test.lua; engine acceptance pending.
+
 ## Unreleased owner-delegated trait decisions (2026-10-24)
 
 - Tainted DeepSeek: every non-tear native attack pays the phase's Compute price for a 1.3x off-peak boost on that attack; Saving or low Compute keeps native damage.
