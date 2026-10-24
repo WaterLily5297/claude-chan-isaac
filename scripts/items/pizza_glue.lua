@@ -29,7 +29,10 @@ function Glue:Init(mod)
         local rng = player:GetCollectibleRNG(Constants.Item.PIZZA_GLUE)
         if rng:RandomFloat() >= Glue.Chance(player.Luck) then return end
         tear:AddTearFlags(TearFlags.TEAR_SLOW)
-        tear.Color = Color(1, 1, 0.85, 1, 0.25, 0.22, 0.12)
+        -- Glaze over the native color so Ipecac, Spoon Bender or a form tint stays readable.
+        local c = tear.Color
+        if c then tear.Color = Color(c.R, c.G, c.B * 0.85, c.A, c.RO + 0.25, c.GO + 0.22, c.BO + 0.12)
+        else tear.Color = Color(1, 1, 0.85, 1, 0.25, 0.22, 0.12) end
     end)
 end
 
