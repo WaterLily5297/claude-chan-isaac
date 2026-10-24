@@ -44,21 +44,24 @@ local function slot(player)
     end
 end
 
--- Owning player of an entity, including familiar-fired attacks.
-function Common.Owner(entity)
+local function directOwner(entity)
     if not entity then return nil end
     local player = entity:ToPlayer()
     if player then return player end
     local familiar = entity:ToFamiliar()
-    if familiar then return familiar.Player end
-    local spawner = entity.SpawnerEntity
-    if spawner then
-        player = spawner:ToPlayer()
-        if player then return player end
-        familiar = spawner:ToFamiliar()
-        if familiar then return familiar.Player end
-    end
-    return entity.Parent and entity.Parent:ToPlayer() or nil
+    if familiar then return familiar.Player, true end
+end
+
+-- Return the owner and whether the source belongs to a familiar. Only direct
+-- spawner/parent relationships count; do not guess through projectile ancestry.
+-- An unowned familiar must not fall through and borrow a different parent.
+function Common.Owner(entity)
+    if not entity then return nil end
+    local player, familiar = directOwner(entity)
+    if player or familiar then return player, familiar end
+    player, familiar = directOwner(entity.SpawnerEntity)
+    if player or familiar then return player, familiar end
+    return directOwner(entity.Parent)
 end
 
 function Common.Hostile(npc)
@@ -322,8 +325,8 @@ function Common:Init(mod, Risk)
         local data = knife:GetData()
         local flying = knife:IsFlying()
         if flying and not data.ccBacklogFlying then
-            local player, spawner = Common.Owner(knife), knife.SpawnerEntity
-            if player and not (spawner and spawner:ToFamiliar()) then attack(player, "knife", knife) end
+            local player, familiar = Common.Owner(knife)
+            if player and not familiar then attack(player, "knife", knife) end
         end
         data.ccBacklogFlying = flying
     end)
@@ -409,11 +412,11 @@ function Common:Init(mod, Risk)
         local npc = entity:ToNPC()
         if not npc or npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then return nil end
         local src = source and source.Entity
-        local owner = Common.Owner(src)
+        local owner, familiar = Common.Owner(src)
         if not owner then return nil end
         local lease = src and leases[GetPtrHash(src)]
         if lease and lease.expires < now() then leases[GetPtrHash(src)] = nil; lease = nil end
-        local kind = lease and lease.kind or (src:ToFamiliar() and "familiar") or (src:ToPlayer() and "contact") or "other"
+        local kind = lease and lease.kind or (familiar and "familiar") or (src:ToPlayer() and "contact") or "other"
         local mult = lease and lease.mult or 1
         for _, fn in ipairs(modifiers) do mult = mult * (fn(npc, owner, kind, lease) or 1) end
         emit("hit", npc, owner, kind, lease and lease.id ~= "derived" and lease.id or nil, amount * mult)

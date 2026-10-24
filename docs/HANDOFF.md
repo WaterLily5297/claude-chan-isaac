@@ -6,9 +6,9 @@ This section is the current summary for the next agent (GPT/Codex or Claude). It
 
 ### Progress at a glance
 
-- **Source baseline:** main `a476559` includes PR #78 (PAID-OBSERVERS-01) and PR #79 (CONSTITUTION-COOP-01). CHARGED-USE-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 171 tracked Lua files, 5 XML files, deterministic asset checks and 61 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
+- **Source baseline:** main `5bbe9e4` includes PR #78 (PAID-OBSERVERS-01), PR #79 (CONSTITUTION-COOP-01), PR #80 (CHARGED-USE-01) and the now-merged PR #76 Ludovico context-rot exemption. CONSENSUS-FAMILIAR-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 172 tracked Lua files, 5 XML files, deterministic asset checks and 62 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
 - **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
-- **Installed runtime:** last verified deployment `f211e1e` (406 tracked files), preceding this compatibility pass. No deployment occurred for PAID-OBSERVERS-01, CONSTITUTION-COOP-01 or CHARGED-USE-01. Never assume the installed commit equals main.
+- **Installed runtime:** the prior deployment recorded before this source checkpoint was `f211e1e` (406 tracked files). Deployment may occur after publication; consult the machine's separate deployment record and compare installed hashes. Never assume the installed commit equals main, and never treat installation as engine acceptance.
 
 ### Implemented features (source)
 
@@ -30,12 +30,12 @@ Fire-rate multipliers scale the whole shot interval (#63); co-op ghosts cannot u
 Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at about 12:00 UTC; see "Meme gameplay batch 1" below. Its engine checks are still pending.
 
 
-- **#76 "1M Context exempts Ludovico tears from context rot"** (branch `claude/project-thread-9p9170`). Small and offline-tested, but it is a design-ish call, so it was left for the owner. Do not stack on it.
+- **#76 "1M Context exempts Ludovico tears from context rot"** is merged into main `5bbe9e4`. Its code, EID, ordinary-tear control and README/testing notes are preserved in this checkpoint. Native Ludovico and ordinary-tear behavior still require engine verification.
 
 ### Unfinished tasks (priority order)
 
 1. **Engine acceptance**, under the owner's backup workflow (see "Remaining engine acceptance matrix" below). Run TESTING.md COSTUME-LOCK-01 and VANILLA-COMPAT-01 first, because they cover the newest unverified code, then the rest of TESTING.md, COSTUME_COMPATIBILITY.md and NATIVE_THOUGHT.md.
-2. **Land or close PR #76** once the owner has seen it.
+2. **Verify merged PR #76 in game:** Ludovico keeps its damage while ordinary tears still decay, including with DeepSeek Thought.
 3. **Unaudited vanilla-compat areas**: familiars, transformations, Tainted-specific vanilla items, and the absolute `MoveSpeed` write in the Tungsten Cube item.
 4. **More meme batches**, one small PR each. Unused ideas: "Let's Delve" (an active built on the native shovel), "Feel the AGI" / "AGI achieved internally", a "Six Seven" pill, the Distillation Bot and Timezone Ghost enemies, and the bosses in IDEAS.md. Each new item needs XML pickup text (ASCII only), EID text, an icon from `tools/make_placeholders.py`, a pool entry, the count asserts in `tests/eid_test.lua`, a regenerated ITEMS.md and all three READMEs.
 5. **Art**: distinct hand-designed tainted art for the nine roster families (optional; owner choice), redrawn side profiles, special poses and anything the engine shows to be wrong.
@@ -43,7 +43,8 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 
 ### Known issues
 
-- **Next offline fix:** Consensus Coin recognizes familiar contact but misclassifies familiar-fired projectiles as `other`, so the mixed-source pulse is missed. A bounded real-module fixture reproduces this on `a476559`; no fix or engine acceptance is included in CHARGED-USE-01. Keep the next change in a separate main-based PR.
+- **Opus helper billing:** a separate real-module audit reproduces extra Opus coin charges from FireDerived, Please Retry and One More Finger helper tears. Opus runs before backlog marks those tears, so a flag-only early guard is insufficient. This pre-existing billing issue is outside CONSENSUS-FAMILIAR-01; native callback timing remains pending. Fix in a separate focused PR after the owner's requested test checkpoint.
+- **Familiar acceptance:** CONSENSUS-FAMILIAR-01 corrects familiar projectile classification in source. Native Incubus, Twisted Pair, familiar beam/knife ancestry and cross-mod attribution still require engine verification.
 - **Documentation follow-up:** CONTRIBUTING.md still has the old collectible count and costume-preservation contract. NATIVE_THOUGHT.md contains obsolete free-knife/rocket and tear-only Compute statements; COSTUME_COMPATIBILITY.md still has some pre-lock visual acceptance criteria. Reconcile current guidance against the implemented fixed-look and paid-attack contracts without rewriting historical evidence.
 - **Everything after PR #49 is untested in game.** Treat every behavior claim as source-only until a TESTING.md case records engine evidence.
 - COSTUME-LOCK-01: does ClearCostumes also hide wings, Holy Mantle or other effect layers, and is there a one-frame costume flash on pickup?
@@ -61,6 +62,12 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 - **English** for in-game text, code, comments and Markdown; reply to the owner in their language (usually Japanese or Chinese).
 - **One small PR per change, based on main, no stacks.** Stacked PRs once got merged into intermediate branches and stranded work. Check the base is main before asking for a merge. The owner allows the agent to merge its own PR when the base is main, check.sh/CI pass, there is no blocking bug, the change is vanilla-compatible and it does not decide an open design question.
 - Update this section, the dated log below and the matching TESTING.md case in the same PR as each material change.
+
+## CONSENSUS-FAMILIAR-01: familiar projectile sources (2026-10-24)
+
+Source-only follow-up reproducing the issue on main `797a560` and incorporating newer main `5bbe9e4` before publication. Consensus Coin accepted familiar contact but rejected familiar-fired projectiles because the shared service labeled them `other`. Ownership resolution now retains familiar attribution for a direct familiar or a familiar linked through SpawnerEntity or Parent. Damage without a player attack lease uses the `familiar` category. Different familiar weapon types remain one category; they must combine with another eligible source from the same owner. Player and derived attack leases keep their existing category.
+
+Familiar knives do not create player attack leases, consume primed bonuses or emit paid-attack identifiers. The existing two-second window, once-per-target pulse, damage amount and room/run cleanup are unchanged. Six real-module regression groups in `tests/consensus_familiar_test.lua` cover familiar contact/projectiles, both link paths, owner isolation, unknown sources, repeat hits and prime retention. The old source and five injected faults fail. These inputs do not establish native source attribution. TESTING.md CONSENSUS-FAMILIAR-01 lists pending engine cases. No game launch, runtime replacement or Workshop release.
 
 ## CHARGED-USE-01: stored battery charge (2026-10-24)
 
