@@ -45,6 +45,16 @@ A temporary synthetic Gemini Hit-frame preview was attempted, but an overlapping
 
 ## Next compatibility work
 
+### TIMER-01: normal Claude callback-clock hardening (offline only)
+
+Source review of main `2ec15ef` found that normal Claude's `MC_POST_PEFFECT_UPDATE` advanced the Limited countdown and idle usage drain on every callback invocation, without per-frame, pause or death guards. A new regression invoking the real module twice through wrappers for the same player/frame failed because both invocations decremented the timer. The previous save test had used 149 invocations at one frame value to simulate 149 updates; it now advances the frame between updates. This establishes a source-level callback contract failure, not a reproduced ordinary-game timing defect.
+
+The candidate keeps a transient pointer/seed/frame record for each player, ignores repeated updates at that frame, freezes paused/dead updates and forgets interrupted DROP gestures. Start/exit clears the record; observed type changes clear that player's guard. No entity references are serialized, no save schema changes, and all balance constants and existing slot-keyed usage ownership remain unchanged. This does not resolve the broader co-op slot-reassignment/account-age design risks.
+
+The real-module regression covers exact Limited expiry, drain, separate players, wrappers, pause/death, revival and fresh/continued lifecycle resets. Removing each of four protections (frame, pause, death, lifecycle reset) independently fails a targeted assertion. Full-game timing, save serialization and physical controls remain unaccepted. Runtime installation remains main until a verified backup and focused engine retest of the candidate can be completed.
+
+ANIM-02 attempted a fresh muted main launch for the six remaining clean Hit-frame observations, but repeated focus/input interruptions limited it to the title screen. No run or new visual case was accepted. The game was closed and music/SFX restored from that block's fresh snapshot. PR #51 contains the preceding bounded visual evidence; PR #50 remains the separate familiar-attribution candidate. These branches target main independently, with no merge authorization implied by CI.
+
 ### ANIM-01: actual damage, bounded Hit-frame observation
 
 Tested main `2ec15efe8cf2ebf40192618fabc73225630aac09` on Repentance+ v1.9.7.17. A fresh allowlisted backup was verified before restoring main; all 392 installed tracked files matched its Git blobs. PR #50's familiar-attribution candidate was not installed for this unrelated sweep. EID, Reactions Port Pack and the existing other mods remained enabled. File 1 was disposable; music and SFX were muted, then restored from this block's fresh snapshot after closing the game.

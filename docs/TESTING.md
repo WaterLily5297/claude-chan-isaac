@@ -202,6 +202,10 @@ Get Birthright and reach 90+ risk: `Banned again / Birthright kept your account 
 
 ## Normal Claude usage save acceptance (pending)
 
+TIMER-01 source candidate adds per-player/frame deduplication and explicit pause/death freezes for Limited and idle drain. The expanded `claude_usage_save_test.lua` fails against main `2ec15ef` when a duplicate wrapper callback reduces the timer twice. It also checks two-player isolation, exact expiry over active frames, paused/dead callbacks, revival without catch-up, drain deduplication and fresh/continued runs at the same frame. The older 149-step countdown fixture now advances 149 actual frame values rather than invoking one frame repeatedly. These are offline assertions, not evidence that the engine normally invokes duplicate callbacks.
+
+Engine retest pending: reach Limited naturally, verify the five-second countdown over active gameplay updates, pause/resume, die/revive, and save/continue mid-countdown. Confirm idle drain stays ten per second, held fire blocks drain, two Claudes remain independent, and pause/death interrupts DROP without consuming an Appeal after recovery. If using an explicit duplicate-callback fixture, distinguish it from normal engine delivery. Do not close timer acceptance from this regression alone.
+
 As normal Claude, save with a partially filled meter, close the process, restart and continue. The meter must resume rather than clear. Repeat during the five-second limited-damage interval and confirm the remaining game-frame countdown and 40% damage. Repeat with two Claude players at different usage levels, with Swarm (including the first continued shot), after Compact, and immediately after Banked Reset. Continue must preserve the item changes and keep players independent. Verify a fresh run resets both meters and an older save without usage fields loads safely. Check Clicker away/back, co-op join/leave, and supported twin/subplayer forms separately; the slot-keyed stub does not prove their engine identity behavior. The penalty expires through gameplay frames; offline wall-clock time is not credited.
 
 ## Original character movement revision (engine acceptance pending)
