@@ -1,6 +1,6 @@
 # Vanilla costume compatibility
 
-Required by the owner on 2026-10-23 for all eleven normal and eleven tainted forms. Thirteen forms currently exist; the other nine tainted forms and fifty additional collectibles remain in development. No case below has current engine acceptance.
+Required by the owner on 2026-10-23 for all eleven normal and eleven tainted forms. All 22 forms and the fifty additional collectibles now exist in source. The 2026-10-24 engine smoke test exercised type changes, three native item additions/removals and damage calls for every form. It does not accept the visual cases below; see ENGINE_AUDIT_2026-10-24.md.
 
 ## Art and implementation contract
 
@@ -43,6 +43,6 @@ Then test face + flight + scale + weapon combinations in opposite pickup orders.
 
 ## Evidence and deployment
 
-Rebuilds and pixel comparisons establish packing structure only. Stubs cannot prove rendering, priority, clipping or symmetry. Offline previews omit costume selection; historical v0.4 observations do not apply to revised skins. This candidate is not installed. Create a fresh verified E:/ba backup before replacement, never overwrite a running mod, and keep Workshop publication pending.
+Rebuilds and pixel comparisons establish packing structure only. Stubs cannot prove rendering, priority, clipping or symmetry. Offline previews omit costume selection; historical v0.4 observations do not apply to revised skins. The integration base and subsequent color-fix candidate have deployment records outside the repository. Create a fresh verified E:/ba backup before every replacement, never overwrite a running mod, and keep Workshop publication pending.
 
 References: [player registration](https://wofsauge.github.io/IsaacDocs/rep/xml/players.html), [costume layers and priorities](https://wofsauge.github.io/IsaacDocs/rep/xml/costumes2.html). These describe APIs, not engine acceptance.
