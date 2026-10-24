@@ -182,6 +182,7 @@ function Reset:Init(mod, Risk)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
         if not ready or not next(bindings) then return end
+        if laser.Parent and laser.Parent.Type == EntityType.ENTITY_LASER then return end
         pay(owner(laser))
     end)
     mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, function(_, bomb)
