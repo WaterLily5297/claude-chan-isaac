@@ -1,5 +1,10 @@
 # Changelog
 
+## Stored battery charge detection (2026-10-24)
+
+- Count primary plus stored battery charge when observing an owned room-charged active use. Spending only The Battery's second bar now triggers Base Model and Access Pass and resets Please Come Back progress.
+- Keep slot eligibility, Car Battery exclusion and charge rewards unchanged. Offline coverage models both bars and real item listeners; native discharge timing, full refunds and special health-charge pools remain unverified.
+
 ## Constitution player isolation (2026-10-24)
 
 - Track The Constitution pickup reward and floor shield separately for each player in versioned saved data. One holder no longer consumes another holder's effects. Preserve prior shared consumption on legacy-save migration; keep stat costs, excluded damage and 60-frame refused-hit cooldown unchanged.

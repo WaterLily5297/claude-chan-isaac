@@ -1,5 +1,7 @@
 # Claude-chan: Risk Control
 
+**Compatibility note (2026-10-24):** Spending The Battery's stored second charge now counts for Base Model, Please Come Back and Access Pass. Charge rewards and item costs are unchanged. This correction is covered by offline tests; native timing and special health-charge pools still need engine verification.
+
 **Compatibility note (2026-10-24):** The Constitution keeps its one-time soul heart and once-per-floor hit block separately for each player. Existing shared-save consumption is preserved for players present on migration to avoid duplicate rewards. Stats and excluded damage are unchanged. Offline checks passed; co-op health and save/continue still need engine verification.
 
 **Compatibility note (2026-10-24):** Knife throws, melee swings and Epic Fetus rockets notify character resource meters and Opus Mode independently. Each consumer handles an attack once; an unowned Opus Mode cannot suppress character billing. Costs are unchanged. Offline regression passed; engine verification is pending.
