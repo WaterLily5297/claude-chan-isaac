@@ -19,7 +19,7 @@ package.preload.json=function() return {
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
 CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}
 CacheFlag={CACHE_DAMAGE=1}
-EntityType={ENTITY_PLAYER=1,ENTITY_TEAR=2,ENTITY_BOMB=4,ENTITY_LASER=7,ENTITY_KNIFE=8}
+EntityType={ENTITY_PLAYER=1,ENTITY_TEAR=2,ENTITY_FAMILIAR=3,ENTITY_BOMB=4,ENTITY_LASER=7,ENTITY_KNIFE=8}
 EntityPartition={ENEMY=8}
 EntityFlag={FLAG_FRIENDLY=1}
 ButtonAction={ACTION_DROP=11}
@@ -188,6 +188,13 @@ p.birthright=true; boss=enemy(60); tap(p)
 hit(boss,tear(p)); tick(); hit(boss,{Type=EntityType.ENTITY_BOMB,SpawnerEntity=p,FrameCount=0,ToPlayer=function() end})
 assert(state().verified,"Birthright verifies after two paid hits")
 p.birthright=false
+
+-- Familiar contact kills must not count as the owner's own defeat.
+state().routing=3; enter(90,true); assert(not state().verified)
+local familiarVictim=enemy(20); tap(p)
+local familiar={Type=EntityType.ENTITY_FAMILIAR,SpawnerEntity=p,ToPlayer=function() end}
+hit(familiarVictim,familiar); fire("MC_POST_ENTITY_KILL",familiarVictim)
+assert(not state().verified,"a familiar contact kill cannot restore the owner's Verified status")
 
 -- Continue preserves Fallback and the spent room check; entities are recreated.
 state().routing=3; enter(12,true); assert(not state().verified)

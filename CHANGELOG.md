@@ -5,6 +5,22 @@
 - One More Finger and Please Retry mark their extra native tears before character callbacks, preventing an extra Thought, Quota or Compute payment. Normal Claude no longer adds usage for those helpers; an already active Limited damage penalty still applies.
 - Add a real-module integration regression for all four resource-owning forms, both item schedules, primed bonuses and subsequent primary-shot billing. Offline only; not deployed or engine-accepted. Game testing is deferred at the owner's request.
 
+## Unreleased normal Claude timer guards (2026-10-24)
+
+- Advance normal Claude's Limited countdown and idle usage drain once per player/gameplay frame; freeze paused/dead updates and clear transient guards on start/exit. Balance values and save format are unchanged.
+- Extend the real-module usage/save regression with duplicate wrappers, co-op isolation, pause/death, exact expiry, revival and lifecycle resets. Correct the old countdown fixture to advance actual frame values. Offline verified; engine timing and animation/costume acceptance remain pending.
+
+## Unreleased bounded hurt-frame observations (2026-10-24)
+
+- Record actual-damage Hit frame 6 engine markers for all 22 forms and Isaac on main `2ec15ef`, Repentance+ v1.9.7.17. Sixteen mod forms plus Isaac have inspected screenshots; six mod forms still need clean visual coverage.
+- Keep the oversized-head report open: complete animations, item costumes, Reactions-disabled cases and fresh menu starts remain unaccepted. No runtime code or artwork changed; test fixtures and private evidence are not shipped.
+- Correct stale handoff statements that engine testing was still unauthorized. Keep PR #50 separate from the main-based animation sweep.
+## Unreleased targeted ability ownership fix (2026-10-24)
+
+- Exclude familiar contact entities from player-only target attribution. A familiar kill could incorrectly restore normal GPT's Verified status through its player spawner/parent. Native weapon ownership is preserved.
+- Add a shared attribution regression and a real GPT callback case; both fail before the fix. Full offline gate: 144 Lua files, five XML files, 46 suites. Two controlled Repentance+ engine cases passed on candidate `aae85fd`: blue-fly contact kill stays Fallback; own native-tear kill restores Verified. Physical DROP input and broader familiar/weapon coverage remain pending.
+- Record the fresh-start menu-input blocker and correct stale testing-authorization statements. No new fresh-start acceptance or Workshop release.
+
 ## Unreleased handoff audit (2026-10-24)
 
 - Normal and tainted Claude now bill usage/Quota for laser starts and Dr. Fetus bombs, sharing the frame's payment with tears; familiars, placed bombs and knives stay free.
