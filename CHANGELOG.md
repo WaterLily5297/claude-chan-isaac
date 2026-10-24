@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased roster story arcs (2026-10-24)
+
+- Add three short story captions for each of DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM (normal or tainted), on run start, stage 3 and stage 5. Seven seconds, non-blocking, once per run, co-op queued in player order, saved in `Risk.state.rosterStory` (version 1).
+- New offline suite `tests/story_roster_test.lua` (24 in total). English only; not tested in game.
+
 ## Unreleased native Thought adapters (2026-10-24)
 
 - Normal DeepSeek Thought: delayed bursts share the paid volley until the native firing cycle could repeat (floor of MaxFireDelay, cap 15 updates); Incubus and Twisted Pair tears copy a paid volley without paying; each melee swing hitbox pays once; Epic Fetus rockets pay once and their explosions are re-dealt at that factor.
