@@ -3,6 +3,7 @@
 -- charge and cooldown are transient.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Feedback = include("scripts.characters.feedback")
 local Mistral = {}
 
 local SPEED = 0.1
@@ -88,10 +89,14 @@ function Mistral:Init(mod, Risk)
                 if along >= 0 and along <= reach and across <= HALF_WIDTH + e.Size
                     and room:CheckLine(p.Position, e.Position, 3) then
                     e:TakeDamage(p.Damage * DAMAGE, 0, EntityRef(p), 0)
+                    Feedback.Burst(e.Position, Color(1, 0.7, 0.3, 1, 0.2, 0.1, 0))
                     hit = hit + 1
                 end
             end
         end
+        -- The swipe itself: a poof halfway along the line, where walls allow.
+        local mid = Vector(p.Position.X + dir.X * reach / 2, p.Position.Y + dir.Y * reach / 2)
+        if room:CheckLine(p.Position, mid, 3) then Feedback.Burst(mid, Color(1, 0.7, 0.3, 1, 0.2, 0.1, 0)) end
         return hit
     end
 

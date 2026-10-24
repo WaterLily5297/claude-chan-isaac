@@ -3,6 +3,7 @@
 -- resets fix model quality. Saved per player; no real time and no network.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local PaidAttacks = include("scripts.characters.paid_attacks")
 local Reset = {}
 
 local CREDITS, BIRTHRIGHT_CREDITS = 80, 100
@@ -186,6 +187,9 @@ function Reset:Init(mod, Risk)
         if not ready or not next(bindings) or not bomb.IsFetus then return end
         pay(owner(bomb))
     end)
+    -- Held beams, knife throws, melee swings and Epic Fetus rockets pay too,
+    -- so Full Send's 1.5x is never free on a non-tear build.
+    PaidAttacks.Observe(mod, function(p) if ready and next(bindings) then pay(p) end end)
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, p, flag)
         if flag ~= CacheFlag.CACHE_DAMAGE then return end
         local b = binding(p)

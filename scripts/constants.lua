@@ -118,6 +118,20 @@ Constants.Player = {
     GLM_CHAN_B = Isaac.GetPlayerTypeByName("GLM-chan", true),
 }
 
+-- Normal roster forms, kept out of Constants.Player: the roster treats every
+-- id there as an original or tainted form.
+Constants.RosterPlayer = {
+    GPT_CHAN = Isaac.GetPlayerTypeByName("GPT-chan", false),
+    GEMINI_CHAN = Isaac.GetPlayerTypeByName("Gemini-chan", false),
+    GROK_CHAN = Isaac.GetPlayerTypeByName("Grok-chan", false),
+    QWEN_CHAN = Isaac.GetPlayerTypeByName("Qwen-chan", false),
+    LLAMA_CHAN = Isaac.GetPlayerTypeByName("Llama-chan", false),
+    MISTRAL_CHAN = Isaac.GetPlayerTypeByName("Mistral-chan", false),
+    DOUBAO_CHAN = Isaac.GetPlayerTypeByName("Doubao-chan", false),
+    KIMI_CHAN = Isaac.GetPlayerTypeByName("Kimi-chan", false),
+    GLM_CHAN = Isaac.GetPlayerTypeByName("GLM-chan", false),
+}
+
 -- DeepSeek-chan (either version) connects directly: no proxy, no IP, no risk.
 function Constants.IsDeepSeek(player)
     local t = player:GetPlayerType()

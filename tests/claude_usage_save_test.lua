@@ -39,6 +39,11 @@ local function player(kind)
     function p:GetData() return self.data end
     function p:ToPlayer() return self end
     function p:SetPocketActiveItem(id) self.pocket=id end
+    function p:AddCacheFlags() end
+    function p:EvaluateItems()
+        self.Damage=3.5
+        for _,c in ipairs(callbacks) do if c.id=="MC_EVALUATE_CACHE" then c.fn(mod,self,CacheFlag.CACHE_DAMAGE) end end
+    end
     return p
 end
 Isaac={GetPlayer=function(i) return players[i+1] end,
@@ -90,7 +95,9 @@ assert(players[2].data.ccUsage.value==20)
 fire("MC_PRE_GAME_EXIT",true)
 players={player(),player()}; module()
 fire("MC_POST_NEW_LEVEL"); fire("MC_POST_GAME_STARTED",true)
-assert(shot(wrap(players[1])).CollisionDamage==4,"continue must not erase an active usage limit")
+assert(math.abs(players[1].Damage-3.5*0.4)<1e-9 and math.abs(players[2].Damage-3.5)<1e-9,
+    "continue must not erase an active usage limit")
+shot(wrap(players[1]))
 assert(players[1].data.ccUsage.limited==145,"continue must preserve the remaining countdown")
 assert(shot(players[2]).CollisionDamage==10 and players[2].data.ccUsage.value==24,
     "each continued player must retain their own meter")
@@ -101,6 +108,8 @@ fire("MC_USE_ITEM",C.Item.COMPACT,nil,players[2])
 assert(players[2].data.ccUsage.value==74)
 fire("MC_USE_ITEM",C.Item.BANKED_RESET,nil,players[1])
 assert(players[1].data.ccUsage.value==0 and players[1].data.ccUsage.limited==0)
+fire("MC_POST_PEFFECT_UPDATE",players[1])
+assert(math.abs(players[1].Damage-3.5)<1e-9,"an item that clears Limited restores damage on the next update")
 assert(players[2].data.ccUsage.value==74)
 fire("MC_PRE_GAME_EXIT",true)
 players={player(),player()}; module(); fire("MC_POST_GAME_STARTED",true)
@@ -117,9 +126,11 @@ assert(players[2].data.ccUsage.limited==150)
 for _=1,149 do frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",wrap(players[2])) end
 assert(players[2].data.ccUsage.limited==1)
 fire("MC_PRE_GAME_EXIT",true); players={player(),player()}; module(); fire("MC_POST_GAME_STARTED",true)
-assert(shot(players[2]).CollisionDamage==4)
+assert(math.abs(players[2].Damage-3.5*0.4)<1e-9,"the last Limited frame survives continue")
+shot(players[2])
 fire("MC_POST_PEFFECT_UPDATE",players[2])
 assert(players[2].data.ccUsage.limited==0 and players[2].data.ccUsage.value==0)
+assert(math.abs(players[2].Damage-3.5)<1e-9,"the end of Limited restores the damage stat")
 for _=1,5 do shot(players[2]); fire("MC_POST_PEFFECT_UPDATE",players[2]) end
 assert(players[2].data.ccUsage.value==20,"a paid volley's own frame never drains")
 players[2].shooting=true

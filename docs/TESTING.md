@@ -402,3 +402,14 @@ Offline suite: `tests/thought_adapters_test.lua`. In game, as normal DeepSeek-ch
 - The Forgotten's club and Spirit Sword: each swing spends once; holding the weapon spends nothing.
 - Epic Fetus: each rocket spends once and its explosion deals the boosted damage; Dr. Fetus bombs are not boosted twice.
 - Pause or leave the room mid-burst: no extra payment and no lasting damage change.
+
+## Every-weapon billing and ability feedback (2026-10-24, source only)
+
+Offline: `tests/paid_attacks_test.lua` drives the real observer; removing the start-window skip, the per-player window, the throw reset, the swing or rocket once-flag, the Ludovico firing check or the familiar exclusion each makes it fail. Engine cases, pending:
+
+- Normal Claude, tainted Claude and tainted GPT in Full Send, each with Brimstone, Technology (held), Mom's Knife, the Forgotten's club or Spirit Sword, Epic Fetus and Ludovico: the meter moves once per 0.2 seconds of held beam or steered Ludovico, once per throw, swing or rocket; an idle Ludovico tear, a knife resting on the player, Incubus copies and other familiar weapons cost nothing.
+- Normal Claude Limited: every weapon above deals 40% damage for five seconds; damage returns afterwards and after Banked Reset ends Limited early. Check that a 20/20 volley reaching 100 keeps full damage on every pellet.
+- Two-player Claude co-op with different account ages: floors age each player, a suspension resets each player once, Birthright shields only its owner. Continue an old save from before this change: each Claude gets the previous shared age.
+- New tainted Gemini/Grok/Qwen/Llama/Mistral/Doubao/Kimi/GLM runs start with one key and no bomb.
+- Mistral Pounce and Baguette, Doubao Apology, Kimi tasks and GLM requests show their poof or tint, which never hides an enemy, blocks a shot or lingers after room exit.
+

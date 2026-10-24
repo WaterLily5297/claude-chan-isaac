@@ -4,6 +4,7 @@
 -- Charge, cooldown and the travelling wave are transient.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Feedback = include("scripts.characters.feedback")
 local Baguette = {}
 
 local SPEED = -0.1
@@ -83,6 +84,8 @@ function Baguette:Init(mod, Risk)
         wave.travel = math.min(WAVE_TRAVEL, wave.travel + WAVE_STEP)
         local pos = wave.origin + wave.dir * wave.travel
         if not Game():GetRoom():CheckLine(wave.origin, pos, 3) then return false end
+        -- Crumbs mark the rolling bread every 24 units.
+        if wave.travel % 24 == 0 then Feedback.Burst(pos, Color(1, 0.85, 0.45, 1, 0.25, 0.15, 0)) end
         for _, e in ipairs(Isaac.FindInRadius(pos, HALF_WIDTH + WAVE_STEP, EntityPartition.ENEMY)) do
             local hash = GetPtrHash(e)
             if not wave.hit[hash] and e:IsVulnerableEnemy() and not e:IsDead()

@@ -114,18 +114,30 @@ frame=frame+1; fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=true}); assert(
 frame=frame+1; fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=false}); fire("MC_POST_LASER_INIT",{SpawnerEntity=familiar})
 fire("MC_POST_BOMB_INIT",{SpawnerEntity=familiar,IsFetus=true}); assert(usage().value==20,"placed bombs and familiars are free")
 frame=frame+1; fire("MC_POST_LASER_INIT",{SpawnerEntity=q}); assert(usage().value==20 and usage(1).value==4,"lasers bill their own player"); usage(1).value=0
+-- A held beam pays once per further 0.2-second window through the observer.
+EntityType={ENTITY_LASER=7,ENTITY_KNIFE=8,ENTITY_EFFECT=1000}; EffectVariant={TARGET=30,ROCKET=31}
+do
+    local beam={SpawnerEntity=p,FrameCount=0,GetData=function() return {} end}
+    usage().value=0
+    for f=0,12 do beam.FrameCount=f; frame=frame+1; fire("MC_POST_LASER_UPDATE",beam) end
+    assert(usage().value==8,"a held beam pays at 6 and 12 updates after its start")
+    usage().value=0
+end
 -- The volley that reaches the limit keeps full damage for all of its pellets.
 usage().value=98
 local edge=volley(p,3)
 assert(usage().limited>0 and edge[1].CollisionDamage==10 and edge[3].CollisionDamage==10,
     "the limit applies from the next volley")
+assert(math.abs(p.Damage-3.5*0.4)<1e-9,"Limited weakens the damage stat, so every weapon")
+assert(math.abs(q.Damage-3.5)<1e-9,"Limited is personal")
 local weak=volley(p,2)
-assert(weak[1].CollisionDamage==4 and weak[2].CollisionDamage==4,"a Limited volley is weakened")
+assert(weak[1].CollisionDamage==10 and weak[1].Color,"Limited tears keep their stat damage and get a grey tint")
 
 -- Appeals cannot cancel an active Limited penalty.
 local before=usage().limited
 tap(p); assert(usage().appeals==1 and usage().limited==before-3,"no Appeal during Limited")
-usage().limited=0; usage().value=60
+usage().limited=1; tick(); assert(usage().value==0 and math.abs(p.Damage-3.5)<1e-9,"the end of Limited restores damage")
+usage().value=60
 captions={}
 tap(p); assert(usage().appeals==0 and usage().value<=20 and usage().value>=18,"an Appeal removes 40 usage")
 assert(captions[#captions]=="Appeal filed / Another love letter.")
@@ -165,18 +177,29 @@ Risk.state.claudeUsage["0"].appeals=0/0
 tick(); assert(usage().appeals==1)
 
 -- Birthright keeps account age through the first suspension on each floor.
-Risk.state.accountAge=3
+usage().age=3
 p.birthright=true; suspended=true; tick()
-assert(Risk.state.accountAge==3,"Birthright shields the first suspension")
+assert(usage().age==3,"Birthright shields the first suspension")
 reload(); p,q=players[1],players[2]; p.birthright=true; tick()
-assert(Risk.state.accountAge==3,"continue does not re-judge a handled suspension")
+assert(usage().age==3,"continue does not re-judge a handled suspension")
 suspended=false; tick(); suspended=true; tick()
-assert(Risk.state.accountAge==0,"the second suspension on a floor resets age")
-suspended=false; tick(); Risk.state.accountAge=2; floor=3; enter(1,false)
-suspended=true; tick(); assert(Risk.state.accountAge==2,"a new floor renews the shield")
+assert(usage().age==0,"the second suspension on a floor resets age")
+assert(usage(1).age==0,"the partner without Birthright lost its own age")
+suspended=false; tick(); usage().age=2; usage(1).age=0; floor=3; enter(1,false)
+suspended=true; tick(); assert(usage().age==2,"a new floor renews the shield")
 suspended=false; tick(); p.birthright=false
-suspended=true; tick(); assert(Risk.state.accountAge==0,"without Birthright suspension resets age")
+suspended=true; tick(); assert(usage().age==0,"without Birthright suspension resets age")
 suspended=false
+
+-- Account age is per player; a floor adds to each Claude, and an old shared
+-- age is handed to every Claude present when the run continues.
+usage().age=1; usage(1).age=4
+fire("MC_POST_NEW_LEVEL"); assert(usage().age==2 and usage(1).age==5,"floors age each account")
+p:EvaluateItems(); assert(math.abs(p.Damage-3.9)<1e-9,"age adds +0.2 damage per floor")
+usage(1).age=8; fire("MC_POST_NEW_LEVEL"); assert(usage(1).age==8,"age caps at +1.6")
+usage().age=nil; usage(1).age=nil; Risk.state.accountAge=3
+reload(); p,q=players[1],players[2]
+assert(usage().age==3 and usage(1).age==3 and Risk.state.accountAge==nil,"a shared legacy age migrates per player")
 
 fire("MC_POST_RENDER")
 local found=false

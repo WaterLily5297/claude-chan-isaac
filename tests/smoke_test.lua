@@ -551,9 +551,9 @@ do
     print("  DeepSeek-chan direct connection: ok")
 
     -- Claude-chan account age.
-    R.state.risk = 10; R.state.accountAge = 0
+    R.state.risk = 10; R.state.claudeUsage["0"].age = 0
     stage = 2; fire("MC_POST_NEW_LEVEL"); stage = 3; fire("MC_POST_NEW_LEVEL")
-    assert(R.state.accountAge == 2, "two floors without suspension")
+    assert(R.state.claudeUsage["0"].age == 2, "two floors without suspension")
     player.EvaluateItems = function(self)
         self.Damage = 3.5
         for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end
@@ -562,7 +562,7 @@ do
     player:EvaluateItems(); assert(math.abs(player.Damage - 3.9) < 1e-9, "account age adds +0.2 per floor")
     R.state.risk = 95
     fire("MC_POST_PEFFECT_UPDATE", nil, player)
-    assert(R.state.accountAge == 0, "suspension resets account age (banned again)")
+    assert(R.state.claudeUsage["0"].age == 0, "suspension resets account age (banned again)")
     R.state.risk = 10
     print("  Claude-chan account age: ok")
 

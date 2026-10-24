@@ -109,8 +109,10 @@ for i,p in ipairs(forms) do assert(#p.fired == before[i]+1) end
 -- Do not turn the billing exemption into immunity to an active Limited penalty.
 local usage = env.Risk.state.claudeUsage["0"]
 usage.value, usage.limited = 100, 30
+local full = forms[1].Damage
+forms[1]:EvaluateItems() -- Limited lives in the damage stat, refreshed on entry.
 local weak = env.C.FireDerived(forms[1], Vector(10,0), 0.6)
-assert(math.abs(weak.CollisionDamage-forms[1].Damage*0.6*0.4)<1e-8)
+assert(math.abs(weak.CollisionDamage-full*0.6*0.4)<1e-8)
 assert(usage.value == 100 and usage.limited == 30)
 usage.limited = 0
 env.frame = env.frame+1

@@ -2,7 +2,10 @@
 -- Character design by ZipZipPipe, used non-commercially with credit.
 --
 -- Each floor starts with 220 Quota and two Appeal Pages (cap two). A paid
--- volley (tears, laser starts and Dr. Fetus bombs on one frame) costs one Quota (two with Subagent Swarm) and she deals 1.25x damage.
+-- attack costs one Quota (two with Subagent Swarm) and she deals 1.25x damage:
+-- a same-frame volley of tears, laser starts and Dr. Fetus bombs, each further
+-- 0.2-second window of a held beam or Ludovico tear, a knife throw, a melee
+-- swing or an Epic Fetus rocket.
 -- At zero she is Suspended: a usable 0.5x attack. A DROP tap while Suspended
 -- spends a Page and starts six seconds of active-combat review, which restores
 -- 60 Quota (90 with Birthright). Leaving the room cancels it without refund.
@@ -12,6 +15,7 @@
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local PaidAttacks = include("scripts.characters.paid_attacks")
 
 local TaintedClaude = {}
 
@@ -254,7 +258,8 @@ function TaintedClaude:Init(mod, Risk)
         pay(tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())
     end)
     -- Lasers and Dr. Fetus bombs pay on the frame they start, sharing that
-    -- frame's payment with tears; a held continuous laser pays once.
+    -- frame's payment with tears; held beams, knives, swings and rockets pay
+    -- through the shared observer.
     mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
         if not ready or not next(bindings) then return end
         pay(laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer())
@@ -263,6 +268,7 @@ function TaintedClaude:Init(mod, Risk)
         if not ready or not next(bindings) or not bomb.IsFetus then return end
         pay(bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer())
     end)
+    PaidAttacks.Observe(mod, pay)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         if Game():IsPaused() then drop:Reset() end
         if not ready or not Game():GetHUD():IsVisible() then return end

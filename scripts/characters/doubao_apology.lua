@@ -2,6 +2,7 @@
 -- It never refunds health or cancels the hit. Saved per player; fictional role.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Feedback = include("scripts.characters.feedback")
 local Doubao = {}
 
 local TOKEN_FRAMES = 180 -- Six seconds.
@@ -82,6 +83,7 @@ function Doubao:Init(mod, Risk)
         return e:IsEnemy() and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
     end
     local function apologize(p)
+        Feedback.Burst(p.Position, Color(1, 0.6, 0.7, 1, 0.3, 0.1, 0.15))
         for _, e in ipairs(Isaac.FindInRadius(p.Position, RADIUS, EntityPartition.ENEMY)) do
             if e:IsVulnerableEnemy() and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
                 e:AddSlowing(EntityRef(p), SLOW_FRAMES, SLOW_VALUE, Color(1, 0.8, 0.8, 1, 0, 0, 0))
