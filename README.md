@@ -112,7 +112,7 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - Each paid tear volley adds 2 **forks** at ±12° (50% damage). They cost 2 Compute in Valley and 4 in Peak. Without enough Compute only the forks are skipped; the main tear always fires.
 - In Valley, she recovers 3 Compute per second in combat while not firing.
 - Tap DROP to toggle **Forks On / Saving** (1-second cooldown).
-- Lasers, knives and bombs fire normally, with no forks and no cost.
+- **Off-peak boost:** non-tear attacks pay the same Compute as a tear volley (2 in Valley, 4 in Peak) and hit for ×1.3. This covers laser starts and each 0.2 seconds of a held beam, knife throws, melee swings, Dr. Fetus bombs and Epic Fetus rockets. In Saving mode, or without enough Compute, they deal native damage and cost nothing.
 - **Birthright:** Compute cap 32.
 
 ### GPT-chan (GPT)
