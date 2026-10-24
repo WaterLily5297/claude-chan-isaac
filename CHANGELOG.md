@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased tainted Claude Appeal Pending (2026-10-24)
+
+- Tainted Claude becomes Appeal Pending: 220 Quota and two Appeal Pages per floor; each paid tear volley costs 1 Quota (2 with Subagent Swarm) at 1.25x damage; at zero she is Suspended at 0.5x. A DROP tap while Suspended spends a Page on a six-second active-combat review that restores 60 Quota (Birthright 90); leaving the room cancels it. Three unique combat clears earn a Page.
+- Banked Reset refills Quota and cancels a pending review without returning its Page. Per-player saved state replaces the shared weekly counter; tear color is tinted. English HUD, dossier and EID text. Offline only.
+
 ## Unreleased Claude Appeals (2026-10-24)
 
 - Normal Claude becomes One More Day: usage is billed once per same-frame tear volley (Subagent Swarm doubles it inside Claude's billing) and drains 10 per second only while not firing. Appeals start at 1, cap 2, and are earned every two unique combat clears; a DROP tap spends one to remove 40 usage, never during Limited.

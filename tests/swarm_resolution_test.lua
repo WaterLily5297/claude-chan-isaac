@@ -142,12 +142,16 @@ assert(#spawned == 2 and spawned[1].CollisionDamage == 0.8,
     "Swarm tears must not bypass Claude's limited damage")
 assert(spawned[1].Color == limited.Color, "children use the resolved parent color")
 assert(claude.data.ccUsage.limited == 90, "Swarm must not restart an active limit")
-claude.kind = 141
-risk.state.weeklyUsed = 220
-local weekly = shot(claude)
-assert(weekly.CollisionDamage == 1 and spawned[1].CollisionDamage == 0.5,
-    "Swarm tears must respect the tainted weekly limit")
-assert(risk.state.weeklyUsed == 220, "generated tears must not consume another weekly shot")
+claude.kind = 141; frame = frame + 1; fire("MC_POST_UPDATE")
+local appeal = risk.state.claudeAppeal["1"]
+appeal.quota = 0
+local suspended = shot(claude)
+assert(#spawned == 2 and spawned[1].CollisionDamage == suspended.CollisionDamage * 0.5,
+    "Swarm tears copy the suspended attack")
+assert(appeal.quota == 0, "suspended attacks and generated tears are free")
+appeal.quota = 10; frame = frame + 1
+shot(claude); assert(appeal.quota == 8, "Swarm adds one extra quota per paid volley")
+shot(claude); assert(appeal.quota == 8, "a same-frame pellet shares the payment")
 
 claude.kind = 41
 frame = frame + 1

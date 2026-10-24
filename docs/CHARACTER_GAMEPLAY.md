@@ -34,6 +34,8 @@ Start each floor with 220 Quota and two Appeal Pages, cap two. Registered attack
 
 Keep pocket Banked Reset for immediate refill. Using it cancels any pending review without returning the page; no double payout. Swarm costs one extra quota per paid attack. New floor refills quota and pages; continue does not. Birthright restores 90 per completed review. HUD: Quota, Appeal Pages, transient `Under Review: Ns`. The contrast is preserving an old account versus surviving repeated suspensions.
 
+Source status (scripts/characters/claude_chan_b.lua): implemented for tear volleys and replaces the 220-tear weekly limit. Damage uses cache evaluation (1.25x, 0.5x Suspended), so non-tear weapons get the multiplier but pay no Quota until they have a bounded payment adapter. Saved per player in `Risk.state.claudeAppeal`. Engine acceptance pending.
+
 ## DeepSeek — rice and peak/valley scheduling
 
 Rice belongs here as a defining joke. Liang Wenfeng / Liang Wengu is rendered as Peak / Valley wordplay. Neither form receives proxy, IP, risk or risk-scaled enemy mechanics.
