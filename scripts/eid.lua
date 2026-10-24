@@ -5,6 +5,12 @@ local Constants = include("scripts.constants")
 local Eid = {}
 
 local descriptions = {
+    [Constants.Item.STRAWBERRY] = {
+        en_us = { "Strawberry", "Every third tear is a red \"R\" tear: x2 damage, slightly larger#Multi-shot volleys count each tear#Tears only: lasers, knives and bombs are not counted" },
+    },
+    [Constants.Item.GOLDEN_GATE] = {
+        en_us = { "Golden Gate Claude", "Spectral tears: they pass over rocks#{{ArrowUp}} +1.5 range#Golden tears; sometimes brings up the bridge in new rooms" },
+    },
     [Constants.Item.IGNORE_INSTRUCTIONS] = {
         en_us = { "Ignore All Previous Instructions", "4 room charges#Nearest vulnerable enemy within 200 units is charmed for 8 seconds#Bosses are only confused for 2 seconds#No target: keeps the charge#Car Battery injects a second, different enemy" },
     },

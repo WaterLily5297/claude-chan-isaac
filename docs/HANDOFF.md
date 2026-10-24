@@ -24,7 +24,7 @@ Never infer that an installed commit equals local HEAD. The local delivery inclu
 
 ## Implemented source inventory
 
-There are **13 registered forms: 11 normal and 2 tainted**, **21 collectibles**, **9 trinkets**, three pills, the existing Relay Slime enemy and the existing Appeal Queue story system. The requested expansion is **50 additional collectibles**, of which only **Summary Stapler (1/50)** is implemented. Existing collectibles do not count toward that additional fifty. Meme extras outside the fifty are implemented in source: three collectibles (Ignore All Previous Instructions, Tungsten Cube, Pizza Glue), three trinkets (Claudius's Discount, One Small Rock a Day, Stuck in Mt. Moon) and the 9.11 > 9.9 pill; see "Meme extras" in EXPANSION_DESIGN.md.
+There are **13 registered forms: 11 normal and 2 tainted**, **23 collectibles**, **9 trinkets**, three pills, the existing Relay Slime enemy and the existing Appeal Queue story system. The requested expansion is **50 additional collectibles**, of which only **Summary Stapler (1/50)** is implemented. Existing collectibles do not count toward that additional fifty. Meme extras outside the fifty are implemented in source: five collectibles (Ignore All Previous Instructions, Tungsten Cube, Pizza Glue, Strawberry, Golden Gate Claude), three trinkets (Claudius's Discount, One Small Rock a Day, Stuck in Mt. Moon) and the 9.11 > 9.9 pill; see "Meme extras" in EXPANSION_DESIGN.md.
 
 | Family | Existing behavior | Replacement status |
 |---|---|---|
@@ -66,7 +66,7 @@ Art provenance and exact prompts/hashes are in the portrait/sprite/movement JSON
 
 ## Validation completed
 
-The current source passes `bash tools/check.sh`: **73 Lua files, 5 XML files, deterministic asset checks and 19 stub suites**. This checks registration, syntax, frame bounds, item pools and modeled callback behavior. The native Thought regression fails against the prior e8639cb Rice module at its first beam assertion and passes the new adapters. `tests/deepseek_peak_test.lua` drives the real Peak/Valley module; mutating the Peak cost, the empty-room freeze, the duplicate-callback guard or the toggle cooldown each makes it fail. Earlier regressions and exact historical engine observations are preserved in HANDOFF_HISTORY_2026-10-24.md.
+The current source passes `bash tools/check.sh`: **75 Lua files, 5 XML files, deterministic asset checks and 19 stub suites**. This checks registration, syntax, frame bounds, item pools and modeled callback behavior. The native Thought regression fails against the prior e8639cb Rice module at its first beam assertion and passes the new adapters. `tests/deepseek_peak_test.lua` drives the real Peak/Valley module; mutating the Peak cost, the empty-room freeze, the duplicate-callback guard or the toggle cooldown each makes it fail. Earlier regressions and exact historical engine observations are preserved in HANDOFF_HISTORY_2026-10-24.md.
 
 Local stubs do not emulate actual native entity lifetimes, damage writers, costume priority, animation, controller input, genuine engine save/restart or all co-op configurations. GitHub CI runs the same offline gate. Record its exact final head and status separately after publication/merge.
 

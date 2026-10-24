@@ -22,6 +22,8 @@ Constants.Item = {
     IGNORE_INSTRUCTIONS = Isaac.GetItemIdByName("Ignore All Previous Instructions"),
     TUNGSTEN_CUBE = Isaac.GetItemIdByName("Tungsten Cube"),
     PIZZA_GLUE = Isaac.GetItemIdByName("Pizza Glue"),
+    STRAWBERRY = Isaac.GetItemIdByName("Strawberry"),
+    GOLDEN_GATE = Isaac.GetItemIdByName("Golden Gate Claude"),
 }
 
 Constants.Trinket = {

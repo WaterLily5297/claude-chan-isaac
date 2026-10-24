@@ -2,22 +2,27 @@
 -- Stubs model callback inputs only, not native status, knockback or slowing.
 local root = arg[1]
 function include(name) return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua") end
-local ids = { ["Ignore All Previous Instructions"] = 900, ["Tungsten Cube"] = 901, ["Pizza Glue"] = 902 }
+local ids = { ["Ignore All Previous Instructions"] = 900, ["Tungsten Cube"] = 901, ["Pizza Glue"] = 902,
+    ["Strawberry"] = 903, ["Golden Gate Claude"] = 904 }
 Isaac = {
     GetItemIdByName = function(n) return ids[n] or 800 end,
     GetTrinketIdByName = function() return 190 end,
     GetPillEffectByName = function() return 50 end,
     GetPlayerTypeByName = function() return 41 end,
 }
-ModCallbacks = { MC_USE_ITEM = "use", MC_EVALUATE_CACHE = "cache", MC_POST_FIRE_TEAR = "fire" }
-CacheFlag = { CACHE_DAMAGE = 1, CACHE_SPEED = 16, CACHE_SHOTSPEED = 4, CACHE_TEARFLAG = 32 }
+ModCallbacks = { MC_USE_ITEM = "use", MC_EVALUATE_CACHE = "cache", MC_POST_FIRE_TEAR = "fire", MC_POST_NEW_ROOM = "room" }
+CacheFlag = { CACHE_DAMAGE = 1, CACHE_SPEED = 16, CACHE_SHOTSPEED = 4, CACHE_TEARFLAG = 32, CACHE_RANGE = 8, CACHE_TEARCOLOR = 64 }
 EntityFlag = { FLAG_FRIENDLY = 1, FLAG_CHARM = 2 }
-TearFlags = { TEAR_KNOCKBACK = 1 << 9, TEAR_SLOW = 1 << 3 }
+TearFlags = { TEAR_KNOCKBACK = 1 << 9, TEAR_SLOW = 1 << 3, TEAR_SPECTRAL = 1 }
 function EntityRef(e) return { Entity = e } end
 function Color(...) return { ... } end
-local captions = {}
+local captions, roomClear, roomFirst, PLAYERS = {}, false, true, {}
 function Game() return { GetHUD = function() return {
-    ShowItemText = function(_, a, b) captions[#captions + 1] = b end } end } end
+    ShowItemText = function(_, a, b) captions[#captions + 1] = a end } end,
+    GetRoom = function() return { IsClear = function() return roomClear end,
+        IsFirstVisit = function() return roomFirst end } end,
+    GetNumPlayers = function() return #PLAYERS end } end
+function Isaac.GetPlayer(i) return PLAYERS[i + 1] end
 local vector = {}
 vector.__index = vector
 function Vector(x, y) return setmetatable({ X = x, Y = y }, vector) end
@@ -36,6 +41,8 @@ end
 include("scripts.items.ignore_instructions"):Init(mod)
 include("scripts.items.tungsten_cube"):Init(mod)
 include("scripts.items.pizza_glue"):Init(mod)
+include("scripts.items.strawberry"):Init(mod)
+include("scripts.items.golden_gate"):Init(mod)
 
 -- Ignore All Previous Instructions ------------------------------------------
 local entities = {}
@@ -120,3 +127,40 @@ assert(drawn == 4 and already.Color == nil, "already-slow tears consume no roll"
 fire("fire", tear(none)); fire("fire", tear(nil)); fire("fire", tear({ ToPlayer = function() return nil end }))
 assert(drawn == 4, "other owners, familiars and unknown sources are not rolled")
 print("PASS Pizza Glue: luck bounds, shot speed, native RNG roll, owner filter and no double roll")
+
+-- Strawberry ----------------------------------------------------------------------
+local berry = player({ [903] = 1 })
+local bdata = {}
+function berry:GetData() return bdata end
+local function colored(owner)
+    local t = tear(owner); t.CollisionDamage, t.Scale = 3, 1
+    t.Color = { R = 1, G = 1, B = 1, A = 1, RO = 0, GO = 0, BO = 0 }
+    return t
+end
+local shots = {}
+for i = 1, 7 do shots[i] = colored(berry); fire("fire", shots[i]) end
+for i = 1, 7 do
+    local r = i % 3 == 0
+    assert((shots[i].CollisionDamage == 6) == r and (shots[i].Scale == 1.2) == r, "every third tear only")
+end
+assert(shots[3].Color[3] == 0.35 and shots[3].Color[5] == 0.3, "red tint keeps the existing color")
+local otherShot = colored(none); function none:GetData() error("non-holder data touched") end
+fire("fire", otherShot); assert(otherShot.CollisionDamage == 3)
+print("PASS Strawberry: per-player third-tear count, scaling multiplier, tint and owner filter")
+
+-- Golden Gate Claude ------------------------------------------------------------------
+local gate = player({ [904] = 1 })
+gate.TearRange, gate.TearColor = 260, { R = 1, G = 1, B = 1, A = 1, RO = 0, GO = 0, BO = 0 }
+fire("cache", gate, CacheFlag.CACHE_RANGE); fire("cache", gate, CacheFlag.CACHE_TEARFLAG)
+fire("cache", gate, CacheFlag.CACHE_TEARCOLOR)
+assert(gate.TearRange == 320 and gate.TearFlags == TearFlags.TEAR_SPECTRAL)
+assert(gate.TearColor[3] == 0.5 and gate.TearColor[5] == 0.25, "golden tint")
+local roll = 0.1
+function gate:GetCollectibleRNG(id) assert(id == 904); return { RandomFloat = function() return roll end } end
+PLAYERS = { none, gate }
+captions = {}
+roomClear = true; fire("room"); roomClear, roomFirst = false, false; fire("room")
+assert(#captions == 0, "cleared or revisited rooms never mention the bridge")
+roomFirst = true; fire("room"); roll = 0.9; fire("room")
+assert(#captions == 1 and captions[1] == "I am the Golden Gate Bridge")
+print("PASS Golden Gate Claude: range, spectral flag, tint and seeded caption")

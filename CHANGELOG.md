@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased meme extras, batch 3 (2026-10-24)
+
+- Add Strawberry (every third tear per player is a red 2x "R" tear; tears only) and Golden Gate Claude (native spectral tears, +1.5 range, golden tint, occasional seeded caption). Completes the nine-item meme-extras proposal. Nineteen suites pass; no engine validation.
+
 ## Unreleased meme extras, batch 2 (2026-10-24)
 
 - Add three trinkets and one pill outside the fifty-row backlog: Claudius's Discount (refund 1 coin on confirmed purchases of 2+ coins; lose 1 coin per new floor), One Small Rock a Day (once per floor, breaking a rock heals half a red heart; kept while at full health), Stuck in Mt. Moon (six backtracks into cleared rooms reveal the floor map, once per floor) and 9.11 > 9.9 (permanent +0.11 damage, horse pill +0.9).

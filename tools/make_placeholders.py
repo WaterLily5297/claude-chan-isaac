@@ -648,6 +648,35 @@ def mt_moon():
     return c
 
 
+def strawberry():
+    """A strawberry with an R on it."""
+    c = clear()
+    poly(c, [(6, 11), (26, 11), (24, 20), (16, 29), (8, 20)], "R")
+    rect(c, 10, 7, 21, 10, "H")            # leaves
+    rect(c, 15, 3, 16, 7, "h")             # stem
+    line(c, 13, 14, 13, 23, "F", 2)        # letter R
+    line(c, 13, 14, 18, 14, "F", 2)
+    line(c, 18, 14, 18, 18, "F", 2)
+    line(c, 13, 18, 18, 18, "F", 2)
+    line(c, 15, 19, 19, 23, "F", 2)
+    return c
+
+
+def golden_gate():
+    """A red-orange suspension bridge tower over water."""
+    c = clear()
+    rect(c, 2, 25, 29, 29, "c")            # water
+    rect(c, 2, 18, 29, 20, "r")            # deck
+    rect(c, 8, 5, 10, 24, "r")             # towers
+    rect(c, 21, 5, 23, 24, "r")
+    rect(c, 8, 9, 23, 10, "r")             # crossbeam
+    line(c, 2, 6, 9, 17, "G")              # cables
+    line(c, 9, 5, 16, 15, "G")
+    line(c, 16, 15, 22, 5, "G")
+    line(c, 22, 5, 29, 15, "G")
+    return c
+
+
 SPRITES = {
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
@@ -676,6 +705,8 @@ SPRITES = {
     "ignore_instructions": ignore_instructions,
     "tungsten_cube": tungsten_cube,
     "pizza_glue": pizza_glue,
+    "strawberry": strawberry,
+    "golden_gate": golden_gate,
     "claudius_discount": claudius_discount,
     "small_rock": small_rock,
     "mt_moon": mt_moon,
