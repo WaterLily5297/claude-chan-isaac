@@ -2,7 +2,7 @@
 <metadata>
     <name>Claude-chan: Risk Control</name>
     <directory>claude-chan-isaac</directory>
-    <description>A parody mod. Every floor hands you a random proxy IP - the more people share it, the higher your risk score, and the tougher the enemies get. Play as Claude-chan (character design by ZipZipPipe, used non-commercially with credit). Fan work, not affiliated with Anthropic.</description>
+    <description>An AI-personification parody with 11 model families, 22 normal and tainted forms, and distinct resource mechanics. Claude uses account limits and appeals; DeepSeek uses Rice First and Peak / Valley without proxy risk. Character designs credited to ZipZipPipe and the artists listed in resources/ART_LICENSE.md; non-commercial fan work. Not affiliated with the model providers. Development build; gameplay and art acceptance remain in progress.</description>
     <version>0.4.0-dev</version>
     <visibility>Private</visibility>
 </metadata>

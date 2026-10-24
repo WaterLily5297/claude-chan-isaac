@@ -3,13 +3,12 @@
 -- Art attribution and license: resources/ART_LICENSE.md.
 
 local Constants = include("scripts.constants")
+local Tint = include("scripts.characters.tear_tint")
 
 local DeepSeek = {}
 
 local NORMAL_DAMAGE = 0.9
 local TAINTED_DAMAGE = 0.8
-local NORMAL_COLOR = Color(0.35, 0.65, 1, 1, 0, 0, 0)
-local TAINTED_COLOR = Color(0.45, 1, 0.95, 1, 0, 0, 0)
 
 local function kind(player)
     local t = player:GetPlayerType()
@@ -34,7 +33,11 @@ function DeepSeek:Init(mod)
         if flag == CacheFlag.CACHE_DAMAGE then
             player.Damage = player.Damage * (k == "normal" and NORMAL_DAMAGE or TAINTED_DAMAGE)
         elseif flag == CacheFlag.CACHE_TEARCOLOR then
-            player.TearColor = k == "normal" and NORMAL_COLOR or TAINTED_COLOR
+            if k == "normal" then
+                player.TearColor = Tint.Apply(player.TearColor, 0.35, 0.65, 1, 1)
+            else
+                player.TearColor = Tint.Apply(player.TearColor, 0.45, 1, 0.95, 1)
+            end
         end
     end)
 end
