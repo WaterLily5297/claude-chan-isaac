@@ -45,6 +45,18 @@ A temporary synthetic Gemini Hit-frame preview was attempted, but an overlapping
 
 ## Next compatibility work
 
+### Acceptance baseline and offline familiar attribution follow-up
+
+After PR #49, main `2ec15efe8cf2ebf40192618fabc73225630aac09` was re-fetched and verified against all 392 installed tracked files. No open PR remained at that baseline. A fresh allowlisted backup was hash-verified. The baseline offline gate passed 143 Lua files, five XML files and 45 stub suites.
+
+A muted Repentance+ v1.9.7.17 test reached File 1's main menu. Return advanced title/file selection, but directional and alternate menu inputs did not move from Continue to New Run. An input-method composition was dismissed; no actual fresh character start followed. This is a blocked input case, not a character failure or acceptance. The game was closed normally and the freshly observed audio values restored.
+
+Source review then reproduced a separate defect: `target_tools.Owner` followed a contact familiar's player spawner/parent and treated it as the player's own damage. The real GPT callback test showed a familiar-only kill incorrectly restoring Verified. Both that regression and a new shared-helper regression fail against 2ec15ef. The fix excludes familiar source entities before following owner links, retaining existing native attack and co-op attribution. The resulting full offline gate passes 144 Lua files, five XML files and 46 suites. No engine fix verification is claimed; real familiar contact/projectile cases, target damage bonuses and native positive controls remain pending in TESTING.md.
+
+The [Entity API reference](https://wofsauge.github.io/IsaacDocs/rep/Entity.html) documents the separate entity type, spawner and parent relationships. These API definitions support the fixture shape; they do not prove which source a particular engine damage event supplies.
+
+### Remaining priorities
+
 1. Complete the full hurt/death/fall/revival animation and costume matrix for every form. Retain the standard base-animation geometry; inspect native costume priorities before splitting baked hair/clothing into layers. The oversized-head report is not closed by this audit.
 2. Test native weapon damage against actual enemies, especially callback order and other damage writers. Normal Claude's Limited penalty still weakens tears only; knives/Epic Fetus billing and continuous-beam billing remain incomplete. Tainted DeepSeek's Compute/forks remain tear-only. Do not label these gaps fixed by the color change.
 3. Test normal DeepSeek's Thought adapters with beams, rings, Ludovico, knives, Dr./Epic Fetus, melee, delayed bursts, Incubus/Twisted Pair, Swarm and 1M Context; check real damage, charge cancellation and save/continue.

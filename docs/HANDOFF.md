@@ -24,6 +24,8 @@ Never infer that an installed commit equals local HEAD. The local delivery inclu
 
 ## Current compatibility follow-up
 
+Targeted character abilities now reject familiar contact entities before resolving a player spawner or parent. Previously a familiar's contact kill could restore normal GPT's Verified state. The new helper regression and the real GPT callback regression both fail on the previous code and pass with the fix. Native player tears, bombs, lasers and knives keep their attribution; familiar-fired attacks remain excluded by this helper. This is an offline reproduction, not engine acceptance. See the audit for the menu-input blocker and remaining familiar combat checks.
+
 Normal Claude and both DeepSeek forms now compose identity and Limited tints with native tear colors instead of replacing them. The regression covers native RGB, alpha, additive offsets, item-removal cache resets and resolved Swarm inheritance. This does not fix the outstanding weapon billing, damage or costume geometry cases. Continue with the priorities in [ENGINE_AUDIT_2026-10-24.md](ENGINE_AUDIT_2026-10-24.md).
 
 ## Status at a glance (audited against main, 2026-10-24)
@@ -32,7 +34,7 @@ Every handoff line below was checked against the current source: the 22 forms, 7
 
 **Done in source (offline tests only):** all eleven normal loops and all eleven tainted forms; native Thought adapters for every listed attack family; Claude usage/Quota billing for lasers and Dr. Fetus bombs; the fifty-row backlog (50/50) and sixteen meme extras; tainted roster art (derived), walk cycles and the hurt-cell packing; the Appeal Queue and the ten roster story arcs.
 
-**Left, needs the game (blocked until the owner resumes engine testing):** everything under "Remaining engine acceptance matrix", plus the engine assumptions in "Known risks" (Thought hitbox/rocket/familiar attribution, CollisionDamage writer order, save/exit order, costume layering, side profiles and hurt poses).
+**Left, needs the game (testing authorized; coverage still pending):** everything under "Remaining engine acceptance matrix", plus the engine assumptions in "Known risks" (Thought hitbox/rocket/familiar attribution, CollisionDamage writer order, save/exit order, costume layering, side profiles and hurt poses). The latest fresh-start attempt reached File 1's main menu but could not navigate from Continue to New Run through the available automated input; no fresh-start cases passed in that attempt.
 
 **Left, needs an owner decision:**
 - GLM Book of Secrets: normal GLM no longer starts with the forced pocket Book of Secrets (CHARACTER_GAMEPLAY.md). Restore it as a pocket item or keep it removed.
@@ -146,6 +148,6 @@ Read CLAUDE.md, CONTRIBUTING.md, this handoff, TESTING.md and resources/ART_LICE
 
 Core registration is main.lua, scripts/constants.lua and content/*.xml. Saved data lives in scripts/risk.lua and versioned per-player tables. Rice and attack adapters are scripts/characters/deepseek_rice.lua and thought_attacks.lua; shared services are meal_break.lua, characters/drop_tap.lua and tear_fork.lua. Tests are explicit offline stubs; runtime_probe.lua is separate. tools/check.sh is the pre-commit/CI gate.
 
-Fetch current main, inspect status before editing, verify the checkpoint and retain all local drafts. Start from the merged source; do not reinstall the older runtime over it. Run the offline gate once to establish the baseline. Choose one incomplete compatibility/mechanic task, implement it on a small branch, add meaningful regressions, and update evidence in the same PR. No engine automation until the owner resumes testing.
+Fetch current main, inspect status before editing, verify the checkpoint and retain all local drafts. Start from the merged source; do not reinstall the older runtime over it. Run the offline gate once to establish the baseline. Choose one incomplete compatibility/mechanic task, implement it on a small branch, add meaningful regressions, and update evidence in the same PR. Muted engine testing is authorized; close the game and restore the observed audio settings after each test block. New PRs target main and require the owner's specific approval before merging.
 
 The local-only delivery additionally records the preserved dirty checkout, current worktree, runtime and backup locations. Those private machine details and source reference collections are intentionally excluded from the public handoff.
