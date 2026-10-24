@@ -1,5 +1,7 @@
 # Claude-chan: Risk Control
 
+**Compatibility note (2026-10-24):** The Constitution keeps its one-time soul heart and once-per-floor hit block separately for each player. Existing shared-save consumption is preserved for players present on migration to avoid duplicate rewards. Stats and excluded damage are unchanged. Offline checks passed; co-op health and save/continue still need engine verification.
+
 **Compatibility note (2026-10-24):** Knife throws, melee swings and Epic Fetus rockets notify character resource meters and Opus Mode independently. Each consumer handles an attack once; an unowned Opus Mode cannot suppress character billing. Costs are unchanged. Offline regression passed; engine verification is pending.
 
 《以撒的结合：忏悔 / 忏悔+》的恶搞角色MOD。共有11位由AI模型拟人化而来的"某某娘"，每位都有普通形态和里（Tainted）形态，另外还加入了91个根据社区梗设计的新道具。

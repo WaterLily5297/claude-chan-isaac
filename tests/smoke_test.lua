@@ -507,7 +507,7 @@ do
     -- Constitution must not refuse self-inflicted damage, and must keep its block.
     for k in pairs(playerItems) do playerItems[k] = nil end
     playerItems[746] = true
-    RISK_REF.state.constitutionBlockUsed = false
+    fire("MC_POST_NEW_LEVEL")
     local function hit(flags)
         for _, cb in ipairs(callbacks) do
             if cb.id == "MC_ENTITY_TAKE_DMG" and (cb.param == nil or cb.param == 1) then
@@ -517,9 +517,9 @@ do
         end
     end
     assert(hit(DamageFlag.DAMAGE_IV_BAG) == nil, "IV Bag damage must go through")
-    assert(RISK_REF.state.constitutionBlockUsed == false, "self-damage must not use the block")
+    assert(RISK_REF.state.constitution.players["0"].used == false, "self-damage must not use the block")
     assert(hit(DamageFlag.DAMAGE_NO_PENALTIES) == nil, "penalty-free damage must go through")
-    assert(RISK_REF.state.constitutionBlockUsed == false, "penalty-free damage must not use the block")
+    assert(RISK_REF.state.constitution.players["0"].used == false, "penalty-free damage must not use the block")
     local cooldown
     player.SetMinDamageCooldown = function(_, frames) cooldown = frames end
     assert(hit(0) == false, "a real hit is still refused")

@@ -1,5 +1,10 @@
 # Changelog
 
+## Constitution player isolation (2026-10-24)
+
+- Track The Constitution pickup reward and floor shield separately for each player in versioned saved data. One holder no longer consumes another holder's effects. Preserve prior shared consumption on legacy-save migration; keep stat costs, excluded damage and 60-frame refused-hit cooldown unchanged.
+- Regression covers two holders, detached continue, new floors, replacement players, ghosts/death and old saves. Native health, serialization and special twin/subplayer behavior remain unverified.
+
 ## Paid-attack subscriber isolation (2026-10-24)
 
 - Give each paid-attack subscriber its own transient once-per-attack marker. Opus Mode no longer prevents later character consumers from observing knives, melee swings or Epic Fetus rockets, including when Opus is not owned.

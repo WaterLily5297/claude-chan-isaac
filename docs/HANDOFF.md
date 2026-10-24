@@ -6,9 +6,9 @@ This section is the current summary for the next agent (GPT/Codex or Claude). It
 
 ### Progress at a glance
 
-- **Source baseline:** main `f7d7873` includes PR #65 and PR #77. PAID-OBSERVERS-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 170 tracked Lua files, 5 XML files, deterministic asset checks and 60 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
+- **Source baseline:** main `9805683` includes PR #78 (PAID-OBSERVERS-01). CONSTITUTION-COOP-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 171 tracked Lua files, 5 XML files, deterministic asset checks and 61 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
 - **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
-- **Installed runtime:** last verified deployment `f211e1e` (406 tracked files), preceding this compatibility pass. No deployment occurred for PAID-OBSERVERS-01. Never assume the installed commit equals main.
+- **Installed runtime:** last verified deployment `f211e1e` (406 tracked files), preceding this compatibility pass. No deployment occurred for PAID-OBSERVERS-01 or CONSTITUTION-COOP-01. Never assume the installed commit equals main.
 
 ### Implemented features (source)
 
@@ -59,6 +59,12 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 - **English** for in-game text, code, comments and Markdown; reply to the owner in their language (usually Japanese or Chinese).
 - **One small PR per change, based on main, no stacks.** Stacked PRs once got merged into intermediate branches and stranded work. Check the base is main before asking for a merge. The owner allows the agent to merge its own PR when the base is main, check.sh/CI pass, there is no blocking bug, the change is vanilla-compatible and it does not decide an open design question.
 - Update this section, the dated log below and the matching TESTING.md case in the same PR as each material change.
+
+## CONSTITUTION-COOP-01: per-player item state (2026-10-24)
+
+Source-only follow-up based directly on main `9805683`. The Constitution stored one pickup-heart bit and one floor-block bit for the whole run. Two-holder regressions fail on that baseline: the first holder consumes the other holder's reward and shield. Version 1 of `Risk.state.constitution` stores booleans by player slot instead. Temporary bindings detect a replacement entity in a live slot without serializing engine references. Normal and tainted Forgotten partners map to the same shared-inventory state as their root holder. Tainted Lazarus uses separate body keys across Flip, including a Birthright-exposed twin, so returning to a previously active body cannot regrant its effects. Legacy migration seeds both Lazarus inventories, including the initially hidden one. The start callback does not read saved state until Risk has finished loading. Exit disables consumption; dead/ghost players cannot consume rewards. New floors reset shields only. Stat costs, excluded damage and the 60-frame refusal cooldown are unchanged.
+
+Legacy saves cannot identify which player spent a shared effect, so migration copies existing consumed bits to players present at migration and removes the legacy fields. This avoids duplicate hearts or same-floor shields; subsequent floors and new players are independent. Existing once-per-run pickup behavior is retained, including drop/regain. The new fixture covers two holders, detached continue, floor reset, live replacement, migration and inactivity; ten injected faults fail. Full gate: 61 suites and 171 tracked Lua files. Engine JSON, native health restrictions, actual callback order and twin/subplayer identities remain pending under TESTING.md CONSTITUTION-COOP-01. No launch, deployment or Workshop release.
 
 ## PAID-OBSERVERS-01: weapon subscriber isolation (2026-10-24)
 
