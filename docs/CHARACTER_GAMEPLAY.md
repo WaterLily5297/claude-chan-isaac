@@ -122,6 +122,8 @@ Source status (scripts/characters/mistral_pounce.lua): normal form implemented a
 
 **Tainted:** Speed -0.1, damage 0.9x. Stand without firing for two seconds to store one Baguette, cap two. DROP spends one on a slow forward shockwave, max travel 120 units, damage 2.5x once per target; walls stop it, cooldown two seconds. Birthright: 1.5-second charge. HUD: Baguettes. A particular satire thread supports the giant-kitten/baguette joke; the approved portrait stays intact. Put exaggeration in the bread effect, not an enlarged hurt head or collision box.
 
+Source status (scripts/characters/mistral_baguette.lua): implemented and registered with the deeper-colour tainted Mistral art. The shockwave is a moving point checked each frame, not an entity, and there is no bread sprite yet, only the hits and a caption. Engine acceptance pending.
+
 ### Doubao — Sorry, You're Right / I'll Do It Again
 
 **Normal:** First real enemy-caused hit in each hostile room grants one Apology token for six seconds, cap one. DROP spends it to slow enemies within 100 units for two seconds and remove up to four ordinary hostile bullets there. No health refund or cancellation of the original hit. Self-damage, fake damage and donation machines do not qualify. Birthright: token lasts until room exit. HUD: Apology Ready.
