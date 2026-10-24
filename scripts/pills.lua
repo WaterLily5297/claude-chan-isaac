@@ -5,6 +5,7 @@
 -- Brb, Getting Food: heals one red heart, but you stop shooting for 3 seconds.
 
 local Constants = include("scripts.constants")
+local FireRate = include("scripts.fire_rate")
 
 local Pills = {}
 
@@ -45,7 +46,7 @@ function Pills:Init(mod, MealBreak)
         if not player:GetData().ccCatGirl then return end
 
         if flag == CacheFlag.CACHE_FIREDELAY then
-            player.MaxFireDelay = player.MaxFireDelay * CAT_FIRE_DELAY_MULT
+            player.MaxFireDelay = FireRate.ScaleInterval(player.MaxFireDelay, CAT_FIRE_DELAY_MULT)
         elseif flag == CacheFlag.CACHE_DAMAGE then
             player.Damage = player.Damage * CAT_DAMAGE_MULT
         end

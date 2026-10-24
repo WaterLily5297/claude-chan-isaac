@@ -1,5 +1,11 @@
 # Claude handoff: consolidated development checkpoint
 
+## Vanilla compatibility pass (2026-10-24)
+
+Source-only, offline; one small PR per fix, each with a regression that fails on the old code.
+
+- **Fire-rate multipliers scale the whole shot interval.** Agentic, Cat-girl Mode and Rolled Back multiplied the raw `MaxFireDelay`, which slows the player down once Soy Milk, Almond Milk or stacked tears items push the delay below 0. New `scripts/fire_rate.lua` scales `(MaxFireDelay + 1)`, as the Qwen forms already did (they now share the helper). Cat-girl Mode is now an exact x2 fire rate. `tests/fire_rate_test.lua`.
+
 ## Character trait completion (2026-10-24)
 
 Source-only, offline. No game launch, runtime replacement or Workshop release. This pass closed the gaps between CHARACTER_GAMEPLAY.md targets and source:
