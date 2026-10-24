@@ -20,7 +20,7 @@ function Env.New(root)
     DamageFlag = { DAMAGE_FAKE = 1 << 21, DAMAGE_NO_PENALTIES = 1 << 28 }
     EntityFlag = { FLAG_FRIENDLY = 1 }
     EntityType = { ENTITY_PLAYER = 1, ENTITY_TEAR = 2, ENTITY_FAMILIAR = 3, ENTITY_PROJECTILE = 9, ENTITY_EFFECT = 1000 }
-    UseFlag = { USE_CARBATTERY = 1 << 5, USE_OWNED = 1 << 11 }
+    UseFlag = { USE_CARBATTERY = 1 << 5, USE_OWNED = 1 << 2 }
     ActiveSlot = { SLOT_PRIMARY = 0 }
     Direction = { LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3 }
     EffectVariant = { POOF01 = 15, TARGET = 30 }
@@ -113,12 +113,14 @@ function Env.New(root)
         p.Type, p.Position = EntityType.ENTITY_PLAYER, Vector(x or 0, 0)
         p.Damage, p.MoveSpeed, p.TearRange, p.ShotSpeed = 3.5, 1, 260, 1
         p.items, p.charge, p.active, p.hearts, p.canHeal, p.flies, p.fired, p.aim = {}, {}, {}, 2, true, 0, {}, Vector(1, 0)
+        p.battery = {}
         function p:HasCollectible(id) return (self.items[id] or 0) > 0 end
         function p:GetCollectibleNum(id) return self.items[id] or 0 end
         -- Engine active slots are 0-3; a use outside a slot reports -1.
         local function slot(s) s = s or 0; assert(s >= 0 and s <= 3, "invalid active slot "..tostring(s)); return s end
         function p:GetActiveItem(s) return self.active[slot(s)] or 0 end
         function p:GetActiveCharge(s) return self.charge[slot(s)] or 0 end
+        function p:GetBatteryCharge(s) return self.battery[slot(s)] or 0 end
         function p:SetActiveCharge(c, s) self.charge[slot(s)] = c end
         function p:GetHearts() return self.hearts end
         function p:CanPickRedHearts() return self.canHeal end
