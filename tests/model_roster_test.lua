@@ -16,13 +16,13 @@ end
 ModCallbacks=setmetatable({},{__index=function(_,k) return k end})
 CacheFlag={CACHE_DAMAGE=1,CACHE_FIREDELAY=2,CACHE_SPEED=4,CACHE_RANGE=8,CACHE_SHOTSPEED=16,CACHE_TEARFLAG=32,CACHE_TEARCOLOR=64,CACHE_LUCK=128}
 TearFlags={TEAR_PIERCING=1,TEAR_HOMING=2,TEAR_SPECTRAL=4}
-DamageFlag={DAMAGE_FAKE=8}; UseFlag={USE_CARBATTERY=32}
+DamageFlag={DAMAGE_FAKE=8,DAMAGE_NO_PENALTIES=268435456}; UseFlag={USE_CARBATTERY=32}
 EntityType={ENTITY_PLAYER=1,ENTITY_PROJECTILE=9}; Direction={NO_DIRECTION=-1}
 ProjectileFlags={CANT_HIT_PLAYER=1}
 ButtonAction={ACTION_DROP=1,ACTION_MAP=2}; ActiveSlot={SLOT_POCKET=2}
 CollectibleType={COLLECTIBLE_BOOK_OF_SECRETS=777,COLLECTIBLE_DECK_OF_CARDS=778}
 function GetPtrHash(p) return p.pointer end
-function Color(...) return {...} end
+function Color(r,g,b,a,ro,go,bo) return {R=r,G=g,B=b,A=a,RO=ro,GO=go,BO=bo} end
 local trigger=false
 local pressed, paused, hudVisible = {}, false, true
 Input={IsActionTriggered=function() return trigger end,
@@ -62,6 +62,7 @@ local function player(name)
     function p:AddCacheFlags() end
     function p:EvaluateItems()
         self.Damage=10; self.MaxFireDelay=9; self.MoveSpeed=1; self.ShotSpeed=1; self.TearRange=100; self.TearFlags=0; self.Luck=0
+        self.TearColor=self.itemColor or Color(1,1,1,1,0,0,0)
         for _,f in pairs(CacheFlag) do fire('MC_EVALUATE_CACHE',self,f) end
     end
     p.Velocity={Length=function() return p.speed end}
@@ -150,6 +151,24 @@ for _=1,10 do clear() end
 near(p.Damage,12.4); assert(p.TearRange==250)
 hit(p); near(p.Damage,11.6); assert(p.TearRange==200)
 fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true); near(p.Damage,11.6)
+
+-- Deliberate self-damage (Blood Donation, IV Bag, sacrifice rooms) is not a mistake.
+p=player('Qwen-chan'); other=player('Kimi-chan'); start(p,other)
+for _=1,3 do clear() end
+near(p.Damage,11.8); near(other.Damage,11.2)
+fire('MC_ENTITY_TAKE_DMG',p,1,DamageFlag.DAMAGE_NO_PENALTIES)
+fire('MC_ENTITY_TAKE_DMG',other,1,DamageFlag.DAMAGE_NO_PENALTIES|32)
+near(p.Damage,11.8); near(other.Damage,11.2)
+clear(); near(p.Damage,12.4); near(other.Damage,11.6)
+-- A hit from a player outside the player list must not crash.
+local stray=player('Qwen-chan'); fire('MC_ENTITY_TAKE_DMG',stray,1,0)
+
+-- Tears are tinted, so an item's own color and offsets survive.
+p=player('GPT-chan'); start(p)
+near(p.TearColor.R,0.4); near(p.TearColor.G,1); near(p.TearColor.B,0.75)
+p.itemColor=Color(0.5,0.5,1,0.8,0.2,0,0.3); p:EvaluateItems()
+near(p.TearColor.R,0.2); near(p.TearColor.G,0.5); near(p.TearColor.B,0.75)
+near(p.TearColor.A,0.8); near(p.TearColor.RO,0.2); near(p.TearColor.BO,0.3)
 
 p=player('GLM-chan'); start(p); assert(p.pocket==777)
 for i=1,4 do frame=i; fire('MC_USE_ITEM',1,nil,p,0) end
