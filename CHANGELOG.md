@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased meme extras, batches 4-5 (2026-10-24)
+
+- Add Seahorse Emoji (A3: one room-scoped native wisp of a random vanilla active), Temperature Dial (A2: saved toggle between x1.1 damage and one random native tear flag per tear), Deep Research (A12: native map, compass and secret-room reveal), trinkets As an AI Language Model (removes one non-Labyrinth curse per floor), System Prompt Leak (compass effect per floor) and Disgrace Loop (first real hit in a room freezes enemies 1.5 s), and the Rolled Back pill (all stats up for one room).
+- Original icons, English EID and a new offline suite; twenty suites pass. No engine validation.
+
 ## Unreleased meme extras, batch 3 (2026-10-24)
 
 - Add Strawberry (every third tear per player is a red 2x "R" tear; tears only) and Golden Gate Claude (native spectral tears, +1.5 range, golden tint, occasional seeded caption). Completes the nine-item meme-extras proposal. Nineteen suites pass; no engine validation.

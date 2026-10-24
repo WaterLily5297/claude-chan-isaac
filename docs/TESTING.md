@@ -60,6 +60,16 @@ Offline reproduction requires Pillow plus the recorded generated sources, kept o
 - Tungsten Cube: damage/speed in the stat HUD, knockback with tears, Brimstone, Technology, Mom's Knife and Dr. Fetus; stacking with D4/D100 rerolls.
 - Pizza Glue: slowing tint and effect on tears; shot speed change; no effect on lasers/knives/bombs; Swarm and Peak/Valley fork copies; continue keeps the native item RNG sequence.
 
+## Meme extras batches 4-5 acceptance (pending)
+
+- Seahorse Emoji: wisp appears, fights and is removed on room exit; save/exit mid-room (untracked wisp risk); Book of Virtues and other wisp items unaffected.
+- Temperature Dial: toggle text and damage; each listed flag visibly applies; interaction with other tear-flag items; continue keeps the temperature.
+- Deep Research: full reveal including secret and super secret rooms; Curse of the Lost/Unknown display.
+- As an AI Language Model: removal of each curse type mid-floor (Darkness, Lost, Unknown, Maze, Blind, Giant), Labyrinth kept, continue does not refuse twice.
+- System Prompt Leak: compass reveal on each floor and on mid-floor pickup.
+- Disgrace Loop: freeze on bosses and freeze-immune enemies; Holy Mantle hits; co-op once per player.
+- Rolled Back: stat HUD, horse pill detection, room change rollback, continue mid-room drops the bonus.
+
 ## Meme extras batch 3 acceptance (pending)
 
 - Strawberry: count with 20/20, Inner Eye, Mutant Spider, Monstro's Lung and Summary Stapler tears; interaction with Hardcoded Output, DeepSeek Thought/forks and Swarm copies; red tint over item colors.

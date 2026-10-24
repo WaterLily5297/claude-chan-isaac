@@ -33,6 +33,13 @@ Search results read on 2026-10-24; article bodies were not fetched in this sessi
 | Ignore All Previous Instructions | [Know Your Meme entry](https://knowyourmeme.com/memes/ignore-all-previous-instructions), [Learn Prompting article](https://learnprompting.org/blog/ignore_previous_instructions) | The prompt-injection catchphrase. Rendered as charming one enemy, not as a working exploit. |
 | Strawberry | Widely shared "how many R's in strawberry" model screenshots; no specific source asserted | Every third tear is an "R". |
 | Golden Gate Claude | Anthropic's May 2024 Golden Gate Claude feature-steering demo; not re-read in this session | Spectral "bridge" tears and a caption. No logo. |
+| Seahorse Emoji | Widely shared 2025 chats where models spiral looking for a seahorse emoji; no specific source asserted | A wisp that appears and vanishes. |
+| Temperature Dial | Sampling temperature, a common user-facing model setting | Deterministic versus random tear effects. |
+| Deep Research | Long-running research-agent features offered by several vendors | Long charge, full reveal. No vendor named. |
+| As an AI Language Model | Long-running refusal-phrase joke | Refuses a curse. |
+| System Prompt Leak | Recurring public leaks of hidden assistant instructions | Reveals special rooms. No real prompt quoted. |
+| Disgrace Loop | [Gigazine report](https://www.gigazine.net/gsc_news/en/20250808-gemini-infinite-looping-bug/) already listed in IDEAS.md | Enemies freeze to watch. Parody only; the boss idea in IDEAS.md remains separate. |
+| Rolled Back | [Simon Willison on the GPT-4o sycophancy rollback](https://simonwillison.net/2025/Apr/30/sycophancy-in-gpt-4o) already listed in IDEAS.md | Flattering stats for one room, then rolled back. |
 | Stuck in Mt. Moon | Widely reported Claude Plays Pokemon stream (Feb 2025) stalling in Mt. Moon; no source re-read in this session | Backtracking reveals the map. Parody only. |
 | 9.11 > 9.9 | Widely shared screenshots of models comparing 9.11 and 9.9 wrongly; no specific source asserted | The pill picks the "bigger" bonus. |
 | Pizza Glue | [The Register, May 2024](https://www.theregister.com/2024/05/31/google_ai_search_update/), [OODA Loop brief](https://www.oodaloop.com/briefs/2024/05/24/glue-pizza-and-eat-rocks-google-ai-search-errors-go-viral/) | Viral search-summary errors suggesting glue on pizza and eating rocks. Sticky tears; One Small Rock a Day candidate. No company logo. |

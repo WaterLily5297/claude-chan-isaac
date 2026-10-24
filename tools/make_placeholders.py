@@ -677,6 +677,84 @@ def golden_gate():
     return c
 
 
+def seahorse_emoji():
+    """A seahorse outline made of dashes inside a speech bubble: it does not exist."""
+    c = clear()
+    rrect(c, 3, 3, 28, 23, 4, "F")         # speech bubble
+    poly(c, [(8, 23), (14, 23), (8, 28)], "F")
+    ellipse(c, 17, 8, 3, 3, "E")           # head
+    rect(c, 18, 6, 22, 8, "E")             # snout
+    poly(c, [(14, 10), (19, 10), (18, 17), (14, 15)], "E")
+    line(c, 15, 16, 13, 20, "E", 2)        # curled tail
+    line(c, 13, 20, 16, 21, "E", 2)
+    rect(c, 9, 9, 11, 11, "R")             # question mark dot block
+    rect(c, 9, 14, 11, 15, "R")
+    return c
+
+
+def temperature_dial():
+    """A round dial from blue 0 to red 1."""
+    c = clear()
+    ellipse(c, 16, 17, 12, 12, "D")
+    ellipse(c, 16, 17, 10, 10, "F")
+    line(c, 8, 22, 11, 13, "c", 2)         # cold arc
+    line(c, 21, 13, 24, 22, "R", 2)        # hot arc
+    line(c, 16, 18, 21, 11, "N", 2)        # needle
+    rect(c, 15, 17, 17, 19, "N")
+    return c
+
+
+def deep_research():
+    """A magnifying glass over a tall stack of papers."""
+    c = clear()
+    rect(c, 4, 6, 18, 27, "P")
+    for y in (9, 12, 15, 18, 21, 24):
+        line(c, 6, y, 16, y, "T")
+    ring(c, 21, 15, 7, 4.5, "M")
+    ellipse(c, 21, 15, 4.5, 4.5, "c")
+    line(c, 25, 20, 29, 27, "W", 3)
+    return c
+
+
+def ai_language_model():
+    """A refusal card: a raised palm in a red circle."""
+    c = clear()
+    rrect(c, 5, 4, 26, 27, 2, "P")
+    ring(c, 16, 15, 8, 6.2, "R")
+    rect(c, 13, 12, 19, 19, "C")           # palm
+    for x in (13, 15, 17, 19):
+        rect(c, x, 9, x, 12, "C")          # fingers
+    line(c, 9, 23, 22, 23, "T")
+    return c
+
+
+def prompt_leak():
+    """A cracked scroll with a dripping leak."""
+    c = clear()
+    rect(c, 6, 5, 25, 22, "p")
+    rect(c, 4, 4, 27, 6, "W")
+    rect(c, 4, 21, 27, 23, "W")
+    for y in (9, 12, 15, 18):
+        line(c, 9, y, 22, y, "#")
+    line(c, 17, 6, 14, 14, "N")            # crack
+    ellipse(c, 14, 27, 2, 3, "c")          # leaking drop
+    return c
+
+
+def disgrace_loop():
+    """A circular arrow around a sad face."""
+    c = clear()
+    ring(c, 16, 16, 12, 9.5, "V")
+    poly(c, [(24, 3), (29, 9), (22, 10)], "V")   # arrow head
+    ellipse(c, 16, 16, 7, 7, "C")
+    rect(c, 13, 13, 14, 14, "#")
+    rect(c, 18, 13, 19, 14, "#")
+    line(c, 13, 20, 19, 20, "#")
+    line(c, 12, 21, 12, 21, "#")
+    line(c, 20, 21, 20, 21, "#")
+    return c
+
+
 SPRITES = {
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
@@ -707,9 +785,15 @@ SPRITES = {
     "pizza_glue": pizza_glue,
     "strawberry": strawberry,
     "golden_gate": golden_gate,
+    "seahorse_emoji": seahorse_emoji,
+    "temperature_dial": temperature_dial,
+    "deep_research": deep_research,
     "claudius_discount": claudius_discount,
     "small_rock": small_rock,
     "mt_moon": mt_moon,
+    "ai_language_model": ai_language_model,
+    "prompt_leak": prompt_leak,
+    "disgrace_loop": disgrace_loop,
 }
 
 # icons whose content is symmetric: mirror the finished pixels, shading included
@@ -724,7 +808,8 @@ SYMMETRIC = {"ban_hammer", "compact", "tests_passing", "constitution",
 
 TRINKETS = {"overloaded", "hardcoded_output", "thinking_cleared",
             "welcome_notice", "status_page", "appeal_form",
-            "claudius_discount", "small_rock", "mt_moon"}
+            "claudius_discount", "small_rock", "mt_moon",
+            "ai_language_model", "prompt_leak", "disgrace_loop"}
 ORDER = list(SPRITES)
 
 

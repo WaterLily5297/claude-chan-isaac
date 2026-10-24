@@ -35,6 +35,7 @@ function MemeState.For(Risk, player)
     local s = all.players[key]
     if type(s) ~= "table" then s = {}; all.players[key] = s end
     s.decimal = number(s.decimal, 0)
+    s.temperature = s.temperature == 1 and 1 or 0
     local floor = MemeState.FloorKey()
     if s.floor ~= floor then
         s.floor, s.rockUsed, s.moonVisits, s.moonDone = floor, false, 0, false

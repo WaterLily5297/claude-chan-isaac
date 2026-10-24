@@ -5,6 +5,15 @@ local Constants = include("scripts.constants")
 local Eid = {}
 
 local descriptions = {
+    [Constants.Item.SEAHORSE_EMOJI] = {
+        en_us = { "Seahorse Emoji", "3 room charges#Summons a Book of Virtues wisp of a random vanilla active#It disappears when you leave the room#One per player; using again replaces it" },
+    },
+    [Constants.Item.TEMPERATURE_DIAL] = {
+        en_us = { "Temperature Dial", "2 room charges; toggles your temperature (saved)#Temperature 0: damage x1.1#Temperature 1: each tear gains one random tear effect (homing, piercing, spectral, slow, poison, freeze, charm, confusion, wiggle or boomerang)#Tears only" },
+    },
+    [Constants.Item.DEEP_RESEARCH] = {
+        en_us = { "Deep Research", "12 room charges#Reveals the floor map, special rooms and secret rooms#Car Battery does not repeat it" },
+    },
     [Constants.Item.STRAWBERRY] = {
         en_us = { "Strawberry", "Every third tear is a red \"R\" tear: x2 damage, slightly larger#Multi-shot volleys count each tear#Tears only: lasers, knives and bombs are not counted" },
     },
@@ -125,6 +134,15 @@ local trinketDescriptions = {
     [Constants.Trinket.MT_MOON] = {
         en_us = { "Stuck in Mt. Moon", "Re-enter cleared rooms 6 times on one floor to reveal the floor map#Once per floor" },
     },
+    [Constants.Trinket.AI_LANGUAGE_MODEL] = {
+        en_us = { "As an AI Language Model", "Refuses and removes one curse on each floor#Curse of the Labyrinth is never removed" },
+    },
+    [Constants.Trinket.PROMPT_LEAK] = {
+        en_us = { "System Prompt Leak", "Reveals the special rooms on each floor" },
+    },
+    [Constants.Trinket.DISGRACE_LOOP] = {
+        en_us = { "Disgrace Loop", "The first real hit you take in a room freezes all enemies for 1.5 seconds#You still take the hit; self-damage does not count" },
+    },
     [Constants.Trinket.HARDCODED_OUTPUT] = {
         en_us = { "Hardcoded Output", "Every tear deals exactly 3.5 damage, the expected output#Great when weak, terrible when strong" },
         zh_cn = { "硬编码输出", "每发眼泪固定造成3.5点伤害（预期输出）#弱的时候很香，强的时候很亏" },
@@ -155,6 +173,9 @@ local trinketDescriptions = {
 local pillDescriptions = {
     [Constants.Pill.DECIMAL] = {
         en_us = { "9.11 > 9.9", "Picks the bigger number: permanent +0.11 damage#Horse pill: +0.9 damage instead#Saved per player" },
+    },
+    [Constants.Pill.ROLLED_BACK] = {
+        en_us = { "Rolled Back", "All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1#Horse pill: doubled#Rolled back in the next room" },
     },
     [Constants.Pill.CAT_GIRL] = {
         en_us = { "Cat-girl Mode", "For the rest of the room: tears x2 fire rate, damage x0.6#Nya~" },
