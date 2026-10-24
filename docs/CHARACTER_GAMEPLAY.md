@@ -116,6 +116,8 @@ Source status (scripts/characters/mistral_pounce.lua): normal form implemented a
 
 **Normal:** First real enemy-caused hit in each hostile room grants one Apology token for six seconds, cap one. DROP spends it to slow enemies within 100 units for two seconds and remove up to four ordinary hostile bullets there. No health refund or cancellation of the original hit. Self-damage, fake damage and donation machines do not qualify. Birthright: token lasts until room exit. HUD: Apology Ready.
 
+Source status (scripts/characters/doubao_apology.lua): normal form implemented and replaces the meal. A hit qualifies when its source is a projectile or a non-friendly enemy, it is not fake or no-penalty damage, and the room is not clear. Only one hit per room counts, even if the first token expires unused. The four nearest projectiles within 100 units are removed. There is no visual pulse yet, only the slow tint and a caption. Engine acceptance pending.
+
 **Tainted:** DROP starts six seconds of Confident at 1.35x damage, followed by four seconds of Apology at 0.85x, then becomes ready. Timers advance only in hostile combat. Default damage is 1x when ready. An enemy hit during Confident ends it early and starts Apology; it never cancels the damage. Birthright: Apology lasts three seconds. HUD: phase/timer. This is a deliberate overpromise/recovery cycle, not a second rice character. Indexed titles support the apology motif; no exact unviewed audio quote is claimed.
 
 ### Kimi — Another Slide Deck / You Are the Manager

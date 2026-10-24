@@ -94,8 +94,8 @@ local function tap(p)
     near(p.Damage,before) -- Pressing to begin a hold must not change mode.
     input(p,false)
 end
--- GPT, Gemini, Grok, Qwen, Llama and Mistral mechanics live in their own modules; the roster only tints them.
-for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan','Mistral-chan'}) do
+-- GPT, Gemini, Grok, Qwen, Llama, Mistral and Doubao mechanics live in their own modules; the roster only tints them.
+for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan','Mistral-chan','Doubao-chan'}) do
     local x=player(name); start(x)
     near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
     x.speed=1; for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',x) end
@@ -118,18 +118,14 @@ room=room+1; fire('MC_POST_NEW_ROOM'); hit(p); fire('MC_PRE_GAME_EXIT')
 p=player('Kimi-chan'); players={p}; callbacks={}; include('scripts.characters.model_roster'):Init(mod,risk)
 fire('MC_POST_NEW_ROOM'); fire('MC_POST_GAME_STARTED',true); fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10.4)
 
-p=player('Doubao-chan'); other=player('Claude-chan'); start(p,other)
-clear(); clear(); assert(p.hearts==2)
-fire('MC_PRE_SPAWN_CLEAN_AWARD'); assert(p.hearts==2)
+p=player('Kimi-chan'); other=player('Claude-chan'); start(p,other)
+clear(); clear(); near(p.Damage,10.8)
+fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10.8)
 -- Reentering a previously awarded room cannot farm rewards.
 local old=room; room=old-1; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
-assert(p.hearts==2 and other.hearts==2)
-room=old; clear(); assert(p.hearts==4 and other.hearts==2)
+near(p.Damage,10.8)
+room=old; clear(); near(p.Damage,11.2)
 
-p=player('Doubao-chan'); start(p); clear(); clear(); assert(p.hearts==2)
-clear(); assert(p.hearts==4)
-for _=1,3 do clear() end
-assert(p.flies==2)
 p=player('Kimi-chan'); start(p)
 for _=1,10 do clear() end
 near(p.Damage,12.4); assert(p.TearRange==250)
@@ -179,4 +175,4 @@ fire('MC_USE_ITEM',1,nil,wrap(other),0); near(other.Damage,11.2)
 frame=8; fire('MC_USE_ITEM',1,nil,wrap(p),0); near(p.Damage,12.4)
 
 assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
-print('OK: three roster mechanics, external GPT/Gemini/Grok/Qwen/Llama/Mistral tint, co-op isolation and duplicate effects')
+print('OK: Kimi and GLM roster mechanics, external tint for the other seven, co-op isolation and duplicate effects')
