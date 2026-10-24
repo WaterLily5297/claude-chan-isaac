@@ -187,6 +187,117 @@ T("44 Access Pass: first charged use per floor, pending from cleared rooms", fun
     env.newRoom(); near(p.Damage, 4.025, "delivered to the next hostile room")
 end)
 
+-- Observe actual item listeners with separate native charge bars. These inputs
+-- model completed discharge; they do not prove engine callback/discharge timing.
+local function chargedHolder(env, player)
+    for _, key in ipairs({ "BASE_MODEL", "PLEASE_COME_BACK", "ACCESS_PASS" }) do env.give(player, key) end
+    env.C.State(player).comeBack = 2
+end
+local function chargedEffects(env, player, used)
+    assert(env.C.Primed(player, "baseModel") == used, "Base Model must follow paid use")
+    assert(env.C.State(player).comeBack == (used and 0 or 2), "Please Come Back must follow paid use")
+    assert((env.C.State(player).floor.access == true) == used, "Access Pass must follow paid use")
+    near(player.Damage, used and 4.025 or 3.5)
+end
+
+T("charged use: Battery-only depletion reaches all three listeners in every slot", function()
+    for slot = 0, 3 do
+        local env, p = fresh()
+        chargedHolder(env, p)
+        env.config[999] = { MaxCharges = 4, ChargeType = 0 }
+        p.active[slot], p.charge[slot], p.battery[slot] = 999, 4, 4
+        local events = 0
+        env.C.On("activeUsed", function(owner, id)
+            assert(owner == p and id == 999); events = events + 1
+        end)
+        env.fire("MC_PRE_USE_ITEM", nil, 999, nil, p, UseFlag.USE_OWNED, slot)
+        p.battery[slot] = 0
+        env.update(3)
+        assert(events == 1, "one observed Battery use in slot " .. slot)
+        chargedEffects(env, p, true)
+        assert(p.charge[slot] == 4 and p.battery[slot] == 0, "observer never changes charges")
+    end
+end)
+
+T("charged use: ordinary or mixed-bar depletion counts once", function()
+    for _, bars in ipairs({ { 4, 0, 0, 0 }, { 4, 2, 2, 0 } }) do
+        local env, p = fresh()
+        chargedHolder(env, p)
+        active(env, p)
+        p.charge[0], p.battery[0] = bars[1], bars[2]
+        local events = 0
+        env.C.On("activeUsed", function() events = events + 1 end)
+        env.fire("MC_PRE_USE_ITEM", nil, 999, nil, p, UseFlag.USE_OWNED, 0)
+        p.charge[0], p.battery[0] = bars[3], bars[4]
+        env.update(3)
+        assert(events == 1, "one use, even when both bars decrease")
+        chargedEffects(env, p, true)
+    end
+end)
+
+T("charged use: transfers, unchanged totals and charge gains do not count", function()
+    for _, bars in ipairs({ { 2, 4, 4, 2 }, { 4, 2, 2, 4 }, { 4, 4, 4, 4 }, { 4, 0, 2, 4 } }) do
+        local env, p = fresh()
+        chargedHolder(env, p)
+        active(env, p)
+        p.charge[0], p.battery[0] = bars[1], bars[2]
+        env.fire("MC_PRE_USE_ITEM", nil, 999, nil, p, UseFlag.USE_OWNED, 0)
+        p.charge[0], p.battery[0] = bars[3], bars[4]
+        env.update(3)
+        chargedEffects(env, p, false)
+    end
+end)
+
+T("charged use: a refused active expires without a later false reward", function()
+    local env, p, Item = fresh()
+    chargedHolder(env, p)
+    env.config[Item.RED_STAMP] = { MaxCharges = 4, ChargeType = 0 }
+    p.active[0], p.charge[0], p.battery[0] = Item.RED_STAMP, 4, 4
+    env.fire("MC_PRE_USE_ITEM", nil, Item.RED_STAMP, nil, p, UseFlag.USE_OWNED, 0)
+    assert(env.use(Item.RED_STAMP, p).Discharge == false, "no target must preserve charge")
+    env.update(3)
+    chargedEffects(env, p, false)
+    p.battery[0] = 0
+    env.update()
+    chargedEffects(env, p, false)
+end)
+
+T("charged use: eligibility guards remain in force with Battery charge", function()
+    for _, mode in ipairs({ "unowned", "carBattery", "slotless", "timed", "special", "zero" }) do
+        local env, p = fresh()
+        chargedHolder(env, p)
+        active(env, p)
+        p.charge[0], p.battery[0] = 4, 4
+        local flags, slot = UseFlag.USE_OWNED, 0
+        if mode == "unowned" then flags = 0 end
+        if mode == "carBattery" then flags = flags | UseFlag.USE_CARBATTERY end
+        if mode == "slotless" then slot = -1 end
+        if mode == "timed" then env.config[999].ChargeType = 1 end
+        if mode == "special" then env.config[999].ChargeType = 2 end
+        if mode == "zero" then env.config[999].MaxCharges = 0 end
+        env.fire("MC_PRE_USE_ITEM", nil, 999, nil, p, flags, slot)
+        p.battery[0] = 0
+        env.update(3)
+        chargedEffects(env, p, false)
+    end
+end)
+
+T("charged use: co-op owners and active slots stay independent", function()
+    local env, p = fresh()
+    local q = env.player(100)
+    chargedHolder(env, p); chargedHolder(env, q)
+    env.config[999] = { MaxCharges = 4, ChargeType = 0 }
+    for _, owner in ipairs({ p, q }) do
+        for slot = 0, 1 do owner.active[slot], owner.charge[slot], owner.battery[slot] = 999, 4, 4 end
+        env.fire("MC_PRE_USE_ITEM", nil, 999, nil, owner, UseFlag.USE_OWNED, 1)
+    end
+    p.battery[0], q.battery[1] = 0, 0 -- p's watched slot did not spend charge.
+    env.update(3)
+    chargedEffects(env, p, false)
+    chargedEffects(env, q, true)
+    assert(p.battery[1] == 4 and q.battery[0] == 4, "unrelated slots stay untouched")
+end)
+
 T("45 Cache Cartridge only in revisited cleared rooms", function()
     local env, p = fresh("CACHE_CARTRIDGE")
     env.newRoom({ clear = true }); near(p.MoveSpeed, 1)
