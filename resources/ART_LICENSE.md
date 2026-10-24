@@ -43,6 +43,10 @@ The four original characters received an additional built-in image-tool movement
 
 The hurt-pose correction mechanically repacks the existing thirteen generated sources into the measured base-animation envelope and ground anchor. Llama uses a corrected source crop to retain its existing hands and feet. No new artwork, external pixels or source-image edits were used; original source hashes are unchanged and packed hashes are updated in the art manifest. The same design credits and non-commercial terms continue to apply.
 
+## Tainted art for the nine newer families (2026-10-24)
+
+`tools/make_roster_tainted_art.py` derives tainted gameplay sheets, stage portraits, dossiers and menu cells for GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM from their normal art. It only recolours existing pixels by role (colour and pale cloth deeper, skin slightly greyer, hue kept); no pixels are drawn, no external images or image generators are used, and shapes, alpha and frame placement are unchanged. Source and output hashes are in `docs/tainted-roster-art-manifest.json`, and `tools/check_assets.py` fails if a normal sheet changes without regenerating them. These are derivatives of the same ZipZipPipe designs and keep their credits and non-commercial terms. The hand-approved tainted Claude and DeepSeek art is untouched.
+
 ## Trademark notice
 
 "Claude", "GPT", "DeepSeek" and other model names belong to their respective owners. This is an unofficial fan parody, not affiliated with or endorsed by Anthropic or any other company.

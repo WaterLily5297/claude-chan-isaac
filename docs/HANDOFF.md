@@ -40,7 +40,7 @@ There are **13 registered forms: 11 normal and 2 tainted**, **18 collectibles**,
 | Kimi | Flawless clears build pages; damage erases pages | Slides/task-delegation designs not implemented |
 | GLM | Active-item uses build room tool links | Tool-call/retry designs not implemented |
 
-The nine added families have **no tainted registration, artwork or implementation yet**. MODEL_ROSTER.md describes current mechanics; CHARACTER_GAMEPLAY.md describes the complete 22-form target. Do not implement a target on top of an old multiplier without removing/reconciling the old loop.
+The nine added families have **no tainted registration or implementation yet**. Their tainted art exists as a deterministic deeper-colour derivation of the normal art (`tools/make_roster_tainted_art.py`, hashes in `docs/tainted-roster-art-manifest.json`): gameplay sheets, stage portraits, dossiers and menu cells, unregistered until each tainted mechanic lands. MODEL_ROSTER.md describes current mechanics; CHARACTER_GAMEPLAY.md describes the complete 22-form target. Do not implement a target on top of an old multiplier without removing/reconciling the old loop.
 
 Other completed source changes:
 
@@ -99,7 +99,7 @@ The desired identity is recognizable **community-meme gameplay with meaningful c
 2. Tainted DeepSeek Peak/Valley has a source implementation (tear forks only). Next: Claude appeals/quota and GPT downgrade/reset. Save resources/timers per player; preserve a usable main attack and avoid hidden random deletion.
 3. Migrate the other eight normal loops and implement the nine missing tainted forms one focused PR at a time. Follow CHARACTER_GAMEPLAY.md, including explicit Birthright behavior, resource caps, room deduplication and bounded derived damage.
 4. Complete the **49 remaining additional collectibles** from the fifty-row backlog. Include icon provenance, constants, XML/pools, entrypoint, English EID/UI, relevant tests and handoff evidence in each change. Intrinsic abilities do not count as collectibles.
-5. Create the nine missing tainted portraits/skins, slightly darker and aligned with the selected identities. Improve existing anatomy and special poses based on measured engine failures. Use licensed original assets or authorized derivatives with records.
+5. The nine tainted portraits/skins now exist as deeper-colour derivations (no new drawing); replace them with distinct tainted designs if the owner wants more contrast, then rerun the manifest. Improve existing anatomy and special poses based on measured engine failures. Use licensed original assets or authorized derivatives with records.
 6. Expand story after stable mechanics and art. Preserve the existing queue/save semantics and readable English captions; do not replace vanilla endings. Workshop remains gated on gameplay, art/license review and explicit publication authorization.
 
 ## File map and Claude starting procedure
