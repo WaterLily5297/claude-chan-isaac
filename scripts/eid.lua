@@ -267,9 +267,9 @@ local descriptions = {
         ja_jp = { "サブエージェント軍団", "涙を撃つたびに±15°にサブエージェントの涙が2発出る（ダメージ50%）#Claudeちゃん：涙1発の使用量が2倍" },
     },
     [Constants.Item.CONSTITUTION] = {
-        en_us = { "The Constitution", "+1 soul heart#Safety first: the first hit on each floor is refused#Helpfulness ranks last: damage x0.9#Long document: speed -0.1" },
-        zh_cn = { "宪法", "+1魂心#安全第一：每层第一次受到的伤害会被拒绝#有用性排最后：伤害×0.9#文档太长：移速-0.1" },
-        ja_jp = { "憲法", "ソウルハート+1#安全第一：各フロアで最初に受けるダメージを拒否#有用性は最後：ダメージ×0.9#長い文書：移動速度-0.1" },
+        en_us = { "The Constitution", "+1 soul heart once per player per run#Safety first: each holder refuses their first hit on each floor#Helpfulness ranks last: damage x0.9#Long document: speed -0.1" },
+        zh_cn = { "The Constitution", "+1 soul heart once per player per run#Safety first: each holder refuses their first hit on each floor#Helpfulness ranks last: damage x0.9#Long document: speed -0.1" },
+        ja_jp = { "The Constitution", "+1 soul heart once per player per run#Safety first: each holder refuses their first hit on each floor#Helpfulness ranks last: damage x0.9#Long document: speed -0.1" },
     },
     [Constants.Item.OPUS_MODE] = {
         en_us = { "Opus Mode", "Damage x1.8#Every 10 attacks (tears, lasers, knives, bombs...) cost 1 coin#With 0 coins: damage x0.6 instead (cheaper model)" },
