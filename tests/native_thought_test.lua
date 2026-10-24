@@ -134,7 +134,7 @@ local function update(entries,n)
         fire("MC_POST_UPDATE")
     end
 end
-local function near(a,b) assert(math.abs(a-b)<1e-8,tostring(a).." ~= "..tostring(b)) end
+local function near(a,b,msg) assert(math.abs(a-b)<1e-8,(msg and msg..": " or "")..tostring(a).." ~= "..tostring(b)) end
 freshRun()
 local beam=entity(p,7)
 update({{"MC_POST_LASER_UPDATE",beam}})
@@ -210,9 +210,13 @@ p.context=true; orb=entity(p); orb.ludo=true
 frame=frame+1; fire("MC_POST_FIRE_TEAR",orb); fire("MC_POST_TEAR_UPDATE",orb); fire("MC_POST_UPDATE")
 assert(orb.CollisionDamage==8)
 update({{"MC_POST_TEAR_UPDATE",orb}},6)
-near(orb.CollisionDamage,4*(1-6/90))
-update({{"MC_POST_TEAR_UPDATE",orb}},100); near(orb.CollisionDamage,1.2)
+near(orb.CollisionDamage,4)
+update({{"MC_POST_TEAR_UPDATE",orb}},100); near(orb.CollisionDamage,4,"a Ludovico tear never rots")
 assert(state().thought==0,"1M Context must not snapshot or compound a temporary Thought factor")
+-- An ordinary tear still rots to 30% over three seconds.
+local plain=entity(p); update({{"MC_POST_TEAR_UPDATE",plain}})
+plain.FrameCount=44; update({{"MC_POST_TEAR_UPDATE",plain}}); near(plain.CollisionDamage,2)
+plain.FrameCount=200; update({{"MC_POST_TEAR_UPDATE",plain}}); near(plain.CollisionDamage,1.2)
 
 freshRun()
 orb=entity(p); orb.ludo=true; update({{"MC_POST_TEAR_UPDATE",orb}})

@@ -18,6 +18,7 @@ Source fixes #63-#72 each have an offline regression; none has run in the engine
 - Co-op with one dead player (ghost): Llama's Release and Open Weights give the living player the solo four flies.
 - Horse Brb, Getting Food: heals two red hearts, shooting locked 3 seconds.
 - Ban Hammer with Car Battery: one set of misbans and Risk, bosses hit twice. Void absorbing Is This True? and Base Model/charged backlog items: using Void raises no Lua error.
+- 1M Context with Ludovico: the orb keeps full damage after several seconds; ordinary tears still weaken in flight.
 
 ## COSTUME-LOCK-01: fixed character look (offline passed; engine pending)
 

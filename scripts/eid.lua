@@ -220,9 +220,9 @@ local descriptions = {
         ja_jp = { "Ultrathink", "同じ部屋で使うたびに深く考える：#think +1 / megathink +2 / ultrathink +3.1999 ダメージ#15%の確率で何も起きない#部屋を出るとリセット" },
     },
     [Constants.Item.MILLION_CONTEXT] = {
-        en_us = { "1M Context", "Range +5#Context rot: tears lose damage as they fly (down to 30%)" },
-        zh_cn = { "1M上下文", "射程+5#上下文腐烂：眼泪飞得越久伤害越低（最低30%）" },
-        ja_jp = { "1Mコンテキスト", "射程+5#コンテキスト腐敗：涙は飛ぶほどダメージが下がる（最低30%）" },
+        en_us = { "1M Context", "Range +5#Context rot: tears lose damage as they fly (down to 30%)#Ludovico tears don't rot" },
+        zh_cn = { "1M上下文", "射程+5#上下文腐烂：眼泪飞得越久伤害越低（最低30%）#卢多维科眼泪不受影响" },
+        ja_jp = { "1Mコンテキスト", "射程+5#コンテキスト腐敗：涙は飛ぶほどダメージが下がる（最低30%）#ルドヴィコの涙は劣化しない" },
     },
     [Constants.Item.SILENT_UPDATE] = {
         en_us = { "Silent Update", "Every floor, damage is quietly rescaled to x0.8-x1.3#The changelog never mentions it" },
