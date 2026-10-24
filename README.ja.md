@@ -1,5 +1,7 @@
 # Claude-chan: Risk Control
 
+**Compatibility note (2026-10-24):** Opus Mode no longer counts Please Retry or One More Finger helper tears toward its ten-attack coin bill. Normal shots and Summary Stapler still count. Helper shots preserve primed attack bonuses; native callback timing remains pending engine verification.
+
 **Compatibility note (2026-10-24):** Consensus Coin recognizes owned familiar projectiles as familiar damage. Combine them with another eligible source from the same player for its mixed-source pulse; familiar weapons alone remain one category and do not consume your primed attack bonuses. Native familiar attribution still needs engine verification.
 
 **Compatibility note (2026-10-24):** Spending The Battery's stored second charge now counts for Base Model, Please Come Back and Access Pass. Charge rewards and item costs are unchanged. This correction is covered by offline tests; native timing and special health-charge pools still need engine verification.

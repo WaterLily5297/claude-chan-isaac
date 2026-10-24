@@ -1,5 +1,12 @@
 # In-game test checklist
 
+## OPUS-DERIVED-01: backlog helpers and coin billing (offline passed; engine pending)
+
+`tests/opus_derived_test.lua` registers real Summary Stapler and Opus before the real backlog, matching main.lua. On `3482ea1`, seven of eight groups fail; Summary Stapler's intentionally normal-shot billing passes. The corrected path keeps the wallet and attack primes unchanged for FireDerived, Please Retry and One More Finger, including nested creation, another player's synchronous normal shot, nil/error returns and explicitly marked derived tears. The next ordinary shot still counts, and the tenth costs one coin. Nine injected faults independently fail. Existing `derived_billing_test.lua` separately covers four character resource balances and an active Limited penalty. Neither fixture proves native dispatch or save timing.
+
+When engine testing resumes on this candidate, use Opus with Please Retry and One More Finger. Compare the coin counter and wallet after helper volleys, the fifth-shot helper and ten primary shots. Check damage/tear effects, primed Base Model, held Ludovico helpers, room changes, pause, co-op owners and save/continue. Summary Stapler must keep normal-shot billing. Repeat representative cases with Swarm and weapon replacements on Repentance and Repentance+. Tainted Llama's separately emitted helper is outside this correction and requires a distinct audit. Record the installed commit; the manual-test build `3482ea1` does not include this fix.
+
+
 ## CONSENSUS-FAMILIAR-01: familiar projectile attribution (offline passed; engine pending)
 
 `tests/consensus_familiar_test.lua` exercises the real backlog service and Consensus Coin listener with direct familiar contact and familiar-linked attack entities. Main `797a560` resolves a familiar spawner's owner but labels the projectile `other`, missing a pulse after the owner's tear. The correction keeps familiar attribution, including the Parent fallback, without creating player attack leases. Six regression groups cover source categories, repeat hits, two owners, unknown sources and retained player primes; five injected faults fail. These entity shapes simulate ownership; they do not prove native Incubus, Twisted Pair or other familiar ancestry.

@@ -6,9 +6,9 @@ This section is the current summary for the next agent (GPT/Codex or Claude). It
 
 ### Progress at a glance
 
-- **Source baseline:** main `5bbe9e4` includes PR #78 (PAID-OBSERVERS-01), PR #79 (CONSTITUTION-COOP-01), PR #80 (CHARGED-USE-01) and the now-merged PR #76 Ludovico context-rot exemption. CONSENSUS-FAMILIAR-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 172 tracked Lua files, 5 XML files, deterministic asset checks and 62 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
+- **Source baseline:** main `3482ea1` includes PR #81 (CONSENSUS-FAMILIAR-01), PR #80 (CHARGED-USE-01), PR #79 (CONSTITUTION-COOP-01), PR #78 (PAID-OBSERVERS-01) and PR #76's Ludovico context-rot exemption. OPUS-DERIVED-01 below is the next focused follow-up; verify its live PR/merge state. The updated gate covers 173 tracked Lua files, 5 XML files, deterministic asset checks and 63 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
 - **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
-- **Installed runtime:** the prior deployment recorded before this source checkpoint was `f211e1e` (406 tracked files). Deployment may occur after publication; consult the machine's separate deployment record and compare installed hashes. Never assume the installed commit equals main, and never treat installation as engine acceptance.
+- **Installed runtime:** the owner's manual-test checkpoint was verified at `3482ea1` (428 tracked files), with a verified backup before replacement. OPUS-DERIVED-01 is source-only and is not part of that installed checkpoint. Consult the separate machine deployment record and compare installed hashes; never treat installation as engine acceptance.
 
 ### Implemented features (source)
 
@@ -43,7 +43,7 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 
 ### Known issues
 
-- **Opus helper billing:** a separate real-module audit reproduces extra Opus coin charges from FireDerived, Please Retry and One More Finger helper tears. Opus runs before backlog marks those tears, so a flag-only early guard is insufficient. This pre-existing billing issue is outside CONSENSUS-FAMILIAR-01; native callback timing remains pending. Fix in a separate focused PR after the owner's requested test checkpoint.
+- **Opus helper billing:** OPUS-DERIVED-01 corrects backlog helper billing in source, with native timing still pending. Tainted Llama's direct FireTear helper uses a different path and needs its own ownership/resource audit; it is not covered by the backlog correction. Summary Stapler deliberately retains its documented normal-shot billing.
 - **Familiar acceptance:** CONSENSUS-FAMILIAR-01 corrects familiar projectile classification in source. Native Incubus, Twisted Pair, familiar beam/knife ancestry and cross-mod attribution still require engine verification.
 - **Documentation follow-up:** CONTRIBUTING.md still has the old collectible count and costume-preservation contract. NATIVE_THOUGHT.md contains obsolete free-knife/rocket and tear-only Compute statements; COSTUME_COMPATIBILITY.md still has some pre-lock visual acceptance criteria. Reconcile current guidance against the implemented fixed-look and paid-attack contracts without rewriting historical evidence.
 - **Everything after PR #49 is untested in game.** Treat every behavior claim as source-only until a TESTING.md case records engine evidence.
@@ -62,6 +62,12 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 - **English** for in-game text, code, comments and Markdown; reply to the owner in their language (usually Japanese or Chinese).
 - **One small PR per change, based on main, no stacks.** Stacked PRs once got merged into intermediate branches and stranded work. Check the base is main before asking for a merge. The owner allows the agent to merge its own PR when the base is main, check.sh/CI pass, there is no blocking bug, the change is vanilla-compatible and it does not decide an open design question.
 - Update this section, the dated log below and the matching TESTING.md case in the same PR as each material change.
+
+## OPUS-DERIVED-01: backlog helper billing (2026-10-24)
+
+Source-only follow-up from main `3482ea1`. Opus registers its tear callback before the backlog, so it previously counted a helper before the backlog could tag it as derived. Please Retry and One More Finger could spend a coin even though these helpers are excluded from the paid-attack rule. The correction scopes synchronous FireDerived creation on the owning player's transient data; early Opus checks this scope and explicit derived markers. The backlog retains derived marking and skips already-marked helpers without consuming primes. Nested scopes restore their exact previous value on success, nil returns and errors; errors still propagate. Another player's normal attack remains paid.
+
+The real-module regression registers Summary Stapler, Opus and the backlog in main's order. Seven of eight groups fail on the baseline; the correction passes all eight and nine targeted mutants fail. Cases cover actual Retry/Finger schedules, the ten-attack boundary, normal shots, Summary Stapler, nested helpers, another player, nil/error recovery and explicit derived/familiar sources. Existing character billing, weapon-observer and Consensus suites remain required. These are stubbed synchronous callbacks, not native combat or save/continue evidence. No costs, damage multipliers, saved schema or installed files change. The owner is testing the earlier installed `3482ea1` checkpoint; avoid runtime replacement during that session.
 
 ## CONSENSUS-FAMILIAR-01: familiar projectile sources (2026-10-24)
 

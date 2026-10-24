@@ -1,5 +1,10 @@
 # Changelog
 
+## Opus backlog helper billing (2026-10-24)
+
+- Exclude Please Retry and One More Finger helper tears from Opus Mode coin billing before synchronous shot callbacks run. Preserve normal-shot costs, Summary Stapler billing and primed attack bonuses.
+- Scope helper creation per player, support nested helpers, and restore the previous scope after nil/error returns. Offline regression uses real callback registration order; engine timing remains unverified.
+
 ## Consensus Coin familiar sources (2026-10-24)
 
 - Recognize familiar-fired projectiles as familiar damage for Consensus Coin, including direct spawner and parent ownership links. Familiar contact and different familiar weapons share one source category.

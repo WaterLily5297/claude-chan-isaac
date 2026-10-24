@@ -295,25 +295,31 @@ function Common:Init(mod, Risk)
     end
     self.attack = attack
 
-    local spawning = false
     -- Fire a native tear that is not an attack itself (no primes, no events).
     function self.FireDerived(player, velocity, mult, position)
-        spawning = true
-        local tear = player:FireTear(position or player.Position, velocity, false, true, false, player, mult)
-        spawning = false
+        -- FireTear dispatches synchronously. Earlier consumers (including Opus)
+        -- need this owner-scoped marker before our tear callback can mark it.
+        local data = player:GetData()
+        local previous = data.ccDerivedTearDepth
+        data.ccDerivedTearDepth = (previous or 0) + 1
+        local ok, tear = pcall(player.FireTear, player, position or player.Position,
+            velocity, false, true, false, player, mult)
+        data.ccDerivedTearDepth = previous
+        if not ok then error(tear, 0) end
         if tear then leases[GetPtrHash(tear)] = { id = "derived", mult = 1, kind = "derived",
             owner = GetPtrHash(player), expires = now() + ATTACK_LEASE } end
         return tear
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
-        if spawning then
-            -- FireTear dispatches before returning. Mark here, before the
-            -- character callbacks, so helper shots cannot spend their resources.
+        local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+        if player and (player:GetData().ccDerivedTearDepth or 0) > 0 then
+            -- Mark before character consumers; another player's synchronous
+            -- attack must not inherit this helper's exemption.
             tear:GetData().ccThoughtDerived = true
             return
         end
-        local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+        if tear:GetData().ccThoughtDerived then return end
         if player then attack(player, "tear", tear) end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
