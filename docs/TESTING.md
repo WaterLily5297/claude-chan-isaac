@@ -1,5 +1,7 @@
 # In-game test checklist
 
+Current acceptance status is summarized in HANDOFF.md. Dated candidate and integration sections below retain their original commit, availability and evidence scope; they do not override the latest owner instruction. The current manual-test installation is `3482ea1`, while later source fixes require a separate verified deployment before their engine cases can pass.
+
 ## OPUS-DERIVED-01: backlog helpers and coin billing (offline passed; engine pending)
 
 `tests/opus_derived_test.lua` registers real Summary Stapler and Opus before the real backlog, matching main.lua. On `3482ea1`, seven of eight groups fail; Summary Stapler's intentionally normal-shot billing passes. The corrected path keeps the wallet and attack primes unchanged for FireDerived, Please Retry and One More Finger, including nested creation, another player's synchronous normal shot, nil/error returns and explicitly marked derived tears. The next ordinary shot still counts, and the tenth costs one coin. Nine injected faults independently fail. Existing `derived_billing_test.lua` separately covers four character resource balances and an active Limited penalty. Neither fixture proves native dispatch or save timing.
@@ -31,9 +33,15 @@ In a muted disposable run, give The Constitution to two players: each eligible h
 
 In the engine, test normal Claude usage, tainted Claude Quota, tainted GPT Full Send Credits and tainted DeepSeek Compute with Mom's Knife, Spirit Sword and Epic Fetus, first without Opus, then with Opus. Each attack must update the character meter and, separately, Opus's ten-attack coin counter. Repeat throws on the same knife, multi-shot builds, pause, room changes, co-op, familiar weapons and save/continue. Confirm actual damage and tainted DeepSeek's boost separately. Held-beam/Ludovico windows retain their existing dedicated regression and still need native acceptance.
 
+## CHILD-LASER-01: delayed child-beam resource audit (source finding; unfixed)
+
+A private real-module fixture on `8c1ca789` initializes normal Claude, tainted Claude, tainted GPT and Opus. A primary laser produces Usage 4, Quota 219, Credits 79 and Opus count 1. On a later frame, a laser with the same player spawner and a laser Parent changes the character resources to 8/218/78 while Opus stays at 1. The three form initialization callbacks currently lack Opus's parent-laser exclusion. This is a callback-input reproduction, not proof that every reflection or split uses that shape in the engine.
+
+After the focused fix, test delayed child beams, reflected lasers and split rings with actual weapons. Record Parent/SpawnerEntity and initialization frames, and compare all three form resources and Opus against a true new primary beam. Include same-frame children, later-frame children, co-op, room changes and continued attacks. This documentation update does not fix or accept the case.
+
 ## VANILLA-COMPAT-01: vanilla item interactions (offline passed; engine pending)
 
-Source fixes #63-#72 each have an offline regression; none has run in the engine. Check with a muted game:
+Source fixes #63-#75 have offline regressions; the complete vanilla-compatibility matrix remains unaccepted in the engine. Check with a muted game when the owner is available:
 
 - Soy Milk or Almond Milk plus Cat-girl Mode, Rolled Back or Agentic: tears per second must rise, never fall.
 - Co-op: a dead player's ghost taps DROP; no form ability fires.
@@ -53,7 +61,9 @@ Source fixes #63-#72 each have an offline regression; none has run in the engine
 
 ## COSTUME-LOCK-01: fixed character look (offline passed; engine pending)
 
-For several mod forms (one normal, one tainted, one roster form) and vanilla Isaac as a control: pick up Sad Onion, Brimstone, Mom's Contacts, The Virus, then complete Guppy. Use The Bible (flight), Book of Belial and a Puberty/size pill. Expect the mod skin unchanged after every step while tears, damage, flight and size change as usual; Isaac shows costumes. Enter a new room, save/exit and continue: the look stays fixed. Use Clicker to become Isaac: held item costumes return. Note any one-frame costume flash and whether the Holy Mantle shield or wings are missing. Two-player co-op: only mod forms are affected.
+Start with one original normal form, one original tainted form, one newer roster form and vanilla Isaac as a control; complete all 22 forms before full acceptance. Pick up Sad Onion, Brimstone, Mom's Contacts and The Virus, then complete Guppy. Use The Bible, Book of Belial, size pills, D4 and D100, then repeat representative combinations in reverse pickup order. On mod forms, expect a fixed skin with native weapon effects, flight, size and stats still functioning. Hidden costume artwork is intentional; missing gameplay effects are not. On Isaac, native costumes and effects remain the control. Record any one-frame pickup flash, hidden Holy Mantle/flight feedback, hurt-frame regression or detached weapon origin.
+
+Enter a new room, save/exit, close the process and continue: the mod look and native effects should remain correct. Use Clicker and revival to leave a mod form: the current source re-adds held collectible costumes only; transformation, temporary and other non-collectible layers are not explicitly rebuilt. Inspect them separately instead of assuming full restoration. Test two players with mixed mod and vanilla forms, and repeat animation cases with and without Reactions Port Pack. Full scenarios and evidence requirements are in COSTUME_COMPATIBILITY.md. No engine pass is implied by this documentation correction.
 
 ## Authorized Risk and backlog integration (2026-10-24)
 
