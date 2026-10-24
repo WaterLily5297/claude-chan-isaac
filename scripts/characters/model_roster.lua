@@ -4,7 +4,8 @@ local C = include("scripts.constants")
 local Roster = {}
 Roster.definitions = {
     -- External families keep only identity, dossier and tint here; mechanics live in
-    -- gpt_downgrade.lua, gemini_paint.lua, grok_check.lua, qwen_adapter.lua and llama_release.lua.
+    -- gpt_downgrade.lua, gemini_paint.lua, grok_check.lua, qwen_adapter.lua,
+    -- llama_release.lua and mistral_pounce.lua.
     {key="gpt", name="GPT-chan", title="Same Name, Smaller Brain", color={0.4,1,0.75}, external=true,
      lines={"Verified: +15% damage. Clears add Routing.", "At 3 Routing, next combat: Fallback, -20%.", "Fallback: tap DROP, hit the Sanity Check 3x."}},
     {key="gemini", name="Gemini-chan", title="Nano Banana", color={0.7,0.6,1}, external=true,
@@ -15,8 +16,8 @@ Roster.definitions = {
      lines={"Tap/release DROP: pick Range, Tempo or Power.", "A new hostile room spends an Adapter on it.", "Earn an Adapter every two combat clears."}},
     {key="llama", name="Llama-chan", title="Please Stay Open", color={0.65,1,0.5}, external=true,
      lines={"Tap/release DROP: spend a Release.", "Each living player gains two blue flies.", "Earn a Release every two combat clears."}},
-    {key="mistral", name="Mistral-chan", title="Tailwind", color={1,0.7,0.3},
-     lines={"Move while firing to build tailwind.", "After 2 seconds: spectral tears.", "+0.15 speed; faster tear travel."}},
+    {key="mistral", name="Mistral-chan", title="Le Chat", color={1,0.7,0.3}, external=true,
+     lines={"Move while firing for 2s: charge a Pounce.", "Tap/release DROP: forward swipe, 2x damage.", "Standing still for 1s loses the Pounce."}},
     {key="doubao", name="Doubao-chan", title="Warm meal", color={1,0.7,0.6},
      lines={"Every third unique combat clear:", "Recover one red heart.", "At full red health: gain 2 blue flies."}},
     {key="kimi", name="Kimi-chan", title="Long context", color={0.55,0.65,1},
@@ -63,7 +64,7 @@ function Roster:Init(mod, Risk)
         local pointer, seed, kind = GetPtrHash(player), player.InitSeed, player:GetPlayerType()
         local s = transient[pointer]
         if not s or s.seed ~= seed or s.kind ~= kind then
-            s = {seed=seed, kind=kind, wind=0, toolFrame=-1}
+            s = {seed=seed, kind=kind, toolFrame=-1}
             transient[pointer] = s
         end
         return s
@@ -109,7 +110,7 @@ function Roster:Init(mod, Risk)
         each(function(p, def, s)
             local key=roomKey()
             if s.room ~= key then
-                s.room=key; s.hit=false; s.links=0; temp(p).wind=0
+                s.room=key; s.hit=false; s.links=0
 
                 refresh(p)
             end
@@ -124,39 +125,18 @@ function Roster:Init(mod, Risk)
         if not def then return end
         local s=state(p,def)
         if not s then return end
-        local t=temp(p)
         local key=def.key
         if flag == CacheFlag.CACHE_DAMAGE then
             local mult=1
             if key=="kimi" then mult=1+s.pages*0.04
             elseif key=="glm" then mult=1+s.links*0.12 end
             p.Damage=p.Damage*mult
-        elseif flag==CacheFlag.CACHE_FIREDELAY then
-        elseif flag==CacheFlag.CACHE_SPEED and key=="mistral" then p.MoveSpeed=p.MoveSpeed+0.15
-        elseif flag==CacheFlag.CACHE_SHOTSPEED and key=="mistral" then p.ShotSpeed=p.ShotSpeed+0.25
         elseif flag==CacheFlag.CACHE_RANGE and key=="kimi" then p.TearRange=p.TearRange+s.pages*25
-        elseif flag==CacheFlag.CACHE_TEARFLAG then
-            if key=="mistral" and t.wind>=60 then p.TearFlags=p.TearFlags | TearFlags.TEAR_SPECTRAL end
         elseif flag==CacheFlag.CACHE_TEARCOLOR then
             -- Tint rather than replace, so item colors (Ipecac, Spoon Bender) stay readable.
             local c, k = p.TearColor, def.color
             if c then p.TearColor=Color(c.R*k[1],c.G*k[2],c.B*k[3],c.A,c.RO,c.GO,c.BO)
             else p.TearColor=Color(k[1],k[2],k[3],1,0,0,0) end
-        end
-    end)
-    mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_,p)
-        if not ready then return end
-        local def=self:Find(p)
-        if not def or p:IsDead() then return end
-        local s,t=state(p,def),temp(p)
-        if not s then return end
-        if def.key=="mistral" then
-            local before=t.wind>=60
-            if p.Velocity:Length()>0.5 and p:GetFireDirection()~=Direction.NO_DIRECTION then
-                t.wind=math.min(60,t.wind+1)
-            else t.wind=0 end
-            if before~=(t.wind>=60) then refresh(p) end
-
         end
     end)
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_,entity,_,flags)
@@ -207,12 +187,7 @@ function Roster:Init(mod, Risk)
             local value="Hold MAP: dossier"
             if def.key=="kimi" then value="Pages "..s.pages.."/6"
             elseif def.key=="glm" then value="Tools "..s.links.."/3"
-            elseif def.key=="doubao" then value="Meal "..s.meals.."/3"
-
-
-
-
-            elseif def.key=="mistral" then value=temp(p).wind>=60 and "Tailwind" or "Wind "..temp(p).wind.."/60" end
+            elseif def.key=="doubao" then value="Meal "..s.meals.."/3" end
             Isaac.RenderText(def.name..": "..value,50,Isaac.GetScreenHeight()-52-i*12,1,1,1,0.9)
         end)
     end)

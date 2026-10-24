@@ -108,6 +108,8 @@ Source status (scripts/characters/llama_release.lua): normal form implemented an
 
 **Normal:** Speed +0.1. Moving and firing for two seconds charges one Pounce. DROP spends it on an 80-unit forward line swipe, 2x owner damage once per target; walls stop it, cooldown three seconds. No player teleport or contact immunity. Standing for one second loses an unused pounce. Birthright: 110-unit reach. HUD: Pounce Ready.
 
+Source status (scripts/characters/mistral_pounce.lua): normal form implemented and replaces tailwind. Forward is the aim direction, else movement, else down. The line is about 20 units wide plus the enemy's size; `Room:CheckLine` in projectile mode stops it at walls and rocks. The cooldown blocks charging. There is no swipe sprite yet, only the hit and a caption. Engine acceptance pending.
+
 **Tainted:** Speed -0.1, damage 0.9x. Stand without firing for two seconds to store one Baguette, cap two. DROP spends one on a slow forward shockwave, max travel 120 units, damage 2.5x once per target; walls stop it, cooldown two seconds. Birthright: 1.5-second charge. HUD: Baguettes. A particular satire thread supports the giant-kitten/baguette joke; the approved portrait stays intact. Put exaggeration in the bread effect, not an enlarged hurt head or collision box.
 
 ### Doubao — Sorry, You're Right / I'll Do It Again

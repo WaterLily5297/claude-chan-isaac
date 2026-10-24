@@ -94,8 +94,8 @@ local function tap(p)
     near(p.Damage,before) -- Pressing to begin a hold must not change mode.
     input(p,false)
 end
--- GPT, Gemini, Grok, Qwen and Llama mechanics live in their own modules; the roster only tints them.
-for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan'}) do
+-- GPT, Gemini, Grok, Qwen, Llama and Mistral mechanics live in their own modules; the roster only tints them.
+for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan','Mistral-chan'}) do
     local x=player(name); start(x)
     near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
     x.speed=1; for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',x) end
@@ -125,12 +125,6 @@ fire('MC_PRE_SPAWN_CLEAN_AWARD'); assert(p.hearts==2)
 local old=room; room=old-1; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
 assert(p.hearts==2 and other.hearts==2)
 room=old; clear(); assert(p.hearts==4 and other.hearts==2)
-
-p=player('Mistral-chan'); start(p); near(p.MoveSpeed,1.15); near(p.ShotSpeed,1.25)
-p.speed=1; p.shoot=0
-for _=1,59 do fire('MC_POST_PEFFECT_UPDATE',p) end
-assert(p.TearFlags==0); fire('MC_POST_PEFFECT_UPDATE',p); assert(p.TearFlags==4)
-p.speed=0; fire('MC_POST_PEFFECT_UPDATE',p); assert(p.TearFlags==0)
 
 p=player('Doubao-chan'); start(p); clear(); clear(); assert(p.hearts==2)
 clear(); assert(p.hearts==4)
@@ -175,18 +169,7 @@ assert(R:Find(p)==nil and next(risk.state.modelRoster)==nil)
 p.kind=142; assert(R:Find(p)==nil)
 p.kind=0; assert(R:Find(p)==nil)
 
--- Each update uses a new wrapper; cache and HUD must see the same charge.
-p=player('Mistral-chan'); other=player('Mistral-chan'); start(p,other)
-p.speed=1; p.shoot=0
-for _=1,59 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
-assert(p.TearFlags==0)
-fire('MC_POST_PEFFECT_UPDATE',wrap(p)); wrap(p):EvaluateItems()
-assert(p.TearFlags==4 and other.TearFlags==0)
-rendered={}; fire('MC_POST_RENDER'); assert(rendered[1]=='Mistral-chan: Tailwind')
-room=room+1; fire('MC_POST_NEW_ROOM'); assert(p.TearFlags==0)
-for _=1,60 do fire('MC_POST_PEFFECT_UPDATE',wrap(p)) end
-assert(p.TearFlags==4); start(p); assert(p.TearFlags==0)
-
+-- Each callback uses a new wrapper; the same-frame guard must still see one player.
 p=player('GLM-chan'); other=player('GLM-chan'); start(p,other); frame=7
 fire('MC_USE_ITEM',1,nil,wrap(p),0)
 fire('MC_USE_ITEM',1,nil,wrap(p),0)
@@ -195,14 +178,5 @@ near(p.Damage,11.2); near(other.Damage,10)
 fire('MC_USE_ITEM',1,nil,wrap(other),0); near(other.Damage,11.2)
 frame=8; fire('MC_USE_ITEM',1,nil,wrap(p),0); near(p.Damage,12.4)
 
--- Reused pointers and an observed character change must not inherit charge.
-local function wind(x) x.speed=1; x.shoot=0; for _=1,60 do fire('MC_POST_PEFFECT_UPDATE',wrap(x)) end; x:EvaluateItems() end
-p=player('Mistral-chan'); start(p); wind(p); assert(p.TearFlags==4)
-other=player('Mistral-chan'); other.pointer=p.pointer; players={other}
-other:EvaluateItems(); assert(other.TearFlags==0)
-wind(other); assert(other.TearFlags==4)
-other.kind=Isaac.GetPlayerTypeByName('Kimi-chan',false); other:EvaluateItems()
-other.kind=Isaac.GetPlayerTypeByName('Mistral-chan',false); other:EvaluateItems()
-assert(other.TearFlags==0)
 assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
-print('OK: four roster mechanics, external GPT/Gemini/Grok/Qwen/Llama tint, co-op isolation and duplicate effects')
+print('OK: three roster mechanics, external GPT/Gemini/Grok/Qwen/Llama/Mistral tint, co-op isolation and duplicate effects')
