@@ -245,7 +245,12 @@ function ClaudeChan:Init(mod, Risk)
         if not ready then return end
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if not isClaude(player) then return end
-        if bill(player).limited then
+        -- Item helpers are not new paid volleys, but an already active Limited
+        -- penalty still applies to their native tear damage.
+        local limited
+        if tear:GetData().ccThoughtDerived then limited = getUsage(player).limited > 0
+        else limited = bill(player).limited end
+        if limited then
             tear.CollisionDamage = tear.CollisionDamage * LIMITED_DAMAGE_MULT
             tear.Color = Tint.Apply(tear.Color, 0.5, 0.5, 0.5, 0.7)
         end
