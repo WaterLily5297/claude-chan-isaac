@@ -41,6 +41,7 @@ Constants.Player = {
     -- Tainted ("裏") versions: same name, second argument true.
     DEEPSEEK_CHAN_B = Isaac.GetPlayerTypeByName("DeepSeek-chan", true),
     CLAUDE_CHAN_B = Isaac.GetPlayerTypeByName("Claude-chan", true),
+    GPT_CHAN_B = Isaac.GetPlayerTypeByName("GPT-chan", true),
 }
 
 -- DeepSeek-chan (either version) connects directly: no proxy, no IP, no risk.

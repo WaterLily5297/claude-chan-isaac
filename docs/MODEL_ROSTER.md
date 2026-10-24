@@ -12,7 +12,7 @@ The following are fictional gameplay interpretations, not a performance ranking 
 |---|---|---|
 | Claude | Existing usage, account age and risk; tainted weekly allowance | Existing v0.5 rules, unchanged |
 | DeepSeek | Normal Rice First: earn bowls from clears, eat for Thought/speed; tainted Wenfeng / Wengu spends Peak/Valley Compute on tear forks | Normal Thought has initial native tear/laser/knife/fetus-bomb adapters and bounded continuous windows; see NATIVE_THOUGHT.md for remaining adapters and engine acceptance. Direct connection unchanged |
-| GPT | Tap DROP to switch Deliberate and Instant | Deliberate: 1.35x damage and 1.2x firing interval; Instant: 0.85x damage and 0.8x interval |
+| GPT | Tap DROP to switch Deliberate and Instant; tainted Reset Watcher: tap toggles Standard / Full Send, a banked Tibo reset refills Credits | Deliberate: 1.35x damage and 1.2x firing interval; Instant: 0.85x damage and 0.8x interval. Tainted: Full Send 1.5x for one of 80 Credits per attack; three clears bank a reset (gpt_reset.lua) |
 | Gemini | Tap DROP to switch Prism and Echo | Prism: piercing and 1.2x damage; Echo: homing, 0.9x damage and 0.9x interval |
 | Grok | Moving builds live momentum over five seconds | Up to 25% damage; standing drains three times faster |
 | Qwen | Chain flawless combat-room clears | 6% damage per clear, maximum five; damage taken resets it |
