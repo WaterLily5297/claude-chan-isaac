@@ -86,6 +86,7 @@ function ClaudeChan:Init(mod, Risk)
     local ready = false
     local drop = DropTap.New()
     local volleys = {} -- Transient: slot -> {frame, limited}.
+    local updates = {} -- Transient: player pointer -> {seed, frame}.
     local function age() return Risk.state.accountAge or 0 end
 
     local function getUsage(player)
@@ -142,14 +143,14 @@ function ClaudeChan:Init(mod, Risk)
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         -- Risk has already loaded or reset its state, before any item use or shot.
         if not continued then Risk.state.claudeUsage = {} end
-        ready = true; volleys = {}; drop:Reset()
+        ready = true; volleys = {}; updates = {}; drop:Reset()
         for i = 0, Game():GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
             if isClaude(player) then observeRoom(getUsage(player)) end
         end
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
-        ready = false; volleys = {}; drop:Reset()
+        ready = false; volleys = {}; updates = {}; drop:Reset()
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
         drop:Reset()
@@ -245,7 +246,12 @@ function ClaudeChan:Init(mod, Risk)
         if not ready then return end
         local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
         if not isClaude(player) then return end
-        if bill(player).limited then
+        -- Item helpers are not new paid volleys, but an already active Limited
+        -- penalty still applies to their native tear damage.
+        local limited
+        if tear:GetData().ccThoughtDerived then limited = getUsage(player).limited > 0
+        else limited = bill(player).limited end
+        if limited then
             tear.CollisionDamage = tear.CollisionDamage * LIMITED_DAMAGE_MULT
             tear.Color = Tint.Apply(tear.Color, 0.5, 0.5, 0.5, 0.7)
         end
@@ -265,13 +271,25 @@ function ClaudeChan:Init(mod, Risk)
 
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
         if not ready then return end
-        if not isClaude(player) then return end
-
-        observeSuspension()
-
-        local usage, key = getUsage(player)
+        local pointer = GetPtrHash(player)
+        if not isClaude(player) then
+            updates[pointer] = nil
+            drop:Forget(player)
+            return
+        end
+        if Game():IsPaused() or player:IsDead() then
+            drop:Forget(player)
+            return
+        end
         local now = Game():GetFrameCount()
+        observeSuspension()
+        local usage, key = getUsage(player)
         observeRoom(usage)
+        -- Suspension and room bookkeeping are already idempotent and may
+        -- observe same-frame changes. Only timed progress needs this guard.
+        local previous = updates[pointer]
+        if previous and previous.seed == player.InitSeed and previous.frame == now then return end
+        updates[pointer] = {seed=player.InitSeed, frame=now}
         if usage.limited > 0 then
             usage.limited = usage.limited - 1
             if usage.limited == 0 then

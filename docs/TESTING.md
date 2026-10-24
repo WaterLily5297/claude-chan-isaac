@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## Current integration scope
+
+Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
+
+All pending cases below remain open. The combined offline gate covers registration, syntax, assets and stubbed regressions only. Re-run on the final source commit and record the CI link. Historical COMPOSE-01 document conflicts are reconciled in this integration; that earlier experiment remains separate evidence.
+
 ## COMPOSE-01: pending source composition (offline only)
 
 The exact PR #50-54 input heads listed in the engine audit were applied in numerical order to an isolated main `2ec15ef` export. All source/test changes applied without conflict, including the overlapping normal-Claude implementation and usage regression from #52/#53. The combined gate passed **48 stub suites, 146 Lua files, five XML files and asset checks**. No private probes were in this test tree. Documentation conflicts were kept outside the tested tree for review; this is not a resolved release tree or a merge authorization. PR #54 alone still has 46 suites. Run the gate again after any authorized final integration, and complete candidate-specific engine retests before accepting runtime compatibility.
@@ -11,6 +17,22 @@ The owner currently requests offline work only; no game session or deployment to
 The dispatch model follows [IsaacDocs' damage callback contract](https://wofsauge.github.io/IsaacDocs/rep/enums/ModCallbacks.html#mc_entity_take_dmg). It is not a post-health-loss event. A later external callback can still cancel damage, or an earlier callback returning true can suppress later observers; those environments are not accepted by this test.
 
 Pending engine cases: Vibe with 40 coins and no real damage; fake damage; no-penalty damage; Sold Out blocking one hostile bullet; Red Stamp blocking contact; one ordinary hit; two players with only one hit; save/exit/continue before changing floors. Observe health, guard consumption, HUD and exact coins at the next floor. Repeat representative cases on base Repentance and with the installed mod set. Other risk, trinket and character damage observers are outside this fix's acceptance scope.
+
+## DERIVED-01: helper resource billing (offline candidate)
+
+The owner currently requests offline work only. The game remains closed and this candidate is not installed. `tests/derived_billing_test.lua` loads the real backlog, One More Finger, Please Retry, normal/tainted Claude and normal/tainted DeepSeek together. Synchronous FireTear dispatch is modeled; this is not an engine observation. On main, one helper per form changes usage/Quota/Thought/Compute from `0/220/150/12` to `4/219/0/10`. The candidate preserves those resources, keeps primes available and bills the next primary shot. Actual three-retry and fifth-shot helper schedules are covered. An active Limited penalty still weakens helper tears; a helper cannot start a new Limited interval.
+
+Pending engine retest after availability and a fresh verified backup: use both items on each of these four forms, compare helper and primary-shot resource deltas, inspect the native helper damage and flags, repeat with Swarm and 1M Context, test empty Thought/Quota/Compute and active Limited, then room exit and save/continue. Confirm no helper-induced fork/resource chain or new Lua error. Other target-ability hit attribution, Llama's helper and other Lua-fired attacks are outside this regression's acceptance scope.
+
+## Targeted ability familiar attribution (offline passed; two controlled engine cases passed)
+
+On PR #50 candidate `aae85fd`, Repentance+ v1.9.7.17 passed a normal GPT blue-fly contact-kill negative control and an own native-tear kill positive control. The HUD showed an active Sanity Check before the familiar kill; real damage callbacks reported familiar source type 3 and tear source type 2. Fallback stayed at 2.800 after the familiar kill, then Verified returned at 4.025 after the native tear. The fixture used frozen spawned enemies, scripted placement/room clears and temporary synthetic DROP input. Physical keyboard/controller input, other familiar types and the wider matrix below remain pending. Details and unsuccessful fixture attempts are in [the engine audit](ENGINE_AUDIT_2026-10-24.md#controlled-gpt-engine-follow-up-pr-50).
+
+In normal GPT Fallback, tag an enemy with Sanity Check. Let a contact familiar (for example a blue fly or an orbital) deliver every hit and the kill: GPT must stay in Fallback. Repeat with familiar projectiles and another player's attacks, then verify that GPT's own tears, bombs, lasers and knives can still advance or complete the check. Include parent-linked and spawner-linked native attacks.
+
+For normal Gemini, Grok and Kimi, verify that their owner-only target damage bonuses do not multiply contact familiar damage. Test their documented player attacks as positive controls. Also check tainted Gemini/Grok attack counting. The shared helper now excludes the familiar entity itself, in addition to attacks spawned by familiars. `target_owner_test.lua` and the real GPT callback regression fail on the old helper and pass on the fix; they do not establish engine source attribution or kill timing.
+
+Fresh menu starts remain pending: the latest 2ec15ef Repentance+ attempt reached File 1's main menu, but automated directional input did not select New Run. No case was passed from that attempt. The game was closed and its prior audio restored.
 
 ## Native Thought adapters (source candidate; no engine acceptance)
 
@@ -104,7 +126,7 @@ New run: HUD reads `Gemini-chan: Paint 2/3`. Tap/release DROP near an enemy (abo
 
 ## Rice First (source candidate; engine acceptance pending)
 
-Current owner constraint: source work and offline validation only. Keep this engine checklist pending until the owner resumes game testing.
+Muted engine testing is authorized. Keep this checklist pending until its individual cases are actually exercised; source and offline results are not engine acceptance.
 
 As normal DeepSeek, verify one starting bowl, a two-bowl cap and one bowl per two newly cleared hostile rooms. Re-enter and repopulate a completed room: no extra reward. Test bosses, challenge waves, alternate floors, mirror rooms, two-player co-op and dead/revived players. Wait in an empty room: Thought can fill, but neither bowls nor pocket charge should increase.
 
@@ -138,7 +160,9 @@ The helper and real roster callback tests cover release timing, long holds, inte
 
 ## Hurt-pose correction (source fixed, engine acceptance pending)
 
-The owner reports all characters developing an oversized head after damage. Exact runtime revision and item setup were not captured. Source now corrects the measured shared-cell envelope/anchor in all thirteen skins and restores Llama's full source pose. No current-engine reproduction or acceptance is claimed. Compare every form with vanilla Isaac at the same scale, then repeat real damage with face costumes, flight, size items and transformations. Capture pre-hit, all Hit frames and recovery. Check pivot stability, full-body pose, costume retention and no stale color/scale. Also test Death, FallIn, JumpOut and DeathTeleport, which reuse this cell. Repeat without and with Reactions Port Pack. Historical v0.4 evidence does not pass this case.
+The owner reports all characters developing an oversized head after damage. Exact runtime revision and item setup were not captured. Source now corrects the measured shared-cell envelope/anchor in all thirteen skins and restores Llama's full source pose. ANIM-01 on main `2ec15ef`, Repentance+ v1.9.7.17, observed actual health loss and engine-selected Hit frame 6 for all 22 forms plus Isaac. Sixteen mod forms plus Isaac have inspected screenshots without an obvious oversized full-body replacement at that frame. Reactions was enabled; zero collectibles were recorded at arming. Tainted GPT, normal Gemini, both Groks and tainted Qwen lack inspected screenshots; tainted GLM needs a clean repeat because movement/pickup input overlapped its capture. See the [per-form table and fixture limits](ENGINE_AUDIT_2026-10-24.md#anim-01-actual-damage-bounded-hit-frame-observation). Logs alone do not pass visuals, type changes do not pass fresh starts, and holding playback does not pass recovery. The reported bug remains open.
+
+Compare every form with vanilla Isaac at the same scale, then repeat real damage with face costumes, flight, size items and transformations. Capture pre-hit, all Hit frames and recovery. Check pivot stability, full-body pose, costume retention and no stale color/scale. Also test Death, FallIn, JumpOut and DeathTeleport, which reuse this cell. Repeat without and with Reactions Port Pack. Historical v0.4 evidence does not pass this case.
 
 Offline reproduction requires Pillow plus the recorded generated sources, kept outside the repository. Run `python tools/verify_hurt_poses.py SOURCE_DIRECTORY MOVEMENT_SOURCE_DIRECTORY REVIEW_OUTPUT_DIRECTORY --before-ref d1c0daf`. This fails the geometry contract on the old thirteen skins and passes the corrected ones, verifying source/packed hashes, exact atlas rebuilding and pixel equality outside the shared hurt cell. It writes an engineering comparison and JSON evidence; it neither installs files nor runs the game. CI's standard asset checks do not execute this optional source-dependent review.
 
@@ -201,6 +225,10 @@ Tap/release DROP at about 60 usage: one Appeal is spent, usage drops by 40, capt
 Get Birthright and reach 90+ risk: `Banned again / Birthright kept your account age`, age unchanged and the Suspended penalty still applies. A second suspension on the same floor resets age; the next floor renews the shield. Save/continue while suspended must not reset age. Save/continue mid-progress keeps Appeals and the clear count. Co-op with two Claude-chans keeps separate usage and Appeals. With Brimstone or Technology, each laser start bills 4 usage (once per frame with tears); a held Tech 2 beam pays once; Dr. Fetus bombs bill; knives and placed bombs do not. Tainted Claude pays Quota the same way. Stub coverage: `tests/claude_appeals_test.lua`, `tests/claude_usage_save_test.lua`, `tests/swarm_resolution_test.lua`.
 
 ## Normal Claude usage save acceptance (pending)
+
+TIMER-01 source candidate adds per-player/frame deduplication and explicit pause/death freezes for Limited and idle drain. The expanded `claude_usage_save_test.lua` fails against main `2ec15ef` when a duplicate wrapper callback reduces the timer twice. It also checks two-player isolation, exact expiry over active frames, paused/dead callbacks, revival without catch-up, drain deduplication and fresh/continued runs at the same frame. The older 149-step countdown fixture now advances 149 actual frame values rather than invoking one frame repeatedly. These are offline assertions, not evidence that the engine normally invokes duplicate callbacks.
+
+Engine retest pending: reach Limited naturally, verify the five-second countdown over active gameplay updates, pause/resume, die/revive, and save/continue mid-countdown. Confirm idle drain stays ten per second, held fire blocks drain, two Claudes remain independent, and pause/death interrupts DROP without consuming an Appeal after recovery. If using an explicit duplicate-callback fixture, distinguish it from normal engine delivery. Do not close timer acceptance from this regression alone.
 
 As normal Claude, save with a partially filled meter, close the process, restart and continue. The meter must resume rather than clear. Repeat during the five-second limited-damage interval and confirm the remaining game-frame countdown and 40% damage. Repeat with two Claude players at different usage levels, with Swarm (including the first continued shot), after Compact, and immediately after Banked Reset. Continue must preserve the item changes and keep players independent. Verify a fresh run resets both meters and an older save without usage fields loads safely. Check Clicker away/back, co-op join/leave, and supported twin/subplayer forms separately; the slot-keyed stub does not prove their engine identity behavior. The penalty expires through gameplay frames; offline wall-clock time is not credited.
 

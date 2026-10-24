@@ -84,7 +84,8 @@ local function volley(p,n)
     frame=frame+1
     local tears={}
     for i=1,n or 1 do
-        tears[i]={SpawnerEntity=p,CollisionDamage=10}
+        local data={}
+        tears[i]={SpawnerEntity=p,CollisionDamage=10,GetData=function() return data end}
         fire("MC_POST_FIRE_TEAR",tears[i])
     end
     fire("MC_POST_PEFFECT_UPDATE",p)
@@ -106,7 +107,8 @@ volley(p,4); assert(usage().value==4,"same-frame pellets share one payment")
 p.swarm=true; volley(p); assert(usage().value==12,"Swarm adds one extra 4-point payment"); p.swarm=false
 -- Laser starts and Dr. Fetus bombs bill the same per-frame payment; familiars and plain bombs do not.
 local familiar={ToPlayer=function() end}
-frame=frame+1; fire("MC_POST_LASER_INIT",{SpawnerEntity=p}); fire("MC_POST_FIRE_TEAR",{SpawnerEntity=p,CollisionDamage=10})
+local mixedData={}
+frame=frame+1; fire("MC_POST_LASER_INIT",{SpawnerEntity=p}); fire("MC_POST_FIRE_TEAR",{SpawnerEntity=p,CollisionDamage=10,GetData=function() return mixedData end})
 fire("MC_POST_LASER_INIT",{SpawnerEntity=p}); assert(usage().value==16,"a laser shares its frame's payment")
 frame=frame+1; fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=true}); assert(usage().value==20,"a Fetus bomb pays")
 frame=frame+1; fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=false}); fire("MC_POST_LASER_INIT",{SpawnerEntity=familiar})
