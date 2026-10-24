@@ -92,6 +92,8 @@ Source status (scripts/characters/grok_check.lua): normal form implemented and r
 
 **Normal:** Start with one Adapter, cap two; two unique clears earn one. DROP cycles the next adapter: Range (+60), Tempo (0.9x firing interval), Power (1.1x damage). Entering a new hostile room spends one adapter to apply that choice for the room. No adapter means normal stats. One active bonus, no stacking; preview next and current separately. Birthright: cap three. HUD: Adapters, selected/active labels.
 
+Source status (scripts/characters/qwen_adapter.lua): normal form implemented and replaces the flawless chain. A "new hostile room" is one not yet seen in combat this floor, so re-entering an unfinished fight does not spend twice. Engine acceptance pending.
+
 **Tainted:** DROP in a cleared room chooses Heavy (1.3x damage, 1.2x firing interval), Tiny (0.85x damage, 0.8x interval) or Balanced (1x). Choice locks in combat. Three unique clears using three different builds grant +0.2 damage for the floor, max three awards. Repeating a build does not advance the three-bit checklist; award resets it. New floor clears progress/bonus. Birthright: +0.3 per award. HUD: Build, Variants 0/3. The source is community enthusiasm for variants and derivatives, not an accusation that another product is stolen.
 
 ### Llama — Please Stay Open / Still Waiting

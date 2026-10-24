@@ -4,15 +4,15 @@ local C = include("scripts.constants")
 local Roster = {}
 Roster.definitions = {
     -- External families keep only identity, dossier and tint here; mechanics live in
-    -- gpt_downgrade.lua, gemini_paint.lua and grok_check.lua.
+    -- gpt_downgrade.lua, gemini_paint.lua, grok_check.lua and qwen_adapter.lua.
     {key="gpt", name="GPT-chan", title="Same Name, Smaller Brain", color={0.4,1,0.75}, external=true,
      lines={"Verified: +15% damage. Clears add Routing.", "At 3 Routing, next combat: Fallback, -20%.", "Fallback: tap DROP, hit the Sanity Check 3x."}},
     {key="gemini", name="Gemini-chan", title="Nano Banana", color={0.7,0.6,1}, external=true,
      lines={"Tap/release DROP: Paint the nearest enemy.", "Painted: +20% your damage for 8 seconds.", "Your kill leaves a slowing banana peel."}},
     {key="grok", name="Grok-chan", title="Is This True?", color={1,0.3,0.35}, external=true,
      lines={"Tap/release DROP in combat: check an enemy.", "6s: +30% damage to it, -10% to others.", "3 hits or its defeat: +0.15 speed this room."}},
-    {key="qwen", name="Qwen-chan", title="Task chain", color={0.8,0.5,1},
-     lines={"Clear rooms without taking damage.", "Each success: +6% damage, up to 5.", "A hit breaks the chain."}},
+    {key="qwen", name="Qwen-chan", title="Everyone's Base Model", color={0.8,0.5,1}, external=true,
+     lines={"Tap/release DROP: pick Range, Tempo or Power.", "A new hostile room spends an Adapter on it.", "Earn an Adapter every two combat clears."}},
     {key="llama", name="Llama-chan", title="Open collaboration", color={0.65,1,0.5},
      lines={"Every second unique combat clear:", "Each living player gains 2 blue flies.", "Personal damage starts 10% lower."}},
     {key="mistral", name="Mistral-chan", title="Tailwind", color={1,0.7,0.3},
@@ -52,7 +52,7 @@ function Roster:Init(mod, Risk)
         if type(all) ~= "table" then all = {}; Risk.state.modelRoster = all end
         local s = all[key]
         if type(s) ~= "table" or s.key ~= def.key then
-            s = {key=def.key, chain=0, pages=0, meals=0, shares=0, links=0, awards={}}
+            s = {key=def.key, pages=0, meals=0, shares=0, links=0, awards={}}
             all[key] = s
         end
         return s
@@ -128,8 +128,7 @@ function Roster:Init(mod, Risk)
         local key=def.key
         if flag == CacheFlag.CACHE_DAMAGE then
             local mult=1
-            if key=="qwen" then mult=1 + s.chain*0.06
-            elseif key=="llama" then mult=0.9
+            if key=="llama" then mult=0.9
 
             elseif key=="kimi" then mult=1+s.pages*0.04
             elseif key=="glm" then mult=1+s.links*0.12 end
@@ -172,7 +171,7 @@ function Roster:Init(mod, Risk)
         if (flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES))~=0 then return end
         local s=state(p,def)
         if not s then return end
-        s.hit=true; s.chain=0; s.pages=math.max(0,s.pages-2)
+        s.hit=true; s.pages=math.max(0,s.pages-2)
         refresh(p)
     end,EntityType.ENTITY_PLAYER)
     mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
@@ -181,8 +180,7 @@ function Roster:Init(mod, Risk)
             local key=roomKey()
             if p:IsDead() or s.awards[key] then return end
             s.awards[key]=true
-            if def.key=="qwen" and not s.hit then s.chain=math.min(5,s.chain+1)
-            elseif def.key=="kimi" and not s.hit then s.pages=math.min(6,s.pages+1)
+            if def.key=="kimi" and not s.hit then s.pages=math.min(6,s.pages+1)
             elseif def.key=="llama" then
                 s.shares=(s.shares+1)%2
                 if s.shares==0 then
@@ -217,8 +215,7 @@ function Roster:Init(mod, Risk)
             if def.external then return end
             local i=tonumber(slot(p)) or 0
             local value="Hold MAP: dossier"
-            if def.key=="qwen" then value="Chain "..s.chain.."/5"
-            elseif def.key=="kimi" then value="Pages "..s.pages.."/6"
+            if def.key=="kimi" then value="Pages "..s.pages.."/6"
             elseif def.key=="glm" then value="Tools "..s.links.."/3"
             elseif def.key=="doubao" then value="Meal "..s.meals.."/3"
             elseif def.key=="llama" then value="Share "..s.shares.."/2"

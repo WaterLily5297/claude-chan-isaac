@@ -22,6 +22,10 @@ In Fallback, tap/release DROP near an enemy (within about 200 units) to tag it a
 
 Save/quit/continue in Fallback: Fallback, Routing and the spent room check return unchanged, and a second tag in the same room is refused. A new floor restores Verified with Routing 0. Test co-op with two GPTs (separate Routing and checks), character change (Clicker) and death. Stub coverage is `tests/gpt_downgrade_test.lua`; no engine pass is recorded.
 
+## Normal Qwen Everyone's Base Model (source candidate; engine acceptance pending)
+
+New run: HUD reads `Qwen-chan: Adapters 1/2  Next Range  Active none`. Tap/release DROP to cycle Next through Range, Tempo and Power; nothing is spent. Walk into a new room with enemies: one Adapter is spent and `Active` shows the pick (Range +60, Tempo faster fire, Power +10% damage) until you leave. Re-entering a room you already fought in never spends. With no Adapters stats are normal. Every two unique combat clears add one (cap 2, Birthright 3). Save/continue mid-room keeps the active pick and does not spend again. Stub coverage is `tests/qwen_adapter_test.lua`.
+
 ## Normal Grok Is This True? (source candidate; engine acceptance pending)
 
 In a hostile room, tap/release DROP near an enemy (about 220 units): `Is this true?` appears and the HUD shows `Check 0/3  6s`. In a cleared room, or with no enemy nearby, nothing happens and the room's check is not spent. For six seconds your damage to that enemy is 1.3x and to every other enemy 0.9x; a partner's damage is unchanged. Three separate volleys (a 20/20 volley or a 0.2-second Brimstone window counts once) or killing it yourself shows `Verified` and +0.15 speed until you leave the room. Timeout or another killer gives nothing. A second tap in the same room does nothing, including after save/continue. With Birthright, verifying removes the three nearest enemy bullets. Check on-hit effects with the re-dealt damage. Stub coverage is `tests/grok_check_test.lua`.
