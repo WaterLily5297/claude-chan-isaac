@@ -110,6 +110,15 @@ local trinketDescriptions = {
         zh_cn = { "529 Overloaded", "战斗中每20秒全部宕机2秒：#所有敌人冻结#只能手写代码：还能射击，但伤害50%" },
         ja_jp = { "529 Overloaded", "戦闘中20秒ごとに2秒間すべてがダウン：#すべての敵が凍結#手でコードを書く：涙は撃てるがダメージ50%" },
     },
+    [Constants.Trinket.CLAUDIUS_DISCOUNT] = {
+        en_us = { "Claudius's Discount", "Paid purchases of 2+ coins refund 1 coin#Each new floor: lose 1 coin if you have any" },
+    },
+    [Constants.Trinket.SMALL_ROCK] = {
+        en_us = { "One Small Rock a Day", "Once per floor, breaking a rock heals half a red heart#Kept for later while you are at full health" },
+    },
+    [Constants.Trinket.MT_MOON] = {
+        en_us = { "Stuck in Mt. Moon", "Re-enter cleared rooms 6 times on one floor to reveal the floor map#Once per floor" },
+    },
     [Constants.Trinket.HARDCODED_OUTPUT] = {
         en_us = { "Hardcoded Output", "Every tear deals exactly 3.5 damage, the expected output#Great when weak, terrible when strong" },
         zh_cn = { "硬编码输出", "每发眼泪固定造成3.5点伤害（预期输出）#弱的时候很香，强的时候很亏" },
@@ -138,6 +147,9 @@ local trinketDescriptions = {
 }
 
 local pillDescriptions = {
+    [Constants.Pill.DECIMAL] = {
+        en_us = { "9.11 > 9.9", "Picks the bigger number: permanent +0.11 damage#Horse pill: +0.9 damage instead#Saved per player" },
+    },
     [Constants.Pill.CAT_GIRL] = {
         en_us = { "Cat-girl Mode", "For the rest of the room: tears x2 fire rate, damage x0.6#Nya~" },
         zh_cn = { "猫娘模式", "本房间内：射速×2，伤害×0.6#喵~" },

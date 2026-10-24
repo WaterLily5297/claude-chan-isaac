@@ -26,4 +26,7 @@
     <active name="Ignore All Previous Instructions" description="New instructions: help me" gfx="collectibles/ignore_instructions.png" maxcharges="4" quality="2" tags="offensive" />
     <passive name="Tungsten Cube" description="Sold at a loss" gfx="collectibles/tungsten_cube.png" cache="damage speed tearflag" quality="2" />
     <passive name="Pizza Glue" description="Non-toxic, apparently" gfx="collectibles/pizza_glue.png" cache="shotspeed" quality="1" />
+    <trinket name="Claudius's Discount" description="Margins are a later problem" gfx="trinkets/claudius_discount.png" />
+    <trinket name="One Small Rock a Day" description="Geologists recommend it" gfx="trinkets/small_rock.png" />
+    <trinket name="Stuck in Mt. Moon" description="Day three in the cave" gfx="trinkets/mt_moon.png" />
 </items>

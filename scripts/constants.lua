@@ -31,11 +31,15 @@ Constants.Trinket = {
     WELCOME_NOTICE = Isaac.GetTrinketIdByName("Welcome Notice"),
     STATUS_PAGE = Isaac.GetTrinketIdByName("Status Page"),
     APPEAL_FORM = Isaac.GetTrinketIdByName("Appeal Form"),
+    CLAUDIUS_DISCOUNT = Isaac.GetTrinketIdByName("Claudius's Discount"),
+    SMALL_ROCK = Isaac.GetTrinketIdByName("One Small Rock a Day"),
+    MT_MOON = Isaac.GetTrinketIdByName("Stuck in Mt. Moon"),
 }
 
 Constants.Pill = {
     CAT_GIRL = Isaac.GetPillEffectByName("Cat-girl Mode"),
     GETTING_FOOD = Isaac.GetPillEffectByName("Brb, Getting Food"),
+    DECIMAL = Isaac.GetPillEffectByName("9.11 > 9.9"),
 }
 
 Constants.Player = {

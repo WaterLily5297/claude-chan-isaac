@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased meme extras, batch 2 (2026-10-24)
+
+- Add three trinkets and one pill outside the fifty-row backlog: Claudius's Discount (refund 1 coin on confirmed purchases of 2+ coins; lose 1 coin per new floor), One Small Rock a Day (once per floor, breaking a rock heals half a red heart; kept while at full health), Stuck in Mt. Moon (six backtracks into cleared rooms reveal the floor map, once per floor) and 9.11 > 9.9 (permanent +0.11 damage, horse pill +0.9).
+- Shared versioned per-player state in `Risk.state.memeExtras` (floor-scoped flags, saved pill bonus). Native prices are never rewritten. Original icons, English EID and a new offline suite; nineteen suites pass. No engine validation.
+
 ## Unreleased meme extras, batch 1 (2026-10-24)
 
 - Add three collectibles outside the fifty-row backlog: Ignore All Previous Instructions (A4: charm the nearest non-boss within 200 units for 8 s, confuse a boss for 2 s, empty use keeps charge, Car Battery picks a second target), Tungsten Cube (+0.8 damage, -0.15 speed per copy, native knockback tears) and Pizza Glue (25% slowing tears, luck 10-50%, -0.1 shot speed; tears only).

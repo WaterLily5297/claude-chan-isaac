@@ -94,6 +94,10 @@ Owner request of 2026-10-24: more meme items that stay compatible with the origi
 | Ignore All Previous Instructions | A4, treasure | **Local implementation.** Nearest vulnerable, non-friendly, non-charmed enemy within 200 units is charmed for 8 s; a boss is confused for 2 s instead. No target keeps charge. Car Battery's second use picks the next target. Differs from Compact, which confuses the whole room and clears bullets. |
 | Tungsten Cube | P, shop | **Local implementation.** +0.8 damage and -0.15 speed per copy (speed floor 0.1, never raises a lower value); native knockback tear flag applies to every weapon that reads player tear flags. |
 | Pizza Glue | P, treasure | **Local implementation.** Each fired tear has a 25% chance (+2.5% per luck, 10-50%) to gain the native slowing flag, using the item's per-player native RNG; -0.1 shot speed per copy. Tears only: lasers, knives and bombs are not rolled. Already-slow tears consume no roll. |
+| Claudius's Discount | Trinket | **Local implementation.** A touch on a pickup priced 2+ coins that the holder can afford is confirmed when coins drop by exactly that price within two updates; then 1 coin is refunded. Native prices are never rewritten, so Steam Sale and restocks stay native. Each new floor costs 1 coin if any, once per saved floor key. |
+| One Small Rock a Day | Trinket | **Local implementation.** Rocks intact on room entry are polled every six updates. The first break on a floor heals half a red heart for each holder who can take red hearts; full-health holders keep the daily rock. Saved per player and floor. |
+| Stuck in Mt. Moon | Trinket | **Local implementation.** Each entry into a different, already visited and cleared room adds one; at six the native map effect is applied, once per floor. The room present on continue and duplicate callbacks never count. |
+| 9.11 > 9.9 | Pill | **Local implementation.** Permanent saved +0.11 damage per use (+0.9 for a horse pill when the game passes the pill color). Re-applied after continue; per player. |
 
 ## Implementation and performance gates
 

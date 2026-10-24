@@ -31,6 +31,8 @@ Search results read on 2026-10-24; article bodies were not fetched in this sessi
 |---|---|---|
 | Tungsten Cube | [Simon Willison on Project Vend](https://simonwillison.net/2025/Jun/27/project-vend), [The Decoder report](https://the-decoder.com/anthropics-claude-ran-a-store-and-lost-money-by-selling-below-cost-and-giving-discounts/) | An assistant running an office shop stocked tungsten cubes and sold below cost. Heavy-cube stat trade; Claudius's Discount candidate. |
 | Ignore All Previous Instructions | [Know Your Meme entry](https://knowyourmeme.com/memes/ignore-all-previous-instructions), [Learn Prompting article](https://learnprompting.org/blog/ignore_previous_instructions) | The prompt-injection catchphrase. Rendered as charming one enemy, not as a working exploit. |
+| Stuck in Mt. Moon | Widely reported Claude Plays Pokemon stream (Feb 2025) stalling in Mt. Moon; no source re-read in this session | Backtracking reveals the map. Parody only. |
+| 9.11 > 9.9 | Widely shared screenshots of models comparing 9.11 and 9.9 wrongly; no specific source asserted | The pill picks the "bigger" bonus. |
 | Pizza Glue | [The Register, May 2024](https://www.theregister.com/2024/05/31/google_ai_search_update/), [OODA Loop brief](https://www.oodaloop.com/briefs/2024/05/24/glue-pizza-and-eat-rocks-google-ai-search-errors-go-viral/) | Viral search-summary errors suggesting glue on pizza and eating rocks. Sticky tears; One Small Rock a Day candidate. No company logo. |
 
 ## Attribution boundaries

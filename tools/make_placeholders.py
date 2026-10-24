@@ -613,6 +613,41 @@ def pizza_glue():
     return c
 
 
+def claudius_discount():
+    """A price tag with an orange discount slash."""
+    c = clear()
+    poly(c, [(4, 12), (11, 5), (27, 5), (27, 19), (11, 19)], "p")
+    ring(c, 10, 12, 2.5, 1.2, "#")
+    for y in (9, 13):
+        line(c, 15, y, 24, y, "T")
+    line(c, 14, 17, 24, 17, "B")
+    line(c, 12, 26, 26, 20, "O", 2)       # discount slash
+    line(c, 8, 22, 12, 26, "O", 2)
+    return c
+
+
+def small_rock():
+    """One small grey rock on a plate."""
+    c = clear()
+    ellipse(c, 16, 22, 12, 5, "F")         # plate
+    ellipse(c, 16, 21, 8, 3, "K")          # plate well
+    ellipse(c, 16, 16, 6, 5, "T")          # the rock
+    rect(c, 13, 13, 15, 14, "K")           # highlight
+    rect(c, 17, 18, 19, 18, "D")           # crack
+    return c
+
+
+def mt_moon():
+    """A cave mouth under a crescent moon."""
+    c = clear()
+    poly(c, [(3, 28), (10, 12), (16, 9), (23, 13), (29, 28)], "T")
+    ellipse(c, 16, 25, 6, 7, "N")          # cave mouth
+    rect(c, 10, 26, 22, 28, "N")
+    ellipse(c, 24, 6, 4, 4, "G")           # moon
+    ellipse(c, 26, 5, 3, 3, ".")
+    return c
+
+
 SPRITES = {
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
@@ -641,6 +676,9 @@ SPRITES = {
     "ignore_instructions": ignore_instructions,
     "tungsten_cube": tungsten_cube,
     "pizza_glue": pizza_glue,
+    "claudius_discount": claudius_discount,
+    "small_rock": small_rock,
+    "mt_moon": mt_moon,
 }
 
 # icons whose content is symmetric: mirror the finished pixels, shading included
@@ -654,7 +692,8 @@ SYMMETRIC = {"ban_hammer", "compact", "tests_passing", "constitution",
              "status_page", "appeal_form"}
 
 TRINKETS = {"overloaded", "hardcoded_output", "thinking_cleared",
-            "welcome_notice", "status_page", "appeal_form"}
+            "welcome_notice", "status_page", "appeal_form",
+            "claudius_discount", "small_rock", "mt_moon"}
 ORDER = list(SPRITES)
 
 
