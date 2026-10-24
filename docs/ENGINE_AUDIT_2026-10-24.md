@@ -1,5 +1,23 @@
 # Engine compatibility audit: 2026-10-24
 
+## COMPOSE-01: pending PR source integration experiment
+
+Offline-only experiment on an isolated export of main `2ec15efe8cf2ebf40192618fabc73225630aac09`. No Git ref, PR merge state or installed file changed. Inputs were applied in order #50, #51, #52, #53, #54 using three-way file composition against that shared base:
+
+| PR | Examined head | Scope |
+|---|---|---|
+| #50 | `8d5ac3628c59dacc210a16469deeb360ec5f6653` | Familiar attribution and controlled GPT evidence |
+| #51 | `c3a3efe395b4a3c3a8512e677c24637869071cd1` | Bounded hurt-frame evidence only |
+| #52 | `42dc481c23410e291c08dc922cd9435f7919bc8c` | Claude frame/pause/death timer guards |
+| #53 | `3f2e38213f09cb74a1dbb2a5ced5f949f0c3f6fb` | Item-helper resource billing |
+| #54 | `382570d665a35bfb8a714c2a2485786b253a8bae` | Vibe damage eligibility |
+
+All source/test edits applied without conflict. The combined tree passed 48 stub suites, 146 Lua files, five XML files and deterministic asset checks; unlike the development checkout's syntax traversal, these 146 Lua files contain no private probes. The Claude timer and helper changes coexist in both the implementation and its tests. The reporting-only follow-up on #54 does not alter these tested source files.
+
+Markdown overlaps occurred in CHANGELOG.md, HANDOFF.md, TESTING.md and this audit. For that experiment, conflicted documents stayed at the last clean version; conflict outputs were reviewed separately. Therefore the result proves source/test composition, not a complete merged document tree. Preserve attribution's two bounded engine cases, ANIM-01's sixteen clean mod-form Hit6 observations and six pending cases, all three source-only fixes, and their engine retest checklists. Do not resolve by keeping just one side. Consolidate authorization statements under the latest offline-only instruction, and retain per-checkpoint counts rather than presenting 48 suites as main's current count.
+
+No candidate was deployed, no game was launched, and no new engine acceptance occurred. Each PR still needs its own owner merge approval. Other application orders and any later source edits require fresh verification; the runtime remains main `2ec15ef`.
+
 ## VIBE-01 offline follow-up
 
 The owner remains unavailable for game control and requests offline work. Installed runtime stays main `2ec15ef`; the game remains closed. There is no new engine observation.

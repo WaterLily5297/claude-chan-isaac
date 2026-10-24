@@ -1,5 +1,9 @@
 # In-game test checklist
 
+## COMPOSE-01: pending source composition (offline only)
+
+The exact PR #50-54 input heads listed in the engine audit were applied in numerical order to an isolated main `2ec15ef` export. All source/test changes applied without conflict, including the overlapping normal-Claude implementation and usage regression from #52/#53. The combined gate passed **48 stub suites, 146 Lua files, five XML files and asset checks**. No private probes were in this test tree. Documentation conflicts were kept outside the tested tree for review; this is not a resolved release tree or a merge authorization. PR #54 alone still has 46 suites. Run the gate again after any authorized final integration, and complete candidate-specific engine retests before accepting runtime compatibility.
+
 ## VIBE-01: floor bill eligibility (offline candidate)
 
 The owner currently requests offline work only; no game session or deployment took place. `tests/vibe_damage_test.lua` loads real Vibe Coding before the real backlog, matching main.lua, and models stable callback priorities and early termination on a non-nil damage result. Fake/no-penalty hits, Sold Out bullet cancellation and Red Stamp contact cancellation leave two players at 40 coins after the floor transition; old main incorrectly charges 10 coins. Ordinary damage still charges the hit player's 25% bill once, a clean following floor waives it, and buying Vibe after a real hit does not erase that hit. Exit disables tracking. The existing Vibe persistence fixture remains separate from native save-file validation.
