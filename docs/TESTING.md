@@ -1,5 +1,15 @@
 # In-game test checklist
 
+## Targeted ability familiar attribution (offline passed; two controlled engine cases passed)
+
+On PR #50 candidate `aae85fd`, Repentance+ v1.9.7.17 passed a normal GPT blue-fly contact-kill negative control and an own native-tear kill positive control. The HUD showed an active Sanity Check before the familiar kill; real damage callbacks reported familiar source type 3 and tear source type 2. Fallback stayed at 2.800 after the familiar kill, then Verified returned at 4.025 after the native tear. The fixture used frozen spawned enemies, scripted placement/room clears and temporary synthetic DROP input. Physical keyboard/controller input, other familiar types and the wider matrix below remain pending. Details and unsuccessful fixture attempts are in [the engine audit](ENGINE_AUDIT_2026-10-24.md#controlled-gpt-engine-follow-up-pr-50).
+
+In normal GPT Fallback, tag an enemy with Sanity Check. Let a contact familiar (for example a blue fly or an orbital) deliver every hit and the kill: GPT must stay in Fallback. Repeat with familiar projectiles and another player's attacks, then verify that GPT's own tears, bombs, lasers and knives can still advance or complete the check. Include parent-linked and spawner-linked native attacks.
+
+For normal Gemini, Grok and Kimi, verify that their owner-only target damage bonuses do not multiply contact familiar damage. Test their documented player attacks as positive controls. Also check tainted Gemini/Grok attack counting. The shared helper now excludes the familiar entity itself, in addition to attacks spawned by familiars. `target_owner_test.lua` and the real GPT callback regression fail on the old helper and pass on the fix; they do not establish engine source attribution or kill timing.
+
+Fresh menu starts remain pending: the latest 2ec15ef Repentance+ attempt reached File 1's main menu, but automated directional input did not select New Run. No case was passed from that attempt. The game was closed and its prior audio restored.
+
 ## Native Thought adapters (source candidate; no engine acceptance)
 
 Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and weapon-specific engine matrix. The owner resumed muted engine testing on 2026-10-24; see [the engine audit](ENGINE_AUDIT_2026-10-24.md) for actual coverage. Ordinary tears, single-hit/released-ring lasers, repeated-hit beams, flying knives and Dr. Fetus now have source paths; Ludovico and repeated-hit beams use six-update windows. The earlier Rice checklist below describes the initial tear-only candidate. Epic Fetus, melee, delayed bursts and Incubus/Twisted Pair now have source adapters; their combat behavior still needs engine acceptance.
@@ -92,7 +102,7 @@ New run: HUD reads `Gemini-chan: Paint 2/3`. Tap/release DROP near an enemy (abo
 
 ## Rice First (source candidate; engine acceptance pending)
 
-Current owner constraint: source work and offline validation only. Keep this engine checklist pending until the owner resumes game testing.
+Muted engine testing is authorized. Keep this checklist pending until its individual cases are actually exercised; source and offline results are not engine acceptance.
 
 As normal DeepSeek, verify one starting bowl, a two-bowl cap and one bowl per two newly cleared hostile rooms. Re-enter and repopulate a completed room: no extra reward. Test bosses, challenge waves, alternate floors, mirror rooms, two-player co-op and dead/revived players. Wait in an empty room: Thought can fill, but neither bowls nor pocket charge should increase.
 
@@ -126,7 +136,9 @@ The helper and real roster callback tests cover release timing, long holds, inte
 
 ## Hurt-pose correction (source fixed, engine acceptance pending)
 
-The owner reports all characters developing an oversized head after damage. Exact runtime revision and item setup were not captured. Source now corrects the measured shared-cell envelope/anchor in all thirteen skins and restores Llama's full source pose. No current-engine reproduction or acceptance is claimed. Compare every form with vanilla Isaac at the same scale, then repeat real damage with face costumes, flight, size items and transformations. Capture pre-hit, all Hit frames and recovery. Check pivot stability, full-body pose, costume retention and no stale color/scale. Also test Death, FallIn, JumpOut and DeathTeleport, which reuse this cell. Repeat without and with Reactions Port Pack. Historical v0.4 evidence does not pass this case.
+The owner reports all characters developing an oversized head after damage. Exact runtime revision and item setup were not captured. Source now corrects the measured shared-cell envelope/anchor in all thirteen skins and restores Llama's full source pose. ANIM-01 on main `2ec15ef`, Repentance+ v1.9.7.17, observed actual health loss and engine-selected Hit frame 6 for all 22 forms plus Isaac. Sixteen mod forms plus Isaac have inspected screenshots without an obvious oversized full-body replacement at that frame. Reactions was enabled; zero collectibles were recorded at arming. Tainted GPT, normal Gemini, both Groks and tainted Qwen lack inspected screenshots; tainted GLM needs a clean repeat because movement/pickup input overlapped its capture. See the [per-form table and fixture limits](ENGINE_AUDIT_2026-10-24.md#anim-01-actual-damage-bounded-hit-frame-observation). Logs alone do not pass visuals, type changes do not pass fresh starts, and holding playback does not pass recovery. The reported bug remains open.
+
+Compare every form with vanilla Isaac at the same scale, then repeat real damage with face costumes, flight, size items and transformations. Capture pre-hit, all Hit frames and recovery. Check pivot stability, full-body pose, costume retention and no stale color/scale. Also test Death, FallIn, JumpOut and DeathTeleport, which reuse this cell. Repeat without and with Reactions Port Pack. Historical v0.4 evidence does not pass this case.
 
 Offline reproduction requires Pillow plus the recorded generated sources, kept outside the repository. Run `python tools/verify_hurt_poses.py SOURCE_DIRECTORY MOVEMENT_SOURCE_DIRECTORY REVIEW_OUTPUT_DIRECTORY --before-ref d1c0daf`. This fails the geometry contract on the old thirteen skins and passes the corrected ones, verifying source/packed hashes, exact atlas rebuilding and pixel equality outside the shared hurt cell. It writes an engineering comparison and JSON evidence; it neither installs files nor runs the game. CI's standard asset checks do not execute this optional source-dependent review.
 
