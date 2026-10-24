@@ -65,7 +65,7 @@ end
 -- DeepSeek-chan needs no proxy (she connects directly), and the model roster
 -- families have their own loops, so neither is covered by the proxy account.
 local function covered(player)
-    return player ~= nil and not Constants.IsDeepSeek(player) and ModelRoster:Find(player) == nil
+    return player ~= nil and not Constants.IsDeepSeek(player) and not ModelRoster:IsFamily(player)
 end
 
 -- When no player is covered the whole IP / risk system sleeps: risk reads as

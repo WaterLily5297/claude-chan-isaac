@@ -13,7 +13,7 @@ Isaac = {GetItemIdByName=function() return -1 end, GetTrinketIdByName=function()
 function Isaac.GetPlayerTypeByName(n, tainted)
     if n=="Claude-chan" then return tainted and 141 or 41 end
     if n=="DeepSeek-chan" then return tainted and 142 or 42 end
-    for i, name in ipairs(names) do if n==name and not tainted then return 50+i end end
+    for i, name in ipairs(names) do if n==name then return tainted and (name=="GPT-chan" and 151 or -1) or 50+i end end
     return -1
 end
 function Isaac.GetPlayer(i) return players[i+1] end
@@ -69,6 +69,12 @@ Risk.state.risk = 95
 for _, p in ipairs(players) do p:EvaluateItems() end
 assert(math.abs(claude.Damage - 7.5) < 1e-9, "Claude is suspended")
 assert(gpt.Damage == 10 and deepseek.Damage == 10, "suspension must not touch roster or DeepSeek players")
+
+-- Registered tainted roster forms are outside the proxy account too.
+players = {player(151)}
+assert(not Risk:IsActive(), "tainted GPT must not use the proxy account")
+players = {player(141)}
+assert(Risk:IsActive(), "tainted Claude keeps the proxy account")
 
 -- Vanilla characters keep the existing proxy behavior.
 players = {player(0)}
