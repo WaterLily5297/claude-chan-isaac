@@ -113,6 +113,6 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Pill | Effect |
 |---|---|
 | 9.11 > 9.9 | Picks the bigger number: permanent +0.11 damage; Horse pill: +0.9 damage instead; Saved per player |
-| Brb, Getting Food | Heals 1 red heart; Can't shoot for 3 seconds |
+| Brb, Getting Food | Heals 1 red heart (horse pill: 2); Can't shoot for 3 seconds |
 | Cat-girl Mode | For the rest of the room: tears x2 fire rate, damage x0.6; Nya~ |
 | Rolled Back | All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1; Horse pill: doubled; Rolled back in the next room |

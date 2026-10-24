@@ -16,6 +16,7 @@ Source fixes #63-#72 each have an offline regression; none has run in the engine
 - Opus Mode with Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus and Ludovico: coins drain while firing.
 - Compact with Car Battery as Claude: usage rises by 50 once.
 - Co-op with one dead player (ghost): Llama's Release and Open Weights give the living player the solo four flies.
+- Horse Brb, Getting Food: heals two red hearts, shooting locked 3 seconds.
 
 ## COSTUME-LOCK-01: fixed character look (offline passed; engine pending)
 
