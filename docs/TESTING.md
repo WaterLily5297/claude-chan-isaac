@@ -6,6 +6,42 @@ Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and 
 
 Verify actual callback order, damage refresh behavior, charged releases during food lockout, continuous fork update order, 1M Context decay, pause and mid-window save/continue before accepting any native weapon case. Source field assertions do not establish damage dealt, player appearance, steering or engine serialization. This follow-up does not pass the costume matrix.
 
+## Tainted Gemini One More Edit (source candidate; engine acceptance pending)
+
+Select Tainted Gemini-chan: deeper-colour Gemini art, damage 0.9x of Isaac's. HUD reads `DROP: start an edit`. In combat, tap/release DROP near an enemy (within about 180 units): `One more edit`, HUD `Crop 0/3  6s`. Hit it with three separate volleys: Recolor, Export, then `Exported` and one extra hit of double your damage. Tapping again in that room does nothing. In a new room, tap, hit twice, tap again: progress resets. Kill the target early or wait six seconds: the chain ends without the pulse. Birthright: 10 seconds. Save/continue in an exported room keeps it exported. Test Brimstone and 20/20 (each volley or beam window counts once).
+
+## Tainted Grok Quote Without Reading (source candidate; engine acceptance pending)
+
+Select Tainted Grok-chan: deeper-colour Grok art, damage 0.9x. HUD reads `DROP: quote someone`. Tap/release DROP near enemies: `Quoted`, HUD `Ratio 0/3  6s`. Hit other enemies with three separate volleys: Ratio 3/3. Hits on the quoted enemy do not count. After six seconds it takes three extra hits of your damage and `Ratio'd` appears. The HUD then shows the cooldown until ten seconds after you quoted. Kill the quoted enemy early: nothing lands. With Birthright, half the Ratio moves to the nearest survivor once. Save/continue keeps the cooldown.
+
+## Tainted Qwen Final Final Fine-Tune (source candidate; engine acceptance pending)
+
+Select Tainted Qwen-chan: deeper-colour Qwen art. HUD reads `Balanced  Variants 0/3  Awards 0/3`. In a cleared room, tap/release DROP: Heavy (hits harder, fires slower), Tiny (weaker, faster), Balanced. In combat the tap does nothing. Clear new combat rooms with each of the three builds: `Final final version` and +0.2 damage. Repeating a build or re-clearing a room does not count. Three awards at most. A new floor resets everything. Birthright makes each award +0.3. Save/continue keeps build, checklist and awards.
+
+## Tainted Llama Still Waiting (source candidate; engine acceptance pending)
+
+Select Tainted Llama-chan: deeper-colour Llama art, slightly lower damage. HUD reads `Hype 0/3`. Clear new combat rooms: Hype rises to 3 and stops. Tap/release DROP: `Still waiting...`, Hype empties and the HUD shows `Helper 12s` at three Hype. From the spot where DROP was tapped, a weak tear flies at the nearest enemy each second; none with no enemy within range. Leaving the room removes the helper. Birthright makes each Hype five seconds. Check the tears with Brimstone, Technology, knife and Dr. Fetus. Save/continue keeps Hype.
+
+## Tainted Mistral Le Gros Chaton (source candidate; engine acceptance pending)
+
+Select Tainted Mistral-chan: deeper-colour Mistral art, slightly slower and weaker. HUD reads `Baguettes 0/2`. Stand still without firing for two seconds: `Baguette baked`; a third never bakes. Tap/release DROP while aiming: `Baguette!`, and enemies along a 120-unit line take one heavy hit each as the wave passes, over about a second. A rock or wall stops it. The HUD shows a two-second cooldown. Leaving the room mid-wave cancels it. Birthright bakes in 1.5 seconds. Save/continue keeps Baguettes.
+
+## Tainted Doubao I'll Do It Again (source candidate; engine acceptance pending)
+
+Select Tainted Doubao-chan: deeper-colour Doubao art. HUD reads `Ready to promise`. Tap/release DROP: `Leave it to me!`, damage rises and the HUD shows `Confident 6s`, which only counts down while enemies remain. After it, `Sorry, you're right`, lower damage for four seconds, then `I'll do it again`. Get hit by an enemy or bullet during Confident: the Apology starts at once and the hit still hurts. Blood donation or IV Bag do not count. Birthright makes the Apology three seconds. Save/continue mid-phase keeps the phase and damage.
+
+## Tainted Kimi You Are the Manager (source candidate; engine acceptance pending)
+
+Select Tainted Kimi-chan: deeper-colour Kimi art, lower damage. HUD reads `Tasks 0/3  Budget 9/9`. In a hostile room, tap/release DROP three times: `You are the manager` and three enemies each take three small hits two seconds apart. A fourth tap does nothing. After that the room's budget is empty. Killing an assigned enemy early frees its slot only. Leave mid-task: the task stops; return and the budget is still spent. Birthright makes pulses stronger. Save/continue keeps budgets but not tasks.
+
+## Tainted GLM Please Retry (source candidate; engine acceptance pending)
+
+Select Tainted GLM-chan: deeper-colour GLM art, slightly lower damage. HUD reads `Retries 0/3`. In a hostile room, tap/release DROP: `Request queued` and `Request Pending 2s`; two seconds later the nearest enemy takes a heavy hit (`Request complete`). DROP is blocked for three seconds from selection. Kill the target before the request lands: `Please retry` and one Retry. With three Retries, a successful request hits at 5x and resets them. Leaving mid-request cancels it with no Retry. With Birthright, a failed request also removes the nearest enemy bullet. Save/continue keeps Retries.
+
+## Tainted GPT Reset Watcher (source candidate; engine acceptance pending)
+
+Select Tainted GPT-chan from the tainted menu: deeper-colour GPT art, one red and two soul hearts, one key. HUD reads `Credits 80/80  Standard  Next Reset 0/3`. Tap/release DROP: `Full Send`, damage 1.5x, and each volley (one 20/20 volley, one Brimstone beam, one Dr. Fetus bomb) costs one Credit. At zero she returns to Standard and a tap cannot re-enter Full Send. Clear three different hostile rooms: `Tibo: Reset Ready`; further clears do not advance while it is banked. The next tap refills Credits and does not toggle the mode. Birthright raises cap and refill to 100. New floor and save/continue keep Credits, mode, progress and the banked reset. Check that no proxy IP / risk HUD appears for her, that a long DROP hold drops trinkets normally, and the MAP dossier. Stub coverage is `tests/gpt_reset_test.lua`.
+
 ## Tainted DeepSeek Peak / Valley (source candidate; engine acceptance pending)
 
 Start a new run: HUD reads `Compute 12/24  Valley 12.0s  Forks On`. In a hostile room the timer counts down and switches to Peak after twelve seconds, then back. In a cleared room and on the pause menu it must stop. Each new floor starts in Valley with the same Compute. In Valley, stop firing during combat: Compute rises by three per second up to 24 (32 with Birthright). Waiting in a cleared room must not add Compute.
@@ -13,6 +49,46 @@ Start a new run: HUD reads `Compute 12/24  Valley 12.0s  Forks On`. In a hostile
 Fire ordinary tears: each paid volley adds two half-damage forks at ±12° and costs 2 in Valley or 4 in Peak. With 20/20, Mutant Spider or Monstro's Lung, check one payment per same-frame volley and judge whether forking every pellet is too strong. Below the cost, only the main tear fires and no tear ever disappears. Tap/release DROP toggles `Saving`; a second tap inside one second is ignored, and holding DROP keeps native trinket dropping. Test pocket cycling with a pocket item.
 
 Save/quit/continue mid-phase and in Saving mode: Compute, phase, remaining time and mode must return unchanged; the toggle cooldown intentionally resets. Test a new run, character change (Clicker), co-op with two tainted DeepSeeks (separate Compute) and death. Brimstone, Technology, knife, Dr. Fetus and Ludovico builds should attack normally with no forks and no Compute cost. Stub coverage is `tests/deepseek_peak_test.lua` and `tests/swarm_resolution_test.lua`; no engine pass is recorded.
+
+## Normal GPT Same Name, Smaller Brain (source candidate; engine acceptance pending)
+
+Start a new run: HUD reads `GPT-chan: Verified  Routing 0/3` and damage is 1.15x. Clear three different hostile rooms: Routing reaches 3/3. Re-entering a cleared room or clearing a room that never had enemies adds nothing. The next room with enemies must announce `Fallback` and drop damage to 0.8x. Firing rate stays native (the old Deliberate / Instant modes are gone).
+
+In Fallback, tap/release DROP near an enemy (within about 200 units) to tag it as a Sanity Check; the HUD shows `Check 0/3`. Tapping with no enemy nearby spends nothing. Hit it with three separate volleys: Verified returns and Routing resets. A 20/20 or Mutant Spider volley must count once, as must a Brimstone beam within one fifth of a second. Kill a tagged enemy with your own hit: Verified returns immediately. Let another player or a familiar kill it, or leave the room: the check fails and Fallback stays until the next room. Birthright needs two hits. Holding DROP keeps native trinket dropping; test pocket cycling with a pocket item.
+
+Save/quit/continue in Fallback: Fallback, Routing and the spent room check return unchanged, and a second tag in the same room is refused. A new floor restores Verified with Routing 0. Test co-op with two GPTs (separate Routing and checks), character change (Clicker) and death. Stub coverage is `tests/gpt_downgrade_test.lua`; no engine pass is recorded.
+
+## Normal Mistral Le Chat (source candidate; engine acceptance pending)
+
+Speed is +0.1 over Isaac. Move while firing for two seconds: HUD goes from `Charge N%` to `Pounce Ready`. Stand still for a second and it is lost. Tap/release DROP while aiming at enemies within about 80 units: each one in that line takes double your damage once, `Pounce!` appears, and `Cooldown 3s` follows. Enemies behind you, off to the side, beyond reach or behind rocks and walls are not hit. You do not move or gain invincibility. Birthright reaches about 110 units. Save/continue keeps a ready Pounce. There is no swipe animation yet; note how readable it is. Stub coverage is `tests/mistral_pounce_test.lua`.
+
+## Normal GLM Number in Queue (source candidate; engine acceptance pending)
+
+New run: HUD reads `GLM-chan: Number in queue 0/3`, with no pocket item. Each combat clear adds one, up to three; re-clearing a room or peaceful rooms add none. At three the HUD says `Your turn! Tap DROP`. Tap/release DROP: `Access granted`, `Access 2 room(s)`. The next two hostile rooms you have not entered yet this floor each give +20% damage while you stay in them (`Access active`). Rooms already visited and peaceful rooms do not use the pass. The Queue does not move until the pass is used up and you have left its last room. Birthright gives three rooms. Save/continue inside a boosted room keeps the bonus without spending again. Test two GLMs in co-op. Stub coverage is `tests/glm_queue_test.lua`.
+
+## Normal Kimi Another Slide Deck (source candidate; engine acceptance pending)
+
+New run: HUD reads `Kimi-chan: Slides 0/6  Cost 3`. Each combat clear adds a Slide, up to six; re-clearing a room or peaceful rooms add none. With three Slides, tap/release DROP near enemies: `Another slide deck`, up to three nearest enemies within about 220 units get a light blue tint and slow down for four seconds, and HUD shows `Presenting 4s`. Your hits on them deal 15% more; a partner's hits do not. Tapping with no enemy nearby or fewer than three Slides spends nothing. A second deck replaces the first. Leaving the room ends it without refund. Birthright makes the cost two. Check the tint is readable and never covers the screen. Test two Kimis in co-op. Stub coverage is `tests/kimi_slides_test.lua`.
+
+## Normal Doubao Sorry, You're Right (source candidate; engine acceptance pending)
+
+New run: HUD reads `Doubao-chan: No apology needed`. Get hit by an enemy or its bullet in a hostile room: `Apology ready`, then `Apology Ready 6s` counting down. A second hit in the same room grants nothing, even after the token expires. Blood Donation, IV Bag, Curse Room doors, spikes and your own bombs must not grant one. Tap/release DROP within six seconds: `Sorry, you're right.`; enemies within about 100 units are tinted and slowed for two seconds, and up to four nearby enemy bullets vanish. The hit's damage stays. Leaving the room drops the token. With Birthright the token reads `Apology Ready` and lasts until room exit. Save/continue keeps the token and the spent-room flag. Test two Doubaos in co-op. Stub coverage is `tests/doubao_apology_test.lua`.
+
+## Normal Llama Please Stay Open (source candidate; engine acceptance pending)
+
+New run: HUD reads `Llama-chan: Releases 1/2  Next 0/2`, damage 0.95x. Solo, tap/release DROP: four blue flies, Releases 0/2. In co-op each living player gets two flies (at most four players). Clears no longer give flies automatically; every two unique combat clears add a Release (cap 2). Birthright gives Llama two extra flies per Release. Save/continue keeps Releases and progress. Stub coverage is `tests/llama_release_test.lua`.
+
+## Normal Qwen Everyone's Base Model (source candidate; engine acceptance pending)
+
+New run: HUD reads `Qwen-chan: Adapters 1/2  Next Range  Active none`. Tap/release DROP to cycle Next through Range, Tempo and Power; nothing is spent. Walk into a new room with enemies: one Adapter is spent and `Active` shows the pick (Range +60, Tempo faster fire, Power +10% damage) until you leave. Re-entering a room you already fought in never spends. With no Adapters stats are normal. Every two unique combat clears add one (cap 2, Birthright 3). Save/continue mid-room keeps the active pick and does not spend again. Stub coverage is `tests/qwen_adapter_test.lua`.
+
+## Normal Grok Is This True? (source candidate; engine acceptance pending)
+
+In a hostile room, tap/release DROP near an enemy (about 220 units): `Is this true?` appears and the HUD shows `Check 0/3  6s`. In a cleared room, or with no enemy nearby, nothing happens and the room's check is not spent. For six seconds your damage to that enemy is 1.3x and to every other enemy 0.9x; a partner's damage is unchanged. Three separate volleys (a 20/20 volley or a 0.2-second Brimstone window counts once) or killing it yourself shows `Verified` and +0.15 speed until you leave the room. Timeout or another killer gives nothing. A second tap in the same room does nothing, including after save/continue. With Birthright, verifying removes the three nearest enemy bullets. Check on-hit effects with the re-dealt damage. Stub coverage is `tests/grok_check_test.lua`.
+
+## Normal Gemini Nano Banana (source candidate; engine acceptance pending)
+
+New run: HUD reads `Gemini-chan: Paint 2/3`. Tap/release DROP near an enemy (about 180 units): Paint drops by one and the HUD shows `Edit 8s`. With no enemy nearby nothing is spent. Your tears, Brimstone, knives and bombs should deal 20% more to the painted enemy only; a co-op partner's damage is unchanged. Check that damage numbers, i-frames, knockback and on-hit effects behave normally with the re-dealt hit, including other damage mods. Kill the painted enemy yourself: a yellow slowing creep appears for four seconds and slows enemies; a second peel removes the first. Leaving the room ends the mark without refund. Each unique combat clear adds one Paint up to three. Birthright makes it 30%. Save/continue keeps Paint; the live mark is intentionally dropped. Stub coverage is `tests/gemini_paint_test.lua`.
 
 ## Rice First (source candidate; engine acceptance pending)
 
@@ -131,14 +207,14 @@ Also test Tiny Planet, Anti-Gravity, Eye of the Occult and Ludovico separately: 
 Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes.
 
 - Select all eleven normal families and both existing tainted characters. Check the correct name, bust, stage portrait and full MAP dossier. No missing textures or duplicate menu entries.
-- Roster-only and DeepSeek-plus-roster runs show no IP/risk HUD. With Claude in co-op, a roster player's hit adds no risk and suspension lowers only Claude's damage. Blood Donation, IV Bag and a sacrifice room keep Qwen's chain and Kimi's pages; a real hit still breaks them. Roster tears keep Ipecac/Spoon Bender colors under the family tint.
+- Roster-only and DeepSeek-plus-roster runs show no IP/risk HUD. With Claude in co-op, a roster player's hit adds no risk and suspension lowers only Claude's damage. Blood Donation, IV Bag and a sacrifice room never grant Doubao an Apology. Roster tears keep Ipecac/Spoon Bender colors under the family tint.
 - Inspect every new skin facing front, right, rear and left, while walking, firing, holding an item, flying, hurt and dead. Check for clipping, stray neighboring pixels, incorrect back views and doubled heads. Alternate arm poses remain provisional.
 - For GPT and Gemini, tap DROP through both modes, then save/quit/close/restart/continue. The mode must persist. Check the original DROP behavior with held trinkets and controller input.
 - For Grok and Mistral, reach maximum movement/firing charge, stop, change rooms, and start a new run. Temporary charge must reset and stay bounded.
-- For Qwen and Kimi, build progress, take a hit, save and continue before clearing. The room must not count as flawless. The Constitution's refused hit must not break progress.
-- For Llama and Doubao, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
-- For GLM, use the pocket Book of Secrets, Car Battery, a zero-charge item and an item with a custom use callback. Links must stay at three or fewer and reset when leaving the room.
-- For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. For GLM, duplicate use callbacks in one frame must add only one link per player while separate players can each gain a link. Distinct-wrapper stub coverage passes; these engine checks remain pending.
+- For Kimi, save and continue right after a clear, then revisit the room. The Slide must not be awarded twice.
+- For Llama, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
+- For GLM, redeem an Access Pass, save/continue inside a boosted room and on a new floor. The pass must not spend twice or stack.
+- For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. Distinct-wrapper stub coverage passes; these engine checks remain pending.
 - Check Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, multishot, familiars, D4, transformations, costume-changing items, EID and Reactions Port Pack. Cache-based code alone is not compatibility evidence.
 - Repeat in base Repentance and Repentance+, finish full runs, then close the game. Do not publish to Workshop before acceptance and art-permission review.
 
