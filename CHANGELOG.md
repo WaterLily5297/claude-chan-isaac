@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased Risk damage eligibility (2026-10-24)
+
+- Ignore fake/no-penalty and ordinary-shield-cancelled damage in Risk accounting; observe after default-priority blockers. Ignore damage outside an active run and reset the transient room latch on start/continue.
+- Add a real-module regression that fails on main, with shield, clean-room, ordinary-hit, coverage and lifecycle controls. Preserve the shared account, save schema and DeepSeek/roster exclusions. All 49 offline suites pass; engine retests and mid-room hit-latch persistence remain pending.
+
 ## Authorized compatibility integration (2026-10-24)
 
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
