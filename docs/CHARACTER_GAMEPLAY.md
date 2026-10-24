@@ -100,6 +100,8 @@ Source status (scripts/characters/qwen_adapter.lua): normal form implemented and
 
 **Normal:** Start with one Release, cap two; earn one every two unique clears. DROP spends one to grant two blue flies to each living player, max four recipients; solo gets four flies. Base damage 0.95x. Flies cannot generate release progress; duplicate Llamas own separate budgets. Birthright gives the owner two extra flies. HUD: Releases.
 
+Source status (scripts/characters/llama_release.lua): normal form implemented and replaces the automatic flies. Recipients are the first four living players in slot order. Engine acceptance pending.
+
 **Tainted:** Base damage 0.9x. Start with zero Hype, cap three; each unique clear adds one. DROP spends all hype to create one stationary helper for four seconds per stack. It fires one native 0.5x tear per second. Max one helper; replacement discards remaining duration. Room exit removes it. Birthright: five seconds per stack. HUD: Hype. The contrast is sharing a small release now versus saving anticipation for a longer release, without claims about Meta's future policy.
 
 ### Mistral — Le Chat / Le Gros Chaton

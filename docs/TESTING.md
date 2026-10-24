@@ -22,6 +22,10 @@ In Fallback, tap/release DROP near an enemy (within about 200 units) to tag it a
 
 Save/quit/continue in Fallback: Fallback, Routing and the spent room check return unchanged, and a second tag in the same room is refused. A new floor restores Verified with Routing 0. Test co-op with two GPTs (separate Routing and checks), character change (Clicker) and death. Stub coverage is `tests/gpt_downgrade_test.lua`; no engine pass is recorded.
 
+## Normal Llama Please Stay Open (source candidate; engine acceptance pending)
+
+New run: HUD reads `Llama-chan: Releases 1/2  Next 0/2`, damage 0.95x. Solo, tap/release DROP: four blue flies, Releases 0/2. In co-op each living player gets two flies (at most four players). Clears no longer give flies automatically; every two unique combat clears add a Release (cap 2). Birthright gives Llama two extra flies per Release. Save/continue keeps Releases and progress. Stub coverage is `tests/llama_release_test.lua`.
+
 ## Normal Qwen Everyone's Base Model (source candidate; engine acceptance pending)
 
 New run: HUD reads `Qwen-chan: Adapters 1/2  Next Range  Active none`. Tap/release DROP to cycle Next through Range, Tempo and Power; nothing is spent. Walk into a new room with enemies: one Adapter is spent and `Active` shows the pick (Range +60, Tempo faster fire, Power +10% damage) until you leave. Re-entering a room you already fought in never spends. With no Adapters stats are normal. Every two unique combat clears add one (cap 2, Birthright 3). Save/continue mid-room keeps the active pick and does not spend again. Stub coverage is `tests/qwen_adapter_test.lua`.

@@ -94,8 +94,8 @@ local function tap(p)
     near(p.Damage,before) -- Pressing to begin a hold must not change mode.
     input(p,false)
 end
--- GPT, Gemini, Grok and Qwen mechanics live in their own modules; the roster only tints them.
-for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan'}) do
+-- GPT, Gemini, Grok, Qwen and Llama mechanics live in their own modules; the roster only tints them.
+for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan'}) do
     local x=player(name); start(x)
     near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
     x.speed=1; for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',x) end
@@ -118,13 +118,13 @@ room=room+1; fire('MC_POST_NEW_ROOM'); hit(p); fire('MC_PRE_GAME_EXIT')
 p=player('Kimi-chan'); players={p}; callbacks={}; include('scripts.characters.model_roster'):Init(mod,risk)
 fire('MC_POST_NEW_ROOM'); fire('MC_POST_GAME_STARTED',true); fire('MC_PRE_SPAWN_CLEAN_AWARD'); near(p.Damage,10.4)
 
-p=player('Llama-chan'); other=player('Claude-chan'); start(p,other)
-clear(); assert(p.flies==0); clear(); assert(p.flies==2 and other.flies==2)
-fire('MC_PRE_SPAWN_CLEAN_AWARD'); assert(p.flies==2)
-near(p.Damage,9)
+p=player('Doubao-chan'); other=player('Claude-chan'); start(p,other)
+clear(); clear(); assert(p.hearts==2)
+fire('MC_PRE_SPAWN_CLEAN_AWARD'); assert(p.hearts==2)
 -- Reentering a previously awarded room cannot farm rewards.
-local old=room; clear(); room=old; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
-assert(p.flies==2)
+local old=room; room=old-1; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
+assert(p.hearts==2 and other.hearts==2)
+room=old; clear(); assert(p.hearts==4 and other.hearts==2)
 
 p=player('Mistral-chan'); start(p); near(p.MoveSpeed,1.15); near(p.ShotSpeed,1.25)
 p.speed=1; p.shoot=0
@@ -205,4 +205,4 @@ other.kind=Isaac.GetPlayerTypeByName('Kimi-chan',false); other:EvaluateItems()
 other.kind=Isaac.GetPlayerTypeByName('Mistral-chan',false); other:EvaluateItems()
 assert(other.TearFlags==0)
 assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
-print('OK: five roster mechanics, external GPT/Gemini/Grok/Qwen tint, co-op isolation and duplicate effects')
+print('OK: four roster mechanics, external GPT/Gemini/Grok/Qwen/Llama tint, co-op isolation and duplicate effects')
