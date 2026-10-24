@@ -89,7 +89,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Smiling Correction | Let me fix that: hit, clean clear, flies | 1 | After you take enemy damage, your next new room cleared without getting hit gives 2 blue flies |
 | Strawberry | How many R's? Every third tear hits x2 | 2 | Every third tear is a red "R" tear: x2 damage, slightly larger; Multi-shot volleys count each tear; Tears only: lasers, knives and bombs are not counted |
 | Subagent Swarm | Every tear brings two subagents | 3 | Every tear spawns 2 subagent tears at ±15° (50% damage); Claude-chan: each tear costs double usage |
-| The Constitution | Soul heart + first hit refused, DMG down | 3 | +1 soul heart; Safety first: the first hit on each floor is refused; Helpfulness ranks last: damage x0.9; Long document: speed -0.1 |
+| The Constitution | Soul heart + first hit refused, DMG down | 3 | +1 soul heart once per player per run; Safety first: each holder refuses their first hit on each floor; Helpfulness ranks last: damage x0.9; Long document: speed -0.1 |
 | Tiny Variant | 0.5B parameters: speed up, DMG down | 1 | +0.15 speed; x0.9 damage |
 | Tungsten Cube | DMG up + knockback, speed down | 2 | +0.8 damage; -0.15 speed; Tears knock enemies back; Stacks per copy |
 | Vibe Coding | Ship it: random tear effects + API bill | 2 | Every tear gets a random effect (homing, piercing, spectral, poison, slow); 5% of tears are bugs that fly backwards; Each new floor: lose 25% of your coins (API bill); Make no mistakes: no hit on the floor waives the bill |
