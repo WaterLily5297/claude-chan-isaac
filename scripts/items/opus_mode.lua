@@ -39,7 +39,14 @@ function OpusMode:Init(mod)
         return entity.SpawnerEntity and entity.SpawnerEntity:ToPlayer()
     end
 
-    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear) bill(spawner(tear)) end)
+    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+        local player = spawner(tear)
+        -- Backlog helpers are marked after this callback in main.lua. Their
+        -- synchronous spawn scope must be checked before charging the owner.
+        if tear:GetData().ccThoughtDerived
+            or (player and (player:GetData().ccDerivedTearDepth or 0) > 0) then return end
+        bill(player)
+    end)
     mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
         -- Child beams (Tech X rings splitting, laser reflections) ride their parent.
         if laser.Parent and laser.Parent.Type == EntityType.ENTITY_LASER then return end
