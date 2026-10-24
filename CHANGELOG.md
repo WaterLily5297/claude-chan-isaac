@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased native Thought adapters (2026-10-24)
+
+- Normal DeepSeek Thought: delayed bursts share the paid volley until the native firing cycle could repeat (floor of MaxFireDelay, cap 15 updates); Incubus and Twisted Pair tears copy a paid volley without paying; each melee swing hitbox pays once; Epic Fetus rockets pay once and their explosions are re-dealt at that factor.
+- New offline suite `tests/thought_adapters_test.lua` (23 in total). Source only; engine attribution for hitboxes, rockets and familiars is unverified.
+
 ## Unreleased fifty-row backlog, rows 02-50 (2026-10-24)
 
 - Add the 49 remaining collectibles of the fifty-row backlog (EXPANSION_DESIGN.md): four per family for Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM, plus six shared items. 22 actives and 27 passives, all with original 32x32 icons, pool entries and English EID.

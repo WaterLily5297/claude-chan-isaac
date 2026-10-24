@@ -20,6 +20,7 @@ package.preload.json=function() return {
 } end
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
 TearFlags={TEAR_LUDOVICO={highBit=127}}
+EffectVariant={TARGET=30,ROCKET=31}
 EntityType={ENTITY_LASER=7,ENTITY_BOMB=4}
 function EntityPtr(e) return setmetatable({}, {__index=function(_,k) if k=="Ref" and e:Exists() then return e end end}) end
 CacheFlag={CACHE_SPEED=1}; CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}
