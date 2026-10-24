@@ -29,7 +29,7 @@ local function valid(s)
     return true
 end
 
-function Hype:Init(mod, Risk)
+function Hype:Init(mod, Risk, Backlog)
     local id = Isaac.GetPlayerTypeByName("Llama-chan", true)
     local ready, bindings, slots = false, {}, {}
     local drop = DropTap.New()
@@ -94,7 +94,9 @@ function Hype:Init(mod, Risk)
         local target = Tools.Nearest(helper.position, RANGE)
         if not target then return end
         local dir = (target.Position - helper.position):Normalized()
-        local tear = p:FireTear(helper.position, dir * (TEAR_SPEED * p.ShotSpeed), false, true, false, p, TEAR_DAMAGE)
+        -- Share the helper scope before native tear callbacks can bill Opus or
+        -- consume attack primes; keep the helper's own position and effects.
+        local tear = Backlog.FireDerived(p, dir * (TEAR_SPEED * p.ShotSpeed), TEAR_DAMAGE, helper.position)
         if tear then tear:GetData().ccLlamaHelper = true end
     end
 
