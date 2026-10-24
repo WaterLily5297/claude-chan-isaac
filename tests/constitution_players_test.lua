@@ -4,6 +4,7 @@ ModCallbacks = setmetatable({}, {__index=function(_, k) return k end})
 DamageFlag = {DAMAGE_IV_BAG=1, DAMAGE_RED_HEARTS=2, DAMAGE_FAKE=4, DAMAGE_NO_PENALTIES=8}
 EntityType = {ENTITY_PLAYER=1}
 CacheFlag = {CACHE_DAMAGE=1, CACHE_SPEED=2}
+PlayerType = {PLAYER_LAZARUS_B=29, PLAYER_LAZARUS2_B=38, PLAYER_THEFORGOTTEN_B=35, PLAYER_THESOUL_B=40}
 function include(name)
     assert(name == "scripts.constants")
     return {Item={CONSTITUTION=746}}
@@ -26,6 +27,7 @@ local function player(id)
     function p:SetMinDamageCooldown(n) self.cooldown=n end
     function p:IsDead() return self.dead == true end
     function p:IsCoopGhost() return self.ghost == true end
+    function p:GetPlayerType() return self.kind or 0 end
     return p
 end
 local function fire(id, ...) if callbacks[id] then return callbacks[id](mod, ...) end end
@@ -97,6 +99,31 @@ assert(soul.soul==2 and skeleton.soul==0,"subplayer must not lose or duplicate t
 assert(hit(soul)==false and hit(skeleton)==nil,"shared-inventory forms consume the same shield")
 fire("MC_POST_NEW_LEVEL")
 assert(hit(skeleton)==false and hit(soul)==nil,"either shared form can consume the next shield")
+-- Tainted Forgotten exposes its shared-inventory partner through OtherTwin.
+skeleton.GetSubPlayer=nil;skeleton.kind=35;soul.kind=40
+function skeleton:GetOtherTwin() return soul end
+start();tick(soul);tick(skeleton)
+assert(soul.soul==4 and skeleton.soul==0,"tainted shared inventory receives one pickup reward")
+assert(hit(soul)==false and hit(skeleton)==nil,"tainted shared inventory spends one shield")
+
+-- Flip swaps active entities in a slot; returning is not a new co-op join.
+local living,dead=player(370),player(380)
+living.kind,dead.kind=29,38
+players={living};start();tick(living);assert(hit(living)==false)
+players[1]=dead;tick(dead);assert(hit(dead)==false)
+players[1]=living;tick(living)
+assert(living.soul==2 and hit(living)==nil,"Flip back must not reset an existing body's effects")
+players[1]=dead;tick(dead)
+assert(dead.soul==2 and hit(dead)==nil,"repeated Flip must not farm hearts or shields")
+saved=copy(Risk.state);start(saved);tick(dead)
+assert(dead.soul==2 and hit(dead)==nil,"continued active body keeps consumed effects")
+-- Birthright may expose the other body without listing it as a root slot.
+function dead:GetOtherTwin() return living end
+fire("MC_POST_NEW_LEVEL")
+assert(hit(living)==false and hit(dead)==false,"Birthright bodies remain independent")
+start({constitutionApplied=true,constitutionBlockUsed=true});tick(dead)
+players[1]=living;tick(living)
+assert(living.soul==2 and hit(living)==nil,"legacy migration must include the initially hidden body")
 
 -- Dead and ghost players cannot consume rewards while inactive.
 players={player(410)};p=players[1];start();p.ghost=true;tick(p)
