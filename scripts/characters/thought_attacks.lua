@@ -1,6 +1,9 @@
 -- Native attack adapters. Never replace weapons, sprites, flags or collision rules.
 local Attacks = {}
 local KEY = "ccThoughtAttack"
+-- Swing hitboxes of the Forgotten's club, Spirit Sword and similar melee
+-- weapons. Older API builds lack the enum; 4 is the documented value.
+local CLUB_HITBOX = KnifeSubType and KnifeSubType.CLUB_HITBOX or 4
 
 -- Cooperating damage writers must snapshot the unboosted continuous baseline.
 -- Ordinary released shots intentionally keep their resolved multiplier in flight.
@@ -33,6 +36,31 @@ function Attacks:Init(mod, hooks)
         if entity.SpawnerEntity then return entity.SpawnerEntity:ToPlayer() end
         return entity.Parent and entity.Parent:ToPlayer()
     end
+    -- A melee swing hitbox belongs to the weapon knife the player holds.
+    local function meleeOwner(knife)
+        local weapon=knife.Parent
+        if weapon and weapon.Type==EntityType.ENTITY_KNIFE then return owner(weapon) end
+        return owner(knife)
+    end
+    -- Epic Fetus: the rocket's spawner is the player or the player's target marker.
+    local function rocketOwner(rocket)
+        local spawner=rocket.SpawnerEntity
+        if spawner and spawner.Type==EntityType.ENTITY_EFFECT and spawner.Variant==EffectVariant.TARGET then
+            return owner(spawner)
+        end
+        return owner(rocket)
+    end
+    -- Copying familiars fire the player's attack; they never pay for one.
+    local MIMICS={}
+    for _,name in ipairs({"INCUBUS","TWISTED_BABY"}) do
+        if FamiliarVariant and FamiliarVariant[name] then MIMICS[FamiliarVariant[name]]=true end
+    end
+    local function mimicOwner(entity)
+        local spawner=entity.SpawnerEntity
+        local familiar=spawner and spawner.ToFamiliar and spawner:ToFamiliar()
+        if familiar and MIMICS[familiar.Variant] and familiar.Player then return familiar.Player:ToPlayer() end
+    end
+    local redealing=false
     local function usable(entity,p)
         return entity:Exists() and p and hooks.Eligible(p) and not p:IsDead()
     end
@@ -108,8 +136,22 @@ function Attacks:Init(mod, hooks)
         if ludo(tear) then window(tear,p) else once(tear,p,"CollisionDamage") end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE,function(_,tear)
-        local record=tear:GetData()[KEY]
+        local data=tear:GetData()
+        local record=data[KEY]
         local p=owner(tear)
+        if not p and not record and not data.ccThoughtSeen then
+            -- Judge a familiar copy once, on its first update, against the
+            -- player's current paid volley; a later volley never reaches it.
+            data.ccThoughtSeen=true
+            local player=mimicOwner(tear)
+            if not usable(tear,player) or not validDamage(tear.CollisionDamage) then return end
+            local factor=hooks.Peek(player)
+            if factor then
+                data[KEY]={mode="shot",factor=factor}
+                scale(tear,data[KEY],factor,"CollisionDamage")
+            end
+            return
+        end
         if record and (record.mode=="window" or record.mode=="derived") then
             window(tear,p)
         elseif p and hooks.Eligible(p) and ludo(tear) then
@@ -131,6 +173,11 @@ function Attacks:Init(mod, hooks)
     mod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE,function(_,knife)
         local data=knife:GetData()
         local record=data[KEY]
+        -- Each melee swing is one attack, snapshotted on its hitbox.
+        if knife.SubType==CLUB_HITBOX then
+            once(knife,meleeOwner(knife),"CollisionDamage")
+            return
+        end
         local p=owner(knife)
         if not usable(knife,p) then
             if record then restore(knife,record); data[KEY]=nil end
@@ -154,6 +201,27 @@ function Attacks:Init(mod, hooks)
         if not bomb.IsFetus then return end -- Ordinary bombs keep native damage.
         if bomb.Parent and bomb.Parent.Type==EntityType.ENTITY_BOMB then return end
         once(bomb,owner(bomb),"ExplosionDamage")
+    end)
+    -- Epic Fetus rockets have no damage field; their explosion is re-dealt once
+    -- at the rocket's snapshotted factor. Engine attribution needs testing.
+    mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE,function(_,rocket)
+        local data=rocket:GetData()
+        if data[KEY] then return end
+        local p=rocketOwner(rocket)
+        if not usable(rocket,p) or Game():IsPaused() then return end
+        local factor=hooks.Resolve(p,false)
+        if factor then data[KEY]={mode="rocket",factor=factor} end
+    end,EffectVariant.ROCKET)
+    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG,function(_,entity,amount,flags,source,countdown)
+        if redealing or entity:ToPlayer() or (flags & DamageFlag.DAMAGE_EXPLOSION)==0 then return end
+        local rocket=source and source.Entity
+        local record=rocket and rocket:GetData()[KEY]
+        -- Dr. Fetus bombs already carry their factor in ExplosionDamage.
+        if not record or record.mode~="rocket" or record.factor==1 then return end
+        redealing=true
+        entity:TakeDamage(amount*record.factor,flags,source,countdown)
+        redealing=false
+        return false
     end)
     mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE,function(_,entity)
         local key=GetPtrHash(entity)

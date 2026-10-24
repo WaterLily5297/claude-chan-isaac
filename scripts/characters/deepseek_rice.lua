@@ -193,15 +193,26 @@ function Rice:Init(mod, Risk, Meal)
             end
         end)
     end)
+    -- A delayed burst (Cursed Eye, multi-frame volleys) is any discrete attack
+    -- that arrives before the native firing cycle could fire again, capped.
+    local function burst(p,b)
+        local v=b.volley
+        if not v or not v.discrete then return false end
+        local cycle=math.min(15,math.max(0,math.floor(tonumber(p.MaxFireDelay) or 0)))
+        return b.clock-v.clock<cycle
+    end
+    local function current(p,b,now)
+        return b.volley and (b.volley.frame==now or burst(p,b))
+    end
     local function resolve(p,continuous)
         local b=binding(p)
         if not b or p:IsDead() or Game():IsPaused() then return end
         local now=Game():GetFrameCount()
-        if not b.volley or b.volley.frame~=now then
+        if not b.volley or b.volley.frame~=now and (continuous or not burst(p,b)) then
             if continuous and b.window and b.clock-b.window.clock<6 then
-                b.volley={frame=now,multiplier=b.window.multiplier}
+                b.volley={frame=now,clock=b.clock,multiplier=b.window.multiplier}
             else
-                b.volley={frame=now,multiplier=1+b.state.thought/150}
+                b.volley={frame=now,clock=b.clock,multiplier=1+b.state.thought/150,discrete=not continuous}
                 b.state.thought=0
             end
         end
@@ -223,6 +234,13 @@ function Rice:Init(mod, Risk, Meal)
         Active=function(p)
             local b=binding(p)
             if b then b.continuousFrame=Game():GetFrameCount() end
+        end,
+        -- The current discrete volley's multiplier, without paying. Mimic
+        -- familiars ride along on an attack the player already paid for.
+        Peek=function(p)
+            local b=binding(p)
+            if not b or p:IsDead() or Game():IsPaused() then return end
+            if current(p,b,Game():GetFrameCount()) and b.volley.discrete then return b.volley.multiplier end
         end,
     })
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()

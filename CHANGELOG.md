@@ -3,7 +3,12 @@
 ## Unreleased roster stack landing (2026-10-24)
 
 - Bring the full roster stack to main in one PR: nine normal loops (GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, GLM), nine tainted forms and the tainted roster art. The stacked PRs #24, #27 and #29-#45 had been merged into each other's branches instead of main.
-- Regenerate the nine tainted gameplay sheets from the walk-cycle sheets (#25), which the original derivation predated. Portraits and dossiers are unchanged. 40 offline suites pass; no engine validation.
+- Regenerate the nine tainted gameplay sheets from the walk-cycle sheets (#25), which the original derivation predated. Portraits and dossiers are unchanged. 41 offline suites pass; no engine validation.
+
+## Unreleased native Thought adapters (2026-10-24)
+
+- Normal DeepSeek Thought: delayed bursts share the paid volley until the native firing cycle could repeat (floor of MaxFireDelay, cap 15 updates); Incubus and Twisted Pair tears copy a paid volley without paying; each melee swing hitbox pays once; Epic Fetus rockets pay once and their explosions are re-dealt at that factor.
+- New offline suite `tests/thought_adapters_test.lua` (23 in total). Source only; engine attribution for hitboxes, rockets and familiars is unverified.
 
 ## Unreleased tainted GLM Please Retry (2026-10-24)
 
