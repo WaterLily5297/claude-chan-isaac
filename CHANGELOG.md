@@ -1,5 +1,10 @@
 # Changelog
 
+## Child laser resource accounting (2026-10-24)
+
+- Skip normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credit charges at laser initialization when the direct `Parent` is a laser. This matches the existing Opus and shared paid-attack observer exclusions.
+- Preserve primary-start costs and later eligible primary windows. CHILD-LASER-01 is source-only: native parent attribution and callback timing remain unverified, and the installed manual-test checkpoint `28fed37` is unchanged.
+
 ## Tainted Llama helper accounting (2026-10-24)
 
 - Route Still Waiting helper tears through the shared derived-shot path before synchronous callbacks. They no longer bill Opus Mode, consume attack primes or advance backlog paid-attack triggers.

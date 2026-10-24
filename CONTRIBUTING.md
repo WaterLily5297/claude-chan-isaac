@@ -10,7 +10,7 @@ Start with docs/HANDOFF.md for current implementation, missing work and evidence
 4. Update HANDOFF.md, TESTING.md and relevant design/status records. Say exactly what is implemented, simulated, tested in the engine or still planned.
 5. Publish the branch, verify remote file-tree equality and CI, then merge only within the owner's authorization. Never overwrite or force-reset shared history.
 
-The owner's installed manual-test checkpoint is `28fed37`, including PR #82. Subsequent source changes require a separate verified deployment; LLAMA-HELPER-01 is not installed. Agent-run engine testing remains deferred. Consult the latest owner instruction and HANDOFF.md before another deployment or automated test, and preserve the owner's manual-test session. Use the documented backup/deployment workflow, record source/runtime/game versions, and mute and close the game after any later authorized automated testing. Do not clone directly over the installed mod or assume passing CI means gameplay acceptance.
+The owner's installed manual-test checkpoint is `28fed37`, including PR #82. Subsequent source changes require a separate verified deployment; LLAMA-HELPER-01 and CHILD-LASER-01 are not installed. Agent-run engine testing remains deferred. Consult the latest owner instruction and HANDOFF.md before another deployment or automated test, and preserve the owner's manual-test session. Use the documented backup/deployment workflow, record source/runtime/game versions, and mute and close the game after any later authorized automated testing. Do not clone directly over the installed mod or assume passing CI means gameplay acceptance.
 
 ## New content checklist
 

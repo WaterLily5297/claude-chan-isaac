@@ -259,6 +259,7 @@ function ClaudeChan:Init(mod, Risk)
     -- beams, knives, swings and rockets bill through the shared observer.
     mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
         if not ready then return end
+        if laser.Parent and laser.Parent.Type == EntityType.ENTITY_LASER then return end
         local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
         if isClaude(player) then bill(player) end
     end)

@@ -1,5 +1,7 @@
 # Claude-chan: Risk Control
 
+**Compatibility note (2026-10-24):** Normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credits no longer charge a laser whose direct `Parent` is another laser, matching Opus and the shared observer. Primary starts and later eligible primary windows keep their existing costs. This source-only correction leaves the installed `28fed37` manual-test build unchanged; native parent attribution and timing remain unverified.
+
 **Compatibility note (2026-10-24):** Tainted Llama's Still Waiting helper keeps its native 0.5x tears, stationary origin and duration. Its shots no longer count toward Opus's coin bill, consume primed attack bonuses or advance backlog paid-attack triggers. Primary shots and Summary Stapler are unchanged. Offline correction; engine verification remains pending.
 
 **Compatibility note (2026-10-24):** Opus Mode no longer counts Please Retry or One More Finger helper tears toward its ten-attack coin bill. Normal shots and Summary Stapler still count. Helper shots preserve primed attack bonuses; native callback timing remains pending engine verification.
