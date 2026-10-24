@@ -124,6 +124,8 @@ Source status (scripts/characters/doubao_apology.lua): normal form implemented a
 
 **Normal:** Each unique clear earns one Slide, cap six. DROP spends three to mark up to three nearest vulnerable enemies within 220 units for four seconds; slow them and increase owner damage by 15%. No targets means no spend. One presentation per owner; a new one replaces the old. Use a subtle outline, never an opaque screen-covering slide. Birthright: cost two. HUD: Slides.
 
+Source status (scripts/characters/kimi_slides.lua): normal form implemented and replaces flawless-clear pages. The +15% applies to the owner's damage against presented enemies only, re-dealt like Gemini's Paint. The outline is a light blue slow tint. The deck ends early once every presented enemy is gone. Engine acceptance pending.
+
 **Tainted:** Base damage 0.85x. Three task slots. DROP assigns an idle slot to the nearest unassigned target within 220 units. Each task deals three 0.6x pulses, two seconds apart. Max three concurrent tasks and nine scheduled pulses per room. Early death releases the slot but not its spent budget. Exit cancels tasks; re-entry does not reset budget. Birthright: pulses 0.7x. HUD: Tasks, room budget. Office-drudge videos are leads; swarm orchestration is documented, but this does not prove a dominant community joke.
 
 ### GLM — Number in Queue / Please Retry
