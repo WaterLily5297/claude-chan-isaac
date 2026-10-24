@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased normal GLM Number in Queue (2026-10-24)
+
+- Normal GLM replaces active-item tool links and the forced pocket Book of Secrets. Each unique combat clear advances the Queue (max three); at three, a DROP tap redeems an Access Pass giving +20% damage in each of the next two new hostile rooms (Birthright three). The Queue pauses while the pass is active; revisits never spend or stack it. Saved per player in `Risk.state.glmQueue`.
+- The roster module now keeps only identities, dossier lines and the tear tint.
+- 26 offline suites pass, including the new GLM Queue suite. No runtime or Workshop changes; engine validation pending.
+
 ## Unreleased normal Kimi Another Slide Deck (2026-10-24)
 
 - Normal Kimi replaces flawless-clear pages. Each unique combat clear earns a Slide (cap six); a DROP tap spends three (Birthright two) to present to the three nearest enemies within 220 units, slowing them for four seconds and adding +15% to the owner's damage against them. No audience, no spend. Saved per player in `Risk.state.kimiSlides`.
@@ -9,6 +15,14 @@
 
 - Normal Doubao replaces the every-third-clear meal. The first enemy-caused hit in each hostile room grants a six-second Apology token (Birthright: until room exit); a DROP tap slows enemies within 100 units for two seconds and removes the four nearest enemy bullets. No health refund. Saved per player in `Risk.state.doubaoApology`.
 - 24 offline suites pass, including the new Doubao Apology suite. No runtime or Workshop changes; engine validation pending.
+
+## Unreleased tainted GPT Reset Watcher (2026-10-24)
+
+- Register Tainted GPT-chan with the deeper-colour tainted art. Reset Watcher: 80 Credits per run (Birthright 100); DROP toggles Standard and Full Send (1.5x, one Credit per same-frame paid attack); three unique combat clears bank one Tibo reset that the next tap claims to refill Credits. Saved per player across floors and continue. Kept out of the proxy account. English HUD, dossier and EID. Offline only.
+
+## Unreleased tainted roster art (2026-10-24)
+
+- Add deeper-colour tainted gameplay sheets, stage portraits, dossiers and menu cells for the nine newer families, derived deterministically from the normal art (including the new walk cycle) by `tools/make_roster_tainted_art.py`. Hashes are checked by the asset gate. The forms are not registered yet; each tainted mechanic PR registers its own.
 
 ## Unreleased roster review fixes (2026-10-24)
 

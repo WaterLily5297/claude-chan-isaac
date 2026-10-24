@@ -68,6 +68,8 @@ Start a new run with 80 Credits, cap 80. DROP toggles Standard (1x damage, free)
 
 Floor changes and continue preserve credits, progress and banked reset. Real time does nothing. Spend an allowance before claiming the reset, or claim early for immediate pressure. Birthright raises the cap/refill to 100. HUD: Credits, Next Reset 0/3, `Tibo: Reset Ready`. No network requests.
 
+Source status (scripts/characters/gpt_reset.lua): implemented and registered with the deeper-colour tainted GPT art. A paid attack is a registered tear volley, a laser init or a Dr. Fetus bomb, one payment per frame; knives and continuous lasers past their first frame are free until a window adapter exists. Engine acceptance pending.
+
 ## Remaining eight families: researched candidates
 
 These roles are concrete proposals. Their source strength varies; do not present all as equally established community memes. All unspecified form multipliers are 1x. Room damage bonuses apply only to their owner. Birthright does not add an unrelated second system.
@@ -131,6 +133,8 @@ Source status (scripts/characters/kimi_slides.lua): normal form implemented and 
 ### GLM — Number in Queue / Please Retry
 
 **Normal:** Each unique clear advances Queue, max three. At three, DROP redeems an Access Pass: +20% damage for the next two new hostile rooms. Queue pauses while the pass is active. It cannot stack or expire through cleared-room revisits. Birthright: three rooms. HUD: Queue or remaining Access rooms. No real purchases or real-time waiting.
+
+Source status (scripts/characters/glm_queue.lua): normal form implemented and replaces tool links and the pocket Book of Secrets. A new hostile room is the first combat in a room not yet entered in combat this floor; a pass redeemed mid-fight starts with the next one. Clears are paused while pass rooms remain or the current room is boosted. Engine acceptance pending.
 
 **Tainted:** Base damage 0.9x. DROP selects a hostile within 200 units and schedules a two-second request. If it survives in the room, deal 2x damage and consume all Retry stacks, adding 1x per stack (cap three; max 5x total). Early target death instead gives one Retry. One pending request; three-second cooldown from selection. Exit cancels without earning a stack. Birthright: a failed request also removes one nearby ordinary hostile bullet. HUD: Retries, Request Pending. Retries are bounded and deterministic, not a random missing-shot mechanic.
 

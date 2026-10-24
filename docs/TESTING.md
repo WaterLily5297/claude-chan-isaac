@@ -6,6 +6,10 @@ Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and 
 
 Verify actual callback order, damage refresh behavior, charged releases during food lockout, continuous fork update order, 1M Context decay, pause and mid-window save/continue before accepting any native weapon case. Source field assertions do not establish damage dealt, player appearance, steering or engine serialization. This follow-up does not pass the costume matrix.
 
+## Tainted GPT Reset Watcher (source candidate; engine acceptance pending)
+
+Select Tainted GPT-chan from the tainted menu: deeper-colour GPT art, one red and two soul hearts, one key. HUD reads `Credits 80/80  Standard  Next Reset 0/3`. Tap/release DROP: `Full Send`, damage 1.5x, and each volley (one 20/20 volley, one Brimstone beam, one Dr. Fetus bomb) costs one Credit. At zero she returns to Standard and a tap cannot re-enter Full Send. Clear three different hostile rooms: `Tibo: Reset Ready`; further clears do not advance while it is banked. The next tap refills Credits and does not toggle the mode. Birthright raises cap and refill to 100. New floor and save/continue keep Credits, mode, progress and the banked reset. Check that no proxy IP / risk HUD appears for her, that a long DROP hold drops trinkets normally, and the MAP dossier. Stub coverage is `tests/gpt_reset_test.lua`.
+
 ## Tainted DeepSeek Peak / Valley (source candidate; engine acceptance pending)
 
 Start a new run: HUD reads `Compute 12/24  Valley 12.0s  Forks On`. In a hostile room the timer counts down and switches to Peak after twelve seconds, then back. In a cleared room and on the pause menu it must stop. Each new floor starts in Valley with the same Compute. In Valley, stop firing during combat: Compute rises by three per second up to 24 (32 with Birthright). Waiting in a cleared room must not add Compute.
@@ -25,6 +29,10 @@ Save/quit/continue in Fallback: Fallback, Routing and the spent room check retur
 ## Normal Mistral Le Chat (source candidate; engine acceptance pending)
 
 Speed is +0.1 over Isaac. Move while firing for two seconds: HUD goes from `Charge N%` to `Pounce Ready`. Stand still for a second and it is lost. Tap/release DROP while aiming at enemies within about 80 units: each one in that line takes double your damage once, `Pounce!` appears, and `Cooldown 3s` follows. Enemies behind you, off to the side, beyond reach or behind rocks and walls are not hit. You do not move or gain invincibility. Birthright reaches about 110 units. Save/continue keeps a ready Pounce. There is no swipe animation yet; note how readable it is. Stub coverage is `tests/mistral_pounce_test.lua`.
+
+## Normal GLM Number in Queue (source candidate; engine acceptance pending)
+
+New run: HUD reads `GLM-chan: Number in queue 0/3`, with no pocket item. Each combat clear adds one, up to three; re-clearing a room or peaceful rooms add none. At three the HUD says `Your turn! Tap DROP`. Tap/release DROP: `Access granted`, `Access 2 room(s)`. The next two hostile rooms you have not entered yet this floor each give +20% damage while you stay in them (`Access active`). Rooms already visited and peaceful rooms do not use the pass. The Queue does not move until the pass is used up and you have left its last room. Birthright gives three rooms. Save/continue inside a boosted room keeps the bonus without spending again. Test two GLMs in co-op. Stub coverage is `tests/glm_queue_test.lua`.
 
 ## Normal Kimi Another Slide Deck (source candidate; engine acceptance pending)
 
@@ -125,8 +133,8 @@ Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes
 - For Grok and Mistral, reach maximum movement/firing charge, stop, change rooms, and start a new run. Temporary charge must reset and stay bounded.
 - For Kimi, save and continue right after a clear, then revisit the room. The Slide must not be awarded twice.
 - For Llama, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
-- For GLM, use the pocket Book of Secrets, Car Battery, a zero-charge item and an item with a custom use callback. Links must stay at three or fewer and reset when leaving the room.
-- For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. For GLM, duplicate use callbacks in one frame must add only one link per player while separate players can each gain a link. Distinct-wrapper stub coverage passes; these engine checks remain pending.
+- For GLM, redeem an Access Pass, save/continue inside a boosted room and on a new floor. The pass must not spend twice or stack.
+- For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. Distinct-wrapper stub coverage passes; these engine checks remain pending.
 - Check Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, multishot, familiars, D4, transformations, costume-changing items, EID and Reactions Port Pack. Cache-based code alone is not compatibility evidence.
 - Repeat in base Repentance and Repentance+, finish full runs, then close the game. Do not publish to Workshop before acceptance and art-permission review.
 
