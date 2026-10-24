@@ -90,6 +90,7 @@ function Grok:Init(mod, Risk, C)
         end
     end)
     C.On("newRoom", function() notes = {} end)
+    C.On("runReset", function() notes = {} end)
 
     C.On("update", function(frame)
         if frame % 5 ~= 0 then return end

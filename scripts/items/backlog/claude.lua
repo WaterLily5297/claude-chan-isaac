@@ -52,6 +52,7 @@ function Claude:Init(mod, Risk, C)
             and GetPtrHash(stamp.ref.Ref) == GetPtrHash(e)
     end)
     C.On("newRoom", function() stamps = {} end)
+    C.On("runReset", function() stamps = {} end)
 
     -- 04 Anniversary Cake: the verdict is read from the finished floor's table.
     local function cakeFloor(player)

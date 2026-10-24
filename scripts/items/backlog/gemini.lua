@@ -145,10 +145,12 @@ function Gemini:Init(mod, Risk, C)
             if b and b.expires < frame then C.Data(p).brush = nil; C.Refresh(p) end
         end
     end)
-    C.On("newRoom", function()
+    local function clearEffects()
         paints, peels = {}, {}
         for key in pairs(decoys) do clearDecoys(key) end
-    end)
+    end
+    C.On("newRoom", clearEffects)
+    C.On("runReset", clearEffects)
 end
 
 return Gemini

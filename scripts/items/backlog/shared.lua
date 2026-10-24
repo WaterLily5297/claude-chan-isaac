@@ -104,6 +104,7 @@ function Shared:Init(mod, Risk, C)
         entry.kinds[kind] = frame
     end)
     C.On("newRoom", function() seen = {} end)
+    C.On("runReset", function() seen = {} end)
 
     -- 50 Error Budget
     C.On("playerHit", function(player)

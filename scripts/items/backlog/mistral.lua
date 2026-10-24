@@ -62,6 +62,7 @@ function Mistral:Init(mod, Risk, C)
         return C.Used()
     end, Item.LARGE_KITTEN)
     C.On("newRoom", function() kittens = {} end)
+    C.On("runReset", function() kittens = {} end)
 
     C.Stat("speed", function(p)
         return (p:HasCollectible(Item.SLIPSTREAM_BOOTS) and C.Data(p).slip) and 0.15 or 0

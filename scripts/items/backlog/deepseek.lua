@@ -44,6 +44,7 @@ function DeepSeek:Init(mod, Risk, C, MealBreak)
 
     -- 06 One Bowl Only
     local pending = {}
+    C.On("runReset", function() pending = {} end)
     mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, pickup, collider)
         local player = collider and collider:ToPlayer()
         if not player or not player:HasCollectible(Item.ONE_BOWL) then return nil end
