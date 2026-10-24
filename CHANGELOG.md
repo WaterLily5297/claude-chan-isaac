@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased handoff audit (2026-10-24)
+
+- Normal and tainted Claude now bill usage/Quota for laser starts and Dr. Fetus bombs, sharing the frame's payment with tears; familiars, placed bombs and knives stay free.
+- HANDOFF.md gains a "Status at a glance" section (done, needs the game, needs an owner decision) and drops stale lines found in a line-by-line audit against main.
+
 ## Unreleased roster story arcs (2026-10-24)
 
 - Add three short story captions for each of DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM (normal or tainted), on run start, stage 3 and stage 5. Seven seconds, non-blocking, once per run, co-op queued in player order, saved in `Risk.state.rosterStory` (version 1).

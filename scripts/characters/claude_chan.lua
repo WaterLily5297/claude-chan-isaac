@@ -3,7 +3,8 @@
 --
 -- Stats: long context window (Range +1.5), Shot Speed +0.2, Speed -0.1, orange tears.
 -- Pocket item: Ban Hammer.
--- One More Day: each paid volley adds 4 usage (8 with Subagent Swarm); not
+-- One More Day: each paid volley (tears, laser starts and Dr. Fetus bombs on
+-- one frame) adds 4 usage (8 with Subagent Swarm); not
 -- firing drains 10 per second. At 100 she is Limited: 40% damage for 5 seconds,
 -- then the meter resets. Appeals (start 1, cap 2, one per two unique combat
 -- clears) are spent with a DROP tap to remove 40 usage; they cannot cancel an
@@ -218,11 +219,8 @@ function ClaudeChan:Init(mod, Risk)
         end
     end)
 
-    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
-        if not ready then return end
-        local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
-        if not isClaude(player) then return end
-
+    -- Bills one paid volley per player and frame; returns it for its limit state.
+    local function bill(player)
         local usage, key = getUsage(player)
         local now = Game():GetFrameCount()
         -- Same-frame pellets are one paid volley and share its limit state.
@@ -242,10 +240,29 @@ function ClaudeChan:Init(mod, Risk)
                 end
             end
         end
-        if volley.limited then
+        return volley
+    end
+
+    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+        if not ready then return end
+        local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+        if not isClaude(player) then return end
+        if bill(player).limited then
             tear.CollisionDamage = tear.CollisionDamage * LIMITED_DAMAGE_MULT
             tear.Color = LIMITED_TEAR_COLOR
         end
+    end)
+    -- Lasers and Dr. Fetus bombs bill usage on the frame they start; a held
+    -- continuous laser pays once. Their damage is not reduced while Limited.
+    mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
+        if not ready then return end
+        local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
+        if isClaude(player) then bill(player) end
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, function(_, bomb)
+        if not ready or not bomb.IsFetus then return end
+        local player = bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer()
+        if isClaude(player) then bill(player) end
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)

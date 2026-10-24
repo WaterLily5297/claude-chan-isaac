@@ -1,8 +1,8 @@
 -- Tainted Claude-chan (裏Claudeちゃん) - "Appeal Pending"
 -- Character design by ZipZipPipe, used non-commercially with credit.
 --
--- Each floor starts with 220 Quota and two Appeal Pages (cap two). A paid tear
--- volley costs one Quota (two with Subagent Swarm) and she deals 1.25x damage.
+-- Each floor starts with 220 Quota and two Appeal Pages (cap two). A paid
+-- volley (tears, laser starts and Dr. Fetus bombs on one frame) costs one Quota (two with Subagent Swarm) and she deals 1.25x damage.
 -- At zero she is Suspended: a usable 0.5x attack. A DROP tap while Suspended
 -- spends a Page and starts six seconds of active-combat review, which restores
 -- 60 Quota (90 with Birthright). Leaving the room cancels it without refund.
@@ -231,14 +231,9 @@ function TaintedClaude:Init(mod, Risk)
             else player.TearColor = Color(k[1], k[2], k[3], k[4], 0, 0, 0) end
         end
     end)
-    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
-        if not ready or not next(bindings) then return end
-        local data = tear:Exists() and tear:GetData()
-        if not data or data.ccThoughtDerived or data.ccAppealSeen then return end
-        local p = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+    local function pay(p)
         local b = binding(p)
         if not b or p:IsDead() then return end
-        data.ccAppealSeen = true
         local s, now = b.state, Game():GetFrameCount()
         -- One volley is one payment; Suspended attacks are free.
         if b.volley == now or s.quota == 0 then return end
@@ -250,6 +245,23 @@ function TaintedClaude:Init(mod, Risk)
             Game():GetHUD():ShowItemText("Suspended", "Tap DROP to appeal")
             refresh(p)
         end
+    end
+    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+        if not ready or not next(bindings) then return end
+        local data = tear:Exists() and tear:GetData()
+        if not data or data.ccThoughtDerived or data.ccAppealSeen then return end
+        data.ccAppealSeen = true
+        pay(tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer())
+    end)
+    -- Lasers and Dr. Fetus bombs pay on the frame they start, sharing that
+    -- frame's payment with tears; a held continuous laser pays once.
+    mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
+        if not ready or not next(bindings) then return end
+        pay(laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer())
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, function(_, bomb)
+        if not ready or not next(bindings) or not bomb.IsFetus then return end
+        pay(bomb.SpawnerEntity and bomb.SpawnerEntity:ToPlayer())
     end)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         if Game():IsPaused() then drop:Reset() end

@@ -113,6 +113,12 @@ local t=shot(p); assert(state().quota==219 and t.CollisionDamage==4,"the tear it
 shot(p); fire("MC_POST_FIRE_TEAR",t); shot(p,true); assert(state().quota==219)
 tick(); p.swarm=true; shot(p); assert(state().quota==217,"Subagent Swarm costs one extra Quota")
 p.swarm=false
+-- Laser starts and Dr. Fetus bombs share the frame's payment; familiars and placed bombs are free.
+local familiar={ToPlayer=function() end}
+tick(); fire("MC_POST_LASER_INIT",{SpawnerEntity=p}); shot(p); assert(state().quota==216,"a laser shares its frame's payment")
+tick(); fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=true}); assert(state().quota==215,"a Fetus bomb pays")
+tick(); fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=false}); fire("MC_POST_LASER_INIT",{SpawnerEntity=familiar})
+assert(state().quota==215,"placed bombs and familiars are free")
 assert(state(1).quota==220,"spending is personal")
 
 -- A DROP tap with Quota left keeps native DROP and spends nothing.
