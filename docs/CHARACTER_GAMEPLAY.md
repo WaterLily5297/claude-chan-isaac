@@ -82,6 +82,8 @@ Source status (scripts/characters/gemini_paint.lua): normal form implemented and
 
 **Tainted:** Base damage 0.9x. DROP starts a six-second Edit chain on a target within 180 units. Three distinct paid hits advance Crop, Recolor, Export; the third adds one 2x damage pulse. One completed chain per room. DROP can erase progress and retarget. Early target death does not complete a partial chain; select again. Bosses need not die. Birthright extends the timer to ten seconds. HUD: edit step/timer. The banana name is documented; the endless-edit exaggeration is original parody.
 
+Source status (scripts/characters/gemini_edit.lua): implemented and registered with the deeper-colour tainted Gemini art. Steps count distinct paid attacks like GPT's Sanity Check, so one multi-tear volley or one 0.2-second beam window is one step. The pulse is a direct hit credited to the player. Engine acceptance pending.
+
 ### Grok — Is This True? / Quote Without Reading
 
 **Normal:** Once per hostile room, DROP challenges the nearest vulnerable target within 220 units for six seconds. Owner damage is 1.3x to it, 0.9x to others. Its defeat or three distinct paid hits verifies it, ends the modifiers and grants +0.15 speed for that room. Timeout gives nothing. Birthright: verification removes up to three nearby ordinary hostile bullets once. HUD: Check progress/timer.

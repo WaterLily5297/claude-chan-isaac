@@ -6,6 +6,10 @@ Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and 
 
 Verify actual callback order, damage refresh behavior, charged releases during food lockout, continuous fork update order, 1M Context decay, pause and mid-window save/continue before accepting any native weapon case. Source field assertions do not establish damage dealt, player appearance, steering or engine serialization. This follow-up does not pass the costume matrix.
 
+## Tainted Gemini One More Edit (source candidate; engine acceptance pending)
+
+Select Tainted Gemini-chan: deeper-colour Gemini art, damage 0.9x of Isaac's. HUD reads `DROP: start an edit`. In combat, tap/release DROP near an enemy (within about 180 units): `One more edit`, HUD `Crop 0/3  6s`. Hit it with three separate volleys: Recolor, Export, then `Exported` and one extra hit of double your damage. Tapping again in that room does nothing. In a new room, tap, hit twice, tap again: progress resets. Kill the target early or wait six seconds: the chain ends without the pulse. Birthright: 10 seconds. Save/continue in an exported room keeps it exported. Test Brimstone and 20/20 (each volley or beam window counts once).
+
 ## Tainted GPT Reset Watcher (source candidate; engine acceptance pending)
 
 Select Tainted GPT-chan from the tainted menu: deeper-colour GPT art, one red and two soul hearts, one key. HUD reads `Credits 80/80  Standard  Next Reset 0/3`. Tap/release DROP: `Full Send`, damage 1.5x, and each volley (one 20/20 volley, one Brimstone beam, one Dr. Fetus bomb) costs one Credit. At zero she returns to Standard and a tap cannot re-enter Full Send. Clear three different hostile rooms: `Tibo: Reset Ready`; further clears do not advance while it is banked. The next tap refills Credits and does not toggle the mode. Birthright raises cap and refill to 100. New floor and save/continue keep Credits, mode, progress and the banked reset. Check that no proxy IP / risk HUD appears for her, that a long DROP hold drops trinkets normally, and the MAP dossier. Stub coverage is `tests/gpt_reset_test.lua`.

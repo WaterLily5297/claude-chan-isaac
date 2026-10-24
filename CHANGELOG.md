@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted Gemini One More Edit (2026-10-24)
+
+- Register Tainted Gemini-chan with the deeper-colour art. One More Edit: base damage 0.9x; a DROP tap starts a six-second (Birthright ten) chain on the nearest enemy within 180 units; three distinct paid hits go Crop, Recolor, Export and add one 2x damage pulse, once per room. Saved per player. Offline only.
+
 ## Unreleased normal GLM Number in Queue (2026-10-24)
 
 - Normal GLM replaces active-item tool links and the forced pocket Book of Secrets. Each unique combat clear advances the Queue (max three); at three, a DROP tap redeems an Access Pass giving +20% damage in each of the next two new hostile rooms (Birthright three). The Queue pauses while the pass is active; revisits never spend or stack it. Saved per player in `Risk.state.glmQueue`.
