@@ -1,16 +1,16 @@
 # Contributing
 
-Start with docs/HANDOFF.md for current implementation, missing work and evidence boundaries. The source checkpoint contains 22 forms, 75 collectibles (including all 50 requested additions), 12 trinkets and four pills. Source completeness is not gameplay acceptance. New code, comments, Markdown and UI text must be English.
+Start with docs/HANDOFF.md for current implementation, missing work and evidence boundaries. The source checkpoint contains 22 forms, 79 collectibles (including all 50 requested additions), 12 trinkets and four pills. Source completeness is not gameplay acceptance. New code, comments, Markdown and UI text must be English.
 
 ## Workflow
 
 1. Fetch main, inspect status and preserve collaborator changes and local drafts.
-2. Use a focused branch and PR for one mechanic, item or fix. The owner authorized the current consolidation merge; do not treat this as release approval.
+2. Use a focused main-based branch and PR for one mechanic, item or fix, with no stacked base branches. The owner permits the agent to merge its own compatible fix after the required checks pass when no blocking bug or open design decision remains. Do not treat this as release approval.
 3. Implement the change and meaningful offline regression coverage. Run `bash tools/check.sh` using Lua 5.3+ (texlua works) and Python 3.9+; CI runs the same gate.
 4. Update HANDOFF.md, TESTING.md and relevant design/status records. Say exactly what is implemented, simulated, tested in the engine or still planned.
 5. Publish the branch, verify remote file-tree equality and CI, then merge only within the owner's authorization. Never overwrite or force-reset shared history.
 
-The owner resumed muted engine testing on 2026-10-24. Use the documented backup/deployment workflow, mute the game, record source/runtime/game versions and close the game afterward. Do not clone directly over the installed mod or assume passing CI means gameplay acceptance.
+The owner's installed manual-test checkpoint is `3482ea1`; newer source, including PR #82, is not installed. Agent-run engine testing remains deferred. Consult the latest owner instruction and HANDOFF.md before another deployment or automated test, and preserve the owner's manual-test session. Use the documented backup/deployment workflow, record source/runtime/game versions, and mute and close the game after any later authorized automated testing. Do not clone directly over the installed mod or assume passing CI means gameplay acceptance.
 
 ## New content checklist
 
@@ -25,6 +25,6 @@ The owner resumed muted engine testing on 2026-10-24. Use the documented backup/
 
 Persistent data belongs in versioned per-player Risk.state tables, not player:GetData(). Do not serialize entity references. Guard duplicate callbacks, pause, restart, player/seed/type changes, fake damage and co-op isolation. Use seeded RNG for reproducible gameplay.
 
-Preserve native weapons, item costumes, size, flight and transformations. Do not replace full player sprites every frame, clear unrelated costumes or change player types merely to block shooting. DeepSeek must not regain proxy/IP/risk mechanics.
+Preserve native weapon behavior, size, flight and transformation effects. The owner's fixed-look contract applies to all 22 mod forms: `scripts/characters/costume_lock.lua` clears their costume layers while item mechanics must continue to work. Vanilla characters retain native costume behavior; leaving a mod form attempts to restore held collectible costumes, but transformation layers are not rebuilt by that helper. Keep costume clearing in this dedicated service, and verify its visual and mechanical limits with `docs/COSTUME_COMPATIBILITY.md` and TESTING.md COSTUME-LOCK-01. Do not replace full player sprites every frame, reset player scale/color or change player types merely to block shooting. DeepSeek must not regain proxy/IP/risk mechanics.
 
 Community jokes guide fictional mechanics; they do not establish factual claims about people or majority opinion. No real-person/nationality enemies, no Grok July 2025 offensive-content references, and no official company logos. The mod remains free/non-commercial. Code is MIT; art/design terms and attribution are in resources/ART_LICENSE.md. Never upload private saves, credentials or unlicensed reference art. Workshop publication requires separate acceptance and authorization.
