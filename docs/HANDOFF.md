@@ -6,9 +6,9 @@ This section is the current summary for the next agent (GPT/Codex or Claude). It
 
 ### Progress at a glance
 
-- **Source baseline:** main `9805683` includes PR #78 (PAID-OBSERVERS-01). CONSTITUTION-COOP-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 171 tracked Lua files, 5 XML files, deterministic asset checks and 61 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
+- **Source baseline:** main `a476559` includes PR #78 (PAID-OBSERVERS-01) and PR #79 (CONSTITUTION-COOP-01). CHARGED-USE-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 171 tracked Lua files, 5 XML files, deterministic asset checks and 61 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
 - **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
-- **Installed runtime:** last verified deployment `f211e1e` (406 tracked files), preceding this compatibility pass. No deployment occurred for PAID-OBSERVERS-01 or CONSTITUTION-COOP-01. Never assume the installed commit equals main.
+- **Installed runtime:** last verified deployment `f211e1e` (406 tracked files), preceding this compatibility pass. No deployment occurred for PAID-OBSERVERS-01, CONSTITUTION-COOP-01 or CHARGED-USE-01. Never assume the installed commit equals main.
 
 ### Implemented features (source)
 
@@ -43,6 +43,8 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 
 ### Known issues
 
+- **Next offline fix:** Consensus Coin recognizes familiar contact but misclassifies familiar-fired projectiles as `other`, so the mixed-source pulse is missed. A bounded real-module fixture reproduces this on `a476559`; no fix or engine acceptance is included in CHARGED-USE-01. Keep the next change in a separate main-based PR.
+- **Documentation follow-up:** CONTRIBUTING.md still has the old collectible count and costume-preservation contract. NATIVE_THOUGHT.md contains obsolete free-knife/rocket and tear-only Compute statements; COSTUME_COMPATIBILITY.md still has some pre-lock visual acceptance criteria. Reconcile current guidance against the implemented fixed-look and paid-attack contracts without rewriting historical evidence.
 - **Everything after PR #49 is untested in game.** Treat every behavior claim as source-only until a TESTING.md case records engine evidence.
 - COSTUME-LOCK-01: does ClearCostumes also hide wings, Holy Mantle or other effect layers, and is there a one-frame costume flash on pickup?
 - A DROP tap is observed, not consumed, so it may also cycle the pocket slot on DROP-ability forms.
@@ -59,6 +61,12 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 - **English** for in-game text, code, comments and Markdown; reply to the owner in their language (usually Japanese or Chinese).
 - **One small PR per change, based on main, no stacks.** Stacked PRs once got merged into intermediate branches and stranded work. Check the base is main before asking for a merge. The owner allows the agent to merge its own PR when the base is main, check.sh/CI pass, there is no blocking bug, the change is vanilla-compatible and it does not decide an open design question.
 - Update this section, the dated log below and the matching TESTING.md case in the same PR as each material change.
+
+## CHARGED-USE-01: stored battery charge (2026-10-24)
+
+Source-only follow-up based directly on main `a476559`. The backlog charged-use observer compared only the primary charge bar before and after an owned room-charged active use. A use that spent The Battery's stored second bar while leaving the primary bar full was missed: Base Model did not prime an attack, Please Come Back kept its clear progress, and Access Pass did not grant or bank its floor benefit. The observer now compares primary plus battery charge in the actual used slot. Eligibility, the existing item-change fallback, Car Battery exclusion and charge-reward policy are unchanged.
+
+The real-module regression models distinct charge bars and all three consumers. It covers ordinary and stored-charge use, the four active slots, two players, unchanged/refused use, equal-total transfers, net charge gains and excluded callbacks. The old source fails the stored-charge case; six injected faults independently fail. The full gate passes 61 suites, 171 tracked Lua files, five XML files and deterministic assets. This is callback simulation, not evidence of native discharge timing. TESTING.md CHARGED-USE-01 retains native timing, full refunds, Bethany resource pools and save/continue as pending cases. No game launch, runtime replacement or Workshop release.
 
 ## CONSTITUTION-COOP-01: per-player item state (2026-10-24)
 
