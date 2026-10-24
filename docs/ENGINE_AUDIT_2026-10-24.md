@@ -55,6 +55,20 @@ Source review then reproduced a separate defect: `target_tools.Owner` followed a
 
 The [Entity API reference](https://wofsauge.github.io/IsaacDocs/rep/Entity.html) documents the separate entity type, spawner and parent relationships. These API definitions support the fixture shape; they do not prove which source a particular engine damage event supplies.
 
+### Controlled GPT engine follow-up (PR #50)
+
+Candidate `aae85fd1d84e23d19bcb12a1b6af8e774e8326e8`, tree `ff9ea91c724c731c2c1aa8d23f2025c43f28e81c`, was installed with all 393 tracked files matching Git bytes. Tests used Repentance+ v1.9.7.17 and the same existing mod environment, including the pre-existing Stackable Items v2 load error. Main remained `2ec15ef`; this is branch-candidate evidence, not merged-main acceptance.
+
+A console restart of normal GPT rendered chapter 1 and `Verified Routing 0/3`; observed starting values were damage 4.0250, four red half-hearts, two soul half-hearts and no pocket active. Three actual room-clear callbacks followed by another hostile room changed damage to 2.800. Room changes, enemy freezing and clears were scripted; this is not menu selection or ordinary combat acceptance.
+
+For the focused attribution case, a bounded process-only fixture prepared Fallback and a frozen Gaper, then temporarily supplied a short DROP press/release through `Input.IsActionPressed` for that controller. The original function was restored before damage testing. The visible HUD confirmed `Fallback Check 0/3`. The fixture set the target to one HP and spawned one blue fly at it with a player spawner. A real collision produced a damage event with source type 3 (familiar), amount 7.0, and killed the target. GPT stayed Fallback at 2.800 and showed `Check failed`. The probe did not invoke the mod's damage callbacks directly or mutate its persistent routing state.
+
+An own native tear provided the positive control in a different room. After another synthetic selection, `FireTear` created a tear beside the frozen one-HP target. Its real collision reported source type 2 (tear), amount 2.800. The target died; GPT returned to Verified, Routing 0/3, damage 4.025. These two cases validate this candidate's normal GPT contact-familiar exclusion and own-tear kill path under the stated fixture. They do not validate all familiar variants, projectiles, bombs/lasers/knives, co-op, other target abilities, native keyboard/controller DROP, saves, costumes or animations.
+
+Unsuccessful attempts are retained as limitations: direct helper loading from the console resolved the wrong mod context or unavailable loaders, so it supplied no helper-execution result; an earlier one-pass clear missed subsequent enemies, and its disposable player died after protection expired. Console `Revive` did not resume that death screen, so the process was closed. The first native-tear control in a room with rocks had no target-damage callback and left the target alive; an unobstructed placement produced the successful collision above. None of those failed fixtures is counted as a gameplay pass or an independently confirmed mod defect.
+
+All probes were temporary and did not alter installed source. The game was closed after each block and the freshly observed music/SFX values restored. No new mod-source Lua error appeared in the filtered evidence. The full gate remains distinct offline evidence. PR #50 requires the owner's merge approval; continue unrelated acceptance work from main rather than stacking changes on it.
+
 ### Remaining priorities
 
 1. Complete the full hurt/death/fall/revival animation and costume matrix for every form. Retain the standard base-animation geometry; inspect native costume priorities before splitting baked hair/clothing into layers. The oversized-head report is not closed by this audit.
