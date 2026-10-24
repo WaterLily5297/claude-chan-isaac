@@ -99,11 +99,14 @@ if mode=="all" or mode=="coverage" then
         risk(50,"DeepSeek and normal/tainted roster damage must stay outside Risk")
     end
     env.clearRoom(); risk(49,"excluded co-op hits must not spoil Claude's clean room")
-    for _,kind in ipairs({41,141,0}) do
+    for _,kind in ipairs({41,141}) do
         enemy=freshRoom(); p.kindId=kind
-        env.hitPlayer(p,enemy); risk(51,"Claude and vanilla damage retains risk")
+        env.hitPlayer(p,enemy); risk(51,"Claude damage retains risk")
         env.clearRoom(); risk(51,"eligible damage keeps the room hit latch")
     end
+    enemy=freshRoom(); p.kindId=0
+    env.hitPlayer(p,enemy); risk(50,"vanilla damage stays outside Risk")
+    p.kindId=41
 end
 if mode=="all" or mode=="lifecycle" then
     local enemy=freshRoom()
