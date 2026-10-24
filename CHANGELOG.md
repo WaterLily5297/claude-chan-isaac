@@ -1,9 +1,24 @@
 # Changelog
 
+## Authorized Risk and backlog integration (2026-10-24)
+
+The owner explicitly authorized merging PR #55 and PR #56 while keeping work offline. This source integration includes both fixes and retains their separate evidence below. The earlier PR #50-54 integration remains a historical checkpoint. No game launch, runtime replacement or Workshop release is authorized by this merge; installed source remains the previously verified `2ec15ef`.
+
+COMPOSE-02 applied the published PR #55 head `dc0fdbf7a932f5cc04bbeae7968512d02d1400af` and PR #56 head `9511dcf2723e1ca41da25ac20c55bedc42f006b2` to main `d91eee7`. All non-Markdown files were identical in either application order. The combined gate passed 50 stub suites, 148 tracked Lua files, five XML files and deterministic asset checks. Four Markdown insertion conflicts are reconciled here without dropping either candidate's evidence. Each original candidate separately passed 49 suites; those counts below retain their original scope. Verify the actual final integration commit and CI before reporting synchronization complete.
+
+A separate retained-module interaction fixture checks Red Stamp and Risk together: the old-run block leaves Risk at 50, restart removes the old stamp, and the next ordinary contact adds Risk to 51. A new stamp use blocks again and preserves the clean-room reduction to 49. Reverting either fix independently fails. Both start flags are modeled with HasData=false; the initial missing HasData stub was a harness error corrected before recording results. This does not load serialized data or prove native health loss, callback order or save/continue.
+
+Engine retests remain pending: native shield dispatch, risk threshold, clean-room awards, temporary effects across fresh starts/continue, co-op, later external damage blockers, native entity lifetime and save order. The transient Risk hit latch remains unsaved. Continue the complete menu/input, animation/costume, native-weapon, save/co-op and base Repentance matrix only when the owner is available. No new content is part of this integration.
+
 ## Unreleased Risk damage eligibility (2026-10-24)
 
 - Ignore fake/no-penalty and ordinary-shield-cancelled damage in Risk accounting; observe after default-priority blockers. Ignore damage outside an active run and reset the transient room latch on start/continue.
 - Add a real-module regression that fails on main, with shield, clean-room, ordinary-hit, coverage and lifecycle controls. Preserve the shared account, save schema and DeepSeek/roster exclusions. All 49 offline suites pass; engine retests and mid-room hit-latch persistence remain pending.
+
+## Unreleased backlog run cleanup (2026-10-24)
+
+- Clear module-local temporary backlog effects at exit and start/continue, independently of initial room callback order. Remove only owned preview decoys; preserve native familiars and persistent tables. Cleanup does not synthesize room-entry events or rewards.
+- Regress stale Kitten repulsion, preview decoys, banana peels, contact stamps, Community Note exposure, pending One Bowl pickups and Consensus source history. All 49 offline suites pass; native save/continue and entity lifetime still need engine validation. This main-based fix is independent of the Risk damage candidate.
 
 ## Authorized compatibility integration (2026-10-24)
 

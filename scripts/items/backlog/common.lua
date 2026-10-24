@@ -460,6 +460,9 @@ function Common:Init(mod, Risk)
     function self.HitThisRoom(player) return hitThisRoom[GetPtrHash(player)] == true end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
+        -- Module-local effects must not rely on NEW_ROOM arriving after start.
+        -- This is cleanup only: never synthesize a room-entry reward event.
+        emit("runReset")
         started = true
         leases, volleys, guards, timers, helpers, labels, pendingUse, hitThisRoom, lastAttack = {}, {}, {}, {}, {}, {}, {}, {}, {}
         for _, p in ipairs(Common.Players()) do p:GetData().ccBacklog = nil end
@@ -468,6 +471,7 @@ function Common:Init(mod, Risk)
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
         started = false
+        emit("runReset")
         timers, pendingUse = {}, {}
     end)
 

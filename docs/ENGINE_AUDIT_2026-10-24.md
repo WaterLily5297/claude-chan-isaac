@@ -1,5 +1,15 @@
 # Engine compatibility audit: 2026-10-24
 
+## Authorized Risk and backlog integration (2026-10-24)
+
+The owner explicitly authorized merging PR #55 and PR #56 while keeping work offline. This source integration includes both fixes and retains their separate evidence below. The earlier PR #50-54 integration remains a historical checkpoint. No game launch, runtime replacement or Workshop release is authorized by this merge; installed source remains the previously verified `2ec15ef`.
+
+COMPOSE-02 applied the published PR #55 head `dc0fdbf7a932f5cc04bbeae7968512d02d1400af` and PR #56 head `9511dcf2723e1ca41da25ac20c55bedc42f006b2` to main `d91eee7`. All non-Markdown files were identical in either application order. The combined gate passed 50 stub suites, 148 tracked Lua files, five XML files and deterministic asset checks. Four Markdown insertion conflicts are reconciled here without dropping either candidate's evidence. Each original candidate separately passed 49 suites; those counts below retain their original scope. Verify the actual final integration commit and CI before reporting synchronization complete.
+
+A separate retained-module interaction fixture checks Red Stamp and Risk together: the old-run block leaves Risk at 50, restart removes the old stamp, and the next ordinary contact adds Risk to 51. A new stamp use blocks again and preserves the clean-room reduction to 49. Reverting either fix independently fails. Both start flags are modeled with HasData=false; the initial missing HasData stub was a harness error corrected before recording results. This does not load serialized data or prove native health loss, callback order or save/continue.
+
+Engine retests remain pending: native shield dispatch, risk threshold, clean-room awards, temporary effects across fresh starts/continue, co-op, later external damage blockers, native entity lifetime and save order. The transient Risk hit latch remains unsaved. Continue the complete menu/input, animation/costume, native-weapon, save/co-op and base Repentance matrix only when the owner is available. No new content is part of this integration.
+
 ## RISK-01: proxy-account damage eligibility (offline only)
 
 Source review after main `d91eee7` found Risk still recorded fake/no-penalty damage and ran before backlog shields. The regression loads real Risk, Constitution and all backlog modules in main order. Main raises risk from 50 to 51 for a fake event and for a Sold Out bullet that is later cancelled; a separate case also exposes damage bookkeeping after exit. The candidate ignores those events, preserves a clean-room reduction from 50 to 49, and retains ordinary damage at +1, the existing shared-account semantics, and DeepSeek/roster exclusions. Start/continue clears the transient room latch; nothing is added to saved data.
@@ -7,6 +17,14 @@ Source review after main `d91eee7` found Risk still recorded fake/no-penalty dam
 The full gate passes 49 suites, 147 tracked Lua files, five XML files and asset checks. Four isolated guard-removal mutants fail their intended behavioral assertions. The [damage callback documentation](https://wofsauge.github.io/IsaacDocs/rep/enums/ModCallbacks.html#mc_entity_take_dmg) describes a pre-damage observer and dispatch stopping at any non-nil result; the [damage flags](https://wofsauge.github.io/IsaacDocs/rep/enums/DamageFlag.html) define fake/no-penalty events. The fixture models these documented rules, not actual health loss or arbitrary third-party ordering.
 
 No engine session, deployment, new art or balance change occurred. Installed source remains `2ec15ef`. Native shield dispatch, suspension threshold, co-op, later-priority cancellation and save/continue are still pending. The transient hit latch remains unsaved; this fix does not close mid-room persistence. This focused candidate requires its own merge approval; PR #50-54 approval is not reused.
+
+## BACKLOG-LIFECYCLE-01: transient effect lifecycle (offline only)
+
+Main `d91eee7` clears service-level tables at game start, but family closures retain stamps, pickup observations, paint/peels/decoys, exposure history, Kitten zones and Consensus records. Most clear only on the service's `newRoom` event, which is not emitted before the service has started. The real-module regression retains one Lua module instance across lifecycle events and demonstrates seven stale-state cases. The Kitten positive control first repels an ordinary hostile bullet to speed 6; main incorrectly repeats it after restart without another use. The fix keeps that new-run bullet at speed 1 until a new use. Other cases verify actual module outputs instead of inspecting private closure tables.
+
+The service now dispatches a dedicated `runReset` at exit and start/continue. Only cleanup listeners run; no room-entry gameplay event is manufactured. Preview decoys are removed through their owned references, and native familiars/persistent state remain untouched. The full gate passes 49 suites, 147 tracked Lua files, XML and asset checks. Main fails all seven relevant behavioral cases; six family reverts and independent start/exit dispatch removals fail their corresponding assertions. Retained entity-shaped objects are deliberate pointer-reuse stress fixtures, not claims about actual serialized entities.
+
+No game session or deployment occurred. Exact engine startup/save ordering, co-op and native entity persistence still require testing. Source review found that Risk saves shared tables before subsequent transient cleanup, Thought restores tracked continuous/knife fields on exit, and Seahorse removes tracked wisps on exit; none establishes when native serialization occurs. Those save-order cases remain open. The original PR #56 branch started at main without PR #55; the owner subsequently authorized integrating both.
 
 ## Current source integration
 
