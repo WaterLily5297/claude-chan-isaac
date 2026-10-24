@@ -19,5 +19,6 @@
   <player name="Doubao-chan" skin="character_doubaochan.png" skinColor="-1" hp="4" armor="2" black="0" coins="0" bombs="1" keys="0" portrait="playerportrait_doubaochan.png" bigportrait="playerportrait_doubaochan.png" nameimage="playername_doubaochan.png" />
   <player name="Doubao-chan" skin="character_doubaochan_b.png" skinColor="-1" hp="2" armor="4" black="0" coins="0" bombs="1" keys="0" portrait="playerportrait_doubaochan_b.png" bigportrait="playerportrait_doubaochan_b.png" nameimage="playername_doubaochan.png" bSkinParent="Doubao-chan" />
   <player name="Kimi-chan" skin="character_kimichan.png" skinColor="-1" hp="4" armor="2" black="0" coins="0" bombs="1" keys="0" portrait="playerportrait_kimichan.png" bigportrait="playerportrait_kimichan.png" nameimage="playername_kimichan.png" />
+  <player name="Kimi-chan" skin="character_kimichan_b.png" skinColor="-1" hp="2" armor="4" black="0" coins="0" bombs="1" keys="0" portrait="playerportrait_kimichan_b.png" bigportrait="playerportrait_kimichan_b.png" nameimage="playername_kimichan.png" bSkinParent="Kimi-chan" />
   <player name="GLM-chan" skin="character_glmchan.png" skinColor="-1" hp="4" armor="2" black="0" coins="0" bombs="1" keys="0" portrait="playerportrait_glmchan.png" bigportrait="playerportrait_glmchan.png" nameimage="playername_glmchan.png" />
 </players>

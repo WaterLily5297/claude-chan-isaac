@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted Kimi You Are the Manager (2026-10-24)
+
+- Register Tainted Kimi-chan with the deeper-colour art. You Are the Manager: damage 0.85x; a DROP tap assigns a task to the nearest unassigned enemy within 220 units, dealing three 0.6x pulses (Birthright 0.7x) two seconds apart; three tasks at once and nine pulses per room; exit cancels tasks without refunding the budget. Offline only.
+
 ## Unreleased tainted Doubao I'll Do It Again (2026-10-24)
 
 - Register Tainted Doubao-chan with the deeper-colour art. I'll Do It Again: a DROP tap starts six seconds of Confident (1.35x damage), then four seconds of Apology (0.85x, Birthright three), then ready; timers run only in combat, and an enemy hit during Confident starts the Apology early. Offline only.
