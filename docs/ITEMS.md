@@ -51,7 +51,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Item | Pickup line | Quality | Effect |
 |---|---|---|---|
 | --dangerously-skip-permissions | Locks open themselves. rm -rf risk | 2 | Locked doors and locked chests open by themselves (special exits keep their requirements); Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals, big chests, trophies and beds are safe) |
-| 1M Context | Range up, but context rots in flight | 2 | Range +5; Context rot: tears lose damage as they fly (down to 30%) |
+| 1M Context | Range up, but context rots in flight | 2 | Range +5; Context rot: tears lose damage as they fly (down to 30%); Ludovico tears don't rot |
 | 9.9 Yuan Relay | DMG up?! Too good to be true | 2 | x1.5 damage; Each room: 30% chance of a secret model swap (x0.5 damage instead); Risk +15 on pickup |
 | Access Pass | Skip the line: first active use, DMG up | 2 | Your first charged active use on each floor: +15% damage for this combat room (or the next one if the room is clear) |
 | Anniversary Cake | Hitless floors: DMG up | 2 | Each floor finished without an enemy hit or a suspension: +0.15 damage (max +0.6); A spoiled floor resets only this bonus |

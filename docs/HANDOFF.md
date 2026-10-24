@@ -104,6 +104,7 @@ Source-only, offline; one small PR per fix, each with a regression that fails on
 - **Co-op ghosts no longer take a share of blue flies.** Llama Releases and Open Weights counted every player with `IsDead() == false`, which includes co-op ghosts, so a ghost took two flies and the living player lost the solo share of four. New `Tools.Active` (target_tools.lua) excludes ghosts. Hardcoded Output, 529 Overloaded and Strawberry stay tear-only by design (documented). `tests/llama_release_test.lua`, `tests/backlog_more_test.lua`.
 - **Horse Brb, Getting Food heals two hearts.** The pill ignored its color, so a horse pill (vanilla doubles every pill effect) healed the same one heart. It now heals two; the 3-second shooting lock is unchanged. EID and READMEs updated. `tests/meal_break_test.lua`.
 - **Car Battery and Void with mod actives.** Ban Hammer's same-frame Car Battery use re-banned the enemies it had just killed, rolling every misban twice (double Risk); it now skips dead and charmed enemies. A slotless use (Void and similar report slot -1) no longer reaches `GetActiveItem(-1)`: Is This True? refunds nothing and the backlog charged-use watcher ignores it. `tests/smoke_test.lua`, `tests/backlog_items_test.lua`.
+- **1M Context no longer cripples Ludovico.** Context rot scales damage by flight time, and a Ludovico tear never lands, so it sat at 30% damage for the rest of the run. Ludovico tears are now exempt; ordinary tears still rot. EID and READMEs updated. `tests/native_thought_test.lua`.
 
 ## Character trait completion (2026-10-24)
 

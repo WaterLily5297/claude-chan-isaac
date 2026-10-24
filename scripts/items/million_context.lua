@@ -1,6 +1,7 @@
 -- 1M Context (passive)
 -- Range +5, but context rot: tears lose damage the longer they fly,
--- down to 30% after 3 seconds.
+-- down to 30% after 3 seconds. A Ludovico tear never stops flying, so it
+-- keeps its damage instead of rotting to 30% for the rest of the run.
 
 local Constants = include("scripts.constants")
 local ThoughtAttacks = include("scripts.characters.thought_attacks")
@@ -23,6 +24,7 @@ function MillionContext:Init(mod)
         if not player or not player:HasCollectible(Constants.Item.MILLION_CONTEXT) then
             return
         end
+        if TearFlags.TEAR_LUDOVICO and tear:HasTearFlags(TearFlags.TEAR_LUDOVICO) then return end
 
         local data = tear:GetData()
         data.ccBaseDamage = data.ccBaseDamage or ThoughtAttacks.BaseDamage(tear)
