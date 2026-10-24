@@ -330,9 +330,9 @@ local pillDescriptions = {
         ja_jp = { "猫娘モード", "その部屋の間：連射速度×2、ダメージ×0.6#にゃ～" },
     },
     [Constants.Pill.GETTING_FOOD] = {
-        en_us = { "Brb, Getting Food", "Heals 1 red heart#Can't shoot for 3 seconds" },
-        zh_cn = { "去吃饭了", "回复1颗红心#3秒内无法射击" },
-        ja_jp = { "飯食ってくる", "赤ハート1つ回復#3秒間涙を撃てない" },
+        en_us = { "Brb, Getting Food", "Heals 1 red heart (horse pill: 2)#Can't shoot for 3 seconds" },
+        zh_cn = { "去吃饭了", "回复1颗红心（巨型药丸：2颗）#3秒内无法射击" },
+        ja_jp = { "飯食ってくる", "赤ハート1つ回復（巨大カプセル：2つ）#3秒間涙を撃てない" },
     },
 }
 

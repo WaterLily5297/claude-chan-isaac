@@ -404,7 +404,7 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 | Pill | Effect |
 |---|---|
 | **Cat-girl Mode** | For the rest of the room: tears fire twice as fast at 60% damage. Nya~ |
-| **Brb, Getting Food** | Heals 1 red heart, but you can't shoot for 3 seconds. |
+| **Brb, Getting Food** | Heals 1 red heart (2 from a horse pill), but you can't shoot for 3 seconds. |
 | **9.11 > 9.9** | Picks the bigger number: permanent +0.11 damage (horse pill: +0.9). Saved per player. |
 | **Rolled Back** | All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1 (horse pill: doubled). Rolled back in the next room. |
 
