@@ -1,5 +1,21 @@
 # In-game test checklist
 
+## VANILLA-COMPAT-01: vanilla item interactions (offline passed; engine pending)
+
+Source fixes #63-#72 each have an offline regression; none has run in the engine. Check with a muted game:
+
+- Soy Milk or Almond Milk plus Cat-girl Mode, Rolled Back or Agentic: tears per second must rise, never fall.
+- Co-op: a dead player's ghost taps DROP; no form ability fires.
+- The Constitution: walk into a contact enemy; the refused hit is followed by hurt invincibility, and Blood Donation or sacrifice spikes do not spend the block.
+- Pizza Glue with Ipecac or Spoon Bender: sticky tears keep the item color under the glaze.
+- --dangerously-skip-permissions in the Chest/Dark Room start room (Mega Satan door stays locked), Boss Rush and Hush doors, Mausoleum/Mines/Downpour exits, and an rm -rf roll beside the big chest or a trophy.
+- All Tests Passing in an uncleared boss, Boss Rush and challenge room (refused, charge kept), in a normal room (doors open), and next to a secret room (wall stays closed).
+- Two to four co-op players with mixed forms (Claude plus DeepSeek plus a roster form): HUD lines and story captions never overlap.
+- Crash recovery: play to floor 2, force-close the game, continue; mod state matches the floor start. Confirm vanilla's own continue point after a crash.
+- Vanilla Isaac with the mod enabled: no IP/Risk line other than "Direct connection", no enemy HP scaling, no Hydra or Relay Slimes.
+- Opus Mode with Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus and Ludovico: coins drain while firing.
+- Compact with Car Battery as Claude: usage rises by 50 once.
+
 ## COSTUME-LOCK-01: fixed character look (offline passed; engine pending)
 
 For several mod forms (one normal, one tainted, one roster form) and vanilla Isaac as a control: pick up Sad Onion, Brimstone, Mom's Contacts, The Virus, then complete Guppy. Use The Bible (flight), Book of Belial and a Puberty/size pill. Expect the mod skin unchanged after every step while tears, damage, flight and size change as usual; Isaac shows costumes. Enter a new room, save/exit and continue: the look stays fixed. Use Clicker to become Isaac: held item costumes return. Note any one-frame costume flash and whether the Holy Mantle shield or wings are missing. Two-player co-op: only mod forms are affected.

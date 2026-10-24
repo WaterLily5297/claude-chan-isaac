@@ -260,9 +260,9 @@ local descriptions = {
         ja_jp = { "憲法", "ソウルハート+1#安全第一：各フロアで最初に受けるダメージを拒否#有用性は最後：ダメージ×0.9#長い文書：移動速度-0.1" },
     },
     [Constants.Item.OPUS_MODE] = {
-        en_us = { "Opus Mode", "Damage x1.8#Every 10 tears cost 1 coin#With 0 coins: damage x0.6 instead (cheaper model)" },
-        zh_cn = { "Opus模式", "伤害×1.8#每发射10发眼泪消耗1枚硬币#硬币为0时：伤害改为×0.6（退回便宜模型）" },
-        ja_jp = { "Opusモード", "ダメージ×1.8#涙10発ごとにコイン1枚を消費#コイン0のとき：ダメージ×0.6（安いモデルに切り替え）" },
+        en_us = { "Opus Mode", "Damage x1.8#Every 10 attacks (tears, lasers, knives, bombs...) cost 1 coin#With 0 coins: damage x0.6 instead (cheaper model)" },
+        zh_cn = { "Opus模式", "伤害×1.8#每攻击10次（眼泪、激光、刀、炸弹等）消耗1枚硬币#硬币为0时：伤害改为×0.6（退回便宜模型）" },
+        ja_jp = { "Opusモード", "ダメージ×1.8#攻撃10回（涙・レーザー・ナイフ・爆弾など）ごとにコイン1枚を消費#コイン0のとき：ダメージ×0.6（安いモデルに切り替え）" },
     },
 }
 
