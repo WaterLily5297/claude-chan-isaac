@@ -9,7 +9,7 @@ CollectibleType = {COLLECTIBLE_BIRTHRIGHT=619}
 TearFlags={TEAR_LUDOVICO="ludo"}
 ActiveSlot = { SLOT_POCKET = 2 }
 EntityType = { ENTITY_TEAR = 2 }
-function Color(...) return {...} end
+function Color(r,g,b,a,ro,go,bo) return {R=r,G=g,B=b,A=a,RO=ro,GO=go,BO=bo} end
 Input={IsActionPressed=function() return false end}
 ButtonAction={ACTION_DROP=11}
 function GetPtrHash(player) return player end
@@ -100,7 +100,7 @@ end
 
 local function shot(owner)
     spawned = {}
-    local t = {SpawnerEntity = owner, CollisionDamage = 4, Color = "natural", Scale = 1,
+    local t = {SpawnerEntity = owner, CollisionDamage = 4, Color = Color(1,1,1,1,0,0,0), Scale = 1,
         TearFlags=0, Height=-10, FallingSpeed=0, FallingAcceleration=0.5,
         HomingFriction=0, KnockbackMultiplier=1,
         Variant = 0, Position = {}, Velocity = {Rotated = function(_, angle) return angle end}}
@@ -172,7 +172,7 @@ assert(#spawned == 0, "ignore a non-player spawner")
 local function effectShot(owner, multiplier)
     spawned={}
     local original={SpawnerEntity=owner, Variant=7, Position={},
-        Velocity={Rotated=function(_,a) return a end}, CollisionDamage=10*(multiplier or 1), Color='modified',
+        Velocity={Rotated=function(_,a) return a end}, CollisionDamage=10*(multiplier or 1), Color=Color(0.3,0.8,0.5,0.6,0.1,0.2,0.3),
         TearFlags=(1 << 1) | (1 << 3) | (1 << 4) | (1 << 52),
         Scale=1.7, Height=-27, FallingSpeed=-4.5, FallingAcceleration=0.17,
         HomingFriction=0.08, KnockbackMultiplier=1.4}
