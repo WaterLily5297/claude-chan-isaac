@@ -25,6 +25,8 @@ local originals={
      lines={"Stand still, not firing: bake a Baguette.", "Tap/release DROP: a slow bread wave.", "2.5x once per enemy; walls stop it."}},
     {id=C.Player.DOUBAO_CHAN_B,key="doubao_b",name="Tainted Doubao-chan",title="I'll Do It Again",
      lines={"Tap/release DROP: 6s Confident, 1.35x.", "Then 4s Apology at 0.85x, then ready.", "Getting hit ends Confident early."}},
+    {id=C.Player.KIMI_CHAN_B,key="kimi_b",name="Tainted Kimi-chan",title="You Are the Manager",
+     lines={"Tap/release DROP: assign a nearby enemy.", "Each task: three 0.6x pulses, 2s apart.", "3 tasks at once; 9 pulses per room."}},
 }
 function Dossiers:Init(mod)
     local ready=false

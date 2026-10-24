@@ -142,6 +142,8 @@ Source status (scripts/characters/kimi_slides.lua): normal form implemented and 
 
 **Tainted:** Base damage 0.85x. Three task slots. DROP assigns an idle slot to the nearest unassigned target within 220 units. Each task deals three 0.6x pulses, two seconds apart. Max three concurrent tasks and nine scheduled pulses per room. Early death releases the slot but not its spent budget. Exit cancels tasks; re-entry does not reset budget. Birthright: pulses 0.7x. HUD: Tasks, room budget. Office-drudge videos are leads; swarm orchestration is documented, but this does not prove a dominant community joke.
 
+Source status (scripts/characters/kimi_manager.lua): implemented and registered with the deeper-colour tainted Kimi art. Pulses are direct owner-sourced damage, not tears. The budget is spent at assignment, so a target dying early does not refund it. There is no task marker sprite yet, only the HUD and hits. Engine acceptance pending.
+
 ### GLM — Number in Queue / Please Retry
 
 **Normal:** Each unique clear advances Queue, max three. At three, DROP redeems an Access Pass: +20% damage for the next two new hostile rooms. Queue pauses while the pass is active. It cannot stack or expire through cleared-room revisits. Birthright: three rooms. HUD: Queue or remaining Access rooms. No real purchases or real-time waiting.

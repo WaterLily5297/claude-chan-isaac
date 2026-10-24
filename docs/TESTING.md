@@ -30,6 +30,10 @@ Select Tainted Mistral-chan: deeper-colour Mistral art, slightly slower and weak
 
 Select Tainted Doubao-chan: deeper-colour Doubao art. HUD reads `Ready to promise`. Tap/release DROP: `Leave it to me!`, damage rises and the HUD shows `Confident 6s`, which only counts down while enemies remain. After it, `Sorry, you're right`, lower damage for four seconds, then `I'll do it again`. Get hit by an enemy or bullet during Confident: the Apology starts at once and the hit still hurts. Blood donation or IV Bag do not count. Birthright makes the Apology three seconds. Save/continue mid-phase keeps the phase and damage.
 
+## Tainted Kimi You Are the Manager (source candidate; engine acceptance pending)
+
+Select Tainted Kimi-chan: deeper-colour Kimi art, lower damage. HUD reads `Tasks 0/3  Budget 9/9`. In a hostile room, tap/release DROP three times: `You are the manager` and three enemies each take three small hits two seconds apart. A fourth tap does nothing. After that the room's budget is empty. Killing an assigned enemy early frees its slot only. Leave mid-task: the task stops; return and the budget is still spent. Birthright makes pulses stronger. Save/continue keeps budgets but not tasks.
+
 ## Tainted GPT Reset Watcher (source candidate; engine acceptance pending)
 
 Select Tainted GPT-chan from the tainted menu: deeper-colour GPT art, one red and two soul hearts, one key. HUD reads `Credits 80/80  Standard  Next Reset 0/3`. Tap/release DROP: `Full Send`, damage 1.5x, and each volley (one 20/20 volley, one Brimstone beam, one Dr. Fetus bomb) costs one Credit. At zero she returns to Standard and a tap cannot re-enter Full Send. Clear three different hostile rooms: `Tibo: Reset Ready`; further clears do not advance while it is banked. The next tap refills Credits and does not toggle the mode. Birthright raises cap and refill to 100. New floor and save/continue keep Credits, mode, progress and the banked reset. Check that no proxy IP / risk HUD appears for her, that a long DROP hold drops trinkets normally, and the MAP dossier. Stub coverage is `tests/gpt_reset_test.lua`.
