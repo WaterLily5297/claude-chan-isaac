@@ -532,17 +532,18 @@ function Common:Init(mod, Risk)
         local config = Isaac.GetItemConfig():GetCollectible(id)
         if not config or config.MaxCharges <= 0 or config.ChargeType ~= 0 then return nil end
         pendingUse[#pendingUse + 1] = { player = player, id = id, slot = slotId,
-            charge = player:GetActiveCharge(slotId), item = player:GetActiveItem(slotId), frame = now() }
+            charge = player:GetActiveCharge(slotId) + player:GetBatteryCharge(slotId),
+            item = player:GetActiveItem(slotId), frame = now() }
         return nil
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
         if not started then return end
         local frame = now()
-        -- A charged use counts only when the slot actually lost charge.
+        -- Include The Battery's second bar; moving charge between bars is not a use.
         for i = #pendingUse, 1, -1 do
             local u = pendingUse[i]
-            local after = u.player:GetActiveCharge(u.slot)
+            local after = u.player:GetActiveCharge(u.slot) + u.player:GetBatteryCharge(u.slot)
             if u.player:GetActiveItem(u.slot) ~= u.item or after < u.charge then
                 table.remove(pendingUse, i)
                 emit("activeUsed", u.player, u.id, Game():GetRoom():IsClear())
