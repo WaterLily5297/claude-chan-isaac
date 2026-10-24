@@ -45,6 +45,33 @@ A temporary synthetic Gemini Hit-frame preview was attempted, but an overlapping
 
 ## Next compatibility work
 
+### ANIM-01: actual damage, bounded Hit-frame observation
+
+Tested main `2ec15efe8cf2ebf40192618fabc73225630aac09` on Repentance+ v1.9.7.17. A fresh allowlisted backup was verified before restoring main; all 392 installed tracked files matched its Git blobs. PR #50's familiar-attribution candidate was not installed for this unrelated sweep. EID, Reactions Port Pack and the existing other mods remained enabled. File 1 was disposable; music and SFX were muted, then restored from this block's fresh snapshot after closing the game.
+
+A temporary, explicitly entered console fixture changed the existing player's type, added survival hearts and applied one real `TakeDamage(1, 0, EntityRef(player), 0)` event after 60 updates. It waited for the engine to select `Hit` and reach frame 6, then set only `Sprite.PlaybackSpeed` to zero for inspection. It did not call `Play("Hit")`, force a frame or replace a spritesheet. Playback was restored between cases and on bounded cleanup; callbacks were process-only. This was a type-change fixture, not a fresh menu start or ordinary enemy encounter.
+
+All 22 mod forms and vanilla Isaac logged actual loss of one half-heart, `Hit` frame 6 and sprite scale `(1, 1)` with zero collectibles at arming. Those log assertions are separate from visual coverage:
+
+| Family | Normal frame 6 visually inspected | Tainted frame 6 visually inspected |
+|---|---|---|
+| Claude | Yes | Yes |
+| DeepSeek | Yes | Yes |
+| GPT | Yes | Pending |
+| Gemini | Pending | Yes |
+| Grok | Pending | Pending |
+| Qwen | Yes | Pending |
+| Llama | Yes | Yes |
+| Mistral | Yes | Yes |
+| Doubao | Yes | Yes |
+| Kimi | Yes | Yes |
+| GLM | Yes | Repeat clean case |
+
+Sixteen mod forms plus the Isaac control have inspected screenshots. No obvious oversized full-body replacement was visible in those bounded frame-6 cases. The initial fast sequence advanced before some screenshots could be taken; logging completion does not pass those visual cases. Extra movement and a Bursting Sack pickup overlapped the final tainted GLM observation, so its screenshot is excluded from the clean visual count. The fixture's labels identify cases but are not assertions that the frame is correct. Original screenshots, filtered markers and their hashes remain local; no private logs or extracted vanilla assets are published.
+
+**The oversized hurt-head report remains open.** This does not accept the other Hit frames, recovery, death/fall/revival/jump/carry/flight, costume/size/transform interactions, Reactions-disabled behavior, anatomy or symmetry. Repeat the six pending clean frame-6 cases, then capture the complete sequence with the costume matrix. No artwork or runtime code changed in this observation unit.
+
+FRESH-02 remained blocked at menu navigation: supported Up/W attempts did not select New Run. Continuing the disposable run enabled the animation fixture but supplies no additional fresh-menu or physical DROP acceptance. A pre-existing Stackable Items v2 load error remained outside this mod's scope. Both temporary sequence cleanup and successful game shutdown were observed.
 ### Acceptance baseline and offline familiar attribution follow-up
 
 After PR #49, main `2ec15efe8cf2ebf40192618fabc73225630aac09` was re-fetched and verified against all 392 installed tracked files. No open PR remained at that baseline. A fresh allowlisted backup was hash-verified. The baseline offline gate passed 143 Lua files, five XML files and 45 stub suites.
