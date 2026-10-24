@@ -53,6 +53,7 @@ PAL = {
     "F": ("#d8d2c4", "#f2eee4", "#a8a191"),   # white paper
     "S": ("#b69150", "#d4b273", "#8f713c"),   # tan
     "X": ("#fffdf5", "#ffffff", "#e6ddc9"),   # glint
+    "U": ("#4a5fc1", "#7d90e6", "#2e3b85"),   # berry blue
 }
 
 FONT = {
@@ -1196,6 +1197,55 @@ def error_budget():
     return c
 
 
+def em_dash():
+    """A paragraph whose sentence runs into one long bold dash."""
+    c = clear()
+    rrect(c, 5, 4, 26, 27, 2, "P")
+    for y in (8, 11):
+        line(c, 8, y, 23, y, "T")
+    line(c, 8, 22, 15, 22, "T")
+    rect(c, 2, 15, 29, 18, "N")            # the em dash, past both margins
+    return c
+
+
+def blueberry():
+    """A blueberry with a star-shaped crown and a B on it."""
+    c = clear()
+    ellipse(c, 16, 18, 11, 11, "U")
+    poly(c, [(12, 7), (16, 4), (20, 7), (19, 10), (13, 10)], "V")   # crown
+    line(c, 12, 14, 12, 24, "F", 2)        # letter B
+    line(c, 12, 14, 18, 14, "F", 2)
+    line(c, 12, 19, 18, 19, "F", 2)
+    line(c, 12, 24, 18, 24, "F", 2)
+    line(c, 19, 15, 19, 18, "F", 2)
+    line(c, 19, 20, 19, 23, "F", 2)
+    return c
+
+
+def benchmaxxed():
+    """A bar chart: two short grey bars and one gold bar off the top."""
+    c = clear()
+    rect(c, 3, 27, 28, 28, "D")            # axis
+    rect(c, 5, 19, 10, 26, "T")
+    rect(c, 12, 16, 17, 26, "T")
+    rect(c, 20, 3, 26, 26, "G")            # the benchmark score
+    poly(c, [(19, 4), (23, 0), (27, 4)], "G")
+    return c
+
+
+def i_panicked():
+    """A database cylinder struck through with a red X."""
+    c = clear()
+    rect(c, 6, 8, 25, 23, "M")
+    ellipse(c, 16, 24, 10, 4, "M")         # rounded bottom
+    ellipse(c, 16, 8, 10, 4, "K")          # lid
+    line(c, 6, 13, 25, 13, "m")
+    line(c, 6, 18, 25, 18, "m")
+    line(c, 5, 5, 26, 28, "R", 3)
+    line(c, 26, 5, 5, 28, "R", 3)
+    return c
+
+
 SPRITES = {
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
@@ -1284,6 +1334,10 @@ SPRITES = {
     "ai_language_model": ai_language_model,
     "prompt_leak": prompt_leak,
     "disgrace_loop": disgrace_loop,
+    "em_dash": em_dash,
+    "blueberry": blueberry,
+    "benchmaxxed": benchmaxxed,
+    "i_panicked": i_panicked,
 }
 
 # icons whose content is symmetric: mirror the finished pixels, shading included

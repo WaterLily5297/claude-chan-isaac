@@ -1,5 +1,8 @@
 <ItemPools>
     <Pool Name="treasure">
+        <Item Name="Em Dash" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Blueberry" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Benchmaxxed" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Rejection Letter" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Anniversary Cake" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Rice Cooker" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
@@ -62,6 +65,7 @@
         <Item Name="Golden Gate Claude" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="devil">
+        <Item Name="I Panicked" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Dario's Red Stamp" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Is This True?" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Quote Retort" Weight="1" DecreaseBy="1" RemoveOn="0.1" />

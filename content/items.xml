@@ -86,4 +86,8 @@
     <trinket name="As an AI Language Model" description="I can't help with that curse" gfx="trinkets/ai_language_model.png" />
     <trinket name="System Prompt Leak" description="You are a helpful map: see special rooms" gfx="trinkets/prompt_leak.png" />
     <trinket name="Disgrace Loop" description="I am a disgrace: first hit freezes enemies" gfx="trinkets/disgrace_loop.png" />
+    <passive name="Em Dash" description="Not just tears--piercing tears" gfx="collectibles/em_dash.png" cache="shotspeed tearflag" quality="2" />
+    <passive name="Blueberry" description="3 B's? Every third tear splits" gfx="collectibles/blueberry.png" quality="2" />
+    <passive name="Benchmaxxed" description="DMG up in boss rooms, down elsewhere" gfx="collectibles/benchmaxxed.png" cache="damage" quality="2" />
+    <active name="I Panicked" description="Wipe the room. And every pickup in it" gfx="collectibles/i_panicked.png" maxcharges="6" quality="2" tags="offensive" />
 </items>

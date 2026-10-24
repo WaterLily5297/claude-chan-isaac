@@ -13,7 +13,7 @@ Version **0.5-dev**. Not a Workshop release.
 | What | Count |
 |---|---|
 | Playable forms | **22**: 11 normal + 11 tainted |
-| Collectibles | **75**: 17 original items, 8 meme extras and the 50-item expansion ([design](docs/EXPANSION_DESIGN.md)) |
+| Collectibles | **79**: 17 original items, 12 meme extras and the 50-item expansion ([design](docs/EXPANSION_DESIGN.md)) |
 | Trinkets | **12** |
 | Pills | **4** |
 | Enemies | 1 (Relay Slime) |
@@ -267,6 +267,10 @@ Type: **A*n*** = active item with *n* room charges, **P** = passive. Pools come 
 | **Seahorse Emoji** | A3, treasure | Summons a Book of Virtues wisp of a random vanilla active item. It disappears when you leave the room; one per player, and using again replaces it. |
 | **Temperature Dial** | A2, treasure | Toggles your temperature (saved). Temperature 0: damage ×1.1. Temperature 1: each tear gains one random native effect (homing, piercing, spectral, slow, poison, freeze, charm, confusion, wiggle or boomerang). |
 | **Deep Research** | A12, shop | Reveals the floor map, special rooms and secret rooms. |
+| **Em Dash** | P, treasure | Tears pierce enemies; +0.16 shot speed per copy. |
+| **Blueberry** | P, treasure | Every third tear is a blue "B" tear that splits on impact. It promises three pieces and makes four. Counted separately from Strawberry. Tears only. |
+| **Benchmaxxed** | P, treasure | +1.5 damage per copy in boss, mini-boss, challenge and Boss Rush rooms; ×0.9 damage per copy everywhere else. |
+| **I Panicked** | A6, devil | Every vulnerable non-boss enemy takes lethal damage and bosses lose 15% of max HP, but every loose heart, coin, key, bomb, pill, card, battery and sack in the room is deleted. Pedestals, trinkets, chests and shop items are safe. No enemy: keeps the charge. |
 
 ### Fifty-item expansion, by model family
 
