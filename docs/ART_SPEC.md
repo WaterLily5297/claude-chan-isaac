@@ -2,7 +2,7 @@
 
 ## Current item-appearance requirement
 
-All current and planned forms must satisfy [COSTUME_COMPATIBILITY.md](COSTUME_COMPATIBILITY.md). Preserve vanilla face changes, costumes, flight, scaling and transformations. The planned scope is eleven normal forms, eleven tainted forms and fifty additional collectibles. Thirteen forms and eighteen collectibles currently exist. Center faces and torsos while preserving intentional asymmetric ornaments. The other nine tainted designs need deeper palettes, distinct identities and documented provenance.
+All current and planned forms must satisfy [COSTUME_COMPATIBILITY.md](COSTUME_COMPATIBILITY.md). Since 2026-10-24 the owner wants a fixed look: item costume layers are cleared on mod forms, while flight, scaling and transformation effects stay native. The planned scope is eleven normal forms, eleven tainted forms and fifty additional collectibles. Thirteen forms and eighteen collectibles currently exist. Center faces and torsos while preserving intentional asymmetric ornaments. The other nine tainted designs need deeper palettes, distinct identities and documented provenance.
 
 ## v0.4 development assets
 

@@ -40,7 +40,7 @@ Everything below is implemented in source and covered by offline tests against a
 - **"Unique combat clear"** means clearing a hostile room for the first time. Re-entering a cleared room never counts, so nothing can be farmed.
 - **"Ordinary enemy bullet"** means a normal enemy projectile. Effects that remove bullets never cancel damage you have already taken.
 - Character resources are saved per player and survive save/continue. A new run resets them. Co-op players each keep their own state.
-- Every ability uses the game's native weapons, tear effects and stat caches. Native weapons, costumes, size and transformations are preserved.
+- Every ability uses the game's native weapons, tear effects and stat caches. Native weapons, size and transformations are preserved. Each character keeps its own look: item costumes are hidden, while the items' effects still apply.
 - [External Item Descriptions (EID)](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) is supported. All items and all 22 forms have English text; 17 collectibles, 6 trinkets and 2 pills also have Simplified Chinese and Japanese text.
 
 ## Core systems
@@ -74,6 +74,7 @@ Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerousl
 - EID descriptions (see above).
 - HUD text follows the game language (中文 / 日本語) when a CJK font loads, otherwise English.
 - Reactions Port Pack: fallback registration covers every character.
+- Fixed look: like a character whose appearance never changes, all 22 forms keep their own sprite when they pick up vanilla or mod items, trinkets, pills, cards or transformations. Item effects, stats, flight and size still apply; only the costume layers are cleared. Not yet checked in game.
 - Each character tints the tear colour on top of the current colour, so item colours are kept.
 - Ability feedback uses vanilla effects only: dust poofs for Mistral's Pounce and Baguette wave and Doubao's Apology, and fading tints on Kimi's task targets and GLM's requested enemy.
 
