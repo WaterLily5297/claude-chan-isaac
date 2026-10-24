@@ -6,7 +6,7 @@ This section is the current summary for the next agent (GPT/Codex or Claude). It
 
 ### Progress at a glance
 
-- **Source baseline:** main `797a560` includes PR #78 (PAID-OBSERVERS-01), PR #79 (CONSTITUTION-COOP-01) and PR #80 (CHARGED-USE-01). CONSENSUS-FAMILIAR-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 172 tracked Lua files, 5 XML files, deterministic asset checks and 62 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
+- **Source baseline:** main `5bbe9e4` includes PR #78 (PAID-OBSERVERS-01), PR #79 (CONSTITUTION-COOP-01), PR #80 (CHARGED-USE-01) and the now-merged PR #76 Ludovico context-rot exemption. CONSENSUS-FAMILIAR-01 below is a focused follow-up; verify its live PR/merge state. `bash tools/check.sh` passes: 172 tracked Lua files, 5 XML files, deterministic asset checks and 62 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
 - **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
 - **Installed runtime:** the prior deployment recorded before this source checkpoint was `f211e1e` (406 tracked files). Deployment may occur after publication; consult the machine's separate deployment record and compare installed hashes. Never assume the installed commit equals main, and never treat installation as engine acceptance.
 
@@ -30,12 +30,12 @@ Fire-rate multipliers scale the whole shot interval (#63); co-op ghosts cannot u
 Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at about 12:00 UTC; see "Meme gameplay batch 1" below. Its engine checks are still pending.
 
 
-- **#76 "1M Context exempts Ludovico tears from context rot"** (branch `claude/project-thread-9p9170`). Small and offline-tested, but it is a design-ish call, so it was left for the owner. Do not stack on it.
+- **#76 "1M Context exempts Ludovico tears from context rot"** is merged into main `5bbe9e4`. Its code, EID, ordinary-tear control and README/testing notes are preserved in this checkpoint. Native Ludovico and ordinary-tear behavior still require engine verification.
 
 ### Unfinished tasks (priority order)
 
 1. **Engine acceptance**, under the owner's backup workflow (see "Remaining engine acceptance matrix" below). Run TESTING.md COSTUME-LOCK-01 and VANILLA-COMPAT-01 first, because they cover the newest unverified code, then the rest of TESTING.md, COSTUME_COMPATIBILITY.md and NATIVE_THOUGHT.md.
-2. **Land or close PR #76** once the owner has seen it.
+2. **Verify merged PR #76 in game:** Ludovico keeps its damage while ordinary tears still decay, including with DeepSeek Thought.
 3. **Unaudited vanilla-compat areas**: familiars, transformations, Tainted-specific vanilla items, and the absolute `MoveSpeed` write in the Tungsten Cube item.
 4. **More meme batches**, one small PR each. Unused ideas: "Let's Delve" (an active built on the native shovel), "Feel the AGI" / "AGI achieved internally", a "Six Seven" pill, the Distillation Bot and Timezone Ghost enemies, and the bosses in IDEAS.md. Each new item needs XML pickup text (ASCII only), EID text, an icon from `tools/make_placeholders.py`, a pool entry, the count asserts in `tests/eid_test.lua`, a regenerated ITEMS.md and all three READMEs.
 5. **Art**: distinct hand-designed tainted art for the nine roster families (optional; owner choice), redrawn side profiles, special poses and anything the engine shows to be wrong.
@@ -65,7 +65,7 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 
 ## CONSENSUS-FAMILIAR-01: familiar projectile sources (2026-10-24)
 
-Source-only follow-up based directly on main `797a560`. Consensus Coin accepted familiar contact but rejected familiar-fired projectiles because the shared service labeled them `other`. Ownership resolution now retains familiar attribution for a direct familiar or a familiar linked through SpawnerEntity or Parent. Damage without a player attack lease uses the `familiar` category. Different familiar weapon types remain one category; they must combine with another eligible source from the same owner. Player and derived attack leases keep their existing category.
+Source-only follow-up reproducing the issue on main `797a560` and incorporating newer main `5bbe9e4` before publication. Consensus Coin accepted familiar contact but rejected familiar-fired projectiles because the shared service labeled them `other`. Ownership resolution now retains familiar attribution for a direct familiar or a familiar linked through SpawnerEntity or Parent. Damage without a player attack lease uses the `familiar` category. Different familiar weapon types remain one category; they must combine with another eligible source from the same owner. Player and derived attack leases keep their existing category.
 
 Familiar knives do not create player attack leases, consume primed bonuses or emit paid-attack identifiers. The existing two-second window, once-per-target pulse, damage amount and room/run cleanup are unchanged. Six real-module regression groups in `tests/consensus_familiar_test.lua` cover familiar contact/projectiles, both link paths, owner isolation, unknown sources, repeat hits and prime retention. The old source and five injected faults fail. These inputs do not establish native source attribution. TESTING.md CONSENSUS-FAMILIAR-01 lists pending engine cases. No game launch, runtime replacement or Workshop release.
 
@@ -111,6 +111,7 @@ Source-only, offline; one small PR per fix, each with a regression that fails on
 - **Co-op ghosts no longer take a share of blue flies.** Llama Releases and Open Weights counted every player with `IsDead() == false`, which includes co-op ghosts, so a ghost took two flies and the living player lost the solo share of four. New `Tools.Active` (target_tools.lua) excludes ghosts. Hardcoded Output, 529 Overloaded and Strawberry stay tear-only by design (documented). `tests/llama_release_test.lua`, `tests/backlog_more_test.lua`.
 - **Horse Brb, Getting Food heals two hearts.** The pill ignored its color, so a horse pill (vanilla doubles every pill effect) healed the same one heart. It now heals two; the 3-second shooting lock is unchanged. EID and READMEs updated. `tests/meal_break_test.lua`.
 - **Car Battery and Void with mod actives.** Ban Hammer's same-frame Car Battery use re-banned the enemies it had just killed, rolling every misban twice (double Risk); it now skips dead and charmed enemies. A slotless use (Void and similar report slot -1) no longer reaches `GetActiveItem(-1)`: Is This True? refunds nothing and the backlog charged-use watcher ignores it. `tests/smoke_test.lua`, `tests/backlog_items_test.lua`.
+- **1M Context no longer cripples Ludovico.** Context rot scales damage by flight time, and a Ludovico tear never lands, so it sat at 30% damage for the rest of the run. Ludovico tears are now exempt; ordinary tears still rot. EID and READMEs updated. `tests/native_thought_test.lua`.
 
 ## Character trait completion (2026-10-24)
 
