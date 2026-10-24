@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased Vibe Coding damage eligibility (2026-10-24)
+
+- Fake/no-penalty damage and hits cancelled by default-priority shields no longer spoil Vibe Coding's floor bill waiver. Observe damage after ordinary blockers; preserve the existing 25% charge for eligible hits and per-player persistence.
+- Add real-module regressions with Sold Out and Red Stamp, ordinary hits, two-player isolation, floor reset and late acquisition. Offline only; no deployment or engine acceptance while the owner requests offline work.
+
 ## Unreleased handoff audit (2026-10-24)
 
 - Normal and tainted Claude now bill usage/Quota for laser starts and Dr. Fetus bombs, sharing the frame's payment with tears; familiars, placed bombs and knives stay free.
