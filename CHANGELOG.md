@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased helper resource billing (2026-10-24)
+
+- One More Finger and Please Retry mark their extra native tears before character callbacks, preventing an extra Thought, Quota or Compute payment. Normal Claude no longer adds usage for those helpers; an already active Limited damage penalty still applies.
+- Add a real-module integration regression for all four resource-owning forms, both item schedules, primed bonuses and subsequent primary-shot billing. Offline only; not deployed or engine-accepted. Game testing is deferred at the owner's request.
+
 ## Unreleased handoff audit (2026-10-24)
 
 - Normal and tainted Claude now bill usage/Quota for laser starts and Dr. Fetus bombs, sharing the frame's payment with tears; familiars, placed bombs and knives stay free.
