@@ -24,6 +24,10 @@ Never infer that an installed commit equals local HEAD. The local delivery inclu
 
 ## Current compatibility follow-up
 
+ANIM-01 tested main `2ec15ef` on Repentance+ v1.9.7.17 after restoring and byte-verifying all 392 installed tracked files. All 22 forms plus Isaac reached engine-selected Hit frame 6 after actual health loss in a temporary type-change fixture. Sixteen mod forms plus Isaac were visually inspected at that frame without an obvious oversized full-body replacement. Tainted GPT, normal Gemini, both Groks, tainted Qwen and a clean tainted GLM observation remain pending. Extra movement/pickup input invalidated the last tainted GLM clean comparison. See the exact table and limitations in [ANIM-01](ENGINE_AUDIT_2026-10-24.md#anim-01-actual-damage-bounded-hit-frame-observation). This does not close the oversized-head report or pass complete animations/costumes. No runtime or art edits were made in this unit; the game is closed and audio restored.
+
+PR [#50](https://github.com/WaterLily5297/claude-chan-isaac/pull/50) remains a separate familiar-attribution candidate based directly on main. Its controlled GPT contact/tear evidence belongs to that candidate, not this installed main. Do not merge without specific owner approval or build unrelated fixes on its unmerged branch. New fixes and test groups target main directly.
+
 Normal Claude and both DeepSeek forms now compose identity and Limited tints with native tear colors instead of replacing them. The regression covers native RGB, alpha, additive offsets, item-removal cache resets and resolved Swarm inheritance. This does not fix the outstanding weapon billing, damage or costume geometry cases. Continue with the priorities in [ENGINE_AUDIT_2026-10-24.md](ENGINE_AUDIT_2026-10-24.md).
 
 ## Status at a glance (audited against main, 2026-10-24)
@@ -32,7 +36,7 @@ Every handoff line below was checked against the current source: the 22 forms, 7
 
 **Done in source (offline tests only):** all eleven normal loops and all eleven tainted forms; native Thought adapters for every listed attack family; Claude usage/Quota billing for lasers and Dr. Fetus bombs; the fifty-row backlog (50/50) and sixteen meme extras; tainted roster art (derived), walk cycles and the hurt-cell packing; the Appeal Queue and the ten roster story arcs.
 
-**Left, needs the game (blocked until the owner resumes engine testing):** everything under "Remaining engine acceptance matrix", plus the engine assumptions in "Known risks" (Thought hitbox/rocket/familiar attribution, CollisionDamage writer order, save/exit order, costume layering, side profiles and hurt poses).
+**Left, needs the game (testing authorized; acceptance incomplete):** everything under "Remaining engine acceptance matrix", apart from the explicitly bounded observations in the engine audit, plus the engine assumptions in "Known risks" (Thought hitbox/rocket/familiar attribution, CollisionDamage writer order, save/exit order, costume layering, side profiles and hurt poses). Automated menu navigation has not selected New Run reliably; type changes and console restarts must not be counted as menu-start acceptance.
 
 **Left, needs an owner decision:**
 - GLM Book of Secrets: normal GLM no longer starts with the forced pocket Book of Secrets (CHARACTER_GAMEPLAY.md). Restore it as a pocket item or keep it removed.
@@ -146,6 +150,6 @@ Read CLAUDE.md, CONTRIBUTING.md, this handoff, TESTING.md and resources/ART_LICE
 
 Core registration is main.lua, scripts/constants.lua and content/*.xml. Saved data lives in scripts/risk.lua and versioned per-player tables. Rice and attack adapters are scripts/characters/deepseek_rice.lua and thought_attacks.lua; shared services are meal_break.lua, characters/drop_tap.lua and tear_fork.lua. Tests are explicit offline stubs; runtime_probe.lua is separate. tools/check.sh is the pre-commit/CI gate.
 
-Fetch current main, inspect status before editing, verify the checkpoint and retain all local drafts. Start from the merged source; do not reinstall the older runtime over it. Run the offline gate once to establish the baseline. Choose one incomplete compatibility/mechanic task, implement it on a small branch, add meaningful regressions, and update evidence in the same PR. No engine automation until the owner resumes testing.
+Fetch current main, inspect status before editing, verify the checkpoint and retain all local drafts. Start from the merged source; do not reinstall the older runtime over it. Run the offline gate once to establish the baseline. Choose one incomplete compatibility/mechanic task, implement it on a small branch, add meaningful regressions, and update evidence in the same PR. Muted engine testing is authorized under the backup, disposable File 1 and cleanup rules above.
 
 The local-only delivery additionally records the preserved dirty checkout, current worktree, runtime and backup locations. Those private machine details and source reference collections are intentionally excluded from the public handoff.
