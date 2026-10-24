@@ -1,28 +1,26 @@
 # Claude-chan: Risk Control
 
-**Compatibility note (2026-10-24):** Normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credits no longer charge a laser whose direct `Parent` is another laser, matching Opus and the shared observer. Primary starts and later eligible primary windows keep their existing costs. This source-only correction leaves the installed `28fed37` manual-test build unchanged; native parent attribution and timing remain unverified.
-
-**Compatibility note (2026-10-24):** Tainted Llama's Still Waiting helper keeps its native 0.5x tears, stationary origin and duration. Its shots no longer count toward Opus's coin bill, consume primed attack bonuses or advance backlog paid-attack triggers. Primary shots and Summary Stapler are unchanged. Offline correction; engine verification remains pending.
-
-**Compatibility note (2026-10-24):** Opus Mode no longer counts Please Retry or One More Finger helper tears toward its ten-attack coin bill. Normal shots and Summary Stapler still count. Helper shots preserve primed attack bonuses; native callback timing remains pending engine verification.
-
-**Compatibility note (2026-10-24):** Consensus Coin recognizes owned familiar projectiles as familiar damage. Combine them with another eligible source from the same player for its mixed-source pulse; familiar weapons alone remain one category and do not consume your primed attack bonuses. Native familiar attribution still needs engine verification.
-
-**Compatibility note (2026-10-24):** Spending The Battery's stored second charge now counts for Base Model, Please Come Back and Access Pass. Charge rewards and item costs are unchanged. This correction is covered by offline tests; native timing and special health-charge pools still need engine verification.
-
-**Compatibility note (2026-10-24):** The Constitution keeps its one-time soul heart and once-per-floor hit block separately for each player. Existing shared-save consumption is preserved for players present on migration to avoid duplicate rewards. Stats and excluded damage are unchanged. Offline checks passed; co-op health and save/continue still need engine verification.
-
-**Compatibility note (2026-10-24):** Knife throws, melee swings and Epic Fetus rockets notify character resource meters and Opus Mode independently. Each consumer handles an attack once; an unowned Opus Mode cannot suppress character billing. Costs are unchanged. Offline regression passed; engine verification is pending.
-
-A parody character mod for **The Binding of Isaac: Repentance / Repentance+**, featuring eleven AI-model "-chan" characters, each with a normal and a tainted form, and 91 new items built from community memes.
-
 **English** · [日本語](README.ja.md) · [中文](README.zh-CN.md)
 
-> Fan work. Not affiliated with or endorsed by Anthropic or any other AI company. Enemies represent fictional abuse mechanisms, not people or nationalities, and meme parody is not a factual claim about any product. Character illustrations are credited fan-art derivatives with separate, non-commercial terms; see [Credits](#credits) and [License](#license).
+**Haven't reached Mom. Already lost the account.**
+
+Isaac had enough problems before someone put a usage limit on his tears. This mod brings **11 AI-model girls, 22 normal and tainted forms, 79 collectibles and 12 trinkets** to **The Binding of Isaac: Repentance / Repentance+**. The jokes come from community memes, account-ban complaints and the fine tradition of asking a model to try again.
+
+Claude fights with a Ban Hammer while trying to keep her own account alive. DeepSeek stops for rice, then makes the next shot count. Kimi makes the monsters sit through a slide deck. Mistral brought a baguette. Everyone has a plan; some of those plans involve waiting for a support ticket.
+
+A few things you can pick up along the way:
+
+- **All Tests Passing:** the doors open. The enemies are still there. The test did not ask about enemies.
+- **Silent Update:** your damage changes every floor. The changelog says “no changes.”
+- **Opus Mode:** lovely damage, right up until your wallet routes you to a cheaper model.
+
+Most in-game names, descriptions and HUD text are in English. The guides below use the names you can actually find in game; the localization coverage is listed under common rules.
+
+> Unofficial fan work, with no affiliation or endorsement from Anthropic or any other AI company. Enemies are fictional abuse mechanisms, not people or nationalities; the jokes are parody, not product claims. Character art has separate non-commercial terms. See [Credits](#credits) and [License](#license).
 
 ## Status
 
-Version **0.5-dev**. Not a Workshop release.
+Version **0.5-dev**. Still in development; not a Workshop release. The basement is open for testing, and the balance sheet is very much a draft.
 
 | What | Count |
 |---|---|
@@ -34,7 +32,7 @@ Version **0.5-dev**. Not a Workshop release.
 | Transformations | 1 (Agentic) |
 | Story | The Appeal Queue (4 chapters) + a 3-chapter arc for each other model family |
 
-Everything below is implemented in source and covered by offline tests against a stubbed Isaac API (`bash tools/check.sh`). Only a 22-form engine smoke test has been run in the real game so far ([engine audit](docs/ENGINE_AUDIT_2026-10-24.md)); game feel, balance, every weapon combination and co-op still need in-game acceptance ([testing checklist](docs/TESTING.md)). Numbers may change after testing.
+The content below is implemented in source and has offline tests against a stubbed Isaac API (`bash tools/check.sh`). All 22 forms have had an engine smoke test ([audit](docs/ENGINE_AUDIT_2026-10-24.md)); that is a starting point, not a full playthrough. Feel, balance, weapon combinations and co-op still need [in-game testing](docs/TESTING.md). Numbers may change. “All Tests Passing” is also an item here, so we try to be specific.
 
 ## Contents
 
@@ -80,6 +78,8 @@ Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerousl
 
 ### Story
 
+There is a little story between the rooms, too. Claude follows an appeal from a shared address to an actual human response; the other families get their own basement troubles. No cutscene queue: the captions play while you keep moving.
+
 - **The Appeal Queue** (Claude runs): four short captions that do not pause the game, in English, Chinese and Japanese. Chapters: "The shared address" (new run), "A welcome notice" (first visit to stage 3 or 4), "Review pending" (stage 5 or later), and "A human finally read it" (after a successful Support Ticket). Each chapter plays once per run, and its progress survives save/continue. Vanilla cutscenes and endings are untouched.
 - **Roster arcs:** DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM each have a three-chapter arc that plays when that family is in the run: on a new run, at stage 3–4 and at stage 5+. English only for now. See [docs/STORY.md](docs/STORY.md).
 
@@ -98,6 +98,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 ### Claude-chan (Claude)
 
+One hand on the Ban Hammer, the other on the appeal form. Job security is complicated down here.
+
 **Normal: One More Day.** ❤❤💙, 1 bomb. Range +1.5 (long context window), shot speed +0.2, speed −0.1, orange tears. Pocket item: **Ban Hammer**.
 - **Usage:** each paid volley adds 4 usage (8 with Subagent Swarm), billed for every native weapon: each volley of tears, each laser start and Dr. Fetus bomb, each further 0.2 seconds of a held beam or steered Ludovico tear, each knife throw, each melee swing and each Epic Fetus rocket. Familiars and derived tears are free. Holding fire drains 10 per second. At 100 she is **Limited**: every weapon deals 40% damage for 5 seconds, then the meter resets.
 - **Appeals:** start with 1 (cap 2). Earn 1 per two unique combat clears. Tap DROP to spend one and remove 40 usage. An Appeal cannot cancel an active Limited penalty, and is refused at zero usage rather than wasted.
@@ -113,6 +115,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - **Birthright:** reviews restore 90 Quota.
 
 ### DeepSeek-chan (DeepSeek)
+
+Eat first, think hard, shoot. Her tainted form also checks whether it is a good time to spend Compute.
 
 **Normal: Rice First.** ❤❤💙, 3 coins, 1 key. Damage ×0.9, blue tears. Pocket item: **Lunch Break**.
 - **Direct connection (直连):** no proxy, so a DeepSeek-only run has no IP, no risk and no risk difficulty.
@@ -132,6 +136,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 ### GPT-chan (GPT)
 
+Same name on the tin, different damage in the room. If the answer feels off, try a Sanity Check.
+
 **Normal: Same Name, Smaller Brain.** ❤❤💙, 1 bomb.
 - **Verified:** ×1.15 damage. Unique combat clears add Routing. At 3 Routing, the next combat room starts in **Fallback** (×0.8 damage).
 - In Fallback, tap DROP to tag the nearest enemy as a **Sanity Check**. Three distinct paid hits on it, or its defeat, restore Verified. One check per room, and leaving the room fails it. A new floor restores Verified.
@@ -144,6 +150,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - **Birthright:** cap and refill raised to 100.
 
 ### Gemini-chan (Gemini)
+
+Just a small edit: paint in the normal form, export in the tainted. Banana peels are part of the deliverable.
 
 **Normal: Nano Banana.** ❤❤💙, 1 bomb.
 - **Paint:** start 2 (cap 3). Earn 1 per unique combat clear.
@@ -158,6 +166,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 ### Grok-chan (Grok)
 
+Fact-check one monster, or quote it and fight everyone else. The second option has a Ratio meter.
+
 **Normal: Is This True?** ❤❤💙, 1 bomb.
 - Once per hostile room, tap DROP to **fact-check** the nearest enemy within 220 units for 6 seconds. Your damage is ×1.3 to it and ×0.9 to everything else.
 - Three distinct paid hits on it, or its defeat, **verify** it: the modifiers end and you gain +0.15 speed for the room. A timeout gives nothing.
@@ -171,6 +181,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 ### Qwen-chan (Qwen)
 
+Bring an adapter. Bring another adapter. The final build is called final_final_this_one.
+
 **Normal: Everyone's Base Model.** ❤❤💙, 1 bomb.
 - **Adapters:** start 1 (cap 2). Earn 1 per two unique combat clears.
 - Tap DROP to pick the next adapter: **Range** (+60 range), **Tempo** (×0.9 fire interval) or **Power** (×1.1 damage). Entering a new hostile room spends one Adapter to apply that bonus for the room.
@@ -182,6 +194,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - **Birthright:** +0.3 per award.
 
 ### Llama-chan (Llama)
+
+Share the release with the whole party, or turn three rooms of Hype into a temporary helper.
 
 **Normal: Please Stay Open.** ❤❤💙, 1 bomb. Damage ×0.95.
 - **Releases:** start 1 (cap 2). Earn 1 per two unique combat clears.
@@ -195,6 +209,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 ### Mistral-chan (Mistral)
 
+The normal form pounces. The tainted form bakes. Both are reasonable ways to deal with a basement.
+
 **Normal: Le Chat.** ❤❤💙, 1 bomb. Speed +0.1.
 - Move while firing for 2 seconds to charge a **Pounce**. Standing still for 1 second loses it.
 - Tap DROP to swipe forward: 2× damage once per enemy in an 80-unit line. Walls block it, with a 3-second cooldown.
@@ -206,6 +222,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - **Birthright:** Baguettes bake in 1.5 seconds.
 
 ### Doubao-chan (Doubao)
+
+Normal: take a hit and offer an apology. Tainted: start confident and get to the apology later.
 
 **Normal: Sorry, You're Right.** ❤❤💙, 1 bomb.
 - The first enemy-caused hit in each room grants an **Apology** token for 6 seconds. Self-damage, fake damage and donation machines do not count.
@@ -219,6 +237,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 ### Kimi-chan (Kimi)
 
+The monsters came for a fight. They got a presentation, three assigned tasks and no way to leave the meeting.
+
 **Normal: Another Slide Deck.** ❤❤💙, 1 bomb.
 - Each unique combat clear earns a **Slide** (cap 6).
 - Tap DROP to spend 3 and **present** to the three nearest enemies within 220 units: for 4 seconds they are slowed and take +15% damage from you. If there is no audience, nothing is spent.
@@ -231,6 +251,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 ### GLM-chan (GLM)
 
+Take a number. Clear some rooms. If your target dies before the request finishes, please retry.
+
 **Normal: Number in Queue.** ❤❤💙, 1 bomb.
 - Each unique combat clear advances the **Queue** (max 3).
 - At 3, tap DROP to redeem an **Access Pass**: +20% damage in each of the next two new hostile rooms. The Queue pauses while the pass is active, and revisits neither spend nor stack it.
@@ -242,6 +264,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - **Birthright:** a failed request also removes one nearby enemy bullet.
 
 ## Collectibles
+
+The treasure room now stocks bad ideas with very specific effects. Read the small print before you skip permissions; the pickups on the floor cannot file an appeal.
 
 A generated table of every item with its pickup line and quality is in [docs/ITEMS.md](docs/ITEMS.md).
 
@@ -402,6 +426,8 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 
 ## Trinkets
 
+Small enough to fit in a pocket. Large enough to turn “all systems operational” into a threat.
+
 | Trinket | Effect |
 |---|---|
 | **529 Overloaded** | Every 20 seconds in a fight, everything goes down for 2 seconds: all enemies freeze, and you "code manually" at 50% damage. |
@@ -419,6 +445,8 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 
 ## Pills
 
+Four pills. One turns you into a cat-girl for the room. Another is very confident about which number is bigger.
+
 | Pill | Effect |
 |---|---|
 | **Cat-girl Mode** | For the rest of the room: tears fire twice as fast at 60% damage. Nya~ |
@@ -435,6 +463,21 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 ## Tests (no game needed)
 
 `bash tools/check.sh` runs every offline suite against a stubbed Isaac API (Lua 5.3+), plus syntax, XML and sprite-path checks. GitHub Actions runs the same script on every push and pull request. The tests catch crashes and logic errors, not how the game feels; see [docs/TESTING.md](docs/TESTING.md) for the in-game checklist.
+
+<details>
+<summary>Recent compatibility fixes — 2026-10-24 (developer notes)</summary>
+
+These are source changes. The installed `28fed37` manual-test build was left alone; offline checks do not establish native callback timing or gameplay acceptance.
+
+- **Child lasers:** normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credits now follow Opus and the shared observer: a laser whose direct `Parent` is another laser is not billed. Primary starts and later eligible primary windows retain their costs. Native parent attribution and timing still need testing.
+- **Tainted Llama's helper:** Still Waiting keeps its stationary origin, duration and native 0.5× tears. Those shots no longer spend Opus coins, consume primed attack bonuses or trigger backlog paid-attack effects. Primary attacks and Summary Stapler are unchanged; engine checks are pending.
+- **Other helper shots:** Please Retry and One More Finger no longer advance Opus's ten-attack coin bill or spend primed bonuses. Normal attacks and Summary Stapler still count. Native callback timing needs testing.
+- **Consensus Coin:** owned familiar projectiles count as familiar damage. Pair that with another eligible source from the same player for the mixed-source pulse. Familiar weapons alone are one category and do not spend primed attack bonuses; native ownership attribution needs testing.
+- **The Battery:** spending its stored second charge now counts for Base Model, Please Come Back and Access Pass. Costs and rewards are unchanged. Native timing and special health-charge pools still need testing.
+- **The Constitution:** each player has a separate one-time soul heart and once-per-floor hit block. Migration preserves old shared-save consumption for players already present, avoiding duplicate rewards. Stats and damage exclusions are unchanged; co-op health and continue checks are pending.
+- **Native attack billing:** knife throws, melee swings and Epic Fetus rockets notify character meters and Opus independently, once per consumer. Not owning Opus can no longer suppress character billing. Costs are unchanged; engine checks are pending.
+
+</details>
 
 ## Contributing
 

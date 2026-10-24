@@ -1,30 +1,26 @@
 # Claude-chan: Risk Control
 
-**Compatibility note (2026-10-24):** Normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credits no longer charge a laser whose direct `Parent` is another laser, matching Opus and the shared observer. Primary starts and later eligible primary windows keep their existing costs. This source-only correction leaves the installed `28fed37` manual-test build unchanged; native parent attribution and timing remain unverified.
-
-**Compatibility note (2026-10-24):** Tainted Llama's Still Waiting helper keeps its native 0.5x tears, stationary origin and duration. Its shots no longer count toward Opus's coin bill, consume primed attack bonuses or advance backlog paid-attack triggers. Primary shots and Summary Stapler are unchanged. Offline correction; engine verification remains pending.
-
-**Compatibility note (2026-10-24):** Opus Mode no longer counts Please Retry or One More Finger helper tears toward its ten-attack coin bill. Normal shots and Summary Stapler still count. Helper shots preserve primed attack bonuses; native callback timing remains pending engine verification.
-
-**Compatibility note (2026-10-24):** Consensus Coin recognizes owned familiar projectiles as familiar damage. Combine them with another eligible source from the same player for its mixed-source pulse; familiar weapons alone remain one category and do not consume your primed attack bonuses. Native familiar attribution still needs engine verification.
-
-**Compatibility note (2026-10-24):** Spending The Battery's stored second charge now counts for Base Model, Please Come Back and Access Pass. Charge rewards and item costs are unchanged. This correction is covered by offline tests; native timing and special health-charge pools still need engine verification.
-
-**Compatibility note (2026-10-24):** The Constitution keeps its one-time soul heart and once-per-floor hit block separately for each player. Existing shared-save consumption is preserved for players present on migration to avoid duplicate rewards. Stats and excluded damage are unchanged. Offline checks passed; co-op health and save/continue still need engine verification.
-
-**Compatibility note (2026-10-24):** Knife throws, melee swings and Epic Fetus rockets notify character resource meters and Opus Mode independently. Each consumer handles an attack once; an unowned Opus Mode cannot suppress character billing. Costs are unchanged. Offline regression passed; engine verification is pending.
-
-《以撒的结合：忏悔 / 忏悔+》的恶搞角色MOD。共有11位由AI模型拟人化而来的"某某娘"，每位都有普通形态和里（Tainted）形态，另外还加入了91个根据社区梗设计的新道具。
-
 [English](README.md) · [日本語](README.ja.md) · **中文**
 
-> 同人非官方作品，与 Anthropic 或任何其他AI公司无关，也未获其认可。敌人代表的是虚构的滥用机制，不代表任何真实的人或国籍。梗的恶搞不是对任何产品的事实陈述。角色插画是注明出处的同人衍生作品，适用单独的非商用条款，见[致谢](#致谢)和[许可](#许可)。
+**妈还没打到，账号先没了。**
 
-游戏内的大部分道具名、说明和HUD文字为英文。本文用粗体写出与游戏内一致的英文名；游戏内已有官方中文名的，在括号中一并注明。
+以撒已经够难了，现在连眼泪都有人给你算额度。这个《**以撒的结合：忏悔 / 忏悔+**》MOD把 **11位AI模型娘、22种表里形态、79件道具和12件饰品** 塞进了地下室。灵感来自社区梗、网友的封号吐槽，以及那句大家都很熟悉的“你再试一次”。
+
+Claude娘一边挥封号锤，一边努力保住自己的号；DeepSeek娘先吃饭，再把下一发打疼一点；Kimi娘拉着怪物看PPT；Mistral娘带了根法棍。大家都有自己的打法，有些打法需要先等人工客服。
+
+路上还能捡到一些很有前途的东西：
+
+- **All Tests Passing（测试全过）：** 门开了，怪还在。测试又没问怪清没清。
+- **Silent Update（静默更新）：** 每层伤害都在变，更新日志永远是“没有改动”。
+- **Opus Mode：** 伤害很美好，直到钱包替你切到了便宜模型。
+
+游戏内多数道具名、说明和HUD仍为英文。下文保留游戏内能找到的名称，已有的本地化范围见“通用操作和规则”。
+
+> 非官方同人作品，与 Anthropic 或其他AI公司无关，也未获其认可。敌人是虚构的滥用机制，不代表真实的人或国籍；玩梗不等于产品事实陈述。角色美术另有非商用条款，见[致谢](#致谢)与[许可](#许可)。
 
 ## 开发状态
 
-版本 **0.5-dev**，不是创意工坊发布版。
+版本 **0.5-dev**，仍在开发，尚未发布到创意工坊。地下室可以进来测试，数值这本账还没算完。
 
 | 内容 | 数量 |
 |---|---|
@@ -36,7 +32,7 @@
 | 变身 | 1（Agentic） |
 | 剧情 | 申诉队列（4章）＋ 其他每个模型家族各3章的剧情线 |
 
-以下内容全部已在源码中实现，并在模拟 Isaac API 上通过离线测试（`bash tools/check.sh`）。目前只在真实游戏里跑过22个形态的冒烟测试（[引擎审计](docs/ENGINE_AUDIT_2026-10-24.md)）；手感、平衡、所有武器组合和多人合作仍需在游戏内验收（[测试清单](docs/TESTING.md)）。数值可能会在测试后调整。
+下文内容已在源码中实现，并有基于模拟 Isaac API 的离线测试（`bash tools/check.sh`）。22种形态都做过引擎冒烟测试（[记录](docs/ENGINE_AUDIT_2026-10-24.md)），但这只是起点，不等于完整通关。手感、平衡、武器组合和多人合作仍待[实机验收](docs/TESTING.md)，数值也可能调整。毕竟“测试全过”在这里还是件道具，话得说清楚。
 
 ## 目录
 
@@ -82,6 +78,8 @@
 
 ### 剧情
 
+房间之间也有一点故事：Claude从共享地址一路申诉，盼到有人真的读了工单；其他模型也各有各的地下室烦恼。不用排队看过场，字幕播着，你照常往前走。
+
 - **申诉队列（The Appeal Queue）**（Claude的对局）：四段不暂停游戏的简短字幕，支持英文、中文和日文。章节为"共享的地址"（新开一局）、"一份欢迎通知"（第一次到达第3或第4层）、"审核中"（第5层及以后）、"终于有人工看了"（成功使用Support Ticket之后）。每章每局只播放一次，进度在保存并继续后保留。原版过场动画和结局不受影响。
 - **角色剧情线：** DeepSeek、GPT、Gemini、Grok、Qwen、Llama、Mistral、豆包、Kimi和GLM各有一条三章的剧情线，当该家族在本局中时播放（新开一局、第3～4层、第5层及以后）。目前只有英文。详见[docs/STORY.md](docs/STORY.md)。
 
@@ -100,6 +98,8 @@
 
 ### Claude娘（Claude）
 
+一手封号锤，一手申诉表。地下室里，铁饭碗也不太铁。
+
 **普通形态：One More Day（再用一天）。** ❤❤💙，1炸弹。射程+1.5（长上下文）、弹速+0.2、移速−0.1，橙色眼泪。口袋道具：**Ban Hammer（封号锤）**。
 - **用量：** 每次攻击增加4用量（持有Subagent Swarm时为8）。游戏原生的所有武器都会计费：每轮眼泪、每次激光开始发射和每个胎儿博士炸弹，持续光束或操控中的卢多维科眼泪每0.2秒，每次掷刀、每次近战挥击和每发史诗胎儿火箭。跟班和衍生的眼泪免费。不攻击时每秒减少10。达到100时进入 **Limited（限额中）**：5秒内所有武器伤害降为40%，之后用量条重置。
 - **申诉（Appeal）：** 初始1次（上限2），每2次首次战斗清理获得1次。轻按DROP消耗1次，减少40用量。不能解除正在生效的Limited，用量为0时会被拒绝而不会浪费。
@@ -115,6 +115,8 @@
 - **长子权：** 审核恢复90配额。
 
 ### DeepSeek娘（DeepSeek）
+
+先吃饭，再思考，再开火。里形态还要看看现在花算力划不划算。
 
 **普通形态：Rice First（先吃饭）。** ❤❤💙，3硬币，1钥匙。伤害×0.9，蓝色眼泪。口袋道具：**Lunch Break（去吃饭了）**。
 - **直连：** 不需要代理，所以只有DeepSeek的对局没有IP、没有风控，也没有风控难度。
@@ -134,6 +136,8 @@
 
 ### GPT娘（GPT）
 
+名字没换，进房间伤害换了。感觉回答不对劲？做个理智检查。
+
 **普通形态：Same Name, Smaller Brain（名字一样，脑子变小）。** ❤❤💙，1炸弹。
 - **Verified（已验证）：** 伤害×1.15。首次战斗清理会累积Routing，达到3时下一个战斗房间以 **Fallback（降级）** 开始（伤害×0.8）。
 - 降级时轻按DROP，把最近的敌人标记为 **Sanity Check（智力检测）**。用自己的攻击分别命中它3次，或击杀它，即可恢复Verified。每个房间只能检测一次，离开房间即失败。进入新的一层会恢复Verified。
@@ -146,6 +150,8 @@
 - **长子权：** 上限和补充量提高到100。
 
 ### Gemini娘（Gemini）
+
+小改一下而已：表形态给怪物上色，里形态忙着导出。地上的香蕉皮也算交付内容。
 
 **普通形态：Nano Banana。** ❤❤💙，1炸弹。
 - **颜料：** 初始2（上限3），每次首次战斗清理获得1。
@@ -160,6 +166,8 @@
 
 ### Grok娘（Grok）
 
+可以查证一只怪，也可以引用它再去打别人。后一种玩法有Ratio条。
+
 **普通形态：Is This True?（这是真的吗？）** ❤❤💙，1炸弹。
 - 每个有敌人的房间一次，轻按DROP对220单位内最近的敌人进行6秒 **事实核查**：你对它的伤害×1.3，对其他敌人×0.9。
 - 用自己的攻击分别命中它3次或击杀它即 **核查完成**：倍率结束，本房间内移速+0.15。超时则什么也得不到。
@@ -173,6 +181,8 @@
 
 ### 通义千问娘（Qwen）
 
+带个适配器，再带一个。最终版本叫final_final_这次真的最终版。
+
 **普通形态：Everyone's Base Model（大家的基座模型）。** ❤❤💙，1炸弹。
 - **适配器：** 初始1（上限2），每2次首次战斗清理获得1。
 - 轻按DROP选择下一个适配器：**Range**（射程+60）、**Tempo**（射击间隔×0.9）、**Power**（伤害×1.1）。进入新的有敌房间时消耗1个适配器，在该房间内获得对应效果。
@@ -184,6 +194,8 @@
 - **长子权：** 每次+0.3。
 
 ### Llama娘（Llama）
+
+把发布成果分给全队，或者把攒了三间房的期待换成一个临时帮手。
 
 **普通形态：Please Stay Open（请继续开源）。** ❤❤💙，1炸弹。伤害×0.95。
 - **发布：** 初始1（上限2），每2次首次战斗清理获得1。
@@ -197,6 +209,8 @@
 
 ### Mistral娘（Mistral）
 
+表形态飞扑，里形态烤面包。对付地下室，两种思路都很合理。
+
 **普通形态：Le Chat（猫）。** ❤❤💙，1炸弹。移速+0.1。
 - 边射击边移动2秒可蓄出一次 **飞扑（Pounce）**；站着不动1秒会失去。
 - 轻按DROP向前扑击：对80单位直线上的每个敌人造成一次2倍伤害。会被墙挡住，冷却3秒。
@@ -208,6 +222,8 @@
 - **长子权：** 1.5秒就能烤好法棍。
 
 ### 豆包娘（Doubao）
+
+表形态挨打后道歉，里形态先自信一会儿，再进入道歉环节。
 
 **普通形态：Sorry, You're Right（抱歉，您说得对）。** ❤❤💙，1炸弹。
 - 每个房间第一次被敌人打中时获得一个持续6秒的 **道歉** 标记。自伤、假伤害和献血机等不计。
@@ -221,6 +237,8 @@
 
 ### Kimi娘（Kimi）
 
+怪物以为要打架，结果听了一场汇报、领了三项任务，还不能退出会议。
+
 **普通形态：Another Slide Deck（又一份PPT）。** ❤❤💙，1炸弹。
 - 每次首次战斗清理获得1张 **幻灯片**（上限6）。
 - 轻按DROP消耗3张，向220单位内最近的3个敌人 **做汇报**：4秒内它们被减速，并且受到你的伤害+15%。没有听众时不消耗。
@@ -233,6 +251,8 @@
 
 ### 智谱GLM娘（GLM）
 
+先取号，再清房。请求还没处理完，目标先死了？请重试。
+
 **普通形态：Number in Queue（排队中）。** ❤❤💙，1炸弹。
 - 每次首次战斗清理推进 **队列**（最多3）。
 - 达到3时轻按DROP兑换 **通行证**：接下来两个新的有敌房间伤害各+20%。通行证生效期间队列暂停，重复进入房间既不消耗也不叠加。
@@ -244,6 +264,8 @@
 - **长子权：** 请求失败时也会清除附近1发敌弹。
 
 ## 收藏品
+
+宝箱房现在供应各种效果明确的馊主意。跳过权限之前记得看小字，地上的掉落物可没法替自己申诉。
 
 所有道具的拾取文字和品质汇总在自动生成的[docs/ITEMS.md](docs/ITEMS.md)（英文）中。
 
@@ -404,6 +426,8 @@
 
 ## 饰品
 
+东西小到能揣兜里，影响大到让“所有系统运行正常”听起来像句威胁。
+
 | 饰品 | 效果 |
 |---|---|
 | **529 Overloaded** | 战斗中每20秒全部宕机2秒：所有敌人冻结，你只能"手写代码"，伤害50%。 |
@@ -420,6 +444,8 @@
 | **Disgrace Loop** | 每个房间第一次真正受伤时，所有敌人冻结1.5秒。自伤不计。 |
 
 ## 药丸
+
+四种药丸。一种让你在这间房里变成猫娘，另一种对哪个数字更大很有自信。
 
 | 药丸 | 效果 |
 |---|---|
@@ -438,9 +464,44 @@
 
 `bash tools/check.sh` 会在模拟的 Isaac API（Lua 5.3以上）上运行所有离线测试，并检查语法、XML和贴图路径。GitHub Actions 会在每次 push 和 pull request 时运行同一脚本。测试能发现崩溃和逻辑错误，但无法判断手感；游戏内检查清单见[docs/TESTING.md](docs/TESTING.md)。
 
+<details>
+<summary>近期兼容性修复——2026-10-24（开发者说明）</summary>
+
+以下是源码修复，未替换已安装的 `28fed37` 手动测试版。离线检查不能证明游戏原生回调的时序或实际游玩表现。
+
+- **子激光：** 普通Claude用量、里Claude配额和里GPT的Full Send点数现与Opus及共享观察器一致：直接 `Parent` 为另一道激光的子激光不计费。主攻击起始和后续符合条件的主攻击窗口仍照常计费。原生父级归属和时序仍待测试。
+- **里Llama的帮手：** Still Waiting保留固定发射位置、持续时间和原生0.5×眼泪。帮手不再花费Opus硬币、消耗待触发的攻击加成或触发扩展道具的付费攻击效果。主攻击与Summary Stapler不变，待实机确认。
+- **其他帮手攻击：** Please Retry和One More Finger不再推进Opus每十次攻击的扣币计数，也不消耗待触发加成。普通攻击与Summary Stapler仍计数。原生回调时序待测试。
+- **Consensus Coin：** 属于玩家的跟班投射物计入跟班伤害，与同一玩家的另一类有效来源组合可触发混合伤害脉冲。仅有跟班武器仍算一类，也不会消耗待触发攻击加成；原生归属判断待测试。
+- **The Battery：** 消耗储存的第二格充能现可触发Base Model、Please Come Back和Access Pass。费用与奖励不变，原生时序及特殊生命充能池仍待测试。
+- **The Constitution：** 一次性魂心和每层一次的挡伤按玩家分别记录。迁移时保留已在场玩家的旧共享存档消耗状态，避免重复领奖。属性和排除的伤害类型不变；多人血量与继续游戏待实机确认。
+- **原生攻击计费：** 掷刀、近战挥击和史诗胎儿火箭分别通知角色资源条与Opus，各自只处理一次。未持有Opus不会再阻断角色计费。费用不变，待实机确认。
+
+</details>
+
 ## 参与开发
 
 欢迎朋友们一起开发。请阅读[CONTRIBUTING.md](CONTRIBUTING.md)和[docs/HANDOFF.md](docs/HANDOFF.md)：在分支上工作并提交 pull request；新的代码、Markdown和面向玩家的文字请使用英文。设计资料：[角色玩法](docs/CHARACTER_GAMEPLAY.md)、[角色阵容](docs/MODEL_ROSTER.md)、[道具扩展](docs/EXPANSION_DESIGN.md)、[平衡](docs/BALANCE.md)。
+
+## 项目结构
+
+```text
+main.lua                    入口，加载各模块
+content/                    道具、道具池、角色与口袋物品XML
+scripts/constants.lua       道具、饰品、药丸、角色ID与风控等级
+scripts/risk.lua            风控、IP分配、存档与HUD
+scripts/enemy_scaling.lua   敌人血量缩放
+scripts/hydra.lua           “新账号”复活
+scripts/transformation.lua  Agentic变身
+scripts/story*.lua          申诉队列与角色剧情
+scripts/characters/         角色玩法、档案与DROP短按
+scripts/items/              原创与梗道具；backlog/为50道具扩展
+scripts/enemies/            自定义敌人
+scripts/eid.lua             EID说明
+resources/gfx/              贴图与肖像
+tests/                      离线模拟测试
+tools/check.sh              提交前检查，与CI一致
+```
 
 ## 致谢
 
