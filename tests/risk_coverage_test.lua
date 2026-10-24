@@ -81,7 +81,13 @@ end
 players = {player(141)}
 assert(Risk:IsActive(), "tainted Claude keeps the proxy account")
 
--- Vanilla characters keep the existing proxy behavior.
-players = {player(0)}
-assert(Risk:IsActive() and Risk:Get() == 95)
-print("OK: proxy risk covers Claude and vanilla players only")
+-- Vanilla characters play vanilla (README: "Risk score, Claude forms only").
+local isaac = player(0)
+players = {isaac}
+assert(not Risk:IsActive() and Risk:Get() == 0, "a vanilla run must not use the proxy account")
+Risk.state.risk = 10; fire('MC_ENTITY_TAKE_DMG', isaac); assert(Risk.state.risk == 10)
+-- With Claude in co-op, a vanilla partner is never billed or suspended.
+players = {claude, isaac}
+fire('MC_ENTITY_TAKE_DMG', isaac); assert(Risk.state.risk == 10, "a vanilla partner's hit adds no risk")
+Risk.state.risk = 95; isaac:EvaluateItems(); assert(isaac.Damage == 10, "a vanilla partner is never suspended")
+print("OK: proxy risk covers the Claude forms only")

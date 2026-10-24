@@ -65,10 +65,14 @@ local function anyPlayerHasTrinket(trinket)
     return false
 end
 
--- DeepSeek-chan needs no proxy (she connects directly), and the model roster
--- families have their own loops, so neither is covered by the proxy account.
+-- The proxy account belongs to the Claude forms. DeepSeek-chan connects
+-- directly, the model roster families have their own loops, and vanilla (or
+-- other mods') characters play vanilla: no IP, risk, scaling or Hydra.
 local function covered(player)
-    return player ~= nil and not Constants.IsDeepSeek(player) and not ModelRoster:IsFamily(player)
+    if player == nil or Constants.IsDeepSeek(player) or ModelRoster:IsFamily(player) then return false end
+    local t = player:GetPlayerType()
+    return (Constants.Player.CLAUDE_CHAN >= 0 and t == Constants.Player.CLAUDE_CHAN)
+        or (Constants.Player.CLAUDE_CHAN_B >= 0 and t == Constants.Player.CLAUDE_CHAN_B)
 end
 
 -- When no player is covered the whole IP / risk system sleeps: risk reads as
