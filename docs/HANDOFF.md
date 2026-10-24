@@ -57,7 +57,7 @@ Other completed source changes:
 
 ## Art: completed work versus visual acceptance
 
-Eleven normal portraits use the selected ZipZipPipe AI-personification identities. The approved tainted Claude/DeepSeek portraits retain their designs with deeper colors. All 13 gameplay skins, menu busts, stage portraits and clear-room MAP dossiers are wired. The original four also received a movement pass; they were not left as old recolors.
+Eleven normal portraits use the selected ZipZipPipe AI-personification identities. The approved tainted Claude/DeepSeek portraits retain their designs with deeper colors. All 13 gameplay skins, menu busts, stage portraits and clear-room MAP dossiers are wired. The original four also received a movement pass; they were not left as old recolors. The nine newer skins now share a deterministic walk cycle (`tools/animate_roster_walk.py`): one stable body per direction, drawn legs, stride and bob, replacing ten jittering packed frames. `tools/check_assets.py` now verifies every atlas against `docs/roster-art-manifest.json`. Engine motion, side-profile readability and costume overlap still need acceptance; generated side bodies are narrowed fronts, not redrawn profiles.
 
 The reported oversized hurt head was addressed in source by packing the shared hurt/special-pose cell to the measured vanilla 28x32 envelope and anchor in all 13 atlases. Llama's source crop was corrected. The optional rebuild/pixel comparison passes; pixels outside the corrected cell remain unchanged. This **does not prove the reported in-game bug is fixed**. Anatomy/symmetry, side profiles, hurt recovery and special poses still require visual acceptance. Baked hair/clothing may conflict with native costume layers.
 
