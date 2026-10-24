@@ -26,7 +26,7 @@ Usage runs 0–100. Paid attacks add 4; not firing drains 10 per second. At 100,
 
 Keep pocket Ban Hammer, range +60, shot speed +0.2 and speed -0.1. Each floor without suspension adds +0.2 account-age damage, cap +1.6; suspension resets it. Migrate age to per-player state. Existing Claude risk/encounter co-op behavior needs its own review. Swarm adds one extra 4-point payment per paid attack; Compact keeps its explicit bill. Birthright preserves age through the first suspension each floor without canceling its penalty. HUD: Usage, Appeals; account age belongs in the dossier/status line. Caption: `Another love letter.`
 
-Source status (scripts/characters/claude_chan.lua): implemented for tear volleys. The caption appears when an Appeal is filed. The volley that reaches 100 keeps full damage. An Appeal at zero usage is refused rather than wasted. Account age is still shared across players rather than migrated per player; Birthright shields that shared age. Engine acceptance pending.
+Source status (scripts/characters/claude_chan.lua): implemented for tear volleys, laser starts and Dr. Fetus bombs, one payment per frame; knives, rockets and held lasers after their first frame are free, and Limited weakens tears only. The caption appears when an Appeal is filed. The volley that reaches 100 keeps full damage. An Appeal at zero usage is refused rather than wasted. Account age is still shared across players rather than migrated per player; Birthright shields that shared age. Engine acceptance pending.
 
 ### Tainted: Appeal Pending
 
@@ -34,7 +34,7 @@ Start each floor with 220 Quota and two Appeal Pages, cap two. Registered attack
 
 Keep pocket Banked Reset for immediate refill. Using it cancels any pending review without returning the page; no double payout. Swarm costs one extra quota per paid attack. New floor refills quota and pages; continue does not. Birthright restores 90 per completed review. HUD: Quota, Appeal Pages, transient `Under Review: Ns`. The contrast is preserving an old account versus surviving repeated suspensions.
 
-Source status (scripts/characters/claude_chan_b.lua): implemented for tear volleys and replaces the 220-tear weekly limit. Damage uses cache evaluation (1.25x, 0.5x Suspended), so non-tear weapons get the multiplier but pay no Quota until they have a bounded payment adapter. Saved per player in `Risk.state.claudeAppeal`. Engine acceptance pending.
+Source status (scripts/characters/claude_chan_b.lua): implemented and replaces the 220-tear weekly limit. Tears, laser starts and Dr. Fetus bombs share one Quota payment per frame; knives, rockets and held lasers after their first frame are free. Damage uses cache evaluation (1.25x, 0.5x Suspended), so every weapon gets the multiplier. Saved per player in `Risk.state.claudeAppeal`. Engine acceptance pending.
 
 ## DeepSeek — rice and peak/valley scheduling
 

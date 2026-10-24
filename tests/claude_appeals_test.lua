@@ -104,6 +104,14 @@ assert(usage().appeals==1 and usage().clears==0,"a new run starts with one Appea
 -- One paid volley is one payment; Swarm doubles it.
 volley(p,4); assert(usage().value==4,"same-frame pellets share one payment")
 p.swarm=true; volley(p); assert(usage().value==12,"Swarm adds one extra 4-point payment"); p.swarm=false
+-- Laser starts and Dr. Fetus bombs bill the same per-frame payment; familiars and plain bombs do not.
+local familiar={ToPlayer=function() end}
+frame=frame+1; fire("MC_POST_LASER_INIT",{SpawnerEntity=p}); fire("MC_POST_FIRE_TEAR",{SpawnerEntity=p,CollisionDamage=10})
+fire("MC_POST_LASER_INIT",{SpawnerEntity=p}); assert(usage().value==16,"a laser shares its frame's payment")
+frame=frame+1; fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=true}); assert(usage().value==20,"a Fetus bomb pays")
+frame=frame+1; fire("MC_POST_BOMB_INIT",{SpawnerEntity=p,IsFetus=false}); fire("MC_POST_LASER_INIT",{SpawnerEntity=familiar})
+fire("MC_POST_BOMB_INIT",{SpawnerEntity=familiar,IsFetus=true}); assert(usage().value==20,"placed bombs and familiars are free")
+frame=frame+1; fire("MC_POST_LASER_INIT",{SpawnerEntity=q}); assert(usage().value==20 and usage(1).value==4,"lasers bill their own player"); usage(1).value=0
 -- The volley that reaches the limit keeps full damage for all of its pellets.
 usage().value=98
 local edge=volley(p,3)
