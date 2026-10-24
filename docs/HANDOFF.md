@@ -25,7 +25,13 @@ Engine retests remain pending: native shield dispatch, risk threshold, clean-roo
 
 Prepared 2026-10-24 (Japan time). Start here. The owner requested an archive, a concrete handoff to Claude, local validation and a GitHub main merge. This is a development checkpoint, not a Workshop release or engine acceptance.
 
+## Item descriptions (2026-10-24)
+
+All 75 collectibles, 12 trinkets and 4 pills already had English EID text; tests/eid_test.lua now checks that coverage against the XML. Pickup lines in content/items.xml are now short effect hints instead of pure jokes. docs/ITEMS.md is the generated item reference (`lua5.4 tools/item_reference.lua .` after changing an item; the test fails when stale). EID character info still covers only Claude-chan, DeepSeek-chan and the tainted forms; the nine other normal forms have none. In-game pickup text length and EID rendering are not engine-verified.
+
 ## Integrated source and next work
+
+**Player documentation (2026-10-24):** README.md (English), README.ja.md (Japanese) and README.zh-CN.md (Simplified Chinese) document every implemented system, all 22 forms (stats, pocket items, abilities, Birthright) and all 75 collectibles, 12 trinkets and 4 pills, taken from source and EID text. Update all three whenever a mechanic, number or item changes. They describe source behavior, not engine acceptance.
 
 ### Historical candidate record: RISK-01
 

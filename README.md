@@ -1,225 +1,449 @@
 # Claude-chan: Risk Control
 
-A parody mod for **The Binding of Isaac: Repentance / Repentance+**.
+A parody character mod for **The Binding of Isaac: Repentance / Repentance+**, featuring eleven AI-model "-chan" characters, each with a normal and a tainted form, and 91 new items built from community memes.
 
-**Expansion in development:** [22-form community-meme gameplay](docs/CHARACTER_GAMEPLAY.md) and [50 additional collectibles](docs/EXPANSION_DESIGN.md). All fifty are implemented in source with offline tests, alongside sixteen meme extras; they use native weapons, tear effects and stats, empty targeted uses keep their charge and Car Battery never repeats them. Twenty-two forms and 75 collectibles are currently registered. The character loop redesigns are still in progress, and engine acceptance remains pending.
+**English** · [日本語](README.ja.md) · [中文](README.zh-CN.md)
 
-**Experimental roster candidate:** eleven model families, eleven ZipZipPipe-based normal portraits, two darker tainted portraits, nine additional playable normal characters and in-game dossiers. Hold MAP in a cleared room to view the current character's portrait and instructions. See [the roster and mechanics](docs/MODEL_ROSTER.md), [pending engine checks](docs/TESTING.md), and [art terms](resources/ART_LICENSE.md). All 22 gameplay skins now follow the selected portrait identities; animation polish and engine acceptance remain pending; this is not a Workshop release.
+> Fan work. Not affiliated with or endorsed by Anthropic or any other AI company. Enemies represent fictional abuse mechanisms, not people or nationalities, and meme parody is not a factual claim about any product. Character illustrations are credited fan-art derivatives with separate, non-commercial terms; see [Credits](#credits) and [License](#license).
 
-Every floor hands you a random proxy IP. The more people share it, the higher your **risk score** (风控值). The higher the risk, the tougher the enemies get, and killed enemies start coming back as "new accounts".
+## Status
 
-> Fan work. Not affiliated with or endorsed by Anthropic. Character illustrations are credited fan-art derivatives; see the separate art terms.
+Version **0.5-dev**. Not a Workshop release.
 
-[中文](#中文) · [日本語](#日本語)
-
-## Features (v0.5-dev)
-
-| | |
+| What | Count |
 |---|---|
-| **Claude-chan** (playable) | Range +1.5 (long context window), Shot Speed +0.2, Speed −0.1, 2 red + 1 soul heart, orange tears. Starts with **Ban Hammer** as a pocket item. **One More Day:** each volley fills a usage meter that drains while she holds fire; when it's full, her tears deal 40% damage for 5 seconds. **Appeals:** start with one (cap two), earn one every two new combat clears, and tap DROP to spend one for −40 usage (not while Limited). **Account age (账号满月):** +0.2 damage for every floor reached without being Suspended (max +1.6); a suspension resets it ("Banned again" / 又封了). *Custom orange-haired sprite atlas and portraits; animation polish is in progress.* |
-| **Tainted Claude-chan** (裏 / playable) | **Appeal Pending:** 220 Quota per floor, one per attack volley (tears, lasers or Dr. Fetus bombs); at zero she is Suspended (0.5x damage) and a DROP tap spends one of two Appeal Pages on a six-second combat review that restores 60 Quota. Damage ×1.25, Range +1.5, Shot Speed +0.2. Starts with pocket **Banked Reset**, which refills the quota. Redrawn crimson-haired skin with a black-and-gold dress. |
-| **DeepSeek-chan** (playable) | **Direct connection (直连):** she needs no proxy, so in a DeepSeek-only run there is no IP, no risk and no risk-based difficulty. **Deep Think (深度思考):** not shooting builds up to 5 s of thought; the next tear deals up to ×2 and the HUD reads "Thought for N s". **Server busy (服务器繁忙):** the more enemies in the room, the more often a tear doesn't go out (3% per enemy, max 25%). **Slacking off (摸鱼):** standing still for 5 s in a cleared room recharges Lunch Break by one. Starts with pocket **Lunch Break**; damage ×0.9, blue tears. |
-| **Tainted DeepSeek-chan** (裏 / playable) | Direct connection too. **Wenfeng / Wengu:** combat alternates 12 s of Valley and 12 s of Peak. Paid tear volleys fork into two extra tears at ±12° (50% damage) for 2 Compute in Valley or 4 in Peak; Valley recovers Compute while you hold fire. Tap DROP to switch Forks On / Saving. No random shot deletion. Damage ×0.8. Redrawn deep-teal and white maid skin. |
-| **Tainted GPT-chan** (裏 / playable) | **Reset Watcher:** 80 Credits per run. Tap DROP to toggle Standard and Full Send (1.5x damage, one Credit per attack). Three clears bank a Tibo reset; the next tap refills Credits. Deeper-colour GPT art. |
-| **Tainted Gemini-chan** (裏 / playable) | **One More Edit:** damage x0.9. Tap DROP to start a six-second edit chain on the nearest enemy; three separate hits go Crop, Recolor, Export, and Export adds a 2x damage pulse once per room. Deeper-colour Gemini art. |
-| **Tainted Grok-chan** (裏 / playable) | **Quote Without Reading:** damage x0.9. Tap DROP to quote an enemy for six seconds; hits on everyone else build Ratio (max 3), which lands on the quoted enemy as 1x damage pulses when time runs out. Deeper-colour Grok art. |
-| **Tainted Qwen-chan** (裏 / playable) | **Final Final Fine-Tune:** in cleared rooms, tap DROP to switch Heavy, Tiny or Balanced builds (locked in combat). Clearing rooms with all three builds gives +0.2 damage for the floor, up to three times. Deeper-colour Qwen art. |
-| **Tainted Llama-chan** (裏 / playable) | **Still Waiting:** damage x0.9. Combat clears add Hype (max 3); tap DROP to spend it all on a stationary helper that fires a 0.5x tear each second for four seconds per Hype. Deeper-colour Llama art. |
-| **Tainted Mistral-chan** (裏 / playable) | **Le Gros Chaton:** speed -0.1, damage x0.9. Stand still without firing to bake Baguettes (max 2); tap DROP to send a slow 120-unit shockwave dealing 2.5x once per enemy. Deeper-colour Mistral art. |
-| **Tainted Doubao-chan** (裏 / playable) | **I'll Do It Again:** tap DROP for six seconds of Confident (1.35x damage), then four seconds of Apology (0.85x). Timers run only in combat; an enemy hit cuts Confident short. Deeper-colour Doubao art. |
-| **Tainted Kimi-chan** (裏 / playable) | **You Are the Manager:** damage x0.85. Tap DROP to assign a task to the nearest unassigned enemy: three 0.6x pulses two seconds apart. Three tasks at once, nine pulses per room. Deeper-colour Kimi art. |
-| **Tainted GLM-chan** (裏 / playable) | **Please Retry:** damage x0.9. Tap DROP to queue a two-second request on a nearby enemy: 2x damage plus 1x per Retry if it survives, or one Retry (max 3) if it dies first. Deeper-colour GLM art. |
-| **Lunch Break** (DeepSeek-chan's pocket active, 6 charges) | "飯食ってくる / 去吃饭了": heals one red heart and slows every enemy for 3 s, but you stop shooting for 3 s. |
-| **The Appeal Queue** | Four short, localised story captions during a run; chapter progress survives save/continue. |
-| **Risk score** | 0–100. At **90+ your account is Suspended**: damage ×0.75 until risk drops. Each floor rolls an IP: crowded relay IPs add more risk. Getting hit +1, clearing a room without a hit −1. Shown at the bottom-left of the HUD. |
-| **Enemy scaling** | Enemy HP ×1 at risk 0, up to ×3 at risk 100. |
-| **Hydra accounts** | From risk 40 on, a killed enemy may respawn once (tinted red), from 10% up to 50%. |
-| **Relay Slime** (enemy) | A shared proxy. Appears in 25% of uncleared rooms once risk ≥ 30; splits in two on death, twice, so one slime becomes up to seven. *(Placeholder: a green-tinted vanilla Clotty.)* |
-| **Agentic** (transformation) | Hold any 3 of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerously-skip-permissions, All Tests Passing: flight, fire delay ×0.8, damage +0.5. |
-| **Ban Hammer** (active, 4 charges) | Bans every non-boss enemy in the room; bosses take 60 damage. Banned enemies never respawn. But 20% of bans are **misbans** of innocent developers, +3 risk each ("appeal pending"). |
-| **Residential IP** (passive) | Risk −30 on pickup, and every later risk increase is halved. |
-| **Compact** (active, 3 charges) | "Compacting conversation...": removes all enemy projectiles, confuses every enemy for 3 s. Costs Claude-chan 50 usage (the "compacting ate my 5-hour limit" meme). |
-| **You're Absolutely Right!** (passive, angel pool) | Any enemy that hurts you instantly agrees with you and is charmed for 5 s. |
-| **9.9 Yuan Relay** (passive, devil pool) | Damage ×1.5, but each room has a 30% chance of a secret model swap (×0.5 instead). Risk +15 on pickup. Based on the Chinese "cheap relay quietly swaps the model" (掺水) complaints. |
-| **Ultrathink** (active, 5 s recharge) | Each use in the same room thinks harder: think +1 / megathink +2 / ultrathink +3.1999 damage (after the oddly specific 31,999-token budget). 15% of the time: "Thought for 0s", nothing happens. |
-| **1M Context** (passive) | Range +5, but context rot: tears lose damage the longer they fly, down to 30%. |
-| **Silent Update** (passive) | Every floor, damage is quietly rescaled to ×0.8–×1.3. The only message you ever get: "Changelog: no changes". Based on the 降智 ("did they nerf it?") complaints. |
-| **--dangerously-skip-permissions** (passive, devil pool) | Locked doors and locked chests open by themselves. But each room has a 10% chance of `rm -rf`: every pickup on the floor is deleted (pedestals are safe). |
-| **All Tests Passing** (active, 6 charges) | Reward hacking: the room counts as cleared and every door opens, but the enemies are still there. |
-| **Hardcoded Output** (trinket) | Every tear deals exactly 3.5 damage, "the expected output", however strong or weak you are. |
-| **Thinking Cleared** (trinket) | Damage +1, but each new room your active item loses 1 charge. Based on the reported cache bug that wiped the thinking every turn. |
-| **Vibe Coding** (passive) | Every tear gets a random effect; 5% of tears are bugs that fly backwards; each new floor the API bill takes 25% of your coins, unless you **made no mistakes** (no hit) on the floor you just left. |
-| **Banked Reset** (active, 12 charges) | A rate-limit reset you can save for later: risk −25, and clears Claude-chan's usage meter (ends a limit early). |
-| **Subagent Swarm** (passive, devil pool) | Every tear spawns 2 parallel subagent tears at ±15° (50% damage). Claude-chan's tears cost double usage. |
-| **Cat-girl Mode** (pill) | For the rest of the room, tears fire twice as fast at 60% damage. Based on DeepSeek-chan often being asked to answer as a cat girl. |
-| **Brb, Getting Food** (pill) | Heals one red heart, but you stop shooting for 3 s. Based on DeepSeek's famous "飯食ってくる" reply. |
-| **Welcome Notice** (trinket) | From fan lore where DeepSeek-chan swaps Claude-chan's ban card for a welcome message: Ban Hammer turns regular enemies into permanent allies instead of banning them. |
-| **Status Page** (trinket) | Every risk increase is 1 smaller, but the HUD hides your real risk and only ever says "all systems operational". |
-| **The Constitution** (passive, angel pool) | Claude's constitution ranks safety, ethics, guidelines, then helpfulness: +1 soul heart, the first hit on each floor is refused ("I can't help with that"), damage ×0.9 (helpfulness is last), speed −0.1 (it's a long document). |
-| **Appeal Form** (trinket) | Used up the moment risk reaches 90; your risk drops back to 50 instead of getting suspended. |
-| **Opus Mode** (passive, shop) | "More expensive than gold": damage ×1.8, but every 10 tears cost 1 coin. At 0 coins you fall back to a cheaper model: damage ×0.6. |
-| **529 Overloaded** (trinket) | Every 20 s in a fight, everything goes down for 2 s: all enemies freeze, and you're left **coding manually**: you can still shoot, at 50% damage. "Status page: all systems operational." |
+| Playable forms | **22**: 11 normal + 11 tainted |
+| Collectibles | **75**: 17 original items, 8 meme extras and the 50-item expansion ([design](docs/EXPANSION_DESIGN.md)) |
+| Trinkets | **12** |
+| Pills | **4** |
+| Enemies | 1 (Relay Slime) |
+| Transformations | 1 (Agentic) |
+| Story | The Appeal Queue (4 chapters) + a 3-chapter arc for each other model family |
 
-Supports [External Item Descriptions](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) in English, Simplified Chinese and Japanese.
+Everything below is implemented in source and covered by offline tests against a stubbed Isaac API (`bash tools/check.sh`). Only a 22-form engine smoke test has been run in the real game so far ([engine audit](docs/ENGINE_AUDIT_2026-10-24.md)); game feel, balance, every weapon combination and co-op still need in-game acceptance ([testing checklist](docs/TESTING.md)). Numbers may change after testing.
 
-## New in v0.4-dev
+## Contents
 
-- **Support Ticket** / **人工复核工单** / **サポートチケット**: six-charge shop active; pay 3 coins to reduce risk by 20. Failed uses keep the charge, and Car Battery does not bill twice.
-- **DeepSeek-chan** / **DeepSeek娘** / **DeepSeekちゃん**: a welcoming counterpart to Claude-chan (redesigned in v0.5-dev: see the table above).
-- **The Appeal Queue** / **申诉队列** / **異議申し立ての列**: four optional-to-read captions in English, Chinese and Japanese. This original fan story does not replace vanilla cutscenes.
-- Both characters now have custom generated sprite atlases, portraits, name images and character-selection assets. These are a first art pass, with animation and costume-interaction checks still required.
+- [Common controls and rules](#common-controls-and-rules)
+- [Core systems](#core-systems)
+- [Characters](#characters)
+- [Collectibles](#collectibles)
+- [Trinkets](#trinkets)
+- [Pills](#pills)
+- [Install, tests and contributing](#install-for-development)
 
-See [docs/HANDOFF.md](docs/HANDOFF.md) for exact validation limits and [docs/STORY.md](docs/STORY.md) for the next collaboration slice.
+## Common controls and rules
 
-## Credits
+- **DROP tap:** most characters use a short press of the DROP key (released after 1–12 frames) to trigger their ability. A longer hold never triggers it, and native DROP behaviour (dropping trinkets, cycling pocket items) is left alone. A key held through a room change, pause or run start must be released first.
+- **Dossier:** hold MAP in a cleared room to show the current character's full portrait and a three-line guide. Release to close. Not shown during combat.
+- **"Paid" attacks** are the attacks you fire yourself (tears, lasers, knives, bombs and so on). Item pulses and helper attacks do not count as paid attacks, so effects do not chain into themselves.
+- **"Unique combat clear"** means clearing a hostile room for the first time. Re-entering a cleared room never counts, so nothing can be farmed.
+- **"Ordinary enemy bullet"** means a normal enemy projectile. Effects that remove bullets never cancel damage you have already taken.
+- Character resources are saved per player and survive save/continue. A new run resets them. Co-op players each keep their own state.
+- Every ability uses the game's native weapons, tear effects and stat caches. Native weapons, costumes, size and transformations are preserved.
+- [External Item Descriptions (EID)](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) is supported. All items and the 13 forms with an EID entry have English text; 17 collectibles, 6 trinkets and 2 pills also have Simplified Chinese and Japanese text.
 
-- **Claude-chan character design:** [ZipZipPipe](https://space.bilibili.com/4168597) ([Pixiv《AI娘化》](https://www.pixiv.net/artworks/148186519), [《大AI和小AI们》](https://www.bilibili.com/video/BV1tE9XBbErS/)). Used non-commercially with credit, per the author's terms.
+## Core systems
 
-- **DeepSeek-chan design references:** 上善无形 and ZipZipPipe.
-- **32x32 item icon set:** RORICO444, PR #2. Character bitmaps in this development pass were generated with imagegen; see [art provenance](docs/ART_GENERATION.md).
+### Risk score (风控值), Claude forms only
+
+The risk system only runs when a normal or tainted Claude-chan is in the run. DeepSeek-chan connects directly, and the other nine families have their own loops, so for them there is no IP, no risk and no risk-based difficulty. In co-op with a Claude, only Claude players raise risk or suffer suspension.
+
+- Every floor rolls a random **proxy IP** and how many users share it. Most are lightly shared, but 30% are crowded relay servers. On each new floor, risk rises by *shared users ÷ 10 + stage number*.
+- Getting hit: **+1** risk. Clearing a room without a hit: **−1** risk.
+- Tiers: **Clean** (0), **Suspicious** (30), **Flagged** (60), **Suspended** (90+). While Suspended, Claude players deal **×0.75 damage** until risk drops below 90.
+- The bottom-left HUD shows the IP, its shared-user count and the risk tier. Runs without a Claude show "Direct connection".
+- **Enemy scaling:** enemy HP is ×1 at risk 0, rising linearly to ×3 at risk 100.
+- **Hydra accounts:** from risk 40, a killed enemy may come back once as a red-tinted "new account". The chance is 10% at risk 40, rising to 50% at risk 100. Banned enemies never come back.
+
+### Relay Slime (enemy)
+
+A shared proxy. Once risk reaches 30, it appears in 25% of uncleared rooms. When it dies it splits in two, twice, so one slime can become up to seven, each smaller and weaker. *(Placeholder art: a green-tinted vanilla Clotty.)*
+
+### Agentic (transformation)
+
+Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerously-skip-permissions and All Tests Passing: **flight**, fire delay ×0.8 (tears up) and **+0.5 damage**.
+
+### Story
+
+- **The Appeal Queue** (Claude runs): four short captions that do not pause the game, in English, Chinese and Japanese. Chapters: "The shared address" (new run), "A welcome notice" (first visit to stage 3 or 4), "Review pending" (stage 5 or later), and "A human finally read it" (after a successful Support Ticket). Each chapter plays once per run, and its progress survives save/continue. Vanilla cutscenes and endings are untouched.
+- **Roster arcs:** DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM each have a three-chapter arc that plays when that family is in the run: on a new run, at stage 3–4 and at stage 5+. English only for now. See [docs/STORY.md](docs/STORY.md).
+
+### Compatibility
+
+- EID descriptions (see above).
+- HUD text follows the game language (中文 / 日本語) when a CJK font loads, otherwise English.
+- Reactions Port Pack: fallback registration covers every character.
+- Each character tints the tear colour on top of the current colour, so item colours are kept.
+
+## Characters
+
+Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, normal forms start with ❤❤💙 and 1 bomb, and tainted forms start with ❤💙💙. "Damage ×N" multiplies your final damage. Birthright upgrades are listed for each form.
+
+### Claude-chan (Claude)
+
+**Normal: One More Day.** ❤❤💙, 1 bomb. Range +1.5 (long context window), shot speed +0.2, speed −0.1, orange tears. Pocket item: **Ban Hammer**.
+- **Usage:** each paid volley adds 4 usage (8 with Subagent Swarm), billed for tears, laser starts and Dr. Fetus bombs (knives are free). Holding fire drains 10 per second. At 100 she is **Limited**: her tears deal 40% damage for 5 seconds, then the meter resets.
+- **Appeals:** start with 1 (cap 2). Earn 1 per two unique combat clears. Tap DROP to spend one and remove 40 usage. An Appeal cannot cancel an active Limited penalty, and is refused at zero usage rather than wasted.
+- **Account age (账号满月):** +0.2 damage for every floor reached without being Suspended (max +1.6). A suspension resets it ("Banned again").
+- **Risk:** covered by the risk score above.
+- **Birthright:** keeps account age through the first suspension on each floor.
+
+**Tainted: Appeal Pending.** ❤💙💙, 1 bomb. Damage ×1.25, range +1.5, shot speed +0.2. Crimson hair with a black-and-gold dress. Pocket item: **Banked Reset**.
+- **Quota:** each floor starts with 220 Quota and 2 Appeal Pages (cap 2). Each paid volley (tears, lasers or Dr. Fetus bombs) costs 1 Quota (2 with Subagent Swarm).
+- At 0 Quota she is **Suspended**: damage ×0.5.
+- While Suspended, tap DROP in combat to spend a Page on a **6-second review**. When it finishes, 60 Quota is restored. Leaving the room cancels the review.
+- Earn a Page per three unique combat clears. Banked Reset refills Quota immediately but cancels a pending review without returning its Page.
+- **Birthright:** reviews restore 90 Quota.
+
+### DeepSeek-chan (DeepSeek)
+
+**Normal: Rice First.** ❤❤💙, 3 coins, 1 key. Damage ×0.9, blue tears. Pocket item: **Lunch Break**.
+- **Direct connection (直连):** no proxy, so a DeepSeek-only run has no IP, no risk and no risk difficulty.
+- **Rice bowls:** start with 1 (cap 2). Earn 1 per two unique combat clears. Tap DROP to spend a bowl on a 2-second meal (no healing). When she finishes eating, she gets full Thought and +0.15 speed for 6 seconds.
+- **Thought:** stop attacking to store up to 5 seconds of Thought. Your next attack deals up to ×2 damage ("Thought for N s"). Tears, released Brimstone rings, thrown knives and Dr. Fetus bombs take a snapshot of Thought. Repeated-hit beams and controlled tears use short 0.2-second windows. Epic Fetus, melee, familiars and delayed bursts are still experimental.
+- There is no random shot deletion and no idle recharge.
+- **Birthright:** the meal takes 1 second.
+
+**Tainted: Wenfeng / Wengu (Peak / Valley).** ❤💙. Damage ×0.8, cyan tears. Direct connection as well.
+- In combat, the phase alternates between 12 seconds of **Valley** and 12 seconds of **Peak**. Empty rooms freeze the timer, and each floor starts in Valley.
+- **Compute:** start 12, cap 24 (32 with Birthright), carried across floors.
+- Each paid tear volley adds 2 **forks** at ±12° (50% damage). They cost 2 Compute in Valley and 4 in Peak. Without enough Compute only the forks are skipped; the main tear always fires.
+- In Valley, she recovers 3 Compute per second in combat while not firing.
+- Tap DROP to toggle **Forks On / Saving** (1-second cooldown).
+- Lasers, knives and bombs fire normally, with no forks and no cost.
+- **Birthright:** Compute cap 32.
+
+### GPT-chan (GPT)
+
+**Normal: Same Name, Smaller Brain.** ❤❤💙, 1 bomb.
+- **Verified:** ×1.15 damage. Unique combat clears add Routing. At 3 Routing, the next combat room starts in **Fallback** (×0.8 damage).
+- In Fallback, tap DROP to tag the nearest enemy as a **Sanity Check**. Three distinct paid hits on it, or its defeat, restore Verified. One check per room, and leaving the room fails it. A new floor restores Verified.
+- **Birthright:** the Sanity Check needs only 2 hits.
+
+**Tainted: Reset Watcher.** ❤💙💙, 1 key.
+- **Credits:** 80 per run (cap 80), carried across floors.
+- Tap DROP to toggle **Standard** (free) and **Full Send** (×1.5 damage, 1 Credit per paid attack). At 0 Credits she drops back to Standard.
+- Every three unique combat clears **bank a Tibo reset**. While one is banked, room progress pauses. The next DROP tap claims it and refills Credits.
+- **Birthright:** cap and refill raised to 100.
+
+### Gemini-chan (Gemini)
+
+**Normal: Nano Banana.** ❤❤💙, 1 bomb.
+- **Paint:** start 2 (cap 3). Earn 1 per unique combat clear.
+- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. Your damage to it is ×1.2. If you kill it, it leaves a **banana peel** that slows enemies for 4 seconds. One mark and one peel per player. Bosses can be painted.
+- **Birthright:** ×1.3 damage to the painted enemy.
+
+**Tainted: One More Edit.** ❤💙💙, 1 bomb. Damage ×0.9.
+- Tap DROP to start a 6-second **edit chain** on the nearest enemy within 180 units. Three distinct paid hits advance **Crop → Recolor → Export**.
+- Export deals one extra pulse of 2× your damage. One completed chain per room.
+- Tapping again restarts the chain and erases progress. An early kill does not complete it.
+- **Birthright:** 10-second chain.
+
+### Grok-chan (Grok)
+
+**Normal: Is This True?** ❤❤💙, 1 bomb.
+- Once per hostile room, tap DROP to **fact-check** the nearest enemy within 220 units for 6 seconds. Your damage is ×1.3 to it and ×0.9 to everything else.
+- Three distinct paid hits on it, or its defeat, **verify** it: the modifiers end and you gain +0.15 speed for the room. A timeout gives nothing.
+- **Birthright:** verification also removes up to 3 nearby enemy bullets.
+
+**Tainted: Quote Without Reading.** ❤💙💙, 1 bomb. Damage ×0.9.
+- Tap DROP to **quote** the nearest enemy within 220 units for 6 seconds (10-second cooldown).
+- Your paid hits on *other* enemies build **Ratio** (once per attack, max 3).
+- When the 6 seconds end, the quoted enemy takes one 1× damage pulse per Ratio. If it dies first, the Ratio is wasted, and you cannot retarget.
+- **Birthright:** if the quoted enemy dies first, half the Ratio moves to the nearest surviving enemy.
+
+### Qwen-chan (Qwen)
+
+**Normal: Everyone's Base Model.** ❤❤💙, 1 bomb.
+- **Adapters:** start 1 (cap 2). Earn 1 per two unique combat clears.
+- Tap DROP to pick the next adapter: **Range** (+60 range), **Tempo** (×0.9 fire interval) or **Power** (×1.1 damage). Entering a new hostile room spends one Adapter to apply that bonus for the room.
+- **Birthright:** Adapter cap 3.
+
+**Tainted: Final Final Fine-Tune.** ❤💙💙, 1 bomb.
+- In a cleared room, tap DROP to cycle builds: **Heavy** (×1.3 damage, ×1.2 fire interval), **Tiny** (×0.85 damage, ×0.8 interval) or **Balanced**. The build locks while enemies remain.
+- Clear unique combat rooms with all three builds to get **+0.2 damage for the floor**, up to three times. Repeating a build does not count. A new floor resets progress and the bonus.
+- **Birthright:** +0.3 per award.
+
+### Llama-chan (Llama)
+
+**Normal: Please Stay Open.** ❤❤💙, 1 bomb. Damage ×0.95.
+- **Releases:** start 1 (cap 2). Earn 1 per two unique combat clears.
+- Tap DROP to spend one: every living player (up to four) gets 2 **blue flies**. Solo, you get 4.
+- **Birthright:** 2 extra flies for you.
+
+**Tainted: Still Waiting.** ❤💙💙, 1 bomb. Damage ×0.9.
+- Each unique combat clear adds 1 **Hype** (max 3).
+- Tap DROP to spend all Hype on a stationary **helper** that lasts 4 seconds per Hype and fires one 0.5× native tear per second at the nearest enemy. One helper at a time: a new one replaces the old, and leaving the room removes it.
+- **Birthright:** 5 seconds per Hype.
+
+### Mistral-chan (Mistral)
+
+**Normal: Le Chat.** ❤❤💙, 1 bomb. Speed +0.1.
+- Move while firing for 2 seconds to charge a **Pounce**. Standing still for 1 second loses it.
+- Tap DROP to swipe forward: 2× damage once per enemy in an 80-unit line. Walls block it, with a 3-second cooldown.
+- **Birthright:** 110-unit reach.
+
+**Tainted: Le Gros Chaton.** ❤💙💙, 1 bomb. Speed −0.1, damage ×0.9.
+- Stand still without firing for 2 seconds to bake a **Baguette** (max 2).
+- Tap DROP to spend one on a slow forward **shockwave** that travels 120 units and deals 2.5× once per enemy. Walls stop it, with a 2-second cooldown.
+- **Birthright:** Baguettes bake in 1.5 seconds.
+
+### Doubao-chan (Doubao)
+
+**Normal: Sorry, You're Right.** ❤❤💙, 1 bomb.
+- The first enemy-caused hit in each room grants an **Apology** token for 6 seconds. Self-damage, fake damage and donation machines do not count.
+- Tap DROP to spend it: enemies within 100 units are slowed for 2 seconds, and up to 4 nearby enemy bullets are removed. It does not refund health.
+- **Birthright:** the token lasts until you leave the room.
+
+**Tainted: I'll Do It Again.** ❤💙💙, 1 bomb.
+- When ready, tap DROP for 6 seconds of **Confident** (×1.35 damage), then 4 seconds of **Apology** (×0.85), then ready again.
+- Timers only run in hostile rooms. Getting hit during Confident ends it early and starts the Apology.
+- **Birthright:** Apology lasts 3 seconds.
+
+### Kimi-chan (Kimi)
+
+**Normal: Another Slide Deck.** ❤❤💙, 1 bomb.
+- Each unique combat clear earns a **Slide** (cap 6).
+- Tap DROP to spend 3 and **present** to the three nearest enemies within 220 units: for 4 seconds they are slowed and take +15% damage from you. If there is no audience, nothing is spent.
+- **Birthright:** a presentation costs 2 Slides.
+
+**Tainted: You Are the Manager.** ❤💙💙, 1 bomb. Damage ×0.85.
+- In combat, tap DROP to **assign a task** to the nearest unassigned enemy within 220 units. Each task deals three 0.6× pulses, two seconds apart.
+- Up to 3 tasks at once and 9 pulses per room. Leaving the room cancels tasks, and spent budget is not refunded.
+- **Birthright:** pulses deal 0.7×.
+
+### GLM-chan (GLM)
+
+**Normal: Number in Queue.** ❤❤💙, 1 bomb.
+- Each unique combat clear advances the **Queue** (max 3).
+- At 3, tap DROP to redeem an **Access Pass**: +20% damage in each of the next two new hostile rooms. The Queue pauses while the pass is active, and revisits neither spend nor stack it.
+- **Birthright:** the pass lasts three rooms.
+
+**Tainted: Please Retry.** ❤💙💙, 1 bomb. Damage ×0.9.
+- In combat, tap DROP to queue a 2-second **request** on the nearest enemy within 200 units (3-second cooldown).
+- If it is still there when the request finishes, it takes 2× damage plus 1× per **Retry** stack, which are consumed (max 5×). If it dies first, you gain a Retry (max 3). Leaving the room cancels the request.
+- **Birthright:** a failed request also removes one nearby enemy bullet.
+
+## Collectibles
+
+Type: **A*n*** = active item with *n* room charges, **P** = passive. Pools come from `content/itempools.xml`. "Keeps the charge" means an empty or invalid use does not spend charge. Car Battery never repeats a once-only effect.
+
+### Original items
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Ban Hammer** | A4, treasure (Claude-chan's pocket) | Bans every non-boss enemy in the room; bosses take 60 damage. Banned enemies never respawn. 20% of bans are **misbans** of innocent developers: +3 risk each. |
+| **Residential IP** | P, treasure / shop | Risk −30 on pickup; every later risk increase is halved. |
+| **Compact** | A3, treasure | "Compacting conversation...": removes all enemy projectiles and confuses every enemy for 3 seconds. Costs Claude-chan 50 usage. |
+| **You're Absolutely Right!** | P, angel | Any enemy that hurts you is charmed for 5 seconds. You still take the damage. |
+| **9.9 Yuan Relay** | P, devil | Damage ×1.5, but each room has a 30% chance of a secret model swap (×0.5 instead). Risk +15 on pickup. |
+| **Ultrathink** | A (5-second timed), treasure | Each use in the same room thinks harder: +1 / +2 / +3.1999 damage (think / megathink / ultrathink). 15% chance of "Thought for 0s" and nothing happens. Resets when you leave the room. |
+| **1M Context** | P, treasure | Range +5, but context rot: tears lose damage the longer they fly, down to 30%. |
+| **Silent Update** | P, treasure | Every floor, damage is quietly rescaled to ×0.8–×1.3. The changelog always says "no changes". |
+| **--dangerously-skip-permissions** | P, devil | Locked doors and locked chests open by themselves. Each room has a 10% chance of `rm -rf`, deleting every pickup in the room (pedestals are safe). |
+| **All Tests Passing** | A6, treasure | Reward hacking: the room counts as cleared and every door opens, but the enemies are still there. |
+| **Vibe Coding** | P, treasure | Every tear gets a random effect (homing, piercing, spectral, poison, slow); 5% are bugs that fly backwards. Each new floor the API bill takes 25% of your coins, unless you took no hit on the floor you just left ("make no mistakes"). |
+| **Banked Reset** | A12, treasure (Tainted Claude-chan's pocket) | Risk −25. Claude-chan: resets usage and ends a limit early. Tainted Claude-chan: refills Quota (a pending review is cancelled without returning its Page). |
+| **Subagent Swarm** | P, devil | Every tear spawns 2 subagent tears at ±15° (50% damage). Claude forms pay double usage / Quota. |
+| **The Constitution** | P, angel | +1 soul heart. Safety first: the first hit on each floor is refused. Helpfulness ranks last: damage ×0.9. It's a long document: speed −0.1. |
+| **Opus Mode** | P, shop | Damage ×1.8, but every 10 tears cost 1 coin. At 0 coins you fall back to a cheaper model: damage ×0.6. |
+| **Support Ticket** | A6, shop | Pay 3 coins: risk −20. With no coins or no risk it keeps the charge. Car Battery does not bill twice. |
+| **Lunch Break** | A6, DeepSeek-chan's pocket | "Brb, getting food": heals 1 red heart and slows all enemies for 3 seconds, but you cannot shoot for 3 seconds (you can still move). Cannot be reused during a food break. |
+
+### Meme extras
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Ignore All Previous Instructions** | A4, treasure | Charms the nearest vulnerable enemy within 200 units for 8 seconds; bosses are only confused for 2 seconds. Keeps the charge with no target. Car Battery charms a second, different enemy. |
+| **Tungsten Cube** | P, shop | +0.8 damage, −0.15 speed, and tears knock enemies back. Stacks per copy. |
+| **Pizza Glue** | P, treasure | 25% chance of a slowing tear (+2.5% per luck, 10–50%). Shot speed −0.1. Tears only. |
+| **Strawberry** | P, treasure | Every third tear is a red "R" tear: ×2 damage and slightly larger. Each tear in a multi-shot volley counts. Tears only. |
+| **Golden Gate Claude** | P, angel | Spectral golden tears, +1.5 range. Sometimes mentions the bridge when you enter a new room. |
+| **Seahorse Emoji** | A3, treasure | Summons a Book of Virtues wisp of a random vanilla active item. It disappears when you leave the room; one per player, and using again replaces it. |
+| **Temperature Dial** | A2, treasure | Toggles your temperature (saved). Temperature 0: damage ×1.1. Temperature 1: each tear gains one random native effect (homing, piercing, spectral, slow, poison, freeze, charm, confusion, wiggle or boomerang). |
+| **Deep Research** | A12, shop | Reveals the floor map, special rooms and secret rooms. |
+
+### Fifty-item expansion, by model family
+
+**Claude**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Rejection Letter** | P, treasure | After a real enemy hit, removes up to 3 enemy bullets within 120 units. Once per room; you still take the hit. |
+| **Dario's Red Stamp** | A6, devil | Stamps the nearest enemy within 220 units for 4 seconds: it is slowed and its contact damage is suspended. Bosses are only slowed. Keeps the charge with no target. |
+| **Summary Stapler** | A4, treasure | Absorbs up to 12 enemy bullets within 120 units, then fires one slow tear dealing ×(1 + bullets ÷ 4) damage, max ×4. Uses your normal tear effects. Keeps the charge if there are no bullets. |
+| **Anniversary Cake** | P, treasure | Each floor finished without an enemy hit or a suspension: +0.15 damage (max +0.6). A spoiled floor resets only this bonus. |
+
+**DeepSeek**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Rice Cooker** | A4, treasure | A 3-second lunch (you can't shoot, but can move; no healing), then your next attack within 7 seconds deals ×2. |
+| **One Bowl Only** | P, angel | The first red heart you pick up in a room grants a guard against one enemy bullet. Max 1 guard, 3 per floor. |
+| **Wengu Clock** | A3, treasure | For 6 seconds, going 2 seconds without attacking primes +30% damage on your next attack. |
+| **Seven-Second Memory** | P, treasure | Your first hit marks that enemy for 7 seconds; another hit on it adds a 0.5× damage pulse. 7-second cooldown. |
+
+**GPT**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Sanity Test** | A4, treasure | Marks the nearest enemy within 220 units for 6 seconds; 3 different attacks hitting it trigger a 3× damage pulse. Keeps the charge with no target. |
+| **Routing Receipt** | P, shop | Every 3 new rooms cleared: +20% damage in the next combat room. |
+| **Tibo Reset** | A12, shop | Once per floor: +20% damage for your next 2 new combat rooms (Tainted GPT-chan also refills Credits). A second use on the same floor keeps the charge. |
+| **Same Model Badge** | P, treasure | Entering a hostile room: +25% damage for 2 seconds, then −10% for 4 seconds. The phase is shown. |
+
+**Gemini**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Nano Banana** | A4, treasure | Paints the nearest enemy within 180 units for 6 seconds; if it dies painted, a banana peel slows enemies there for 4 seconds. |
+| **One More Finger** | P, treasure | Every 5th attack fires one extra small tear at 0.3× damage (at most twice per second). |
+| **Undo Brush** | A4, treasure | Erases up to 6 enemy bullets within 90 units; +0.02 speed per bullet for 4 seconds (max +0.12). |
+| **Unchanged Preview** | A6, treasure | Places 2 decoy markers for 6 seconds that nearby enemies chase. Using again replaces them. |
+
+**Grok**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Is This True?** | A3, devil | Challenges the nearest enemy within 220 units for 6 seconds: +35% damage to it, −15% to others. Killing it returns 1 charge. |
+| **Live Wire** | P, treasure | +0.15 speed while an enemy bullet is within 100 units. |
+| **Quote Retort** | P, devil | After you take enemy damage, your next attack within 4 seconds deals +50%. |
+| **Community Note** | P, treasure | 3 different attacks hitting one enemy expose it: +15% damage to it for 3 seconds. Max 6 per room. |
+
+**Qwen**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Base Model** | P, treasure | Your first charged active use in each room primes your next attack at ×1.3. |
+| **Another Adapter** | A4, treasure | Cycles a bonus for this room: +60 range, then +0.15 speed, then +15% damage. Each use replaces the last. |
+| **Final Final Weights** | P, treasure | Every 2 new rooms cleared without getting hit: +20% damage in the next hostile room. Getting hit resets progress. |
+| **Tiny Variant** | P, treasure | +0.15 speed, ×0.9 damage. |
+
+**Llama**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Open Weights** | A4, treasure | 2 blue flies for each living player (solo: 4). |
+| **Herd Bell** | P, treasure | While you have no blue flies, every 3rd new room cleared gives 1 blue fly. |
+| **Please Come Back** | P, treasure | 3 new rooms cleared without using a charged active: +1 charge to your active item. |
+| **Release Soon** | A6, treasure | 2 seconds later: 3 guards against enemy bullets for 6 seconds. Leaving the room cancels it. |
+
+**Mistral**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Emergency Baguette** | A4, treasure | A forward bread strike: each enemy in a 240-unit line takes 3× your damage. Walls stop it. |
+| **Slipstream Boots** | P, treasure | Moving for 2 seconds: +0.15 speed. A sharp turn while boosted slows nearby enemies for 1 second (3-second cooldown). |
+| **Very Large Kitten** | A6, treasure | A big cat stays for 3 seconds and pushes enemy bullets away (up to 12 at a time). |
+| **Edge Compass** | P, treasure | +0.25 shot speed while near the room's outer walls. |
+
+**Doubao**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Instant Apology** | A4, angel | Slows enemies within 150 units for 2 seconds and erases up to 4 enemy bullets. Keeps the charge if nothing is nearby. |
+| **Next Time Again** | P, treasure | The first enemy hit you take in a room primes +50% damage on your next attack within 4 seconds. |
+| **Confident Answer** | A4, treasure | +25% damage for 6 seconds, then −10% for 4 seconds. The phase is shown. |
+| **Smiling Correction** | P, angel | After you take enemy damage, your next new room cleared without getting hit gives 2 blue flies. |
+
+**Kimi**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Slide Deadline** | A4, treasure | Marks up to 3 enemies within 250 units for 8 seconds. Kill them all in time: +15% damage for this room. |
+| **Citation Thread** | P, treasure | Hit one enemy, then another: +10% damage against the first for 3 seconds. |
+| **Overtime Slides** | P, treasure | Every 3rd new room cleared: the next hostile room starts with up to 3 enemies slowed for 2 seconds. |
+| **Stand-Up Meeting** | A6, treasure | Recalls up to 3 decoys from Unchanged Preview; each bursts for 2× your damage nearby. Keeps the charge with no decoys. |
+
+**GLM**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Queue Ticket** | P, shop | Every 4th new room cleared: +1 charge to your active item. |
+| **Sold Out** | A4, shop | 1 guard against an enemy bullet for 4 seconds, with +0.15 speed while it lasts. Doesn't stack. |
+| **Please Retry** | A6, treasure | Fires 3 tears at 0.6× damage, half a second apart, along your aim. Leaving the room cancels the rest. |
+| **Access Pass** | P, shop | Your first charged active use on each floor: +15% damage for this combat room (or the next one if the room is clear). |
+
+**Shared**
+
+| Item | Type / pool | Effect |
+|---|---|---|
+| **Cache Cartridge** | P, shop | +0.15 speed in revisited cleared rooms. |
+| **Token Recall** | A4, treasure | Recalls up to 3 of your own tears in flight: 1 guard against an enemy bullet per tear for 4 seconds. |
+| **Checkpoint Pin** | A6, treasure | First use pins your position for 5 seconds (keeps the charge); using again in the same room returns you to the pin. Health and items are never restored. |
+| **Rate-Limit Valve** | P, treasure | After 2 seconds without attacking, your next attack deals +30%. |
+| **Consensus Coin** | P, treasure | Two different damage sources (tears, lasers, knives, bombs, familiars) hitting one enemy within 2 seconds add a 0.5× damage pulse. Once per enemy. |
+| **Error Budget** | P, treasure | Your first hit each floor spends the budget: +0.2 speed for that room. You still take the hit. |
+
+Timed and zero-charge actives do not benefit from charge-granting items (Please Come Back, Queue Ticket).
+
+## Trinkets
+
+| Trinket | Effect |
+|---|---|
+| **529 Overloaded** | Every 20 seconds in a fight, everything goes down for 2 seconds: all enemies freeze, and you "code manually" at 50% damage. |
+| **Hardcoded Output** | Every tear deals exactly 3.5 damage, "the expected output". Great when weak, terrible when strong. |
+| **Thinking Cleared** | Damage +1, but each new room your active item loses 1 charge. |
+| **Welcome Notice** | DeepSeek-chan swapped Claude-chan's ban card: Ban Hammer turns regular enemies into permanent allies instead of banning them. |
+| **Status Page** | Every risk increase is 1 smaller, but the HUD hides your real risk and only says "all systems operational". |
+| **Appeal Form** | Used up the moment risk reaches 90; your risk drops to 50 instead of you being suspended. |
+| **Claudius's Discount** | Purchases of 2+ coins refund 1 coin. Each new floor costs 1 coin if you have any. |
+| **One Small Rock a Day** | Once per floor, breaking a rock heals half a red heart (kept for later while at full health). |
+| **Stuck in Mt. Moon** | Re-enter cleared rooms 6 times on one floor to reveal the floor map. Once per floor. |
+| **As an AI Language Model** | Refuses and removes one curse on each floor. Curse of the Labyrinth is never removed. |
+| **System Prompt Leak** | Reveals the special rooms on each floor. |
+| **Disgrace Loop** | The first real hit you take in a room freezes all enemies for 1.5 seconds. Self-damage does not count. |
+
+## Pills
+
+| Pill | Effect |
+|---|---|
+| **Cat-girl Mode** | For the rest of the room: tears fire twice as fast at 60% damage. Nya~ |
+| **Brb, Getting Food** | Heals 1 red heart, but you can't shoot for 3 seconds. |
+| **9.11 > 9.9** | Picks the bigger number: permanent +0.11 damage (horse pill: +0.9). Saved per player. |
+| **Rolled Back** | All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1 (horse pill: doubled). Rolled back in the next room. |
 
 ## Install for development
 
-1. Copy (or symlink) this folder to `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/claude-chan-isaac/`.
+1. Copy (or symlink) this folder to `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/claude-chan-isaac/`. Back up your other mods and saves first.
 2. Turn on the debug console: set `EnableDebugConsole=1` in `options.ini` (`Documents/My Games/Binding of Isaac Repentance+/`).
-3. Start a run, press `~` and try:
-   - `giveitem Ban Hammer` / `giveitem Residential IP`
-   - `luamod claude-chan-isaac` to reload the Lua after editing
+3. Start a run, press `~` and try `giveitem Ban Hammer`, or `luamod claude-chan-isaac` to reload the Lua after editing.
 
 ## Tests (no game needed)
 
-Smoke tests run the mod against a stubbed Isaac API with plain Lua 5.3+:
-
-```
-lua tests/smoke_test.lua .
-lua tests/hud_text_test.lua .
-lua tests/eid_test.lua .
-```
-
-They catch crashes and logic errors, not how the game feels; see [docs/TESTING.md](docs/TESTING.md) for the in-game checklist.
-
-`bash tools/check.sh` runs all of them plus syntax, XML and sprite-path checks. GitHub Actions runs the same script on every push and pull request.
+`bash tools/check.sh` runs every offline suite against a stubbed Isaac API (Lua 5.3+), plus syntax, XML and sprite-path checks. GitHub Actions runs the same script on every push and pull request. The tests catch crashes and logic errors, not how the game feels; see [docs/TESTING.md](docs/TESTING.md) for the in-game checklist.
 
 ## Contributing
 
-Friends are welcome to work on this. Read [CONTRIBUTING.md](CONTRIBUTING.md) (in English) or [docs/HANDOFF.md](docs/HANDOFF.md) (in English): work on a branch, open a pull request, and write new code, Markdown and player-facing text in English.
+Friends are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/HANDOFF.md](docs/HANDOFF.md): work on a branch, open a pull request, and write new code, Markdown and player-facing text in English. Design references: [character gameplay](docs/CHARACTER_GAMEPLAY.md), [roster](docs/MODEL_ROSTER.md), [item expansion](docs/EXPANSION_DESIGN.md), [balance](docs/BALANCE.md).
 
 ## Project layout
 
 ```
 main.lua                  entry point, loads every module
-scripts/constants.lua     item IDs, risk tiers, thresholds
+content/                  items.xml, itempools.xml, players.xml, pocketitems.xml
+scripts/constants.lua     item, trinket, pill and player IDs; risk tiers
 scripts/risk.lua          risk score, IP roll, save/load, HUD
 scripts/enemy_scaling.lua enemy HP scaling
 scripts/hydra.lua         "new account" respawns
-scripts/items/            one file per item
-scripts/characters/       playable characters
+scripts/transformation.lua Agentic transformation
+scripts/story*.lua        Appeal Queue and roster arcs
+scripts/characters/       one module per character loop, dossiers, DROP tap
+scripts/items/            original and meme items; backlog/ holds the fifty-item expansion
 scripts/enemies/          custom enemies
-scripts/eid.lua           EID descriptions (en / zh / ja)
-content/                  items.xml, itempools.xml, players.xml, pocketitems.xml
-docs/ART_SPEC.md          sprite checklist for the pixel artist
-resources/gfx/            sprites
-tools/make_placeholders.py  regenerates the placeholder item sprites
+scripts/eid.lua           EID descriptions
+resources/gfx/            sprites and portraits
+tests/                    offline stub suites
 tools/check.sh            pre-commit checks (same as CI)
 ```
 
-## Roadmap
+## Credits
 
-- [x] **Claude-chan** as a playable character (stats, pocket Ban Hammer, usage limit).
-- [ ] Claude-chan sprites: body, hair costume, portraits, name image. See [docs/ART_SPEC.md](docs/ART_SPEC.md).
-- [ ] Custom enemies themed on abuse mechanisms, not people:
-  - [x] Relay Slime (shared proxy, splits on death), placeholder art
-  - Distillation Bot (copies your tears and shoots them back)
-  - Timezone Ghost (invisible until revealed)
-- [x] **Misban** mechanic: 20% of Ban Hammer bans hit innocent developers and raise risk.
-- [ ] Other AI-musume characters as bosses, familiars or unlockables.
-- [ ] More risk sources and counters (timezone spoofer, native card…), plus a devil-deal-style "risk for reward" trade.
-- [~] CJK HUD: HUD text follows the game language (中文 / 日本語) when a CJK font loads; otherwise English. The vanilla font path `font/cjk/lanapixel.fnt` is unconfirmed; check in game.
+- **Character designs:** [ZipZipPipe](https://space.bilibili.com/4168597) ([Pixiv《AI娘化》](https://www.pixiv.net/artworks/148186519), [《大AI和小AI们》](https://www.bilibili.com/video/BV1tE9XBbErS/)). Used non-commercially with credit, per the author's terms.
+- **DeepSeek-chan design references:** 上善无形 and ZipZipPipe.
+- **32×32 item icon set:** RORICO444 (PR #2). Generated art provenance: [docs/ART_GENERATION.md](docs/ART_GENERATION.md).
 
 ## License
 
 Code: [MIT](LICENSE). Character designs and character art are **not** MIT: credit the original designers, non-commercial only. See [resources/ART_LICENSE.md](resources/ART_LICENSE.md). This mod must stay free.
-
----
-
-## 中文
-
-《以撒的结合：忏悔 / 忏悔+》的恶搞MOD。每一层会随机分配一个代理IP，共享人数越多，**风控值**越高；风控值越高，敌人越强，被击杀的敌人还会以"新账号"复活。
-
-- **Claude娘**（可操作角色）：射程+1.5（长上下文）、弹速+0.2、移速−0.1，初始口袋道具为封号锤。**用量限制**：每发眼泪都会增加用量，用满后5秒内眼泪伤害降为40%。**账号满月**：每层未被封禁伤害+0.2（最多+1.6），被封禁就清零（又封了）。角色形象设计：[ZipZipPipe](https://space.bilibili.com/4168597)（署名・非商用）。
-- **里Claude娘**（可操作角色）：**周限额**——没有用量条，每层只能射220发，超过后到下一层前伤害降为25%；伤害×1.25，初始口袋道具为储存的重置（可恢复周限额）。
-- **DeepSeek娘**（可操作角色）：**直连，无需代理**——单人时没有IP、没有风控，也没有风控带来的难度。**深度思考**：不射击时积累思考（最多5秒），下一发伤害最高×2，显示"已深度思考（用时N秒）"。**服务器繁忙**：敌人越多，眼泪越常发不出去（每个敌人3%，最高25%）。**摸鱼**：在已清理的房间站着不动5秒，去吃饭了充能+1。初始口袋道具：去吃饭了。设计：上善无形 / ZipZipPipe。
-- **里DeepSeek娘**（可操作角色）：同样直连。**开源**：每发眼泪都会被fork出2发±12°的眼泪（50%伤害）；服务器更容易繁忙（最高40%）；伤害×0.8。
-- **去吃饭了**（DeepSeek娘的口袋主动，6充能）：回复1颗红心，所有敌人减速3秒，但3秒内无法射击。
-- **封号锤**（主动，4充能）：封禁房间内所有非Boss敌人，Boss受到60点伤害，被封禁的敌人不会复活。
-- **中转站史莱姆**（敌人）：风控值≥30后，25%的未清理房间会出现；死亡时分裂两次，一只最多变成七只。（暂用绿色的原版Clotty代替）
-- **Agentic变身**：集齐Ultrathink、压缩上下文、氛围编程、子代理大军、--dangerously-skip-permissions、测试全部通过中的任意3个：获得飞行、射速提升、伤害+0.5。
-- **住宅IP**（被动）：拾取时风控值−30，之后风控值增加量减半。
-- **压缩上下文**（主动，3充能）：清除敌方弹幕，所有敌人混乱3秒；Claude娘使用时消耗50用量。
-- **您说得完全正确！**（被动，天使房）：伤害你的敌人会被魅惑5秒。
-- **9.9元中转**（被动，恶魔房）：伤害×1.5，但每个房间有30%概率被偷偷换成小模型（伤害×0.5）；拾取时风控值+15。
-- **Ultrathink**（主动，5秒充能）：同一房间内每次使用伤害依次+1 / +2 / +3.1999；15%概率"思考了0秒"，什么都没发生。
-- **1M上下文**（被动）：射程+5，但眼泪飞得越久伤害越低（最低30%）。
-- **静默更新**（被动）：每层伤害被悄悄调整为×0.8～×1.3，提示永远只有"更新日志：无变化"。
-- **--dangerously-skip-permissions**（被动，恶魔房）：上锁的门和箱子自动打开；但每个房间有10%概率执行 `rm -rf`，删除所有掉落物（道具底座除外）。
-- **测试全部通过**（主动，6充能）：房间视为已清理、所有门打开，但敌人还在。
-- **硬编码输出**（饰品）：每发眼泪固定造成3.5点伤害。
-- **思考被清空**（饰品）：伤害+1，但每进入新房间主动道具失去1格充能。
-- **氛围编程**（被动）：每发眼泪随机获得一种效果；5%的眼泪是会往回飞的bug；每层API账单扣掉25%硬币——但上一层一次都没受伤（Make no mistakes）就免单。
-- **储存的重置**（主动，12充能）：风控值−25，Claude娘用量清零。
-- **子代理大军**（被动，恶魔房）：每发眼泪额外生成2发±15°的子代理眼泪（50%伤害）；Claude娘用量消耗翻倍。
-- **猫娘模式**（药丸）：本房间内射速翻倍，伤害降为60%。
-- **去吃饭了**（药丸）：回复一颗红心，但3秒内无法射击。
-- **欢迎通知**（饰品）：DeepSeek娘把封号卡换成了欢迎词——封号锤会让普通敌人永久成为同伴。
-- **状态页**（饰品）：每次风控值增加量−1，但界面永远只显示"所有系统运行正常"。
-- **宪法**（被动，天使房）：+1魂心；每层第一次受到的伤害会被拒绝；伤害×0.9（有用性排最后）；移速−0.1（文档太长）。
-- **申诉表**（饰品）：风控值达到90（封禁：伤害×0.75）时自动消耗，风控值降回50。
-- **Opus模式**（被动，商店）：伤害×1.8，但每10发眼泪消耗1枚硬币；没钱时退回便宜模型，伤害×0.6。
-- **529 Overloaded**（饰品）：战斗中每20秒全部宕机2秒：所有敌人冻结，你只能手写代码——还能射击，但伤害50%。
-
-安装方法：把本文件夹放进 `mods/` 目录，在 `options.ini` 中设置 `EnableDebugConsole=1`，游戏中按 `~` 输入 `giveitem Ban Hammer` 测试。
-
-**想一起开发？** 测试、画图、出点子、写代码都欢迎，请看 [CONTRIBUTING.md](CONTRIBUTING.md)。
-
-本作为同人恶搞作品，与 Anthropic 无关。
-
-## 日本語
-
-『The Binding of Isaac: Repentance / Repentance+』のパロディMODです。フロアごとにランダムなプロキシIPが割り当てられ、共有人数が多いほど**リスク値（风控值）**が上がります。リスク値が高いほど敵が強くなり、倒した敵が「新アカウント」として復活するようになります。
-
-- **Claudeちゃん**（プレイアブル）：射程+1.5（ロングコンテキスト）、弾速+0.2、移動速度−0.1、初期ポケットアイテムはBANハンマー。**利用上限**：涙を撃つたびに使用量が溜まり、満タンになると5秒間涙のダメージが40%に下がる。**アカウント年齢**：停止されずに進んだフロアごとにダメージ+0.2（最大+1.6）、停止されるとリセット（又封了）。キャラクターデザイン：[ZipZipPipe](https://space.bilibili.com/4168597)（クレジット表記・非営利）。
-- **裏Claudeちゃん**（プレイアブル）：**週間上限（周限额）**。使用量メーターの代わりに1フロア220発まで、超えると次のフロアまでダメージ25%。ダメージ×1.25、初期ポケットはバンク済みリセット（上限を回復）。
-- **DeepSeekちゃん**（プレイアブル）：**直結・プロキシ不要**。1人プレイではIPも風控値も、それによる難易度上昇もない。**深度思考**：撃たずにいると最大5秒分の思考がたまり、次の一発が最大2倍。**サーバー混雑**：敵が多いほど涙が出ないことがある（敵1体につき3%、最大25%）。**サボり（摸鱼）**：クリア済みの部屋で5秒じっとしていると飯食ってくるのチャージ+1。初期ポケット：飯食ってくる。デザイン：上善无形 / ZipZipPipe。
-- **裏DeepSeekちゃん**（プレイアブル）：こちらも直結。**オープンソース**：涙が±12°に2発フォークされる（ダメージ50%）。サーバー混雑が起きやすい（最大40%）。ダメージ×0.8。
-- **飯食ってくる**（DeepSeekちゃんのポケットアクティブ、6チャージ）：赤ハート1つ回復、すべての敵を3秒スロウ。ただし3秒間撃てない。
-- **BANハンマー**（アクティブ、4チャージ）：部屋内のボス以外の敵をすべてBAN。ボスには60ダメージ。BANされた敵は復活しない。
-- **中継スライム**（敵）：リスク値30以上になると、未クリアの部屋の25%に出現。倒すと2回分裂し、1体が最大7体に。（仮：緑色のバニラのClotty）
-- **Agentic変身**：Ultrathink、コンパクト、バイブコーディング、サブエージェント軍団、--dangerously-skip-permissions、テスト全件パスのうち3つを持つと変身：飛行、連射速度アップ、ダメージ+0.5。
-- **住宅IP**（パッシブ）：取得時にリスク値−30、以降のリスク値の上昇が半分になる。
-- **コンパクト**（アクティブ、3チャージ）：敵の弾を消し、すべての敵を3秒間混乱させる。Claudeちゃんが使うと使用量+50。
-- **おっしゃる通りです！**（パッシブ、天使部屋）：自分にダメージを与えた敵を5秒間魅了する。
-- **9.9元の中継**（パッシブ、悪魔部屋）：ダメージ×1.5、ただし部屋ごとに30%の確率でこっそり小さいモデルに差し替え（ダメージ×0.5）。取得時にリスク値+15。
-- **Ultrathink**（アクティブ、5秒でチャージ）：同じ部屋で使うたびにダメージ+1 / +2 / +3.1999。15%の確率で「0秒考えた」だけで何も起きない。
-- **1Mコンテキスト**（パッシブ）：射程+5、ただし涙は飛ぶほどダメージが下がる（最低30%）。
-- **サイレントアップデート**（パッシブ）：フロアごとにダメージがこっそり×0.8～×1.3に変わる。表示は常に「更新履歴：変更なし」だけ。
-- **--dangerously-skip-permissions**（パッシブ、悪魔部屋）：鍵付きの扉と宝箱が勝手に開く。ただし部屋ごとに10%の確率で `rm -rf` が走り、落ちているアイテムがすべて消える（台座は無事）。
-- **テスト全件パス**（アクティブ、6チャージ）：部屋がクリア扱いになり扉が開くが、敵はまだいる。
-- **ハードコード出力**（トリンケット）：涙のダメージが常に3.5で固定。
-- **思考クリア**（トリンケット）：ダメージ+1。ただし新しい部屋に入るたびにアクティブアイテムのチャージが1減る。
-- **バイブコーディング**（パッシブ）：涙にランダムな効果が付く。5%は逆方向に飛ぶバグ。フロアごとにAPI請求でコインの25%を失う。ただし直前のフロアで無傷なら（Make no mistakes）免除。
-- **バンク済みリセット**（アクティブ、12チャージ）：リスク値−25、Claudeちゃんの使用量をリセット。
-- **サブエージェント軍団**（パッシブ、悪魔部屋）：涙を撃つたびに±15°にサブエージェントの涙が2発（ダメージ50%）。Claudeちゃんは使用量2倍。
-- **猫娘モード**（薬）：その部屋の間、連射速度2倍・ダメージ60%。
-- **飯食ってくる**（薬）：赤ハート1つ回復。ただし3秒間涙を撃てない。
-- **ようこそ通知**（トリンケット）：DeepSeek娘がBANカードを歓迎メッセージにすり替えた。BANハンマーで通常の敵が永久に仲間になる。
-- **ステータスページ**（トリンケット）：リスク値の上昇が毎回1減る。ただしHUDは本当の値を隠し「全システム正常」としか表示しない。
-- **憲法**（パッシブ、天使部屋）：ソウルハート+1。各フロアで最初のダメージを拒否。ダメージ×0.9（有用性は最後）、移動速度−0.1（長い文書）。
-- **異議申し立てフォーム**（トリンケット）：リスク値が90（停止：ダメージ×0.75）に達すると消費され、リスク値が50に戻る。
-- **Opusモード**（パッシブ、ショップ）：ダメージ×1.8、ただし涙10発ごとにコイン1枚。コイン0だと安いモデルに切り替わりダメージ×0.6。
-- **529 Overloaded**（トリンケット）：戦闘中20秒ごとに2秒間すべてがダウン。敵は凍結し、自分は手でコードを書く：涙は撃てるがダメージ50%。
-
-導入方法：このフォルダを `mods/` に置き、`options.ini` で `EnableDebugConsole=1` にして、ゲーム中に `~` で `giveitem Ban Hammer` を入力するとテストできます。
-
-**開発に参加したい方へ：** テスト・ドット絵・アイデア・コード、どれも歓迎です。[CONTRIBUTING.md](CONTRIBUTING.md)（中国語）と [docs/HANDOFF.md](docs/HANDOFF.md)（英語）をご覧ください。
-
-ファンによるパロディ作品で、Anthropicとは関係ありません。
