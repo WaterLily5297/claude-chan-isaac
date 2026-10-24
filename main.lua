@@ -87,6 +87,8 @@ include("scripts.characters.doubao_again"):Init(mod, Risk)
 include("scripts.characters.kimi_manager"):Init(mod, Risk)
 include("scripts.characters.glm_retry"):Init(mod, Risk)
 include("scripts.characters.dossiers"):Init(mod)
+-- Fixed look: item costumes never replace a mod form's own skin.
+include("scripts.characters.costume_lock"):Init(mod)
 local resumeStory = include("scripts.story"):Init(mod, Risk)
 include("scripts.story_roster"):Init(mod, Risk)
 include("scripts.eid"):Init()

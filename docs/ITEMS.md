@@ -10,7 +10,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 
 | Item | Pickup line | Quality | Charge | Effect |
 |---|---|---|---|---|
-| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there |
+| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there; Refused in uncleared boss, Boss Rush and challenge rooms (charge kept) |
 | Another Adapter | Fine-tuned again: cycle range/speed/DMG | 2 | 4 rooms | 4 room charges; Cycles a bonus for this room: +60 range, then +0.15 speed, then +15% damage; Each use replaces the last |
 | Ban Hammer | Ban the room. Mostly the right accounts | 3 | 4 rooms | Bans every non-boss enemy in the room; Bosses take 60 damage; Banned enemies never respawn as new accounts; 20% of bans are misbans of innocent developers: +3 risk each |
 | Banked Reset | Thanks for your patience: risk + limits reset | 2 | 12 rooms | Risk -25; Claude-chan: usage meter reset, ends a usage limit early; Tainted Claude-chan: Quota refilled; a pending review is cancelled without returning its Page |
@@ -50,7 +50,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 
 | Item | Pickup line | Quality | Effect |
 |---|---|---|---|
-| --dangerously-skip-permissions | Locks open themselves. rm -rf risk | 2 | Locked doors and locked chests open by themselves; Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals are safe) |
+| --dangerously-skip-permissions | Locks open themselves. rm -rf risk | 2 | Locked doors and locked chests open by themselves (special exits keep their requirements); Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals, big chests, trophies and beds are safe) |
 | 1M Context | Range up, but context rots in flight | 2 | Range +5; Context rot: tears lose damage as they fly (down to 30%) |
 | 9.9 Yuan Relay | DMG up?! Too good to be true | 2 | x1.5 damage; Each room: 30% chance of a secret model swap (x0.5 damage instead); Risk +15 on pickup |
 | Access Pass | Skip the line: first active use, DMG up | 2 | Your first charged active use on each floor: +15% damage for this combat room (or the next one if the room is clear) |
@@ -72,7 +72,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Next Time Again | I'll do better: hit, then +50% attack | 2 | The first enemy hit you take in a room primes +50% damage on your next attack within 4 seconds |
 | One Bowl Only | First red heart in a room guards a bullet | 1 | The first red heart you pick up in a room grants one guard against an ordinary enemy bullet; Max 1 guard, 3 per floor |
 | One More Finger | Count them again: every 5th attack +1 tear | 2 | Every 5th attack fires one extra small tear at 0.3x damage; At most twice per second |
-| Opus Mode | Huge DMG up, billed in coins | 3 | Damage x1.8; Every 10 tears cost 1 coin; With 0 coins: damage x0.6 instead (cheaper model) |
+| Opus Mode | Huge DMG up, billed in coins | 3 | Damage x1.8; Every 10 attacks (tears, lasers, knives, bombs...) cost 1 coin; With 0 coins: damage x0.6 instead (cheaper model) |
 | Overtime Slides | Working late: slow the next room's enemies | 1 | Every 3rd new room cleared: the next hostile room starts with up to 3 enemies slowed for 2 seconds |
 | Pizza Glue | Sticky slowing tears. Non-toxic, apparently | 1 | 25% chance for a slowing tear (+2.5% per luck, 10% to 50%); -0.1 shot speed; Tears only: lasers, knives and bombs are not affected |
 | Please Come Back | Don't leave us: clears recharge actives | 2 | 3 new rooms cleared without using a charged active: +1 charge to your active item; Timed and zero-charge actives don't benefit |
@@ -117,6 +117,6 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Pill | Effect |
 |---|---|
 | 9.11 > 9.9 | Picks the bigger number: permanent +0.11 damage; Horse pill: +0.9 damage instead; Saved per player |
-| Brb, Getting Food | Heals 1 red heart; Can't shoot for 3 seconds |
+| Brb, Getting Food | Heals 1 red heart (horse pill: 2); Can't shoot for 3 seconds |
 | Cat-girl Mode | For the rest of the room: tears x2 fire rate, damage x0.6; Nya~ |
 | Rolled Back | All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1; Horse pill: doubled; Rolled back in the next room |

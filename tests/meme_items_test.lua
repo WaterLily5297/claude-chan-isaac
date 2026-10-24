@@ -122,6 +122,12 @@ end
 local results = {}
 for i = 1, 4 do local t = tear(glue); fire("fire", t); results[i] = t:HasTearFlags(TearFlags.TEAR_SLOW) end
 assert(results[1] and not results[2] and results[3] and not results[4], "25% boundary is exclusive")
+-- A sticky tear keeps the native item color underneath the glaze (Ipecac green here).
+drawn, rolls[5] = 4, 0.1
+local green = tear(glue); green.Color = { R = 0.5, G = 1, B = 0.5, A = 1, RO = 0, GO = 0.2, BO = 0 }
+fire("fire", green); drawn = 4
+assert(green.Color[1] == 0.5 and green.Color[2] == 1 and math.abs(green.Color[6] - 0.42) < 1e-9,
+    "glue tints the native color instead of replacing it")
 local already = tear(glue, TearFlags.TEAR_SLOW); fire("fire", already)
 assert(drawn == 4 and already.Color == nil, "already-slow tears consume no roll")
 fire("fire", tear(none)); fire("fire", tear(nil)); fire("fire", tear({ ToPlayer = function() return nil end }))

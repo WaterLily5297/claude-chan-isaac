@@ -2,6 +2,7 @@
 -- helper that fires weak native tears. Fictional gameplay; no claim about any
 -- company's release plans. Saved per player: Hype and unique clears. The helper is transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Hype = {}
@@ -168,7 +169,7 @@ function Hype:Init(mod, Risk)
         each(function(_, b, i)
             local text = string.format("Llama-chan: Hype %d/%d", b.state.hype, HYPE_CAP)
             if b.helper then text = text..string.format("  Helper %ds", math.ceil(b.helper.remaining / 30)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.6, 0.95, 0.45, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.6, 0.95, 0.45, 0.9)
         end)
     end)
 end

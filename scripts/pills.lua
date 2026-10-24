@@ -2,9 +2,11 @@
 --
 -- Cat-girl Mode: for the rest of the room, tears fire twice as fast but deal
 --   60% damage. Nya.
--- Brb, Getting Food: heals one red heart, but you stop shooting for 3 seconds.
+-- Brb, Getting Food: heals one red heart (two from a horse pill), but you stop
+--   shooting for 3 seconds.
 
 local Constants = include("scripts.constants")
+local FireRate = include("scripts.fire_rate")
 
 local Pills = {}
 
@@ -25,9 +27,12 @@ function Pills:Init(mod, MealBreak)
         Game():GetHUD():ShowItemText("Cat-girl Mode", "Nya~")
     end, Constants.Pill.CAT_GIRL)
 
-    mod:AddCallback(ModCallbacks.MC_USE_PILL, function(_, _, player)
+    mod:AddCallback(ModCallbacks.MC_USE_PILL, function(_, _, player, _, color)
         if not MealBreak:Start(player, FOOD_BREAK_FRAMES) then return end
-        player:AddHearts(FOOD_HEAL)
+        -- A horse pill doubles the meal, as vanilla horse pills double their effect.
+        local horse = type(color) == "number" and PillColor and PillColor.PILL_GIANT_FLAG
+            and (color & PillColor.PILL_GIANT_FLAG) ~= 0
+        player:AddHearts(horse and FOOD_HEAL * 2 or FOOD_HEAL)
         Game():GetHUD():ShowItemText("Brb, getting food", "")
     end, Constants.Pill.GETTING_FOOD)
 
@@ -45,7 +50,7 @@ function Pills:Init(mod, MealBreak)
         if not player:GetData().ccCatGirl then return end
 
         if flag == CacheFlag.CACHE_FIREDELAY then
-            player.MaxFireDelay = player.MaxFireDelay * CAT_FIRE_DELAY_MULT
+            player.MaxFireDelay = FireRate.ScaleInterval(player.MaxFireDelay, CAT_FIRE_DELAY_MULT)
         elseif flag == CacheFlag.CACHE_DAMAGE then
             player.Damage = player.Damage * CAT_DAMAGE_MULT
         end

@@ -2,6 +2,7 @@
 -- there when the request lands, it hits hard. Failed requests earn bounded,
 -- deterministic Retry stacks. Saved per player: Retry stacks only.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Feedback = include("scripts.characters.feedback")
 local Tools = include("scripts.characters.target_tools")
@@ -160,7 +161,7 @@ function Retry:Init(mod, Risk)
             local text = string.format("GLM-chan: Retries %d/%d", b.state.retries, RETRY_CAP)
             if b.request then text = text..string.format("  Request Pending %ds", math.ceil(b.request.remaining / 30))
             elseif b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.4, 0.8, 1, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.4, 0.8, 1, 0.9)
         end)
     end)
 end

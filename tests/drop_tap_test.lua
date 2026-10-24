@@ -13,8 +13,9 @@ function Game() return {
 function GetPtrHash(p) return p.pointer end
 local function player(pointer, controller)
     return {pointer=pointer, InitSeed=pointer*100, kind=51, ControllerIndex=controller,
-        dead=false, controls=true,
+        dead=false, controls=true, ghost=false,
         IsDead=function(p) return p.dead end,
+        IsCoopGhost=function(p) return p.ghost end,
         AreControlsEnabled=function(p) return p.controls end,
         GetPlayerType=function(p) return p.kind end}
 end
@@ -51,18 +52,24 @@ assert(not poll(q,109,false)); assert(not poll(p,110,true))
 assert(not poll(q,110,false)); assert(not poll(q,111,true))
 assert(poll(wrapper,111,false)); assert(poll(q,112,false))
 
--- Loss of control, death, pause, unsupported type and controller swaps cancel.
-for _, reason in ipairs({'controls','dead','pause','unsupported','controller','seed','kind'}) do
+-- A co-op ghost holding DROP never triggers its form's ability.
+tracker:Reset(); p.ghost=true
+for n=150,160 do assert(not poll(p,n,n%2==0), 'co-op ghost must not tap') end
+p.ghost=false
+
+-- Loss of control, death, co-op ghost, pause, unsupported type and controller swaps cancel.
+for _, reason in ipairs({'controls','dead','ghost','pause','unsupported','controller','seed','kind'}) do
     tracker:Reset(); p.controls=true; p.dead=false; paused=false
     poll(p,200,false); poll(p,201,true)
     if reason=='controls' then p.controls=false
     elseif reason=='dead' then p.dead=true
+    elseif reason=='ghost' then p.ghost=true
     elseif reason=='pause' then paused=true
     elseif reason=='controller' then p.ControllerIndex=p.ControllerIndex+1
     elseif reason=='seed' then p.InitSeed=p.InitSeed+1
     elseif reason=='kind' then p.kind=p.kind+1 end
     assert(not poll(p,202,true,reason~='unsupported'))
-    p.controls=true; p.dead=false; paused=false
+    p.controls=true; p.dead=false; p.ghost=false; paused=false
     assert(not poll(p,203,false), reason..' leaked a release')
     assert(not poll(p,204,true)); assert(poll(p,205,false), reason..' never rearmed')
 end

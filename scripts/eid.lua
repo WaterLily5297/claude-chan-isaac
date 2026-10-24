@@ -242,14 +242,14 @@ local descriptions = {
         ja_jp = { "サイレントアップデート", "フロアごとにダメージがこっそり×0.8～×1.3に変わる#更新履歴には一切書かれない" },
     },
     [Constants.Item.SKIP_PERMISSIONS] = {
-        en_us = { "--dangerously-skip-permissions", "Locked doors and locked chests open by themselves#Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals are safe)" },
-        zh_cn = { "--dangerously-skip-permissions", "上锁的门和上锁的箱子自动打开#每个房间有10%概率执行rm -rf，删除房间内所有掉落物（道具底座除外）" },
-        ja_jp = { "--dangerously-skip-permissions", "鍵付きの扉と鍵付きの宝箱が勝手に開く#部屋ごとに10%の確率でrm -rf。部屋の落ちているアイテムがすべて消える（台座のアイテムは無事）" },
+        en_us = { "--dangerously-skip-permissions", "Locked doors and locked chests open by themselves (special exits keep their requirements)#Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals, big chests, trophies and beds are safe)" },
+        zh_cn = { "--dangerously-skip-permissions", "上锁的门和上锁的箱子自动打开（特殊出口仍需原本条件）#每个房间有10%概率执行rm -rf，删除房间内所有掉落物（道具底座、大箱子、奖杯和床除外）" },
+        ja_jp = { "--dangerously-skip-permissions", "鍵付きの扉と鍵付きの宝箱が勝手に開く（特殊な出口は本来の条件のまま）#部屋ごとに10%の確率でrm -rf。部屋の落ちているアイテムがすべて消える（台座のアイテム、大きな宝箱、トロフィー、ベッドは無事）" },
     },
     [Constants.Item.TESTS_PASSING] = {
-        en_us = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there" },
-        zh_cn = { "测试全部通过", "房间视为已清理，所有门打开#但敌人还在（断言被删了）" },
-        ja_jp = { "テスト全件パス", "部屋がクリア扱いになり、すべての扉が開く#敵はまだいる（アサーションを消しただけ）" },
+        en_us = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there#Refused in uncleared boss, Boss Rush and challenge rooms (charge kept)" },
+        zh_cn = { "测试全部通过", "房间视为已清理，所有门打开#但敌人还在（断言被删了）#未清理的头目房、Boss Rush和挑战房中无法使用（不消耗充能）" },
+        ja_jp = { "テスト全件パス", "部屋がクリア扱いになり、すべての扉が開く#敵はまだいる（アサーションを消しただけ）#未クリアのボス部屋、ボスラッシュ、チャレンジ部屋では使えない（チャージは減らない）" },
     },
     [Constants.Item.VIBE_CODING] = {
         en_us = { "Vibe Coding", "Every tear gets a random effect (homing, piercing, spectral, poison, slow)#5% of tears are bugs that fly backwards#Each new floor: lose 25% of your coins (API bill)#Make no mistakes: no hit on the floor waives the bill" },
@@ -272,9 +272,9 @@ local descriptions = {
         ja_jp = { "憲法", "ソウルハート+1#安全第一：各フロアで最初に受けるダメージを拒否#有用性は最後：ダメージ×0.9#長い文書：移動速度-0.1" },
     },
     [Constants.Item.OPUS_MODE] = {
-        en_us = { "Opus Mode", "Damage x1.8#Every 10 tears cost 1 coin#With 0 coins: damage x0.6 instead (cheaper model)" },
-        zh_cn = { "Opus模式", "伤害×1.8#每发射10发眼泪消耗1枚硬币#硬币为0时：伤害改为×0.6（退回便宜模型）" },
-        ja_jp = { "Opusモード", "ダメージ×1.8#涙10発ごとにコイン1枚を消費#コイン0のとき：ダメージ×0.6（安いモデルに切り替え）" },
+        en_us = { "Opus Mode", "Damage x1.8#Every 10 attacks (tears, lasers, knives, bombs...) cost 1 coin#With 0 coins: damage x0.6 instead (cheaper model)" },
+        zh_cn = { "Opus模式", "伤害×1.8#每攻击10次（眼泪、激光、刀、炸弹等）消耗1枚硬币#硬币为0时：伤害改为×0.6（退回便宜模型）" },
+        ja_jp = { "Opusモード", "ダメージ×1.8#攻撃10回（涙・レーザー・ナイフ・爆弾など）ごとにコイン1枚を消費#コイン0のとき：ダメージ×0.6（安いモデルに切り替え）" },
     },
 }
 
@@ -342,9 +342,9 @@ local pillDescriptions = {
         ja_jp = { "猫娘モード", "その部屋の間：連射速度×2、ダメージ×0.6#にゃ～" },
     },
     [Constants.Pill.GETTING_FOOD] = {
-        en_us = { "Brb, Getting Food", "Heals 1 red heart#Can't shoot for 3 seconds" },
-        zh_cn = { "去吃饭了", "回复1颗红心#3秒内无法射击" },
-        ja_jp = { "飯食ってくる", "赤ハート1つ回復#3秒間涙を撃てない" },
+        en_us = { "Brb, Getting Food", "Heals 1 red heart (horse pill: 2)#Can't shoot for 3 seconds" },
+        zh_cn = { "去吃饭了", "回复1颗红心（巨型药丸：2颗）#3秒内无法射击" },
+        ja_jp = { "飯食ってくる", "赤ハート1つ回復（巨大カプセル：2つ）#3秒間涙を撃てない" },
     },
 }
 

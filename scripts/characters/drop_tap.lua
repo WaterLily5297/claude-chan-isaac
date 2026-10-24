@@ -17,8 +17,9 @@ function DropTap.New()
 
     function tracker:Poll(player, enabled)
         local pointer = GetPtrHash(player)
+        -- A co-op ghost keeps its character type but must not use abilities.
         if not enabled or player:IsDead() or not player:AreControlsEnabled()
-            or Game():IsPaused() then
+            or (player.IsCoopGhost and player:IsCoopGhost()) or Game():IsPaused() then
             records[pointer] = nil
             return false
         end

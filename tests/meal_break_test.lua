@@ -117,6 +117,11 @@ tick(1); assert(Meal:Remaining(p)==0 and input(p,0)==nil and p.FireDelay==0)
 assert(Meal:Remaining(q)==17,"co-op meal clocks must remain independent")
 q.FireDelay=200; fire("MC_USE_PILL",51,q)
 assert(Meal:Remaining(q)==90 and q.FireDelay==200,"a new meal must not shorten another cooldown")
+PillColor={PILL_GIANT_FLAG=2048}
+local before=q.hearts; fire("MC_USE_PILL",51,q,0,3|2048)
+assert(q.hearts==before+4,"a horse Getting Food heals two hearts")
+before=q.hearts; fire("MC_USE_PILL",51,q,0,3)
+assert(q.hearts==before+2,"a normal pill heals one heart"); PillColor=nil
 tick(90); assert(input(q,0)==nil and q.FireDelay==110)
 assert(use(p).Discharge); tick(3)
 frame=frame-10; fire("MC_POST_UPDATE")

@@ -115,9 +115,11 @@ function Env.New(root)
         p.items, p.charge, p.active, p.hearts, p.canHeal, p.flies, p.fired, p.aim = {}, {}, {}, 2, true, 0, {}, Vector(1, 0)
         function p:HasCollectible(id) return (self.items[id] or 0) > 0 end
         function p:GetCollectibleNum(id) return self.items[id] or 0 end
-        function p:GetActiveItem(s) return self.active[s or 0] or 0 end
-        function p:GetActiveCharge(s) return self.charge[s or 0] or 0 end
-        function p:SetActiveCharge(c, s) self.charge[s or 0] = c end
+        -- Engine active slots are 0-3; a use outside a slot reports -1.
+        local function slot(s) s = s or 0; assert(s >= 0 and s <= 3, "invalid active slot "..tostring(s)); return s end
+        function p:GetActiveItem(s) return self.active[slot(s)] or 0 end
+        function p:GetActiveCharge(s) return self.charge[slot(s)] or 0 end
+        function p:SetActiveCharge(c, s) self.charge[slot(s)] = c end
         function p:GetHearts() return self.hearts end
         function p:CanPickRedHearts() return self.canHeal end
         function p:AddBlueFlies(n) self.flies = self.flies + n end
@@ -254,8 +256,8 @@ function Env.New(root)
         for _, npc in ipairs({ ... }) do npc:TakeDamage(player.Damage, 0, EntityRef(t)) end
         return t
     end
-    function env.use(id, player, flags)
-        return env.fire("MC_USE_ITEM", id, id, { RandomInt = function() return 0 end }, player, flags or UseFlag.USE_OWNED, 0)
+    function env.use(id, player, flags, slot)
+        return env.fire("MC_USE_ITEM", id, id, { RandomInt = function() return 0 end }, player, flags or UseFlag.USE_OWNED, slot or 0)
     end
     -- A charged active use, confirmed by the next update.
     function env.chargedUse(player, id)

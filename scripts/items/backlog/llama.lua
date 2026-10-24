@@ -1,6 +1,6 @@
 -- Llama family backlog items 25-28.
 --
--- 25 Open Weights (A4): two native blue flies for each living player, up to
+-- 25 Open Weights (A4): two native blue flies for each living player (co-op ghosts excluded), up to
 --    four recipients; a solo player receives four. Car Battery adds nothing.
 --    Existing familiars are untouched.
 -- 26 Herd Bell (P): while the owner has no blue flies, every third unique
@@ -14,6 +14,7 @@
 --    the pending release without refund.
 
 local Constants = include("scripts.constants")
+local Tools = include("scripts.characters.target_tools")
 
 local Llama = {}
 
@@ -38,7 +39,7 @@ function Llama:Init(mod, Risk, C)
         if C.Battery(flags) then return C.NoUse() end
         local living = {}
         for _, p in ipairs(C.Players()) do
-            if not p:IsDead() and #living < 4 then living[#living + 1] = p end
+            if Tools.Active(p) and #living < 4 then living[#living + 1] = p end
         end
         local each = #living == 1 and 4 or 2
         for _, p in ipairs(living) do p:AddBlueFlies(each, p.Position, nil) end

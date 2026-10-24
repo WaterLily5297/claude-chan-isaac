@@ -124,7 +124,7 @@ print("PASS Disgrace Loop: real hits only, owner, eligibility, once per room, hi
 
 -- Rolled Back -----------------------------------------------------------------------------------
 fire("MC_USE_PILL", 61, 61, p1, 0)
-assert(p1.Damage == 4.5 and p1.MaxFireDelay == 8 and math.abs(p1.MoveSpeed - 1.2) < 1e-9)
+assert(p1.Damage == 4.5 and math.abs(p1.MaxFireDelay - 7.8) < 1e-9 and math.abs(p1.MoveSpeed - 1.2) < 1e-9)
 assert(p1.TearRange == 300 and math.abs(p1.ShotSpeed - 1.1) < 1e-9 and p1.Luck == 1)
 p2:EvaluateItems(); assert(p2.Damage == 3.5, "owner only")
 fire("MC_POST_NEW_ROOM"); assert(p1.Damage == 3.5 and p1.data.ccRolledBack == nil, "rolled back next room")

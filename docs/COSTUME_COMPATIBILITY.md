@@ -2,15 +2,21 @@
 
 Required by the owner on 2026-10-23 for all eleven normal and eleven tainted forms. All 22 forms and the fifty additional collectibles now exist in source. The 2026-10-24 engine smoke test exercised type changes, three native item additions/removals and damage calls for every form. It does not accept the visual cases below; see ENGINE_AUDIT_2026-10-24.md.
 
+## Fixed look (owner, 2026-10-24)
+
+The owner replaced the earlier "let the engine apply item costumes" rule: every mod form keeps its own appearance, like a character whose look never changes, while every item effect still applies. `scripts/characters/costume_lock.lua` calls `ClearCostumes` on mod forms only. It clears when the collectible count, temporary effect count, trinkets or player type change, after an active item, card or pill use, on every new room and on game start/continue. Each trigger clears for three frames because costumes can land a frame late, and a 30-frame sweep catches item-state costumes. Lock state lives in `GetData` and is never saved. When a player leaves a mod form (Clicker, revival) the held collectibles' costumes are added back; transformation layers are not rebuilt for that player.
+
+Vanilla Lua has no hook that refuses a costume, and `players.xml` has no attribute that disables item costumes, so this is the vanilla-compatible route. Effects, stats, flight, scale, tear changes and transformations are untouched; only their drawn layers disappear. Known trade-offs to confirm in game: wings no longer show during flight, the Holy Mantle shield layer and other item-state costumes are hidden, a one-frame flash is possible, and skin-colour changes delivered through costumes revert.
+
 ## Art and implementation contract
 
-Register skins through `content/players.xml`; preserve the standard animation, crop cells, pivots and attachment positions. Never replace global vanilla player assets. Let the engine apply item costumes, skin changes, flight, scaling and transformations. Do not restore an untouched illustration every frame, clear item costumes or reset player scale/color. Legitimate vanilla replacements may hide character details; do not draw a second face over them.
+Register skins through `content/players.xml`; preserve the standard animation, crop cells, pivots and attachment positions. Never replace global vanilla player assets. Let the engine apply skin changes, flight, scaling and transformation effects; item costume layers are cleared by the fixed-look lock above. Do not restore an untouched illustration every frame or reset player scale/color. Legitimate vanilla replacements may hide character details; do not draw a second face over them.
 
 Center the underlying face and torso while retaining intentional asymmetric ornaments. Align eyes, mouth, chin and shoulders to the template. A centered bounding box does not prove anatomical symmetry. If an observed overlap requires separate hair/clothing costumes, choose layers and priorities against that specific conflict. Avoid unconditional high-priority overlays and unverified costume suffixes. New item appearance effects must have a reversible lifecycle and leave unrelated costumes intact.
 
 ## Current source review and packing correction
 
-Character and item Lua contain no player spritesheet replacement, costume removal or player-scale override. The reaction adapter supplies empty fallback entries only for unsupported characters and preserves explicit support. This is source review, not visual evidence.
+Character and item Lua contain no player spritesheet replacement or player-scale override; costume removal is limited to `costume_lock.lua`. The reaction adapter supplies empty fallback entries only for unsupported characters and preserves explicit support. This is source review, not visual evidence.
 
 Nine added normal skins used head bottom 30 and a complete-character pose in the carry-head cell. The importer now uses a 28x26 head envelope with bottom 27 and places that same front head into the carry cell at offset (16,16). Locally inspected base-animation pivots are (16,28) and (32,44), respectively. This keeps the same head anchor and removes the extra body during carrying. Original-four final sheets are unchanged after their movement pass.
 

@@ -2,7 +2,9 @@
 -- Fictional gameplay; no claim about any company's future release policy.
 -- Saved per player; duplicate Llamas own separate budgets.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
+local Tools = include("scripts.characters.target_tools")
 local Llama = {}
 
 local RELEASE_START, RELEASE_CAP = 1, 2
@@ -90,7 +92,7 @@ function Llama:Init(mod, Risk)
         local recipients = {}
         for i = 0, Game():GetNumPlayers() - 1 do
             local ally = Isaac.GetPlayer(i)
-            if not ally:IsDead() and #recipients < MAX_RECIPIENTS then recipients[#recipients + 1] = ally end
+            if Tools.Active(ally) and #recipients < MAX_RECIPIENTS then recipients[#recipients + 1] = ally end
         end
         local each = #recipients == 1 and SOLO_FLIES or SHARED_FLIES
         for _, ally in ipairs(recipients) do ally:AddBlueFlies(each, ally.Position, nil) end
@@ -159,7 +161,7 @@ function Llama:Init(mod, Risk)
         each(function(_, b, i)
             local s = b.state
             HudText:Draw(string.format("Llama-chan: Releases %d/%d  Next %d/%d", s.releases, RELEASE_CAP,
-                s.clears, CLEARS_PER_RELEASE), 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.65, 1, 0.5, 0.9)
+                s.clears, CLEARS_PER_RELEASE), 50, HudLayout.PlayerRow(i), 0.65, 1, 0.5, 0.9)
         end)
     end)
 end

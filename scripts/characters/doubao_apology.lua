@@ -1,6 +1,7 @@
 -- Normal Doubao: Sorry, You're Right. The first enemy hit in a room earns an Apology.
 -- It never refunds health or cancels the hit. Saved per player; fictional role.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Feedback = include("scripts.characters.feedback")
 local Doubao = {}
@@ -161,7 +162,7 @@ function Doubao:Init(mod, Risk)
             local text = "Doubao-chan: No apology needed"
             if s.token == 0 then text = "Doubao-chan: Apology Ready"
             elseif s.token then text = string.format("Doubao-chan: Apology Ready %ds", math.ceil(s.token / 30)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 1, 0.7, 0.6, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.6, 0.9)
         end)
     end)
 end

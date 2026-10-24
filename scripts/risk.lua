@@ -37,6 +37,9 @@ local APPEAL_RESET_TO = 50
 
 local started = false
 local hitThisRoom = false
+-- Set on a new floor; the save runs on the next update, after every module
+-- has finished its own floor callbacks.
+local checkpoint = false
 
 local function clamp(v)
     return math.max(0, math.min(Constants.RISK_MAX, v))
@@ -62,10 +65,14 @@ local function anyPlayerHasTrinket(trinket)
     return false
 end
 
--- DeepSeek-chan needs no proxy (she connects directly), and the model roster
--- families have their own loops, so neither is covered by the proxy account.
+-- The proxy account belongs to the Claude forms. DeepSeek-chan connects
+-- directly, the model roster families have their own loops, and vanilla (or
+-- other mods') characters play vanilla: no IP, risk, scaling or Hydra.
 local function covered(player)
-    return player ~= nil and not Constants.IsDeepSeek(player) and not ModelRoster:IsFamily(player)
+    if player == nil or Constants.IsDeepSeek(player) or ModelRoster:IsFamily(player) then return false end
+    local t = player:GetPlayerType()
+    return (Constants.Player.CLAUDE_CHAN >= 0 and t == Constants.Player.CLAUDE_CHAN)
+        or (Constants.Player.CLAUDE_CHAN_B >= 0 and t == Constants.Player.CLAUDE_CHAN_B)
 end
 
 -- When no player is covered the whole IP / risk system sleeps: risk reads as
@@ -193,6 +200,7 @@ function Risk:Init(mod)
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, isContinued)
         hitThisRoom = false -- Do not inherit a previous run's transient latch.
+        checkpoint = false
         if isContinued then
             Risk:Load(mod)
         else
@@ -206,7 +214,7 @@ function Risk:Init(mod)
         if shouldSave then
             Risk:Save(mod)
         end
-        started = false
+        started, checkpoint = false, false
     end)
 
     -- POST_NEW_LEVEL also fires before POST_GAME_STARTED when a run begins;
@@ -214,6 +222,17 @@ function Risk:Init(mod)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
         if started then
             Risk:RollIp()
+            checkpoint = true
+        end
+    end)
+
+    -- Checkpoint every floor as well as on exit. If the game closes without a
+    -- normal exit (crash, forced close), continuing must not load mod state
+    -- from an older session or a different run.
+    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+        if started and checkpoint then
+            checkpoint = false
+            Risk:Save(mod)
         end
     end)
 

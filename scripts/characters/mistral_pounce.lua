@@ -2,6 +2,7 @@
 -- No player teleport or contact immunity. The ready Pounce is saved per player;
 -- charge and cooldown are transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Feedback = include("scripts.characters.feedback")
 local Mistral = {}
@@ -160,7 +161,7 @@ function Mistral:Init(mod, Risk)
             if b.state.ready then text = "Mistral-chan: Pounce Ready"
             elseif b.cooldown > 0 then text = string.format("Mistral-chan: Cooldown %ds", math.ceil(b.cooldown / 30))
             else text = string.format("Mistral-chan: Charge %d%%", math.floor(b.charge * 100 / CHARGE_FRAMES)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 1, 0.7, 0.3, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.3, 0.9)
         end)
     end)
 end

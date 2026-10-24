@@ -1,6 +1,7 @@
 -- Normal Kimi: Another Slide Deck. Unique clears earn Slides; DROP presents them.
 -- Saved per-player Slides and unique clears. The live presentation is transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Kimi = {}
@@ -199,7 +200,7 @@ function Kimi:Init(mod, Risk)
         each(function(p, b, i)
             local text = string.format("Kimi-chan: Slides %d/%d  Cost %d", b.state.slides, SLIDE_CAP, cost(p))
             if b.show then text = text..string.format("  Presenting %ds", math.ceil(b.show.remaining / 30)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.55, 0.65, 1, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.55, 0.65, 1, 0.9)
         end)
     end)
 end

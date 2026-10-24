@@ -40,7 +40,7 @@ Everything below is implemented in source and covered by offline tests against a
 - **"Unique combat clear"** means clearing a hostile room for the first time. Re-entering a cleared room never counts, so nothing can be farmed.
 - **"Ordinary enemy bullet"** means a normal enemy projectile. Effects that remove bullets never cancel damage you have already taken.
 - Character resources are saved per player and survive save/continue. A new run resets them. Co-op players each keep their own state.
-- Every ability uses the game's native weapons, tear effects and stat caches. Native weapons, costumes, size and transformations are preserved.
+- Every ability uses the game's native weapons, tear effects and stat caches. Native weapons, size and transformations are preserved. Each character keeps its own look: item costumes are hidden, while the items' effects still apply.
 - [External Item Descriptions (EID)](https://steamcommunity.com/sharedfiles/filedetails/?id=836319872) is supported. All items and all 22 forms have English text; 17 collectibles, 6 trinkets and 2 pills also have Simplified Chinese and Japanese text.
 
 ## Core systems
@@ -62,7 +62,7 @@ A shared proxy. Once risk reaches 30, it appears in 25% of uncleared rooms. When
 
 ### Agentic (transformation)
 
-Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerously-skip-permissions and All Tests Passing: **flight**, fire delay ×0.8 (tears up) and **+0.5 damage**.
+Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerously-skip-permissions and All Tests Passing: **flight**, shot interval ×0.8 (tears up) and **+0.5 damage**.
 
 ### Story
 
@@ -74,6 +74,7 @@ Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerousl
 - EID descriptions (see above).
 - HUD text follows the game language (中文 / 日本語) when a CJK font loads, otherwise English.
 - Reactions Port Pack: fallback registration covers every character.
+- Fixed look: like a character whose appearance never changes, all 22 forms keep their own sprite when they pick up vanilla or mod items, trinkets, pills, cards or transformations. Item effects, stats, flight and size still apply; only the costume layers are cleared. Not yet checked in game.
 - Each character tints the tear colour on top of the current colour, so item colours are kept.
 - Ability feedback uses vanilla effects only: dust poofs for Mistral's Pounce and Baguette wave and Doubao's Apology, and fading tints on Kimi's task targets and GLM's requested enemy.
 
@@ -244,13 +245,13 @@ Type: **A*n*** = active item with *n* room charges, **P** = passive. Pools come 
 | **Ultrathink** | A (5-second timed), treasure | Each use in the same room thinks harder: +1 / +2 / +3.1999 damage (think / megathink / ultrathink). 15% chance of "Thought for 0s" and nothing happens. Resets when you leave the room. |
 | **1M Context** | P, treasure | Range +5, but context rot: tears lose damage the longer they fly, down to 30%. |
 | **Silent Update** | P, treasure | Every floor, damage is quietly rescaled to ×0.8–×1.3. The changelog always says "no changes". |
-| **--dangerously-skip-permissions** | P, devil | Locked doors and locked chests open by themselves. Each room has a 10% chance of `rm -rf`, deleting every pickup in the room (pedestals are safe). |
-| **All Tests Passing** | A6, treasure | Reward hacking: the room counts as cleared and every door opens, but the enemies are still there. |
+| **--dangerously-skip-permissions** | P, devil | Locked doors and locked chests open by themselves. Each room has a 10% chance of `rm -rf`, deleting every pickup in the room (pedestals, big chests, trophies and beds are safe). Special exits such as the Mega Satan door keep their requirements. |
+| **All Tests Passing** | A6, treasure | Reward hacking: the room counts as cleared and every door opens, but the enemies are still there. Refused (charge kept) in uncleared boss, Boss Rush and challenge rooms, where skipping would strand the run. |
 | **Vibe Coding** | P, treasure | Every tear gets a random effect (homing, piercing, spectral, poison, slow); 5% are bugs that fly backwards. Each new floor the API bill takes 25% of your coins, unless you took no hit on the floor you just left ("make no mistakes"). |
 | **Banked Reset** | A12, treasure (Tainted Claude-chan's pocket) | Risk −25. Claude-chan: resets usage and ends a limit early. Tainted Claude-chan: refills Quota (a pending review is cancelled without returning its Page). |
 | **Subagent Swarm** | P, devil | Every tear spawns 2 subagent tears at ±15° (50% damage). Claude forms pay double usage / Quota. |
 | **The Constitution** | P, angel | +1 soul heart. Safety first: the first hit on each floor is refused. Helpfulness ranks last: damage ×0.9. It's a long document: speed −0.1. |
-| **Opus Mode** | P, shop | Damage ×1.8, but every 10 tears cost 1 coin. At 0 coins you fall back to a cheaper model: damage ×0.6. |
+| **Opus Mode** | P, shop | Damage ×1.8, but every 10 attacks (tears, laser starts, knife throws, Fetus bombs and so on) cost 1 coin. At 0 coins you fall back to a cheaper model: damage ×0.6. |
 | **Support Ticket** | A6, shop | Pay 3 coins: risk −20. With no coins or no risk it keeps the charge. Car Battery does not bill twice. |
 | **Lunch Break** | A6, DeepSeek-chan's pocket | "Brb, getting food": heals 1 red heart and slows all enemies for 3 seconds, but you cannot shoot for 3 seconds (you can still move). Cannot be reused during a food break. |
 
@@ -407,7 +408,7 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 | Pill | Effect |
 |---|---|
 | **Cat-girl Mode** | For the rest of the room: tears fire twice as fast at 60% damage. Nya~ |
-| **Brb, Getting Food** | Heals 1 red heart, but you can't shoot for 3 seconds. |
+| **Brb, Getting Food** | Heals 1 red heart (2 from a horse pill), but you can't shoot for 3 seconds. |
 | **9.11 > 9.9** | Picks the bigger number: permanent +0.11 damage (horse pill: +0.9). Saved per player. |
 | **Rolled Back** | All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1 (horse pill: doubled). Rolled back in the next room. |
 

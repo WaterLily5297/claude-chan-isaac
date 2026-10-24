@@ -3,6 +3,7 @@
 -- the parody account Gork stay distinct. Saved per player: the selection cooldown.
 -- The live selection and Ratio are transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Ratio = {}
@@ -177,7 +178,7 @@ function Ratio:Init(mod, Risk)
             elseif b.state.cooldown > 0 then
                 text = string.format("Grok-chan: Cooldown %ds", math.ceil(b.state.cooldown / 30))
             else text = "Grok-chan: DROP: quote someone" end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 1, 0.35, 0.3, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.35, 0.3, 0.9)
         end)
     end)
 end

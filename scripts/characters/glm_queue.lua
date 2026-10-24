@@ -2,6 +2,7 @@
 -- redeems an Access Pass for the next new hostile rooms. No real purchases or
 -- real-time waiting. Saved per player; the room bonus ends on room exit.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local GLM = {}
 
@@ -179,7 +180,7 @@ function GLM:Init(mod, Risk)
             elseif s.pass > 0 then text = string.format("GLM-chan: Access %d room(s)", s.pass)
             elseif s.queue >= QUEUE_MAX then text = "GLM-chan: Your turn! Tap DROP"
             else text = string.format("GLM-chan: Number in queue %d/%d", s.queue, QUEUE_MAX) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.3, 0.95, 0.7, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.3, 0.95, 0.7, 0.9)
         end)
     end)
 end

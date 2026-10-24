@@ -2,7 +2,9 @@
 -- The joke is community enthusiasm for fine-tunes and variants, not a claim
 -- about any product. Saved per player; the active bonus ends on room exit.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
+local FireRate = include("scripts.fire_rate")
 local Qwen = {}
 
 local ADAPTER_START, ADAPTER_CAP, BIRTHRIGHT_CAP = 1, 2, 3
@@ -181,7 +183,7 @@ function Qwen:Init(mod, Risk)
         if flag == CacheFlag.CACHE_RANGE and kind == 1 then
             p.TearRange = p.TearRange + RANGE_BONUS
         elseif flag == CacheFlag.CACHE_FIREDELAY and kind == 2 then
-            p.MaxFireDelay = math.max(-0.75, (p.MaxFireDelay + 1) * TEMPO_INTERVAL - 1)
+            p.MaxFireDelay = FireRate.ScaleInterval(p.MaxFireDelay, TEMPO_INTERVAL)
         elseif flag == CacheFlag.CACHE_DAMAGE and kind == 3 then
             p.Damage = p.Damage * POWER_DAMAGE
         end
@@ -194,7 +196,7 @@ function Qwen:Init(mod, Risk)
             local s, kind = b.state, active(b)
             local text = string.format("Qwen-chan: Adapters %d/%d  Next %s  Active %s",
                 s.adapters, cap(p), KINDS[s.selected], kind and KINDS[kind] or "none")
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.8, 0.5, 1, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.8, 0.5, 1, 0.9)
         end)
     end)
 end

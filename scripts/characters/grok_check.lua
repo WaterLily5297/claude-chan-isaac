@@ -2,6 +2,7 @@
 -- Saved per-player room flags only; the live check is transient. Grok and the
 -- parody account Gork remain distinct; this is a fictional gameplay role.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Grok = {}
@@ -212,7 +213,7 @@ function Grok:Init(mod, Risk)
             elseif s.verifiedRoom == room then text = "Grok-chan: Verified"
             elseif s.checkRoom == room then text = "Grok-chan: Unverified"
             else text = "Grok-chan: DROP: Is this true?" end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 1, 0.3, 0.35, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.3, 0.35, 0.9)
         end)
     end)
 end

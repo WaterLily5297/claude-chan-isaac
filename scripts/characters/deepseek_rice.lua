@@ -1,6 +1,7 @@
 -- Rice First: a saved, personal meal economy. No proxy or risk mechanics.
 local C = include("scripts.constants")
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local ThoughtAttacks = include("scripts.characters.thought_attacks")
 local Rice = {}
@@ -251,7 +252,7 @@ function Rice:Init(mod, Risk, Meal)
             local s=b.state
             local text=string.format("Thought %.1fs  Rice %d/2",s.thought/30,s.bowls)
             if s.lunch then text=text..string.format("  Lunch %.1fs",Meal:Remaining(p)/30) end
-            HudText:Draw(text,50,Isaac.GetScreenHeight()-40-i*12,0.45,0.75,1,1)
+            HudText:Draw(text,50,HudLayout.PlayerRow(i),0.45,0.75,1,1)
         end)
     end)
 end

@@ -5,6 +5,10 @@
 - Add four meme collectibles, all built on native systems: Em Dash (native piercing, +0.16 shot speed per copy), Blueberry (every third tear gains the native quad split; counted separately from Strawberry), Benchmaxxed (+1.5 damage per copy in boss, mini-boss, challenge and Boss Rush rooms, x0.9 per copy elsewhere, re-evaluated each room) and I Panicked (A6, devil pool: lethal native damage to non-bosses, 15% max HP to bosses, deletes loose consumables; pedestals, trinkets, chests and shop items are safe).
 - Original 32x32 icons from tools/make_placeholders.py, EID text, pickup lines, docs/ITEMS.md and all three READMEs. New offline suite tests/meme_batch_test.lua; engine acceptance pending.
 
+## Unreleased fixed character look (2026-10-24)
+
+- All 22 forms keep their own sprite: item, trinket, pill, card and transformation costumes are cleared on mod forms, while every effect, stat, flight and size change still applies (`costume_lock.lua`). Vanilla characters are untouched; leaving a mod form restores held item costumes. Engine acceptance pending.
+
 ## Unreleased owner-delegated trait decisions (2026-10-24)
 
 - Tainted DeepSeek: every non-tear native attack pays the phase's Compute price for a 1.3x off-peak boost on that attack; Saving or low Compute keeps native damage.
