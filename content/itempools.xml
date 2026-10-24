@@ -1,5 +1,42 @@
 <ItemPools>
     <Pool Name="treasure">
+        <Item Name="Rejection Letter" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Anniversary Cake" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Rice Cooker" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Wengu Clock" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Seven-Second Memory" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Sanity Test" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Same Model Badge" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Nano Banana" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="One More Finger" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Undo Brush" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Unchanged Preview" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Live Wire" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Community Note" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Base Model" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Another Adapter" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Final Final Weights" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Tiny Variant" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Open Weights" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Herd Bell" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Please Come Back" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Release Soon" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Emergency Baguette" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Slipstream Boots" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Very Large Kitten" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Edge Compass" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Next Time Again" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Confident Answer" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Slide Deadline" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Citation Thread" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Overtime Slides" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Stand-Up Meeting" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Please Retry" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Token Recall" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Checkpoint Pin" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Rate-Limit Valve" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Consensus Coin" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Error Budget" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Summary Stapler" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Ban Hammer" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Residential IP" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
@@ -17,16 +54,28 @@
         <Item Name="Temperature Dial" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="angel">
+        <Item Name="One Bowl Only" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Instant Apology" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Smiling Correction" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="You're Absolutely Right!" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="The Constitution" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Golden Gate Claude" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="devil">
+        <Item Name="Dario's Red Stamp" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Is This True?" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Quote Retort" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="9.9 Yuan Relay" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="--dangerously-skip-permissions" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Subagent Swarm" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="shop">
+        <Item Name="Routing Receipt" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Tibo Reset" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Queue Ticket" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Sold Out" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Access Pass" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Cache Cartridge" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Support Ticket" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Residential IP" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Opus Mode" Weight="1" DecreaseBy="1" RemoveOn="0.1" />

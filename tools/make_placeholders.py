@@ -755,6 +755,447 @@ def disgrace_loop():
     return c
 
 
+# ---- Fifty-row backlog icons (rows 02-50); original geometric pixel art ----
+
+def rejection_letter():
+    c = clear()
+    rect(c, 4, 9, 27, 25, "P")
+    line(c, 4, 9, 15, 18, "T"); line(c, 27, 9, 16, 18, "T")
+    rect(c, 18, 18, 25, 23, "R")
+    line(c, 19, 19, 24, 22, "F"); line(c, 24, 19, 19, 22, "F")
+    return c
+
+
+def red_stamp():
+    c = clear()
+    rect(c, 13, 3, 18, 12, "W")
+    ellipse(c, 15.5, 4, 5, 3, "W")
+    rect(c, 8, 13, 23, 17, "N")
+    rect(c, 6, 18, 25, 21, "R")
+    ring(c, 15.5, 26, 6, 4.5, "R")
+    return c
+
+
+def anniversary_cake():
+    c = clear()
+    rect(c, 6, 17, 25, 27, "L")
+    rect(c, 6, 17, 25, 19, "F")
+    rect(c, 9, 12, 22, 16, "P")
+    rect(c, 15, 6, 16, 11, "F")
+    rect(c, 15, 3, 16, 5, "E")
+    for x in (8, 13, 18, 23):
+        rect(c, x, 22, x + 1, 23, "R")
+    return c
+
+
+def rice_cooker():
+    c = clear()
+    rrect(c, 5, 10, 26, 27, 4, "F")
+    ellipse(c, 15.5, 10, 11, 4, "K")
+    rect(c, 13, 4, 18, 7, "N")
+    rect(c, 11, 18, 20, 21, "c")
+    rect(c, 22, 19, 24, 20, "R")
+    return c
+
+
+def one_bowl():
+    c = clear()
+    ellipse(c, 16, 14, 9, 4, "F")
+    rrect(c, 6, 14, 25, 23, 4, "c")
+    rect(c, 12, 23, 19, 25, "c")
+    rect(c, 15, 4, 16, 10, "#")             # "one"
+    return c
+
+
+def wengu_clock():
+    c = clear()
+    ellipse(c, 16, 16, 12, 12, "c")
+    ellipse(c, 16, 16, 9.5, 9.5, "F")
+    line(c, 16, 16, 16, 9, "N", 2)
+    line(c, 16, 16, 21, 19, "N", 2)
+    rect(c, 15, 2, 16, 4, "c")
+    return c
+
+
+def seven_second_memory():
+    c = clear()
+    ellipse(c, 16, 14, 11, 9, "c")
+    rect(c, 9, 22, 22, 25, "c")
+    line(c, 11, 10, 21, 10, "F", 2)
+    line(c, 21, 10, 14, 20, "F", 2)
+    return c
+
+
+def sanity_test():
+    c = clear()
+    rrect(c, 9, 3, 22, 27, 2, "F")
+    rect(c, 11, 3, 20, 6, "D")
+    line(c, 12, 15, 15, 19, "H", 2)
+    line(c, 15, 19, 20, 11, "H", 2)
+    return c
+
+
+def routing_receipt():
+    c = clear()
+    poly(c, [(8, 3), (24, 3), (24, 28), (21, 26), (18, 28), (15, 26), (12, 28), (8, 26)], "F")
+    for y in (7, 11, 15):
+        line(c, 11, y, 21, y, "T")
+    line(c, 11, 20, 15, 20, "#"); line(c, 15, 20, 18, 23, "#"); line(c, 18, 23, 21, 23, "#")
+    return c
+
+
+def tibo_reset():
+    c = clear()
+    ring(c, 16, 16, 11, 8.5, "H")
+    poly(c, [(22, 2), (28, 8), (21, 10)], "H")
+    rect(c, 13, 12, 18, 20, "F")
+    rect(c, 15, 10, 16, 12, "F")
+    return c
+
+
+def same_model_badge():
+    c = clear()
+    ellipse(c, 16, 13, 10, 10, "G")
+    ellipse(c, 16, 13, 7, 7, "g")
+    poly(c, [(9, 20), (13, 22), (11, 30), (8, 27)], "R")
+    poly(c, [(23, 20), (19, 22), (21, 30), (24, 27)], "R")
+    rect(c, 14, 10, 17, 16, "F")
+    return c
+
+
+def nano_banana():
+    c = clear()
+    poly(c, [(6, 8), (10, 8), (14, 20), (24, 24), (26, 27), (16, 28), (8, 22)], "G")
+    rect(c, 6, 5, 8, 8, "W")
+    line(c, 9, 10, 13, 21, "E")
+    return c
+
+
+def one_more_finger():
+    c = clear()
+    rect(c, 8, 16, 24, 27, "C")
+    for i, x in enumerate((8, 11, 14, 17, 20, 23)):
+        rect(c, x, 7 + (i % 2) * 2, x + 1, 16, "C")
+    rect(c, 23, 6, 24, 9, "R")
+    return c
+
+
+def undo_brush():
+    c = clear()
+    line(c, 6, 26, 18, 14, "W", 3)
+    poly(c, [(17, 10), (23, 6), (26, 9), (22, 15)], "V")
+    ring(c, 21, 22, 6, 4, "c")
+    poly(c, [(13, 20), (17, 18), (16, 23)], "c")
+    return c
+
+
+def unchanged_preview():
+    c = clear()
+    rect(c, 3, 8, 14, 22, "F"); rect(c, 5, 10, 12, 20, "c")
+    rect(c, 17, 8, 28, 22, "F"); rect(c, 19, 10, 26, 20, "c")
+    ellipse(c, 8.5, 15, 2, 2, "G"); ellipse(c, 22.5, 15, 2, 2, "G")
+    line(c, 14, 26, 17, 26, "#")
+    return c
+
+
+def is_this_true():
+    c = clear()
+    rrect(c, 4, 4, 27, 22, 4, "N")
+    poly(c, [(9, 22), (14, 22), (8, 28)], "N")
+    line(c, 12, 9, 19, 9, "F", 2); line(c, 19, 9, 19, 13, "F", 2)
+    line(c, 19, 13, 15, 15, "F", 2); rect(c, 15, 18, 16, 19, "F")
+    return c
+
+
+def live_wire():
+    c = clear()
+    poly(c, [(18, 2), (8, 17), (15, 17), (12, 29), (24, 12), (17, 12)], "E")
+    return c
+
+
+def quote_retort():
+    c = clear()
+    rrect(c, 4, 6, 27, 25, 3, "F")
+    rect(c, 8, 10, 12, 14, "N"); rect(c, 14, 10, 18, 14, "N")
+    line(c, 11, 14, 9, 17, "N", 2); line(c, 17, 14, 15, 17, "N", 2)
+    line(c, 20, 20, 24, 16, "R", 2)
+    return c
+
+
+def community_note():
+    c = clear()
+    rect(c, 5, 5, 26, 26, "P")
+    rect(c, 5, 5, 26, 9, "c")
+    for y in (13, 17, 21):
+        line(c, 8, y, 23, y, "T")
+    rect(c, 21, 2, 24, 7, "R")
+    return c
+
+
+def base_model():
+    c = clear()
+    rect(c, 6, 20, 25, 26, "S")
+    rect(c, 9, 14, 22, 19, "S")
+    rect(c, 12, 8, 19, 13, "S")
+    rect(c, 14, 4, 17, 7, "V")
+    return c
+
+
+def another_adapter():
+    c = clear()
+    rect(c, 9, 4, 22, 18, "K")
+    rect(c, 11, 18, 13, 26, "M"); rect(c, 18, 18, 20, 26, "M")
+    rect(c, 12, 8, 19, 12, "V")
+    return c
+
+
+def final_weights():
+    c = clear()
+    rect(c, 4, 13, 27, 17, "M")
+    rect(c, 2, 8, 6, 22, "N"); rect(c, 25, 8, 29, 22, "N")
+    rect(c, 7, 10, 9, 20, "D"); rect(c, 22, 10, 24, 20, "D")
+    return c
+
+
+def tiny_variant():
+    c = clear()
+    ellipse(c, 16, 22, 5, 5, "V")
+    rect(c, 14, 17, 17, 20, "V")
+    line(c, 6, 4, 10, 12, "T"); line(c, 25, 4, 21, 12, "T")
+    rect(c, 13, 20, 14, 21, "#"); rect(c, 18, 20, 19, 21, "#")
+    return c
+
+
+def open_weights():
+    c = clear()
+    rrect(c, 6, 10, 25, 27, 3, "W")
+    poly(c, [(4, 10), (16, 4), (27, 10)], "S")
+    ellipse(c, 12, 18, 2.5, 2.5, "c"); ellipse(c, 20, 21, 2.5, 2.5, "c")
+    rect(c, 15, 13, 16, 16, "F")
+    return c
+
+
+def herd_bell():
+    c = clear()
+    poly(c, [(10, 8), (22, 8), (26, 24), (6, 24)], "G")
+    rect(c, 5, 24, 26, 26, "g")
+    rect(c, 14, 4, 17, 8, "W")
+    ellipse(c, 16, 28, 2, 2, "g")
+    return c
+
+
+def please_come_back():
+    c = clear()
+    ellipse(c, 11, 13, 6, 6, "L"); ellipse(c, 21, 13, 6, 6, "L")
+    poly(c, [(5, 15), (27, 15), (16, 28)], "L")
+    line(c, 16, 9, 14, 16, "#"); line(c, 14, 16, 18, 20, "#"); line(c, 18, 20, 16, 27, "#")
+    return c
+
+
+def release_soon():
+    c = clear()
+    rect(c, 4, 6, 27, 27, "F")
+    rect(c, 4, 6, 27, 10, "R")
+    for r, y in enumerate((14, 19, 24)):
+        for x in (7, 12, 17, 22):
+            rect(c, x, y, x + 2, y + 2, "T")
+    line(c, 21, 18, 26, 26, "N", 2); line(c, 26, 18, 21, 26, "N", 2)
+    return c
+
+
+def emergency_baguette():
+    c = clear()
+    line(c, 5, 27, 26, 5, "E", 5)
+    for i in range(3):
+        line(c, 10 + i * 5, 19 - i * 5, 13 + i * 5, 23 - i * 5, "W")
+    return c
+
+
+def slipstream_boots():
+    c = clear()
+    rect(c, 10, 4, 18, 18, "E")
+    rect(c, 10, 18, 26, 25, "E")
+    rect(c, 10, 25, 26, 27, "W")
+    line(c, 2, 10, 7, 10, "c"); line(c, 3, 15, 8, 15, "c"); line(c, 2, 20, 7, 20, "c")
+    return c
+
+
+def large_kitten():
+    c = clear()
+    ellipse(c, 16, 18, 12, 10, "E")
+    poly(c, [(5, 12), (8, 3), (13, 10)], "E"); poly(c, [(27, 12), (24, 3), (19, 10)], "E")
+    rect(c, 11, 16, 12, 18, "#"); rect(c, 20, 16, 21, 18, "#")
+    rect(c, 15, 20, 17, 21, "L")
+    return c
+
+
+def edge_compass():
+    c = clear()
+    ellipse(c, 16, 16, 12, 12, "G")
+    ellipse(c, 16, 16, 9.5, 9.5, "F")
+    poly(c, [(16, 7), (19, 16), (13, 16)], "R")
+    poly(c, [(16, 25), (19, 16), (13, 16)], "T")
+    rect(c, 2, 2, 4, 29, "D")
+    return c
+
+
+def instant_apology():
+    c = clear()
+    ellipse(c, 16, 16, 11, 11, "c")
+    rect(c, 11, 12, 13, 13, "#"); rect(c, 19, 12, 21, 13, "#")
+    line(c, 12, 20, 20, 20, "#")
+    rect(c, 24, 6, 27, 9, "L")
+    return c
+
+
+def next_time_again():
+    c = clear()
+    ring(c, 16, 16, 11, 8.5, "c")
+    poly(c, [(4, 9), (10, 3), (12, 11)], "c")
+    rect(c, 14, 11, 17, 20, "F"); rect(c, 12, 18, 19, 20, "F")
+    return c
+
+
+def confident_answer():
+    c = clear()
+    rrect(c, 4, 5, 27, 22, 4, "c")
+    poly(c, [(9, 22), (14, 22), (8, 28)], "c")
+    line(c, 10, 14, 14, 18, "F", 2); line(c, 14, 18, 22, 9, "F", 2)
+    return c
+
+
+def smiling_correction():
+    c = clear()
+    ellipse(c, 16, 16, 11, 11, "E")
+    rect(c, 11, 12, 12, 14, "#"); rect(c, 19, 12, 20, 14, "#")
+    line(c, 11, 19, 14, 22, "#"); line(c, 14, 22, 18, 22, "#"); line(c, 18, 22, 21, 19, "#")
+    line(c, 22, 4, 28, 10, "W", 2)
+    return c
+
+
+def slide_deadline():
+    c = clear()
+    rect(c, 4, 4, 27, 20, "F")
+    rect(c, 4, 4, 27, 7, "V")
+    rect(c, 8, 11, 12, 17, "c"); rect(c, 14, 13, 18, 17, "c"); rect(c, 20, 9, 24, 17, "c")
+    rect(c, 15, 20, 16, 27, "D"); line(c, 10, 28, 21, 28, "D")
+    return c
+
+
+def citation_thread():
+    c = clear()
+    rect(c, 3, 8, 12, 14, "F"); rect(c, 19, 17, 28, 23, "F")
+    line(c, 12, 11, 19, 20, "R")
+    rect(c, 5, 10, 6, 12, "#"); rect(c, 21, 19, 22, 21, "#")
+    return c
+
+
+def overtime_slides():
+    c = clear()
+    rect(c, 3, 6, 22, 21, "F"); rect(c, 3, 6, 22, 8, "V")
+    ellipse(c, 23, 21, 6, 6, "D")
+    ellipse(c, 25, 19, 5, 5, ".")
+    return c
+
+
+def standup_meeting():
+    c = clear()
+    for x in (8, 16, 24):
+        ellipse(c, x, 10, 3, 3, "C")
+        rect(c, x - 3, 14, x + 3, 24, "V")
+    rect(c, 3, 25, 28, 27, "W")
+    return c
+
+
+def queue_ticket():
+    c = clear()
+    rect(c, 5, 8, 26, 23, "P")
+    ellipse(c, 5, 15.5, 2, 3, "."); ellipse(c, 26, 15.5, 2, 3, ".")
+    rect(c, 10, 11, 21, 13, "H")
+    rect(c, 10, 17, 21, 19, "T")
+    return c
+
+
+def sold_out():
+    c = clear()
+    rect(c, 4, 9, 27, 22, "F")
+    line(c, 4, 22, 27, 9, "R", 2)
+    rect(c, 7, 13, 12, 17, "T"); rect(c, 19, 13, 24, 17, "T")
+    return c
+
+
+def please_retry():
+    c = clear()
+    rrect(c, 3, 6, 28, 25, 3, "F")
+    ring(c, 16, 16, 7, 4.8, "H")
+    poly(c, [(19, 7), (24, 10), (19, 13)], "H")
+    rect(c, 3, 6, 28, 8, "T")
+    return c
+
+
+def access_pass():
+    c = clear()
+    rrect(c, 4, 6, 27, 25, 2, "H")
+    rect(c, 7, 9, 13, 16, "C")
+    for y in (10, 14, 18):
+        line(c, 16, y, 24, y, "F")
+    rect(c, 7, 20, 24, 22, "G")
+    return c
+
+
+def cache_cartridge():
+    c = clear()
+    rect(c, 6, 4, 25, 25, "D")
+    rect(c, 9, 7, 22, 15, "c")
+    for x in range(8, 24, 3):
+        rect(c, x, 25, x + 1, 28, "G")
+    return c
+
+
+def token_recall():
+    c = clear()
+    ellipse(c, 16, 16, 10, 10, "G")
+    ellipse(c, 16, 16, 7, 7, "g")
+    poly(c, [(2, 16), (8, 10), (8, 22)], "c")
+    rect(c, 15, 12, 16, 20, "F")
+    return c
+
+
+def checkpoint_pin():
+    c = clear()
+    ellipse(c, 16, 11, 8, 8, "R")
+    poly(c, [(9, 14), (23, 14), (16, 29)], "R")
+    ellipse(c, 16, 11, 3, 3, "F")
+    return c
+
+
+def rate_limit_valve():
+    c = clear()
+    rect(c, 2, 18, 29, 24, "M")
+    rect(c, 13, 10, 18, 18, "M")
+    rect(c, 6, 6, 25, 9, "R")
+    rect(c, 14, 19, 17, 23, "D")
+    return c
+
+
+def consensus_coin():
+    c = clear()
+    ellipse(c, 16, 16, 12, 12, "G")
+    ellipse(c, 16, 16, 9, 9, "g")
+    line(c, 11, 16, 14, 19, "F", 2); line(c, 14, 19, 21, 12, "F", 2)
+    return c
+
+
+def error_budget():
+    c = clear()
+    rect(c, 5, 20, 26, 26, "D")
+    rect(c, 7, 22, 24, 24, "H")
+    rect(c, 18, 22, 24, 24, "R")
+    poly(c, [(16, 3), (26, 17), (6, 17)], "E")
+    rect(c, 15, 8, 16, 12, "#"); rect(c, 15, 14, 16, 15, "#")
+    return c
+
+
 SPRITES = {
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
@@ -784,6 +1225,55 @@ SPRITES = {
     "tungsten_cube": tungsten_cube,
     "pizza_glue": pizza_glue,
     "strawberry": strawberry,
+    "rejection_letter": rejection_letter,
+    "red_stamp": red_stamp,
+    "anniversary_cake": anniversary_cake,
+    "rice_cooker": rice_cooker,
+    "one_bowl": one_bowl,
+    "wengu_clock": wengu_clock,
+    "seven_second_memory": seven_second_memory,
+    "sanity_test": sanity_test,
+    "routing_receipt": routing_receipt,
+    "tibo_reset": tibo_reset,
+    "same_model_badge": same_model_badge,
+    "nano_banana": nano_banana,
+    "one_more_finger": one_more_finger,
+    "undo_brush": undo_brush,
+    "unchanged_preview": unchanged_preview,
+    "is_this_true": is_this_true,
+    "live_wire": live_wire,
+    "quote_retort": quote_retort,
+    "community_note": community_note,
+    "base_model": base_model,
+    "another_adapter": another_adapter,
+    "final_weights": final_weights,
+    "tiny_variant": tiny_variant,
+    "open_weights": open_weights,
+    "herd_bell": herd_bell,
+    "please_come_back": please_come_back,
+    "release_soon": release_soon,
+    "emergency_baguette": emergency_baguette,
+    "slipstream_boots": slipstream_boots,
+    "large_kitten": large_kitten,
+    "edge_compass": edge_compass,
+    "instant_apology": instant_apology,
+    "next_time_again": next_time_again,
+    "confident_answer": confident_answer,
+    "smiling_correction": smiling_correction,
+    "slide_deadline": slide_deadline,
+    "citation_thread": citation_thread,
+    "overtime_slides": overtime_slides,
+    "standup_meeting": standup_meeting,
+    "queue_ticket": queue_ticket,
+    "sold_out": sold_out,
+    "please_retry": please_retry,
+    "access_pass": access_pass,
+    "cache_cartridge": cache_cartridge,
+    "token_recall": token_recall,
+    "checkpoint_pin": checkpoint_pin,
+    "rate_limit_valve": rate_limit_valve,
+    "consensus_coin": consensus_coin,
+    "error_budget": error_budget,
     "golden_gate": golden_gate,
     "seahorse_emoji": seahorse_emoji,
     "temperature_dial": temperature_dial,

@@ -11,5 +11,5 @@ local function count(kind) return function(_, id, desc, name, lang) counts[kind]
 EID = { addCollectible = count("item"), addTrinket = count("trinket"), addPill = count("pill"), addCharacterInfo = count("character") }
 include("scripts.eid"):Init()
 for k, v in pairs(counts) do print(k, v) end
-assert(counts.item == 17 * 3 + 1 + 8 and counts.trinket == 6 * 3 + 6)
+assert(counts.item == 17 * 3 + 1 + 8 + 49 and counts.trinket == 6 * 3 + 6)
 assert(counts.pill == 2 * 3 + 2 and counts.character == 4 * 3, "normal + tainted for both characters")

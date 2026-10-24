@@ -5,6 +5,153 @@ local Constants = include("scripts.constants")
 local Eid = {}
 
 local descriptions = {
+    [Constants.Item.REJECTION_LETTER] = {
+        en_us = { "Rejection Letter", "After a real enemy hit, removes up to 3 ordinary enemy bullets within 120 units#Once per room; you still take the hit" },
+    },
+    [Constants.Item.RED_STAMP] = {
+        en_us = { "Dario's Red Stamp", "6 room charges#Stamps the nearest enemy within 220 units for 4 seconds: slowed, and its contact damage is suspended#Bosses are only slowed#No target: keeps the charge" },
+    },
+    [Constants.Item.ANNIVERSARY_CAKE] = {
+        en_us = { "Anniversary Cake", "Each floor finished without an enemy hit or a suspension: +0.15 damage (max +0.6)#A spoiled floor resets only this bonus" },
+    },
+    [Constants.Item.RICE_COOKER] = {
+        en_us = { "Rice Cooker", "4 room charges#3-second lunch: can't shoot, can move, no healing#Then your next attack within 7 seconds deals x2#Car Battery does not double the meal" },
+    },
+    [Constants.Item.ONE_BOWL] = {
+        en_us = { "One Bowl Only", "The first red heart you pick up in a room grants one guard against an ordinary enemy bullet#Max 1 guard, 3 per floor" },
+    },
+    [Constants.Item.WENGU_CLOCK] = {
+        en_us = { "Wengu Clock", "3 room charges#For 6 seconds: 2 seconds without attacking primes +30% damage on your next attack" },
+    },
+    [Constants.Item.SEVEN_SECOND_MEMORY] = {
+        en_us = { "Seven-Second Memory", "Your first attack hit marks that enemy for 7 seconds#Another attack hitting it adds a 0.5x damage pulse#7-second cooldown" },
+    },
+    [Constants.Item.SANITY_TEST] = {
+        en_us = { "Sanity Test", "4 room charges#Marks the nearest enemy within 220 units for 6 seconds#3 different attacks hitting it trigger a 3x damage pulse#No target: keeps the charge" },
+    },
+    [Constants.Item.ROUTING_RECEIPT] = {
+        en_us = { "Routing Receipt", "Every 3 new rooms cleared: +20% damage in the next combat room#Re-entering rooms does not count" },
+    },
+    [Constants.Item.TIBO_RESET] = {
+        en_us = { "Tibo Reset", "12 room charges; once per floor#+20% damage for your next 2 new combat rooms#A second use on the same floor keeps the charge" },
+    },
+    [Constants.Item.SAME_MODEL_BADGE] = {
+        en_us = { "Same Model Badge", "Entering a hostile room: +25% damage for 2 seconds, then -10% for 4 seconds#The current phase is shown" },
+    },
+    [Constants.Item.NANO_BANANA] = {
+        en_us = { "Nano Banana", "4 room charges#Paints the nearest enemy within 180 units for 6 seconds#If it dies painted, a banana peel slows enemies there for 4 seconds#No target: keeps the charge" },
+    },
+    [Constants.Item.ONE_MORE_FINGER] = {
+        en_us = { "One More Finger", "Every 5th attack fires one extra small tear at 0.3x damage#At most twice per second" },
+    },
+    [Constants.Item.UNDO_BRUSH] = {
+        en_us = { "Undo Brush", "4 room charges#Erases up to 6 ordinary enemy bullets within 90 units#+0.02 speed per bullet for 4 seconds (max +0.12)#No bullets: keeps the charge" },
+    },
+    [Constants.Item.UNCHANGED_PREVIEW] = {
+        en_us = { "Unchanged Preview", "6 room charges#Places 2 decoy markers for 6 seconds that nearby enemies chase#Using again replaces them" },
+    },
+    [Constants.Item.IS_THIS_TRUE] = {
+        en_us = { "Is This True?", "3 room charges#Challenges the nearest enemy within 220 units for 6 seconds#+35% damage to it, -15% to others#Killing it returns 1 charge" },
+    },
+    [Constants.Item.LIVE_WIRE] = {
+        en_us = { "Live Wire", "+0.15 speed while an ordinary enemy bullet is within 100 units" },
+    },
+    [Constants.Item.QUOTE_RETORT] = {
+        en_us = { "Quote Retort", "After you take enemy damage, your next attack within 4 seconds deals +50%" },
+    },
+    [Constants.Item.COMMUNITY_NOTE] = {
+        en_us = { "Community Note", "3 different attacks hitting one enemy expose it: +15% damage to it for 3 seconds#Max 6 per room" },
+    },
+    [Constants.Item.BASE_MODEL] = {
+        en_us = { "Base Model", "Your first charged active use in each room primes your next attack at x1.3" },
+    },
+    [Constants.Item.ANOTHER_ADAPTER] = {
+        en_us = { "Another Adapter", "4 room charges#Cycles a bonus for this room: +60 range, then +0.15 speed, then +15% damage#Each use replaces the last" },
+    },
+    [Constants.Item.FINAL_WEIGHTS] = {
+        en_us = { "Final Final Weights", "Every 2 new rooms cleared without getting hit: +20% damage in the next hostile room#Getting hit resets the progress" },
+    },
+    [Constants.Item.TINY_VARIANT] = {
+        en_us = { "Tiny Variant", "+0.15 speed#x0.9 damage" },
+    },
+    [Constants.Item.OPEN_WEIGHTS] = {
+        en_us = { "Open Weights", "4 room charges#2 blue flies for each living player (solo: 4)" },
+    },
+    [Constants.Item.HERD_BELL] = {
+        en_us = { "Herd Bell", "While you have no blue flies, every 3rd new room cleared gives 1 blue fly" },
+    },
+    [Constants.Item.PLEASE_COME_BACK] = {
+        en_us = { "Please Come Back", "3 new rooms cleared without using a charged active: +1 charge to your active item#Timed and zero-charge actives don't benefit" },
+    },
+    [Constants.Item.RELEASE_SOON] = {
+        en_us = { "Release Soon", "6 room charges#2 seconds later: 3 guards against ordinary enemy bullets for 6 seconds#Leaving the room cancels it" },
+    },
+    [Constants.Item.EMERGENCY_BAGUETTE] = {
+        en_us = { "Emergency Baguette", "4 room charges#A forward bread strike: each enemy in a 240-unit line takes 3x your damage#Walls stop it" },
+    },
+    [Constants.Item.SLIPSTREAM_BOOTS] = {
+        en_us = { "Slipstream Boots", "Moving for 2 seconds: +0.15 speed#A sharp turn while boosted slows nearby enemies for 1 second (3-second cooldown)" },
+    },
+    [Constants.Item.LARGE_KITTEN] = {
+        en_us = { "Very Large Kitten", "6 room charges#A big cat stays for 3 seconds and pushes ordinary enemy bullets away from it (up to 12 at a time)" },
+    },
+    [Constants.Item.EDGE_COMPASS] = {
+        en_us = { "Edge Compass", "+0.25 shot speed while near the room's outer walls" },
+    },
+    [Constants.Item.INSTANT_APOLOGY] = {
+        en_us = { "Instant Apology", "4 room charges#Slows enemies within 150 units for 2 seconds and erases up to 4 ordinary enemy bullets#Nothing nearby: keeps the charge" },
+    },
+    [Constants.Item.NEXT_TIME_AGAIN] = {
+        en_us = { "Next Time Again", "The first enemy hit you take in a room primes +50% damage on your next attack within 4 seconds" },
+    },
+    [Constants.Item.CONFIDENT_ANSWER] = {
+        en_us = { "Confident Answer", "4 room charges#+25% damage for 6 seconds, then -10% for 4 seconds#The phase is shown" },
+    },
+    [Constants.Item.SMILING_CORRECTION] = {
+        en_us = { "Smiling Correction", "After you take enemy damage, your next new room cleared without getting hit gives 2 blue flies" },
+    },
+    [Constants.Item.SLIDE_DEADLINE] = {
+        en_us = { "Slide Deadline", "4 room charges#Marks up to 3 enemies within 250 units for 8 seconds#Kill them all in time: +15% damage for this room" },
+    },
+    [Constants.Item.CITATION_THREAD] = {
+        en_us = { "Citation Thread", "Hit one enemy, then another: +10% damage against the first for 3 seconds" },
+    },
+    [Constants.Item.OVERTIME_SLIDES] = {
+        en_us = { "Overtime Slides", "Every 3rd new room cleared: the next hostile room starts with up to 3 enemies slowed for 2 seconds" },
+    },
+    [Constants.Item.STANDUP_MEETING] = {
+        en_us = { "Stand-Up Meeting", "6 room charges#Recalls up to 3 decoys from Unchanged Preview: each bursts for 2x your damage nearby#No decoys: keeps the charge" },
+    },
+    [Constants.Item.QUEUE_TICKET] = {
+        en_us = { "Queue Ticket", "Every 4th new room cleared: +1 charge to your active item#Timed and zero-charge actives don't benefit" },
+    },
+    [Constants.Item.SOLD_OUT] = {
+        en_us = { "Sold Out", "4 room charges#1 guard against an ordinary enemy bullet for 4 seconds, with +0.15 speed while it lasts#Doesn't stack" },
+    },
+    [Constants.Item.PLEASE_RETRY] = {
+        en_us = { "Please Retry", "6 room charges#Fires 3 tears at 0.6x damage, half a second apart, along your aim#Leaving the room cancels the rest" },
+    },
+    [Constants.Item.ACCESS_PASS] = {
+        en_us = { "Access Pass", "Your first charged active use on each floor: +15% damage for this combat room (or the next one if the room is clear)" },
+    },
+    [Constants.Item.CACHE_CARTRIDGE] = {
+        en_us = { "Cache Cartridge", "+0.15 speed in revisited cleared rooms" },
+    },
+    [Constants.Item.TOKEN_RECALL] = {
+        en_us = { "Token Recall", "4 room charges#Recalls up to 3 of your own tears in flight: 1 guard against an ordinary enemy bullet per tear for 4 seconds#No tears: keeps the charge" },
+    },
+    [Constants.Item.CHECKPOINT_PIN] = {
+        en_us = { "Checkpoint Pin", "6 room charges#First use: pin your position for 5 seconds (keeps the charge)#Use again in the same room: return to the pin#Health and items are never restored" },
+    },
+    [Constants.Item.RATE_LIMIT_VALVE] = {
+        en_us = { "Rate-Limit Valve", "After 2 seconds without attacking, your next attack deals +30%" },
+    },
+    [Constants.Item.CONSENSUS_COIN] = {
+        en_us = { "Consensus Coin", "Two different damage sources (tears, lasers, knives, bombs, familiars) hitting one enemy within 2 seconds add a 0.5x damage pulse#Once per enemy" },
+    },
+    [Constants.Item.ERROR_BUDGET] = {
+        en_us = { "Error Budget", "Your first hit each floor spends the budget: +0.2 speed for that room#You still take the hit" },
+    },
     [Constants.Item.SEAHORSE_EMOJI] = {
         en_us = { "Seahorse Emoji", "3 room charges#Summons a Book of Virtues wisp of a random vanilla active#It disappears when you leave the room#One per player; using again replaces it" },
     },

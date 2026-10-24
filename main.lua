@@ -46,6 +46,13 @@ include("scripts.items.rolled_back"):Init(mod)
 include("scripts.items.seahorse_emoji"):Init(mod)
 include("scripts.items.temperature_dial"):Init(mod, Risk)
 include("scripts.items.deep_research"):Init(mod)
+-- Fifty-row collectible backlog: one shared service, one module per family.
+local Backlog = include("scripts.items.backlog.common")
+Backlog:Init(mod, Risk)
+for _, family in ipairs({ "claude", "deepseek", "gpt", "gemini", "grok", "qwen", "llama",
+        "mistral", "doubao", "kimi", "glm", "shared" }) do
+    include("scripts.items.backlog." .. family):Init(mod, Risk, Backlog, MealBreak)
+end
 include("scripts.enemies.relay_slime"):Init(mod, Risk)
 include("scripts.pills"):Init(mod, MealBreak)
 include("scripts.transformation"):Init(mod)
