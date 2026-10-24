@@ -3,8 +3,8 @@
   "files": {
     "resources/gfx/characters/costumes/character_gptchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_gptchan.png",
-      "source_sha256": "274f60b292185f14689eb49d8f7b144ef7b9138065a9cfb17e2eec1bdf295227",
-      "sha256": "b99c212c1e298bf313a13ce1996bf6653c465e6724982e925949f5474e8bb4cb"
+      "source_sha256": "36ee2de76f7147af9f5195ea6be40fe19f34a8cbdb253c17ff853ff06187ce50",
+      "sha256": "158234fe8e08c4ae77d20ee9c725ac13b3cc2dbe7df73fa8b87b1663c31203fb"
     },
     "resources/gfx/ui/stage/playerportrait_gptchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_gptchan.png",
@@ -18,8 +18,8 @@
     },
     "resources/gfx/characters/costumes/character_geminichan_b.png": {
       "source": "resources/gfx/characters/costumes/character_geminichan.png",
-      "source_sha256": "dfc9390c3490733c496aca6710f31f3d3ac91ec37bf25199b9d4002f56993e9a",
-      "sha256": "94e6f25f5e8528a43d005c6cf65ab116f97b7696a50c7ac70c3b442fdb2b7b7a"
+      "source_sha256": "83d2be72118ef553d0601d3b4b426b9d5e9b70756d485d76ccf3f98c50ab09f9",
+      "sha256": "ab56da43499343e86e487b25643d0bf96fa9acf8f6a4e0f799e04129345249ba"
     },
     "resources/gfx/ui/stage/playerportrait_geminichan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_geminichan.png",
@@ -33,8 +33,8 @@
     },
     "resources/gfx/characters/costumes/character_grokchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_grokchan.png",
-      "source_sha256": "b1d3b509ee7313db4e1e1be137084a035ae7a9fbbb37d2a28b563c17f2cf9708",
-      "sha256": "d0220b1545a846e985a084ee8606c486c4c87c3ad8225e575d1c12daa11d253a"
+      "source_sha256": "0a5922c0a840eabc1be88725957d11d7f4aa6bc5e3065ec41bb98111cb7a278c",
+      "sha256": "1f551942be0b7176518efe54a8c759cc00aad878ae19b63b8fe64c245acd7129"
     },
     "resources/gfx/ui/stage/playerportrait_grokchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_grokchan.png",
@@ -48,8 +48,8 @@
     },
     "resources/gfx/characters/costumes/character_qwenchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_qwenchan.png",
-      "source_sha256": "ba0fb9c34ca817f0518f4a23ee8db4ca0d6600978a2c6272387630fe3eb7fcac",
-      "sha256": "ac3a09dd07934146ee90c020892158b44794076e7a3c2b4b021f30535a415605"
+      "source_sha256": "9d4b022b2ee1533ad0f4c24f1aa6da0ce46ec71e2009e3acc408e2a3cc72befe",
+      "sha256": "3f1277a6568c473e409feebd7003ed66e9f0a6a269d55fd04883b95139c76093"
     },
     "resources/gfx/ui/stage/playerportrait_qwenchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_qwenchan.png",
@@ -63,8 +63,8 @@
     },
     "resources/gfx/characters/costumes/character_llamachan_b.png": {
       "source": "resources/gfx/characters/costumes/character_llamachan.png",
-      "source_sha256": "077118893891f72b4235468d24bfc0717d2511a0d585bbc8badd1fe085a7e579",
-      "sha256": "98c83fc2c30f5d6ced6e671f2803edb4a99610dafd88dcf55d7ac53ee55a4ccf"
+      "source_sha256": "d2ccf7bd71359cee70ca4bf566fb63f659b4e03c89bf2b30d80b8fa11082801e",
+      "sha256": "5b96b6fad2eaa9d17c957161005c837b379b8356d204816ab090a13396a03c76"
     },
     "resources/gfx/ui/stage/playerportrait_llamachan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_llamachan.png",
@@ -78,8 +78,8 @@
     },
     "resources/gfx/characters/costumes/character_mistralchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_mistralchan.png",
-      "source_sha256": "d5523043b1a8e5b9d08e5ecf04f8d950f3156a27252d51994e06e901562a2f1d",
-      "sha256": "f3b5c4141e8bc00234bb048874f0cf5e4d535c822d997fc76cdc3ccbf652700d"
+      "source_sha256": "3ff8b7f33cb72789bceedad3773c104b6a256ee1b4650f9534e0e2feefb62dba",
+      "sha256": "de56594c460317575da9c3e9c383515d480d49016213ca859b8e35f5a23f3fd1"
     },
     "resources/gfx/ui/stage/playerportrait_mistralchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_mistralchan.png",
@@ -93,8 +93,8 @@
     },
     "resources/gfx/characters/costumes/character_doubaochan_b.png": {
       "source": "resources/gfx/characters/costumes/character_doubaochan.png",
-      "source_sha256": "362338db13a399373181d00281af07099f31e83ae62ece2602deddcbbbb20799",
-      "sha256": "6cd52240b9be98c7bfc4cd59d9b7f584441ac0a8cc15ecdfd4c9bf823a52795c"
+      "source_sha256": "ddc02c4c42999add39539797f8363f9531b01d43ef898b768379b2597d98acbd",
+      "sha256": "5441ed44edb7c7ead6bd506f3657cc9fb0ef86e4f051769beda8fbf9337ec769"
     },
     "resources/gfx/ui/stage/playerportrait_doubaochan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_doubaochan.png",
@@ -108,8 +108,8 @@
     },
     "resources/gfx/characters/costumes/character_kimichan_b.png": {
       "source": "resources/gfx/characters/costumes/character_kimichan.png",
-      "source_sha256": "a589c0c653bfb950d57f5fe4a4fa1887397d5e4499d9b12151ef767d0f1e178c",
-      "sha256": "ccce8199f37fc5973208a8a548582e4af69eed2cdf959a26bdf50cac91383b52"
+      "source_sha256": "b542bf687c457d92a0c3179e7e4eb4c7042866c9964544c0e834464868d33143",
+      "sha256": "cc9f8865b4362ce8c42673c4fc98e6d4b170d5ade45e0b107e1cf00a2e83081e"
     },
     "resources/gfx/ui/stage/playerportrait_kimichan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_kimichan.png",
@@ -123,8 +123,8 @@
     },
     "resources/gfx/characters/costumes/character_glmchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_glmchan.png",
-      "source_sha256": "6ed53667c415eab4ed9147928c37f3bba2be8c63f882fd8c690d01c465189495",
-      "sha256": "31db0e9984bf4bb5856cfa4577c0c5d9943a56b960f21fbbcc3f086c9a35c14e"
+      "source_sha256": "7322ec0ba2cc75eb38fe8182d824913d09eb335d99a628d2a30f8aa156941221",
+      "sha256": "f6e974313eb028d2418e451d98e8524f1a4bb2fa6415fe180f41854bcab37b8e"
     },
     "resources/gfx/ui/stage/playerportrait_glmchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_glmchan.png",
