@@ -77,7 +77,8 @@ end
 -- Each call is a separate volley on a new frame.
 local function shot(p)
     frame=frame+1
-    local t={SpawnerEntity=p,CollisionDamage=10}
+    local data={}
+    local t={SpawnerEntity=p,CollisionDamage=10,GetData=function() return data end}
     fire("MC_POST_FIRE_TEAR",t); return t
 end
 local function wrap(p) return setmetatable({}, {__index=p,__newindex=p}) end
