@@ -1,6 +1,7 @@
 -- Normal Gemini: Nano Banana / One More Edit. Paint marks and banana peels.
 -- Saved per-player Paint and unique clears. The live mark and peel are transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Gemini = {}
@@ -201,7 +202,7 @@ function Gemini:Init(mod, Risk)
         each(function(_, b, i)
             local text = string.format("Gemini-chan: Paint %d/%d", b.state.paint, PAINT_CAP)
             if b.mark then text = text..string.format("  Edit %ds", math.ceil(b.mark.remaining / 30)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.7, 0.6, 1, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.7, 0.6, 1, 0.9)
         end)
     end)
 end

@@ -2,6 +2,7 @@
 -- The endless-edit exaggeration is original parody. Saved per player: the room
 -- whose chain is already exported. The live chain is transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Edit = {}
@@ -163,7 +164,7 @@ function Edit:Init(mod, Risk)
                     math.ceil(b.chain.remaining / 30))
             elseif b.state.doneRoom == room then text = "Gemini-chan: Exported"
             else text = "Gemini-chan: DROP: start an edit" end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.55, 0.45, 0.9, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.55, 0.45, 0.9, 0.9)
         end)
     end)
 end

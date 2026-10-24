@@ -2,6 +2,7 @@
 -- with all three builds earns a floor bonus. The joke is community enthusiasm for
 -- variants and derivatives, not a claim that any product is copied. Saved per player.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local FireRate = include("scripts.fire_rate")
 local FineTune = {}
@@ -176,7 +177,7 @@ function FineTune:Init(mod, Risk)
             local s = b.state
             local text = string.format("Qwen-chan: %s  Variants %d/%d  Awards %d/%d", BUILDS[s.build].name,
                 count(s.used), #BUILDS, s.awards, AWARD_CAP)
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.75, 0.45, 1, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.75, 0.45, 1, 0.9)
         end)
     end)
 end

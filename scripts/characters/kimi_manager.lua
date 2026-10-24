@@ -2,6 +2,7 @@
 -- delivers three small damage pulses. A per-room pulse budget bounds the output.
 -- Saved per player: spent room budgets. Live tasks are transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Feedback = include("scripts.characters.feedback")
 local Manager = {}
@@ -185,7 +186,7 @@ function Manager:Init(mod, Risk)
         each(function(_, b, i)
             local text = string.format("Kimi-chan: Tasks %d/%d  Budget %d/%d", #b.tasks, SLOTS,
                 ROOM_BUDGET - (b.state.budget[room] or 0), ROOM_BUDGET)
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.45, 0.6, 1, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.45, 0.6, 1, 0.9)
         end)
     end)
 end

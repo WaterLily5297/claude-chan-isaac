@@ -2,6 +2,7 @@
 -- A fictional reset restores an allowance; it does not claim that real quota
 -- resets fix model quality. Saved per player; no real time and no network.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local PaidAttacks = include("scripts.characters.paid_attacks")
 local Reset = {}
@@ -203,7 +204,7 @@ function Reset:Init(mod, Risk)
             local s = b.state
             local text = string.format("Credits %d/%d  %s  ", s.credits, cap(p), s.fullSend and "Full Send" or "Standard")
             text = text..(s.ready and "Tibo: Reset Ready" or string.format("Next Reset %d/%d", s.clears, CLEARS_PER_RESET))
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.3, 0.85, 0.6, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.3, 0.85, 0.6, 0.9)
         end)
     end)
 end

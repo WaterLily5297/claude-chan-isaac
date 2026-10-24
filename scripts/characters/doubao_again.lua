@@ -2,6 +2,7 @@
 -- then Apology, then ready to promise again. Timers run only in hostile combat.
 -- Saved per player: the current phase and its remaining frames.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Again = {}
 
@@ -157,7 +158,7 @@ function Again:Init(mod, Risk)
             local s, text = b.state, "Doubao-chan: Ready to promise"
             if s.phase == "confident" then text = string.format("Doubao-chan: Confident %ds", math.ceil(s.remaining / 30))
             elseif s.phase == "apology" then text = string.format("Doubao-chan: Apology %ds", math.ceil(s.remaining / 30)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 1, 0.7, 0.6, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.6, 0.9)
         end)
     end)
 end
