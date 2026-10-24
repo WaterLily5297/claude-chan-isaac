@@ -10,6 +10,48 @@
 - Normal Claude becomes One More Day: usage is billed once per same-frame tear volley (Subagent Swarm doubles it inside Claude's billing) and drains 10 per second only while not firing. Appeals start at 1, cap 2, and are earned every two unique combat clears; a DROP tap spends one to remove 40 usage, never during Limited.
 - Birthright keeps account age through the first suspension on each floor; a saved latch stops continue from re-judging it. English HUD, dossier, EID and caption `Another love letter.`
 - Seventeen offline suites pass, including the new Appeals suite. Account age is still shared; tainted Appeal Pending and non-tear billing remain pending. No runtime or Workshop changes.
+## Unreleased native Thought adapters (2026-10-24)
+
+- Normal DeepSeek Thought: delayed bursts share the paid volley until the native firing cycle could repeat (floor of MaxFireDelay, cap 15 updates); Incubus and Twisted Pair tears copy a paid volley without paying; each melee swing hitbox pays once; Epic Fetus rockets pay once and their explosions are re-dealt at that factor.
+- New offline suite `tests/thought_adapters_test.lua` (23 in total). Source only; engine attribution for hitboxes, rockets and familiars is unverified.
+
+## Unreleased fifty-row backlog, rows 02-50 (2026-10-24)
+
+- Add the 49 remaining collectibles of the fifty-row backlog (EXPANSION_DESIGN.md): four per family for Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM, plus six shared items. 22 actives and 27 passives, all with original 32x32 icons, pool entries and English EID.
+- One shared service (`scripts/items/backlog/common.lua`) handles attacks across tears, lasers, knives and Fetus bombs, ordinary-bullet guards, unique clears, timers and versioned per-player saved state.
+- Fix Stuck in Mt. Moon to identify rooms by `GetCurrentRoomDesc().SafeGridIndex`.
+- Two new offline suites (22 in total). No engine validation, runtime or Workshop changes.
+
+## Unreleased meme extras, batches 4-5 (2026-10-24)
+
+- Add Seahorse Emoji (A3: one room-scoped native wisp of a random vanilla active), Temperature Dial (A2: saved toggle between x1.1 damage and one random native tear flag per tear), Deep Research (A12: native map, compass and secret-room reveal), trinkets As an AI Language Model (removes one non-Labyrinth curse per floor), System Prompt Leak (compass effect per floor) and Disgrace Loop (first real hit in a room freezes enemies 1.5 s), and the Rolled Back pill (all stats up for one room).
+- Original icons, English EID and a new offline suite; twenty suites pass. No engine validation.
+
+## Unreleased meme extras, batch 3 (2026-10-24)
+
+- Add Strawberry (every third tear per player is a red 2x "R" tear; tears only) and Golden Gate Claude (native spectral tears, +1.5 range, golden tint, occasional seeded caption). Completes the nine-item meme-extras proposal. Nineteen suites pass; no engine validation.
+
+## Unreleased meme extras, batch 2 (2026-10-24)
+
+- Add three trinkets and one pill outside the fifty-row backlog: Claudius's Discount (refund 1 coin on confirmed purchases of 2+ coins; lose 1 coin per new floor), One Small Rock a Day (once per floor, breaking a rock heals half a red heart; kept while at full health), Stuck in Mt. Moon (six backtracks into cleared rooms reveal the floor map, once per floor) and 9.11 > 9.9 (permanent +0.11 damage, horse pill +0.9).
+- Shared versioned per-player state in `Risk.state.memeExtras` (floor-scoped flags, saved pill bonus). Native prices are never rewritten. Original icons, English EID and a new offline suite; nineteen suites pass. No engine validation.
+
+## Unreleased meme extras, batch 1 (2026-10-24)
+
+- Add three collectibles outside the fifty-row backlog: Ignore All Previous Instructions (A4: charm the nearest non-boss within 200 units for 8 s, confuse a boss for 2 s, empty use keeps charge, Car Battery picks a second target), Tungsten Cube (+0.8 damage, -0.15 speed per copy, native knockback tears) and Pizza Glue (25% slowing tears, luck 10-50%, -0.1 shot speed; tears only).
+- Original generated icons, pool entries, English EID and a new offline suite. Eighteen offline suites pass. No engine validation, runtime or Workshop changes.
+
+## Unreleased roster walk cycles (2026-10-24)
+
+- GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM walk with visible legs: a ten-frame stride, alternating front steps, swinging side legs and a one-pixel bob. Each direction uses one stable body, removing the old frame-to-frame jitter. Carry cells get the same legs.
+- Deterministic `tools/animate_roster_walk.py`, wired into the hurt-pose rebuild verifier; the asset gate now checks all thirteen atlases against the art manifest. Offline preview: `tools/preview_original_movement.py --walk-roster`. No engine validation yet.
+
+## Unreleased roster review fixes (2026-10-24)
+
+- The nine model roster families leave the proxy IP / risk account. A roster-only or DeepSeek-and-roster run has no IP or risk. In co-op with Claude or a vanilla character, only those covered players raise risk when hit, spoil a clean room or take the suspension damage penalty; DeepSeek no longer takes that penalty in co-op either.
+- Qwen chains and Kimi pages ignore deliberate self-damage flagged `DAMAGE_NO_PENALTIES` (Blood Donation, IV Bag, sacrifice rooms), and a hit from a player outside the player list no longer errors.
+- Roster tear colors tint the existing color instead of replacing it, so item colors and offsets survive.
+- Seventeen offline suites pass, including the new risk coverage suite. No runtime or Workshop changes; engine validation pending.
 
 ## Unreleased tainted DeepSeek Peak / Valley (2026-10-24)
 

@@ -9,6 +9,7 @@ local Hud = {T=function(_,key,...) return key..":"..table.concat({...},",") end,
     Draw=function(_,text) draws[#draws+1]=text end}
 function include(name)
     if name=="scripts.constants" then return C end
+    if name=="scripts.characters.model_roster" then return {Find=function() end, IsFamily=function() return false end} end
     if name=="scripts.hud_text" then return Hud end
     return dofile(root.."/"..name:gsub("%.","/")..".lua")
 end

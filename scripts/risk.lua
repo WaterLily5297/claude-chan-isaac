@@ -12,6 +12,7 @@
 local json = require("json")
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
+local ModelRoster = include("scripts.characters.model_roster")
 
 local Risk = {}
 
@@ -61,13 +62,19 @@ local function anyPlayerHasTrinket(trinket)
     return false
 end
 
--- DeepSeek-chan needs no proxy (she connects directly), so when every player
--- is DeepSeek-chan the whole IP / risk system sleeps: risk reads as 0, never
--- rises, and no IP is rolled. In co-op with anyone else it runs as normal.
+-- DeepSeek-chan needs no proxy (she connects directly), and the model roster
+-- families have their own loops, so neither is covered by the proxy account.
+local function covered(player)
+    return player ~= nil and not Constants.IsDeepSeek(player) and ModelRoster:Find(player) == nil
+end
+
+-- When no player is covered the whole IP / risk system sleeps: risk reads as
+-- 0, never rises, and no IP is rolled. In co-op with a covered player it runs,
+-- but only covered players are hurt by suspension or raise risk when hit.
 function Risk:IsActive()
     local n = Game():GetNumPlayers()
     for i = 0, n - 1 do
-        if not Constants.IsDeepSeek(Isaac.GetPlayer(i)) then
+        if covered(Isaac.GetPlayer(i)) then
             return true
         end
     end
@@ -179,7 +186,7 @@ end
 
 function Risk:Init(mod)
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
-        if flag == CacheFlag.CACHE_DAMAGE and Risk:IsSuspended() then
+        if flag == CacheFlag.CACHE_DAMAGE and covered(player) and Risk:IsSuspended() then
             player.Damage = player.Damage * SUSPENDED_DAMAGE_MULT
         end
     end)
@@ -213,7 +220,8 @@ function Risk:Init(mod)
         hitThisRoom = false
     end)
 
-    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function()
+    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
+        if not covered(entity:ToPlayer()) then return end
         hitThisRoom = true
         Risk:Add(1)
     end, EntityType.ENTITY_PLAYER)

@@ -16,6 +16,7 @@ import xml.etree.ElementTree as ET
 from PIL import Image, ImageDraw
 from pack_selected_sprites import pack, ORIGINALS
 from pack_original_movement import pack as movement
+from animate_roster_walk import KEYS as WALK_KEYS, animate
 
 ROOT = Path(__file__).resolve().parent.parent
 HIT = (128, 192, 192, 256)
@@ -51,6 +52,8 @@ def main():
             failures.append(f'{key}: hurt pose exceeds measured 28x32 envelope: {visible}')
         if visible and (visible[3] != 55 or abs(visible[0] + visible[2] - 64) > 1):
             failures.append(f'{key}: hurt pose misses center/ground anchor: {visible}')
+        if key in WALK_KEYS and old.crop((0, 32, 512, 128)).tobytes() != current.crop((0, 32, 512, 128)).tobytes():
+            old = animate(old)  # before-ref predates the walk pass; compare the Hit cell only
         restored = current.copy()
         restored.paste(old.crop(HIT), HIT[:2])
         assert restored.tobytes() == old.tobytes(), f'{key}: changed outside Hit cell'
@@ -61,6 +64,8 @@ def main():
             source = args.movement_source / (key + '.png')
             assert hashlib.sha256(source.read_bytes()).hexdigest() == record['movement_source_sha256'], key
             rebuilt = movement(rebuilt, Image.open(source), key)
+        elif key in WALK_KEYS:
+            rebuilt = animate(rebuilt)
         blob = BytesIO()
         rebuilt.save(blob, format='PNG', optimize=True)
         assert blob.getvalue() == raw, f'{key}: exact atlas rebuild differs'

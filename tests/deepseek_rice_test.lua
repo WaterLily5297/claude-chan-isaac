@@ -5,6 +5,7 @@ local callbacks, players, saved, draws = {}, {}, nil, {}
 local C={Player={DEEPSEEK_CHAN=42},Item={LUNCH_BREAK=749}}
 function include(name)
     if name=="scripts.constants" then return C end
+    if name=="scripts.characters.model_roster" then return {Find=function() end} end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
     return dofile(root.."/"..name:gsub("%.","/")..".lua")
 end
@@ -16,6 +17,7 @@ package.preload.json=function() return {
     encode=function(v) saved=copy(v); return "snapshot" end,
     decode=function() return copy(saved) end,
 } end
+EffectVariant={TARGET=30,ROCKET=31}
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
 TearFlags={TEAR_LUDOVICO="ludo"}
 CacheFlag={CACHE_SPEED=1}; CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}

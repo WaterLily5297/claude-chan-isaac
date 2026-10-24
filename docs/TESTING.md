@@ -54,6 +54,46 @@ The owner reports all characters developing an oversized head after damage. Exac
 
 Offline reproduction requires Pillow plus the recorded generated sources, kept outside the repository. Run `python tools/verify_hurt_poses.py SOURCE_DIRECTORY MOVEMENT_SOURCE_DIRECTORY REVIEW_OUTPUT_DIRECTORY --before-ref d1c0daf`. This fails the geometry contract on the old thirteen skins and passes the corrected ones, verifying source/packed hashes, exact atlas rebuilding and pixel equality outside the shared hurt cell. It writes an engineering comparison and JSON evidence; it neither installs files nor runs the game. CI's standard asset checks do not execute this optional source-dependent review.
 
+## Fifty-row backlog acceptance (pending)
+
+Rows 02-50 (`scripts/items/backlog/`). Offline suites: `tests/backlog_items_test.lua`, `tests/backlog_more_test.lua`. In game, per item: spawn it, read the EID, check the icon, use or trigger it once and confirm no console error.
+
+- Every active: Car Battery adds nothing; targeted actives keep their charge in an empty room; Void/wisp uses are harmless.
+- Primes (Rice Cooker, Wengu Clock, Base Model, Quote Retort, Next Time Again, Rate-Limit Valve): one boosted attack each with tears, Brimstone, Technology, knives, Dr. Fetus and Ludovico; multi-shot volleys boost every tear once.
+- Guards (One Bowl Only, Sold Out, Release Soon, Token Recall): an ordinary enemy shot is absorbed; champion/special shots, contact, Blood Donation and IV Bag are not.
+- Unique clears (Routing Receipt, Final Final Weights, Herd Bell, Please Come Back, Smiling Correction, Overtime Slides, Queue Ticket): re-entering, continuing and boss rooms count once; Glowing Hourglass behavior is recorded.
+- Saved state: save/exit/continue keeps Anniversary Cake, Tibo Reset, Error Budget and counters; a new run resets them; co-op players stay separate.
+- Helpers: Unchanged Preview decoys draw nearby enemies and Stand-Up Meeting recalls them; Open Weights flies are native blue flies.
+- Stats: Tiny Variant, Another Adapter, Slipstream Boots, Edge Compass, Live Wire and Cache Cartridge do not change sprite size or fight other stat items.
+
+## Meme extras batch 1 acceptance (pending)
+
+- Ignore All Previous Instructions: charmed target fights for you for 8 s and is not re-targeted by Car Battery; bosses only confused; empty room keeps charge; check with Compact and You're Absolutely Right!.
+- Tungsten Cube: damage/speed in the stat HUD, knockback with tears, Brimstone, Technology, Mom's Knife and Dr. Fetus; stacking with D4/D100 rerolls.
+- Pizza Glue: slowing tint and effect on tears; shot speed change; no effect on lasers/knives/bombs; Swarm and Peak/Valley fork copies; continue keeps the native item RNG sequence.
+
+## Meme extras batches 4-5 acceptance (pending)
+
+- Seahorse Emoji: wisp appears, fights and is removed on room exit; save/exit mid-room (untracked wisp risk); Book of Virtues and other wisp items unaffected.
+- Temperature Dial: toggle text and damage; each listed flag visibly applies; interaction with other tear-flag items; continue keeps the temperature.
+- Deep Research: full reveal including secret and super secret rooms; Curse of the Lost/Unknown display.
+- As an AI Language Model: removal of each curse type mid-floor (Darkness, Lost, Unknown, Maze, Blind, Giant), Labyrinth kept, continue does not refuse twice.
+- System Prompt Leak: compass reveal on each floor and on mid-floor pickup.
+- Disgrace Loop: freeze on bosses and freeze-immune enemies; Holy Mantle hits; co-op once per player.
+- Rolled Back: stat HUD, horse pill detection, room change rollback, continue mid-room drops the bonus.
+
+## Meme extras batch 3 acceptance (pending)
+
+- Strawberry: count with 20/20, Inner Eye, Mutant Spider, Monstro's Lung and Summary Stapler tears; interaction with Hardcoded Output, DeepSeek Thought/forks and Swarm copies; red tint over item colors.
+- Golden Gate Claude: spectral tears over rocks and through poop/fires as vanilla Ouija Board; range stat display; tint with Ipecac/Spoon Bender; caption frequency.
+
+## Meme extras batch 2 acceptance (pending)
+
+- Claudius's Discount: shop items, hearts, keys and restocks priced 2+ refund once; 1-coin items do not; devil deals, free items and Keeper are unaffected; Steam Sale and coin-cost items from other mods; new floor charge once, and not again on continue.
+- One Small Rock a Day: rocks broken by bombs, tears (Terra/Ipecac), enemies and stomps; tinted/special/spiked rocks; full health and soul-only characters; continue on the same floor does not restore the rock.
+- Stuck in Mt. Moon: callback order on continue, curse rooms, red rooms, and the vanilla map display after the effect.
+- 9.11 > 9.9: whether the game passes pill color (horse pill), PHD/False PHD, pill identification text, continue and co-op.
+
 ## Summary Stapler acceptance (pending)
 
 Give Summary Stapler in a disposable run. Verify four room charges, empty use preserving charge, nearest-first absorption capped at twelve within 120 units, and exclusion of special-flag/variant, friendly, player/familiar, dead or source-less projectiles. Aim diagonally and use without shooting; check the speed-6 native tear and base damage multiplier 1 + count/4. Car Battery must neither absorb a second batch nor fire again. Verify co-op ownership and both active slots.
@@ -91,6 +131,7 @@ Also test Tiny Planet, Anti-Gravity, Eye of the Occult and Ludovico separately: 
 Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes.
 
 - Select all eleven normal families and both existing tainted characters. Check the correct name, bust, stage portrait and full MAP dossier. No missing textures or duplicate menu entries.
+- Roster-only and DeepSeek-plus-roster runs show no IP/risk HUD. With Claude in co-op, a roster player's hit adds no risk and suspension lowers only Claude's damage. Blood Donation, IV Bag and a sacrifice room keep Qwen's chain and Kimi's pages; a real hit still breaks them. Roster tears keep Ipecac/Spoon Bender colors under the family tint.
 - Inspect every new skin facing front, right, rear and left, while walking, firing, holding an item, flying, hurt and dead. Check for clipping, stray neighboring pixels, incorrect back views and doubled heads. Alternate arm poses remain provisional.
 - For GPT and Gemini, tap DROP through both modes, then save/quit/close/restart/continue. The mode must persist. Check the original DROP behavior with held trinkets and controller input.
 - For Grok and Mistral, reach maximum movement/firing charge, stop, change rooms, and start a new run. Temporary charge must reset and stay bounded.
@@ -212,3 +253,13 @@ lua Isaac.RunCallback("ClaudeChan:RunRuntimeProbe")
 Close the console and let the simulation run for about 13 seconds. This sets test coins/risk, uses the real pocket-item input, adds Car Battery, changes to stage 3 and round-trips this mod's run data. It does not change other mods' settings. Do not invoke it in a run you intend to preserve. Normal gameplay never calls it. A duplicate probe is rejected; input is removed on completion, failure or game exit.
 
 The probe must print `CCQA PASS` for insufficient funds (2/50/6), Car Battery (3/30/0), simultaneous captions (one pending), queue save/load (seen=11, pending=0), and completion. These assertions passed in Repentance+ 1.9.7.17 on 2026-10-23. They use the active shared Risk object, never a fresh `include("scripts.risk")`. The save/load case exercises the real mod JSON persistence and story-start handler; it does not replace a full application-restart/save-slot test.
+
+## Native Thought adapters: bursts, familiars, melee, Epic Fetus
+
+Offline suite: `tests/thought_adapters_test.lua`. In game, as normal DeepSeek-chan with full Thought:
+
+- Cursed Eye: one charged burst spends Thought once and every tear of the burst is boosted.
+- Incubus or Twisted Pair: copies fired with a boosted volley are boosted; copies alone never spend Thought.
+- The Forgotten's club and Spirit Sword: each swing spends once; holding the weapon spends nothing.
+- Epic Fetus: each rocket spends once and its explosion deals the boosted damage; Dr. Fetus bombs are not boosted twice.
+- Pause or leave the room mid-burst: no extra payment and no lasting damage change.

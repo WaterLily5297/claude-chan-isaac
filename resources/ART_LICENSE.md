@@ -39,6 +39,10 @@ No voices, Bilibili video frames or official avatar downloads are bundled. AI ge
 
 The four original characters received an additional built-in image-tool movement pass using the already selected portraits as design references. It replaces head, walking, carrying and carry-head cells only. Exact prompts are in `docs/original-movement-prompts.json`; generated source hashes and packed atlas hashes are in `docs/roster-art-manifest.json`. These remain non-commercial design derivatives under the credits and terms above. Mechanical cropping, nearest-neighbor resizing and packing retain the generated alpha. Locally extracted vanilla artwork was used only to inspect layout and is not included in the contribution.
 
+## Roster walk-cycle pass
+
+The nine newer skins (GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM) had ten slightly different packed walk frames per direction, which jittered and showed no legs. `tools/animate_roster_walk.py` keeps one existing body per direction (the side body is the front body narrowed to 75%), removes its three blurred bottom rows and draws two three-pixel legs in a fixed ten-frame stride with a one-pixel bob. Leg, outline and shoe colors are sampled from each body. No external or new design pixels are used; the same design credits and non-commercial terms apply.
+
 ## Hurt-pose packing correction
 
 The hurt-pose correction mechanically repacks the existing thirteen generated sources into the measured base-animation envelope and ground anchor. Llama uses a corrected source crop to retain its existing hands and feet. No new artwork, external pixels or source-image edits were used; original source hashes are unchanged and packed hashes are updated in the art manifest. The same design credits and non-commercial terms continue to apply.

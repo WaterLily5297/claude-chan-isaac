@@ -36,7 +36,9 @@ DROP gestures use a separate reusable observer with pointer/seed/type/controller
 
 Damage, firing interval, range, speed and tear flags use engine cache callbacks. The new roster does not generate extra tears recursively. Cache-based damage applies to weapon types that use player damage, but this is not proof of Brimstone, Technology, knife, bomb or familiar compatibility. Tear flags have the normal engine's weapon-specific limits. Reactions Port Pack fallback registration covers all registered characters while preserving explicit support.
 
-Damage cancelled by this mod's earlier Constitution callback does not reach roster bookkeeping. Fake damage is ignored. Other mods cancelling a later damage callback remain an engine integration case. GLM counts active-use callbacks, excludes Car Battery repeats, and deduplicates a frame; this is not an engine-wide guarantee that every third-party item consumed a charge.
+Damage cancelled by this mod's earlier Constitution callback does not reach roster bookkeeping. Fake damage and deliberate self-damage flagged `DAMAGE_NO_PENALTIES` (Blood Donation, IV Bag, sacrifice rooms) are ignored; whether every vanilla self-damage source sets that flag needs engine confirmation.
+
+Roster families are outside the proxy IP / risk account: their hits never add risk or spoil a clean room, and suspension never reduces their damage. Their tear color is a tint multiplied into the current color, preserving item colors and offsets. Other mods cancelling a later damage callback remain an engine integration case. GLM counts active-use callbacks, excludes Car Battery repeats, and deduplicates a frame; this is not an engine-wide guarantee that every third-party item consumed a charge.
 
 ## Art and provenance
 

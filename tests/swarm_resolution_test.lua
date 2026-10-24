@@ -1,6 +1,7 @@
 -- Exercise real character and Swarm callbacks in the entry point's registration order.
 local root = arg[1]
 function include(name) return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua") end
+EffectVariant={TARGET=30,ROCKET=31}
 ModCallbacks = setmetatable({}, { __index = function(_, key) return key end })
 CallbackPriority = { DEFAULT = 0, LATE = 1000 }
 CacheFlag = {CACHE_SPEED=1}

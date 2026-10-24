@@ -6,6 +6,7 @@ local C={Player={DEEPSEEK_CHAN=42},Item={LUNCH_BREAK=749,MILLION_CONTEXT=739}}
 function include(name)
     if name=="scripts.characters.deepseek_rice" and arg[2] then return dofile(arg[2]) end
     if name=="scripts.constants" then return C end
+    if name=="scripts.characters.model_roster" then return {Find=function() end} end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
     return dofile(root.."/"..name:gsub("%.","/")..".lua")
 end
@@ -19,6 +20,7 @@ package.preload.json=function() return {
 } end
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
 TearFlags={TEAR_LUDOVICO={highBit=127}}
+EffectVariant={TARGET=30,ROCKET=31}
 EntityType={ENTITY_LASER=7,ENTITY_BOMB=4}
 function EntityPtr(e) return setmetatable({}, {__index=function(_,k) if k=="Ref" and e:Exists() then return e end end}) end
 CacheFlag={CACHE_SPEED=1}; CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}

@@ -48,12 +48,13 @@ TearFlags = { TEAR_HOMING = "homing", TEAR_PIERCING = "piercing", TEAR_SPECTRAL 
 PickupVariant = { PICKUP_COLLECTIBLE = 100, PICKUP_LOCKEDCHEST = 60, PICKUP_COIN = 20 }
 ModCallbacks = setmetatable({}, { __index = function(_, k) return k end })
 CallbackPriority = { DEFAULT = 0, LATE = 1000 }
+EffectVariant = { TARGET = 30, ROCKET = 31 }
 EntityType = { ENTITY_PLAYER = 1, ENTITY_TEAR = 2, ENTITY_PROJECTILE = 9, ENTITY_CLOTTY = 15 }
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_RANGE = 2, CACHE_SHOTSPEED = 4, CACHE_SPEED = 8, CACHE_TEARCOLOR = 16, CACHE_FIREDELAY = 32, CACHE_FLYING = 64 }
 ActiveSlot = { SLOT_PRIMARY = 0, SLOT_POCKET = 2 }
 UseFlag = { USE_CARBATTERY = 32 }
 EntityFlag = { FLAG_FRIENDLY = 1 }
-DamageFlag = { DAMAGE_RED_HEARTS = 32, DAMAGE_IV_BAG = 4096, DAMAGE_FAKE = 2097152 }
+DamageFlag = { DAMAGE_EXPLOSION = 4, DAMAGE_RED_HEARTS = 32, DAMAGE_IV_BAG = 4096, DAMAGE_FAKE = 2097152, DAMAGE_NO_PENALTIES = 268435456 }
 function Color(...) return { ... } end
 SoundEffect = { SOUND_POWERUP_SPEWER = 132 }
 function SFXManager() return { Play = function(_, id) print("  SFX:", id) end } end
@@ -147,7 +148,7 @@ function Game()
         GetNumPlayers = function() return 1 end,
         GetLevel = function() return { GetStage = function() return stage end,
             GetStageType = function() return 0 end, GetDungeonPlacementSeed = function() return 77 end,
-            GetCurrentRoomDesc = function() return { SpawnSeed = 1, SafeGridIndex = 1 } end } end,
+            GetCurrentRoomDesc = function() return { SpawnSeed = 1, SafeGridIndex = 84 } end } end,
         GetSeeds = function() return { GetStartSeed = function() return 123456 end } end,
         GetHUD = function() return {
             IsVisible = function() return hudVisible end,
