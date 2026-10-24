@@ -4,8 +4,9 @@ local C = include("scripts.constants")
 local DropTap = include("scripts.characters.drop_tap")
 local Roster = {}
 Roster.definitions = {
-    {key="gpt", name="GPT-chan", title="Deliberate / Instant", color={0.4,1,0.75},
-     lines={"Tap/release DROP: switch mode.", "Deliberate: +35% damage, slower tears.", "Instant: faster tears, -15% damage."}},
+    -- GPT's mechanics live in gpt_downgrade.lua; the roster keeps its identity and tint.
+    {key="gpt", name="GPT-chan", title="Same Name, Smaller Brain", color={0.4,1,0.75}, external=true,
+     lines={"Verified: +15% damage. Clears add Routing.", "At 3 Routing, next combat: Fallback, -20%.", "Fallback: tap DROP, hit the Sanity Check 3x."}},
     {key="gemini", name="Gemini-chan", title="Two modalities", color={0.7,0.6,1},
      lines={"Tap/release DROP: Prism / Echo.", "Prism: piercing tears, +20% damage.", "Echo: homing tears, faster fire."}},
     {key="grok", name="Grok-chan", title="Live momentum", color={1,0.3,0.35},
@@ -131,8 +132,7 @@ function Roster:Init(mod, Risk)
         local key=def.key
         if flag == CacheFlag.CACHE_DAMAGE then
             local mult=1
-            if key=="gpt" then mult=s.mode==0 and 1.35 or 0.85
-            elseif key=="gemini" then mult=s.mode==0 and 1.2 or 0.9
+            if key=="gemini" then mult=s.mode==0 and 1.2 or 0.9
             elseif key=="grok" then mult=1 + math.floor(t.momentum/15)*0.025
             elseif key=="qwen" then mult=1 + s.chain*0.06
             elseif key=="llama" then mult=0.9
@@ -141,8 +141,7 @@ function Roster:Init(mod, Risk)
             elseif key=="glm" then mult=1+s.links*0.12 end
             p.Damage=p.Damage*mult
         elseif flag==CacheFlag.CACHE_FIREDELAY then
-            if key=="gpt" then p.MaxFireDelay=math.max(-0.75,(p.MaxFireDelay+1)*(s.mode==0 and 1.2 or 0.8)-1)
-            elseif key=="gemini" and s.mode==1 then p.MaxFireDelay=math.max(-0.75,(p.MaxFireDelay+1)*0.9-1) end
+            if key=="gemini" and s.mode==1 then p.MaxFireDelay=math.max(-0.75,(p.MaxFireDelay+1)*0.9-1) end
         elseif flag==CacheFlag.CACHE_SPEED and key=="mistral" then p.MoveSpeed=p.MoveSpeed+0.15
         elseif flag==CacheFlag.CACHE_SHOTSPEED and key=="mistral" then p.ShotSpeed=p.ShotSpeed+0.25
         elseif flag==CacheFlag.CACHE_RANGE and key=="kimi" then p.TearRange=p.TearRange+s.pages*25
@@ -162,11 +161,10 @@ function Roster:Init(mod, Risk)
         if not def or p:IsDead() then dropTap:Forget(p); return end
         local s,t=state(p,def),temp(p)
         if not s then dropTap:Forget(p); return end
-        local switchMode = dropTap:Poll(p, def.key=="gpt" or def.key=="gemini")
+        local switchMode = dropTap:Poll(p, def.key=="gemini")
         if switchMode then
             s.mode=1-s.mode; refresh(p)
-            Game():GetHUD():ShowItemText(def.name, def.key=="gpt"
-                and (s.mode==0 and "Deliberate" or "Instant") or (s.mode==0 and "Prism" or "Echo"))
+            Game():GetHUD():ShowItemText(def.name, s.mode==0 and "Prism" or "Echo")
         elseif def.key=="grok" then
             local before=math.floor(t.momentum/15)
             t.momentum=math.max(0,math.min(150,t.momentum+(p.Velocity:Length()>0.5 and 1 or -3)))
@@ -235,10 +233,10 @@ function Roster:Init(mod, Risk)
         if Game():IsPaused() then dropTap:Reset(); return end
         if not ready or not Game():GetHUD():IsVisible() then return end
         each(function(p,def,s)
+            if def.external then return end
             local i=tonumber(slot(p)) or 0
             local value="Hold MAP: dossier"
-            if def.key=="gpt" then value=s.mode==0 and "Deliberate" or "Instant"
-            elseif def.key=="gemini" then value=s.mode==0 and "Prism" or "Echo"
+            if def.key=="gemini" then value=s.mode==0 and "Prism" or "Echo"
             elseif def.key=="grok" then value="Momentum "..math.floor(temp(p).momentum/15).."/10"
             elseif def.key=="qwen" then value="Chain "..s.chain.."/5"
             elseif def.key=="kimi" then value="Pages "..s.pages.."/6"

@@ -14,6 +14,14 @@ Fire ordinary tears: each paid volley adds two half-damage forks at ±12° and c
 
 Save/quit/continue mid-phase and in Saving mode: Compute, phase, remaining time and mode must return unchanged; the toggle cooldown intentionally resets. Test a new run, character change (Clicker), co-op with two tainted DeepSeeks (separate Compute) and death. Brimstone, Technology, knife, Dr. Fetus and Ludovico builds should attack normally with no forks and no Compute cost. Stub coverage is `tests/deepseek_peak_test.lua` and `tests/swarm_resolution_test.lua`; no engine pass is recorded.
 
+## Normal GPT Same Name, Smaller Brain (source candidate; engine acceptance pending)
+
+Start a new run: HUD reads `GPT-chan: Verified  Routing 0/3` and damage is 1.15x. Clear three different hostile rooms: Routing reaches 3/3. Re-entering a cleared room or clearing a room that never had enemies adds nothing. The next room with enemies must announce `Fallback` and drop damage to 0.8x. Firing rate stays native (the old Deliberate / Instant modes are gone).
+
+In Fallback, tap/release DROP near an enemy (within about 200 units) to tag it as a Sanity Check; the HUD shows `Check 0/3`. Tapping with no enemy nearby spends nothing. Hit it with three separate volleys: Verified returns and Routing resets. A 20/20 or Mutant Spider volley must count once, as must a Brimstone beam within one fifth of a second. Kill a tagged enemy with your own hit: Verified returns immediately. Let another player or a familiar kill it, or leave the room: the check fails and Fallback stays until the next room. Birthright needs two hits. Holding DROP keeps native trinket dropping; test pocket cycling with a pocket item.
+
+Save/quit/continue in Fallback: Fallback, Routing and the spent room check return unchanged, and a second tag in the same room is refused. A new floor restores Verified with Routing 0. Test co-op with two GPTs (separate Routing and checks), character change (Clicker) and death. Stub coverage is `tests/gpt_downgrade_test.lua`; no engine pass is recorded.
+
 ## Rice First (source candidate; engine acceptance pending)
 
 Current owner constraint: source work and offline validation only. Keep this engine checklist pending until the owner resumes game testing.

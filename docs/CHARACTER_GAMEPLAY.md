@@ -60,6 +60,8 @@ Start each floor Verified at 1.15x damage. Each unique combat clear adds one Rou
 
 Derived effects cannot count multiple times for one attack. Failed verification leaves Fallback until the next room's attempt. Floor transition restores Verified; continue does not. Birthright requires only two paid hits. HUD: Verified / Fallback, Routing, transient Check progress. The player can actively correct the downgrade instead of suffering a silent random debuff.
 
+Source status (scripts/characters/gpt_downgrade.lua): implemented and replaces the old Deliberate / Instant modes. A unique combat clear is a room seen with enemies while the player was present, once per floor. An attack is a registered tear volley (shared by its same-frame derived copies), a Dr. Fetus bomb, or one six-update window of a laser or knife; unregistered split tears and familiars do not count. The defeat route needs the owner's damage on the same or previous update. A spent check is saved per room, so continue cannot grant a second attempt. Engine acceptance pending.
+
 ### Tainted: Reset Watcher
 
 Start a new run with 80 Credits, cap 80. DROP toggles Standard (1x damage, free) and Full Send (1.5x, one credit per paid attack). At zero return to Standard. Every three unique clears earns Reset Ready, max one. When ready, DROP consumes the reset and refills credits before any mode toggle. Room progress pauses while a reset is banked.
