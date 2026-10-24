@@ -54,6 +54,34 @@ The owner reports all characters developing an oversized head after damage. Exac
 
 Offline reproduction requires Pillow plus the recorded generated sources, kept outside the repository. Run `python tools/verify_hurt_poses.py SOURCE_DIRECTORY MOVEMENT_SOURCE_DIRECTORY REVIEW_OUTPUT_DIRECTORY --before-ref d1c0daf`. This fails the geometry contract on the old thirteen skins and passes the corrected ones, verifying source/packed hashes, exact atlas rebuilding and pixel equality outside the shared hurt cell. It writes an engineering comparison and JSON evidence; it neither installs files nor runs the game. CI's standard asset checks do not execute this optional source-dependent review.
 
+## Meme extras batch 1 acceptance (pending)
+
+- Ignore All Previous Instructions: charmed target fights for you for 8 s and is not re-targeted by Car Battery; bosses only confused; empty room keeps charge; check with Compact and You're Absolutely Right!.
+- Tungsten Cube: damage/speed in the stat HUD, knockback with tears, Brimstone, Technology, Mom's Knife and Dr. Fetus; stacking with D4/D100 rerolls.
+- Pizza Glue: slowing tint and effect on tears; shot speed change; no effect on lasers/knives/bombs; Swarm and Peak/Valley fork copies; continue keeps the native item RNG sequence.
+
+## Meme extras batches 4-5 acceptance (pending)
+
+- Seahorse Emoji: wisp appears, fights and is removed on room exit; save/exit mid-room (untracked wisp risk); Book of Virtues and other wisp items unaffected.
+- Temperature Dial: toggle text and damage; each listed flag visibly applies; interaction with other tear-flag items; continue keeps the temperature.
+- Deep Research: full reveal including secret and super secret rooms; Curse of the Lost/Unknown display.
+- As an AI Language Model: removal of each curse type mid-floor (Darkness, Lost, Unknown, Maze, Blind, Giant), Labyrinth kept, continue does not refuse twice.
+- System Prompt Leak: compass reveal on each floor and on mid-floor pickup.
+- Disgrace Loop: freeze on bosses and freeze-immune enemies; Holy Mantle hits; co-op once per player.
+- Rolled Back: stat HUD, horse pill detection, room change rollback, continue mid-room drops the bonus.
+
+## Meme extras batch 3 acceptance (pending)
+
+- Strawberry: count with 20/20, Inner Eye, Mutant Spider, Monstro's Lung and Summary Stapler tears; interaction with Hardcoded Output, DeepSeek Thought/forks and Swarm copies; red tint over item colors.
+- Golden Gate Claude: spectral tears over rocks and through poop/fires as vanilla Ouija Board; range stat display; tint with Ipecac/Spoon Bender; caption frequency.
+
+## Meme extras batch 2 acceptance (pending)
+
+- Claudius's Discount: shop items, hearts, keys and restocks priced 2+ refund once; 1-coin items do not; devil deals, free items and Keeper are unaffected; Steam Sale and coin-cost items from other mods; new floor charge once, and not again on continue.
+- One Small Rock a Day: rocks broken by bombs, tears (Terra/Ipecac), enemies and stomps; tinted/special/spiked rocks; full health and soul-only characters; continue on the same floor does not restore the rock.
+- Stuck in Mt. Moon: callback order on continue, curse rooms, red rooms, and the vanilla map display after the effect.
+- 9.11 > 9.9: whether the game passes pill color (horse pill), PHD/False PHD, pill identification text, continue and co-op.
+
 ## Summary Stapler acceptance (pending)
 
 Give Summary Stapler in a disposable run. Verify four room charges, empty use preserving charge, nearest-first absorption capped at twelve within 120 units, and exclusion of special-flag/variant, friendly, player/familiar, dead or source-less projectiles. Aim diagonally and use without shooting; check the speed-6 native tear and base damage multiplier 1 + count/4. Car Battery must neither absorb a second batch nor fire again. Verify co-op ownership and both active slots.

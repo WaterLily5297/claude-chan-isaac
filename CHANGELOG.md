@@ -1,5 +1,24 @@
 # Changelog
 
+## Unreleased meme extras, batches 4-5 (2026-10-24)
+
+- Add Seahorse Emoji (A3: one room-scoped native wisp of a random vanilla active), Temperature Dial (A2: saved toggle between x1.1 damage and one random native tear flag per tear), Deep Research (A12: native map, compass and secret-room reveal), trinkets As an AI Language Model (removes one non-Labyrinth curse per floor), System Prompt Leak (compass effect per floor) and Disgrace Loop (first real hit in a room freezes enemies 1.5 s), and the Rolled Back pill (all stats up for one room).
+- Original icons, English EID and a new offline suite; twenty suites pass. No engine validation.
+
+## Unreleased meme extras, batch 3 (2026-10-24)
+
+- Add Strawberry (every third tear per player is a red 2x "R" tear; tears only) and Golden Gate Claude (native spectral tears, +1.5 range, golden tint, occasional seeded caption). Completes the nine-item meme-extras proposal. Nineteen suites pass; no engine validation.
+
+## Unreleased meme extras, batch 2 (2026-10-24)
+
+- Add three trinkets and one pill outside the fifty-row backlog: Claudius's Discount (refund 1 coin on confirmed purchases of 2+ coins; lose 1 coin per new floor), One Small Rock a Day (once per floor, breaking a rock heals half a red heart; kept while at full health), Stuck in Mt. Moon (six backtracks into cleared rooms reveal the floor map, once per floor) and 9.11 > 9.9 (permanent +0.11 damage, horse pill +0.9).
+- Shared versioned per-player state in `Risk.state.memeExtras` (floor-scoped flags, saved pill bonus). Native prices are never rewritten. Original icons, English EID and a new offline suite; nineteen suites pass. No engine validation.
+
+## Unreleased meme extras, batch 1 (2026-10-24)
+
+- Add three collectibles outside the fifty-row backlog: Ignore All Previous Instructions (A4: charm the nearest non-boss within 200 units for 8 s, confuse a boss for 2 s, empty use keeps charge, Car Battery picks a second target), Tungsten Cube (+0.8 damage, -0.15 speed per copy, native knockback tears) and Pizza Glue (25% slowing tears, luck 10-50%, -0.1 shot speed; tears only).
+- Original generated icons, pool entries, English EID and a new offline suite. Eighteen offline suites pass. No engine validation, runtime or Workshop changes.
+
 ## Unreleased roster walk cycles (2026-10-24)
 
 - GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM walk with visible legs: a ten-frame stride, alternating front steps, swinging side legs and a one-pixel bob. Each direction uses one stable body, removing the old frame-to-frame jitter. Carry cells get the same legs.

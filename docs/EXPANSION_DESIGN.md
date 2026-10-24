@@ -85,6 +85,29 @@ Four items per family (44) plus six shared items (50). These are not fifty recol
 | 49 | Shared / Consensus Coin | P | Two different owned damage sources hitting the same target within two seconds cause one 0.5x pulse; one pulse per target, no recursive trigger. |
 | 50 | Shared / Error Budget | P | First real hit each floor spends the budget and grants +0.2 speed for that room. Does not cancel damage; budget state survives continue. |
 
+## Meme extras (outside the fifty)
+
+Owner request of 2026-10-24: more meme items that stay compatible with the original game. These do not count toward or replace any backlog row, and they use only native systems (cache stats, vanilla tear flags, native charm/confusion, item RNG). Proposal list: A Ignore All Previous Instructions, B Tungsten Cube, C Claudius's Discount, D Pizza Glue, E One Small Rock a Day, F Stuck in Mt. Moon, G Strawberry, H 9.11 > 9.9 pill, I Golden Gate Claude. Only the rows marked local implementation exist in source.
+
+| Item | Type / pool | Behavior and limit |
+|---|---|---|
+| Ignore All Previous Instructions | A4, treasure | **Local implementation.** Nearest vulnerable, non-friendly, non-charmed enemy within 200 units is charmed for 8 s; a boss is confused for 2 s instead. No target keeps charge. Car Battery's second use picks the next target. Differs from Compact, which confuses the whole room and clears bullets. |
+| Tungsten Cube | P, shop | **Local implementation.** +0.8 damage and -0.15 speed per copy (speed floor 0.1, never raises a lower value); native knockback tear flag applies to every weapon that reads player tear flags. |
+| Pizza Glue | P, treasure | **Local implementation.** Each fired tear has a 25% chance (+2.5% per luck, 10-50%) to gain the native slowing flag, using the item's per-player native RNG; -0.1 shot speed per copy. Tears only: lasers, knives and bombs are not rolled. Already-slow tears consume no roll. |
+| Strawberry | P, treasure | **Local implementation.** Per-player count of fired tears; every third gets 2x its current damage, 1.2x scale and a red tint. Multi-shot volleys count each tear. Tears only. |
+| Golden Gate Claude | P, angel | **Local implementation.** Native spectral tear flag, +60 range units per copy, golden tint over the existing tear color; 25% seeded caption on entering a new hostile room. |
+| Seahorse Emoji | A3, treasure | **Local implementation.** One native Book of Virtues wisp of a random vanilla active from a fixed list (item RNG); removed on room exit; using again replaces it; Car Battery adds none. A wisp alive during save/exit may persist untracked (engine check). |
+| Temperature Dial | A2, treasure | **Local implementation.** Saved per-player toggle. Temperature 0: x1.1 damage. Temperature 1: each fired tear gains one native flag from a fixed list of ten (item RNG). Car Battery does not toggle twice. Tears only. |
+| Deep Research | A12, shop | **Local implementation.** Applies native map, compass and blue-map (secret room) effects. Car Battery no-op. |
+| Claudius's Discount | Trinket | **Local implementation.** A touch on a pickup priced 2+ coins that the holder can afford is confirmed when coins drop by exactly that price within two updates; then 1 coin is refunded. Native prices are never rewritten, so Steam Sale and restocks stay native. Each new floor costs 1 coin if any, once per saved floor key. |
+| One Small Rock a Day | Trinket | **Local implementation.** Rocks intact on room entry are polled every six updates. The first break on a floor heals half a red heart for each holder who can take red hearts; full-health holders keep the daily rock. Saved per player and floor. |
+| Stuck in Mt. Moon | Trinket | **Local implementation.** Each entry into a different, already visited and cleared room adds one; at six the native map effect is applied, once per floor. The room present on continue and duplicate callbacks never count. |
+| As an AI Language Model | Trinket | **Local implementation.** First room entered by a holder on a floor with a removable curse removes the lowest curse bit except Labyrinth, once per saved floor key. |
+| System Prompt Leak | Trinket | **Local implementation.** First room entered by a holder on each floor applies the native compass effect. |
+| Disgrace Loop | Trinket | **Local implementation.** First real hit (not fake, not no-penalty self-damage) per player per room freezes vulnerable non-friendly enemies for 45 frames. The hit is not cancelled. |
+| Rolled Back | Pill | **Local implementation.** Room-scoped: +1 damage, fire delay x0.8, +0.2 speed, +40 range, +0.1 shot speed, +1 luck; horse pill (when color is passed) doubles, cap double. Cleared on the next room. |
+| 9.11 > 9.9 | Pill | **Local implementation.** Permanent saved +0.11 damage per use (+0.9 for a horse pill when the game passes the pill color). Re-applied after continue; per player. |
+
 ## Implementation and performance gates
 
 Each item needs registration, pool, English description, original icon/provenance, tests, documentation and engine acceptance. Do not register the forty-nine designs as empty collectible shells. Use native damage/cache/weapon interfaces; do not force character sprites or overwrite another item's appearance. Weapon-independent effects must retain player/familiar ownership and handle lasers, knives and bombs explicitly. Tear-only behavior must say so.

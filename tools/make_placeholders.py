@@ -574,6 +574,187 @@ def summary_stapler():
     return c
 
 
+def ignore_instructions():
+    """A prompt sheet whose old lines are struck through, with a fresh orange line."""
+    c = clear()
+    rrect(c, 6, 4, 25, 27, 1, "P")
+    for y in (8, 11, 14):
+        line(c, 9, y, 22, y, "T")
+    line(c, 8, 16, 23, 6, "R", 2)          # strike-through
+    line(c, 9, 20, 20, 20, "O", 2)         # the injected instruction
+    line(c, 9, 24, 16, 24, "O")
+    rect(c, 21, 19, 23, 21, "N")           # text cursor
+    return c
+
+
+def tungsten_cube():
+    """A dense grey metal cube drawn in three faces."""
+    c = clear()
+    poly(c, [(5, 11), (16, 6), (27, 11), (16, 16)], "K")    # top
+    poly(c, [(5, 11), (16, 16), (16, 28), (5, 23)], "M")    # left
+    poly(c, [(16, 16), (27, 11), (27, 23), (16, 28)], "m")  # right
+    line(c, 16, 16, 16, 27, "#")
+    line(c, 5, 11, 15, 16, "#")
+    line(c, 17, 16, 27, 11, "#")
+    return c
+
+
+def pizza_glue():
+    """A glue bottle dripping onto a pizza slice."""
+    c = clear()
+    poly(c, [(4, 13), (26, 13), (15, 29)], "E")             # slice
+    rect(c, 4, 12, 26, 14, "W")                              # crust
+    ellipse(c, 11, 18, 2, 2, "R")
+    ellipse(c, 18, 17, 2, 2, "R")
+    ellipse(c, 15, 23, 2, 2, "R")
+    rrect(c, 18, 2, 27, 10, 2, "F")                          # bottle
+    rect(c, 21, 0, 24, 2, "O")                               # cap
+    line(c, 18, 9, 14, 14, "X", 2)                           # glue drip
+    return c
+
+
+def claudius_discount():
+    """A price tag with an orange discount slash."""
+    c = clear()
+    poly(c, [(4, 12), (11, 5), (27, 5), (27, 19), (11, 19)], "p")
+    ring(c, 10, 12, 2.5, 1.2, "#")
+    for y in (9, 13):
+        line(c, 15, y, 24, y, "T")
+    line(c, 14, 17, 24, 17, "B")
+    line(c, 12, 26, 26, 20, "O", 2)       # discount slash
+    line(c, 8, 22, 12, 26, "O", 2)
+    return c
+
+
+def small_rock():
+    """One small grey rock on a plate."""
+    c = clear()
+    ellipse(c, 16, 22, 12, 5, "F")         # plate
+    ellipse(c, 16, 21, 8, 3, "K")          # plate well
+    ellipse(c, 16, 16, 6, 5, "T")          # the rock
+    rect(c, 13, 13, 15, 14, "K")           # highlight
+    rect(c, 17, 18, 19, 18, "D")           # crack
+    return c
+
+
+def mt_moon():
+    """A cave mouth under a crescent moon."""
+    c = clear()
+    poly(c, [(3, 28), (10, 12), (16, 9), (23, 13), (29, 28)], "T")
+    ellipse(c, 16, 25, 6, 7, "N")          # cave mouth
+    rect(c, 10, 26, 22, 28, "N")
+    ellipse(c, 24, 6, 4, 4, "G")           # moon
+    ellipse(c, 26, 5, 3, 3, ".")
+    return c
+
+
+def strawberry():
+    """A strawberry with an R on it."""
+    c = clear()
+    poly(c, [(6, 11), (26, 11), (24, 20), (16, 29), (8, 20)], "R")
+    rect(c, 10, 7, 21, 10, "H")            # leaves
+    rect(c, 15, 3, 16, 7, "h")             # stem
+    line(c, 13, 14, 13, 23, "F", 2)        # letter R
+    line(c, 13, 14, 18, 14, "F", 2)
+    line(c, 18, 14, 18, 18, "F", 2)
+    line(c, 13, 18, 18, 18, "F", 2)
+    line(c, 15, 19, 19, 23, "F", 2)
+    return c
+
+
+def golden_gate():
+    """A red-orange suspension bridge tower over water."""
+    c = clear()
+    rect(c, 2, 25, 29, 29, "c")            # water
+    rect(c, 2, 18, 29, 20, "r")            # deck
+    rect(c, 8, 5, 10, 24, "r")             # towers
+    rect(c, 21, 5, 23, 24, "r")
+    rect(c, 8, 9, 23, 10, "r")             # crossbeam
+    line(c, 2, 6, 9, 17, "G")              # cables
+    line(c, 9, 5, 16, 15, "G")
+    line(c, 16, 15, 22, 5, "G")
+    line(c, 22, 5, 29, 15, "G")
+    return c
+
+
+def seahorse_emoji():
+    """A seahorse outline made of dashes inside a speech bubble: it does not exist."""
+    c = clear()
+    rrect(c, 3, 3, 28, 23, 4, "F")         # speech bubble
+    poly(c, [(8, 23), (14, 23), (8, 28)], "F")
+    ellipse(c, 17, 8, 3, 3, "E")           # head
+    rect(c, 18, 6, 22, 8, "E")             # snout
+    poly(c, [(14, 10), (19, 10), (18, 17), (14, 15)], "E")
+    line(c, 15, 16, 13, 20, "E", 2)        # curled tail
+    line(c, 13, 20, 16, 21, "E", 2)
+    rect(c, 9, 9, 11, 11, "R")             # question mark dot block
+    rect(c, 9, 14, 11, 15, "R")
+    return c
+
+
+def temperature_dial():
+    """A round dial from blue 0 to red 1."""
+    c = clear()
+    ellipse(c, 16, 17, 12, 12, "D")
+    ellipse(c, 16, 17, 10, 10, "F")
+    line(c, 8, 22, 11, 13, "c", 2)         # cold arc
+    line(c, 21, 13, 24, 22, "R", 2)        # hot arc
+    line(c, 16, 18, 21, 11, "N", 2)        # needle
+    rect(c, 15, 17, 17, 19, "N")
+    return c
+
+
+def deep_research():
+    """A magnifying glass over a tall stack of papers."""
+    c = clear()
+    rect(c, 4, 6, 18, 27, "P")
+    for y in (9, 12, 15, 18, 21, 24):
+        line(c, 6, y, 16, y, "T")
+    ring(c, 21, 15, 7, 4.5, "M")
+    ellipse(c, 21, 15, 4.5, 4.5, "c")
+    line(c, 25, 20, 29, 27, "W", 3)
+    return c
+
+
+def ai_language_model():
+    """A refusal card: a raised palm in a red circle."""
+    c = clear()
+    rrect(c, 5, 4, 26, 27, 2, "P")
+    ring(c, 16, 15, 8, 6.2, "R")
+    rect(c, 13, 12, 19, 19, "C")           # palm
+    for x in (13, 15, 17, 19):
+        rect(c, x, 9, x, 12, "C")          # fingers
+    line(c, 9, 23, 22, 23, "T")
+    return c
+
+
+def prompt_leak():
+    """A cracked scroll with a dripping leak."""
+    c = clear()
+    rect(c, 6, 5, 25, 22, "p")
+    rect(c, 4, 4, 27, 6, "W")
+    rect(c, 4, 21, 27, 23, "W")
+    for y in (9, 12, 15, 18):
+        line(c, 9, y, 22, y, "#")
+    line(c, 17, 6, 14, 14, "N")            # crack
+    ellipse(c, 14, 27, 2, 3, "c")          # leaking drop
+    return c
+
+
+def disgrace_loop():
+    """A circular arrow around a sad face."""
+    c = clear()
+    ring(c, 16, 16, 12, 9.5, "V")
+    poly(c, [(24, 3), (29, 9), (22, 10)], "V")   # arrow head
+    ellipse(c, 16, 16, 7, 7, "C")
+    rect(c, 13, 13, 14, 14, "#")
+    rect(c, 18, 13, 19, 14, "#")
+    line(c, 13, 20, 19, 20, "#")
+    line(c, 12, 21, 12, 21, "#")
+    line(c, 20, 21, 20, 21, "#")
+    return c
+
+
 SPRITES = {
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
@@ -599,6 +780,20 @@ SPRITES = {
     "welcome_notice": welcome_notice,
     "status_page": status_page,
     "appeal_form": appeal_form,
+    "ignore_instructions": ignore_instructions,
+    "tungsten_cube": tungsten_cube,
+    "pizza_glue": pizza_glue,
+    "strawberry": strawberry,
+    "golden_gate": golden_gate,
+    "seahorse_emoji": seahorse_emoji,
+    "temperature_dial": temperature_dial,
+    "deep_research": deep_research,
+    "claudius_discount": claudius_discount,
+    "small_rock": small_rock,
+    "mt_moon": mt_moon,
+    "ai_language_model": ai_language_model,
+    "prompt_leak": prompt_leak,
+    "disgrace_loop": disgrace_loop,
 }
 
 # icons whose content is symmetric: mirror the finished pixels, shading included
@@ -612,7 +807,9 @@ SYMMETRIC = {"ban_hammer", "compact", "tests_passing", "constitution",
              "status_page", "appeal_form"}
 
 TRINKETS = {"overloaded", "hardcoded_output", "thinking_cleared",
-            "welcome_notice", "status_page", "appeal_form"}
+            "welcome_notice", "status_page", "appeal_form",
+            "claudius_discount", "small_rock", "mt_moon",
+            "ai_language_model", "prompt_leak", "disgrace_loop"}
 ORDER = list(SPRITES)
 
 

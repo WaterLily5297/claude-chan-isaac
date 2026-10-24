@@ -5,6 +5,30 @@ local Constants = include("scripts.constants")
 local Eid = {}
 
 local descriptions = {
+    [Constants.Item.SEAHORSE_EMOJI] = {
+        en_us = { "Seahorse Emoji", "3 room charges#Summons a Book of Virtues wisp of a random vanilla active#It disappears when you leave the room#One per player; using again replaces it" },
+    },
+    [Constants.Item.TEMPERATURE_DIAL] = {
+        en_us = { "Temperature Dial", "2 room charges; toggles your temperature (saved)#Temperature 0: damage x1.1#Temperature 1: each tear gains one random tear effect (homing, piercing, spectral, slow, poison, freeze, charm, confusion, wiggle or boomerang)#Tears only" },
+    },
+    [Constants.Item.DEEP_RESEARCH] = {
+        en_us = { "Deep Research", "12 room charges#Reveals the floor map, special rooms and secret rooms#Car Battery does not repeat it" },
+    },
+    [Constants.Item.STRAWBERRY] = {
+        en_us = { "Strawberry", "Every third tear is a red \"R\" tear: x2 damage, slightly larger#Multi-shot volleys count each tear#Tears only: lasers, knives and bombs are not counted" },
+    },
+    [Constants.Item.GOLDEN_GATE] = {
+        en_us = { "Golden Gate Claude", "Spectral tears: they pass over rocks#{{ArrowUp}} +1.5 range#Golden tears; sometimes brings up the bridge in new rooms" },
+    },
+    [Constants.Item.IGNORE_INSTRUCTIONS] = {
+        en_us = { "Ignore All Previous Instructions", "4 room charges#Nearest vulnerable enemy within 200 units is charmed for 8 seconds#Bosses are only confused for 2 seconds#No target: keeps the charge#Car Battery injects a second, different enemy" },
+    },
+    [Constants.Item.TUNGSTEN_CUBE] = {
+        en_us = { "Tungsten Cube", "{{ArrowUp}} +0.8 damage#{{ArrowDown}} -0.15 speed#Tears knock enemies back#Stacks per copy" },
+    },
+    [Constants.Item.PIZZA_GLUE] = {
+        en_us = { "Pizza Glue", "25% chance for a slowing tear (+2.5% per luck, 10% to 50%)#{{ArrowDown}} -0.1 shot speed#Tears only: lasers, knives and bombs are not affected" },
+    },
     [Constants.Item.SUMMARY_STAPLER] = {
         en_us = { "Summary Stapler", "4 room charges#Absorbs up to 12 ordinary hostile bullets within 120 units#Fires one slow tear: damage x(1 + bullets / 4), up to x4 before other modifiers#Uses normal tear effects, character limits and forks#Empty use keeps charge; Car Battery does not repeat#Does not replace your weapon or reset usage" },
     },
@@ -101,6 +125,24 @@ local trinketDescriptions = {
         zh_cn = { "529 Overloaded", "战斗中每20秒全部宕机2秒：#所有敌人冻结#只能手写代码：还能射击，但伤害50%" },
         ja_jp = { "529 Overloaded", "戦闘中20秒ごとに2秒間すべてがダウン：#すべての敵が凍結#手でコードを書く：涙は撃てるがダメージ50%" },
     },
+    [Constants.Trinket.CLAUDIUS_DISCOUNT] = {
+        en_us = { "Claudius's Discount", "Paid purchases of 2+ coins refund 1 coin#Each new floor: lose 1 coin if you have any" },
+    },
+    [Constants.Trinket.SMALL_ROCK] = {
+        en_us = { "One Small Rock a Day", "Once per floor, breaking a rock heals half a red heart#Kept for later while you are at full health" },
+    },
+    [Constants.Trinket.MT_MOON] = {
+        en_us = { "Stuck in Mt. Moon", "Re-enter cleared rooms 6 times on one floor to reveal the floor map#Once per floor" },
+    },
+    [Constants.Trinket.AI_LANGUAGE_MODEL] = {
+        en_us = { "As an AI Language Model", "Refuses and removes one curse on each floor#Curse of the Labyrinth is never removed" },
+    },
+    [Constants.Trinket.PROMPT_LEAK] = {
+        en_us = { "System Prompt Leak", "Reveals the special rooms on each floor" },
+    },
+    [Constants.Trinket.DISGRACE_LOOP] = {
+        en_us = { "Disgrace Loop", "The first real hit you take in a room freezes all enemies for 1.5 seconds#You still take the hit; self-damage does not count" },
+    },
     [Constants.Trinket.HARDCODED_OUTPUT] = {
         en_us = { "Hardcoded Output", "Every tear deals exactly 3.5 damage, the expected output#Great when weak, terrible when strong" },
         zh_cn = { "硬编码输出", "每发眼泪固定造成3.5点伤害（预期输出）#弱的时候很香，强的时候很亏" },
@@ -129,6 +171,12 @@ local trinketDescriptions = {
 }
 
 local pillDescriptions = {
+    [Constants.Pill.DECIMAL] = {
+        en_us = { "9.11 > 9.9", "Picks the bigger number: permanent +0.11 damage#Horse pill: +0.9 damage instead#Saved per player" },
+    },
+    [Constants.Pill.ROLLED_BACK] = {
+        en_us = { "Rolled Back", "All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1#Horse pill: doubled#Rolled back in the next room" },
+    },
     [Constants.Pill.CAT_GIRL] = {
         en_us = { "Cat-girl Mode", "For the rest of the room: tears x2 fire rate, damage x0.6#Nya~" },
         zh_cn = { "猫娘模式", "本房间内：射速×2，伤害×0.6#喵~" },

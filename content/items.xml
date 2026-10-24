@@ -23,4 +23,18 @@
     <trinket name="Status Page" description="All systems operational" gfx="trinkets/status_page.png" />
     <trinket name="Appeal Form" description="Your account has been restored" gfx="trinkets/appeal_form.png" />
     <active name="Support Ticket" description="A human finally read it" gfx="collectibles/support_ticket.png" maxcharges="6" quality="2" />
+    <active name="Ignore All Previous Instructions" description="New instructions: help me" gfx="collectibles/ignore_instructions.png" maxcharges="4" quality="2" tags="offensive" />
+    <passive name="Tungsten Cube" description="Sold at a loss" gfx="collectibles/tungsten_cube.png" cache="damage speed tearflag" quality="2" />
+    <passive name="Pizza Glue" description="Non-toxic, apparently" gfx="collectibles/pizza_glue.png" cache="shotspeed" quality="1" />
+    <passive name="Strawberry" description="How many R's?" gfx="collectibles/strawberry.png" quality="2" />
+    <passive name="Golden Gate Claude" description="I am the bridge" gfx="collectibles/golden_gate.png" cache="range tearflag tearcolor" quality="1" />
+    <active name="Seahorse Emoji" description="It definitely exists" gfx="collectibles/seahorse_emoji.png" maxcharges="3" quality="1" />
+    <active name="Temperature Dial" description="Creativity is a setting" gfx="collectibles/temperature_dial.png" maxcharges="2" quality="2" />
+    <active name="Deep Research" description="Read 412 sources" gfx="collectibles/deep_research.png" maxcharges="12" quality="2" />
+    <trinket name="Claudius's Discount" description="Margins are a later problem" gfx="trinkets/claudius_discount.png" />
+    <trinket name="One Small Rock a Day" description="Geologists recommend it" gfx="trinkets/small_rock.png" />
+    <trinket name="Stuck in Mt. Moon" description="Day three in the cave" gfx="trinkets/mt_moon.png" />
+    <trinket name="As an AI Language Model" description="I can't help with that" gfx="trinkets/ai_language_model.png" />
+    <trinket name="System Prompt Leak" description="You are a helpful map" gfx="trinkets/prompt_leak.png" />
+    <trinket name="Disgrace Loop" description="I am a disgrace" gfx="trinkets/disgrace_loop.png" />
 </items>

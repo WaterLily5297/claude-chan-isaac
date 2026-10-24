@@ -19,6 +19,14 @@ Constants.Item = {
     SUPPORT_TICKET = Isaac.GetItemIdByName("Support Ticket"),
     LUNCH_BREAK = Isaac.GetItemIdByName("Lunch Break"),
     OPUS_MODE = Isaac.GetItemIdByName("Opus Mode"),
+    IGNORE_INSTRUCTIONS = Isaac.GetItemIdByName("Ignore All Previous Instructions"),
+    TUNGSTEN_CUBE = Isaac.GetItemIdByName("Tungsten Cube"),
+    PIZZA_GLUE = Isaac.GetItemIdByName("Pizza Glue"),
+    STRAWBERRY = Isaac.GetItemIdByName("Strawberry"),
+    GOLDEN_GATE = Isaac.GetItemIdByName("Golden Gate Claude"),
+    SEAHORSE_EMOJI = Isaac.GetItemIdByName("Seahorse Emoji"),
+    TEMPERATURE_DIAL = Isaac.GetItemIdByName("Temperature Dial"),
+    DEEP_RESEARCH = Isaac.GetItemIdByName("Deep Research"),
 }
 
 Constants.Trinket = {
@@ -28,11 +36,19 @@ Constants.Trinket = {
     WELCOME_NOTICE = Isaac.GetTrinketIdByName("Welcome Notice"),
     STATUS_PAGE = Isaac.GetTrinketIdByName("Status Page"),
     APPEAL_FORM = Isaac.GetTrinketIdByName("Appeal Form"),
+    CLAUDIUS_DISCOUNT = Isaac.GetTrinketIdByName("Claudius's Discount"),
+    SMALL_ROCK = Isaac.GetTrinketIdByName("One Small Rock a Day"),
+    MT_MOON = Isaac.GetTrinketIdByName("Stuck in Mt. Moon"),
+    AI_LANGUAGE_MODEL = Isaac.GetTrinketIdByName("As an AI Language Model"),
+    PROMPT_LEAK = Isaac.GetTrinketIdByName("System Prompt Leak"),
+    DISGRACE_LOOP = Isaac.GetTrinketIdByName("Disgrace Loop"),
 }
 
 Constants.Pill = {
     CAT_GIRL = Isaac.GetPillEffectByName("Cat-girl Mode"),
     GETTING_FOOD = Isaac.GetPillEffectByName("Brb, Getting Food"),
+    DECIMAL = Isaac.GetPillEffectByName("9.11 > 9.9"),
+    ROLLED_BACK = Isaac.GetPillEffectByName("Rolled Back"),
 }
 
 Constants.Player = {

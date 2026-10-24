@@ -10,10 +10,16 @@
         <Item Name="All Tests Passing" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Vibe Coding" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Banked Reset" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Ignore All Previous Instructions" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Pizza Glue" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Strawberry" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Seahorse Emoji" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Temperature Dial" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="angel">
         <Item Name="You're Absolutely Right!" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="The Constitution" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Golden Gate Claude" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
     <Pool Name="devil">
         <Item Name="9.9 Yuan Relay" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
@@ -24,5 +30,7 @@
         <Item Name="Support Ticket" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Residential IP" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
         <Item Name="Opus Mode" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Tungsten Cube" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+        <Item Name="Deep Research" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     </Pool>
 </ItemPools>
