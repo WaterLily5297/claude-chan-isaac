@@ -19,6 +19,8 @@ local originals={
      lines={"Tap/release DROP: quote an enemy for 6s.", "Hits on others build Ratio (max 3).", "At the end, the quote takes 1x per Ratio."}},
     {id=C.Player.QWEN_CHAN_B,key="qwen_b",name="Tainted Qwen-chan",title="Final Final Fine-Tune",
      lines={"Cleared room: tap/release DROP to switch build.", "Heavy, Tiny or Balanced; locks in combat.", "Clear with all 3 builds: +0.2 damage this floor."}},
+    {id=C.Player.LLAMA_CHAN_B,key="llama_b",name="Tainted Llama-chan",title="Still Waiting",
+     lines={"Each combat clear adds Hype (max 3).", "Tap/release DROP: spend all on a helper.", "It stays put, 4s per Hype, 0.5x tears."}},
 }
 function Dossiers:Init(mod)
     local ready=false

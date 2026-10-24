@@ -112,6 +112,8 @@ Source status (scripts/characters/llama_release.lua): normal form implemented an
 
 **Tainted:** Base damage 0.9x. Start with zero Hype, cap three; each unique clear adds one. DROP spends all hype to create one stationary helper for four seconds per stack. It fires one native 0.5x tear per second. Max one helper; replacement discards remaining duration. Room exit removes it. Birthright: five seconds per stack. HUD: Hype. The contrast is sharing a small release now versus saving anticipation for a longer release, without claims about Meta's future policy.
 
+Source status (scripts/characters/llama_hype.lua): implemented and registered with the deeper-colour tainted Llama art. The helper is a position, not an entity; its tears are native player tears fired with `FireTear` and a 0.5x damage multiplier, so tear effects follow the engine's rules. Engine acceptance pending, including how FireTear tears interact with weapon replacements.
+
 ### Mistral — Le Chat / Le Gros Chaton
 
 **Normal:** Speed +0.1. Moving and firing for two seconds charges one Pounce. DROP spends it on an 80-unit forward line swipe, 2x owner damage once per target; walls stop it, cooldown three seconds. No player teleport or contact immunity. Standing for one second loses an unused pounce. Birthright: 110-unit reach. HUD: Pounce Ready.
