@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased fifty-row backlog, rows 02-50 (2026-10-24)
+
+- Add the 49 remaining collectibles of the fifty-row backlog (EXPANSION_DESIGN.md): four per family for Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM, plus six shared items. 22 actives and 27 passives, all with original 32x32 icons, pool entries and English EID.
+- One shared service (`scripts/items/backlog/common.lua`) handles attacks across tears, lasers, knives and Fetus bombs, ordinary-bullet guards, unique clears, timers and versioned per-player saved state.
+- Fix Stuck in Mt. Moon to identify rooms by `GetCurrentRoomDesc().SafeGridIndex`.
+- Two new offline suites (22 in total). No engine validation, runtime or Workshop changes.
+
 ## Unreleased meme extras, batches 4-5 (2026-10-24)
 
 - Add Seahorse Emoji (A3: one room-scoped native wisp of a random vanilla active), Temperature Dial (A2: saved toggle between x1.1 damage and one random native tear flag per tear), Deep Research (A12: native map, compass and secret-room reveal), trinkets As an AI Language Model (removes one non-Labyrinth curse per floor), System Prompt Leak (compass effect per floor) and Disgrace Loop (first real hit in a room freezes enemies 1.5 s), and the Rolled Back pill (all stats up for one room).

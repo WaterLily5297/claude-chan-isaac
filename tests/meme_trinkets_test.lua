@@ -22,7 +22,7 @@ function Game() return {
     GetLevel = function() return {
         GetDungeonPlacementSeed = function() return floorSeed end,
         GetStage = function() return stage end, GetStageType = function() return 0 end,
-        GetCurrentRoomIndex = function() return roomIndex end,
+        GetCurrentRoomDesc = function() return { SafeGridIndex = roomIndex } end,
         ApplyMapEffect = function() mapEffects = mapEffects + 1 end,
     } end,
     GetRoom = function() return {

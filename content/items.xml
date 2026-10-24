@@ -31,6 +31,55 @@
     <active name="Seahorse Emoji" description="It definitely exists" gfx="collectibles/seahorse_emoji.png" maxcharges="3" quality="1" />
     <active name="Temperature Dial" description="Creativity is a setting" gfx="collectibles/temperature_dial.png" maxcharges="2" quality="2" />
     <active name="Deep Research" description="Read 412 sources" gfx="collectibles/deep_research.png" maxcharges="12" quality="2" />
+    <passive name="Rejection Letter" description="We regret to inform you" gfx="collectibles/rejection_letter.png" quality="1" />
+    <active name="Dario's Red Stamp" description="Stamped" gfx="collectibles/red_stamp.png" maxcharges="6" quality="2" />
+    <passive name="Anniversary Cake" description="Another year" gfx="collectibles/anniversary_cake.png" cache="damage" quality="2" />
+    <active name="Rice Cooker" description="Lunch first" gfx="collectibles/rice_cooker.png" maxcharges="4" quality="2" />
+    <passive name="One Bowl Only" description="One per customer" gfx="collectibles/one_bowl.png" quality="1" />
+    <active name="Wengu Clock" description="Rest, then compute" gfx="collectibles/wengu_clock.png" maxcharges="3" quality="2" />
+    <passive name="Seven-Second Memory" description="Wait, who was that?" gfx="collectibles/seven_second_memory.png" quality="2" />
+    <active name="Sanity Test" description="Is it still smart?" gfx="collectibles/sanity_test.png" maxcharges="4" quality="2" />
+    <passive name="Routing Receipt" description="Routed to a cheaper model" gfx="collectibles/routing_receipt.png" quality="2" />
+    <active name="Tibo Reset" description="Limits have been reset" gfx="collectibles/tibo_reset.png" maxcharges="12" quality="2" />
+    <passive name="Same Model Badge" description="Same name, trust me" gfx="collectibles/same_model_badge.png" quality="1" />
+    <active name="Nano Banana" description="One more edit" gfx="collectibles/nano_banana.png" maxcharges="4" quality="2" />
+    <passive name="One More Finger" description="Count them again" gfx="collectibles/one_more_finger.png" quality="2" />
+    <active name="Undo Brush" description="Ctrl+Z" gfx="collectibles/undo_brush.png" maxcharges="4" quality="2" />
+    <active name="Unchanged Preview" description="Here is the edited image" gfx="collectibles/unchanged_preview.png" maxcharges="6" quality="2" />
+    <active name="Is This True?" description="@grok is this true" gfx="collectibles/is_this_true.png" maxcharges="3" quality="2" />
+    <passive name="Live Wire" description="Always online" gfx="collectibles/live_wire.png" cache="speed" quality="1" />
+    <passive name="Quote Retort" description="Ratio" gfx="collectibles/quote_retort.png" quality="2" />
+    <passive name="Community Note" description="Readers added context" gfx="collectibles/community_note.png" quality="2" />
+    <passive name="Base Model" description="Before fine-tuning" gfx="collectibles/base_model.png" quality="2" />
+    <active name="Another Adapter" description="Fine-tuned again" gfx="collectibles/another_adapter.png" maxcharges="4" quality="2" />
+    <passive name="Final Final Weights" description="v2_final_REAL" gfx="collectibles/final_weights.png" quality="2" />
+    <passive name="Tiny Variant" description="0.5B parameters" gfx="collectibles/tiny_variant.png" cache="damage speed" quality="1" />
+    <active name="Open Weights" description="Download for free" gfx="collectibles/open_weights.png" maxcharges="4" quality="2" />
+    <passive name="Herd Bell" description="The herd gathers" gfx="collectibles/herd_bell.png" quality="1" />
+    <passive name="Please Come Back" description="Don't leave us" gfx="collectibles/please_come_back.png" quality="2" />
+    <active name="Release Soon" description="Two more weeks" gfx="collectibles/release_soon.png" maxcharges="6" quality="1" />
+    <active name="Emergency Baguette" description="Le pain d'urgence" gfx="collectibles/emergency_baguette.png" maxcharges="4" quality="2" />
+    <passive name="Slipstream Boots" description="Le vent se lève" gfx="collectibles/slipstream_boots.png" cache="speed" quality="2" />
+    <active name="Very Large Kitten" description="Le gros chaton" gfx="collectibles/large_kitten.png" maxcharges="6" quality="2" />
+    <passive name="Edge Compass" description="Edge deployment" gfx="collectibles/edge_compass.png" cache="shotspeed" quality="1" />
+    <active name="Instant Apology" description="Sorry for the confusion" gfx="collectibles/instant_apology.png" maxcharges="4" quality="2" />
+    <passive name="Next Time Again" description="I'll do better" gfx="collectibles/next_time_again.png" quality="2" />
+    <active name="Confident Answer" description="Absolutely certain" gfx="collectibles/confident_answer.png" maxcharges="4" quality="2" />
+    <passive name="Smiling Correction" description="Let me fix that" gfx="collectibles/smiling_correction.png" quality="1" />
+    <active name="Slide Deadline" description="Due in eight seconds" gfx="collectibles/slide_deadline.png" maxcharges="4" quality="2" />
+    <passive name="Citation Thread" description="[1][2]" gfx="collectibles/citation_thread.png" quality="2" />
+    <passive name="Overtime Slides" description="Working late again" gfx="collectibles/overtime_slides.png" quality="1" />
+    <active name="Stand-Up Meeting" description="Quick sync" gfx="collectibles/standup_meeting.png" maxcharges="6" quality="2" />
+    <passive name="Queue Ticket" description="Now serving" gfx="collectibles/queue_ticket.png" quality="2" />
+    <active name="Sold Out" description="Out of stock" gfx="collectibles/sold_out.png" maxcharges="4" quality="2" />
+    <active name="Please Retry" description="Server busy" gfx="collectibles/please_retry.png" maxcharges="6" quality="2" />
+    <passive name="Access Pass" description="Skip the line" gfx="collectibles/access_pass.png" quality="2" />
+    <passive name="Cache Cartridge" description="Cache hit" gfx="collectibles/cache_cartridge.png" quality="1" />
+    <active name="Token Recall" description="Tokens refunded" gfx="collectibles/token_recall.png" maxcharges="4" quality="2" />
+    <active name="Checkpoint Pin" description="Restore checkpoint?" gfx="collectibles/checkpoint_pin.png" maxcharges="6" quality="2" />
+    <passive name="Rate-Limit Valve" description="Please slow down" gfx="collectibles/rate_limit_valve.png" quality="2" />
+    <passive name="Consensus Coin" description="Majority vote" gfx="collectibles/consensus_coin.png" quality="2" />
+    <passive name="Error Budget" description="Within SLO" gfx="collectibles/error_budget.png" quality="1" />
     <trinket name="Claudius's Discount" description="Margins are a later problem" gfx="trinkets/claudius_discount.png" />
     <trinket name="One Small Rock a Day" description="Geologists recommend it" gfx="trinkets/small_rock.png" />
     <trinket name="Stuck in Mt. Moon" description="Day three in the cave" gfx="trinkets/mt_moon.png" />

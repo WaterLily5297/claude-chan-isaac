@@ -14,7 +14,12 @@ Moon.VISITS = 6
 function Moon:Init(mod, Risk)
     local lastRoom
 
-    local function current() return Game():GetLevel():GetCurrentRoomIndex() end
+    -- The room descriptor's SafeGridIndex identifies the current room; the
+    -- documented GetCurrentRoomIndex refers to the room entered from.
+    local function current()
+        local desc = Game():GetLevel():GetCurrentRoomDesc()
+        return desc and desc.SafeGridIndex or -1
+    end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() lastRoom = current() end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() lastRoom = nil end)

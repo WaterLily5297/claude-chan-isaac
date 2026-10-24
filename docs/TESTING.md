@@ -54,6 +54,18 @@ The owner reports all characters developing an oversized head after damage. Exac
 
 Offline reproduction requires Pillow plus the recorded generated sources, kept outside the repository. Run `python tools/verify_hurt_poses.py SOURCE_DIRECTORY MOVEMENT_SOURCE_DIRECTORY REVIEW_OUTPUT_DIRECTORY --before-ref d1c0daf`. This fails the geometry contract on the old thirteen skins and passes the corrected ones, verifying source/packed hashes, exact atlas rebuilding and pixel equality outside the shared hurt cell. It writes an engineering comparison and JSON evidence; it neither installs files nor runs the game. CI's standard asset checks do not execute this optional source-dependent review.
 
+## Fifty-row backlog acceptance (pending)
+
+Rows 02-50 (`scripts/items/backlog/`). Offline suites: `tests/backlog_items_test.lua`, `tests/backlog_more_test.lua`. In game, per item: spawn it, read the EID, check the icon, use or trigger it once and confirm no console error.
+
+- Every active: Car Battery adds nothing; targeted actives keep their charge in an empty room; Void/wisp uses are harmless.
+- Primes (Rice Cooker, Wengu Clock, Base Model, Quote Retort, Next Time Again, Rate-Limit Valve): one boosted attack each with tears, Brimstone, Technology, knives, Dr. Fetus and Ludovico; multi-shot volleys boost every tear once.
+- Guards (One Bowl Only, Sold Out, Release Soon, Token Recall): an ordinary enemy shot is absorbed; champion/special shots, contact, Blood Donation and IV Bag are not.
+- Unique clears (Routing Receipt, Final Final Weights, Herd Bell, Please Come Back, Smiling Correction, Overtime Slides, Queue Ticket): re-entering, continuing and boss rooms count once; Glowing Hourglass behavior is recorded.
+- Saved state: save/exit/continue keeps Anniversary Cake, Tibo Reset, Error Budget and counters; a new run resets them; co-op players stay separate.
+- Helpers: Unchanged Preview decoys draw nearby enemies and Stand-Up Meeting recalls them; Open Weights flies are native blue flies.
+- Stats: Tiny Variant, Another Adapter, Slipstream Boots, Edge Compass, Live Wire and Cache Cartridge do not change sprite size or fight other stat items.
+
 ## Meme extras batch 1 acceptance (pending)
 
 - Ignore All Previous Instructions: charmed target fights for you for 8 s and is not re-targeted by Car Battery; bosses only confused; empty room keeps charge; check with Compact and You're Absolutely Right!.
