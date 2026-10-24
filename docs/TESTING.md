@@ -17,6 +17,7 @@ Source fixes #63-#72 each have an offline regression; none has run in the engine
 - Compact with Car Battery as Claude: usage rises by 50 once.
 - Co-op with one dead player (ghost): Llama's Release and Open Weights give the living player the solo four flies.
 - Horse Brb, Getting Food: heals two red hearts, shooting locked 3 seconds.
+- Ban Hammer with Car Battery: one set of misbans and Risk, bosses hit twice. Void absorbing Is This True? and Base Model/charged backlog items: using Void raises no Lua error.
 
 ## COSTUME-LOCK-01: fixed character look (offline passed; engine pending)
 

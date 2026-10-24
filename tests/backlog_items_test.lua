@@ -265,6 +265,10 @@ T("17 Is This True?: +35% target, -15% others, kill refunds", function()
     env.shoot(p, a, b)
     near(a.damage[1], 3.5 * 1.35); near(b.damage[1], 3.5 * 0.85)
     env.kill(a); assert(p.charge[0] == 1)
+    -- A use outside a slot (Void reports -1) confirms but refunds nothing.
+    local c = env.npc(320, { y = 200 })
+    env.use(Item.IS_THIS_TRUE, p, UseFlag.USE_OWNED, -1)
+    env.kill(c); assert(p.charge[0] == 1, "a slotless use must not refund a slot")
 end)
 
 T("18 Live Wire follows nearby ordinary bullets", function()
@@ -301,6 +305,7 @@ T("21 Base Model primes once per room on charged use only", function()
     env.config[999] = { MaxCharges = 4, ChargeType = 0 }
     p.active[0], p.charge[0] = 999, 4
     env.fire("MC_PRE_USE_ITEM", nil, 999, nil, p, 0, 0) -- not an owned use (e.g. a wisp or Void)
+    env.fire("MC_PRE_USE_ITEM", nil, 999, nil, p, UseFlag.USE_OWNED, -1) -- owned but slotless
     p.charge[0] = 0; env.update()
     env.shoot(p, npc); near(last(npc), 3.5, "unowned uses never count")
     env.update()

@@ -30,7 +30,11 @@ function BanHammer:Init(mod, Risk)
 
         for _, entity in ipairs(Isaac.GetRoomEntities()) do
             local npc = entity:ToNPC()
-            if npc and npc:IsVulnerableEnemy() and not npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+            -- Car Battery's second use runs in the same frame: enemies it just
+            -- banned or welcomed are still listed and must not count twice.
+            if npc and not npc:IsDead() and npc:IsVulnerableEnemy()
+                and not npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
+                and not npc:HasEntityFlags(EntityFlag.FLAG_CHARM) then
                 if npc:IsBoss() then
                     npc:TakeDamage(BOSS_DAMAGE, 0, EntityRef(player), 0)
                 elseif welcome then

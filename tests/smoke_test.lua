@@ -53,7 +53,7 @@ EntityType = { ENTITY_PLAYER = 1, ENTITY_TEAR = 2, ENTITY_PROJECTILE = 9, ENTITY
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_RANGE = 2, CACHE_SHOTSPEED = 4, CACHE_SPEED = 8, CACHE_TEARCOLOR = 16, CACHE_FIREDELAY = 32, CACHE_FLYING = 64 }
 ActiveSlot = { SLOT_PRIMARY = 0, SLOT_POCKET = 2 }
 UseFlag = { USE_CARBATTERY = 32 }
-EntityFlag = { FLAG_FRIENDLY = 1 }
+EntityFlag = { FLAG_FRIENDLY = 1, FLAG_CHARM = 256 }
 DamageFlag = { DAMAGE_EXPLOSION = 4, DAMAGE_RED_HEARTS = 32, DAMAGE_IV_BAG = 4096, DAMAGE_FAKE = 2097152, DAMAGE_NO_PENALTIES = 268435456 }
 function Color(...) return { ... } end
 SoundEffect = { SOUND_POWERUP_SPEWER = 132 }
@@ -107,7 +107,8 @@ local function makeNpc(boss)
     function npc:ToNPC() return self end
     function npc:IsVulnerableEnemy() return true end
     function npc:IsBoss() return boss end
-    function npc:HasEntityFlags() return false end
+    function npc:HasEntityFlags(f) return f == EntityFlag.FLAG_CHARM and self.charmed ~= nil end
+    function npc:IsDead() return self.dead == true end
     function npc:GetData() return data end
     function npc:TakeDamage(d) self.HitPoints = self.HitPoints - d end
     function npc:Kill() self.dead = true end
@@ -416,6 +417,11 @@ for i = 1, 30 do list[i] = makeNpc(false) end
 roomEntities = list
 fire("MC_USE_ITEM", 733, 733, nil, player)
 fire("MC_POST_RENDER")
+-- Car Battery's same-frame second use must not re-ban the dead list (more misbans).
+local riskBefore = RISK_REF.state.risk
+fire("MC_USE_ITEM", 733, 733, nil, player, UseFlag.USE_CARBATTERY)
+assert(RISK_REF.state.risk == riskBefore, "Car Battery re-banned already banned enemies")
+print("  car battery second use bans nobody twice: ok")
 
 print("== status page")
 playerItems[734] = nil

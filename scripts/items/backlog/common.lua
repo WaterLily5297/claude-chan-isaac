@@ -526,7 +526,9 @@ function Common:Init(mod, Risk)
     end)
 
     mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, function(_, id, _, player, flags, slotId)
-        if not player or Common.Battery(flags) or (flags & UseFlag.USE_OWNED) == 0 then return nil end
+        -- Only a real slot can lose charge; Void and similar uses report -1.
+        if not player or Common.Battery(flags) or (flags & UseFlag.USE_OWNED) == 0
+            or not slotId or slotId < 0 then return nil end
         local config = Isaac.GetItemConfig():GetCollectible(id)
         if not config or config.MaxCharges <= 0 or config.ChargeType ~= 0 then return nil end
         pendingUse[#pendingUse + 1] = { player = player, id = id, slot = slotId,
