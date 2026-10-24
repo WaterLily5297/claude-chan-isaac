@@ -27,6 +27,25 @@ for _, def in ipairs(Roster.definitions) do
     def.id = Isaac.GetPlayerTypeByName(def.name, false)
 end
 
+-- Registered tainted forms of these families. They run their own modules, so
+-- Find ignores them, but they are still outside Claude's proxy account.
+local TAINTED = {"GPT-chan"}
+Roster.tainted = {}
+for _, name in ipairs(TAINTED) do
+    local id = Isaac.GetPlayerTypeByName(name, true)
+    if id >= 0 then Roster.tainted[#Roster.tainted + 1] = id end
+end
+
+function Roster:IsFamily(player)
+    if self:Find(player) then return true end
+    local id = player:GetPlayerType()
+    for _, existing in pairs(C.Player) do
+        if id == existing and existing ~= C.Player.GPT_CHAN_B then return false end
+    end
+    for _, tainted in ipairs(self.tainted) do if id == tainted then return true end end
+    return false
+end
+
 function Roster:Find(player)
     local id = player:GetPlayerType()
     -- Protect existing characters even when a test/third-party resolver returns aliases.

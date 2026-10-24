@@ -10,7 +10,7 @@ Isaac={GetItemIdByName=function() return -1 end, GetTrinketIdByName=function() r
 function Isaac.GetPlayerTypeByName(n,b)
     if n=="Claude-chan" then return b and 141 or 41 end
     if n=="DeepSeek-chan" then return b and 142 or 42 end
-    for i,name in ipairs(names) do if n==name then return 50+i end end
+    for i,name in ipairs(names) do if n==name then return b and (name=="GPT-chan" and 151 or -1) or 50+i end end
     return -1
 end
 ModCallbacks=setmetatable({},{__index=function(_,k) return k end})
@@ -251,5 +251,9 @@ input(p,false); near(p.Damage,13.5)
 input(p,true); p.controls=false; input(p,true); p.controls=true
 input(p,false); near(p.Damage,13.5)
 tap(p); near(p.Damage,8.5)
+-- Tainted GPT runs its own module but is still a roster family.
+local tgpt=player('GPT-chan'); tgpt.kind=151
+assert(R:Find(tgpt)==nil and R:IsFamily(tgpt))
+tgpt.kind=141; assert(not R:IsFamily(tgpt))
 assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
 print('OK: nine model mechanics, DROP tap/hold lifecycle, co-op isolation and duplicate effects')

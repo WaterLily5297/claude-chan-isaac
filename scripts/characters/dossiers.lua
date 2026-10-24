@@ -11,6 +11,8 @@ local originals={
      lines={"Tap/release DROP: spend one rice bowl.","Two-second meal: full Thought, +0.15 speed.","Earn a bowl every two combat clears."}},
     {id=C.Player.DEEPSEEK_CHAN_B,key="deepseek_b",name="Tainted DeepSeek-chan",title="Wenfeng / Wengu",
      lines={"Paid volleys add two half-damage forks.","Valley: cost 2, recovers when not firing.","Peak: cost 4. Tap/release DROP: Forks On/Saving."}},
+    {id=C.Player.GPT_CHAN_B,key="gpt_b",name="Tainted GPT-chan",title="Reset Watcher",
+     lines={"Tap/release DROP: Standard / Full Send (1.5x).","Full Send costs 1 of 80 Credits per attack.","3 clears bank a Tibo reset: DROP refills."}},
 }
 function Dossiers:Init(mod)
     local ready=false

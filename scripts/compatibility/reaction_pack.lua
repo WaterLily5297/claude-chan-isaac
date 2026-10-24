@@ -10,6 +10,7 @@ function Compatibility:Register(pack)
     local ids={Constants.Player.CLAUDE_CHAN,Constants.Player.DEEPSEEK_CHAN,
         Constants.Player.CLAUDE_CHAN_B,Constants.Player.DEEPSEEK_CHAN_B}
     for _,def in ipairs(ModelRoster.definitions) do ids[#ids+1]=def.id end
+    for _,id in ipairs(ModelRoster.tainted) do ids[#ids+1]=id end
     for _, set in pairs(pack.CostumeSets) do
         if type(set) == "table" and type(set.IDs) == "table" then
             for _, name in ipairs(set.IDs) do

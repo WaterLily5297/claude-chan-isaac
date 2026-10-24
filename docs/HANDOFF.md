@@ -24,13 +24,13 @@ Never infer that an installed commit equals local HEAD. The local delivery inclu
 
 ## Implemented source inventory
 
-There are **13 registered forms: 11 normal and 2 tainted**, **18 collectibles**, **6 trinkets**, two pills, the existing Relay Slime enemy and the existing Appeal Queue story system. The requested expansion is **50 additional collectibles**, of which only **Summary Stapler (1/50)** is implemented. Existing collectibles do not count toward that additional fifty.
+There are **14 registered forms: 11 normal and 3 tainted**, **18 collectibles**, **6 trinkets**, two pills, the existing Relay Slime enemy and the existing Appeal Queue story system. The requested expansion is **50 additional collectibles**, of which only **Summary Stapler (1/50)** is implemented. Existing collectibles do not count toward that additional fifty.
 
 | Family | Existing behavior | Replacement status |
 |---|---|---|
 | Claude | Usage/limited damage, account age, risk/story, pocket Ban Hammer; tainted weekly quota and Banked Reset | Saved normal usage fixed; new Appeals/Review designs not implemented |
 | DeepSeek | Normal Rice First meal economy and Thought; tainted Wenfeng / Wengu Peak/Valley Compute forks | Rice and Peak/Valley source implemented; Thought adapters partial; tainted forks are tear-only |
-| GPT | DROP switches Deliberate/Instant damage and firing interval | Downgrade verification and Tibo reset designs not implemented |
+| GPT | Normal DROP Deliberate/Instant modes; tainted Reset Watcher Credits with a banked Tibo reset | Tainted Reset Watcher implemented and registered (offline only); normal downgrade is in its own PR |
 | Gemini | DROP switches piercing Prism/homing Echo | Nano Banana/edit-chain replacement not implemented |
 | Grok | Movement builds bounded damage momentum | Verification/ratio designs not implemented |
 | Qwen | Flawless-room damage chain | Adapter/fine-tune designs not implemented |
@@ -40,7 +40,7 @@ There are **13 registered forms: 11 normal and 2 tainted**, **18 collectibles**,
 | Kimi | Flawless clears build pages; damage erases pages | Slides/task-delegation designs not implemented |
 | GLM | Active-item uses build room tool links | Tool-call/retry designs not implemented |
 
-The nine added families have **no tainted registration or implementation yet**. Their tainted art exists as a deterministic deeper-colour derivation of the normal art (`tools/make_roster_tainted_art.py`, hashes in `docs/tainted-roster-art-manifest.json`): gameplay sheets, stage portraits, dossiers and menu cells, unregistered until each tainted mechanic lands. MODEL_ROSTER.md describes current mechanics; CHARACTER_GAMEPLAY.md describes the complete 22-form target. Do not implement a target on top of an old multiplier without removing/reconciling the old loop.
+Tainted GPT (Reset Watcher) is registered; the other eight added families have **no tainted registration or implementation yet**. Their tainted art exists as a deterministic deeper-colour derivation of the normal art (`tools/make_roster_tainted_art.py`, hashes in `docs/tainted-roster-art-manifest.json`): gameplay sheets, stage portraits, dossiers and menu cells, unregistered until each tainted mechanic lands. MODEL_ROSTER.md describes current mechanics; CHARACTER_GAMEPLAY.md describes the complete 22-form target. Do not implement a target on top of an old multiplier without removing/reconciling the old loop.
 
 Other completed source changes:
 
@@ -53,6 +53,7 @@ Other completed source changes:
 - Shared meal state saves per-player countdowns, freezes on pause, preserves movement and prevents duplicate Lunch Break healing. It blocks directional shooting input, not every possible programmatic attack.
 - Tainted DeepSeek (Wenfeng / Wengu) replaces legacy forks and random Server Busy deletion. Twelve combat seconds of Valley alternate with twelve of Peak; cleared rooms and pause freeze the timer, and each floor starts in Valley. Compute starts at 12 per run (cap 24, Birthright 32) and carries across floors. A paid tear volley costs 2 (Valley) or 4 (Peak) and forks every tear in it into two native 50% copies at ±12°; insufficient Compute or Saving mode keeps the primary tear without forks. Valley recovers 3 Compute per second only in an uncleared room while not firing, so empty rooms cannot be farmed. DROP tap toggles Forks On / Saving with a one-second transient cooldown. Compute, phase, remaining time and mode are saved per player in `Risk.state.deepseekPeak`. Lasers, knives and bombs neither fork nor pay; they need a bounded equivalent before compatibility acceptance.
 - The proxy IP / risk account covers only Claude forms and vanilla characters. DeepSeek and the nine roster families neither raise risk, spoil clean rooms nor take the suspension penalty, even in co-op; a run without a covered player has no IP or risk (`tests/risk_coverage_test.lua`). Roster Qwen/Kimi bookkeeping ignores `DAMAGE_NO_PENALTIES` self-damage, and roster tear colors tint rather than replace item colors.
+- Tainted GPT (Reset Watcher, `scripts/characters/gpt_reset.lua`) starts a run with 80 Credits (cap 80, Birthright 100). A DROP tap toggles Standard (free) and Full Send (1.5x cache damage); Full Send pays one Credit per same-frame attack from registered tears, laser inits and Dr. Fetus bombs (derived tears and knives are free) and drops to Standard at zero. Three unique combat clears bank one Tibo reset; while banked, clears do not progress, and the next tap claims it to refill Credits before any toggle. Credits, mode, progress and the banked reset are saved per player in `Risk.state.gptReset` and survive floors and continue. Registered tainted roster forms are listed in `ModelRoster.tainted`; `ModelRoster:IsFamily` keeps them out of the proxy account and in the Reactions Port Pack fallback.
 - Normal DeepSeek starts with one bowl, cap two, earns one per two unique hostile clears, and spends a short DROP tap on a meal. Completion gives full Thought and temporary speed; the intrinsic bowl does not heal or refill pocket charge. Normal random shot cancellation and idle pocket recharge are removed. Tainted legacy behavior remains until explicitly migrated.
 - Thought supports ordinary tears, single-hit/released-circle lasers, flying knives and Dr. Fetus bombs. Repeated beams and Ludovico use six-update windows. Swarm derivatives do not pay twice; 1M Context reads the unboosted continuous baseline; partial-window counts survive continue. See NATIVE_THOUGHT.md for exact limits.
 
@@ -66,7 +67,7 @@ Art provenance and exact prompts/hashes are in the portrait/sprite/movement JSON
 
 ## Validation completed
 
-The current source passes `bash tools/check.sh`: **63 Lua files, 5 XML files, deterministic asset checks and 17 stub suites**. This checks registration, syntax, frame bounds, item pools and modeled callback behavior. The native Thought regression fails against the prior e8639cb Rice module at its first beam assertion and passes the new adapters. `tests/deepseek_peak_test.lua` drives the real Peak/Valley module; mutating the Peak cost, the empty-room freeze, the duplicate-callback guard or the toggle cooldown each makes it fail. Earlier regressions and exact historical engine observations are preserved in HANDOFF_HISTORY_2026-10-24.md.
+The current source passes `bash tools/check.sh`: **65 Lua files, 5 XML files, deterministic asset checks and 18 stub suites**. This checks registration, syntax, frame bounds, item pools and modeled callback behavior. The native Thought regression fails against the prior e8639cb Rice module at its first beam assertion and passes the new adapters. `tests/deepseek_peak_test.lua` drives the real Peak/Valley module; mutating the Peak cost, the empty-room freeze, the duplicate-callback guard or the toggle cooldown each makes it fail. Earlier regressions and exact historical engine observations are preserved in HANDOFF_HISTORY_2026-10-24.md.
 
 Local stubs do not emulate actual native entity lifetimes, damage writers, costume priority, animation, controller input, genuine engine save/restart or all co-op configurations. GitHub CI runs the same offline gate. Record its exact final head and status separately after publication/merge.
 
@@ -95,7 +96,7 @@ Local stubs do not emulate actual native entity lifetimes, damage writers, costu
 
 The desired identity is recognizable **community-meme gameplay with meaningful choices**, not generic model capability rankings. Claude uses account bans/appeals, DeepSeek rice and Peak/Valley wordplay, GPT downgrade/Tibo-reset jokes. Research confidence varies; COMMUNITY_MEME_RESEARCH.md must distinguish viewed sources, indexed titles, secondary reports and blocked videos. Never claim that a few posts establish majority opinion. Use fictional mechanisms and captions, not unverified factual accusations or real-person enemies.
 
-1. Stabilize the current 13 forms and native compatibility. Finish missing attack accounting and source-level lifecycle issues; then collect engine evidence when allowed.
+1. Stabilize the current 14 forms and native compatibility. Finish missing attack accounting and source-level lifecycle issues; then collect engine evidence when allowed.
 2. Tainted DeepSeek Peak/Valley has a source implementation (tear forks only). Next: Claude appeals/quota and GPT downgrade/reset. Save resources/timers per player; preserve a usable main attack and avoid hidden random deletion.
 3. Migrate the other eight normal loops and implement the nine missing tainted forms one focused PR at a time. Follow CHARACTER_GAMEPLAY.md, including explicit Birthright behavior, resource caps, room deduplication and bounded derived damage.
 4. Complete the **49 remaining additional collectibles** from the fifty-row backlog. Include icon provenance, constants, XML/pools, entrypoint, English EID/UI, relevant tests and handoff evidence in each change. Intrinsic abilities do not count as collectibles.
