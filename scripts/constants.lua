@@ -44,6 +44,7 @@ Constants.Player = {
     GPT_CHAN_B = Isaac.GetPlayerTypeByName("GPT-chan", true),
     GEMINI_CHAN_B = Isaac.GetPlayerTypeByName("Gemini-chan", true),
     GROK_CHAN_B = Isaac.GetPlayerTypeByName("Grok-chan", true),
+    QWEN_CHAN_B = Isaac.GetPlayerTypeByName("Qwen-chan", true),
 }
 
 -- DeepSeek-chan (either version) connects directly: no proxy, no IP, no risk.

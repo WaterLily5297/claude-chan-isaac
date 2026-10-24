@@ -102,6 +102,8 @@ Source status (scripts/characters/qwen_adapter.lua): normal form implemented and
 
 **Tainted:** DROP in a cleared room chooses Heavy (1.3x damage, 1.2x firing interval), Tiny (0.85x damage, 0.8x interval) or Balanced (1x). Choice locks in combat. Three unique clears using three different builds grant +0.2 damage for the floor, max three awards. Repeating a build does not advance the three-bit checklist; award resets it. New floor clears progress/bonus. Birthright: +0.3 per award. HUD: Build, Variants 0/3. The source is community enthusiasm for variants and derivatives, not an accusation that another product is stolen.
 
+Source status (scripts/characters/qwen_finetune.lua): implemented and registered with the deeper-colour tainted Qwen art. A clear counts the build active when the room's award fires. The award bonus is flat damage added before the build multiplier. Engine acceptance pending.
+
 ### Llama — Please Stay Open / Still Waiting
 
 **Normal:** Start with one Release, cap two; earn one every two unique clears. DROP spends one to grant two blue flies to each living player, max four recipients; solo gets four flies. Base damage 0.95x. Flies cannot generate release progress; duplicate Llamas own separate budgets. Birthright gives the owner two extra flies. HUD: Releases.

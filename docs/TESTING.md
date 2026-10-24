@@ -14,6 +14,10 @@ Select Tainted Gemini-chan: deeper-colour Gemini art, damage 0.9x of Isaac's. HU
 
 Select Tainted Grok-chan: deeper-colour Grok art, damage 0.9x. HUD reads `DROP: quote someone`. Tap/release DROP near enemies: `Quoted`, HUD `Ratio 0/3  6s`. Hit other enemies with three separate volleys: Ratio 3/3. Hits on the quoted enemy do not count. After six seconds it takes three extra hits of your damage and `Ratio'd` appears. The HUD then shows the cooldown until ten seconds after you quoted. Kill the quoted enemy early: nothing lands. With Birthright, half the Ratio moves to the nearest survivor once. Save/continue keeps the cooldown.
 
+## Tainted Qwen Final Final Fine-Tune (source candidate; engine acceptance pending)
+
+Select Tainted Qwen-chan: deeper-colour Qwen art. HUD reads `Balanced  Variants 0/3  Awards 0/3`. In a cleared room, tap/release DROP: Heavy (hits harder, fires slower), Tiny (weaker, faster), Balanced. In combat the tap does nothing. Clear new combat rooms with each of the three builds: `Final final version` and +0.2 damage. Repeating a build or re-clearing a room does not count. Three awards at most. A new floor resets everything. Birthright makes each award +0.3. Save/continue keeps build, checklist and awards.
+
 ## Tainted GPT Reset Watcher (source candidate; engine acceptance pending)
 
 Select Tainted GPT-chan from the tainted menu: deeper-colour GPT art, one red and two soul hearts, one key. HUD reads `Credits 80/80  Standard  Next Reset 0/3`. Tap/release DROP: `Full Send`, damage 1.5x, and each volley (one 20/20 volley, one Brimstone beam, one Dr. Fetus bomb) costs one Credit. At zero she returns to Standard and a tap cannot re-enter Full Send. Clear three different hostile rooms: `Tibo: Reset Ready`; further clears do not advance while it is banked. The next tap refills Credits and does not toggle the mode. Birthright raises cap and refill to 100. New floor and save/continue keep Credits, mode, progress and the banked reset. Check that no proxy IP / risk HUD appears for her, that a long DROP hold drops trinkets normally, and the MAP dossier. Stub coverage is `tests/gpt_reset_test.lua`.

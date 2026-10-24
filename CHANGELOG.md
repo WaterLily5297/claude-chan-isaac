@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted Qwen Final Final Fine-Tune (2026-10-24)
+
+- Register Tainted Qwen-chan with the deeper-colour art. Final Final Fine-Tune: in cleared rooms a DROP tap cycles Heavy (1.3x damage, 1.2x interval), Tiny (0.85x, 0.8x) and Balanced, locked in combat; unique clears with all three builds award +0.2 damage for the floor (Birthright +0.3), up to three. Offline only.
+
 ## Unreleased tainted Grok Quote Without Reading (2026-10-24)
 
 - Register Tainted Grok-chan with the deeper-colour art. Quote Without Reading: base damage 0.9x; a DROP tap quotes the nearest enemy within 220 units for six seconds (ten-second cooldown); paid hits on other enemies build Ratio (cap three), which lands on the quote as 1x damage pulses at expiry. Birthright moves half the Ratio once if the quote dies. Offline only.

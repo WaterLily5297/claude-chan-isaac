@@ -17,6 +17,8 @@ local originals={
      lines={"Tap/release DROP: start a 6s edit chain.", "3 paid hits: Crop, Recolor, Export.", "Export deals one 2x damage pulse per room."}},
     {id=C.Player.GROK_CHAN_B,key="grok_b",name="Tainted Grok-chan",title="Quote Without Reading",
      lines={"Tap/release DROP: quote an enemy for 6s.", "Hits on others build Ratio (max 3).", "At the end, the quote takes 1x per Ratio."}},
+    {id=C.Player.QWEN_CHAN_B,key="qwen_b",name="Tainted Qwen-chan",title="Final Final Fine-Tune",
+     lines={"Cleared room: tap/release DROP to switch build.", "Heavy, Tiny or Balanced; locks in combat.", "Clear with all 3 builds: +0.2 damage this floor."}},
 }
 function Dossiers:Init(mod)
     local ready=false
