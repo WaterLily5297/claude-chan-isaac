@@ -50,10 +50,12 @@ function VibeCoding:Init(mod, Risk)
         end
     end)
 
-    -- "Make no mistakes": any hit on this floor counts as a mistake.
-    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity)
+    -- Observe after ordinary blockers (including backlog shields). Cancelled,
+    -- fake and no-penalty damage must not spoil the floor's billing waiver.
+    mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, function(_, entity, _, flags)
         local player = entity:ToPlayer()
         if not player or not started then return end
+        if ((flags or 0) & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES)) ~= 0 then return end
         for i = 0, Game():GetNumPlayers() - 1 do
             if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then
                 -- Save by player slot; entity pointers and GetData do not survive continue.

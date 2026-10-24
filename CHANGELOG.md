@@ -1,5 +1,17 @@
 # Changelog
 
+## Authorized compatibility integration (2026-10-24)
+
+Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
+
+- Preserve familiar attribution, Claude timer guards, helper resource billing, Vibe damage eligibility and bounded hurt-frame observations together. Keep every candidate-specific pending engine checklist.
+
+## Unreleased Vibe Coding damage eligibility (2026-10-24)
+
+- Fake/no-penalty damage and hits cancelled by default-priority shields no longer spoil Vibe Coding's floor bill waiver. Observe damage after ordinary blockers; preserve the existing 25% charge for eligible hits and per-player persistence.
+- Add real-module regressions with Sold Out and Red Stamp, ordinary hits, two-player isolation, floor reset and late acquisition. Offline only; no deployment or engine acceptance while the owner requests offline work.
+- Offline integration experiment: PR #50-54 source/test changes compose without code conflicts and pass 48 suites together. Record the four overlapping Markdown files for deliberate evidence-preserving resolution. This reporting follow-up does not merge or deploy any candidate.
+
 ## Unreleased helper resource billing (2026-10-24)
 
 - One More Finger and Please Retry mark their extra native tears before character callbacks, preventing an extra Thought, Quota or Compute payment. Normal Claude no longer adds usage for those helpers; an already active Limited damage penalty still applies.

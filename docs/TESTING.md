@@ -1,5 +1,23 @@
 # In-game test checklist
 
+## Current integration scope
+
+Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
+
+All pending cases below remain open. The combined offline gate covers registration, syntax, assets and stubbed regressions only. Re-run on the final source commit and record the CI link. Historical COMPOSE-01 document conflicts are reconciled in this integration; that earlier experiment remains separate evidence.
+
+## COMPOSE-01: pending source composition (offline only)
+
+The exact PR #50-54 input heads listed in the engine audit were applied in numerical order to an isolated main `2ec15ef` export. All source/test changes applied without conflict, including the overlapping normal-Claude implementation and usage regression from #52/#53. The combined gate passed **48 stub suites, 146 Lua files, five XML files and asset checks**. No private probes were in this test tree. Documentation conflicts were kept outside the tested tree for review; this is not a resolved release tree or a merge authorization. PR #54 alone still has 46 suites. Run the gate again after any authorized final integration, and complete candidate-specific engine retests before accepting runtime compatibility.
+
+## VIBE-01: floor bill eligibility (offline candidate)
+
+The owner currently requests offline work only; no game session or deployment took place. `tests/vibe_damage_test.lua` loads real Vibe Coding before the real backlog, matching main.lua, and models stable callback priorities and early termination on a non-nil damage result. Fake/no-penalty hits, Sold Out bullet cancellation and Red Stamp contact cancellation leave two players at 40 coins after the floor transition; old main incorrectly charges 10 coins. Ordinary damage still charges the hit player's 25% bill once, a clean following floor waives it, and buying Vibe after a real hit does not erase that hit. Exit disables tracking. The existing Vibe persistence fixture remains separate from native save-file validation.
+
+The dispatch model follows [IsaacDocs' damage callback contract](https://wofsauge.github.io/IsaacDocs/rep/enums/ModCallbacks.html#mc_entity_take_dmg). It is not a post-health-loss event. A later external callback can still cancel damage, or an earlier callback returning true can suppress later observers; those environments are not accepted by this test.
+
+Pending engine cases: Vibe with 40 coins and no real damage; fake damage; no-penalty damage; Sold Out blocking one hostile bullet; Red Stamp blocking contact; one ordinary hit; two players with only one hit; save/exit/continue before changing floors. Observe health, guard consumption, HUD and exact coins at the next floor. Repeat representative cases on base Repentance and with the installed mod set. Other risk, trinket and character damage observers are outside this fix's acceptance scope.
+
 ## DERIVED-01: helper resource billing (offline candidate)
 
 The owner currently requests offline work only. The game remains closed and this candidate is not installed. `tests/derived_billing_test.lua` loads the real backlog, One More Finger, Please Retry, normal/tainted Claude and normal/tainted DeepSeek together. Synchronous FireTear dispatch is modeled; this is not an engine observation. On main, one helper per form changes usage/Quota/Thought/Compute from `0/220/150/12` to `4/219/0/10`. The candidate preserves those resources, keeps primes available and bills the next primary shot. Actual three-retry and fifth-shot helper schedules are covered. An active Limited penalty still weakens helper tears; a helper cannot start a new Limited interval.

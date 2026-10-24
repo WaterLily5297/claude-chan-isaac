@@ -2,6 +2,18 @@
 
 Prepared 2026-10-24 (Japan time). Start here. The owner requested an archive, a concrete handoff to Claude, local validation and a GitHub main merge. This is a development checkpoint, not a Workshop release or engine acceptance.
 
+## Integrated source and next work
+
+Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
+
+- PR #50: familiar contact cannot restore player-only target credit; its two controlled GPT engine cases retain their original scope.
+- PR #51: bounded Hit-frame observations remain evidence only; the oversized hurt-head report stays open.
+- PR #52: normal Claude timers advance once per active player frame, with pause/death/lifecycle guards.
+- PR #53: backlog helper tears do not spend character resources again; active Limited damage still applies.
+- PR #54: fake/no-penalty and default-priority blocked hits preserve Vibe Coding eligibility.
+
+The earlier isolated composition passed 48 stub suites and 146 tracked Lua files. Final integration checks are recorded against the resulting GitHub commit; source validation is not engine acceptance. Next, when the owner is available, verify a fresh allowlisted backup before deployment, retest these fixes, then continue the full menu/input, animation/costume, native-weapon, save/co-op and base Repentance matrix. Do not add more content or publish Workshop ahead of compatibility acceptance.
+
 ## Authority and evidence
 
 **Current owner instruction (2026-10-24): offline work only; merge PRs #50-54 now.** This approval covers source integration and local synchronization. Game launch and runtime replacement remain deferred until the owner is available. Historical testing permissions and unmerged-candidate statements below describe their original checkpoints and do not override this instruction.
@@ -24,7 +36,15 @@ Prepared 2026-10-24 (Japan time). Start here. The owner requested an archive, a 
 
 Never infer that an installed commit equals local HEAD. The local delivery includes an external verification record with exact final local/remote hashes and merge/check links; it is not embedded here to avoid self-referential commit hashes. Before resuming, fetch main and inspect the actual commit, tree, worktree status and any newer collaborator changes.
 
-## Current compatibility follow-up
+## Historical compatibility checkpoints (retain original evidence scope)
+
+**Current owner constraint: offline work only.** No game launch or runtime replacement is authorized while the owner is unavailable. Installed source remains main `2ec15ef`.
+
+VIBE-01 corrects Vibe Coding's floor billing eligibility. Fake/no-penalty damage is ignored, and the observer runs at late callback priority so default-priority Sold Out bullet guards and Red Stamp contact blockers cancel the event before it marks a mistake. The real-module regression reproduces incorrect 40-to-30 coin charges on main, then checks the corrected waiver, ordinary damage, two-player isolation, clean-floor reset, late item acquisition and exit. The separate persistence regression still passes. Saved tables and the 25% bill are unchanged.
+
+COMPOSE-01 applied the source/test changes from PRs #50-54, in numerical order, to an isolated main export without changing Git refs or the installation. Code/tests applied without conflict and the combined gate passed 48 stub suites, 146 Lua files, five XML files and asset checks. This is separate from this branch's 46-suite gate. Documentation has overlapping changes in HANDOFF, TESTING, ENGINE_AUDIT and CHANGELOG; they were not silently resolved. At an authorized merge, preserve every evidence block and pending case, and let the latest offline-only instruction supersede historical testing permission. Exact input heads and limits are in the engine audit. No PR was merged and no combined engine acceptance is claimed.
+
+This is an offline candidate, not an engine pass or a change to the risk-account mechanism. Native damage dispatch, health loss, other mods' priorities and save/continue still require the game. Independent pending PRs [#50](https://github.com/WaterLily5297/claude-chan-isaac/pull/50), [#51](https://github.com/WaterLily5297/claude-chan-isaac/pull/51), [#52](https://github.com/WaterLily5297/claude-chan-isaac/pull/52) and [#53](https://github.com/WaterLily5297/claude-chan-isaac/pull/53) cover attribution, hurt-frame evidence, timer guards and helper billing. None is included in this branch, and each needs specific merge approval. The oversized hurt-head report remains open.
 
 **Latest owner constraint: offline work only.** Do not resume game testing or runtime replacement until the owner is available. The installed source remains main `2ec15ef`; the following source candidate has not been deployed.
 
@@ -43,13 +63,13 @@ Targeted character abilities now reject familiar contact entities before resolvi
 
 Normal Claude and both DeepSeek forms now compose identity and Limited tints with native tear colors instead of replacing them. The regression covers native RGB, alpha, additive offsets, item-removal cache resets and resolved Swarm inheritance. This does not fix the outstanding weapon billing, damage or costume geometry cases. Continue with the priorities in [ENGINE_AUDIT_2026-10-24.md](ENGINE_AUDIT_2026-10-24.md).
 
-## Status at a glance (audited against main, 2026-10-24)
+## Baseline inventory audit (main through PR #49, 2026-10-24)
 
 Every handoff line below was checked against the current source: the 22 forms, 75 collectibles, 12 trinkets and four pills match content/*.xml, and `bash tools/check.sh` passes with 143 Lua files and 45 suites after the native-color regression fix. The 22-form engine smoke test is separate from these offline results.
 
 **Done in source (offline tests only):** all eleven normal loops and all eleven tainted forms; native Thought adapters for every listed attack family; Claude usage/Quota billing for lasers and Dr. Fetus bombs; the fifty-row backlog (50/50) and sixteen meme extras; tainted roster art (derived), walk cycles and the hurt-cell packing; the Appeal Queue and the ten roster story arcs.
 
-**Left, needs the game (testing authorized; acceptance incomplete):** everything under "Remaining engine acceptance matrix", apart from the explicitly bounded observations in the engine audit, plus the engine assumptions in "Known risks" (Thought hitbox/rocket/familiar attribution, CollisionDamage writer order, save/exit order, costume layering, side profiles and hurt poses). Automated menu navigation has not selected New Run reliably; type changes and console restarts must not be counted as menu-start acceptance.
+**Left, needs the game (currently deferred under offline-only instruction):** everything under "Remaining engine acceptance matrix", apart from the explicitly bounded observations in the engine audit, plus the engine assumptions in "Known risks" (Thought hitbox/rocket/familiar attribution, CollisionDamage writer order, save/exit order, costume layering, side profiles and hurt poses). Automated menu navigation has not selected New Run reliably; type changes and console restarts must not be counted as menu-start acceptance.
 
 **Left, needs an owner decision:**
 - GLM Book of Secrets: normal GLM no longer starts with the forced pocket Book of Secrets (CHARACTER_GAMEPLAY.md). Restore it as a pocket item or keep it removed.
@@ -163,6 +183,6 @@ Read CLAUDE.md, CONTRIBUTING.md, this handoff, TESTING.md and resources/ART_LICE
 
 Core registration is main.lua, scripts/constants.lua and content/*.xml. Saved data lives in scripts/risk.lua and versioned per-player tables. Rice and attack adapters are scripts/characters/deepseek_rice.lua and thought_attacks.lua; shared services are meal_break.lua, characters/drop_tap.lua and tear_fork.lua. Tests are explicit offline stubs; runtime_probe.lua is separate. tools/check.sh is the pre-commit/CI gate.
 
-Fetch current main, inspect status before editing, verify the checkpoint and retain all local drafts. Start from the merged source; do not reinstall the older runtime over it. Run the offline gate once to establish the baseline. Choose one incomplete compatibility/mechanic task, implement it on a small branch, add meaningful regressions, and update evidence in the same PR. Muted engine testing is authorized under the backup, disposable File 1 and cleanup rules above.
+Fetch current main, inspect status before editing, verify the checkpoint and retain all local drafts. Start from the merged source; do not reinstall the older runtime over it. Run the offline gate once to establish the baseline. Choose one incomplete compatibility/mechanic task, implement it on a small branch, add meaningful regressions, and update evidence in the same PR. Resume muted engine testing only when the owner is available, under the backup, disposable File 1 and cleanup rules above.
 
 The local-only delivery additionally records the preserved dirty checkout, current worktree, runtime and backup locations. Those private machine details and source reference collections are intentionally excluded from the public handoff.
