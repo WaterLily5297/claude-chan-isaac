@@ -245,3 +245,13 @@ lua Isaac.RunCallback("ClaudeChan:RunRuntimeProbe")
 Close the console and let the simulation run for about 13 seconds. This sets test coins/risk, uses the real pocket-item input, adds Car Battery, changes to stage 3 and round-trips this mod's run data. It does not change other mods' settings. Do not invoke it in a run you intend to preserve. Normal gameplay never calls it. A duplicate probe is rejected; input is removed on completion, failure or game exit.
 
 The probe must print `CCQA PASS` for insufficient funds (2/50/6), Car Battery (3/30/0), simultaneous captions (one pending), queue save/load (seen=11, pending=0), and completion. These assertions passed in Repentance+ 1.9.7.17 on 2026-10-23. They use the active shared Risk object, never a fresh `include("scripts.risk")`. The save/load case exercises the real mod JSON persistence and story-start handler; it does not replace a full application-restart/save-slot test.
+
+## Native Thought adapters: bursts, familiars, melee, Epic Fetus
+
+Offline suite: `tests/thought_adapters_test.lua`. In game, as normal DeepSeek-chan with full Thought:
+
+- Cursed Eye: one charged burst spends Thought once and every tear of the burst is boosted.
+- Incubus or Twisted Pair: copies fired with a boosted volley are boosted; copies alone never spend Thought.
+- The Forgotten's club and Spirit Sword: each swing spends once; holding the weapon spends nothing.
+- Epic Fetus: each rocket spends once and its explosion deals the boosted damage; Dr. Fetus bombs are not boosted twice.
+- Pause or leave the room mid-burst: no extra payment and no lasting damage change.
