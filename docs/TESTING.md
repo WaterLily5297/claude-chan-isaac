@@ -6,6 +6,14 @@ Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and 
 
 Verify actual callback order, damage refresh behavior, charged releases during food lockout, continuous fork update order, 1M Context decay, pause and mid-window save/continue before accepting any native weapon case. Source field assertions do not establish damage dealt, player appearance, steering or engine serialization. This follow-up does not pass the costume matrix.
 
+## Tainted DeepSeek Peak / Valley (source candidate; engine acceptance pending)
+
+Start a new run: HUD reads `Compute 12/24  Valley 12.0s  Forks On`. In a hostile room the timer counts down and switches to Peak after twelve seconds, then back. In a cleared room and on the pause menu it must stop. Each new floor starts in Valley with the same Compute. In Valley, stop firing during combat: Compute rises by three per second up to 24 (32 with Birthright). Waiting in a cleared room must not add Compute.
+
+Fire ordinary tears: each paid volley adds two half-damage forks at ±12° and costs 2 in Valley or 4 in Peak. With 20/20, Mutant Spider or Monstro's Lung, check one payment per same-frame volley and judge whether forking every pellet is too strong. Below the cost, only the main tear fires and no tear ever disappears. Tap/release DROP toggles `Saving`; a second tap inside one second is ignored, and holding DROP keeps native trinket dropping. Test pocket cycling with a pocket item.
+
+Save/quit/continue mid-phase and in Saving mode: Compute, phase, remaining time and mode must return unchanged; the toggle cooldown intentionally resets. Test a new run, character change (Clicker), co-op with two tainted DeepSeeks (separate Compute) and death. Brimstone, Technology, knife, Dr. Fetus and Ludovico builds should attack normally with no forks and no Compute cost. Stub coverage is `tests/deepseek_peak_test.lua` and `tests/swarm_resolution_test.lua`; no engine pass is recorded.
+
 ## Rice First (source candidate; engine acceptance pending)
 
 Current owner constraint: source work and offline validation only. Keep this engine checklist pending until the owner resumes game testing.
@@ -18,7 +26,7 @@ Save/quit/restart during a meal, during the speed bonus, at half Thought and aft
 
 With ordinary tears, charge Thought while moving, then fire four-eye/20/20/Monstro volleys: all same-frame pellets should share the multiplier. Swarm should copy half of the resolved parent damage without a second payment. Native tear size, flags, color and flight must remain intact; normal shots no longer randomly disappear. Test a shot-producing active and two players firing on the same frame.
 
-Delayed burst, Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, Ludovico, persistent lasers and familiar ownership still need attack adapters; do not mark those cases passed from ordinary-tear tests. In particular, a persistent tear is not yet divided into six-frame windows. Full native-weapon compatibility remains a required next implementation step, not a claimed result. Tainted DeepSeek still uses legacy forks/congestion; its Peak / Valley design is not implemented by Rice First.
+Delayed burst, Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, Ludovico, persistent lasers and familiar ownership still need attack adapters; do not mark those cases passed from ordinary-tear tests. In particular, a persistent tear is not yet divided into six-frame windows. Full native-weapon compatibility remains a required next implementation step, not a claimed result. Tainted DeepSeek now uses Peak / Valley Compute; see its own section below.
 
 Offline coverage is in `tests/deepseek_rice_test.lua`, `tests/content_test.lua` and `tests/swarm_resolution_test.lua`. The real modules are invoked with stubbed engine entities and detached Risk snapshots. This does not establish actual engine JSON, callback timing, analog controls, item visuals or save-slot identity.
 
@@ -66,7 +74,7 @@ Inspect normal and tainted Claude/DeepSeek at actual gameplay scale. Check idle 
 
 ## Fork property inheritance acceptance (pending)
 
-Test tainted DeepSeek alone, Isaac holding Subagent Swarm, tainted DeepSeek with Swarm, and normal DeepSeek's fully charged Deep Think with Swarm. Compare the natural tear and its children using Spoon Bender, Cupid's Arrow, Ouija Board, My Reflection, Ipecac and Cricket's Body. Check actual tracking, piercing, wall passage, trajectory/range, explosions and bounded splitting; copied flags alone do not prove those effects work in the engine. Deep Think children should display the boosted size and retain half the resolved parent damage. A busy shot should leave no children.
+Test tainted DeepSeek alone, Isaac holding Subagent Swarm, tainted DeepSeek with Swarm, and normal DeepSeek's fully charged Deep Think with Swarm. Compare the natural tear and its children using Spoon Bender, Cupid's Arrow, Ouija Board, My Reflection, Ipecac and Cricket's Body. Check actual tracking, piercing, wall passage, trajectory/range, explosions and bounded splitting; copied flags alone do not prove those effects work in the engine. Deep Think children should display the boosted size and retain half the resolved parent damage. No DeepSeek shot is randomly removed any longer.
 
 Also test Tiny Planet, Anti-Gravity, Eye of the Occult and Ludovico separately: these flags can depend on engine-managed motion or controller state that is not recreated by copying fields. Record unsupported behavior explicitly rather than claiming universal tear compatibility. Recheck both Claude limits, two-player ownership, split-shot growth, other mods' tear-init callbacks and frame time under high fire rate. The new regression verifies property transfer and existing spawn counts only; it provides no FPS or engine-pass evidence.
 
@@ -139,7 +147,7 @@ Items most likely to need fixes: **#17** (doors may re-close while enemies are a
 
 Overloaded lifecycle acceptance (pending): trigger an outage late in a disposable run, quit during its two-second window, then start a new run without closing the application and acquire the trinket. Tears must have normal damage until that new run's first outage. Also test save/continue, dropping the trinket during an outage, and normal recovery at two seconds. Offline lifecycle coverage does not mark these engine checks as passed.
 
-Subagent Swarm resolution acceptance (pending): test both DeepSeek characters with Swarm in a populated room. A server-busy shot must leave neither a natural tear nor Swarm children; a successful normal shot after five seconds of Deep Think must give children half its boosted damage. On both Claude characters, children must deal half the already-limited parent's damage and share its grey color. Check normal DeepSeek plus Swarm produces three total tears, while tainted DeepSeek plus Swarm produces five, with no recursive growth. In co-op, a non-holder must not gain children from the holder. Also test another mod's late tear callback; this mod's late registration does not establish universal ordering across third-party callbacks. These assertions have stub coverage only, not a recorded engine pass.
+Subagent Swarm resolution acceptance (pending): test both DeepSeek characters with Swarm in a populated room. Neither DeepSeek form may randomly remove a shot; a normal shot after five seconds of Deep Think must give children half its boosted damage. On both Claude characters, children must deal half the already-limited parent's damage and share its grey color. Check normal DeepSeek plus Swarm produces three total tears, while tainted DeepSeek plus Swarm produces five when Compute pays for the forks (three in Saving mode or when Compute is short), with no recursive growth. In co-op, a non-holder must not gain children from the holder. Also test another mod's late tear callback; this mod's late registration does not establish universal ordering across third-party callbacks. These assertions have stub coverage only, not a recorded engine pass.
 
 ### Opus Mode immediate wallet state
 
@@ -180,7 +188,7 @@ With Reactions Port Pack enabled, trigger a pickup/reaction for each of the four
 | C5 | DeepSeek-chan in a room with many enemies | Some shots don't come out, HUD "Server busy, please try again later" | |
 | C6 | Use Lunch Break | +1 red heart, enemies slowed, you can't shoot for 3 s | |
 | C6b | DeepSeek-chan: clear a room, then stand still ~5 s | HUD "Slacking off... Lunch Break +1" (摸鱼中……), pocket charge +1; nothing happens while moving or in a fight | |
-| C7 | Tainted DeepSeek-chan: shoot | Every shot comes out as 3 tears in a fan; still no risk HUD | |
+| C7 | Tainted DeepSeek-chan: shoot | With enough Compute each volley comes out as 3 tears in a fan and the HUD Compute drops by 2 (Valley) or 4 (Peak); at low Compute or in Saving mode only the main tear fires; still no risk HUD | |
 | C8 | Co-op: Claude-chan + DeepSeek-chan | Risk HUD and IP are back (the system only sleeps when everyone is DeepSeek-chan) | |
 | C9 | Claude-chan: `stage 2`, `stage 3` without reaching risk 90 | HUD "Account age: 2 floor(s)", damage up a little; reach 90+ risk: "Banned again", age back to 0 | |
 | C10 | Tainted Claude-chan: shoot ~220 times on one floor | HUD "Weekly limit 220 / 220", "Weekly limit reached", weak grey tears; next floor resets; pocket Banked Reset refills it | |

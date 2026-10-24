@@ -4,6 +4,7 @@ function include(name) return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lu
 ModCallbacks = setmetatable({}, { __index = function(_, key) return key end })
 CallbackPriority = { DEFAULT = 0, LATE = 1000 }
 CacheFlag = {CACHE_SPEED=1}
+CollectibleType = {COLLECTIBLE_BIRTHRIGHT=619}
 TearFlags={TEAR_LUDOVICO="ludo"}
 ActiveSlot = { SLOT_POCKET = 2 }
 EntityType = { ENTITY_TEAR = 2 }
@@ -86,9 +87,14 @@ include("scripts.characters.claude_chan"):Init(mod, risk)
 include("scripts.characters.claude_chan_b"):Init(mod, risk)
 include("scripts.characters.deepseek_chan"):Init(mod, risk)
 include("scripts.characters.deepseek_rice"):Init(mod,risk,{Remaining=function() return 0 end})
+include("scripts.characters.deepseek_peak"):Init(mod,risk)
 fire("MC_POST_GAME_STARTED", false)
 local function think()
     for _=1,150 do frame=frame+1; fire("MC_POST_UPDATE") end
+end
+-- Character modules bind an observed form on the next update.
+local function become(kind)
+    deepseek.kind=kind; frame=frame+1; fire("MC_POST_UPDATE")
 end
 
 local function shot(owner)
@@ -105,15 +111,15 @@ local function shot(owner)
     return t
 end
 
--- Normal Rice First removes random shot cancellation; tainted is still legacy.
+-- Neither DeepSeek form randomly cancels shots any longer.
 enemies, roll = 10, 0.1
 local cancelled = shot(deepseek)
 assert(not cancelled.removed, "normal shots must no longer be cancelled")
 assert(#spawned == 2, "normal shots still resolve before Swarm")
-deepseek.kind = 142
-shot(deepseek)
-assert(#spawned == 0, "a busy tainted shot must cancel both character forks and Swarm")
-deepseek.kind = 42
+become(142)
+local crowded = shot(deepseek)
+assert(not crowded.removed and #spawned == 4, "a crowded tainted room keeps its shot, forks and Swarm")
+become(42)
 
 enemies, roll = 0, 0.99
 think()
@@ -123,10 +129,10 @@ assert(#spawned == 2 and spawned[1].CollisionDamage == 4 and spawned[2].Collisio
     "Swarm tears must deal half the resolved Deep Think damage")
 assert(spawned[1].Velocity == -15 and spawned[2].Velocity == 15, "keep the two-shot fan")
 assert(spawned[1].SpawnerEntity == deepseek, "keep the owner")
-deepseek.kind = 142
+become(142)
 shot(deepseek)
 assert(#spawned == 4, "tainted forks and Swarm add two each without recursive growth")
-deepseek.kind = 42
+become(42)
 
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 100, 90
 local limited = shot(claude)
@@ -186,10 +192,10 @@ end
 claude.kind=0; claude.swarm=true
 local vanilla=effectShot(claude); inherited(vanilla,2)
 assert(vanilla.Scale==1.7 and vanilla.CollisionDamage==10, 'fork must not mutate its parent')
-deepseek.kind=142; deepseek.swarm=false
+deepseek.swarm=false; become(142)
 inherited(effectShot(deepseek),2)
 deepseek.swarm=true; inherited(effectShot(deepseek),4)
-deepseek.kind=42; think()
+become(42); think()
 local boosted=effectShot(deepseek); assert(boosted.Scale==1.7 and boosted.CollisionDamage==20); inherited(boosted,2)
 enemies,roll=10,0.1
 local blocked=effectShot(deepseek); assert(not blocked.removed and #spawned==2)
@@ -239,12 +245,14 @@ inherited(summaryShot, 2)
 claude.data.ccUsage.value, claude.data.ccUsage.limited = 0, 0
 stapler(mod, -1, nil, claude, 0)
 assert(claude.data.ccUsage.value == 8, 'summary and Swarm keep ordinary usage accounting')
-deepseek.kind, deepseek.swarm, enemies, roll = 142, true, 0, 0.99
+deepseek.swarm, enemies, roll = true, 0, 0.99
+become(142)
 prepare(deepseek)
 stapler(mod, -1, nil, deepseek, 0)
 inherited(summaryShot, 4)
 enemies, roll = 10, 0.1
+frame = frame + 1
 stapler(mod, -1, nil, deepseek, 0)
-assert(summaryShot.removed and #spawned == 0, 'busy summary must not leave fork children')
-assert(absorbed == 8, 'defensive absorption remains valid even when the shot is cancelled')
-print('OK: Summary Stapler with real Claude limits, Swarm inheritance and DeepSeek forks/cancellation')
+assert(not summaryShot.removed and #spawned == 4, 'a crowded room must not cancel the summary shot')
+assert(absorbed == 8, 'each summary absorbs its own bounded projectile set')
+print('OK: Summary Stapler with real Claude limits, Swarm inheritance and Peak / Valley forks')

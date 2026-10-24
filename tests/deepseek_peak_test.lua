@@ -1,0 +1,197 @@
+-- Real Peak / Valley, fork and DROP callbacks with detached save/continue snapshots.
+local root=arg[1]
+local frame, paused, clear, room, floor = 0, false, true, 1, 10
+local callbacks, players, saved, draws, spawned = {}, {}, nil, {}, {}
+local C={Player={DEEPSEEK_CHAN=42,DEEPSEEK_CHAN_B=142}}
+function include(name)
+    if name=="scripts.constants" then return C end
+    if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
+    return dofile(root.."/"..name:gsub("%.","/")..".lua")
+end
+local function copy(v)
+    if type(v)~="table" then return v end
+    local result={}; for k,x in pairs(v) do result[k]=copy(x) end; return result
+end
+package.preload.json=function() return {
+    encode=function(v) saved=copy(v); return "snapshot" end,
+    decode=function() return copy(saved) end,
+} end
+ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
+CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}
+EntityType={ENTITY_TEAR=2}
+ButtonAction={ACTION_DROP=11}
+local down={}
+Input={IsActionPressed=function(_,controller) return down[controller] or false end}
+function GetPtrHash(p) return p.pointer end
+function EntityPtr(e) return {Ref=e} end
+function Game() return {
+    GetFrameCount=function() return frame end, GetNumPlayers=function() return #players end,
+    IsPaused=function() return paused end,
+    GetRoom=function() return {IsClear=function() return clear end} end,
+    GetLevel=function() return {
+        GetDungeonPlacementSeed=function() return floor end,
+        GetStage=function() return 1 end,GetStageType=function() return 0 end,
+        GetCurrentRoomDesc=function() return {SpawnSeed=room*13,SafeGridIndex=room} end,
+    } end,
+    GetHUD=function() return {IsVisible=function() return true end} end,
+} end
+Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,
+    Spawn=function(_,variant,_,_,velocity,owner)
+        local data={}
+        local t={Variant=variant,Velocity=velocity,SpawnerEntity=owner,TearFlags=0,Scale=1}
+        function t:ToTear() return self end
+        function t:ResetSpriteScale() self.spriteScale=self.Scale end
+        function t:GetData() return data end
+        function t:Exists() return true end
+        spawned[#spawned+1]=t
+        return t
+    end}
+local mod={AddCallback=function(_,id,fn) callbacks[#callbacks+1]={id=id,fn=fn} end}
+function mod:SaveData(s) self.saved=s end
+function mod:LoadData() return self.saved end
+function mod:HasData() return saved~=nil end
+local function fire(id,...)
+    for _,cb in ipairs(callbacks) do if cb.id==id then cb.fn(mod,...) end end
+end
+local function player(pointer,seed,controller)
+    local p={pointer=pointer,InitSeed=seed,ControllerIndex=controller,kind=142,
+        dead=false,shooting=false}
+    function p:GetPlayerType() return self.kind end
+    function p:ToPlayer() return self end
+    function p:IsDead() return self.dead end
+    function p:AreControlsEnabled() return true end
+    function p:HasCollectible(id) return id==619 and self.birthright end
+    function p:GetShootingInput() return {LengthSquared=function() return self.shooting and 1 or 0 end} end
+    return p
+end
+local Risk=include("scripts.risk")
+local function load()
+    callbacks={}
+    mod:AddCallback("MC_POST_GAME_STARTED",function(_,continued)
+        if continued then Risk:Load(mod) else Risk.state={} end
+    end)
+    mod:AddCallback("MC_PRE_GAME_EXIT",function(_,save) if save then Risk:Save(mod) end end)
+    include("scripts.characters.deepseek_peak"):Init(mod,Risk)
+end
+local function tick(n)
+    for _=1,n or 1 do frame=frame+1; fire("MC_POST_UPDATE") end
+end
+local function state(i) return Risk.state.deepseekPeak[tostring(i or 0)] end
+local function tap(p)
+    down[p.ControllerIndex]=false; tick()
+    down[p.ControllerIndex]=true; tick()
+    down[p.ControllerIndex]=false; tick()
+end
+local function enter(index,hostile)
+    room=index; clear=not hostile; fire("MC_POST_NEW_ROOM")
+end
+local function shot(p,alive)
+    spawned={}
+    local data={}
+    local t={SpawnerEntity=p,CollisionDamage=4,Scale=1.7,TearFlags=1<<52,Variant=0,Position={},
+        Velocity={Rotated=function(_,a) return a end},Color="native",Height=-20,FallingSpeed=0,
+        FallingAcceleration=0.3,HomingFriction=0,KnockbackMultiplier=1}
+    function t:GetData() return data end
+    function t:Exists() return alive~=false end
+    fire("MC_POST_FIRE_TEAR",t)
+    return t
+end
+local function reload(newPlayers)
+    fire("MC_PRE_GAME_EXIT",true)
+    players=newPlayers; frame=0
+    load(); fire("MC_POST_GAME_STARTED",true)
+end
+
+players={player(1,11,0),player(2,22,1)}; load(); fire("MC_POST_GAME_STARTED",false)
+local p,q=players[1],players[2]
+local s=state()
+assert(s.compute==12 and s.phase=="valley" and s.remaining==360 and not s.saving,"new run starts in Valley with 12")
+
+-- A paid volley pays once and forks every tear in it at half damage.
+local t=shot(p)
+assert(#spawned==2 and spawned[1].CollisionDamage==2 and spawned[1].Velocity==-12 and spawned[2].Velocity==12)
+assert(spawned[1].TearFlags==t.TearFlags and spawned[1].Scale==1.7 and spawned[1].SpawnerEntity==p,
+    "forks keep native effects and owner")
+assert(t.CollisionDamage==4 and state().compute==10,"Valley costs 2; the primary tear is untouched")
+local pellet=shot(p); assert(#spawned==2 and state().compute==10,"same-frame pellets share one payment")
+local child=spawned[1]; spawned={}
+fire("MC_POST_FIRE_TEAR",pellet)
+assert(#spawned==0 and state().compute==10,"duplicate callbacks cannot fork again")
+fire("MC_POST_FIRE_TEAR",child); assert(#spawned==0,"forks cannot fork recursively")
+assert(state(1).compute==12,"spending is personal")
+tick(); shot(p,false); assert(#spawned==0 and state().compute==10,"a cancelled tear neither forks nor pays")
+
+-- Empty rooms freeze the schedule and recovery.
+tick(100); assert(state().remaining==360 and state().compute==10,"cleared rooms freeze the timer")
+enter(2,true)
+tick(10); assert(state().remaining==350 and state().compute==11,"Valley recovers 3 per second in combat")
+p.shooting=true; tick(30); assert(state().compute==11,"firing blocks recovery")
+p.shooting=false
+tick(5); paused=true; tick(30); paused=false
+assert(state().remaining==315,"pause does not advance the schedule")
+fire("MC_POST_UPDATE"); assert(state().remaining==315,"a duplicate frame cannot advance the schedule")
+tick(315); assert(state().phase=="peak" and state().remaining==360,"twelve combat seconds switch to Peak")
+local before=state().compute
+tick(30); assert(state().compute==before,"Peak does not recover Compute")
+tick(); shot(p); assert(#spawned==2 and state().compute==before-4,"Peak costs 4")
+
+-- Insufficient Compute suppresses only the forks.
+state().compute=3
+tick(); local poor=shot(p); assert(#spawned==0 and state().compute==3 and poor.CollisionDamage==4)
+
+-- DROP toggles Saving with a one-second cooldown; holds stay native.
+state().compute=20
+tap(p); assert(state().saving,"tap toggles Saving")
+tick(); shot(p); assert(#spawned==0 and state().compute==20,"Saving spends nothing and keeps the shot")
+tap(p); assert(state().saving,"a second tap inside the cooldown is ignored")
+tick(30); tap(p); assert(not state().saving,"after the cooldown a tap restores Forks On")
+down[0]=true; tick(20); down[0]=false; tick(); assert(not state().saving,"a long hold does not toggle")
+assert(not state(1).saving,"another player's mode is untouched")
+
+-- Caps follow Birthright and clamp when it is lost.
+state().phase="valley"; state().compute=23; state().regen=0
+tick(40); assert(state().compute==24,"Valley recovery stops at 24")
+p.birthright=true; tick(80); assert(state().compute==32,"Birthright raises the cap to 32")
+p.birthright=false; tick(); assert(state().compute==24,"losing Birthright clamps to the base cap")
+
+-- Continue keeps Compute, phase, timer and mode, with recreated entities.
+state().compute=17; state().phase="peak"; state().remaining=123; state().saving=true
+local partner=state(1).compute
+assert(partner>12,"the partner recovered independently in combat")
+reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]
+s=state(); assert(s.compute==17 and s.phase=="peak" and s.remaining==123 and s.saving,"continue preserves state")
+assert(state(1).compute==partner)
+
+-- A new floor resets the phase but keeps Compute.
+floor=20; enter(1,false)
+assert(state().phase=="valley" and state().remaining==360 and state().compute==17,"new floor starts in Valley")
+reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]
+assert(state().phase=="valley" and state().compute==17,"continue on the same floor does not reset")
+
+-- Identity and character changes do not transfer Compute.
+state().compute=5
+players[1]=player(101,999,0); p=players[1]; tick()
+assert(state().compute==12,"a replacement player gets fresh Compute")
+state().compute=5
+p.kind=42; tick(); assert(state()==nil)
+spawned={}; shot(p); assert(#spawned==0,"normal DeepSeek never receives tainted forks")
+p.kind=142; tick(); assert(state().compute==12)
+
+-- Corrupt saves are discarded rather than trusted.
+Risk.state.deepseekPeak["0"]={version=1,compute=math.huge,regen=0,phase="peak",remaining=0/0,saving=true}
+tick(); assert(state().compute==12 and state().phase=="valley" and not state().saving)
+Risk.state.deepseekPeak["0"]={version=1,compute=40,regen=0,phase="valley",remaining=10,saving=false}
+tick(); assert(state().compute==12,"Compute above every cap is invalid")
+
+-- Dead players neither advance nor spend.
+enter(3,true); q.dead=true; local r=state(1).remaining; tick(10)
+assert(state(1).remaining==r,"a dead player's schedule is frozen")
+q.dead=false
+
+fire("MC_POST_RENDER")
+local hud=draws[#draws]
+assert(hud:match("Compute %d+/24") and hud:match("Valley") and hud:match("Forks On"),hud)
+
+fire("MC_POST_GAME_STARTED",false)
+assert(state().compute==12 and state().phase=="valley","a new run resets Compute")
+print("OK: Peak / Valley schedule, Compute caps, volley forks, Saving mode and save/floor/identity lifecycle")

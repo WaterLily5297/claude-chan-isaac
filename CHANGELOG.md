@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased tainted DeepSeek Peak / Valley (2026-10-24)
+
+- Tainted DeepSeek becomes Wenfeng / Wengu: twelve combat seconds of Valley alternate with twelve of Peak, frozen in cleared rooms and on pause; every floor starts in Valley. Compute starts at 12 (cap 24, Birthright 32) and carries across floors. Paid tear volleys fork into two native half-damage tears for 2 (Valley) or 4 (Peak); Valley recovers 3 per second in combat while not firing. DROP tap toggles Forks On / Saving.
+- Remove legacy random Server Busy shot deletion and free unconditional forks. Saved per-player Compute, phase, timer and mode; identity, character change and corrupt data reset safely. English HUD, dossier and EID text.
+- Sixteen offline suites pass, including the new Peak / Valley lifecycle suite. Non-tear weapons get no forks yet; engine validation pending. No runtime or Workshop changes.
+
 ## Unreleased native Thought adapters (2026-10-24)
 
 - Apply normal DeepSeek Thought to native lasers, flying knives and Dr. Fetus bombs, preserving original weapons and visual/effect fields. Repeated-hit beams and controlled tears use saved six-update windows; single-hit beams and released rings snapshot one attack.

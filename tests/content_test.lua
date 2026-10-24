@@ -57,32 +57,10 @@ risk.state.risk = 10
 assert(not use(32).Discharge and p.coins == 3 and risk:Get() == 10)
 assert(use().Discharge and risk:Get() == 0 and p.coins == 0)
 
--- DeepSeek-chan: Deep Think, Server busy, Lunch Break pocket; tainted Open Source forks.
+-- DeepSeek-chan: shared stats and Lunch Break pocket; no legacy busy or fork callbacks.
 callbacks = {}
-local roll = 0.99
-function RNG() return { SetSeed = function() end, RandomFloat = function() return roll end } end
-local enemies, spawned = 0, {}
-Isaac.CountEnemies = function() return enemies end
-EntityType.ENTITY_TEAR = 2
-Isaac.Spawn = function(_, _, _, _, velocity)
-    local t = { velocity = velocity }
-    function t:ToTear() return self end
-    function t:ResetSpriteScale() self.spriteScale=self.Scale end
-    local data={}; function t:GetData() return data end
-    spawned[#spawned + 1] = t
-    return t
-end
 function Isaac.GetScreenHeight() return 270 end
 function Isaac.RenderText(text) draws[#draws + 1] = text end
-local function tear(owner)
-    local data={}
-    return { GetData=function() return data end, SpawnerEntity = { ToPlayer = function() return owner end }, CollisionDamage = 4,
-        Scale = 1, Variant = 0, Position = {}, Color = "c",
-        TearFlags = 0, Height = -10, FallingSpeed = 0, FallingAcceleration = 0.5,
-        HomingFriction = 0, KnockbackMultiplier = 1,
-        Velocity = { Rotated = function(_, a) return a end },
-        Remove = function(t) t.removed = true end }
-end
 p.GetData = function(pl) pl.data = pl.data or {}; return pl.data end
 other.GetData = p.GetData
 local deepseekModule = arg[2] and dofile(arg[2]) or include("scripts.characters.deepseek_chan")
@@ -91,17 +69,13 @@ fire("MC_POST_GAME_STARTED", false)
 assert(p.pocket == 801 and other.pocket == 801, "normal DeepSeek-chan starts with Lunch Break")
 p.pocket = 900; fire("MC_POST_GAME_STARTED", true); assert(p.pocket == 900, "continue keeps the pocket item")
 fire("MC_EVALUATE_CACHE", p, CacheFlag.CACHE_DAMAGE); assert(p.Damage == 9)
--- Rice mechanics have their own lifecycle suite. Normal fire is no longer cancelled here.
-enemies, roll = 10, 0
-local t = tear(p); fire("MC_POST_FIRE_TEAR", t)
-assert(not t.removed and t.CollisionDamage == 4, "normal shots must not use legacy busy/thought")
-p.kind = 142; enemies, roll = 0, 0.99
-local fork = tear(p); fire("MC_POST_FIRE_TEAR", fork)
-assert(#spawned == 2 and spawned[1].CollisionDamage == 2 and spawned[1].velocity == -12, "tainted forks two 50% tears")
+-- Rice and Peak / Valley mechanics have their own lifecycle suites.
+assert(callbacks.MC_POST_FIRE_TEAR == nil, "the shared module must not cancel or fork shots")
+p.kind = 142
 fire("MC_EVALUATE_CACHE", p, CacheFlag.CACHE_DAMAGE); assert(math.abs(p.Damage - 9 * 0.8) < 1e-9)
 p.kind = 42
 assert(callbacks.MC_POST_PEFFECT_UPDATE == nil, "remove unlimited empty-room pocket charging")
-print("OK: DeepSeek normal pocket/stats, removed legacy mechanics and retained tainted forks")
+print("OK: DeepSeek normal pocket/stats and removed legacy busy/fork mechanics")
 
 callbacks = {}
 local seeded
