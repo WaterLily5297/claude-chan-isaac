@@ -1,9 +1,13 @@
 # Changelog
 
+## Unreleased roster story arcs (2026-10-24)
+
+- Add three short story captions for each of DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM (normal or tainted), on run start, stage 3 and stage 5. Seven seconds, non-blocking, once per run, co-op queued in player order, saved in `Risk.state.rosterStory` (version 1).
+- New offline suite `tests/story_roster_test.lua` (24 in total). English only; not tested in game.
 ## Unreleased roster stack landing (2026-10-24)
 
 - Bring the full roster stack to main in one PR: nine normal loops (GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, GLM), nine tainted forms and the tainted roster art. The stacked PRs #24, #27 and #29-#45 had been merged into each other's branches instead of main.
-- Regenerate the nine tainted gameplay sheets from the walk-cycle sheets (#25), which the original derivation predated. Portraits and dossiers are unchanged. 41 offline suites pass; no engine validation.
+- Regenerate the nine tainted gameplay sheets from the walk-cycle sheets (#25), which the original derivation predated. Portraits and dossiers are unchanged. 42 offline suites pass; no engine validation.
 
 ## Unreleased native Thought adapters (2026-10-24)
 

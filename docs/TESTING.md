@@ -287,6 +287,7 @@ In a disposable run, hold Vibe Coding and 40 coins, take a hit, save and quit, c
 - *(v0.4 DeepSeek-chan check superseded by the v0.5 redesign below.)*
 - `giveitem Support Ticket`: with 2 coins or risk 0, no coins/charge spent; with 3 coins and positive risk, spend 3 and lower risk by up to 20. Repeat with Car Battery.
 - See story chapters at run start, stage 3, stage 5, and the next room after successful review. Save and continue: completed chapters stay completed. Hide the HUD: captions hide too.
+- Roster arcs: start a run as any non-Claude family (normal or tainted) and see its chapter 1, then chapter 2 at stage 3 and chapter 3 at stage 5. With Claude in co-op, both captions show without overlapping. Save and continue mid-caption: it does not repeat, and a queued one still plays. Offline suite: `tests/story_roster_test.lua`.
 - Inspect both custom character skins, four head directions, all movement/hurt/death poses, character select, stage/boss portraits and names. Check D4 and costume interactions. **Initial custom-art runtime checks passed in Repentance+; the complete animation/costume matrix is pending. See HANDOFF.md for exact observations.**
 - Subtitle position was moved above the lower HUD after observing EID overlap; confirm it with EID enabled.
 - Use Support Ticket on the first floor, then reach stage 3 and stage 5: both later chapters must still appear with their approved-route dialogue. Continue after all four chapters: none should repeat.
