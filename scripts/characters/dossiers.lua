@@ -27,6 +27,8 @@ local originals={
      lines={"Tap/release DROP: 6s Confident, 1.35x.", "Then 4s Apology at 0.85x, then ready.", "Getting hit ends Confident early."}},
     {id=C.Player.KIMI_CHAN_B,key="kimi_b",name="Tainted Kimi-chan",title="You Are the Manager",
      lines={"Tap/release DROP: assign a nearby enemy.", "Each task: three 0.6x pulses, 2s apart.", "3 tasks at once; 9 pulses per room."}},
+    {id=C.Player.GLM_CHAN_B,key="glm_b",name="Tainted GLM-chan",title="Please Retry",
+     lines={"Tap/release DROP: queue a 2s request.", "Target survives: 2x, +1x per Retry.", "Target dies first: +1 Retry (max 3)."}},
 }
 function Dossiers:Init(mod)
     local ready=false

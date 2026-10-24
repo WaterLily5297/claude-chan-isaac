@@ -34,6 +34,10 @@ Select Tainted Doubao-chan: deeper-colour Doubao art. HUD reads `Ready to promis
 
 Select Tainted Kimi-chan: deeper-colour Kimi art, lower damage. HUD reads `Tasks 0/3  Budget 9/9`. In a hostile room, tap/release DROP three times: `You are the manager` and three enemies each take three small hits two seconds apart. A fourth tap does nothing. After that the room's budget is empty. Killing an assigned enemy early frees its slot only. Leave mid-task: the task stops; return and the budget is still spent. Birthright makes pulses stronger. Save/continue keeps budgets but not tasks.
 
+## Tainted GLM Please Retry (source candidate; engine acceptance pending)
+
+Select Tainted GLM-chan: deeper-colour GLM art, slightly lower damage. HUD reads `Retries 0/3`. In a hostile room, tap/release DROP: `Request queued` and `Request Pending 2s`; two seconds later the nearest enemy takes a heavy hit (`Request complete`). DROP is blocked for three seconds from selection. Kill the target before the request lands: `Please retry` and one Retry. With three Retries, a successful request hits at 5x and resets them. Leaving mid-request cancels it with no Retry. With Birthright, a failed request also removes the nearest enemy bullet. Save/continue keeps Retries.
+
 ## Tainted GPT Reset Watcher (source candidate; engine acceptance pending)
 
 Select Tainted GPT-chan from the tainted menu: deeper-colour GPT art, one red and two soul hearts, one key. HUD reads `Credits 80/80  Standard  Next Reset 0/3`. Tap/release DROP: `Full Send`, damage 1.5x, and each volley (one 20/20 volley, one Brimstone beam, one Dr. Fetus bomb) costs one Credit. At zero she returns to Standard and a tap cannot re-enter Full Send. Clear three different hostile rooms: `Tibo: Reset Ready`; further clears do not advance while it is banked. The next tap refills Credits and does not toggle the mode. Birthright raises cap and refill to 100. New floor and save/continue keep Credits, mode, progress and the banked reset. Check that no proxy IP / risk HUD appears for her, that a long DROP hold drops trinkets normally, and the MAP dossier. Stub coverage is `tests/gpt_reset_test.lua`.

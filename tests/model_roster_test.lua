@@ -129,7 +129,7 @@ local tgpt=player('GPT-chan'); tgpt.kind=151
 assert(R:Find(tgpt)==nil and R:IsFamily(tgpt))
 tgpt.kind=141; assert(not R:IsFamily(tgpt))
 -- Every registered tainted form is a family; the list holds exactly the implemented ones.
-local TAINTED_COUNT=8
+local TAINTED_COUNT=9
 assert(#R.tainted==TAINTED_COUNT)
 for i=1,TAINTED_COUNT do tgpt.kind=150+i; assert(R:Find(tgpt)==nil and R:IsFamily(tgpt)) end
 for id in pairs(callbacks) do assert(id=='MC_EVALUATE_CACHE', 'roster registers only the tint: '..id) end
