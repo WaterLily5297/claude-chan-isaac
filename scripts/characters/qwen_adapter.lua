@@ -3,6 +3,7 @@
 -- about any product. Saved per player; the active bonus ends on room exit.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local FireRate = include("scripts.fire_rate")
 local Qwen = {}
 
 local ADAPTER_START, ADAPTER_CAP, BIRTHRIGHT_CAP = 1, 2, 3
@@ -181,7 +182,7 @@ function Qwen:Init(mod, Risk)
         if flag == CacheFlag.CACHE_RANGE and kind == 1 then
             p.TearRange = p.TearRange + RANGE_BONUS
         elseif flag == CacheFlag.CACHE_FIREDELAY and kind == 2 then
-            p.MaxFireDelay = math.max(-0.75, (p.MaxFireDelay + 1) * TEMPO_INTERVAL - 1)
+            p.MaxFireDelay = FireRate.ScaleInterval(p.MaxFireDelay, TEMPO_INTERVAL)
         elseif flag == CacheFlag.CACHE_DAMAGE and kind == 3 then
             p.Damage = p.Damage * POWER_DAMAGE
         end

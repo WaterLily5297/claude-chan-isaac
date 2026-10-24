@@ -4,6 +4,12 @@
 
 Source-only, offline. The owner asked that characters keep their own look when picking up items, while item effects apply normally. New `scripts/characters/costume_lock.lua` clears costume layers on all 22 mod forms (never vanilla characters) after any costume-adding change: collectible count, temporary effects, trinkets, player type, item/card/pill use, new room and game start/continue, with a three-frame settle and a 30-frame sweep. Leaving a mod form restores held item costumes. `ModelRoster:AllForms()` now lists every form for this lock and the Reactions adapter. This reverses the older "let the engine apply item costumes" contract; COSTUME_COMPATIBILITY.md, ART_SPEC.md, CHARACTER_GAMEPLAY.md and CLAUDE.md now describe the fixed look. Engine case: TESTING.md COSTUME-LOCK-01 (hidden wings/mantle layer and possible one-frame flash need review).
 
+## Vanilla compatibility pass (2026-10-24)
+
+Source-only, offline; one small PR per fix, each with a regression that fails on the old code.
+
+- **Fire-rate multipliers scale the whole shot interval.** Agentic, Cat-girl Mode and Rolled Back multiplied the raw `MaxFireDelay`, which slows the player down once Soy Milk, Almond Milk or stacked tears items push the delay below 0. New `scripts/fire_rate.lua` scales `(MaxFireDelay + 1)`, as the Qwen forms already did (they now share the helper). Cat-girl Mode is now an exact x2 fire rate. `tests/fire_rate_test.lua`.
+
 ## Character trait completion (2026-10-24)
 
 Source-only, offline. No game launch, runtime replacement or Workshop release. This pass closed the gaps between CHARACTER_GAMEPLAY.md targets and source:
