@@ -44,7 +44,12 @@ assert(damage(player(0, {}), CacheFlag.CACHE_SPEED) == 10,
 local spent, data = 0, {}
 local owner = player(5, data)
 owner.AddCoins = function(_, n) spent = spent - n end
-local function shooter(e) e.SpawnerEntity = { ToPlayer = function() return owner end }; return e end
+local function shooter(e)
+    local entityData = {}
+    e.SpawnerEntity = { ToPlayer = function() return owner end }
+    function e:GetData() return entityData end
+    return e
+end
 for _ = 1, 3 do callbacks.MC_POST_FIRE_TEAR(mod, shooter({})) end
 for _ = 1, 3 do callbacks.MC_POST_LASER_INIT(mod, shooter({})) end
 callbacks.MC_POST_LASER_INIT(mod, shooter({ Parent = { Type = 7 } })) -- child beam: free
