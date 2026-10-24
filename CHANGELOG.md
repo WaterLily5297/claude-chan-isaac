@@ -1,5 +1,10 @@
 # Changelog
 
+## Tainted Llama helper accounting (2026-10-24)
+
+- Route Still Waiting helper tears through the shared derived-shot path before synchronous callbacks. They no longer bill Opus Mode, consume attack primes or advance backlog paid-attack triggers.
+- Keep native 0.5x tears, helper position, cadence and duration, including Birthright. Primary shots and Summary Stapler billing are unchanged. This is an offline correction; native timing, weapon interactions and save/continue remain unverified.
+
 ## Opus backlog helper billing (2026-10-24)
 
 - Exclude Please Retry and One More Finger helper tears from Opus Mode coin billing before synchronous shot callbacks run. Preserve normal-shot costs, Summary Stapler billing and primed attack bonuses.
