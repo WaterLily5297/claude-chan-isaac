@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased roster walk cycles (2026-10-24)
+
+- GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM walk with visible legs: a ten-frame stride, alternating front steps, swinging side legs and a one-pixel bob. Each direction uses one stable body, removing the old frame-to-frame jitter. Carry cells get the same legs.
+- Deterministic `tools/animate_roster_walk.py`, wired into the hurt-pose rebuild verifier; the asset gate now checks all thirteen atlases against the art manifest. Offline preview: `tools/preview_original_movement.py --walk-roster`. No engine validation yet.
+
 ## Unreleased roster review fixes (2026-10-24)
 
 - The nine model roster families leave the proxy IP / risk account. A roster-only or DeepSeek-and-roster run has no IP or risk. In co-op with Claude or a vanilla character, only those covered players raise risk when hit, spoil a clean room or take the suspension damage penalty; DeepSeek no longer takes that penalty in co-op either.
