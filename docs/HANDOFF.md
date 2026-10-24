@@ -4,6 +4,12 @@ Prepared 2026-10-24 (Japan time). Start here. The owner requested an archive, a 
 
 ## Integrated source and next work
 
+### Current offline follow-up: BACKLOG-LIFECYCLE-01
+
+This candidate starts directly from main `d91eee7`, independently of the Risk damage fix in PR #55. The shared backlog service emits a cleanup-only `runReset` event at exit and start/continue. Six family modules clear their closure-held transient state: contact stamps, pending heart pickups, paint/peels/preview decoys, exposure history, Kitten areas and Consensus history. Preview cleanup removes only its own entities. It does not clear persistent state or emit `newRoom` rewards. Main failed seven behavioral cases; the candidate passes all 49 offline suites, with 147 tracked Lua files. Six family reverts and independent removal of the start/exit dispatch each fail their regression.
+
+The fixture intentionally retains entity-shaped objects to stress pointer reuse and initial-room-before-start ordering. It does not prove native serialization or game callback order. Real new-run/continue timing, room transitions, co-op and native entity cleanup remain pending in TESTING.md. Seahorse wisp persistence and Thought knife save ordering were reviewed but remain engine questions, not fixed by this change. No game launch or runtime deployment occurred; installed source remains `2ec15ef`. The new PR needs separate merge approval.
+
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
 
 - PR #50: familiar contact cannot restore player-only target credit; its two controlled GPT engine cases retain their original scope.

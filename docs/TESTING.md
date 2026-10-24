@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## BACKLOG-LIFECYCLE-01: temporary effects across runs (offline passed; engine pending)
+
+`tests/backlog_lifecycle_test.lua` keeps the real backlog modules loaded across exit/start instead of constructing fresh closures per case. Main `d91eee7` fails stale Kitten repulsion, decoy cleanup, peel slow, stamp contact immunity, Community Note exposure, pending heart guard and Consensus-history cases. The fixed candidate passes those, native-familiar preservation, persistent-table preservation and no-synthetic-room-reward controls. Six module reverts and removal of either lifecycle dispatch independently fail. Full gate: 49 suites and 147 tracked Lua files; local syntax traversal additionally includes two excluded probes.
+
+When game testing resumes, activate each effect late in a disposable run, quit and start a new run without closing the application. Repeat save/continue and full process restart, including two owners. Observe the initial room callback order instead of assuming the fixture's order. Confirm temporary effects do not cross runs, preview decoys disappear while vanilla familiars remain, actual room-entry benefits occur once, and saved banks/progress are preserved. Native serialized entities and exact quit/save ordering are not modeled; Seahorse wisps and Thought knife flight remain separate pending cases. This branch excludes PR #55's Risk changes.
+
 ## Current integration scope
 
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.

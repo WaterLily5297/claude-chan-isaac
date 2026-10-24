@@ -1,5 +1,13 @@
 # Engine compatibility audit: 2026-10-24
 
+## BACKLOG-LIFECYCLE-01: transient effect lifecycle (offline only)
+
+Main `d91eee7` clears service-level tables at game start, but family closures retain stamps, pickup observations, paint/peels/decoys, exposure history, Kitten zones and Consensus records. Most clear only on the service's `newRoom` event, which is not emitted before the service has started. The real-module regression retains one Lua module instance across lifecycle events and demonstrates seven stale-state cases. The Kitten positive control first repels an ordinary hostile bullet to speed 6; main incorrectly repeats it after restart without another use. The fix keeps that new-run bullet at speed 1 until a new use. Other cases verify actual module outputs instead of inspecting private closure tables.
+
+The service now dispatches a dedicated `runReset` at exit and start/continue. Only cleanup listeners run; no room-entry gameplay event is manufactured. Preview decoys are removed through their owned references, and native familiars/persistent state remain untouched. The full gate passes 49 suites, 147 tracked Lua files, XML and asset checks. Main fails all seven relevant behavioral cases; six family reverts and independent start/exit dispatch removals fail their corresponding assertions. Retained entity-shaped objects are deliberate pointer-reuse stress fixtures, not claims about actual serialized entities.
+
+No game session or deployment occurred. Exact engine startup/save ordering, co-op and native entity persistence still require testing. Source review found that Risk saves shared tables before subsequent transient cleanup, Thought restores tracked continuous/knife fields on exit, and Seahorse removes tracked wisps on exit; none establishes when native serialization occurs. Those save-order cases remain open. This branch starts at main and does not include PR #55; both need separate owner merge approval.
+
 ## Current source integration
 
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
