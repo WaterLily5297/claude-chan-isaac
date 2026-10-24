@@ -1,5 +1,6 @@
 """Check generated sprites without overwriting installed artwork (standard library)."""
 import ast
+import hashlib
 import json
 from pathlib import Path
 import struct
@@ -74,3 +75,12 @@ for entry in roster + [{'key': 'claude_b'}, {'key': 'deepseek_b'}]:
     assert (int(frame.get('Width')), int(frame.get('Height'))) == (384, 576), key
     assert frame.get('XCrop') == '0' and frame.get('YCrop') == '0', key
 print(f'  OK: {len(roster)} playable model families, selection names and full portrait dossiers')
+
+# Committed skins must match the reviewed manifest, so an unrecorded edit or a
+# skipped animate_roster_walk.py run is caught without Pillow.
+for record in json.loads((root / 'docs/roster-art-manifest.json').read_text(encoding='utf-8')):
+    key = record['key']
+    gamekey = key.replace('_b', 'chan_b') if key.endswith('_b') else key + 'chan'
+    data = (root / f'resources/gfx/characters/costumes/character_{gamekey}.png').read_bytes()
+    assert hashlib.sha256(data).hexdigest() == record['packed_sprite_sha256'], f'{key}: atlas differs from manifest'
+print('  OK: character atlases match the art manifest')

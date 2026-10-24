@@ -17,55 +17,64 @@
     "key": "gpt",
     "portrait_sha256": "324a7b0f58020a42006bb1e0145ecae4f140e855d0980126e2ace660348896e1",
     "sprite_sha256": "950a9bacd9c32f0b1ad347210a4ddc810c2bdd12b1fd44abc6996d7e0be48331",
-    "packed_sprite_sha256": "274f60b292185f14689eb49d8f7b144ef7b9138065a9cfb17e2eec1bdf295227"
+    "packed_sprite_sha256": "36ee2de76f7147af9f5195ea6be40fe19f34a8cbdb253c17ff853ff06187ce50",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "gemini",
     "portrait_sha256": "abe1e2e41996b140b733c72f6835ca54daa178a537a766a60365a758579d1aa9",
     "sprite_sha256": "e2e919a4707ff7f5cd475a6160acd21582082c5e2b250689a96422142b2f4ded",
-    "packed_sprite_sha256": "dfc9390c3490733c496aca6710f31f3d3ac91ec37bf25199b9d4002f56993e9a"
+    "packed_sprite_sha256": "83d2be72118ef553d0601d3b4b426b9d5e9b70756d485d76ccf3f98c50ab09f9",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "grok",
     "portrait_sha256": "d0af816200360d46e29c9e4e0fc3eaaa190e05010900fbd3470e2836550a35f6",
     "sprite_sha256": "22e6f304b9de1e71b2724bf65314705735733131ff28c08ced8858d8d0967c2c",
-    "packed_sprite_sha256": "b1d3b509ee7313db4e1e1be137084a035ae7a9fbbb37d2a28b563c17f2cf9708"
+    "packed_sprite_sha256": "0a5922c0a840eabc1be88725957d11d7f4aa6bc5e3065ec41bb98111cb7a278c",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "qwen",
     "portrait_sha256": "7e184e70bab27072ebd4ae111b4f2c2d4719d39f1e69301dbfb3845f2778375c",
     "sprite_sha256": "f069fd9c69b87d9862350a98f6e8516f707b0d6065b171e38addeb7ee5307c52",
-    "packed_sprite_sha256": "ba0fb9c34ca817f0518f4a23ee8db4ca0d6600978a2c6272387630fe3eb7fcac"
+    "packed_sprite_sha256": "9d4b022b2ee1533ad0f4c24f1aa6da0ce46ec71e2009e3acc408e2a3cc72befe",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "llama",
     "portrait_sha256": "31ed8d9b643ba64bfeea1a5f8d71a0a11173e2bfa39bdffe2b77c73807e6a04f",
     "sprite_sha256": "0c803ea0970df6614f8c912c63881f0e5eadaa78d66f9d5d650a318065ec72f8",
-    "packed_sprite_sha256": "077118893891f72b4235468d24bfc0717d2511a0d585bbc8badd1fe085a7e579"
+    "packed_sprite_sha256": "d2ccf7bd71359cee70ca4bf566fb63f659b4e03c89bf2b30d80b8fa11082801e",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "mistral",
     "portrait_sha256": "8e1952abae501742b99662c41f7112b87a5f4757188b697973abc281cc66d1a8",
     "sprite_sha256": "7aca2d2d1ce01d4ac80349bbfa630178890ff758f75f938137689d62ceaf00e2",
-    "packed_sprite_sha256": "d5523043b1a8e5b9d08e5ecf04f8d950f3156a27252d51994e06e901562a2f1d"
+    "packed_sprite_sha256": "3ff8b7f33cb72789bceedad3773c104b6a256ee1b4650f9534e0e2feefb62dba",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "doubao",
     "portrait_sha256": "bf5a86389de78070a0b39e268d6165715541bf7a7ed69256ccb5d5b423115e56",
     "sprite_sha256": "34e9713e07f8538aa8b9859ebcb2558b83ffd91fc3e4f04ae790af184a2e3725",
-    "packed_sprite_sha256": "362338db13a399373181d00281af07099f31e83ae62ece2602deddcbbbb20799"
+    "packed_sprite_sha256": "ddc02c4c42999add39539797f8363f9531b01d43ef898b768379b2597d98acbd",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "kimi",
     "portrait_sha256": "1ef863d8b831ec3e9a8a8bce0ece34e861b29047b5ceb88fc4dc257c6f8d7fc7",
     "sprite_sha256": "b1efec3d017e9e6ee28c3e7283cec465894d893b54af2c2d7389b209ce0a6625",
-    "packed_sprite_sha256": "a589c0c653bfb950d57f5fe4a4fa1887397d5e4499d9b12151ef767d0f1e178c"
+    "packed_sprite_sha256": "b542bf687c457d92a0c3179e7e4eb4c7042866c9964544c0e834464868d33143",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "glm",
     "portrait_sha256": "352f9d539f96df28de96411287bf3c833c78414f7977eca2f6865e11336c6d82",
     "sprite_sha256": "e3ad27bda24556c794e3f050c3f28b5d61834384a8a815c70fb89588f8023d7c",
-    "packed_sprite_sha256": "6ed53667c415eab4ed9147928c37f3bba2be8c63f882fd8c690d01c465189495"
+    "packed_sprite_sha256": "7322ec0ba2cc75eb38fe8182d824913d09eb335d99a628d2a30f8aa156941221",
+    "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "claude_b",

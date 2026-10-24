@@ -3,7 +3,19 @@
 ## Unreleased meme extras, batch 1 (2026-10-24)
 
 - Add three collectibles outside the fifty-row backlog: Ignore All Previous Instructions (A4: charm the nearest non-boss within 200 units for 8 s, confuse a boss for 2 s, empty use keeps charge, Car Battery picks a second target), Tungsten Cube (+0.8 damage, -0.15 speed per copy, native knockback tears) and Pizza Glue (25% slowing tears, luck 10-50%, -0.1 shot speed; tears only).
-- Original generated icons, pool entries, English EID and a new offline suite. Seventeen offline suites pass. No engine validation, runtime or Workshop changes.
+- Original generated icons, pool entries, English EID and a new offline suite. Eighteen offline suites pass. No engine validation, runtime or Workshop changes.
+
+## Unreleased roster walk cycles (2026-10-24)
+
+- GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM walk with visible legs: a ten-frame stride, alternating front steps, swinging side legs and a one-pixel bob. Each direction uses one stable body, removing the old frame-to-frame jitter. Carry cells get the same legs.
+- Deterministic `tools/animate_roster_walk.py`, wired into the hurt-pose rebuild verifier; the asset gate now checks all thirteen atlases against the art manifest. Offline preview: `tools/preview_original_movement.py --walk-roster`. No engine validation yet.
+
+## Unreleased roster review fixes (2026-10-24)
+
+- The nine model roster families leave the proxy IP / risk account. A roster-only or DeepSeek-and-roster run has no IP or risk. In co-op with Claude or a vanilla character, only those covered players raise risk when hit, spoil a clean room or take the suspension damage penalty; DeepSeek no longer takes that penalty in co-op either.
+- Qwen chains and Kimi pages ignore deliberate self-damage flagged `DAMAGE_NO_PENALTIES` (Blood Donation, IV Bag, sacrifice rooms), and a hit from a player outside the player list no longer errors.
+- Roster tear colors tint the existing color instead of replacing it, so item colors and offsets survive.
+- Seventeen offline suites pass, including the new risk coverage suite. No runtime or Workshop changes; engine validation pending.
 
 ## Unreleased tainted DeepSeek Peak / Valley (2026-10-24)
 
