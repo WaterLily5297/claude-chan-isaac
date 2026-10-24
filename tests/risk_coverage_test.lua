@@ -20,6 +20,8 @@ function Isaac.GetPlayer(i) return players[i+1] end
 function Isaac.GetScreenHeight() return 270 end
 ModCallbacks = setmetatable({}, {__index=function(_,k) return k end})
 CacheFlag = {CACHE_DAMAGE=1}
+CallbackPriority = {DEFAULT=0,LATE=1000}
+DamageFlag = {DAMAGE_FAKE=1 << 21,DAMAGE_NO_PENALTIES=1 << 28}
 EntityType = {ENTITY_PLAYER=1}
 function RNG() return {SetSeed=function() end, RandomInt=function() return 0 end, RandomFloat=function() return 1 end} end
 function Game() return {
@@ -31,6 +33,7 @@ function Game() return {
 local mod = {AddCallback=function(_, id, fn)
     callbacks[id] = callbacks[id] or {}; table.insert(callbacks[id], fn) end,
     HasData=function() return false end}
+function mod:AddPriorityCallback(id, _, fn) self:AddCallback(id,fn) end
 local function fire(id, ...) for _, fn in ipairs(callbacks[id] or {}) do fn(mod, ...) end end
 local function player(kind)
     local p = {kind=kind, Damage=10}
