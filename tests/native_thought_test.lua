@@ -6,6 +6,7 @@ local C={Player={DEEPSEEK_CHAN=42},Item={LUNCH_BREAK=749,MILLION_CONTEXT=739}}
 function include(name)
     if name=="scripts.characters.deepseek_rice" and arg[2] then return dofile(arg[2]) end
     if name=="scripts.constants" then return C end
+    if name=="scripts.characters.model_roster" then return {Find=function() end} end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
     return dofile(root.."/"..name:gsub("%.","/")..".lua")
 end

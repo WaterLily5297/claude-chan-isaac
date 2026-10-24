@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased roster review fixes (2026-10-24)
+
+- The nine model roster families leave the proxy IP / risk account. A roster-only or DeepSeek-and-roster run has no IP or risk. In co-op with Claude or a vanilla character, only those covered players raise risk when hit, spoil a clean room or take the suspension damage penalty; DeepSeek no longer takes that penalty in co-op either.
+- Qwen chains and Kimi pages ignore deliberate self-damage flagged `DAMAGE_NO_PENALTIES` (Blood Donation, IV Bag, sacrifice rooms), and a hit from a player outside the player list no longer errors.
+- Roster tear colors tint the existing color instead of replacing it, so item colors and offsets survive.
+- Seventeen offline suites pass, including the new risk coverage suite. No runtime or Workshop changes; engine validation pending.
+
 ## Unreleased tainted DeepSeek Peak / Valley (2026-10-24)
 
 - Tainted DeepSeek becomes Wenfeng / Wengu: twelve combat seconds of Valley alternate with twelve of Peak, frozen in cleared rooms and on pause; every floor starts in Valley. Compute starts at 12 (cap 24, Birthright 32) and carries across floors. Paid tear volleys fork into two native half-damage tears for 2 (Valley) or 4 (Peak); Valley recovers 3 per second in combat while not firing. DROP tap toggles Forks On / Saving.

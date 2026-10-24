@@ -53,7 +53,7 @@ CacheFlag = { CACHE_DAMAGE = 1, CACHE_RANGE = 2, CACHE_SHOTSPEED = 4, CACHE_SPEE
 ActiveSlot = { SLOT_PRIMARY = 0, SLOT_POCKET = 2 }
 UseFlag = { USE_CARBATTERY = 32 }
 EntityFlag = { FLAG_FRIENDLY = 1 }
-DamageFlag = { DAMAGE_RED_HEARTS = 32, DAMAGE_IV_BAG = 4096, DAMAGE_FAKE = 2097152 }
+DamageFlag = { DAMAGE_RED_HEARTS = 32, DAMAGE_IV_BAG = 4096, DAMAGE_FAKE = 2097152, DAMAGE_NO_PENALTIES = 268435456 }
 function Color(...) return { ... } end
 SoundEffect = { SOUND_POWERUP_SPEWER = 132 }
 function SFXManager() return { Play = function(_, id) print("  SFX:", id) end } end
