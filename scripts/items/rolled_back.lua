@@ -1,10 +1,11 @@
 -- Rolled Back (pill)
 -- Parody of the 2025 "too flattering" update that was rolled back: all
--- stats up for the current room (damage +1, tears x0.8 delay, speed +0.2,
+-- stats up for the current room (damage +1, shot interval x0.8, speed +0.2,
 -- range +40, shot speed +0.1, luck +1; doubled for a horse pill when the
 -- game passes the pill color), then the next room rolls it back.
 
 local Constants = include("scripts.constants")
+local FireRate = include("scripts.fire_rate")
 
 local RolledBack = {}
 
@@ -39,7 +40,7 @@ function RolledBack:Init(mod)
         local n = player:GetData().ccRolledBack
         if not n then return end
         if flag == CacheFlag.CACHE_DAMAGE then player.Damage = player.Damage + n
-        elseif flag == CacheFlag.CACHE_FIREDELAY then player.MaxFireDelay = player.MaxFireDelay * (0.8 ^ n)
+        elseif flag == CacheFlag.CACHE_FIREDELAY then player.MaxFireDelay = FireRate.ScaleInterval(player.MaxFireDelay, 0.8 ^ n)
         elseif flag == CacheFlag.CACHE_SPEED then player.MoveSpeed = player.MoveSpeed + 0.2 * n
         elseif flag == CacheFlag.CACHE_RANGE then player.TearRange = player.TearRange + 40 * n
         elseif flag == CacheFlag.CACHE_SHOTSPEED then player.ShotSpeed = player.ShotSpeed + 0.1 * n

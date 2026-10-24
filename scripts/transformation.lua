@@ -1,9 +1,10 @@
 -- "Agentic" transformation
 -- Like Isaac's own transformations (Guppy, Beelzebub...): hold any 3 of the
 -- Claude Code items below and you go fully agentic: flight, tears up
--- (fire delay x0.8) and +0.5 damage.
+-- (shot interval x0.8) and +0.5 damage.
 
 local Constants = include("scripts.constants")
+local FireRate = include("scripts.fire_rate")
 
 local Transformation = {}
 
@@ -51,7 +52,7 @@ function Transformation:Init(mod)
         if flag == CacheFlag.CACHE_FLYING then
             player.CanFly = true
         elseif flag == CacheFlag.CACHE_FIREDELAY then
-            player.MaxFireDelay = player.MaxFireDelay * FIRE_DELAY_MULT
+            player.MaxFireDelay = FireRate.ScaleInterval(player.MaxFireDelay, FIRE_DELAY_MULT)
         elseif flag == CacheFlag.CACHE_DAMAGE then
             player.Damage = player.Damage + DAMAGE_BONUS
         end

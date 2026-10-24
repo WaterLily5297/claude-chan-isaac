@@ -3,6 +3,7 @@
 -- variants and derivatives, not a claim that any product is copied. Saved per player.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local FireRate = include("scripts.fire_rate")
 local FineTune = {}
 
 local BUILDS = {
@@ -164,7 +165,7 @@ function FineTune:Init(mod, Risk)
             local per = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_DAMAGE or AWARD_DAMAGE
             p.Damage = (p.Damage + s.awards * per) * build.damage
         elseif flag == CacheFlag.CACHE_FIREDELAY then
-            p.MaxFireDelay = math.max(-0.75, (p.MaxFireDelay + 1) * build.interval - 1)
+            p.MaxFireDelay = FireRate.ScaleInterval(p.MaxFireDelay, build.interval)
         end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()

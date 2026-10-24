@@ -62,7 +62,7 @@ A shared proxy. Once risk reaches 30, it appears in 25% of uncleared rooms. When
 
 ### Agentic (transformation)
 
-Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerously-skip-permissions and All Tests Passing: **flight**, fire delay ×0.8 (tears up) and **+0.5 damage**.
+Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerously-skip-permissions and All Tests Passing: **flight**, shot interval ×0.8 (tears up) and **+0.5 damage**.
 
 ### Story
 
