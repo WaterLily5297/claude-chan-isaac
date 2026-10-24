@@ -14,6 +14,7 @@
 
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local PaidAttacks = include("scripts.characters.paid_attacks")
 
@@ -274,7 +275,7 @@ function TaintedClaude:Init(mod, Risk)
         if not ready or not Game():GetHUD():IsVisible() then return end
         each(function(_, b, i)
             local s = b.state
-            local y = Isaac.GetScreenHeight() - 40 - i * 24
+            local y = HudLayout.PlayerRow(i)
             local pages = string.format("  Pages %d/%d", s.pages, PAGES)
             if s.review then
                 HudText:Draw(string.format("Under Review: %ds", math.ceil(s.review.remaining / 30)) .. pages,

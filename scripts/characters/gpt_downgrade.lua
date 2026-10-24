@@ -1,6 +1,7 @@
 -- Normal GPT: Same Name, Smaller Brain. Verified / Fallback routing with a Sanity Check.
 -- Saved per-player status, Routing and unique clears. No proxy, IP or risk mechanics.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Gpt = {}
@@ -210,7 +211,7 @@ function Gpt:Init(mod, Risk)
             else
                 text = "GPT-chan: Fallback  "..(s.checkRoom == roomKey() and "Check failed" or "DROP: Sanity Check")
             end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 0.4, 1, 0.75, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.4, 1, 0.75, 0.9)
         end)
     end)
 end

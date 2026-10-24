@@ -18,6 +18,7 @@
 
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tint = include("scripts.characters.tear_tint")
 local PaidAttacks = include("scripts.characters.paid_attacks")
@@ -322,8 +323,8 @@ function ClaudeChan:Init(mod, Risk)
             local player = Isaac.GetPlayer(i)
             if isClaude(player) then
                 local usage = getUsage(player)
-                local y = Isaac.GetScreenHeight() - 40 - i * 24
-                HudText:Draw(HudText:T("age", usage.age), 50, y - 12, 1, 0.85, 0.5, 0.9)
+                local y = HudLayout.PlayerRow(i)
+                HudText:Draw(HudText:T("age", usage.age), 50, HudLayout.PlayerRow(i, 1), 1, 0.85, 0.5, 0.9)
                 local appeals = string.format("  Appeals %d/%d", usage.appeals, APPEAL_MAX)
                 if usage.limited > 0 then
                     HudText:Draw(HudText:T("limited", math.ceil(usage.limited / 30)) .. appeals, 50, y, 1, 0.3, 0.3, 1)

@@ -3,6 +3,7 @@
 -- player's size and collision are unchanged. Saved per player: stored Baguettes.
 -- Charge, cooldown and the travelling wave are transient.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Feedback = include("scripts.characters.feedback")
 local Baguette = {}
@@ -163,7 +164,7 @@ function Baguette:Init(mod, Risk)
         each(function(_, b, i)
             local text = string.format("Mistral-chan: Baguettes %d/%d", b.state.baguettes, BAGUETTE_CAP)
             if b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 52 - i * 12, 1, 0.7, 0.3, 0.9)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.3, 0.9)
         end)
     end)
 end

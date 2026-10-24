@@ -3,6 +3,7 @@
 -- built on community memes; no line claims to describe a real company or person.
 -- Progress and queued captions save with the run in Risk.state.rosterStory.
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local RosterStory = {}
 
 local CAPTION_FRAMES = 210 -- Seven seconds, matching the Appeal Queue captions.
@@ -144,7 +145,7 @@ function RosterStory:Init(mod, Risk)
         local arc = BY_KEY[active.key]
         local line = arc.chapters[active.chapter]
         -- Sits above the Appeal Queue captions so both can show at once.
-        local y = Isaac.GetScreenHeight() - 135
+        local y = HudLayout.CaptionY() - 30
         HudText:Draw(string.format("%s %d/%d: %s", arc.name, active.chapter, CHAPTERS, line[1]), 100, y, 0.75, 0.85, 1, 0.9)
         HudText:Draw(line[2], 100, y + 12, 1, 1, 1, 0.9)
     end)

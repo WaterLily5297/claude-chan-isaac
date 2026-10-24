@@ -6,6 +6,7 @@
 -- that attack's hits deal 1.3x, re-dealt once behind a recursion guard.
 local C = include("scripts.constants")
 local HudText = include("scripts.hud_text")
+local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local TearFork = include("scripts.tear_fork")
 local PaidAttacks = include("scripts.characters.paid_attacks")
@@ -225,7 +226,7 @@ function Peak:Init(mod, Risk)
             local s = b.state
             local text = string.format("Compute %d/%d  %s %.1fs  %s", s.compute, cap(p),
                 s.phase == "peak" and "Peak" or "Valley", s.remaining / 30, s.saving and "Saving" or "Forks On")
-            HudText:Draw(text, 50, Isaac.GetScreenHeight() - 40 - i * 12, 0.45, 1, 0.95, 1)
+            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.45, 1, 0.95, 1)
         end)
     end)
 end
