@@ -412,4 +412,5 @@ Offline: `tests/paid_attacks_test.lua` drives the real observer; removing the st
 - Two-player Claude co-op with different account ages: floors age each player, a suspension resets each player once, Birthright shields only its owner. Continue an old save from before this change: each Claude gets the previous shared age.
 - New tainted Gemini/Grok/Qwen/Llama/Mistral/Doubao/Kimi/GLM runs start with one key and no bomb.
 - Mistral Pounce and Baguette, Doubao Apology, Kimi tasks and GLM requests show their poof or tint, which never hides an enemy, blocks a shot or lingers after room exit.
+- Tainted DeepSeek with Brimstone, Technology, Mom's Knife, a melee weapon, Dr. Fetus and Epic Fetus: in Forks On with enough Compute, each paid attack costs 2 (Valley) or 4 (Peak) Compute and hits for 1.3x; in Saving or at low Compute, native damage and no cost. A held beam boosts only while its windows are paid; a knife resting on the player is never boosted.
 

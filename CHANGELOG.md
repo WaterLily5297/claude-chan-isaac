@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased owner-delegated trait decisions (2026-10-24)
+
+- Tainted DeepSeek: every non-tear native attack pays the phase's Compute price for a 1.3x off-peak boost on that attack; Saving or low Compute keeps native damage.
+- GLM's pocket Book of Secrets stays removed. Both choices were delegated by the owner to the community memes.
+
 ## Unreleased character trait completion (2026-10-24)
 
 - Bill every native weapon for Claude usage, tainted Claude Quota and tainted GPT Full Send: held beams and Ludovico per 0.2-second window, knife throws, melee swings and Epic Fetus rockets (`paid_attacks.lua`).
