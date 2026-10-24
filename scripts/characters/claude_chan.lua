@@ -16,6 +16,7 @@
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Tint = include("scripts.characters.tear_tint")
 
 local ClaudeChan = {}
 
@@ -32,9 +33,6 @@ local APPEAL_RELIEF = 40
 
 local AGE_DAMAGE = 0.2
 local AGE_MAX = 8
-
-local TEAR_COLOR = Color(1, 0.55, 0.25, 1, 0, 0, 0)
-local LIMITED_TEAR_COLOR = Color(0.5, 0.5, 0.5, 0.7, 0, 0, 0)
 
 local function isClaude(player)
     return player and Constants.Player.CLAUDE_CHAN >= 0
@@ -215,7 +213,7 @@ function ClaudeChan:Init(mod, Risk)
         elseif flag == CacheFlag.CACHE_SPEED then
             player.MoveSpeed = player.MoveSpeed - 0.1
         elseif flag == CacheFlag.CACHE_TEARCOLOR then
-            player.TearColor = TEAR_COLOR
+            player.TearColor = Tint.Apply(player.TearColor, 1, 0.55, 0.25, 1)
         end
     end)
 
@@ -249,7 +247,7 @@ function ClaudeChan:Init(mod, Risk)
         if not isClaude(player) then return end
         if bill(player).limited then
             tear.CollisionDamage = tear.CollisionDamage * LIMITED_DAMAGE_MULT
-            tear.Color = LIMITED_TEAR_COLOR
+            tear.Color = Tint.Apply(tear.Color, 0.5, 0.5, 0.5, 0.7)
         end
     end)
     -- Lasers and Dr. Fetus bombs bill usage on the frame they start; a held
