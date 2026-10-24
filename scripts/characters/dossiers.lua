@@ -21,6 +21,8 @@ local originals={
      lines={"Cleared room: tap/release DROP to switch build.", "Heavy, Tiny or Balanced; locks in combat.", "Clear with all 3 builds: +0.2 damage this floor."}},
     {id=C.Player.LLAMA_CHAN_B,key="llama_b",name="Tainted Llama-chan",title="Still Waiting",
      lines={"Each combat clear adds Hype (max 3).", "Tap/release DROP: spend all on a helper.", "It stays put, 4s per Hype, 0.5x tears."}},
+    {id=C.Player.MISTRAL_CHAN_B,key="mistral_b",name="Tainted Mistral-chan",title="Le Gros Chaton",
+     lines={"Stand still, not firing: bake a Baguette.", "Tap/release DROP: a slow bread wave.", "2.5x once per enemy; walls stop it."}},
 }
 function Dossiers:Init(mod)
     local ready=false

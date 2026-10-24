@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted Mistral Le Gros Chaton (2026-10-24)
+
+- Register Tainted Mistral-chan with the deeper-colour art. Le Gros Chaton: speed -0.1, damage 0.9x; standing without firing for two seconds bakes a Baguette (cap 2, Birthright 1.5 seconds); a DROP tap sends a slow 120-unit shockwave dealing 2.5x once per enemy, stopped by walls, with a two-second cooldown. Offline only.
+
 ## Unreleased tainted Llama Still Waiting (2026-10-24)
 
 - Register Tainted Llama-chan with the deeper-colour art. Still Waiting: damage 0.9x; unique combat clears add Hype (cap 3); a DROP tap spends all of it on a stationary helper that fires one 0.5x native tear per second at the nearest enemy for four seconds per Hype (Birthright five), removed on room exit. Offline only.

@@ -31,7 +31,7 @@ end
 
 -- Registered tainted forms of these families. They run their own modules, so
 -- Find ignores them, but they are still outside Claude's proxy account.
-local TAINTED = {"GPT-chan", "Gemini-chan", "Grok-chan", "Qwen-chan", "Llama-chan"}
+local TAINTED = {"GPT-chan", "Gemini-chan", "Grok-chan", "Qwen-chan", "Llama-chan", "Mistral-chan"}
 Roster.tainted = {}
 for _, name in ipairs(TAINTED) do
     local id = Isaac.GetPlayerTypeByName(name, true)
