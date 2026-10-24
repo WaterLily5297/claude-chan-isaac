@@ -84,6 +84,8 @@ Source status (scripts/characters/gemini_paint.lua): normal form implemented and
 
 **Normal:** Once per hostile room, DROP challenges the nearest vulnerable target within 220 units for six seconds. Owner damage is 1.3x to it, 0.9x to others. Its defeat or three distinct paid hits verifies it, ends the modifiers and grants +0.15 speed for that room. Timeout gives nothing. Birthright: verification removes up to three nearby ordinary hostile bullets once. HUD: Check progress/timer.
 
+Source status (scripts/characters/grok_check.lua): normal form implemented and replaces movement momentum. Damage modifiers re-deal the owner's hit once behind a recursion guard, like Gemini. "Nearby" bullets means the three nearest projectiles within 120 units. Engine acceptance pending.
+
 **Tainted:** Base damage 0.9x. DROP selects a target within 220 units for six seconds. Paid hits on other targets build Ratio, once per attack, cap three. At expiry the selected target receives one pulse of 1x player damage per stack; early death wastes the pulse. No retarget during the interval; ten-second cooldown from selection. Birthright transfers half the budget to one nearest surviving hostile if the original died. HUD: Ratio, pending timer. This contrasts focused verification with spreading a claim; Grok and the parody account Gork remain distinct.
 
 ### Qwen — Everyone's Base Model / Final Final Fine-Tune

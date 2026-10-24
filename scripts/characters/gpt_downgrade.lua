@@ -2,13 +2,13 @@
 -- Saved per-player status, Routing and unique clears. No proxy, IP or risk mechanics.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Tools = include("scripts.characters.target_tools")
 local Gpt = {}
 
 local VERIFIED_DAMAGE, FALLBACK_DAMAGE = 1.15, 0.8
 local ROUTING_CAP = 3
 local CHECK_RADIUS = 200
 local CHECK_HITS, BIRTHRIGHT_HITS = 3, 2
-local WINDOW_FRAMES = 6 -- One continuous-weapon payment window (0.2 seconds).
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)
@@ -102,36 +102,6 @@ function Gpt:Init(mod, Risk)
         Game():GetHUD():ShowItemText("GPT-chan", "Verified")
         refresh(p)
     end
-    local function attacker(entity)
-        if not entity then return end
-        local spawner = entity.SpawnerEntity or entity.Parent
-        return spawner and spawner:ToPlayer()
-    end
-    -- One paid attack is one volley or one continuous-weapon window. Derived
-    -- tears share their parent's spawn frame; unregistered splits never count.
-    local function attackKey(entity, now)
-        if entity.Type == EntityType.ENTITY_TEAR then
-            local data = entity:GetData()
-            if data.ccGptVolley then return "v"..data.ccGptVolley end
-            if data.ccThoughtDerived then return "v"..(now - entity.FrameCount) end
-            return nil
-        elseif entity.Type == EntityType.ENTITY_LASER or entity.Type == EntityType.ENTITY_KNIFE then
-            return "w"..math.floor(now / WINDOW_FRAMES)
-        elseif entity.Type == EntityType.ENTITY_BOMB then
-            return "v"..(now - entity.FrameCount)
-        end
-    end
-    local function nearestTarget(p)
-        local best, distance
-        for _, e in ipairs(Isaac.FindInRadius(p.Position, CHECK_RADIUS, EntityPartition.ENEMY)) do
-            if e:IsVulnerableEnemy() and not e:IsDead() and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
-                local d = p.Position:Distance(e.Position)
-                if d <= CHECK_RADIUS and (not distance or d < distance) then best, distance = e, d end
-            end
-        end
-        return best
-    end
-
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         ready = true; bindings = {}; slots = {}; drop:Reset()
         if not continued then Risk.state.gptRouting = {} end
@@ -171,7 +141,7 @@ function Gpt:Init(mod, Risk)
             if b.check and (not b.check.ref.Ref or not b.check.ref.Ref:Exists()) then b.check = nil end
             local canCheck = not s.verified and s.checkRoom ~= room and b.check == nil
             if drop:Poll(p, canCheck) then
-                local target = nearestTarget(p)
+                local target = Tools.Nearest(p.Position, CHECK_RADIUS)
                 -- No target means no attempt is spent.
                 if target then
                     s.checkRoom = room
@@ -193,20 +163,18 @@ function Gpt:Init(mod, Risk)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
         if not ready or not next(bindings) then return end
-        local data = tear:Exists() and tear:GetData()
-        if not data or data.ccThoughtDerived or data.ccGptVolley then return end
-        if not binding(attacker(tear)) then return end
-        data.ccGptVolley = Game():GetFrameCount()
+        if not tear:Exists() or not binding(Tools.Owner(tear)) then return end
+        Tools.MarkVolley(tear, Game():GetFrameCount())
     end)
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, _, source)
         if not ready or not next(bindings) then return end
         local src = source and source.Entity
-        local p = attacker(src)
+        local p = Tools.Owner(src)
         local b = binding(p)
         if not b or not b.check or GetPtrHash(entity) ~= b.check.hash then return end
         local now = Game():GetFrameCount()
         b.check.credit = now
-        local key = attackKey(src, now)
+        local key = Tools.AttackKey(src, now)
         if not key then return end
         if b.check.hits[key] then return end
         b.check.hits[key] = true

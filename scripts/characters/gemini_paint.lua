@@ -2,6 +2,7 @@
 -- Saved per-player Paint and unique clears. The live mark and peel are transient.
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
+local Tools = include("scripts.characters.target_tools")
 local Gemini = {}
 
 local PAINT_START, PAINT_CAP = 2, 3
@@ -91,29 +92,11 @@ function Gemini:Init(mod, Risk)
             s.floor = floor
         end
     end
-    local function owner(source)
-        local e = source and source.Entity
-        if not e then return end
-        if e:ToPlayer() then return e:ToPlayer() end
-        local spawner = e.SpawnerEntity or e.Parent
-        return spawner and spawner:ToPlayer()
-    end
     local function clearPeel(b)
         local peel = b.peel and b.peel.Ref
         if peel and peel:Exists() then peel:Remove() end
         b.peel = nil
     end
-    local function nearestTarget(p)
-        local best, distance
-        for _, e in ipairs(Isaac.FindInRadius(p.Position, MARK_RADIUS, EntityPartition.ENEMY)) do
-            if e:IsVulnerableEnemy() and not e:IsDead() and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
-                local d = p.Position:Distance(e.Position)
-                if d <= MARK_RADIUS and (not distance or d < distance) then best, distance = e, d end
-            end
-        end
-        return best
-    end
-
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         ready = true; bindings = {}; slots = {}; drop:Reset()
         if not continued then Risk.state.geminiPaint = {} end
@@ -158,7 +141,7 @@ function Gemini:Init(mod, Risk)
                 end
             end
             if drop:Poll(p, s.paint > 0) then
-                local target = nearestTarget(p)
+                local target = Tools.Nearest(p.Position, MARK_RADIUS)
                 -- No target means no Paint is spent. A new mark replaces the old one.
                 if target then
                     s.paint = s.paint - 1
@@ -181,7 +164,7 @@ function Gemini:Init(mod, Risk)
     -- Owner damage to the painted enemy is re-dealt once with the bonus applied.
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, amount, flags, source, countdown)
         if redealing or not ready or not next(bindings) then return end
-        local p = owner(source)
+        local p = Tools.Owner(source and source.Entity)
         local b = binding(p)
         if not b or not b.mark or GetPtrHash(entity) ~= b.mark.hash then return end
         b.mark.credit = Game():GetFrameCount()
