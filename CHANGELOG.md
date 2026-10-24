@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted Llama Still Waiting (2026-10-24)
+
+- Register Tainted Llama-chan with the deeper-colour art. Still Waiting: damage 0.9x; unique combat clears add Hype (cap 3); a DROP tap spends all of it on a stationary helper that fires one 0.5x native tear per second at the nearest enemy for four seconds per Hype (Birthright five), removed on room exit. Offline only.
+
 ## Unreleased tainted Qwen Final Final Fine-Tune (2026-10-24)
 
 - Register Tainted Qwen-chan with the deeper-colour art. Final Final Fine-Tune: in cleared rooms a DROP tap cycles Heavy (1.3x damage, 1.2x interval), Tiny (0.85x, 0.8x) and Balanced, locked in combat; unique clears with all three builds award +0.2 damage for the floor (Birthright +0.3), up to three. Offline only.
