@@ -4,6 +4,12 @@ Prepared 2026-10-24 (Japan time). Start here. The owner requested an archive, a 
 
 ## Integrated source and next work
 
+### Current offline follow-up: RISK-01
+
+Based directly on merged main `d91eee7`, the Risk damage observer now ignores fake/no-penalty events, runs after ordinary-priority blockers, and ignores callbacks outside an active run. Start/continue resets its transient room-hit latch. The real-module regression reproduces main's incorrect 50-to-51 risk increase for fake and shield-cancelled damage, and passes with the fix; removing each of the four guards independently fails. The full offline gate passes 49 suites and 147 tracked Lua files. Save schema, ordinary damage/clean-room amounts and Claude/vanilla coverage are unchanged; DeepSeek and all roster families remain outside Risk.
+
+This candidate is not installed or engine-accepted. Native health loss, later-priority third-party cancellation and mid-room save/continue still require engine checks. In particular, the transient room-hit latch is not persisted by this change. See RISK-01 in TESTING.md and the engine audit. The owner's merge instruction covered PRs #50-54; this new focused PR requires separate merge approval. Current work remains offline-only.
+
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
 
 - PR #50: familiar contact cannot restore player-only target credit; its two controlled GPT engine cases retain their original scope.

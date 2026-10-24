@@ -1,5 +1,13 @@
 # Engine compatibility audit: 2026-10-24
 
+## RISK-01: proxy-account damage eligibility (offline only)
+
+Source review after main `d91eee7` found Risk still recorded fake/no-penalty damage and ran before backlog shields. The regression loads real Risk, Constitution and all backlog modules in main order. Main raises risk from 50 to 51 for a fake event and for a Sold Out bullet that is later cancelled; a separate case also exposes damage bookkeeping after exit. The candidate ignores those events, preserves a clean-room reduction from 50 to 49, and retains ordinary damage at +1, the existing shared-account semantics, and DeepSeek/roster exclusions. Start/continue clears the transient room latch; nothing is added to saved data.
+
+The full gate passes 49 suites, 147 tracked Lua files, five XML files and asset checks. Four isolated guard-removal mutants fail their intended behavioral assertions. The [damage callback documentation](https://wofsauge.github.io/IsaacDocs/rep/enums/ModCallbacks.html#mc_entity_take_dmg) describes a pre-damage observer and dispatch stopping at any non-nil result; the [damage flags](https://wofsauge.github.io/IsaacDocs/rep/enums/DamageFlag.html) define fake/no-penalty events. The fixture models these documented rules, not actual health loss or arbitrary third-party ordering.
+
+No engine session, deployment, new art or balance change occurred. Installed source remains `2ec15ef`. Native shield dispatch, suspension threshold, co-op, later-priority cancellation and save/continue are still pending. The transient hit latch remains unsaved; this fix does not close mid-room persistence. This focused candidate requires its own merge approval; PR #50-54 approval is not reused.
+
 ## Current source integration
 
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.

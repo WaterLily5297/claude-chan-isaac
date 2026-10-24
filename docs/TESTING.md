@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## RISK-01: damage eligibility (offline passed; engine pending)
+
+The real Risk, Constitution and backlog blockers are loaded in main's registration order by `tests/risk_damage_test.lua`. It models priority and the documented first-non-nil damage short circuit. Main `d91eee7` fails fake/no-penalty, shield cancellation and out-of-run cases; the candidate passes those cases, clean-room accounting, ordinary damage, Claude/vanilla coverage and excluded normal/tainted DeepSeek/roster co-op controls. Removing the flags, priority, active-run guard or start latch reset independently fails. The unchanged coverage suite also passes. The full gate has 49 suites and 147 tracked Lua files; local syntax traversal additionally includes two excluded probes.
+
+When engine work resumes: with normal/tainted Claude and a vanilla character, inspect risk around fake/no-penalty events, Sold Out projectile guards, Red Stamp contact guards, Constitution's first refused hit and the next actual hit. Repeat at 89 risk to check suspension is not triggered by a refused event, then clear the room. Repeat with DeepSeek and roster co-op partners, after a fresh run and process-restart continue. Record native health loss separately from pre-damage callbacks. Check later-priority external blockers and callbacks returning true: this observer cannot guarantee final health loss or observe an event whose dispatch was stopped earlier. Mid-room hit-latch persistence remains an open save-matrix case; no save-schema change is included. Do not infer engine acceptance from these stubs.
+
 ## Current integration scope
 
 Source integration checkpoint (2026-10-24): this tree combines PRs #50-54 under the owner's explicit merge instruction. The latest owner constraint remains offline-only. Installed game files remain at main `2ec15ef`; no combined engine acceptance or Workshop release is claimed. Earlier candidate, approval and deployment statements below are historical checkpoint records.
