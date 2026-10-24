@@ -13,7 +13,7 @@ The following are fictional gameplay interpretations, not a performance ranking 
 | Claude | Existing usage, account age and risk; tainted weekly allowance | Existing v0.5 rules, unchanged |
 | DeepSeek | Normal Rice First: earn bowls from clears, eat for Thought/speed; tainted Wenfeng / Wengu spends Peak/Valley Compute on tear forks | Normal Thought has initial native tear/laser/knife/fetus-bomb adapters and bounded continuous windows; see NATIVE_THOUGHT.md for remaining adapters and engine acceptance. Direct connection unchanged |
 | GPT | Same Name, Smaller Brain: Verified (1.15x) until three unique combat clears of Routing, then the next combat starts in Fallback (0.8x). Tap DROP in Fallback to tag a Sanity Check enemy; three distinct paid hits or its defeat restore Verified | One check per room; leaving fails it. New floor restores Verified. Native firing interval. Implemented in gpt_downgrade.lua, saved in `Risk.state.gptRouting` |
-| Gemini | Tap DROP to switch Prism and Echo | Prism: piercing and 1.2x damage; Echo: homing, 0.9x damage and 0.9x interval |
+| Gemini | Nano Banana: tap DROP to spend Paint (start 2, cap 3, +1 per unique combat clear) marking the nearest enemy within 180 units for eight seconds | Owner damage to it is 1.2x (Birthright 1.3x); owner kill leaves a four-second slowing peel. One mark and peel per owner. Implemented in gemini_paint.lua, saved in `Risk.state.geminiPaint` |
 | Grok | Moving builds live momentum over five seconds | Up to 25% damage; standing drains three times faster |
 | Qwen | Chain flawless combat-room clears | 6% damage per clear, maximum five; damage taken resets it |
 | Llama | Every second unique combat clear gives all living players two blue flies | Personal base damage 10% lower; each Llama has an independent counter |
@@ -24,7 +24,7 @@ The following are fictional gameplay interpretations, not a performance ranking 
 
 Hold MAP in a cleared room to see a full illustration and instructions. Release to close. Combat does not display the large portrait. The dossier currently shows one local player's requested card at a time.
 
-Gemini mode switching and GPT's Sanity Check occur only when a short DROP press is released, after 1–12 gameplay frames. A longer hold never switches modes. The observer leaves native input alone, including trinket dropping and pocket cycling; actual engine combinations still need testing. A key held through start/continue, room transition, pause or control reassignment must be released before a new tap can qualify. The upcoming meme-based replacement designs in CHARACTER_GAMEPLAY.md are not implemented by this input correction.
+Gemini's Paint and GPT's Sanity Check occur only when a short DROP press is released, after 1–12 gameplay frames. A longer hold never switches modes. The observer leaves native input alone, including trinket dropping and pocket cycling; actual engine combinations still need testing. A key held through start/continue, room transition, pause or control reassignment must be released before a new tap can qualify. The upcoming meme-based replacement designs in CHARACTER_GAMEPLAY.md are not implemented by this input correction.
 
 ## State and compatibility
 

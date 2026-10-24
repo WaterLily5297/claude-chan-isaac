@@ -76,6 +76,8 @@ These roles are concrete proposals. Their source strength varies; do not present
 
 **Normal:** Start with two Paint, cap three; earn one per unique clear. DROP spends one to paint the nearest hostile within 180 units for eight seconds, giving +20% owner damage to it. Its defeat leaves a four-second slowing banana peel. Max one mark and one peel per owner; replacement discards the previous effect. Bosses can be painted. Birthright: +30% marked damage. HUD: Paint.
 
+Source status (scripts/characters/gemini_paint.lua): normal form implemented and replaces Prism / Echo. The bonus re-deals the owner's damage once at the higher value with a recursion guard, so other mods' damage callbacks see one cancelled and one re-dealt hit. The peel is vanilla black player creep (slows enemies) tinted yellow. Paint carries across floors; awards reset per floor. Engine acceptance pending.
+
 **Tainted:** Base damage 0.9x. DROP starts a six-second Edit chain on a target within 180 units. Three distinct paid hits advance Crop, Recolor, Export; the third adds one 2x damage pulse. One completed chain per room. DROP can erase progress and retarget. Early target death does not complete a partial chain; select again. Bosses need not die. Birthright extends the timer to ten seconds. HUD: edit step/timer. The banana name is documented; the endless-edit exaggeration is original parody.
 
 ### Grok — Is This True? / Quote Without Reading

@@ -22,6 +22,10 @@ In Fallback, tap/release DROP near an enemy (within about 200 units) to tag it a
 
 Save/quit/continue in Fallback: Fallback, Routing and the spent room check return unchanged, and a second tag in the same room is refused. A new floor restores Verified with Routing 0. Test co-op with two GPTs (separate Routing and checks), character change (Clicker) and death. Stub coverage is `tests/gpt_downgrade_test.lua`; no engine pass is recorded.
 
+## Normal Gemini Nano Banana (source candidate; engine acceptance pending)
+
+New run: HUD reads `Gemini-chan: Paint 2/3`. Tap/release DROP near an enemy (about 180 units): Paint drops by one and the HUD shows `Edit 8s`. With no enemy nearby nothing is spent. Your tears, Brimstone, knives and bombs should deal 20% more to the painted enemy only; a co-op partner's damage is unchanged. Check that damage numbers, i-frames, knockback and on-hit effects behave normally with the re-dealt hit, including other damage mods. Kill the painted enemy yourself: a yellow slowing creep appears for four seconds and slows enemies; a second peel removes the first. Leaving the room ends the mark without refund. Each unique combat clear adds one Paint up to three. Birthright makes it 30%. Save/continue keeps Paint; the live mark is intentionally dropped. Stub coverage is `tests/gemini_paint_test.lua`.
+
 ## Rice First (source candidate; engine acceptance pending)
 
 Current owner constraint: source work and offline validation only. Keep this engine checklist pending until the owner resumes game testing.

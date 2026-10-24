@@ -94,21 +94,15 @@ local function tap(p)
     near(p.Damage,before) -- Pressing to begin a hold must not change mode.
     input(p,false)
 end
--- GPT's Verified/Fallback mechanics live in gpt_downgrade.lua; the roster only tints.
-local p=player('GPT-chan'); start(p)
-near(p.Damage,10); near(p.MaxFireDelay,9)
-tap(p); near(p.Damage,10); near(p.MaxFireDelay,9)
-rendered={}; fire('MC_POST_RENDER'); assert(#rendered==0,'GPT draws its own HUD line')
+-- GPT and Gemini mechanics live in their own modules; the roster only tints them.
+for _,name in ipairs({'GPT-chan','Gemini-chan'}) do
+    local x=player(name); start(x)
+    near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
+    tap(x); near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
+    rendered={}; fire('MC_POST_RENDER'); assert(#rendered==0,name..' draws its own HUD line')
+end
 
-p=player('Gemini-chan'); start(p); assert(p.TearFlags==1); near(p.Damage,12); near(p.MaxFireDelay,9)
-tap(p)
-assert(p.TearFlags==2); near(p.Damage,9); near(p.MaxFireDelay,8)
--- A recreated entity and module must read the stored mode, not entity data.
-fire('MC_PRE_GAME_EXIT'); p=player('Gemini-chan'); players={p}
-callbacks={}; include('scripts.characters.model_roster'):Init(mod,risk)
-fire('MC_POST_NEW_LEVEL'); fire('MC_POST_GAME_STARTED',true)
-near(p.Damage,9)
-start(p); near(p.Damage,12)
+local p
 p=player('Grok-chan'); start(p); p.speed=1
 for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',p) end
 near(p.Damage,12.5); p.speed=0
@@ -230,27 +224,5 @@ near(other.Damage,12.5)
 other.kind=Isaac.GetPlayerTypeByName('Mistral-chan',false); other:EvaluateItems()
 other.kind=Isaac.GetPlayerTypeByName('Grok-chan',false); other:EvaluateItems()
 near(other.Damage,10)
--- Long native DROP holds do not activate the mode ability at either edge.
-p=player('Gemini-chan'); other=player('Gemini-chan'); other.ControllerIndex=3
-start(p,other); input(p,false); input(other,false)
-for _=1,50 do input(p,true); near(p.Damage,12) end
-input(p,false); near(p.Damage,12)
-tap(other); near(other.Damage,9); near(p.Damage,12)
-
--- The paused render path must cancel even when the HUD is hidden and no
--- gameplay update occurs until after the pause menu closes.
-input(p,true); paused=true; hudVisible=false; fire('MC_POST_RENDER')
-paused=false; hudVisible=true; input(p,false); near(p.Damage,12)
-tap(p); near(p.Damage,9)
-input(p,true); room=room+1; fire('MC_POST_NEW_ROOM')
-input(p,false); near(p.Damage,9)
-tap(p); near(p.Damage,12)
-
--- Persist the selected mode, never an unfinished press across continue.
-input(p,true); fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true)
-input(p,false); near(p.Damage,12)
-input(p,true); p.controls=false; input(p,true); p.controls=true
-input(p,false); near(p.Damage,12)
-tap(p); near(p.Damage,9)
 assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
-print('OK: nine model mechanics, DROP tap/hold lifecycle, co-op isolation and duplicate effects')
+print('OK: seven roster mechanics, external GPT/Gemini tint, co-op isolation and duplicate effects')
