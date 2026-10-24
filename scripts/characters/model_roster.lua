@@ -31,7 +31,7 @@ end
 
 -- Registered tainted forms of these families. They run their own modules, so
 -- Find ignores them, but they are still outside Claude's proxy account.
-local TAINTED = {"GPT-chan"}
+local TAINTED = {"GPT-chan", "Gemini-chan", "Grok-chan"}
 Roster.tainted = {}
 for _, name in ipairs(TAINTED) do
     local id = Isaac.GetPlayerTypeByName(name, true)
@@ -41,8 +41,10 @@ end
 function Roster:IsFamily(player)
     if self:Find(player) then return true end
     local id = player:GetPlayerType()
-    for _, existing in pairs(C.Player) do
-        if id == existing and existing ~= C.Player.GPT_CHAN_B then return false end
+    -- Claude and DeepSeek forms are never roster families, even under aliases.
+    for _, existing in ipairs({C.Player.CLAUDE_CHAN, C.Player.CLAUDE_CHAN_B,
+        C.Player.DEEPSEEK_CHAN, C.Player.DEEPSEEK_CHAN_B}) do
+        if id == existing then return false end
     end
     for _, tainted in ipairs(self.tainted) do if id == tainted then return true end end
     return false

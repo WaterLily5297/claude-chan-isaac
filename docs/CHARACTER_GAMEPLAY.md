@@ -82,6 +82,8 @@ Source status (scripts/characters/gemini_paint.lua): normal form implemented and
 
 **Tainted:** Base damage 0.9x. DROP starts a six-second Edit chain on a target within 180 units. Three distinct paid hits advance Crop, Recolor, Export; the third adds one 2x damage pulse. One completed chain per room. DROP can erase progress and retarget. Early target death does not complete a partial chain; select again. Bosses need not die. Birthright extends the timer to ten seconds. HUD: edit step/timer. The banana name is documented; the endless-edit exaggeration is original parody.
 
+Source status (scripts/characters/gemini_edit.lua): implemented and registered with the deeper-colour tainted Gemini art. Steps count distinct paid attacks like GPT's Sanity Check, so one multi-tear volley or one 0.2-second beam window is one step. The pulse is a direct hit credited to the player. Engine acceptance pending.
+
 ### Grok — Is This True? / Quote Without Reading
 
 **Normal:** Once per hostile room, DROP challenges the nearest vulnerable target within 220 units for six seconds. Owner damage is 1.3x to it, 0.9x to others. Its defeat or three distinct paid hits verifies it, ends the modifiers and grants +0.15 speed for that room. Timeout gives nothing. Birthright: verification removes up to three nearby ordinary hostile bullets once. HUD: Check progress/timer.
@@ -89,6 +91,8 @@ Source status (scripts/characters/gemini_paint.lua): normal form implemented and
 Source status (scripts/characters/grok_check.lua): normal form implemented and replaces movement momentum. Damage modifiers re-deal the owner's hit once behind a recursion guard, like Gemini. "Nearby" bullets means the three nearest projectiles within 120 units. Engine acceptance pending.
 
 **Tainted:** Base damage 0.9x. DROP selects a target within 220 units for six seconds. Paid hits on other targets build Ratio, once per attack, cap three. At expiry the selected target receives one pulse of 1x player damage per stack; early death wastes the pulse. No retarget during the interval; ten-second cooldown from selection. Birthright transfers half the budget to one nearest surviving hostile if the original died. HUD: Ratio, pending timer. This contrasts focused verification with spreading a claim; Grok and the parody account Gork remain distinct.
+
+Source status (scripts/characters/grok_ratio.lua): implemented and registered with the deeper-colour tainted Grok art. Ratio counts distinct paid attacks (one volley or one 0.2-second beam window). Pulses are direct player hits. The Birthright transfer searches 220 units around where the quoted target died. Engine acceptance pending.
 
 ### Qwen — Everyone's Base Model / Final Final Fine-Tune
 

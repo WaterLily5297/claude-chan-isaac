@@ -13,6 +13,10 @@ local originals={
      lines={"Paid volleys add two half-damage forks.","Valley: cost 2, recovers when not firing.","Peak: cost 4. Tap/release DROP: Forks On/Saving."}},
     {id=C.Player.GPT_CHAN_B,key="gpt_b",name="Tainted GPT-chan",title="Reset Watcher",
      lines={"Tap/release DROP: Standard / Full Send (1.5x).","Full Send costs 1 of 80 Credits per attack.","3 clears bank a Tibo reset: DROP refills."}},
+    {id=C.Player.GEMINI_CHAN_B,key="gemini_b",name="Tainted Gemini-chan",title="One More Edit",
+     lines={"Tap/release DROP: start a 6s edit chain.", "3 paid hits: Crop, Recolor, Export.", "Export deals one 2x damage pulse per room."}},
+    {id=C.Player.GROK_CHAN_B,key="grok_b",name="Tainted Grok-chan",title="Quote Without Reading",
+     lines={"Tap/release DROP: quote an enemy for 6s.", "Hits on others build Ratio (max 3).", "At the end, the quote takes 1x per Ratio."}},
 }
 function Dossiers:Init(mod)
     local ready=false

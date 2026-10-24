@@ -10,7 +10,7 @@ Isaac={GetItemIdByName=function() return -1 end, GetTrinketIdByName=function() r
 function Isaac.GetPlayerTypeByName(n,b)
     if n=="Claude-chan" then return b and 141 or 41 end
     if n=="DeepSeek-chan" then return b and 142 or 42 end
-    for i,name in ipairs(names) do if n==name then return b and (name=="GPT-chan" and 151 or -1) or 50+i end end
+    for i,name in ipairs(names) do if n==name then return b and 150+i or 50+i end end
     return -1
 end
 ModCallbacks=setmetatable({},{__index=function(_,k) return k end})
@@ -128,5 +128,9 @@ p.kind=0; assert(R:Find(p)==nil)
 local tgpt=player('GPT-chan'); tgpt.kind=151
 assert(R:Find(tgpt)==nil and R:IsFamily(tgpt))
 tgpt.kind=141; assert(not R:IsFamily(tgpt))
+-- Every registered tainted form is a family; the list holds exactly the implemented ones.
+local TAINTED_COUNT=3
+assert(#R.tainted==TAINTED_COUNT)
+for i=1,TAINTED_COUNT do tgpt.kind=150+i; assert(R:Find(tgpt)==nil and R:IsFamily(tgpt)) end
 for id in pairs(callbacks) do assert(id=='MC_EVALUATE_CACHE', 'roster registers only the tint: '..id) end
 print('OK: roster identities, tint-only callbacks for all nine families and protected existing characters')
