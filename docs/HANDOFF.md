@@ -1,5 +1,9 @@
 # Claude handoff: consolidated development checkpoint
 
+## Meme gameplay batch 1 (2026-10-24)
+
+Owner asked (2026-10-24 11:19Z) for continuous meme-driven gameplay additions. Source-only, offline: Em Dash, Blueberry, Benchmaxxed and I Panicked bring collectibles to 79 (12 meme extras). All use native cache stats, tear flags, `TakeDamage` and `Remove`; no new entities, saved state or costumes. `tests/meme_batch_test.lua` covers them. Engine checks still needed: quad-split visuals with other split items, Benchmaxxed re-evaluation on room entry, and I Panicked against segmented or multi-phase enemies.
+
 ## Fixed character look (2026-10-24)
 
 Source-only, offline. The owner asked that characters keep their own look when picking up items, while item effects apply normally. New `scripts/characters/costume_lock.lua` clears costume layers on all 22 mod forms (never vanilla characters) after any costume-adding change: collectible count, temporary effects, trinkets, player type, item/card/pill use, new room and game start/continue, with a three-frame settle and a 30-frame sweep. Leaving a mod form restores held item costumes. `ModelRoster:AllForms()` now lists every form for this lock and the Reactions adapter. This reverses the older "let the engine apply item costumes" contract; COSTUME_COMPATIBILITY.md, ART_SPEC.md, CHARACTER_GAMEPLAY.md and CLAUDE.md now describe the fixed look. Engine case: TESTING.md COSTUME-LOCK-01 (hidden wings/mantle layer and possible one-frame flash need review).

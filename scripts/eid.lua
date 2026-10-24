@@ -161,6 +161,18 @@ local descriptions = {
     [Constants.Item.DEEP_RESEARCH] = {
         en_us = { "Deep Research", "12 room charges#Reveals the floor map, special rooms and secret rooms#Car Battery does not repeat it" },
     },
+    [Constants.Item.EM_DASH] = {
+        en_us = { "Em Dash", "Tears pierce enemies#{{ArrowUp}} +0.16 shot speed per copy" },
+    },
+    [Constants.Item.BLUEBERRY] = {
+        en_us = { "Blueberry", "Every third tear is a blue \"B\" tear that splits into four on impact (it says three)#Multi-shot volleys count each tear; separate count from Strawberry#Tears only: lasers, knives and bombs are not counted" },
+    },
+    [Constants.Item.BENCHMAXXED] = {
+        en_us = { "Benchmaxxed", "{{ArrowUp}} +1.5 damage in boss, mini-boss, challenge and Boss Rush rooms#{{ArrowDown}} x0.9 damage in every other room#Stacks per copy" },
+    },
+    [Constants.Item.I_PANICKED] = {
+        en_us = { "I Panicked", "6 room charges#Every vulnerable non-boss enemy in the room takes lethal damage#Bosses lose 15% of their max HP#Also deletes every loose heart, coin, key, bomb, pill, card, battery and sack in the room#Pedestals, trinkets, chests and shop items are safe#No enemy: keeps the charge" },
+    },
     [Constants.Item.STRAWBERRY] = {
         en_us = { "Strawberry", "Every third tear is a red \"R\" tear: x2 damage, slightly larger#Multi-shot volleys count each tear#Tears only: lasers, knives and bombs are not counted" },
     },

@@ -26,7 +26,7 @@ end end
 EID = { addCollectible = count("item"), addTrinket = count("trinket"), addPill = count("pill"), addCharacterInfo = count("character") }
 include("scripts.eid"):Init()
 for k, v in pairs(counts) do print(k, v) end
-assert(counts.item == 17 * 3 + 1 + 8 + 49 and counts.trinket == 6 * 3 + 6)
+assert(counts.item == 17 * 3 + 1 + 8 + 49 + 4 and counts.trinket == 6 * 3 + 6)
 assert(counts.pill == 2 * 3 + 2 and counts.character == 22 * 3, "all 22 forms in three languages")
 
 -- Every collectible, trinket and pill declared in the XML has an English EID entry under the same name.
@@ -47,4 +47,4 @@ for key in pairs(english) do
     if not key:match("^character") then assert(idNames[key], "EID entry for an undeclared id: " .. key) end
 end
 print("declared with EID", declared)
-assert(declared == 75 + 12 + 4)
+assert(declared == 79 + 12 + 4)
