@@ -85,6 +85,16 @@ Four items per family (44) plus six shared items (50). These are not fifty recol
 | 49 | Shared / Consensus Coin | P | Two different owned damage sources hitting the same target within two seconds cause one 0.5x pulse; one pulse per target, no recursive trigger. |
 | 50 | Shared / Error Budget | P | First real hit each floor spends the budget and grants +0.2 speed for that room. Does not cancel damage; budget state survives continue. |
 
+## Meme extras (outside the fifty)
+
+Owner request of 2026-10-24: more meme items that stay compatible with the original game. These do not count toward or replace any backlog row, and they use only native systems (cache stats, vanilla tear flags, native charm/confusion, item RNG). Proposal list: A Ignore All Previous Instructions, B Tungsten Cube, C Claudius's Discount, D Pizza Glue, E One Small Rock a Day, F Stuck in Mt. Moon, G Strawberry, H 9.11 > 9.9 pill, I Golden Gate Claude. Only the rows marked local implementation exist in source.
+
+| Item | Type / pool | Behavior and limit |
+|---|---|---|
+| Ignore All Previous Instructions | A4, treasure | **Local implementation.** Nearest vulnerable, non-friendly, non-charmed enemy within 200 units is charmed for 8 s; a boss is confused for 2 s instead. No target keeps charge. Car Battery's second use picks the next target. Differs from Compact, which confuses the whole room and clears bullets. |
+| Tungsten Cube | P, shop | **Local implementation.** +0.8 damage and -0.15 speed per copy (speed floor 0.1, never raises a lower value); native knockback tear flag applies to every weapon that reads player tear flags. |
+| Pizza Glue | P, treasure | **Local implementation.** Each fired tear has a 25% chance (+2.5% per luck, 10-50%) to gain the native slowing flag, using the item's per-player native RNG; -0.1 shot speed per copy. Tears only: lasers, knives and bombs are not rolled. Already-slow tears consume no roll. |
+
 ## Implementation and performance gates
 
 Each item needs registration, pool, English description, original icon/provenance, tests, documentation and engine acceptance. Do not register the forty-nine designs as empty collectible shells. Use native damage/cache/weapon interfaces; do not force character sprites or overwrite another item's appearance. Weapon-independent effects must retain player/familiar ownership and handle lasers, knives and bombs explicitly. Tear-only behavior must say so.

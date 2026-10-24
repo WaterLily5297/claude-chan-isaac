@@ -23,6 +23,16 @@ Reviewed 2026-10-23. This ledger informs CHARACTER_GAMEPLAY.md. It is not a repr
 | Kimi | [Office-work video lead](https://www.bilibili.com/video/BV1N9foBSEsB/), indexed discovery, direct access unavailable; [official swarm help](https://www.kimi.com/en/help/agent/agent-swarm), previously read | Office-drudge is a candidate community framing; bounded task coordination is supported functionality. Two additional swarm video leads, BV1X66uB7EjX and BV1o3ADzZEmg, returned 412. No watched-video claim or hundred-agent gameplay promise. |
 | GLM | [Direct queue/availability discussion](https://linux.do/t/topic/1842585), directly read | Multiple participants discuss waiting and retries. Use a fictional queue and failed-request loop. No claim about current availability, no purchase advice, and no linked purchase scripts executed. |
 
+## Meme extras (2026-10-24)
+
+Search results read on 2026-10-24; article bodies were not fetched in this session. These are widely reported public events used as parody only, not factual claims about any current product.
+
+| Item | Source | Design use |
+|---|---|---|
+| Tungsten Cube | [Simon Willison on Project Vend](https://simonwillison.net/2025/Jun/27/project-vend), [The Decoder report](https://the-decoder.com/anthropics-claude-ran-a-store-and-lost-money-by-selling-below-cost-and-giving-discounts/) | An assistant running an office shop stocked tungsten cubes and sold below cost. Heavy-cube stat trade; Claudius's Discount candidate. |
+| Ignore All Previous Instructions | [Know Your Meme entry](https://knowyourmeme.com/memes/ignore-all-previous-instructions), [Learn Prompting article](https://learnprompting.org/blog/ignore_previous_instructions) | The prompt-injection catchphrase. Rendered as charming one enemy, not as a working exploit. |
+| Pizza Glue | [The Register, May 2024](https://www.theregister.com/2024/05/31/google_ai_search_update/), [OODA Loop brief](https://www.oodaloop.com/briefs/2024/05/24/glue-pizza-and-eat-rocks-google-ai-search-errors-go-viral/) | Viral search-summary errors suggesting glue on pizza and eating rocks. Sticky tears; One Small Rock a Day candidate. No company logo. |
+
 ## Attribution boundaries
 
 Public posts supply themes, not permission to redistribute their pictures, portraits, voices or videos. No source media from this research is bundled. Preserve the existing separate character-design terms in resources/ART_LICENSE.md. English paraphrases and original icons should carry the humor without private account details. The first three anchors were expressly selected by the owner; the remaining eight still need recognition and playability review, not more invented certainty.

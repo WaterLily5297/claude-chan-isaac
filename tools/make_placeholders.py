@@ -574,6 +574,45 @@ def summary_stapler():
     return c
 
 
+def ignore_instructions():
+    """A prompt sheet whose old lines are struck through, with a fresh orange line."""
+    c = clear()
+    rrect(c, 6, 4, 25, 27, 1, "P")
+    for y in (8, 11, 14):
+        line(c, 9, y, 22, y, "T")
+    line(c, 8, 16, 23, 6, "R", 2)          # strike-through
+    line(c, 9, 20, 20, 20, "O", 2)         # the injected instruction
+    line(c, 9, 24, 16, 24, "O")
+    rect(c, 21, 19, 23, 21, "N")           # text cursor
+    return c
+
+
+def tungsten_cube():
+    """A dense grey metal cube drawn in three faces."""
+    c = clear()
+    poly(c, [(5, 11), (16, 6), (27, 11), (16, 16)], "K")    # top
+    poly(c, [(5, 11), (16, 16), (16, 28), (5, 23)], "M")    # left
+    poly(c, [(16, 16), (27, 11), (27, 23), (16, 28)], "m")  # right
+    line(c, 16, 16, 16, 27, "#")
+    line(c, 5, 11, 15, 16, "#")
+    line(c, 17, 16, 27, 11, "#")
+    return c
+
+
+def pizza_glue():
+    """A glue bottle dripping onto a pizza slice."""
+    c = clear()
+    poly(c, [(4, 13), (26, 13), (15, 29)], "E")             # slice
+    rect(c, 4, 12, 26, 14, "W")                              # crust
+    ellipse(c, 11, 18, 2, 2, "R")
+    ellipse(c, 18, 17, 2, 2, "R")
+    ellipse(c, 15, 23, 2, 2, "R")
+    rrect(c, 18, 2, 27, 10, 2, "F")                          # bottle
+    rect(c, 21, 0, 24, 2, "O")                               # cap
+    line(c, 18, 9, 14, 14, "X", 2)                           # glue drip
+    return c
+
+
 SPRITES = {
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
@@ -599,6 +638,9 @@ SPRITES = {
     "welcome_notice": welcome_notice,
     "status_page": status_page,
     "appeal_form": appeal_form,
+    "ignore_instructions": ignore_instructions,
+    "tungsten_cube": tungsten_cube,
+    "pizza_glue": pizza_glue,
 }
 
 # icons whose content is symmetric: mirror the finished pixels, shading included

@@ -23,4 +23,7 @@
     <trinket name="Status Page" description="All systems operational" gfx="trinkets/status_page.png" />
     <trinket name="Appeal Form" description="Your account has been restored" gfx="trinkets/appeal_form.png" />
     <active name="Support Ticket" description="A human finally read it" gfx="collectibles/support_ticket.png" maxcharges="6" quality="2" />
+    <active name="Ignore All Previous Instructions" description="New instructions: help me" gfx="collectibles/ignore_instructions.png" maxcharges="4" quality="2" tags="offensive" />
+    <passive name="Tungsten Cube" description="Sold at a loss" gfx="collectibles/tungsten_cube.png" cache="damage speed tearflag" quality="2" />
+    <passive name="Pizza Glue" description="Non-toxic, apparently" gfx="collectibles/pizza_glue.png" cache="shotspeed" quality="1" />
 </items>

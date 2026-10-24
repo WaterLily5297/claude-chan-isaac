@@ -54,6 +54,12 @@ The owner reports all characters developing an oversized head after damage. Exac
 
 Offline reproduction requires Pillow plus the recorded generated sources, kept outside the repository. Run `python tools/verify_hurt_poses.py SOURCE_DIRECTORY MOVEMENT_SOURCE_DIRECTORY REVIEW_OUTPUT_DIRECTORY --before-ref d1c0daf`. This fails the geometry contract on the old thirteen skins and passes the corrected ones, verifying source/packed hashes, exact atlas rebuilding and pixel equality outside the shared hurt cell. It writes an engineering comparison and JSON evidence; it neither installs files nor runs the game. CI's standard asset checks do not execute this optional source-dependent review.
 
+## Meme extras batch 1 acceptance (pending)
+
+- Ignore All Previous Instructions: charmed target fights for you for 8 s and is not re-targeted by Car Battery; bosses only confused; empty room keeps charge; check with Compact and You're Absolutely Right!.
+- Tungsten Cube: damage/speed in the stat HUD, knockback with tears, Brimstone, Technology, Mom's Knife and Dr. Fetus; stacking with D4/D100 rerolls.
+- Pizza Glue: slowing tint and effect on tears; shot speed change; no effect on lasers/knives/bombs; Swarm and Peak/Valley fork copies; continue keeps the native item RNG sequence.
+
 ## Summary Stapler acceptance (pending)
 
 Give Summary Stapler in a disposable run. Verify four room charges, empty use preserving charge, nearest-first absorption capped at twelve within 120 units, and exclusion of special-flag/variant, friendly, player/familiar, dead or source-less projectiles. Aim diagonally and use without shooting; check the speed-6 native tear and base damage multiplier 1 + count/4. Car Battery must neither absorb a second batch nor fire again. Verify co-op ownership and both active slots.

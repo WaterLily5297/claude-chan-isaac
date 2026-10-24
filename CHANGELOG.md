@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased meme extras, batch 1 (2026-10-24)
+
+- Add three collectibles outside the fifty-row backlog: Ignore All Previous Instructions (A4: charm the nearest non-boss within 200 units for 8 s, confuse a boss for 2 s, empty use keeps charge, Car Battery picks a second target), Tungsten Cube (+0.8 damage, -0.15 speed per copy, native knockback tears) and Pizza Glue (25% slowing tears, luck 10-50%, -0.1 shot speed; tears only).
+- Original generated icons, pool entries, English EID and a new offline suite. Seventeen offline suites pass. No engine validation, runtime or Workshop changes.
+
 ## Unreleased tainted DeepSeek Peak / Valley (2026-10-24)
 
 - Tainted DeepSeek becomes Wenfeng / Wengu: twelve combat seconds of Valley alternate with twelve of Peak, frozen in cleared rooms and on pause; every floor starts in Valley. Compute starts at 12 (cap 24, Birthright 32) and carries across floors. Paid tear volleys fork into two native half-damage tears for 2 (Valley) or 4 (Peak); Valley recovers 3 per second in combat while not firing. DROP tap toggles Forks On / Saving.

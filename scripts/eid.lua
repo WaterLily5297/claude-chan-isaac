@@ -5,6 +5,15 @@ local Constants = include("scripts.constants")
 local Eid = {}
 
 local descriptions = {
+    [Constants.Item.IGNORE_INSTRUCTIONS] = {
+        en_us = { "Ignore All Previous Instructions", "4 room charges#Nearest vulnerable enemy within 200 units is charmed for 8 seconds#Bosses are only confused for 2 seconds#No target: keeps the charge#Car Battery injects a second, different enemy" },
+    },
+    [Constants.Item.TUNGSTEN_CUBE] = {
+        en_us = { "Tungsten Cube", "{{ArrowUp}} +0.8 damage#{{ArrowDown}} -0.15 speed#Tears knock enemies back#Stacks per copy" },
+    },
+    [Constants.Item.PIZZA_GLUE] = {
+        en_us = { "Pizza Glue", "25% chance for a slowing tear (+2.5% per luck, 10% to 50%)#{{ArrowDown}} -0.1 shot speed#Tears only: lasers, knives and bombs are not affected" },
+    },
     [Constants.Item.SUMMARY_STAPLER] = {
         en_us = { "Summary Stapler", "4 room charges#Absorbs up to 12 ordinary hostile bullets within 120 units#Fires one slow tear: damage x(1 + bullets / 4), up to x4 before other modifiers#Uses normal tear effects, character limits and forks#Empty use keeps charge; Car Battery does not repeat#Does not replace your weapon or reset usage" },
     },

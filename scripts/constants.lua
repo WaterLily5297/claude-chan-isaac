@@ -19,6 +19,9 @@ Constants.Item = {
     SUPPORT_TICKET = Isaac.GetItemIdByName("Support Ticket"),
     LUNCH_BREAK = Isaac.GetItemIdByName("Lunch Break"),
     OPUS_MODE = Isaac.GetItemIdByName("Opus Mode"),
+    IGNORE_INSTRUCTIONS = Isaac.GetItemIdByName("Ignore All Previous Instructions"),
+    TUNGSTEN_CUBE = Isaac.GetItemIdByName("Tungsten Cube"),
+    PIZZA_GLUE = Isaac.GetItemIdByName("Pizza Glue"),
 }
 
 Constants.Trinket = {
