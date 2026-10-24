@@ -11,7 +11,6 @@ local Tools = include("scripts.characters.target_tools")
 
 local Paid = {}
 local WINDOW = Tools.WINDOW_FRAMES
-local KEY = "ccPaidAttack"
 -- Older API builds lack the enum; 4 is the documented swing-hitbox subtype.
 local CLUB_HITBOX = KnifeSubType and KnifeSubType.CLUB_HITBOX or 4
 
@@ -38,6 +37,9 @@ local function ludovico(entity)
 end
 
 function Paid.Observe(mod, pay)
+    -- Entity-local, transient identity per subscriber. A shared marker lets
+    -- Opus consume the event before character meters, even without the item.
+    local key = {}
     -- Continuous windows are per player, so two held beams share one window.
     local windows = {}
     local function window(p, entity)
@@ -50,8 +52,8 @@ function Paid.Observe(mod, pay)
     end
     local function once(entity, p)
         local data = entity:GetData()
-        if data[KEY] then return end
-        data[KEY] = true
+        if data[key] then return end
+        data[key] = true
         if p then pay(p, entity) end
     end
     local function reset() windows = {} end
@@ -79,7 +81,7 @@ function Paid.Observe(mod, pay)
         local data = knife:GetData()
         if data.ccThoughtDerived then return end
         -- One throw is one attack; the knife resting on the player is free.
-        if not knife:IsFlying() then data[KEY] = nil; return end
+        if not knife:IsFlying() then data[key] = nil; return end
         once(knife, player(knife))
     end)
     if EffectVariant and EffectVariant.ROCKET then
