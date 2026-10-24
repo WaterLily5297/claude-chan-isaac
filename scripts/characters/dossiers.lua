@@ -23,6 +23,8 @@ local originals={
      lines={"Each combat clear adds Hype (max 3).", "Tap/release DROP: spend all on a helper.", "It stays put, 4s per Hype, 0.5x tears."}},
     {id=C.Player.MISTRAL_CHAN_B,key="mistral_b",name="Tainted Mistral-chan",title="Le Gros Chaton",
      lines={"Stand still, not firing: bake a Baguette.", "Tap/release DROP: a slow bread wave.", "2.5x once per enemy; walls stop it."}},
+    {id=C.Player.DOUBAO_CHAN_B,key="doubao_b",name="Tainted Doubao-chan",title="I'll Do It Again",
+     lines={"Tap/release DROP: 6s Confident, 1.35x.", "Then 4s Apology at 0.85x, then ready.", "Getting hit ends Confident early."}},
 }
 function Dossiers:Init(mod)
     local ready=false

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased tainted Doubao I'll Do It Again (2026-10-24)
+
+- Register Tainted Doubao-chan with the deeper-colour art. I'll Do It Again: a DROP tap starts six seconds of Confident (1.35x damage), then four seconds of Apology (0.85x, Birthright three), then ready; timers run only in combat, and an enemy hit during Confident starts the Apology early. Offline only.
+
 ## Unreleased tainted Mistral Le Gros Chaton (2026-10-24)
 
 - Register Tainted Mistral-chan with the deeper-colour art. Le Gros Chaton: speed -0.1, damage 0.9x; standing without firing for two seconds bakes a Baguette (cap 2, Birthright 1.5 seconds); a DROP tap sends a slow 120-unit shockwave dealing 2.5x once per enemy, stopped by walls, with a two-second cooldown. Offline only.

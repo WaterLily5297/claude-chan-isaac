@@ -132,6 +132,8 @@ Source status (scripts/characters/doubao_apology.lua): normal form implemented a
 
 **Tainted:** DROP starts six seconds of Confident at 1.35x damage, followed by four seconds of Apology at 0.85x, then becomes ready. Timers advance only in hostile combat. Default damage is 1x when ready. An enemy hit during Confident ends it early and starts Apology; it never cancels the damage. Birthright: Apology lasts three seconds. HUD: phase/timer. This is a deliberate overpromise/recovery cycle, not a second rice character. Indexed titles support the apology motif; no exact unviewed audio quote is claimed.
 
+Source status (scripts/characters/doubao_again.lua): implemented and registered with the deeper-colour tainted Doubao art. The hit rule matches normal Doubao's qualifying-hit rule. The phase is saved so a continued run keeps its multiplier. Engine acceptance pending.
+
 ### Kimi — Another Slide Deck / You Are the Manager
 
 **Normal:** Each unique clear earns one Slide, cap six. DROP spends three to mark up to three nearest vulnerable enemies within 220 units for four seconds; slow them and increase owner damage by 15%. No targets means no spend. One presentation per owner; a new one replaces the old. Use a subtle outline, never an opaque screen-covering slide. Birthright: cost two. HUD: Slides.
