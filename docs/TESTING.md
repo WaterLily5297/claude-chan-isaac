@@ -64,6 +64,14 @@ Test homing, piercing, spectral, explosive, split/orbit/controlled tear items an
 
 Run the per-form matrix in [COSTUME_COMPATIBILITY.md](COSTUME_COMPATIBILITY.md): isolated items, mixed pickup orders, flight, scale, transformations, removal, reroll, restart and co-op/type changes. The nine added normal skins have an offline head/carry alignment correction; this is not engine acceptance. Existing four-character art and the planned nine tainted forms require the same matrix. Record screenshots and exact versions; Lua tests and texture dimensions cannot establish visual compatibility.
 
+## Normal Claude Appeals (source candidate; engine acceptance pending)
+
+HUD shows `Usage N%  Appeals 1/2` on a new run. Fire single tears and a 20/20 or Mutant Spider volley: each volley adds 4 usage (8 with Subagent Swarm), not 4 per pellet. Stop firing: usage drains 10 per second; holding fire stops the drain. The volley that reaches 100 keeps full damage, then Limited weakens tears for five seconds.
+
+Tap/release DROP at about 60 usage: one Appeal is spent, usage drops by 40, caption `Appeal filed / Another love letter.`. A tap at zero usage, at zero Appeals or during Limited must spend nothing. Holding DROP must keep native trinket dropping; check pocket cycling with a second pocket item. Clear two new hostile rooms: +1 Appeal (cap 2); re-entering a cleared room or clearing an empty room gives nothing.
+
+Get Birthright and reach 90+ risk: `Banned again / Birthright kept your account age`, age unchanged and the Suspended penalty still applies. A second suspension on the same floor resets age; the next floor renews the shield. Save/continue while suspended must not reset age. Save/continue mid-progress keeps Appeals and the clear count. Co-op with two Claude-chans keeps separate usage and Appeals. Lasers, knives and bombs are not billed yet. Stub coverage: `tests/claude_appeals_test.lua`, `tests/claude_usage_save_test.lua`, `tests/swarm_resolution_test.lua`.
+
 ## Normal Claude usage save acceptance (pending)
 
 As normal Claude, save with a partially filled meter, close the process, restart and continue. The meter must resume rather than clear. Repeat during the five-second limited-damage interval and confirm the remaining game-frame countdown and 40% damage. Repeat with two Claude players at different usage levels, with Swarm (including the first continued shot), after Compact, and immediately after Banked Reset. Continue must preserve the item changes and keep players independent. Verify a fresh run resets both meters and an older save without usage fields loads safely. Check Clicker away/back, co-op join/leave, and supported twin/subplayer forms separately; the slot-keyed stub does not prove their engine identity behavior. The penalty expires through gameplay frames; offline wall-clock time is not credited.

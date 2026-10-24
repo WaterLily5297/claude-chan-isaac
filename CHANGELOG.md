@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased Claude Appeals (2026-10-24)
+
+- Normal Claude becomes One More Day: usage is billed once per same-frame tear volley (Subagent Swarm doubles it inside Claude's billing) and drains 10 per second only while not firing. Appeals start at 1, cap 2, and are earned every two unique combat clears; a DROP tap spends one to remove 40 usage, never during Limited.
+- Birthright keeps account age through the first suspension on each floor; a saved latch stops continue from re-judging it. English HUD, dossier, EID and caption `Another love letter.`
+- Seventeen offline suites pass, including the new Appeals suite. Account age is still shared; tainted Appeal Pending and non-tear billing remain pending. No runtime or Workshop changes.
+
 ## Unreleased tainted DeepSeek Peak / Valley (2026-10-24)
 
 - Tainted DeepSeek becomes Wenfeng / Wengu: twelve combat seconds of Valley alternate with twelve of Peak, frozen in cleared rooms and on pause; every floor starts in Valley. Compute starts at 12 (cap 24, Birthright 32) and carries across floors. Paid tear volleys fork into two native half-damage tears for 2 (Valley) or 4 (Peak); Valley recovers 3 per second in combat while not firing. DROP tap toggles Forks On / Saving.

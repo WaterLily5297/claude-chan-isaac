@@ -59,6 +59,7 @@ SoundEffect = { SOUND_POWERUP_SPEWER = 132 }
 function SFXManager() return { Play = function(_, id) print("  SFX:", id) end } end
 Vector = { Zero = { 0, 0 } }
 Input = { IsActionPressed = function() return false end }
+CollectibleType = { COLLECTIBLE_BIRTHRIGHT = 619 }
 ButtonAction = { ACTION_MAP = 11, ACTION_SHOOTLEFT = 4, ACTION_SHOOTRIGHT = 5,
     ACTION_SHOOTUP = 6, ACTION_SHOOTDOWN = 7 }
 InputHook = { IS_ACTION_PRESSED = 0, IS_ACTION_TRIGGERED = 1, GET_ACTION_VALUE = 2 }
@@ -92,6 +93,9 @@ local player = { HasCollectible = function(_, id) return playerItems[id] end,
     EvaluateItems = function(self) self.Damage = 3.5; for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end end }
 player.ToPlayer = function(self) return self end
 player.IsDead = function() return false end
+player.InitSeed, player.ControllerIndex = 1, 0
+player.AreControlsEnabled = function() return true end
+player.GetShootingInput = function() return { LengthSquared = function() return 0 end } end
 player.TryRemoveTrinket = function(_, id) if HELD_TRINKET == id then HELD_TRINKET = nil; return true end return false end
 function Isaac.GetPlayer() return player end
 
@@ -141,7 +145,9 @@ local hudVisible = true
 function Game()
     return {
         GetNumPlayers = function() return 1 end,
-        GetLevel = function() return { GetStage = function() return stage end } end,
+        GetLevel = function() return { GetStage = function() return stage end,
+            GetStageType = function() return 0 end, GetDungeonPlacementSeed = function() return 77 end,
+            GetCurrentRoomDesc = function() return { SpawnSeed = 1, SafeGridIndex = 1 } end } end,
         GetSeeds = function() return { GetStartSeed = function() return 123456 end } end,
         GetHUD = function() return {
             IsVisible = function() return hudVisible end,

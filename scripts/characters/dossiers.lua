@@ -3,8 +3,8 @@ local C=include("scripts.constants")
 local Roster=include("scripts.characters.model_roster")
 local Dossiers={}
 local originals={
-    {id=C.Player.CLAUDE_CHAN,key="claude",name="Claude-chan",title="Careful reasoning",
-     lines={"Watch your usage and account risk.","Ban Hammer controls a crowded room."}},
+    {id=C.Player.CLAUDE_CHAN,key="claude",name="Claude-chan",title="One More Day",
+     lines={"Usage fills per volley and drains when idle.","Tap/release DROP: an Appeal removes 40 usage.","Earn an Appeal every two combat clears."}},
     {id=C.Player.CLAUDE_CHAN_B,key="claude_b",name="Tainted Claude-chan",title="Weekly allowance",
      lines={"A limited weekly budget per floor.","Banked Reset restores the allowance."}},
     {id=C.Player.DEEPSEEK_CHAN,key="deepseek",name="DeepSeek-chan",title="Rice First",
