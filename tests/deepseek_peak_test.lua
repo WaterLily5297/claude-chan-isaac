@@ -19,7 +19,7 @@ package.preload.json=function() return {
 } end
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
 CollectibleType={COLLECTIBLE_BIRTHRIGHT=619}
-EntityType={ENTITY_TEAR=2}
+EntityType={ENTITY_TEAR=2,ENTITY_BOMB=4,ENTITY_LASER=7,ENTITY_KNIFE=8,ENTITY_EFFECT=1000}
 ButtonAction={ACTION_DROP=11}
 local down={}
 Input={IsActionPressed=function(_,controller) return down[controller] or false end}
@@ -188,6 +188,67 @@ tick(); assert(state().compute==12,"Compute above every cap is invalid")
 enter(3,true); q.dead=true; local r=state(1).remaining; tick(10)
 assert(state(1).remaining==r,"a dead player's schedule is frozen")
 q.dead=false
+
+-- Non-tear attacks buy a same-priced 1.3x off-peak boost instead of forks.
+do
+    enter(4,false); state().phase="valley"; state().saving=false; state().compute=10; tick()
+    local function weapon(kind,fields)
+        local e=fields or {}; e.Type=kind; local d={}
+        function e:GetData() return d end
+        function e:ToPlayer() end
+        return e
+    end
+    local dealt
+    local enemy={ToPlayer=function() end, TakeDamage=function(_,amount) dealt=amount end}
+    local function hit(w,target)
+        dealt=nil
+        for _,cb in ipairs(callbacks) do
+            if cb.id=="MC_ENTITY_TAKE_DMG" and cb.fn(mod,target or enemy,10,0,{Entity=w},0)==false then return dealt end
+        end
+        return 10
+    end
+    local function near(a,b) assert(math.abs(a-b)<1e-9,a.." ~= "..b) end
+    frame=frame+1
+    local ring=weapon(7,{SpawnerEntity=p,OneHit=true})
+    fire("MC_POST_LASER_INIT",ring); assert(state().compute==8,"a laser start pays the Valley price")
+    near(hit(ring),13); frame=frame+30; near(hit(ring),13)
+    frame=frame+1
+    local same=weapon(7,{SpawnerEntity=p,OneHit=true}); fire("MC_POST_LASER_INIT",same)
+    shot(p); assert(#spawned==2,"the shared payment still forks the tear")
+    assert(state().compute==6,"a laser and a tear on one frame share one payment")
+    -- A held beam is boosted for its paid window only, then per paid window.
+    frame=frame+1
+    local beam=weapon(7,{SpawnerEntity=p,FrameCount=0}); fire("MC_POST_LASER_INIT",beam)
+    assert(state().compute==4); near(hit(beam),13)
+    frame=frame+7; near(hit(beam),10)
+    beam.FrameCount=7; fire("MC_POST_LASER_UPDATE",beam); assert(state().compute==2,"the next window pays")
+    near(hit(beam),13)
+    -- Not enough Compute or Saving: native damage, nothing spent.
+    frame=frame+7; beam.FrameCount=14; fire("MC_POST_LASER_UPDATE",beam); assert(state().compute==0)
+    frame=frame+7; beam.FrameCount=21; fire("MC_POST_LASER_UPDATE",beam); near(hit(beam),10)
+    state().compute=10; state().saving=true
+    frame=frame+1; local saved=weapon(4,{SpawnerEntity=p,IsFetus=true}); fire("MC_POST_BOMB_INIT",saved)
+    assert(state().compute==10); near(hit(saved),10)
+    state().saving=false
+    -- Dr. Fetus bombs pay for their explosion; placed bombs stay native.
+    frame=frame+1; local fetus=weapon(4,{SpawnerEntity=p,IsFetus=true}); fire("MC_POST_BOMB_INIT",fetus)
+    assert(state().compute==8); frame=frame+40; near(hit(fetus),13)
+    frame=frame+1; local placed=weapon(4,{SpawnerEntity=p,IsFetus=false}); fire("MC_POST_BOMB_INIT",placed)
+    assert(state().compute==8); near(hit(placed),10)
+    -- A knife throw is boosted in flight only.
+    frame=frame+1
+    local knife=weapon(8,{SpawnerEntity=p,SubType=0,flying=true}); function knife:IsFlying() return self.flying end
+    fire("MC_POST_KNIFE_UPDATE",knife); assert(state().compute==6); near(hit(knife),13)
+    knife.flying=false; fire("MC_POST_KNIFE_UPDATE",knife); near(hit(knife),10)
+    -- Peak prices apply; familiar weapons and player targets are untouched.
+    state().phase="peak"
+    frame=frame+1; local peak=weapon(7,{SpawnerEntity=p,OneHit=true}); fire("MC_POST_LASER_INIT",peak)
+    assert(state().compute==2,"Peak costs 4"); near(hit(peak),13)
+    assert(hit(peak,p)==10,"players are never re-dealt")
+    frame=frame+1; fire("MC_POST_LASER_INIT",weapon(7,{SpawnerEntity={ToPlayer=function() end},OneHit=true}))
+    assert(state().compute==2,"familiar lasers are free")
+    state().phase="valley"
+end
 
 fire("MC_POST_RENDER")
 local hud=draws[#draws]

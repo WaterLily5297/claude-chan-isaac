@@ -1,9 +1,14 @@
 -- Tainted DeepSeek: Wenfeng / Wengu. Peak / Valley compute scheduling.
 -- Saved per-player Compute, phase and mode. No proxy, IP or risk mechanics.
+-- Tear volleys buy two half-damage forks. Every other native attack (laser
+-- starts and 0.2-second beam windows, knife throws, melee swings, Dr. Fetus
+-- bombs, Epic Fetus rockets) buys the same-priced "off-peak boost" instead:
+-- that attack's hits deal 1.3x, re-dealt once behind a recursion guard.
 local C = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local DropTap = include("scripts.characters.drop_tap")
 local TearFork = include("scripts.tear_fork")
+local PaidAttacks = include("scripts.characters.paid_attacks")
 local Peak = {}
 
 local PHASE_FRAMES = 360 -- Twelve active-combat seconds.
@@ -12,6 +17,9 @@ local REGEN_FRAMES = 10 -- Three Compute per second.
 local COST = {valley=2, peak=4}
 local TOGGLE_FRAMES = 30
 local FORK_SPREAD, FORK_DAMAGE = 12, 0.5
+local BOOST_DAMAGE = 1.3 -- Two half-damage forks, landed on one target.
+local WINDOW = 6
+local BOOST = "ccPeakBoost"
 
 local function tainted(p)
     return p and C.Player.DEEPSEEK_CHAN_B >= 0 and p:GetPlayerType() == C.Player.DEEPSEEK_CHAN_B
@@ -141,6 +149,17 @@ function Peak:Init(mod, Risk)
             end
         end)
     end)
+    -- One payment per frame, shared by every tear and weapon in it.
+    local function charge(b)
+        local s, now = b.state, Game():GetFrameCount()
+        if not b.volley or b.volley.frame ~= now then
+            local cost = COST[s.phase]
+            local paid = not s.saving and s.compute >= cost
+            if paid then s.compute = s.compute - cost end
+            b.volley = {frame=now, forks=paid}
+        end
+        return b.volley.forks
+    end
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
         local data = tear:Exists() and tear:GetData()
         if not data or data.ccThoughtDerived or data.ccPeakSeen then return end
@@ -148,20 +167,55 @@ function Peak:Init(mod, Risk)
         local b = binding(p)
         if not b or p:IsDead() or Game():IsPaused() then return end
         data.ccPeakSeen = true
-        local s, now = b.state, Game():GetFrameCount()
         -- One volley is one payment; every tear in a paid volley forks once.
-        if not b.volley or b.volley.frame ~= now then
-            local cost = COST[s.phase]
-            local paid = not s.saving and s.compute >= cost
-            if paid then s.compute = s.compute - cost end
-            b.volley = {frame=now, forks=paid}
-        end
-        if not b.volley.forks then return end
+        if not charge(b) then return end
         for _, angle in ipairs({-FORK_SPREAD, FORK_SPREAD}) do
             local fork = Isaac.Spawn(EntityType.ENTITY_TEAR, tear.Variant, 0, tear.Position,
                 tear.Velocity:Rotated(angle), p):ToTear()
             if fork then TearFork.Copy(tear, fork, FORK_DAMAGE) end
         end
+    end)
+    -- Non-tear attacks: a paid attack marks its weapon until the attack ends
+    -- (the window for a held beam, the flight for a knife throw, otherwise the
+    -- entity's life); an unpaid one clears the mark.
+    local function boost(p, entity, lasting)
+        local b = binding(p)
+        if not b or not entity or p:IsDead() or Game():IsPaused() then return end
+        if entity.Type == EntityType.ENTITY_TEAR then return end -- Tears fork instead.
+        local now = Game():GetFrameCount()
+        entity:GetData()[BOOST] = charge(b) and (lasting and math.huge or now + WINDOW) or nil
+    end
+    local function owner(entity)
+        local spawner = entity and (entity.SpawnerEntity or entity.Parent)
+        return spawner and spawner:ToPlayer()
+    end
+    mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
+        if not ready then return end
+        local circle = laser.IsCircleLaser and laser:IsCircleLaser()
+        boost(owner(laser), laser, laser.OneHit or circle)
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, function(_, bomb)
+        if ready and bomb.IsFetus then boost(owner(bomb), bomb, true) end
+    end)
+    PaidAttacks.Observe(mod, function(p, entity)
+        if not ready then return end
+        boost(p, entity, entity and entity.Type ~= EntityType.ENTITY_LASER)
+    end)
+    local redealing = false
+    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, target, amount, flags, source, countdown)
+        if redealing or not ready or target:ToPlayer() then return end
+        local weapon = source and source.Entity
+        if not weapon or not weapon.GetData then return end
+        local mark = weapon:GetData()[BOOST]
+        if not mark or Game():GetFrameCount() > mark then return end
+        -- A knife's throw ends when it returns; resting contact is unpaid.
+        if weapon.Type == EntityType.ENTITY_KNIFE and weapon.IsFlying
+            and weapon.SubType ~= (KnifeSubType and KnifeSubType.CLUB_HITBOX or 4)
+            and not weapon:IsFlying() then return end
+        redealing = true
+        target:TakeDamage(amount * BOOST_DAMAGE, flags, source, countdown)
+        redealing = false
+        return false
     end)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         if not ready then return end
