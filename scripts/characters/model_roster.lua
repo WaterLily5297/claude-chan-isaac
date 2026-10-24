@@ -1,16 +1,16 @@
 -- Experimental model-family characters. All persistent progress lives in Risk.state.
 -- No changes to DeepSeek's direct connection or either existing character module.
 local C = include("scripts.constants")
-local DropTap = include("scripts.characters.drop_tap")
 local Roster = {}
 Roster.definitions = {
-    -- GPT's mechanics live in gpt_downgrade.lua; the roster keeps its identity and tint.
+    -- External families keep only identity, dossier and tint here; mechanics live in
+    -- gpt_downgrade.lua, gemini_paint.lua and grok_check.lua.
     {key="gpt", name="GPT-chan", title="Same Name, Smaller Brain", color={0.4,1,0.75}, external=true,
      lines={"Verified: +15% damage. Clears add Routing.", "At 3 Routing, next combat: Fallback, -20%.", "Fallback: tap DROP, hit the Sanity Check 3x."}},
-    {key="gemini", name="Gemini-chan", title="Two modalities", color={0.7,0.6,1},
-     lines={"Tap/release DROP: Prism / Echo.", "Prism: piercing tears, +20% damage.", "Echo: homing tears, faster fire."}},
-    {key="grok", name="Grok-chan", title="Live momentum", color={1,0.3,0.35},
-     lines={"Keep moving to build momentum.", "Up to +25% damage after 5 seconds.", "Standing still drains momentum."}},
+    {key="gemini", name="Gemini-chan", title="Nano Banana", color={0.7,0.6,1}, external=true,
+     lines={"Tap/release DROP: Paint the nearest enemy.", "Painted: +20% your damage for 8 seconds.", "Your kill leaves a slowing banana peel."}},
+    {key="grok", name="Grok-chan", title="Is This True?", color={1,0.3,0.35}, external=true,
+     lines={"Tap/release DROP in combat: check an enemy.", "6s: +30% damage to it, -10% to others.", "3 hits or its defeat: +0.15 speed this room."}},
     {key="qwen", name="Qwen-chan", title="Task chain", color={0.8,0.5,1},
      lines={"Clear rooms without taking damage.", "Each success: +6% damage, up to 5.", "A hit breaks the chain."}},
     {key="llama", name="Llama-chan", title="Open collaboration", color={0.65,1,0.5},
@@ -40,7 +40,6 @@ end
 function Roster:Init(mod, Risk)
     local ready = false
     local transient = {}
-    local dropTap = DropTap.New()
     local function slot(player)
         for i = 0, Game():GetNumPlayers() - 1 do
             if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then return tostring(i) end
@@ -53,7 +52,7 @@ function Roster:Init(mod, Risk)
         if type(all) ~= "table" then all = {}; Risk.state.modelRoster = all end
         local s = all[key]
         if type(s) ~= "table" or s.key ~= def.key then
-            s = {key=def.key, mode=0, chain=0, pages=0, meals=0, shares=0, links=0, awards={}}
+            s = {key=def.key, chain=0, pages=0, meals=0, shares=0, links=0, awards={}}
             all[key] = s
         end
         return s
@@ -64,7 +63,7 @@ function Roster:Init(mod, Risk)
         local pointer, seed, kind = GetPtrHash(player), player.InitSeed, player:GetPlayerType()
         local s = transient[pointer]
         if not s or s.seed ~= seed or s.kind ~= kind then
-            s = {seed=seed, kind=kind, momentum=0, wind=0, toolFrame=-1}
+            s = {seed=seed, kind=kind, wind=0, toolFrame=-1}
             transient[pointer] = s
         end
         return s
@@ -90,7 +89,6 @@ function Roster:Init(mod, Risk)
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         transient = {}
-        dropTap:Reset()
         if not continued then Risk.state.modelRoster = {} end
         ready = true
         each(function(p, def, s)
@@ -104,22 +102,20 @@ function Roster:Init(mod, Risk)
         end)
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
-        ready=false; transient={}; dropTap:Reset()
+        ready=false; transient={}
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
-        dropTap:Reset()
         if not ready then return end
         each(function(p, def, s)
             local key=roomKey()
             if s.room ~= key then
-                s.room=key; s.hit=false; s.links=0; temp(p).momentum=0; temp(p).wind=0
+                s.room=key; s.hit=false; s.links=0; temp(p).wind=0
 
                 refresh(p)
             end
         end)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
-        dropTap:Reset()
         if not ready then return end
         each(function(p, _, s) s.awards={}; refresh(p) end)
     end)
@@ -132,22 +128,18 @@ function Roster:Init(mod, Risk)
         local key=def.key
         if flag == CacheFlag.CACHE_DAMAGE then
             local mult=1
-            if key=="gemini" then mult=s.mode==0 and 1.2 or 0.9
-            elseif key=="grok" then mult=1 + math.floor(t.momentum/15)*0.025
-            elseif key=="qwen" then mult=1 + s.chain*0.06
+            if key=="qwen" then mult=1 + s.chain*0.06
             elseif key=="llama" then mult=0.9
 
             elseif key=="kimi" then mult=1+s.pages*0.04
             elseif key=="glm" then mult=1+s.links*0.12 end
             p.Damage=p.Damage*mult
         elseif flag==CacheFlag.CACHE_FIREDELAY then
-            if key=="gemini" and s.mode==1 then p.MaxFireDelay=math.max(-0.75,(p.MaxFireDelay+1)*0.9-1) end
         elseif flag==CacheFlag.CACHE_SPEED and key=="mistral" then p.MoveSpeed=p.MoveSpeed+0.15
         elseif flag==CacheFlag.CACHE_SHOTSPEED and key=="mistral" then p.ShotSpeed=p.ShotSpeed+0.25
         elseif flag==CacheFlag.CACHE_RANGE and key=="kimi" then p.TearRange=p.TearRange+s.pages*25
         elseif flag==CacheFlag.CACHE_TEARFLAG then
-            if key=="gemini" then p.TearFlags=p.TearFlags | (s.mode==0 and TearFlags.TEAR_PIERCING or TearFlags.TEAR_HOMING)
-            elseif key=="mistral" and t.wind>=60 then p.TearFlags=p.TearFlags | TearFlags.TEAR_SPECTRAL end
+            if key=="mistral" and t.wind>=60 then p.TearFlags=p.TearFlags | TearFlags.TEAR_SPECTRAL end
         elseif flag==CacheFlag.CACHE_TEARCOLOR then
             -- Tint rather than replace, so item colors (Ipecac, Spoon Bender) stay readable.
             local c, k = p.TearColor, def.color
@@ -158,18 +150,10 @@ function Roster:Init(mod, Risk)
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_,p)
         if not ready then return end
         local def=self:Find(p)
-        if not def or p:IsDead() then dropTap:Forget(p); return end
+        if not def or p:IsDead() then return end
         local s,t=state(p,def),temp(p)
-        if not s then dropTap:Forget(p); return end
-        local switchMode = dropTap:Poll(p, def.key=="gemini")
-        if switchMode then
-            s.mode=1-s.mode; refresh(p)
-            Game():GetHUD():ShowItemText(def.name, s.mode==0 and "Prism" or "Echo")
-        elseif def.key=="grok" then
-            local before=math.floor(t.momentum/15)
-            t.momentum=math.max(0,math.min(150,t.momentum+(p.Velocity:Length()>0.5 and 1 or -3)))
-            if before~=math.floor(t.momentum/15) then refresh(p) end
-        elseif def.key=="mistral" then
+        if not s then return end
+        if def.key=="mistral" then
             local before=t.wind>=60
             if p.Velocity:Length()>0.5 and p:GetFireDirection()~=Direction.NO_DIRECTION then
                 t.wind=math.min(60,t.wind+1)
@@ -228,17 +212,12 @@ function Roster:Init(mod, Risk)
         local s=state(p,def); s.links=math.min(3,s.links+1); refresh(p)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-        -- Player updates stop while paused; cancel pending gestures here even
-        -- when the HUD is hidden, so releasing after a menu never toggles mode.
-        if Game():IsPaused() then dropTap:Reset(); return end
         if not ready or not Game():GetHUD():IsVisible() then return end
         each(function(p,def,s)
             if def.external then return end
             local i=tonumber(slot(p)) or 0
             local value="Hold MAP: dossier"
-            if def.key=="gemini" then value=s.mode==0 and "Prism" or "Echo"
-            elseif def.key=="grok" then value="Momentum "..math.floor(temp(p).momentum/15).."/10"
-            elseif def.key=="qwen" then value="Chain "..s.chain.."/5"
+            if def.key=="qwen" then value="Chain "..s.chain.."/5"
             elseif def.key=="kimi" then value="Pages "..s.pages.."/6"
             elseif def.key=="glm" then value="Tools "..s.links.."/3"
             elseif def.key=="doubao" then value="Meal "..s.meals.."/3"

@@ -106,6 +106,7 @@ local function tear(owner,volley)
     local t={Type=EntityType.ENTITY_TEAR,SpawnerEntity=owner,FrameCount=0}
     function t:GetData() return data end
     function t:Exists() return true end
+    function t:ToPlayer() return nil end
     if volley~=false then fire("MC_POST_FIRE_TEAR",t) end
     return t
 end
@@ -152,7 +153,7 @@ hit(close,v1); hit(close,pellet); hit(close,v1)
 draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="GPT-chan: Fallback  Check 1/3","one volley is one attack")
 tick(); local derived=tear(p,false); derived:GetData().ccThoughtDerived=true; derived.FrameCount=1
 hit(close,derived); hit(close,derived)
-local laser={Type=EntityType.ENTITY_LASER,SpawnerEntity=p}
+local laser={Type=EntityType.ENTITY_LASER,SpawnerEntity=p,ToPlayer=function() end}
 frame=(frame//6+1)*6; hit(close,laser)
 draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="GPT-chan: Fallback  Check 2/3",draws[1])
 frame=frame+5; hit(close,laser)
@@ -184,7 +185,7 @@ assert(not state().verified,"partial progress is lost on exit")
 
 -- Birthright needs only two paid hits; bosses can verify without dying.
 p.birthright=true; boss=enemy(60); tap(p)
-hit(boss,tear(p)); tick(); hit(boss,{Type=EntityType.ENTITY_BOMB,SpawnerEntity=p,FrameCount=0})
+hit(boss,tear(p)); tick(); hit(boss,{Type=EntityType.ENTITY_BOMB,SpawnerEntity=p,FrameCount=0,ToPlayer=function() end})
 assert(state().verified,"Birthright verifies after two paid hits")
 p.birthright=false
 
