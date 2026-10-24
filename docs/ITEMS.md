@@ -10,7 +10,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 
 | Item | Pickup line | Quality | Charge | Effect |
 |---|---|---|---|---|
-| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there |
+| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there; Refused in uncleared boss, Boss Rush and challenge rooms (charge kept) |
 | Another Adapter | Fine-tuned again: cycle range/speed/DMG | 2 | 4 rooms | 4 room charges; Cycles a bonus for this room: +60 range, then +0.15 speed, then +15% damage; Each use replaces the last |
 | Ban Hammer | Ban the room. Mostly the right accounts | 3 | 4 rooms | Bans every non-boss enemy in the room; Bosses take 60 damage; Banned enemies never respawn as new accounts; 20% of bans are misbans of innocent developers: +3 risk each |
 | Banked Reset | Thanks for your patience: risk + limits reset | 2 | 12 rooms | Risk -25; Claude-chan: usage meter reset, ends a usage limit early; Tainted Claude-chan: Quota refilled; a pending review is cancelled without returning its Page |
@@ -49,7 +49,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 
 | Item | Pickup line | Quality | Effect |
 |---|---|---|---|
-| --dangerously-skip-permissions | Locks open themselves. rm -rf risk | 2 | Locked doors and locked chests open by themselves; Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals are safe) |
+| --dangerously-skip-permissions | Locks open themselves. rm -rf risk | 2 | Locked doors and locked chests open by themselves (special exits keep their requirements); Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals, big chests, trophies and beds are safe) |
 | 1M Context | Range up, but context rots in flight | 2 | Range +5; Context rot: tears lose damage as they fly (down to 30%) |
 | 9.9 Yuan Relay | DMG up?! Too good to be true | 2 | x1.5 damage; Each room: 30% chance of a secret model swap (x0.5 damage instead); Risk +15 on pickup |
 | Access Pass | Skip the line: first active use, DMG up | 2 | Your first charged active use on each floor: +15% damage for this combat room (or the next one if the room is clear) |

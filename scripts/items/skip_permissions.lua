@@ -2,9 +2,13 @@
 -- No more permission prompts: entering a room unlocks its locked doors and
 -- opens locked chests for free. But with nobody checking, each room has a
 -- 10% chance of an "rm -rf": every pickup on the floor of that room is deleted
--- (item pedestals are spared).
+-- (item pedestals are spared). Special exits (Mega Satan, Boss Rush, Blue Womb,
+-- secret exits) keep their native requirements, and run-ending chests, the
+-- trophy and beds are never deleted.
 
 local Constants = include("scripts.constants")
+local DoorSafety = include("scripts.door_safety")
+local PickupSafety = include("scripts.pickup_safety")
 
 local SkipPermissions = {}
 
@@ -31,7 +35,7 @@ function SkipPermissions:Init(mod)
         local room = Game():GetRoom()
         for slot = 0, DoorSlot.NUM_DOOR_SLOTS - 1 do
             local door = room:GetDoor(slot)
-            if door and door:IsLocked() then
+            if door and door:IsLocked() and DoorSafety.Ordinary(door) then
                 door:TryUnlock(holder, true)
             end
         end
@@ -39,7 +43,7 @@ function SkipPermissions:Init(mod)
         local rmrf = rng:RandomFloat() < RM_RF_CHANCE
         for _, entity in ipairs(Isaac.GetRoomEntities()) do
             local pickup = entity:ToPickup()
-            if pickup and pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE then
+            if pickup and pickup.Variant ~= PickupVariant.PICKUP_COLLECTIBLE and not PickupSafety.Protected(pickup) then
                 if rmrf then
                     pickup:Remove()
                 elseif pickup.Variant == PickupVariant.PICKUP_LOCKEDCHEST then

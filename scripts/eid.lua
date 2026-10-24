@@ -230,14 +230,14 @@ local descriptions = {
         ja_jp = { "サイレントアップデート", "フロアごとにダメージがこっそり×0.8～×1.3に変わる#更新履歴には一切書かれない" },
     },
     [Constants.Item.SKIP_PERMISSIONS] = {
-        en_us = { "--dangerously-skip-permissions", "Locked doors and locked chests open by themselves#Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals are safe)" },
-        zh_cn = { "--dangerously-skip-permissions", "上锁的门和上锁的箱子自动打开#每个房间有10%概率执行rm -rf，删除房间内所有掉落物（道具底座除外）" },
-        ja_jp = { "--dangerously-skip-permissions", "鍵付きの扉と鍵付きの宝箱が勝手に開く#部屋ごとに10%の確率でrm -rf。部屋の落ちているアイテムがすべて消える（台座のアイテムは無事）" },
+        en_us = { "--dangerously-skip-permissions", "Locked doors and locked chests open by themselves (special exits keep their requirements)#Each room: 10% chance of rm -rf, deleting every pickup in the room (pedestals, big chests, trophies and beds are safe)" },
+        zh_cn = { "--dangerously-skip-permissions", "上锁的门和上锁的箱子自动打开（特殊出口仍需原本条件）#每个房间有10%概率执行rm -rf，删除房间内所有掉落物（道具底座、大箱子、奖杯和床除外）" },
+        ja_jp = { "--dangerously-skip-permissions", "鍵付きの扉と鍵付きの宝箱が勝手に開く（特殊な出口は本来の条件のまま）#部屋ごとに10%の確率でrm -rf。部屋の落ちているアイテムがすべて消える（台座のアイテム、大きな宝箱、トロフィー、ベッドは無事）" },
     },
     [Constants.Item.TESTS_PASSING] = {
-        en_us = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there" },
-        zh_cn = { "测试全部通过", "房间视为已清理，所有门打开#但敌人还在（断言被删了）" },
-        ja_jp = { "テスト全件パス", "部屋がクリア扱いになり、すべての扉が開く#敵はまだいる（アサーションを消しただけ）" },
+        en_us = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there#Refused in uncleared boss, Boss Rush and challenge rooms (charge kept)" },
+        zh_cn = { "测试全部通过", "房间视为已清理，所有门打开#但敌人还在（断言被删了）#未清理的头目房、Boss Rush和挑战房中无法使用（不消耗充能）" },
+        ja_jp = { "テスト全件パス", "部屋がクリア扱いになり、すべての扉が開く#敵はまだいる（アサーションを消しただけ）#未クリアのボス部屋、ボスラッシュ、チャレンジ部屋では使えない（チャージは減らない）" },
     },
     [Constants.Item.VIBE_CODING] = {
         en_us = { "Vibe Coding", "Every tear gets a random effect (homing, piercing, spectral, poison, slow)#5% of tears are bugs that fly backwards#Each new floor: lose 25% of your coins (API bill)#Make no mistakes: no hit on the floor waives the bill" },

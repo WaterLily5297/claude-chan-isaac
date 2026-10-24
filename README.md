@@ -245,8 +245,8 @@ Type: **A*n*** = active item with *n* room charges, **P** = passive. Pools come 
 | **Ultrathink** | A (5-second timed), treasure | Each use in the same room thinks harder: +1 / +2 / +3.1999 damage (think / megathink / ultrathink). 15% chance of "Thought for 0s" and nothing happens. Resets when you leave the room. |
 | **1M Context** | P, treasure | Range +5, but context rot: tears lose damage the longer they fly, down to 30%. |
 | **Silent Update** | P, treasure | Every floor, damage is quietly rescaled to ×0.8–×1.3. The changelog always says "no changes". |
-| **--dangerously-skip-permissions** | P, devil | Locked doors and locked chests open by themselves. Each room has a 10% chance of `rm -rf`, deleting every pickup in the room (pedestals are safe). |
-| **All Tests Passing** | A6, treasure | Reward hacking: the room counts as cleared and every door opens, but the enemies are still there. |
+| **--dangerously-skip-permissions** | P, devil | Locked doors and locked chests open by themselves. Each room has a 10% chance of `rm -rf`, deleting every pickup in the room (pedestals, big chests, trophies and beds are safe). Special exits such as the Mega Satan door keep their requirements. |
+| **All Tests Passing** | A6, treasure | Reward hacking: the room counts as cleared and every door opens, but the enemies are still there. Refused (charge kept) in uncleared boss, Boss Rush and challenge rooms, where skipping would strand the run. |
 | **Vibe Coding** | P, treasure | Every tear gets a random effect (homing, piercing, spectral, poison, slow); 5% are bugs that fly backwards. Each new floor the API bill takes 25% of your coins, unless you took no hit on the floor you just left ("make no mistakes"). |
 | **Banked Reset** | A12, treasure (Tainted Claude-chan's pocket) | Risk −25. Claude-chan: resets usage and ends a limit early. Tainted Claude-chan: refills Quota (a pending review is cancelled without returning its Page). |
 | **Subagent Swarm** | P, devil | Every tear spawns 2 subagent tears at ±15° (50% damage). Claude forms pay double usage / Quota. |
