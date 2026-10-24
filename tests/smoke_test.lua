@@ -509,8 +509,14 @@ do
     end
     assert(hit(DamageFlag.DAMAGE_IV_BAG) == nil, "IV Bag damage must go through")
     assert(RISK_REF.state.constitutionBlockUsed == false, "self-damage must not use the block")
+    assert(hit(DamageFlag.DAMAGE_NO_PENALTIES) == nil, "penalty-free damage must go through")
+    assert(RISK_REF.state.constitutionBlockUsed == false, "penalty-free damage must not use the block")
+    local cooldown
+    player.SetMinDamageCooldown = function(_, frames) cooldown = frames end
     assert(hit(0) == false, "a real hit is still refused")
-    print("  constitution ignores self-damage: ok")
+    assert(cooldown == 60, "a refused hit grants hurt invincibility")
+    player.SetMinDamageCooldown = nil
+    print("  constitution ignores self-damage and grants i-frames: ok")
 
     -- A banned Relay Slime must not split.
     local before = #SPAWNED

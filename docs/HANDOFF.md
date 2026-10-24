@@ -10,6 +10,8 @@ Source-only, offline; one small PR per fix, each with a regression that fails on
 
 - **Fire-rate multipliers scale the whole shot interval.** Agentic, Cat-girl Mode and Rolled Back multiplied the raw `MaxFireDelay`, which slows the player down once Soy Milk, Almond Milk or stacked tears items push the delay below 0. New `scripts/fire_rate.lua` scales `(MaxFireDelay + 1)`, as the Qwen forms already did (they now share the helper). Cat-girl Mode is now an exact x2 fire rate. `tests/fire_rate_test.lua`.
 - **Co-op ghosts cannot use DROP abilities.** A dead co-op player keeps its character type as a ghost, so its form's DROP ability (Releases, Slides, checks, Pounce...) stayed usable. `DropTap` now ignores `IsCoopGhost()` players, which covers every form at once. `tests/drop_tap_test.lua`.
+- **The Constitution's refused hit now grants hurt invincibility (60 frames)**, like Holy Mantle; before, the same contact damage landed on the next frame and the block did nothing. Penalty-free damage (`DAMAGE_NO_PENALTIES`) no longer spends the block, matching Risk and Disgrace Loop. `tests/smoke_test.lua`.
+- **Pizza Glue glazes the native tear color** instead of replacing it, so Ipecac, Spoon Bender and form tints stay readable. `tests/meme_items_test.lua`.
 
 ## Character trait completion (2026-10-24)
 
