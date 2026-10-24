@@ -4,6 +4,7 @@
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
+local Tools = include("scripts.characters.target_tools")
 local Llama = {}
 
 local RELEASE_START, RELEASE_CAP = 1, 2
@@ -91,7 +92,7 @@ function Llama:Init(mod, Risk)
         local recipients = {}
         for i = 0, Game():GetNumPlayers() - 1 do
             local ally = Isaac.GetPlayer(i)
-            if not ally:IsDead() and #recipients < MAX_RECIPIENTS then recipients[#recipients + 1] = ally end
+            if Tools.Active(ally) and #recipients < MAX_RECIPIENTS then recipients[#recipients + 1] = ally end
         end
         local each = #recipients == 1 and SOLO_FLIES or SHARED_FLIES
         for _, ally in ipairs(recipients) do ally:AddBlueFlies(each, ally.Position, nil) end
