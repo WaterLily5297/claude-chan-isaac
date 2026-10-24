@@ -16,6 +16,14 @@
 - Normal Doubao replaces the every-third-clear meal. The first enemy-caused hit in each hostile room grants a six-second Apology token (Birthright: until room exit); a DROP tap slows enemies within 100 units for two seconds and removes the four nearest enemy bullets. No health refund. Saved per player in `Risk.state.doubaoApology`.
 - 24 offline suites pass, including the new Doubao Apology suite. No runtime or Workshop changes; engine validation pending.
 
+## Unreleased tainted GPT Reset Watcher (2026-10-24)
+
+- Register Tainted GPT-chan with the deeper-colour tainted art. Reset Watcher: 80 Credits per run (Birthright 100); DROP toggles Standard and Full Send (1.5x, one Credit per same-frame paid attack); three unique combat clears bank one Tibo reset that the next tap claims to refill Credits. Saved per player across floors and continue. Kept out of the proxy account. English HUD, dossier and EID. Offline only.
+
+## Unreleased tainted roster art (2026-10-24)
+
+- Add deeper-colour tainted gameplay sheets, stage portraits, dossiers and menu cells for the nine newer families, derived deterministically from the normal art (including the new walk cycle) by `tools/make_roster_tainted_art.py`. Hashes are checked by the asset gate. The forms are not registered yet; each tainted mechanic PR registers its own.
+
 ## Unreleased roster review fixes (2026-10-24)
 
 - The nine model roster families leave the proxy IP / risk account. A roster-only or DeepSeek-and-roster run has no IP or risk. In co-op with Claude or a vanilla character, only those covered players raise risk when hit, spoil a clean room or take the suspension damage penalty; DeepSeek no longer takes that penalty in co-op either.

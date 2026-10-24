@@ -68,6 +68,8 @@ Start a new run with 80 Credits, cap 80. DROP toggles Standard (1x damage, free)
 
 Floor changes and continue preserve credits, progress and banked reset. Real time does nothing. Spend an allowance before claiming the reset, or claim early for immediate pressure. Birthright raises the cap/refill to 100. HUD: Credits, Next Reset 0/3, `Tibo: Reset Ready`. No network requests.
 
+Source status (scripts/characters/gpt_reset.lua): implemented and registered with the deeper-colour tainted GPT art. A paid attack is a registered tear volley, a laser init or a Dr. Fetus bomb, one payment per frame; knives and continuous lasers past their first frame are free until a window adapter exists. Engine acceptance pending.
+
 ## Remaining eight families: researched candidates
 
 These roles are concrete proposals. Their source strength varies; do not present all as equally established community memes. All unspecified form multipliers are 1x. Room damage bonuses apply only to their owner. Birthright does not add an unrelated second system.
