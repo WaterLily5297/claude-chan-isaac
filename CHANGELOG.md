@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased bounded hurt-frame observations (2026-10-24)
+
+- Record actual-damage Hit frame 6 engine markers for all 22 forms and Isaac on main `2ec15ef`, Repentance+ v1.9.7.17. Sixteen mod forms plus Isaac have inspected screenshots; six mod forms still need clean visual coverage.
+- Keep the oversized-head report open: complete animations, item costumes, Reactions-disabled cases and fresh menu starts remain unaccepted. No runtime code or artwork changed; test fixtures and private evidence are not shipped.
+- Correct stale handoff statements that engine testing was still unauthorized. Keep PR #50 separate from the main-based animation sweep.
+
 ## Unreleased handoff audit (2026-10-24)
 
 - Normal and tainted Claude now bill usage/Quota for laser starts and Dr. Fetus bombs, sharing the frame's payment with tears; familiars, placed bombs and knives stay free.
