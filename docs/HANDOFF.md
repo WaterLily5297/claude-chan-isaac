@@ -1,10 +1,26 @@
 # Claude handoff: consolidated development checkpoint
 
+## Authorized Risk and backlog integration (2026-10-24)
+
+The owner explicitly authorized merging PR #55 and PR #56 while keeping work offline. This source integration includes both fixes and retains their separate evidence below. The earlier PR #50-54 integration remains a historical checkpoint. No game launch, runtime replacement or Workshop release is authorized by this merge; installed source remains the previously verified `2ec15ef`.
+
+COMPOSE-02 applied the published PR #55 head `dc0fdbf7a932f5cc04bbeae7968512d02d1400af` and PR #56 head `9511dcf2723e1ca41da25ac20c55bedc42f006b2` to main `d91eee7`. All non-Markdown files were identical in either application order. The combined gate passed 50 stub suites, 148 tracked Lua files, five XML files and deterministic asset checks. Four Markdown insertion conflicts are reconciled here without dropping either candidate's evidence. Each original candidate separately passed 49 suites; those counts below retain their original scope. Verify the actual final integration commit and CI before reporting synchronization complete.
+
+A separate retained-module interaction fixture checks Red Stamp and Risk together: the old-run block leaves Risk at 50, restart removes the old stamp, and the next ordinary contact adds Risk to 51. A new stamp use blocks again and preserves the clean-room reduction to 49. Reverting either fix independently fails. Both start flags are modeled with HasData=false; the initial missing HasData stub was a harness error corrected before recording results. This does not load serialized data or prove native health loss, callback order or save/continue.
+
+Engine retests remain pending: native shield dispatch, risk threshold, clean-room awards, temporary effects across fresh starts/continue, co-op, later external damage blockers, native entity lifetime and save order. The transient Risk hit latch remains unsaved. Continue the complete menu/input, animation/costume, native-weapon, save/co-op and base Repentance matrix only when the owner is available. No new content is part of this integration.
+
 Prepared 2026-10-24 (Japan time). Start here. The owner requested an archive, a concrete handoff to Claude, local validation and a GitHub main merge. This is a development checkpoint, not a Workshop release or engine acceptance.
 
 ## Integrated source and next work
 
-### Current offline follow-up: BACKLOG-LIFECYCLE-01
+### Historical candidate record: RISK-01
+
+Based directly on merged main `d91eee7`, the Risk damage observer now ignores fake/no-penalty events, runs after ordinary-priority blockers, and ignores callbacks outside an active run. Start/continue resets its transient room-hit latch. The real-module regression reproduces main's incorrect 50-to-51 risk increase for fake and shield-cancelled damage, and passes with the fix; removing each of the four guards independently fails. The full offline gate passes 49 suites and 147 tracked Lua files. Save schema, ordinary damage/clean-room amounts and Claude/vanilla coverage are unchanged; DeepSeek and all roster families remain outside Risk.
+
+This candidate is not installed or engine-accepted. Native health loss, later-priority third-party cancellation and mid-room save/continue still require engine checks. In particular, the transient room-hit latch is not persisted by this change. See RISK-01 in TESTING.md and the engine audit. The owner's merge instruction covered PRs #50-54; this new focused PR requires separate merge approval. Current work remains offline-only.
+
+### Historical candidate record: BACKLOG-LIFECYCLE-01
 
 This candidate starts directly from main `d91eee7`, independently of the Risk damage fix in PR #55. The shared backlog service emits a cleanup-only `runReset` event at exit and start/continue. Six family modules clear their closure-held transient state: contact stamps, pending heart pickups, paint/peels/preview decoys, exposure history, Kitten areas and Consensus history. Preview cleanup removes only its own entities. It does not clear persistent state or emit `newRoom` rewards. Main failed seven behavioral cases; the candidate passes all 49 offline suites, with 147 tracked Lua files. Six family reverts and independent removal of the start/exit dispatch each fail their regression.
 
@@ -22,7 +38,7 @@ The earlier isolated composition passed 48 stub suites and 146 tracked Lua files
 
 ## Authority and evidence
 
-**Current owner instruction (2026-10-24): offline work only; merge PRs #50-54 now.** This approval covers source integration and local synchronization. Game launch and runtime replacement remain deferred until the owner is available. Historical testing permissions and unmerged-candidate statements below describe their original checkpoints and do not override this instruction.
+**Current owner instruction (2026-10-24): merge PRs #55 and #56 and synchronize locally; remain offline.** PRs #50-54 were already merged under their earlier authorization. Game launch and runtime replacement remain deferred until the owner is available. Historical testing permissions and unmerged-candidate statements below describe their original checkpoints and do not override this instruction.
 
 - The owner explicitly resumed local synchronization, deployment and muted engine testing on 2026-10-24. Back up and verify the actual installation before replacement; close the game afterward. See [the current engine audit](ENGINE_AUDIT_2026-10-24.md) for narrowly scoped results. A source merge does not establish a game-test pass.
 - New code, comments, Markdown and player-facing text must be English. Conversation may be Chinese. Historical translated material remains archival, not a requirement to add new translations.
