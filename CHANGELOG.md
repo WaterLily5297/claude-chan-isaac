@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased normal Claude timer guards (2026-10-24)
+
+- Advance normal Claude's Limited countdown and idle usage drain once per player/gameplay frame; freeze paused/dead updates and clear transient guards on start/exit. Balance values and save format are unchanged.
+- Extend the real-module usage/save regression with duplicate wrappers, co-op isolation, pause/death, exact expiry, revival and lifecycle resets. Correct the old countdown fixture to advance actual frame values. Offline verified; engine timing and animation/costume acceptance remain pending.
+
 ## Unreleased handoff audit (2026-10-24)
 
 - Normal and tainted Claude now bill usage/Quota for laser starts and Dr. Fetus bombs, sharing the frame's payment with tears; familiars, placed bombs and knives stay free.
