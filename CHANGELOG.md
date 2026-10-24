@@ -5,6 +5,11 @@
 - Record actual-damage Hit frame 6 engine markers for all 22 forms and Isaac on main `2ec15ef`, Repentance+ v1.9.7.17. Sixteen mod forms plus Isaac have inspected screenshots; six mod forms still need clean visual coverage.
 - Keep the oversized-head report open: complete animations, item costumes, Reactions-disabled cases and fresh menu starts remain unaccepted. No runtime code or artwork changed; test fixtures and private evidence are not shipped.
 - Correct stale handoff statements that engine testing was still unauthorized. Keep PR #50 separate from the main-based animation sweep.
+## Unreleased targeted ability ownership fix (2026-10-24)
+
+- Exclude familiar contact entities from player-only target attribution. A familiar kill could incorrectly restore normal GPT's Verified status through its player spawner/parent. Native weapon ownership is preserved.
+- Add a shared attribution regression and a real GPT callback case; both fail before the fix. Full offline gate: 144 Lua files, five XML files, 46 suites. Two controlled Repentance+ engine cases passed on candidate `aae85fd`: blue-fly contact kill stays Fallback; own native-tear kill restores Verified. Physical DROP input and broader familiar/weapon coverage remain pending.
+- Record the fresh-start menu-input blocker and correct stale testing-authorization statements. No new fresh-start acceptance or Workshop release.
 
 ## Unreleased handoff audit (2026-10-24)
 

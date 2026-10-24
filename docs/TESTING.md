@@ -1,5 +1,15 @@
 # In-game test checklist
 
+## Targeted ability familiar attribution (offline passed; two controlled engine cases passed)
+
+On PR #50 candidate `aae85fd`, Repentance+ v1.9.7.17 passed a normal GPT blue-fly contact-kill negative control and an own native-tear kill positive control. The HUD showed an active Sanity Check before the familiar kill; real damage callbacks reported familiar source type 3 and tear source type 2. Fallback stayed at 2.800 after the familiar kill, then Verified returned at 4.025 after the native tear. The fixture used frozen spawned enemies, scripted placement/room clears and temporary synthetic DROP input. Physical keyboard/controller input, other familiar types and the wider matrix below remain pending. Details and unsuccessful fixture attempts are in [the engine audit](ENGINE_AUDIT_2026-10-24.md#controlled-gpt-engine-follow-up-pr-50).
+
+In normal GPT Fallback, tag an enemy with Sanity Check. Let a contact familiar (for example a blue fly or an orbital) deliver every hit and the kill: GPT must stay in Fallback. Repeat with familiar projectiles and another player's attacks, then verify that GPT's own tears, bombs, lasers and knives can still advance or complete the check. Include parent-linked and spawner-linked native attacks.
+
+For normal Gemini, Grok and Kimi, verify that their owner-only target damage bonuses do not multiply contact familiar damage. Test their documented player attacks as positive controls. Also check tainted Gemini/Grok attack counting. The shared helper now excludes the familiar entity itself, in addition to attacks spawned by familiars. `target_owner_test.lua` and the real GPT callback regression fail on the old helper and pass on the fix; they do not establish engine source attribution or kill timing.
+
+Fresh menu starts remain pending: the latest 2ec15ef Repentance+ attempt reached File 1's main menu, but automated directional input did not select New Run. No case was passed from that attempt. The game was closed and its prior audio restored.
+
 ## Native Thought adapters (source candidate; no engine acceptance)
 
 Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and weapon-specific engine matrix. The owner resumed muted engine testing on 2026-10-24; see [the engine audit](ENGINE_AUDIT_2026-10-24.md) for actual coverage. Ordinary tears, single-hit/released-ring lasers, repeated-hit beams, flying knives and Dr. Fetus now have source paths; Ludovico and repeated-hit beams use six-update windows. The earlier Rice checklist below describes the initial tear-only candidate. Epic Fetus, melee, delayed bursts and Incubus/Twisted Pair now have source adapters; their combat behavior still needs engine acceptance.
@@ -92,7 +102,7 @@ New run: HUD reads `Gemini-chan: Paint 2/3`. Tap/release DROP near an enemy (abo
 
 ## Rice First (source candidate; engine acceptance pending)
 
-Current owner constraint: source work and offline validation only. Keep this engine checklist pending until the owner resumes game testing.
+Muted engine testing is authorized. Keep this checklist pending until its individual cases are actually exercised; source and offline results are not engine acceptance.
 
 As normal DeepSeek, verify one starting bowl, a two-bowl cap and one bowl per two newly cleared hostile rooms. Re-enter and repopulate a completed room: no extra reward. Test bosses, challenge waves, alternate floors, mirror rooms, two-player co-op and dead/revived players. Wait in an empty room: Thought can fill, but neither bowls nor pocket charge should increase.
 

@@ -10,6 +10,9 @@ function Tools.Owner(entity)
     if not entity then return end
     local direct = entity:ToPlayer()
     if direct then return direct end
+    -- Contact familiars can have a player spawner/parent just like native
+    -- weapons. Their ownership is not credit for the player's own attack.
+    if EntityType.ENTITY_FAMILIAR and entity.Type == EntityType.ENTITY_FAMILIAR then return end
     local spawner = entity.SpawnerEntity or entity.Parent
     return spawner and spawner:ToPlayer()
 end
