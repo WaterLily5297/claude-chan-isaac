@@ -132,6 +132,8 @@ Source status (scripts/characters/kimi_slides.lua): normal form implemented and 
 
 **Normal:** Each unique clear advances Queue, max three. At three, DROP redeems an Access Pass: +20% damage for the next two new hostile rooms. Queue pauses while the pass is active. It cannot stack or expire through cleared-room revisits. Birthright: three rooms. HUD: Queue or remaining Access rooms. No real purchases or real-time waiting.
 
+Source status (scripts/characters/glm_queue.lua): normal form implemented and replaces tool links and the pocket Book of Secrets. A new hostile room is the first combat in a room not yet entered in combat this floor; a pass redeemed mid-fight starts with the next one. Clears are paused while pass rooms remain or the current room is boosted. Engine acceptance pending.
+
 **Tainted:** Base damage 0.9x. DROP selects a hostile within 200 units and schedules a two-second request. If it survives in the room, deal 2x damage and consume all Retry stacks, adding 1x per stack (cap three; max 5x total). Early target death instead gives one Retry. One pending request; three-second cooldown from selection. Exit cancels without earning a stack. Birthright: a failed request also removes one nearby ordinary hostile bullet. HUD: Retries, Request Pending. Retries are bounded and deterministic, not a random missing-shot mechanic.
 
 ## Implementation order and evidence

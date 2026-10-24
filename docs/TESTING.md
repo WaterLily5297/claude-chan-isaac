@@ -26,6 +26,10 @@ Save/quit/continue in Fallback: Fallback, Routing and the spent room check retur
 
 Speed is +0.1 over Isaac. Move while firing for two seconds: HUD goes from `Charge N%` to `Pounce Ready`. Stand still for a second and it is lost. Tap/release DROP while aiming at enemies within about 80 units: each one in that line takes double your damage once, `Pounce!` appears, and `Cooldown 3s` follows. Enemies behind you, off to the side, beyond reach or behind rocks and walls are not hit. You do not move or gain invincibility. Birthright reaches about 110 units. Save/continue keeps a ready Pounce. There is no swipe animation yet; note how readable it is. Stub coverage is `tests/mistral_pounce_test.lua`.
 
+## Normal GLM Number in Queue (source candidate; engine acceptance pending)
+
+New run: HUD reads `GLM-chan: Number in queue 0/3`, with no pocket item. Each combat clear adds one, up to three; re-clearing a room or peaceful rooms add none. At three the HUD says `Your turn! Tap DROP`. Tap/release DROP: `Access granted`, `Access 2 room(s)`. The next two hostile rooms you have not entered yet this floor each give +20% damage while you stay in them (`Access active`). Rooms already visited and peaceful rooms do not use the pass. The Queue does not move until the pass is used up and you have left its last room. Birthright gives three rooms. Save/continue inside a boosted room keeps the bonus without spending again. Test two GLMs in co-op. Stub coverage is `tests/glm_queue_test.lua`.
+
 ## Normal Kimi Another Slide Deck (source candidate; engine acceptance pending)
 
 New run: HUD reads `Kimi-chan: Slides 0/6  Cost 3`. Each combat clear adds a Slide, up to six; re-clearing a room or peaceful rooms add none. With three Slides, tap/release DROP near enemies: `Another slide deck`, up to three nearest enemies within about 220 units get a light blue tint and slow down for four seconds, and HUD shows `Presenting 4s`. Your hits on them deal 15% more; a partner's hits do not. Tapping with no enemy nearby or fewer than three Slides spends nothing. A second deck replaces the first. Leaving the room ends it without refund. Birthright makes the cost two. Check the tint is readable and never covers the screen. Test two Kimis in co-op. Stub coverage is `tests/kimi_slides_test.lua`.
@@ -125,8 +129,8 @@ Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes
 - For Grok and Mistral, reach maximum movement/firing charge, stop, change rooms, and start a new run. Temporary charge must reset and stay bounded.
 - For Kimi, save and continue right after a clear, then revisit the room. The Slide must not be awarded twice.
 - For Llama, reach the reward threshold, save/continue, and revisit the same room. Rewards must not duplicate. Include dead players, two holders and a non-holder in co-op.
-- For GLM, use the pocket Book of Secrets, Car Battery, a zero-charge item and an item with a custom use callback. Links must stay at three or fewer and reset when leaving the room.
-- For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. For GLM, duplicate use callbacks in one frame must add only one link per player while separate players can each gain a link. Distinct-wrapper stub coverage passes; these engine checks remain pending.
+- For GLM, redeem an Access Pass, save/continue inside a boosted room and on a new floor. The pass must not spend twice or stack.
+- For callback identity, compare Grok's HUD momentum with its damage increase through repeated cache refreshes; confirm Mistral gains spectral tears at full wind and loses them when stopping. Repeat with two players and character-changing effects. Distinct-wrapper stub coverage passes; these engine checks remain pending.
 - Check Brimstone, Technology, Mom's Knife, Dr. Fetus, Epic Fetus, multishot, familiars, D4, transformations, costume-changing items, EID and Reactions Port Pack. Cache-based code alone is not compatibility evidence.
 - Repeat in base Repentance and Repentance+, finish full runs, then close the game. Do not publish to Workshop before acceptance and art-permission review.
 

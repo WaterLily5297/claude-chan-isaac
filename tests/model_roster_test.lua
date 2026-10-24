@@ -74,6 +74,7 @@ local function start(...)
     players={...}; room=101; floor=200; frame=0; trigger=false
     pressed={}; paused=false; hudVisible=true
     fire('MC_POST_GAME_STARTED',false)
+    for _,x in ipairs(players) do x:EvaluateItems() end
 end
 local function clear()
     room=room+1; fire('MC_POST_NEW_ROOM'); fire('MC_PRE_SPAWN_CLEAN_AWARD')
@@ -94,8 +95,8 @@ local function tap(p)
     near(p.Damage,before) -- Pressing to begin a hold must not change mode.
     input(p,false)
 end
--- Eight families keep their mechanics in their own modules; the roster only tints them.
-for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-chan','Mistral-chan','Doubao-chan','Kimi-chan'}) do
+-- Every family keeps its mechanics in its own module; the roster only tints them.
+for _,name in ipairs(names) do
     local x=player(name); start(x)
     near(x.Damage,10); near(x.MaxFireDelay,9); assert(x.TearFlags==0)
     x.speed=1; for _=1,180 do fire('MC_POST_PEFFECT_UPDATE',x) end
@@ -103,11 +104,12 @@ for _,name in ipairs({'GPT-chan','Gemini-chan','Grok-chan','Qwen-chan','Llama-ch
     rendered={}; fire('MC_POST_RENDER'); assert(#rendered==0,name..' draws its own HUD line')
 end
 
-local p, other
--- External families ignore hits and clears in the roster; no stray state either.
+local p
+-- The roster ignores hits, clears and active items; it keeps no state.
 p=player('Kimi-chan'); start(p)
-for _=1,3 do clear() end; hit(p); near(p.Damage,10); assert(p.TearRange==100)
-local stray=player('Kimi-chan'); fire('MC_ENTITY_TAKE_DMG',stray,1,0)
+for _=1,3 do clear() end; hit(p); fire('MC_USE_ITEM',1,nil,p,0); near(p.Damage,10); assert(p.TearRange==100)
+p=player('GLM-chan'); start(p); assert(p.pocket==0,'GLM starts without a forced pocket item')
+assert(risk.state.modelRoster==nil)
 
 -- Tears are tinted, so an item's own color and offsets survive.
 p=player('GPT-chan'); start(p)
@@ -116,29 +118,11 @@ p.itemColor=Color(0.5,0.5,1,0.8,0.2,0,0.3); p:EvaluateItems()
 near(p.TearColor.R,0.2); near(p.TearColor.G,0.5); near(p.TearColor.B,0.75)
 near(p.TearColor.A,0.8); near(p.TearColor.RO,0.2); near(p.TearColor.BO,0.3)
 
-p=player('GLM-chan'); start(p); assert(p.pocket==777)
-for i=1,4 do frame=i; fire('MC_USE_ITEM',1,nil,p,0) end
-near(p.Damage,13.6)
-clear(); near(p.Damage,10)
-frame=5; fire('MC_USE_ITEM',1,nil,p,32); near(p.Damage,10)
-fire('MC_USE_ITEM',1,nil,p,0); fire('MC_USE_ITEM',1,nil,p,0); near(p.Damage,11.2)
-p.pocket=123; fire('MC_PRE_GAME_EXIT'); fire('MC_POST_GAME_STARTED',true)
-assert(p.pocket==123); near(p.Damage,11.2)
-
 -- New IDs must not activate mechanics for either DeepSeek form or vanilla players.
 p=player('DeepSeek-chan'); start(p)
-assert(R:Find(p)==nil and next(risk.state.modelRoster)==nil)
+assert(R:Find(p)==nil)
 p.kind=142; assert(R:Find(p)==nil)
 p.kind=0; assert(R:Find(p)==nil)
 
--- Each callback uses a new wrapper; the same-frame guard must still see one player.
-p=player('GLM-chan'); other=player('GLM-chan'); start(p,other); frame=7
-fire('MC_USE_ITEM',1,nil,wrap(p),0)
-fire('MC_USE_ITEM',1,nil,wrap(p),0)
-fire('MC_USE_ITEM',1,nil,wrap(p),UseFlag.USE_CARBATTERY)
-near(p.Damage,11.2); near(other.Damage,10)
-fire('MC_USE_ITEM',1,nil,wrap(other),0); near(other.Damage,11.2)
-frame=8; fire('MC_USE_ITEM',1,nil,wrap(p),0); near(p.Damage,12.4)
-
-assert(not callbacks.MC_INPUT_ACTION, 'roster must not override native DROP input')
-print('OK: GLM roster mechanics, external tint for the other eight, co-op isolation and duplicate effects')
+for id in pairs(callbacks) do assert(id=='MC_EVALUATE_CACHE', 'roster registers only the tint: '..id) end
+print('OK: roster identities, tint-only callbacks for all nine families and protected existing characters')

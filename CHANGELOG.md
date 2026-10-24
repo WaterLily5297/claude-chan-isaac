@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased normal GLM Number in Queue (2026-10-24)
+
+- Normal GLM replaces active-item tool links and the forced pocket Book of Secrets. Each unique combat clear advances the Queue (max three); at three, a DROP tap redeems an Access Pass giving +20% damage in each of the next two new hostile rooms (Birthright three). The Queue pauses while the pass is active; revisits never spend or stack it. Saved per player in `Risk.state.glmQueue`.
+- The roster module now keeps only identities, dossier lines and the tear tint.
+- 26 offline suites pass, including the new GLM Queue suite. No runtime or Workshop changes; engine validation pending.
+
 ## Unreleased normal Kimi Another Slide Deck (2026-10-24)
 
 - Normal Kimi replaces flawless-clear pages. Each unique combat clear earns a Slide (cap six); a DROP tap spends three (Birthright two) to present to the three nearest enemies within 220 units, slowing them for four seconds and adding +15% to the owner's damage against them. No audience, no spend. Saved per player in `Risk.state.kimiSlides`.
