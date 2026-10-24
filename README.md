@@ -2,7 +2,7 @@
 
 A parody mod for **The Binding of Isaac: Repentance / Repentance+**.
 
-**Expansion in development:** [22-form community-meme gameplay](docs/CHARACTER_GAMEPLAY.md) and [50 additional collectible designs](docs/EXPANSION_DESIGN.md). Summary Stapler is the first locally implemented item: a four-charge active that compresses nearby ordinary hostile bullets into one slow native tear. It keeps normal tear effects, character limits and forks; empty use preserves charge and Car Battery does not repeat it. Thirteen forms and eighteen collectibles are currently registered. The remaining expansion designs are not implemented, and current engine acceptance remains pending.
+**Expansion in development:** [22-form community-meme gameplay](docs/CHARACTER_GAMEPLAY.md) and [50 additional collectibles](docs/EXPANSION_DESIGN.md). All fifty are implemented in source with offline tests, alongside sixteen meme extras; they use native weapons, tear effects and stats, empty targeted uses keep their charge and Car Battery never repeats them. Thirteen forms and 75 collectibles are currently registered. The character loop redesigns are still in progress, and engine acceptance remains pending.
 
 **Experimental roster candidate:** eleven model families, eleven ZipZipPipe-based normal portraits, two darker tainted portraits, nine additional playable normal characters and in-game dossiers. Hold MAP in a cleared room to view the current character's portrait and instructions. See [the roster and mechanics](docs/MODEL_ROSTER.md), [pending engine checks](docs/TESTING.md), and [art terms](resources/ART_LICENSE.md). All thirteen gameplay skins now follow the selected portrait identities; animation polish and engine acceptance remain pending; this is not a Workshop release.
 

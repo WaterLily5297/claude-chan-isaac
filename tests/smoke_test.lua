@@ -141,7 +141,7 @@ local hudVisible = true
 function Game()
     return {
         GetNumPlayers = function() return 1 end,
-        GetLevel = function() return { GetStage = function() return stage end } end,
+        GetLevel = function() return { GetStage = function() return stage end, GetCurrentRoomDesc = function() return { SafeGridIndex = 84 } end } end,
         GetSeeds = function() return { GetStartSeed = function() return 123456 end } end,
         GetHUD = function() return {
             IsVisible = function() return hudVisible end,
