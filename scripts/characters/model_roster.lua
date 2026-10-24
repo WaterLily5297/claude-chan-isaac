@@ -150,7 +150,10 @@ function Roster:Init(mod, Risk)
             if key=="gemini" then p.TearFlags=p.TearFlags | (s.mode==0 and TearFlags.TEAR_PIERCING or TearFlags.TEAR_HOMING)
             elseif key=="mistral" and t.wind>=60 then p.TearFlags=p.TearFlags | TearFlags.TEAR_SPECTRAL end
         elseif flag==CacheFlag.CACHE_TEARCOLOR then
-            p.TearColor=Color(def.color[1],def.color[2],def.color[3],1,0,0,0)
+            -- Tint rather than replace, so item colors (Ipecac, Spoon Bender) stay readable.
+            local c, k = p.TearColor, def.color
+            if c then p.TearColor=Color(c.R*k[1],c.G*k[2],c.B*k[3],c.A,c.RO,c.GO,c.BO)
+            else p.TearColor=Color(k[1],k[2],k[3],1,0,0,0) end
         end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_,p)
@@ -182,8 +185,11 @@ function Roster:Init(mod, Risk)
         local p=entity:ToPlayer()
         local def=p and self:Find(p)
         if not def then return end
-        if (flags & DamageFlag.DAMAGE_FAKE)~=0 then return end
+        -- Fake hits and deliberate self-damage (Blood Donation, IV Bag, sacrifice
+        -- rooms) are not mistakes, matching vanilla no-hit bookkeeping.
+        if (flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES))~=0 then return end
         local s=state(p,def)
+        if not s then return end
         s.hit=true; s.chain=0; s.pages=math.max(0,s.pages-2)
         refresh(p)
     end,EntityType.ENTITY_PLAYER)

@@ -83,6 +83,7 @@ Also test Tiny Planet, Anti-Gravity, Eye of the Occult and Ludovico separately: 
 Offline coverage is described in `MODEL_ROSTER.md`; it does not tick these boxes.
 
 - Select all eleven normal families and both existing tainted characters. Check the correct name, bust, stage portrait and full MAP dossier. No missing textures or duplicate menu entries.
+- Roster-only and DeepSeek-plus-roster runs show no IP/risk HUD. With Claude in co-op, a roster player's hit adds no risk and suspension lowers only Claude's damage. Blood Donation, IV Bag and a sacrifice room keep Qwen's chain and Kimi's pages; a real hit still breaks them. Roster tears keep Ipecac/Spoon Bender colors under the family tint.
 - Inspect every new skin facing front, right, rear and left, while walking, firing, holding an item, flying, hurt and dead. Check for clipping, stray neighboring pixels, incorrect back views and doubled heads. Alternate arm poses remain provisional.
 - For GPT and Gemini, tap DROP through both modes, then save/quit/close/restart/continue. The mode must persist. Check the original DROP behavior with held trinkets and controller input.
 - For Grok and Mistral, reach maximum movement/firing charge, stop, change rooms, and start a new run. Temporary charge must reset and stay bounded.

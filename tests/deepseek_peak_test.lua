@@ -5,6 +5,7 @@ local callbacks, players, saved, draws, spawned = {}, {}, nil, {}, {}
 local C={Player={DEEPSEEK_CHAN=42,DEEPSEEK_CHAN_B=142}}
 function include(name)
     if name=="scripts.constants" then return C end
+    if name=="scripts.characters.model_roster" then return {Find=function() end} end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
     return dofile(root.."/"..name:gsub("%.","/")..".lua")
 end
