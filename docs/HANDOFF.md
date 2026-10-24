@@ -24,6 +24,10 @@ Never infer that an installed commit equals local HEAD. The local delivery inclu
 
 ## Current compatibility follow-up
 
+Normal Claude's timer candidate now advances Limited and idle usage drain at most once per player and gameplay frame, freezes both for paused/dead players, and clears its transient frame guards on start/exit. Rewrapped Lua objects share a pointer/seed guard; each co-op player remains independent. The saved usage table and balance constants are unchanged. This is source/offline verification only: the old module fails the new duplicate-callback regression, and removing any of the frame, pause, death or lifecycle guards fails a corresponding assertion. See TIMER-01 in the engine audit for remaining game tests. The installed runtime remains main `2ec15ef`, not this candidate.
+
+ANIM-02 reached the title screen only before repeated focus/input interruptions; no additional form, hurt frame or costume case passed. The game was closed and its fresh audio snapshot restored. Prior bounded hurt-frame observations are recorded separately in PR #51; the familiar-attribution candidate is PR #50. All follow-ups target main directly and require specific owner approval before merging. Do not infer that an unmerged candidate is installed.
+
 Normal Claude and both DeepSeek forms now compose identity and Limited tints with native tear colors instead of replacing them. The regression covers native RGB, alpha, additive offsets, item-removal cache resets and resolved Swarm inheritance. This does not fix the outstanding weapon billing, damage or costume geometry cases. Continue with the priorities in [ENGINE_AUDIT_2026-10-24.md](ENGINE_AUDIT_2026-10-24.md).
 
 ## Status at a glance (audited against main, 2026-10-24)
