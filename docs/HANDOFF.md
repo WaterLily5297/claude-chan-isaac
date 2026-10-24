@@ -1,5 +1,9 @@
 # Claude handoff: consolidated development checkpoint
 
+## README-VOICE-02: simpler author introduction (2026-10-25)
+
+This supersedes README-VOICE-01's tone. The owner found the previous rewrite too artificial. The three READMEs now use a short account of the mod's inspiration and actual mechanics, without the slogan, per-family taglines or extra jokes above reference sections. The item examples are plain descriptions of All Tests Passing and Silent Update. Counts, mechanical rules, tables, localization coverage and compatibility records remain; the existing fan-work notice moves alongside the credits. English, Simplified Chinese and Japanese cover the same points. This is documentation only and does not replace the owner's installed manual-test build or add engine evidence.
+
 ## README-VOICE-01: multilingual player introduction (2026-10-24)
 
 Documentation-only follow-up from main `8914cb9`. The English, Simplified Chinese and Japanese READMEs now share a player-facing opening, the same three item jokes and a short introduction to every model family. The humour refers to existing mechanics; item tables, numeric rules, controls, localization coverage, credits and licensing remain intact. The seven dated compatibility notes move from the opening to a developer disclosure after the test instructions, with matching Chinese and Japanese translations. The project-layout guide is now present in all three languages.
