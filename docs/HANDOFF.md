@@ -6,9 +6,9 @@ This section is the current summary for the next agent (GPT/Codex or Claude). It
 
 ### Progress at a glance
 
-- **Source baseline:** main `8c1ca78` includes PR #82 (OPUS-DERIVED-01), #81 (CONSENSUS-FAMILIAR-01), #80 (CHARGED-USE-01), #79 (CONSTITUTION-COOP-01), #78 (PAID-OBSERVERS-01) and #76's Ludovico context-rot exemption. DOCS-COMPAT-01 below reconciles current contributor and acceptance guidance without changing gameplay. The source gate covers 173 tracked Lua files, 5 XML files, deterministic asset checks and 63 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
+- **Source baseline:** main `28fed37` includes PR #83 (DOCS-COMPAT-01), #82 (OPUS-DERIVED-01), #81 (CONSENSUS-FAMILIAR-01), #80 (CHARGED-USE-01), #79 (CONSTITUTION-COOP-01), #78 (PAID-OBSERVERS-01) and #76's Ludovico context-rot exemption. LLAMA-HELPER-01 below is the next focused source correction; verify its live PR/merge state. The updated source gate covers 174 tracked Lua files, 5 XML files, deterministic asset checks and 64 stub suites. CI runs the same gate with Lua 5.4 (a fresh Linux container needs `apt-get install lua5.4`).
 - **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
-- **Installed runtime:** the owner's manual-test checkpoint was verified at `3482ea1` (428 tracked files), with a verified backup before replacement. OPUS-DERIVED-01 is source-only and is not part of that installed checkpoint. Consult the separate machine deployment record and compare installed hashes; never treat installation as engine acceptance.
+- **Installed runtime:** after the owner's renewed merge/install request, the manual-test checkpoint was verified at `28fed37` (429 tracked files), with a fresh verified backup before replacement. It includes PR #82 but not LLAMA-HELPER-01. The game was not launched or controlled during installation. Preserve this checkpoint while the owner tests; consult the separate deployment record and compare installed hashes. Installation is not engine acceptance.
 
 ### Implemented features (source)
 
@@ -43,7 +43,7 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 
 ### Known issues
 
-- **Opus helper billing:** OPUS-DERIVED-01 corrects backlog helper billing in source, with native timing still pending. Tainted Llama's separate direct FireTear helper still charges Opus, consumes primes and advances paid-attack item effects in a real-module offline probe. This conflicts with the global helper-exemption rule and requires a separate focused correction; it is not covered by the backlog fix. Summary Stapler deliberately retains its documented normal-shot billing.
+- **Opus helper billing:** OPUS-DERIVED-01 corrects backlog helper billing and is installed, with native timing still pending. LLAMA-HELPER-01 separately routes tainted Llama's helper through the same scoped service, correcting its Opus charge, prime consumption and backlog paid-attack item triggers in source. That follow-up is not installed. Summary Stapler deliberately retains its documented normal-shot billing.
 - **Child-laser initialization:** a real-module offline probe shows normal Claude Usage, tainted Claude Quota and tainted GPT Credits charge a player-spawned child beam on a later frame even when its Parent is a laser; Opus correctly skips it. Same-frame deduplication masks this shape on the initial frame. Add consistent parent-beam exclusion in a separate fix, and verify native ancestry/timing in the engine.
 - **Familiar acceptance:** CONSENSUS-FAMILIAR-01 corrects familiar projectile classification in source. Native Incubus, Twisted Pair, familiar beam/knife ancestry and cross-mod attribution still require engine verification.
 - **Documentation reconciliation:** DOCS-COMPAT-01 aligns CONTRIBUTING.md, NATIVE_THOUGHT.md and COSTUME_COMPATIBILITY.md with the implemented item count, fixed-look service and native attack accounting. It preserves historical evidence and does not validate native behavior.
@@ -63,6 +63,12 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 - **English** for in-game text, code, comments and Markdown; reply to the owner in their language (usually Japanese or Chinese).
 - **One small PR per change, based on main, no stacks.** Stacked PRs once got merged into intermediate branches and stranded work. Check the base is main before asking for a merge. The owner allows the agent to merge its own PR when the base is main, check.sh/CI pass, there is no blocking bug, the change is vanilla-compatible and it does not decide an open design question.
 - Update this section, the dated log below and the matching TESTING.md case in the same PR as each material change.
+
+## LLAMA-HELPER-01: stationary helper accounting (2026-10-24)
+
+Source follow-up from main `28fed37`. Tainted Llama previously called FireTear directly and added its helper tag only after shot callbacks. It therefore spent Opus coins, consumed attack primes, scheduled One More Finger and advanced Sanity Test as though the player had fired. The existing helper-exemption contract requires those events to stay free. Main now passes the initialized backlog service to Hype, which uses its scoped FireDerived path while retaining the helper tag. The native tear arguments, owner, fixed position, nearest-enemy direction, 0.5x damage multiplier, cadence, duration, Birthright and saved Hype remain unchanged.
+
+The regression drives real Opus, backlog items and Hype callbacks in main's registration order. All seven groups fail on the immutable baseline and pass with the correction; three focused mutants fail for a changed origin, changed multiplier or lost derived marker. Cases separate helper accounting from the next normal shot and another owner's attack, and cover native call arguments, modeled damage inputs, nil recovery and later Ludovico windows. The existing Hype lifecycle suite also passes. These are offline callback fixtures, not native weapon, rendering or save/continue acceptance; TESTING.md LLAMA-HELPER-01 lists the engine cases. No new item, art, save schema or installed file changes. The owner's installed `28fed37` checkpoint remains stable for manual testing.
 
 ## DOCS-COMPAT-01: current compatibility guidance (2026-10-24)
 
