@@ -1,5 +1,11 @@
 # In-game test checklist
 
+## DERIVED-01: helper resource billing (offline candidate)
+
+The owner currently requests offline work only. The game remains closed and this candidate is not installed. `tests/derived_billing_test.lua` loads the real backlog, One More Finger, Please Retry, normal/tainted Claude and normal/tainted DeepSeek together. Synchronous FireTear dispatch is modeled; this is not an engine observation. On main, one helper per form changes usage/Quota/Thought/Compute from `0/220/150/12` to `4/219/0/10`. The candidate preserves those resources, keeps primes available and bills the next primary shot. Actual three-retry and fifth-shot helper schedules are covered. An active Limited penalty still weakens helper tears; a helper cannot start a new Limited interval.
+
+Pending engine retest after availability and a fresh verified backup: use both items on each of these four forms, compare helper and primary-shot resource deltas, inspect the native helper damage and flags, repeat with Swarm and 1M Context, test empty Thought/Quota/Compute and active Limited, then room exit and save/continue. Confirm no helper-induced fork/resource chain or new Lua error. Other target-ability hit attribution, Llama's helper and other Lua-fired attacks are outside this regression's acceptance scope.
+
 ## Native Thought adapters (source candidate; no engine acceptance)
 
 Follow [NATIVE_THOUGHT.md](NATIVE_THOUGHT.md) for the current adapter table and weapon-specific engine matrix. The owner resumed muted engine testing on 2026-10-24; see [the engine audit](ENGINE_AUDIT_2026-10-24.md) for actual coverage. Ordinary tears, single-hit/released-ring lasers, repeated-hit beams, flying knives and Dr. Fetus now have source paths; Ludovico and repeated-hit beams use six-update windows. The earlier Rice checklist below describes the initial tear-only candidate. Epic Fetus, melee, delayed bursts and Incubus/Twisted Pair now have source adapters; their combat behavior still needs engine acceptance.

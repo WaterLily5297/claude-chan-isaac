@@ -24,6 +24,12 @@ Never infer that an installed commit equals local HEAD. The local delivery inclu
 
 ## Current compatibility follow-up
 
+**Latest owner constraint: offline work only.** Do not resume game testing or runtime replacement until the owner is available. The installed source remains main `2ec15ef`; the following source candidate has not been deployed.
+
+DERIVED-01 fixes extra resource billing from One More Finger and Please Retry. Their native `FireTear` calls dispatch callbacks before returning; the backlog now marks those tears as derived before the character callbacks. Normal Claude skips new usage billing while retaining an already active Limited damage penalty. Existing guards in tainted Claude and both DeepSeek forms now receive the marker in time. The new regression loads the actual backlog, item schedules and all four character modules together; it also checks that following primary shots still pay. This is offline evidence, not engine acceptance. Native helper spawning, Swarm/item interactions, damage and callback order still need the focused game test in TESTING.md.
+
+This branch starts directly from main and does not include the separate open candidates [#50](https://github.com/WaterLily5297/claude-chan-isaac/pull/50), [#51](https://github.com/WaterLily5297/claude-chan-isaac/pull/51) or [#52](https://github.com/WaterLily5297/claude-chan-isaac/pull/52). They respectively cover familiar attribution, bounded hurt-frame observations and Claude timer guards. Each needs its own merge approval. The hurt-head report remains open.
+
 Normal Claude and both DeepSeek forms now compose identity and Limited tints with native tear colors instead of replacing them. The regression covers native RGB, alpha, additive offsets, item-removal cache resets and resolved Swarm inheritance. This does not fix the outstanding weapon billing, damage or costume geometry cases. Continue with the priorities in [ENGINE_AUDIT_2026-10-24.md](ENGINE_AUDIT_2026-10-24.md).
 
 ## Status at a glance (audited against main, 2026-10-24)
