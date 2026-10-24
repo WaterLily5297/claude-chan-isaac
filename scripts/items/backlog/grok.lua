@@ -37,8 +37,9 @@ function Grok:Init(mod, Risk, C)
             local c = C.Data(p).room.challenge
             if c and c.hash == GetPtrHash(npc) and c.expires >= C.Now() then
                 C.Data(p).room.challenge = nil
+                -- A use outside a slot (Void, wisps, -1) refunds nothing.
                 local slot = c.slot or ActiveSlot.SLOT_PRIMARY
-                if p:GetActiveItem(slot) == Item.IS_THIS_TRUE then
+                if slot >= 0 and p:GetActiveItem(slot) == Item.IS_THIS_TRUE then
                     p:SetActiveCharge(math.min(3, p:GetActiveCharge(slot) + 1), slot)
                 end
                 C.Caption("Is this true?", "Confirmed. +1 charge")
