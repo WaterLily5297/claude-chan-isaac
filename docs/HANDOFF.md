@@ -1,5 +1,11 @@
 # Claude handoff: consolidated development checkpoint
 
+## README-VOICE-01: multilingual player introduction (2026-10-24)
+
+Documentation-only follow-up from main `8914cb9`. The English, Simplified Chinese and Japanese READMEs now share a player-facing opening, the same three item jokes and a short introduction to every model family. The humour refers to existing mechanics; item tables, numeric rules, controls, localization coverage, credits and licensing remain intact. The seven dated compatibility notes move from the opening to a developer disclosure after the test instructions, with matching Chinese and Japanese translations. The project-layout guide is now present in all three languages.
+
+The counts remain 11 families, 22 forms, 79 collectibles, 12 trinkets and four pills. No Lua, XML, assets, save data or installed files change. The owner's installed manual-test checkpoint is preserved; this prose change adds no engine acceptance. Required validation is the existing check.sh gate plus review of Markdown links, unchanged mechanic tables and matching multilingual section coverage.
+
 ## Start here: current handoff for GPT/Codex (updated 2026-10-24)
 
 This section is the current summary for the next agent (GPT/Codex or Claude). It supersedes older status lines further down; the dated sections below it are the change log and evidence records, and their file or suite counts describe their own checkpoint. Verify every fact here against the live repository before acting on it. For a long autonomous engine-testing session, also read the prompt prepared for GPT on 2026-10-24 (kept in the owner's project files as `prompts/gpt-long-task-architecture-2026-10-24.md`, written against `2ec15ef`; this section updates its "current state", "known risks" and "pending decisions" parts).

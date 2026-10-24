@@ -1,30 +1,26 @@
 # Claude-chan: Risk Control
 
-**Compatibility note (2026-10-24):** Normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credits no longer charge a laser whose direct `Parent` is another laser, matching Opus and the shared observer. Primary starts and later eligible primary windows keep their existing costs. This source-only correction leaves the installed `28fed37` manual-test build unchanged; native parent attribution and timing remain unverified.
-
-**Compatibility note (2026-10-24):** Tainted Llama's Still Waiting helper keeps its native 0.5x tears, stationary origin and duration. Its shots no longer count toward Opus's coin bill, consume primed attack bonuses or advance backlog paid-attack triggers. Primary shots and Summary Stapler are unchanged. Offline correction; engine verification remains pending.
-
-**Compatibility note (2026-10-24):** Opus Mode no longer counts Please Retry or One More Finger helper tears toward its ten-attack coin bill. Normal shots and Summary Stapler still count. Helper shots preserve primed attack bonuses; native callback timing remains pending engine verification.
-
-**Compatibility note (2026-10-24):** Consensus Coin recognizes owned familiar projectiles as familiar damage. Combine them with another eligible source from the same player for its mixed-source pulse; familiar weapons alone remain one category and do not consume your primed attack bonuses. Native familiar attribution still needs engine verification.
-
-**Compatibility note (2026-10-24):** Spending The Battery's stored second charge now counts for Base Model, Please Come Back and Access Pass. Charge rewards and item costs are unchanged. This correction is covered by offline tests; native timing and special health-charge pools still need engine verification.
-
-**Compatibility note (2026-10-24):** The Constitution keeps its one-time soul heart and once-per-floor hit block separately for each player. Existing shared-save consumption is preserved for players present on migration to avoid duplicate rewards. Stats and excluded damage are unchanged. Offline checks passed; co-op health and save/continue still need engine verification.
-
-**Compatibility note (2026-10-24):** Knife throws, melee swings and Epic Fetus rockets notify character resource meters and Opus Mode independently. Each consumer handles an attack once; an unowned Opus Mode cannot suppress character billing. Costs are unchanged. Offline regression passed; engine verification is pending.
-
-『The Binding of Isaac: Repentance / Repentance+』向けのパロディキャラクターMODです。AIモデルを擬人化した11人の「〜ちゃん」が登場し、それぞれ通常版と裏（Tainted）版の2つの形態を持ちます。さらに、コミュニティのミームをもとにした新アイテムが91個追加されます。
-
 [English](README.md) · **日本語** · [中文](README.zh-CN.md)
 
-> ファンによる非公式作品です。Anthropic や他のAI企業とは一切関係がなく、承認も受けていません。敵は架空の不正利用の仕組みを表したもので、実在の人物や国籍を表すものではありません。ミームのパロディは、どの製品についても事実を主張するものではありません。キャラクターイラストはクレジット付きのファンアート派生物で、非営利の別条件が適用されます。[クレジット](#クレジット)と[ライセンス](#ライセンス)をご覧ください。
+**ママにはまだ会ってない。アカウントはもう消えた。**
 
-ゲーム内のアイテム名・説明・HUDの多くは英語です。この文書ではゲーム内と同じ英語名を太字で示し、ゲーム内に公式の日本語名があるものは括弧内に併記しています。
+ただでさえ大変なアイザックに、今度は涙の利用上限が付きました。『**The Binding of Isaac: Repentance / Repentance+**』の地下室に、**11人のAIモデルちゃん、通常・裏あわせて22形態、79個のアイテムと12個のトリンケット**を詰め込むMODです。元ネタはコミュニティのミーム、BANへの嘆き、そしておなじみの「もう一度試してください」。
+
+ClaudeちゃんはBANハンマーを振りながら自分のアカウントを守り、DeepSeekちゃんはご飯を食べてから次の一発に賭けます。Kimiちゃんは怪物相手にスライド発表。Mistralちゃんはバゲット持参。それぞれ作戦はありますが、中にはサポートの返事待ちもあります。
+
+道中では、こんな頼もしい品も拾えます。
+
+- **All Tests Passing（テスト全件成功）：** ドアは開いた。敵は残っている。敵がいるかはテスト項目になかった。
+- **Silent Update（サイレント更新）：** フロアごとにダメージが変わる。更新履歴はずっと「変更なし」。
+- **Opus Mode：** 火力はすばらしい。財布に安いモデルへ切り替えられるまでは。
+
+ゲーム内の名前・説明・HUDは、まだ英語が中心です。下ではゲームで探せる名前を使っています。翻訳済みの範囲は「共通の操作とルール」をご覧ください。
+
+> 非公式のファン作品で、Anthropicや他のAI企業との関係・承認はありません。敵は架空の不正利用の仕組みであり、実在の人や国籍を表しません。ネタはパロディで、製品に関する事実の主張ではありません。キャラクターアートには別途非営利の条件があります。[クレジット](#クレジット)と[ライセンス](#ライセンス)をご確認ください。
 
 ## 開発状況
 
-バージョン **0.5-dev**。Workshop 公開版ではありません。
+バージョン **0.5-dev**。開発中で、Workshop公開版ではありません。地下室はテスト入場できますが、バランスの帳簿はまだ下書きです。
 
 | 内容 | 数 |
 |---|---|
@@ -36,7 +32,7 @@
 | 変身 | 1（Agentic） |
 | ストーリー | 異議申し立ての列（4章）＋ 他のモデル系統ごとに3章のアーク |
 
-以下はすべてソースに実装済みで、Isaac API のスタブ上でオフラインテスト（`bash tools/check.sh`）を通っています。実際のゲームで行ったのは今のところ22形態のスモークテストのみです（[エンジン監査](docs/ENGINE_AUDIT_2026-10-24.md)）。ゲーム性、バランス、すべての武器との組み合わせ、協力プレイはまだゲーム内での確認が必要です（[テストチェックリスト](docs/TESTING.md)）。数値はテスト後に変わる可能性があります。
+以下の内容はソースに実装済みで、Isaac APIのスタブによるオフラインテストがあります（`bash tools/check.sh`）。22形態のエンジンスモークテストは実施済み（[記録](docs/ENGINE_AUDIT_2026-10-24.md)）ですが、出発点であって通しプレイの確認ではありません。操作感、バランス、武器の組み合わせ、協力プレイは[ゲーム内テスト](docs/TESTING.md)が必要で、数値も変わる可能性があります。ここでは「テスト全件成功」もアイテム名なので、そのあたりは正確に。
 
 ## 目次
 
@@ -82,6 +78,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### ストーリー
 
+部屋の合間には小さな物語もあります。Claudeは共有アドレスから始まる異議申し立てを、人間が読んでくれるところまで追いかけます。他のモデルにもそれぞれ地下室の悩みが。ムービー待ちはありません。字幕を読みながら、そのまま進めます。
+
 - **異議申し立ての列（The Appeal Queue）**（Claudeのラン）：ゲームを止めない短いキャプションが4つあり、英語・中国語・日本語に対応しています。章は「共有されたアドレス」（新しいラン）、「歓迎のお知らせ」（ステージ3か4に初めて到達）、「審査待ち」（ステージ5以降）、「ついに人間が読んでくれた」（Support Ticketの使用に成功した後）です。各章は1ランに1回だけ流れ、進行状況はセーブ＆コンティニューでも保持されます。バニラのカットシーンやエンディングは変更しません。
 - **ロスターアーク：** DeepSeek、GPT、Gemini、Grok、Qwen、Llama、Mistral、Doubao、Kimi、GLMにはそれぞれ3章のアークがあり、その系統がランにいるときに流れます（新しいラン、ステージ3〜4、ステージ5以降）。現在は英語のみです。詳しくは[docs/STORY.md](docs/STORY.md)をご覧ください。
 
@@ -100,6 +98,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### Claudeちゃん（Claude）
 
+片手にBANハンマー、もう片手に異議申し立て用紙。地下室の雇用は安定していません。
+
 **通常版：One More Day（あと1日）。** ❤❤💙、爆弾1。射程+1.5（ロングコンテキスト）、弾速+0.2、移動速度−0.1、オレンジ色の涙。ポケットアイテム：**Ban Hammer（BANハンマー）**。
 - **使用量：** 攻撃1回ごとに使用量が4増えます（Subagent Swarm所持時は8）。ゲーム本来のすべての武器が課金対象です：涙の1斉射、レーザーの撃ち始めとDr. Fetusの爆弾1個ごと、押し続けるビームや操作中のLudovicoの涙は0.2秒ごと、ナイフの投擲、近接の一振り、Epic Fetusのロケット1発ごと。使い魔や派生した涙は無料です。撃たずにいると毎秒10減ります。100に達すると **Limited（制限中）** になり、5秒間すべての武器のダメージが40%になった後、メーターがリセットされます。
 - **異議申し立て（Appeal）：** 1回分を持って始まります（上限2）。新規の戦闘クリア2回ごとに1回分増えます。DROPをタップすると1回分を使って使用量を40減らします。発動中のLimitedは解除できず、使用量0のときは無駄にならないよう拒否されます。
@@ -115,6 +115,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 - **誕生権：** 審査で回復するクォータが90になります。
 
 ### DeepSeekちゃん（DeepSeek）
+
+まず食べて、考えて、撃つ。裏版はComputeを使う時間帯まで気にします。
 
 **通常版：Rice First（まずはご飯）。** ❤❤💙、コイン3、鍵1。ダメージ×0.9、青い涙。ポケットアイテム：**Lunch Break（飯食ってくる）**。
 - **直結（直连）：** プロキシ不要なので、DeepSeekだけのランにはIPもリスクも、リスクによる難易度上昇もありません。
@@ -134,6 +136,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### GPTちゃん（GPT）
 
+名前は同じでも、部屋に入ると火力が違う。回答がおかしい？ Sanity Checkの出番です。
+
 **通常版：Same Name, Smaller Brain（同じ名前、小さい脳）。** ❤❤💙、爆弾1。
 - **Verified（認証済み）：** ダメージ×1.15。新規の戦闘クリアでRoutingがたまり、3になると次の戦闘部屋は **Fallback（代替）**（ダメージ×0.8）で始まります。
 - Fallback中にDROPをタップすると、最も近い敵を **Sanity Check（正気チェック）** に指定します。その敵に自分の攻撃を3回別々に当てるか倒すと、Verifiedに戻ります。チェックは1部屋1回で、部屋を出ると失敗します。新しいフロアではVerifiedに戻ります。
@@ -146,6 +150,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 - **誕生権：** 上限と回復量が100になります。
 
 ### Geminiちゃん（Gemini）
+
+ちょっとした修正です。通常版は色を塗り、裏版は書き出しを担当。床のバナナの皮も納品物に含まれます。
 
 **通常版：Nano Banana。** ❤❤💙、爆弾1。
 - **ペイント：** 初期2（上限3）。新規の戦闘クリアごとに1増えます。
@@ -160,6 +166,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### Grokちゃん（Grok）
 
+怪物をファクトチェックするか、引用してから他の敵を殴るか。後者にはRatioメーター付き。
+
 **通常版：Is This True?（これって本当？）。** ❤❤💙、爆弾1。
 - 敵のいる部屋につき1回、DROPをタップすると220ユニット以内で最も近い敵を6秒間 **ファクトチェック** します。その敵へのダメージは×1.3、それ以外へは×0.9になります。
 - その敵に自分の攻撃を3回別々に当てるか倒すと **検証完了**：倍率が終わり、その部屋の間は移動速度+0.15。時間切れでは何も得られません。
@@ -173,6 +181,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### Qwenちゃん（Qwen）
 
+アダプターを一つ、もう一つ。最終ビルドの名前はfinal_final_今度こそ最終版。
+
 **通常版：Everyone's Base Model（みんなのベースモデル）。** ❤❤💙、爆弾1。
 - **アダプター：** 初期1（上限2）。新規の戦闘クリア2回ごとに1増えます。
 - DROPタップで次のアダプターを選びます：**Range**（射程+60）、**Tempo**（連射間隔×0.9）、**Power**（ダメージ×1.1）。新しい敵の部屋に入るとアダプターを1つ使い、その部屋の間その効果が付きます。
@@ -184,6 +194,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 - **誕生権：** 1回あたり+0.3になります。
 
 ### Llamaちゃん（Llama）
+
+リリースを全員に分けるか、3部屋ぶんの期待を期間限定の助っ人に換えるか。
 
 **通常版：Please Stay Open（オープンのままでいて）。** ❤❤💙、爆弾1。ダメージ×0.95。
 - **リリース：** 初期1（上限2）。新規の戦闘クリア2回ごとに1増えます。
@@ -197,6 +209,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### Mistralちゃん（Mistral）
 
+通常版は飛びかかり、裏版はパンを焼く。地下室への対処としては、どちらも妥当です。
+
 **通常版：Le Chat（猫）。** ❤❤💙、爆弾1。移動速度+0.1。
 - 撃ちながら2秒間動くと **飛びかかり（Pounce）** がたまります。1秒間立ち止まると失われます。
 - DROPタップで前方に引っかき：80ユニットの直線上の敵それぞれに2倍ダメージを1回与えます。壁で止まり、クールダウンは3秒です。
@@ -208,6 +222,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 - **誕生権：** バゲットが1.5秒で焼けます。
 
 ### Doubaoちゃん（Doubao）
+
+通常版は被弾してから謝る。裏版は自信満々で始めて、あとから謝る。
 
 **通常版：Sorry, You're Right（すみません、おっしゃる通りです）。** ❤❤💙、爆弾1。
 - 各部屋で敵から最初に受けた被弾で、6秒間有効な **お詫び（Apology）** トークンを得ます。自傷、偽ダメージ、献血機などは数えません。
@@ -221,6 +237,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### Kimiちゃん（Kimi）
 
+戦いに来た怪物を待っていたのは、発表会と三つの仕事と、退席できない会議でした。
+
 **通常版：Another Slide Deck（またスライド資料）。** ❤❤💙、爆弾1。
 - 新規の戦闘クリアごとに **スライド** を1枚得ます（上限6）。
 - DROPタップで3枚使い、220ユニット以内で最も近い3体の敵に **プレゼン** します：4秒間、減速し、自分から受けるダメージが+15%になります。聞き手がいなければ消費しません。
@@ -233,6 +251,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ### GLMちゃん（GLM）
 
+番号札を取って、部屋をクリア。処理が終わる前に相手が倒れたら、再試行してください。
+
 **通常版：Number in Queue（順番待ち）。** ❤❤💙、爆弾1。
 - 新規の戦闘クリアごとに **キュー** が進みます（最大3）。
 - 3になったらDROPタップで **アクセスパス** と交換：次の新しい敵の部屋2つでそれぞれダメージ+20%。パスが有効な間はキューが止まり、再訪問では消費も重複もしません。
@@ -244,6 +264,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 - **誕生権：** 失敗したリクエストでも近くの敵弾を1発消します。
 
 ## コレクティブル
+
+宝部屋には、効果だけははっきりしたろくでもないアイデアが入荷しました。権限を飛ばす前に注意書きを。床の拾い物は、自分で異議申し立てできません。
 
 全アイテムの取得時テキストと品質をまとめた自動生成の表は[docs/ITEMS.md](docs/ITEMS.md)（英語）にあります。
 
@@ -404,6 +426,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ## トリンケット
 
+ポケットに入る小ささで、「全システム正常」が脅しに聞こえるほどの影響力。
+
 | トリンケット | 効果 |
 |---|---|
 | **529 Overloaded** | 戦闘中20秒ごとに2秒間すべてがダウン：敵はすべて凍結し、自分は「手でコードを書く」ためダメージ50%。 |
@@ -420,6 +444,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 | **Disgrace Loop** | 部屋で最初に本当に被弾すると、すべての敵が1.5秒間凍結。自傷は数えない。 |
 
 ## 薬
+
+薬は4種類。一つはその部屋の間だけ猫娘にしてくれます。別の一つは、どちらの数字が大きいかに妙な自信があります。
 
 | 薬 | 効果 |
 |---|---|
@@ -438,9 +464,44 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 `bash tools/check.sh` は、Isaac APIのスタブ（Lua 5.3以上）ですべてのオフラインテストを実行し、構文・XML・スプライトのパスも確認します。GitHub Actionsはすべてのpushとプルリクエストで同じスクリプトを実行します。テストで分かるのはクラッシュやロジックの誤りで、遊び心地までは分かりません。ゲーム内のチェックリストは[docs/TESTING.md](docs/TESTING.md)をご覧ください。
 
+<details>
+<summary>最近の互換性修正 — 2026-10-24（開発者向け）</summary>
+
+以下はソースの修正です。インストール済みの手動テスト版 `28fed37` は変更していません。オフラインの確認だけでは、ネイティブなコールバックのタイミングや実際のプレイは保証できません。
+
+- **子レーザー：** 通常ClaudeのUsage、裏ClaudeのQuota、裏GPTのFull Send Creditsも、Opusと共有オブザーバーに合わせ、直接の `Parent` が別のレーザーであるものを課金対象から除外しました。主攻撃の開始と、その後の対象となる主攻撃の枠は従来どおりです。ネイティブな親の帰属とタイミングは要テスト。
+- **裏Llamaの助っ人：** Still Waitingの固定発射位置、持続時間、ネイティブな0.5×の涙は維持しています。助っ人の弾はOpusのコイン、待機中の攻撃ボーナス、拡張アイテムの課金攻撃トリガーを消費しなくなりました。主攻撃とSummary Staplerは変更なし。実機確認待ちです。
+- **その他の補助弾：** Please RetryとOne More FingerはOpusの10攻撃ごとの請求を進めず、待機中のボーナスも消費しません。通常攻撃とSummary Staplerは数えます。ネイティブなコールバックのタイミングは要テスト。
+- **Consensus Coin：** 所有する使い魔の投射物は使い魔ダメージとして数えます。同じプレイヤーの別の有効な攻撃源と組み合わせると混合パルスが発生します。使い魔の武器だけなら1種類のままで、待機中の攻撃ボーナスは消費しません。ネイティブな所有者判定は要テスト。
+- **The Battery：** 保存された2本目のチャージ消費もBase Model、Please Come Back、Access Passに数えるようにしました。コストと報酬は変更なし。ネイティブなタイミングと特殊な体力チャージは要テスト。
+- **The Constitution：** 一度限りのソウルハートとフロアごとの被弾防止をプレイヤー別に記録します。移行時はその場にいるプレイヤーの旧共有セーブでの消費状況を引き継ぎ、報酬の重複を防ぎます。能力値と除外するダメージは変更なし。協力プレイの体力とコンティニューは実機確認待ちです。
+- **ネイティブ攻撃の課金：** ナイフ投擲、近接攻撃、Epic Fetusのロケットは、キャラクターのメーターとOpusに独立して通知し、それぞれ1回だけ処理します。Opus未所持でもキャラクターの課金を妨げません。コストは変更なし。実機確認待ちです。
+
+</details>
+
 ## 開発への参加
 
 友人の参加を歓迎します。[CONTRIBUTING.md](CONTRIBUTING.md)と[docs/HANDOFF.md](docs/HANDOFF.md)を読み、ブランチで作業してプルリクエストを出してください。新しいコード、Markdown、プレイヤー向けの文字は英語で書きます。設計資料：[キャラクターのゲームプレイ](docs/CHARACTER_GAMEPLAY.md)、[ロスター](docs/MODEL_ROSTER.md)、[アイテム拡張](docs/EXPANSION_DESIGN.md)、[バランス](docs/BALANCE.md)。
+
+## プロジェクト構成
+
+```text
+main.lua                    入口、各モジュールの読み込み
+content/                    アイテム・プール・キャラ・ポケットのXML
+scripts/constants.lua       アイテム・キャラのIDとリスク段階
+scripts/risk.lua            リスク・IP抽選・保存・HUD
+scripts/enemy_scaling.lua   敵HPの調整
+scripts/hydra.lua           「新アカウント」の復活
+scripts/transformation.lua  Agentic変身
+scripts/story*.lua          異議申し立てと各キャラの物語
+scripts/characters/         固有能力・資料・DROPタップ
+scripts/items/              元のアイテムとミーム；backlog/は50個の拡張
+scripts/enemies/            追加の敵
+scripts/eid.lua             EID説明
+resources/gfx/              スプライトとポートレート
+tests/                      オフラインのスタブテスト
+tools/check.sh              コミット前の確認、CIと共通
+```
 
 ## クレジット
 
