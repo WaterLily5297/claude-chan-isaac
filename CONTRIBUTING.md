@@ -1,6 +1,6 @@
 # Contributing
 
-Start with docs/HANDOFF.md for current implementation, missing work and evidence boundaries. The source checkpoint contains 13 forms, not the planned 22, and 18 collectibles, of which only Summary Stapler counts toward the requested 50 additional items. New code, comments, Markdown and UI text must be English.
+Start with docs/HANDOFF.md for current implementation, missing work and evidence boundaries. The source checkpoint contains 22 forms, 75 collectibles (including all 50 requested additions), 12 trinkets and four pills. Source completeness is not gameplay acceptance. New code, comments, Markdown and UI text must be English.
 
 ## Workflow
 
@@ -10,7 +10,7 @@ Start with docs/HANDOFF.md for current implementation, missing work and evidence
 4. Update HANDOFF.md, TESTING.md and relevant design/status records. Say exactly what is implemented, simulated, tested in the engine or still planned.
 5. Publish the branch, verify remote file-tree equality and CI, then merge only within the owner's authorization. Never overwrite or force-reset shared history.
 
-Engine testing is currently paused by the owner. After it resumes, use the documented backup/deployment workflow, mute the game, record source/runtime/game versions and close the game afterward. Do not clone directly over the installed mod or assume passing CI means gameplay acceptance.
+The owner resumed muted engine testing on 2026-10-24. Use the documented backup/deployment workflow, mute the game, record source/runtime/game versions and close the game afterward. Do not clone directly over the installed mod or assume passing CI means gameplay acceptance.
 
 ## New content checklist
 

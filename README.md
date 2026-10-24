@@ -2,9 +2,9 @@
 
 A parody mod for **The Binding of Isaac: Repentance / Repentance+**.
 
-**Expansion in development:** [22-form community-meme gameplay](docs/CHARACTER_GAMEPLAY.md) and [50 additional collectibles](docs/EXPANSION_DESIGN.md). All fifty are implemented in source with offline tests, alongside sixteen meme extras; they use native weapons, tear effects and stats, empty targeted uses keep their charge and Car Battery never repeats them. Thirteen forms and 75 collectibles are currently registered. The character loop redesigns are still in progress, and engine acceptance remains pending.
+**Expansion in development:** [22-form community-meme gameplay](docs/CHARACTER_GAMEPLAY.md) and [50 additional collectibles](docs/EXPANSION_DESIGN.md). All fifty are implemented in source with offline tests, alongside sixteen meme extras; they use native weapons, tear effects and stats, empty targeted uses keep their charge and Car Battery never repeats them. Twenty-two forms and 75 collectibles are currently registered. The character loop redesigns are still in progress, and engine acceptance remains pending.
 
-**Experimental roster candidate:** eleven model families, eleven ZipZipPipe-based normal portraits, two darker tainted portraits, nine additional playable normal characters and in-game dossiers. Hold MAP in a cleared room to view the current character's portrait and instructions. See [the roster and mechanics](docs/MODEL_ROSTER.md), [pending engine checks](docs/TESTING.md), and [art terms](resources/ART_LICENSE.md). All thirteen gameplay skins now follow the selected portrait identities; animation polish and engine acceptance remain pending; this is not a Workshop release.
+**Experimental roster candidate:** eleven model families, eleven ZipZipPipe-based normal portraits, two darker tainted portraits, nine additional playable normal characters and in-game dossiers. Hold MAP in a cleared room to view the current character's portrait and instructions. See [the roster and mechanics](docs/MODEL_ROSTER.md), [pending engine checks](docs/TESTING.md), and [art terms](resources/ART_LICENSE.md). All 22 gameplay skins now follow the selected portrait identities; animation polish and engine acceptance remain pending; this is not a Workshop release.
 
 Every floor hands you a random proxy IP. The more people share it, the higher your **risk score** (风控值). The higher the risk, the tougher the enemies get, and killed enemies start coming back as "new accounts".
 
@@ -102,7 +102,7 @@ They catch crashes and logic errors, not how the game feels; see [docs/TESTING.m
 
 ## Contributing
 
-Friends are welcome to work on this. Read [CONTRIBUTING.md](CONTRIBUTING.md) (in Chinese) or [docs/HANDOFF.md](docs/HANDOFF.md) (in English): work on a branch, open a pull request, and keep player-facing text in English, Chinese and Japanese.
+Friends are welcome to work on this. Read [CONTRIBUTING.md](CONTRIBUTING.md) (in English) or [docs/HANDOFF.md](docs/HANDOFF.md) (in English): work on a branch, open a pull request, and write new code, Markdown and player-facing text in English.
 
 ## Project layout
 
