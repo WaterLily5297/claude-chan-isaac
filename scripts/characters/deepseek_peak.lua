@@ -37,7 +37,22 @@ end
 
 function Peak:Init(mod, Risk)
     local ready, bindings, slots = false, {}, {}
+    local laserKey, laserEpoch = {}, {}
     local drop = DropTap.New()
+    local function laserParent(entity)
+        local parent = entity.Parent
+        return parent and parent.Type == EntityType.ENTITY_LASER and parent or nil
+    end
+    local function laserInfo(entity)
+        local data = entity:GetData()
+        if not data[laserKey] then data[laserKey] = {} end
+        local info, parent = data[laserKey], laserParent(entity)
+        if parent and not info.child then
+            info.child = true; info.lease = nil
+            info.parentHash = GetPtrHash(parent)
+        end
+        return info
+    end
     local function allStates()
         if type(Risk.state.deepseekPeak) ~= "table" then Risk.state.deepseekPeak = {} end
         return Risk.state.deepseekPeak
@@ -93,15 +108,16 @@ function Peak:Init(mod, Risk)
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
-        ready = true; bindings = {}; slots = {}; drop:Reset()
+        ready = true; bindings = {}; slots = {}; laserEpoch = {}; drop:Reset()
         if not continued then Risk.state.deepseekPeak = {} end
         bind()
         each(function(_, b) observeFloor(b.state) end)
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
-        ready = false; bindings = {}; slots = {}; drop:Reset()
+        ready = false; bindings = {}; slots = {}; laserEpoch = {}; drop:Reset()
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+        laserEpoch = {}
         drop:Reset()
         if not ready then return end
         bind()
@@ -183,17 +199,76 @@ function Peak:Init(mod, Risk)
         local b = binding(p)
         if not b or not entity or p:IsDead() or Game():IsPaused() then return end
         if entity.Type == EntityType.ENTITY_TEAR then return end -- Tears fork instead.
+        local info = entity.Type == EntityType.ENTITY_LASER and laserInfo(entity)
+        if info and info.child then return end
         local now = Game():GetFrameCount()
-        entity:GetData()[BOOST] = charge(b) and (lasting and math.huge or now + WINDOW) or nil
+        local expires = charge(b) and (lasting and math.huge or now + WINDOW) or nil
+        if info then
+            if not info.lease or info.lease.epoch ~= laserEpoch or info.lease.binding ~= b then
+                info.lease = {epoch=laserEpoch, binding=b}
+            end
+            -- Children share this decision, including later unpaid windows.
+            info.lease.expires = expires
+        else
+            entity:GetData()[BOOST] = expires
+        end
     end
     local function owner(entity)
         local spawner = entity and (entity.SpawnerEntity or entity.Parent)
         return spawner and spawner:ToPlayer()
     end
+    local function laserLease(laser)
+        local current, seen, children, explicit = laser, {}, {}, nil
+        while current do
+            local info, parent = laserInfo(current), laserParent(current)
+            if seen[info] then return end
+            seen[info] = true
+            if parent and not parent:Exists() then
+                if info.parentHash ~= GetPtrHash(parent) then return end
+                parent = nil -- Use a resolved decision, never despawned GetData.
+            end
+            local p = owner(current)
+            local spawner = current.SpawnerEntity
+            if spawner and not spawner:ToPlayer() then
+                if spawner.Type ~= EntityType.ENTITY_LASER then return end
+                if parent then
+                    if GetPtrHash(spawner) ~= GetPtrHash(parent) then return end
+                elseif info.child and info.lease and info.parentHash == GetPtrHash(spawner) then
+                    -- Validate a surviving former parent; a removed one leaves
+                    -- only the cached decision, never an engine reference.
+                    if spawner:Exists() then parent = spawner end
+                else return end
+            end
+            if p then
+                local b = binding(p)
+                if not b or (explicit and explicit ~= b) then return end
+                explicit = b
+            end
+            if info.child and parent then
+                children[info] = GetPtrHash(parent)
+                current = parent
+            else
+                local lease = info.lease
+                if not lease or lease.epoch ~= laserEpoch then return end
+                local index = tonumber(lease.binding.slot)
+                local holder = index < Game():GetNumPlayers() and Isaac.GetPlayer(index)
+                if binding(holder) ~= lease.binding or (explicit and explicit ~= lease.binding) then return end
+                for child, parentHash in pairs(children) do
+                    child.lease, child.parentHash = lease, parentHash
+                end
+                return lease
+            end
+        end
+        -- Child-first callbacks may retry; never synthesize the parent's cost.
+    end
     mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
         if not ready then return end
+        if laserInfo(laser).child then laserLease(laser); return end
         local circle = laser.IsCircleLaser and laser:IsCircleLaser()
         boost(owner(laser), laser, laser.OneHit or circle)
+    end)
+    mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
+        if ready and not Game():IsPaused() and laserInfo(laser).child then laserLease(laser) end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, function(_, bomb)
         if ready and bomb.IsFetus then boost(owner(bomb), bomb, true) end
@@ -201,13 +276,19 @@ function Peak:Init(mod, Risk)
     PaidAttacks.Observe(mod, function(p, entity)
         if not ready then return end
         boost(p, entity, entity and entity.Type ~= EntityType.ENTITY_LASER)
+    end, function(laser)
+        return laserInfo(laser).child
     end)
     local redealing = false
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, target, amount, flags, source, countdown)
         if redealing or not ready or target:ToPlayer() then return end
         local weapon = source and source.Entity
         if not weapon or not weapon.GetData then return end
-        local mark = weapon:GetData()[BOOST]
+        local mark
+        if weapon.Type == EntityType.ENTITY_LASER then
+            local lease = laserLease(weapon)
+            mark = lease and lease.expires
+        else mark = weapon:GetData()[BOOST] end
         if not mark or Game():GetFrameCount() > mark then return end
         -- A knife's throw ends when it returns; resting contact is unpaid.
         if weapon.Type == EntityType.ENTITY_KNIFE and weapon.IsFlying
