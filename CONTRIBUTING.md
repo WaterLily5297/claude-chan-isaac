@@ -10,7 +10,7 @@ Start with docs/HANDOFF.md for current implementation, missing work and evidence
 4. Update HANDOFF.md, TESTING.md and relevant design/status records. Say exactly what is implemented, simulated, tested in the engine or still planned.
 5. Publish the branch, verify remote file-tree equality and CI, then merge only within the owner's authorization. Never overwrite or force-reset shared history.
 
-The installed manual-test checkpoint is `220d542`, including PRs #89 and #90; all 433 tracked files were verified after the owner-authorized deployment and a fresh backup of 432 prior files. BACKLOG-LASER-INIT-01 is a later source-only correction and is not installed. Preserve the manual-test build during source follow-ups. Another deployment requires owner authorization and a fresh verified allowlisted backup. Consult the local receipt and HANDOFF.md, preserve saves/other mods, and keep source tests distinct from native acceptance. Agent-run engine testing remains deferred; mute and close the game after any later authorized automated test.
+The installed manual-test checkpoint is `e1ff4d1`, including PR #91. The owner-authorized 2026-10-25 deployment followed a fresh allowlisted, reread-hash-verified backup; all 433 installed tracked files matched canonical Git bytes. This supersedes the older `220d542` installation statement. The owner reports no manual test yet. Preserve the build during offline work; another deployment or automated game session requires owner availability and authorization. Consult the local deployment receipt and HANDOFF.md; installation is not engine acceptance.
 
 ## New content checklist
 
