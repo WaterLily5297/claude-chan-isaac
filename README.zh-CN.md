@@ -431,6 +431,8 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 <details>
 <summary>近期兼容性修复——2026-10-24（开发者说明）</summary>
 
+**Compatibility note (2026-10-25):** Backlog child lasers share a validated parent attack's resolved bonus, identity and original expiry. They do not consume another prime or advance attack counters again; independent primary shots still do. Source-only correction, not installed in `28fed37`; native ancestry and damage dispatch remain unverified.
+
 以下是源码修复，未替换已安装的 `28fed37` 手动测试版。离线检查不能证明游戏原生回调的时序或实际游玩表现。
 
 - **子激光：** 普通Claude用量、里Claude配额和里GPT的Full Send点数现与Opus及共享观察器一致：直接 `Parent` 为另一道激光的子激光不计费。主攻击起始和后续符合条件的主攻击窗口仍照常计费。原生父级归属和时序仍待测试。

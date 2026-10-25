@@ -431,6 +431,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 <details>
 <summary>最近の互換性修正 — 2026-10-24（開発者向け）</summary>
 
+**Compatibility note (2026-10-25):** Backlog child lasers share a validated parent attack's resolved bonus, identity and original expiry. They do not consume another prime or advance attack counters again; independent primary shots still do. Source-only correction, not installed in `28fed37`; native ancestry and damage dispatch remain unverified.
+
 以下はソースの修正です。インストール済みの手動テスト版 `28fed37` は変更していません。オフラインの確認だけでは、ネイティブなコールバックのタイミングや実際のプレイは保証できません。
 
 - **子レーザー：** 通常ClaudeのUsage、裏ClaudeのQuota、裏GPTのFull Send Creditsも、Opusと共有オブザーバーに合わせ、直接の `Parent` が別のレーザーであるものを課金対象から除外しました。主攻撃の開始と、その後の対象となる主攻撃の枠は従来どおりです。ネイティブな親の帰属とタイミングは要テスト。
