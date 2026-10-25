@@ -36,7 +36,7 @@ local function ludovico(entity)
         and entity:HasTearFlags(TearFlags.TEAR_LUDOVICO) or false
 end
 
-function Paid.Observe(mod, pay)
+function Paid.Observe(mod, pay, ignoreLaser)
     -- Entity-local, transient identity per subscriber. A shared marker lets
     -- Opus consume the event before character meters, even without the item.
     local key = {}
@@ -60,6 +60,9 @@ function Paid.Observe(mod, pay)
 
     mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
         if Game():IsPaused() then return end
+        -- A subscriber can retain child classification after Parent disappears.
+        -- Ignore it before consuming that subscriber's per-player window.
+        if ignoreLaser and ignoreLaser(laser) then return end
         if laser.Parent and laser.Parent.Type == EntityType.ENTITY_LASER then return end
         local circle = laser.IsCircleLaser and laser:IsCircleLaser()
         if laser.DisableFollowParent and not circle then return end
