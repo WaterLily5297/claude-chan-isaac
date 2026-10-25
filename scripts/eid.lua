@@ -475,7 +475,7 @@ function Eid:Init()
     for id, langs in pairs(characterDescriptions) do
         if id >= 0 then
             for lang, entry in pairs(langs) do
-                EID:addCharacterInfo(id, entry[2], entry[1], lang)
+                EID:addCharacterInfo(id, entry[2] .. "#DROP ability requires at most one pocket item; multiple items keep native cycling", entry[1], lang)
             end
         end
     end

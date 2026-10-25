@@ -40,7 +40,7 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 
 游戏内多数名称和说明还是英文，下文保留英文道具名，方便对照。
 
-- **轻按DROP：** 大多数角色通过短按DROP键（在1～12帧内松开）来发动固有能力。长按不会发动，游戏原本的DROP操作（丢饰品、切换口袋道具）照常可用。在换房间、暂停或开局期间一直按住的键，需要先松开一次。
+- **DROP tap:** release after 1-12 gameplay frames to use a character ability, but only while carrying at most one pocket item. Two or more cards, pills or pocket actives disable the ability so DROP can select them normally. The main active and Schoolbag slots do not count as pocket items. If multiple pocket items are observed during a press, that entire gesture is cancelled even if one item is used or dropped before release. Release and press again after reducing the inventory. Long holds never use the ability; native input is not overridden. A press interrupted by a room change, pause or run start must be released first.
 - **档案：** 在已清理的房间按住MAP，会显示当前角色的立绘和三行说明，松开即关闭。战斗中不显示。
 - **"自己的攻击"** 指你自己发出的攻击（眼泪、激光、刀、炸弹等）。道具追加的脉冲伤害和帮手的攻击不算在内，所以效果不会自我连锁。
 - **"首次战斗清理"** 指第一次清理有敌人的房间。重新进入已清理的房间不计数，所以无法刷。

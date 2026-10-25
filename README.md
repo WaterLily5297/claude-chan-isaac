@@ -40,7 +40,7 @@ The content below is in the source, and the offline tests pass. All 22 forms hav
 
 Most in-game names and descriptions are still in English. The guides keep those item names so you can look them up in game.
 
-- **DROP tap:** most characters use a short press of the DROP key (released after 1–12 frames) to trigger their ability. A longer hold never triggers it, and native DROP behaviour (dropping trinkets, cycling pocket items) is left alone. A key held through a room change, pause or run start must be released first.
+- **DROP tap:** release after 1-12 gameplay frames to use a character ability, but only while carrying at most one pocket item. Two or more cards, pills or pocket actives disable the ability so DROP can select them normally. The main active and Schoolbag slots do not count as pocket items. If multiple pocket items are observed during a press, that entire gesture is cancelled even if one item is used or dropped before release. Release and press again after reducing the inventory. Long holds never use the ability; native input is not overridden. A press interrupted by a room change, pause or run start must be released first.
 - **Dossier:** hold MAP in a cleared room to show the current character's full portrait and a three-line guide. Release to close. Not shown during combat.
 - **"Paid" attacks** are the attacks you fire yourself (tears, lasers, knives, bombs and so on). Item pulses and helper attacks do not count as paid attacks, so effects do not chain into themselves.
 - **"Unique combat clear"** means clearing a hostile room for the first time. Re-entering a cleared room never counts, so nothing can be farmed.

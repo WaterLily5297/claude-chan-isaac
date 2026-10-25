@@ -53,6 +53,9 @@ local function player(pointer,seed,controller)
     local p={pointer=pointer,InitSeed=seed,ControllerIndex=controller,kind=42,
         FireDelay=0,MoveSpeed=1,hearts=2,charge=2,dead=false,controls=true,shooting=false}
     function p:GetPlayerType() return self.kind end
+    function p:GetCard() return 0 end
+    function p:GetPill() return 0 end
+    function p:GetActiveItem() return 0 end
     function p:ToPlayer() return self end
     function p:IsDead() return self.dead end
     function p:AreControlsEnabled() return self.controls end
@@ -166,11 +169,8 @@ fire("MC_POST_GAME_STARTED",false); assert(state().bowls==1 and state().thought=
 tick(37); fire("MC_PRE_GAME_EXIT",true); load(); fire("MC_POST_GAME_STARTED",true)
 assert(state().thought==37,"continue retains partial Thought rather than real-time elapsed time")
 
--- O1 characterization, not native replay or a compatibility pass: the actual
--- Rice/Meal/DROP modules permit a native DROP poll AND spend a bowl on release.
--- Keep this known-conflict fixture until an owner-approved gesture replaces it.
--- The simulated pocket rotation below is a fixture input, not observed engine
--- ordering. Supplying it before or after the mod update must not hide the issue.
+-- O1 regression: multi-pocket DROP keeps native input without spending Rice.
+-- The simulated rotation is a fixture input, not observed engine ordering.
 for _, pockets in ipairs({'card-active','card-pill'}) do
     for _, nativeFirst in ipairs({true,false}) do
         players={player(201,2011,0),player(202,2022,1)}
@@ -194,8 +194,8 @@ for _, pockets in ipairs({'card-active','card-pill'}) do
         if not nativeFirst then nativeDropPoll() end
         assert(state().bowls==1, 'press itself must not spend Rice')
         down[0]=false; tick()
-        assert(p.selectedPocket==1 and state().bowls==0 and Meal:Remaining(p)==60,
-            'known overlap: one gesture can rotate the pocket and start a meal')
+        assert(p.selectedPocket==1 and state().bowls==1 and Meal:Remaining(p)==0,
+            'native pocket rotation must not also start a meal')
         assert(state(1).bowls==1 and Meal:Remaining(q)==0, 'other controller stays independent')
     end
 end
@@ -210,5 +210,5 @@ for _=1,20 do
 end
 down[0]=false; tick()
 assert(state().bowls==1 and Meal:Remaining(p)==0, 'long hold must not start a meal')
-print('O1: known DROP/pocket overlap reproduced offline; native input acceptance remains pending')
+print('O1: multi-pocket DROP preserves Rice offline; native input acceptance remains pending')
 print("OK: Rice economy, native DROP observer, meal/save lifecycle, volley ownership and untouched tear effects")

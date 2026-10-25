@@ -40,7 +40,7 @@ ClaudeちゃんはBANハンマーを持っていますが、自分の使用量�
 
 ゲーム内の名前や説明は、まだ英語が中心です。ゲーム内で探しやすいよう、ここでも英語のアイテム名を使っています。
 
-- **DROPタップ：** ほとんどのキャラクターは、DROPキーを短く押す（1〜12フレームで離す）ことで固有能力を発動します。長押しでは発動せず、トリンケットを捨てる・ポケットアイテムを切り替えるといったゲーム本来のDROP操作はそのまま使えます。部屋の移動・ポーズ・ラン開始をまたいで押し続けたキーは、一度離す必要があります。
+- **DROP tap:** release after 1-12 gameplay frames to use a character ability, but only while carrying at most one pocket item. Two or more cards, pills or pocket actives disable the ability so DROP can select them normally. The main active and Schoolbag slots do not count as pocket items. If multiple pocket items are observed during a press, that entire gesture is cancelled even if one item is used or dropped before release. Release and press again after reducing the inventory. Long holds never use the ability; native input is not overridden. A press interrupted by a room change, pause or run start must be released first.
 - **ドシエ（人物紹介）：** クリア済みの部屋でMAPを押し続けると、現在のキャラクターの立ち絵と3行の説明が表示されます。離すと閉じます。戦闘中は表示されません。
 - **「自分の攻撃」** とは、自分で撃つ攻撃（涙、レーザー、ナイフ、爆弾など）のことです。アイテムによる追撃やヘルパーの攻撃は含まれないため、効果が自分自身に連鎖することはありません。
 - **「新規の戦闘クリア」** とは、敵のいる部屋を初めてクリアすることです。クリア済みの部屋に入り直しても数えられないので、稼ぎはできません。

@@ -32,6 +32,9 @@ local function player()
     nextPointer=nextPointer+1
     local p={kind=41,pointer=nextPointer,data={},InitSeed=nextPointer,ControllerIndex=#players,Damage=3.5}
     function p:GetPlayerType() return self.kind end
+    function p:GetCard() return 0 end
+    function p:GetPill() return 0 end
+    function p:GetActiveItem() return 0 end
     function p:GetData() return self.data end
     function p:ToPlayer() return self end
     function p:IsDead() return self.dead end

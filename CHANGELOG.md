@@ -1,5 +1,11 @@
 # Changelog
 
+## DROP pocket compatibility (2026-10-26)
+
+- Keep short DROP abilities, but disable them while carrying multiple cards, pills or pocket actives, as selected by the owner. Preserve native input and long-hold dropping.
+- Cancel a gesture that encounters multiple pocket items, including same-frame inventory changes; reducing inventory while held cannot trigger an ability on release.
+- Add failing-before pocket regressions and shared English control notices. Physical keyboard/controller acceptance remains pending; installed e1ff4d1 is unchanged.
+
 ## Backlog child laser initialization (2026-10-25)
 
 - Remember child identity and inherit an already resolved parent bonus at laser initialization, before Parent can disappear. Preserve the next prime, attack counters and the original expiry.
