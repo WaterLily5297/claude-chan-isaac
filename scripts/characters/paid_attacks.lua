@@ -40,6 +40,12 @@ function Paid.Observe(mod, pay, ignoreLaser)
     -- Entity-local, transient identity per subscriber. A shared marker lets
     -- Opus consume the event before character meters, even without the item.
     local key = {}
+    local childLaserKey = {}
+    local function rememberChild(laser)
+        if laser.Parent and laser.Parent.Type == EntityType.ENTITY_LASER then
+            laser:GetData()[childLaserKey] = true
+        end
+    end
     -- Continuous windows are per player, so two held beams share one window.
     local windows = {}
     local function window(p, entity)
@@ -58,12 +64,18 @@ function Paid.Observe(mod, pay, ignoreLaser)
     end
     local function reset() windows = {} end
 
+    mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
+        rememberChild(laser)
+    end)
     mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
+        -- Parent may disappear before the first paid window. Classification
+        -- lasts with this entity, including across observer window resets.
+        rememberChild(laser)
+        if laser:GetData()[childLaserKey] then return end
         if Game():IsPaused() then return end
         -- A subscriber can retain child classification after Parent disappears.
         -- Ignore it before consuming that subscriber's per-player window.
         if ignoreLaser and ignoreLaser(laser) then return end
-        if laser.Parent and laser.Parent.Type == EntityType.ENTITY_LASER then return end
         local circle = laser.IsCircleLaser and laser:IsCircleLaser()
         if laser.DisableFollowParent and not circle then return end
         -- Single-hit beams and released rings are paid in full at their start.
