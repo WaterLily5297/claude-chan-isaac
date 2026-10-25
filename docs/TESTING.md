@@ -1,6 +1,16 @@
 # In-game test checklist
 
-Current acceptance status is summarized in HANDOFF.md. Dated candidate and integration sections below retain their original commit, availability and evidence scope; they do not override the latest owner instruction. The previous manual-test installation was `28fed37`, including PR #82. The owner authorized a new synchronized installation on 2026-10-25; consult the local deployment receipt for its exact commit and verification. Later source fixes require that verified deployment before their engine cases can pass. No new engine acceptance is recorded here.
+Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `c6cd8fc` (432 canonical files verified), including PRs #84, #85 and #88. PEAK-CHILD-LASER-01 is a later source correction and is not installed. No new engine acceptance is recorded here.
+
+## PEAK-CHILD-LASER-01: parent Compute and boost (offline passed; engine pending)
+
+`tests/peak_child_laser_test.lua` drives real Opus, backlog, Peak and paid-observer callbacks in main's order. Twelve groups pass; eleven fail on immutable `c6cd8fc` and the existing identity-exclusion control passes. Eight injected faults fail. Cases cover Valley/Peak prices, duplicate and delayed children, primary controls, paid/unpaid decisions, inclusive expiry, subsequent held windows, child-first/nested ancestry, detached or despawned parents, cycles, conflicting sources, co-op bindings, room/run cleanup and one modeled damage application through combined modifiers. Existing Peak lifecycle and shared-observer suites also pass. The fixture's continue boundary reuses modeled saved state; it is not a native save/continue test.
+
+After an authorized verified deployment, test Brimstone/Technology reflections and Tech X splits on tainted DeepSeek. Compare Compute and actual damage in Valley, Peak, Saving mode and low-Compute states: children should cost nothing extra and share only the parent's resolved 1.3x boost. Held children must stop at the parent's original deadline, follow a later paid window and lose the boost immediately when the parent receives an unpaid window. A child's OneHit/ring flags must not extend that deadline. Verify primary starts and later windows still cost 2/4 Compute.
+
+Record native Parent/SpawnerEntity values and callback timing for child-first creation, multiple generations, parent removal and surviving child hits. Unknown or late Parent links remain unaccepted; the source does not infer ownership or retroactively refund a callback already billed before its ancestry was known. Check two owners, familiars, ordinary character changes, pause, room/floor changes, save/continue and both game editions. Repeat with Opus, Base Model/Rice Cooker, Finger, Sanity Test and other damage mods: no extra wallet charge, consumed prime or duplicate applied damage. Detached-child handling for other paid-observer subscribers remains a separate review area.
+
+API references: [Entity.Parent](https://wofsauge.github.io/IsaacDocs/rep/Entity.html#parent), [Entity.GetData](https://wofsauge.github.io/IsaacDocs/rep/Entity.html#getdata), [EntityLaser.OneHit](https://wofsauge.github.io/IsaacDocs/rep/EntityLaser.html#onehit). These describe fields and transient storage, not the timing or compatibility of this implementation. Installed `c6cd8fc` predates this correction.
 
 ## BACKLOG-CHILD-LASER-01: inherited parent attacks (offline passed; engine pending)
 
