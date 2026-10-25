@@ -2,6 +2,14 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `e1ff4d1`, including PR #91. The owner-authorized 2026-10-25 deployment followed a fresh allowlisted, reread-hash-verified backup; all 433 installed tracked files matched canonical Git bytes. This supersedes the older `220d542` installation statement. The owner reports no manual test yet. Preserve the build during offline work; another deployment or automated game session requires owner availability and authorization. Consult the local deployment receipt and HANDOFF.md; installation is not engine acceptance. Older installed-version statements below remain historical.
 
+## E2-PREP: explicit native ancestry observer (2026-10-26; offline preparation)
+
+The observer in `tests/laser_ancestry_probe.lua` is never loaded by main.lua. It records scalar laser/Parent/SpawnerEntity fields at actual init/update callbacks only after explicit Start, with 900-frame and 2000-attempt bounds and automatic callback cleanup. It does not create the test scenario or change billing. The old runtime_probe changes gameplay/save state and is not this observer.
+
+`tests/laser_ancestry_probe_test.lua` passes inert loading, metadata validation, nil/changing link snapshots, duplicate-start protection, manual/room/run/exit/time/cap/error cleanup and a main.lua non-activation check. Its supplied entities are not observed engine entities. The integrated gate passes 69 offline suites; the branch contains 182 tracked Lua files, five XML files and deterministic assets. No game version was exercised, and no installation or settings changed.
+
+Follow [ENGINE_ANCESTRY_PROBE.md](ENGINE_ANCESTRY_PROBE.md) only after the owner authorizes a backed-up installation and muted disposable-run session. E2 still needs actual Tech X, Prism, Trisagion and Brimstone/Technology observations with verified source, game version, scenario and bounded redacted logs. E3-E5 and new-item engine checks remain pending. This preparation does not reopen child-laser billing work.
+
 ## O3: native transformations and Tainted mechanics (2026-10-26; source audit only)
 
 Reviewed main `ef42b13`; no game version was exercised. This table records source paths and inferred risks, not engine compatibility. No clear source defect was established in these paths, so this audit changes no gameplay code. The audited ef42b13 passed the 67-suite gate and contains 177 tracked Lua files. Integration with merged O2 at 178269b passes 68 suites with 180 tracked Lua files; it changes no O3 gameplay path. Engine cases remain part of E4/E5, waiting for owner availability. Installed e1ff4d1 is unchanged.

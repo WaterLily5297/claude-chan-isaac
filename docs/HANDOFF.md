@@ -4,12 +4,18 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **GitHub and local source:** main `178269b` at this review includes merged PRs #93, #94 and #95. The owner approved the O2 rules and merge on 2026-10-26; #95 passed the full offline gate and CI. PR #96 (`codex/vanilla-compat-audit`) records the O3 source audit and approval checkpoint; verify its live PR/CI state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
+- **GitHub and local source:** main `0da520b` at this review includes merged PRs #93-#96; main CI passed and there were no open PRs at that checkpoint. The current `codex/ancestry-observer` branch prepares an explicitly loaded E2 observation tool, with no billing or gameplay change; verify its live PR/CI state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
 - **Installed manual-test build:** `e1ff4d1` including #91, installed on 2026-10-25 after a fresh allowlisted backup was reread and hash-verified. All 433 installed tracked files matched canonical Git bytes. The local deployment receipt supersedes the next-session prompt's older `220d542` statement. Preserve this installation during offline work.
 - **Owner feedback:** asked about the installed build; owner replied "not tested yet" on 2026-10-25. No new engine or visual acceptance. No launch, input, process inspection, save access or runtime replacement in this offline session; current game state has not been inspected.
-- **Offline baseline on main:** 68 suites, 180 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
+- **Offline gate on this branch:** 69 suites, 182 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
 - **Current queue:** D1, O1 and owner-approved O2 are merged. O3 source audit is complete; the inspected paths justify no gameplay change. Physical input, the two new meme effects and the O3 compatibility table still require engine acceptance. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
 - **Stop speculative billing work:** no further child-laser, Parent-ancestry or derived-shot billing PR until E2 provides a native observation. The exploratory Bethany charge audit is parked, with no source fix or engine claim.
+
+## E2 preparation: bounded native observer (2026-10-26)
+
+[Observer procedure](ENGINE_ANCESTRY_PROBE.md) and an explicitly loaded module are ready for a future authorized session; main.lua never loads it.
+Offline checks cover snapshots, bounds and callback cleanup only. No native observations or billing changes were made.
+E2 remains waiting for owner availability and authorization; installed e1ff4d1 is unchanged. Full gate: 69 offline suites, engine acceptance pending.
 
 ## O3: native transformation and Tainted-item audit (2026-10-26)
 
@@ -67,7 +73,7 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 | Unit | Required observation | Status |
 |---|---|---|
 | E1 | Install `e1ff4d1` or newer only when requested, after the allowlisted backup and reread-hash check. | Complete for `e1ff4d1`; preserve it. |
-| E2 | One ancestry probe: Parent, SpawnerEntity and FrameCount at init/update for Tech X splits, Prism reflections, Trisagion and Brimstone/Tech combinations. | Waiting for owner; prerequisite to more child-billing work. |
+| E2 | One ancestry probe: Parent, SpawnerEntity and FrameCount at init/update for Tech X splits, Prism reflections, Trisagion and Brimstone/Tech combinations. | Explicit observer prepared in ENGINE_ANCESTRY_PROBE.md; native session waiting for owner. Prerequisite to more child-billing work. |
 | E3 | Real menu fresh starts and first room for every normal/tainted form: stats, pockets, HUD, fixed look, dossier, story and errors. | Waiting for owner; type-change smoke does not satisfy this. |
 | E4 | Physical keyboard/controller DROP taps and holds, card/pill plus pocket active, pause, disabled controls, room changes, death and reassignment. | Waiting for owner; O1 stubs cannot accept native input. |
 | E5 | COSTUME-LOCK-01 and VANILLA-COMPAT-01, then the remaining animation, combat, weapons, saves, co-op, item and base-game matrix. | Waiting for owner. |
