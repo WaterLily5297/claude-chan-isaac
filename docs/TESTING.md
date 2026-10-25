@@ -1,6 +1,14 @@
 # In-game test checklist
 
-Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `c6cd8fc` (432 canonical files verified), including PRs #84, #85 and #88. PEAK-CHILD-LASER-01 and DETACHED-LASER-01 are later source corrections and are not installed. No new engine acceptance is recorded here.
+Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `220d542` (433 canonical files verified), including PRs #89 and #90. BACKLOG-LASER-INIT-01 is a later source correction and is not installed. No new engine acceptance is recorded here. Older installed-version statements below describe their original checkpoints.
+
+## BACKLOG-LASER-INIT-01: Parent loss before the first update (offline passed; engine pending)
+
+The backlog observes laser initialization to retain a known child and any already resolved parent lease. This does not create a primary attack: first-update payment remains unchanged. The expanded child-laser fixture passes 16 groups. Five of the six new groups fail on immutable `220d542`; the new primary-timing control and ten existing groups pass. Six targeted faults fail: missing init observation, classification without inheritance, primary payment at init, child payment at init, renewed expiry and lost classification on a room reset. These are supplied callbacks, not observed native ordering.
+
+After an authorized deployment, record Parent and SpawnerEntity at initialization, first update and damage for Brimstone/Technology reflections and Tech X splits. With a resolved Base Model/Rice Cooker parent bonus and a different next prime, a child that loses Parent before first update should retain only the parent's bonus and identity; the next primary should still consume its prime. Check One More Finger, Sanity Test, Community Note and Consensus Coin for extra attacks/hits, including a child hitting before its first update and nested generations. Repeat with Peak, Opus and other damage callbacks; inspect actual damage rather than relying only on counters.
+
+Test unresolved child-first ordering: it must not synthesize a parent attack. It may inherit after the parent resolves while an explicit ancestry link remains available. If the link disappears before any parent lease is resolved, the child remains free and unboosted. Test non-laser parents, missing spawners, conflicting players/familiars, the original 120-frame expiry, room transitions, new runs and native save/continue on both game editions. Native init fields may be incomplete; unknown or later-only ancestry is not accepted by these stubs. Keep current installed `220d542` unchanged during owner testing until another installation is requested.
 
 ## DETACHED-LASER-01: child identity after Parent loss (offline passed; engine pending)
 

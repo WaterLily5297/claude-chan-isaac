@@ -431,6 +431,8 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 <details>
 <summary>近期兼容性修复——2026-10-24（开发者说明）</summary>
 
+**Current checkpoint (2026-10-25):** Installed `220d542` includes PRs #89 and #90. The later BACKLOG-LASER-INIT-01 source correction remembers child identity and an already resolved parent bonus at laser init, before Parent can disappear. Primary payments stay at first update; unresolved children never create a payment. This latest correction is not installed. Native ancestry, damage and save/continue remain pending. Installation statements in the dated notes below describe their original checkpoints.
+
 **Compatibility note (2026-10-25, detached lasers):** Paid observers retain a child identity seen at laser init/update even after Parent disappears. Child updates do not consume character resources, advance Opus or delay the next primary payment. Peak's damage-first exclusion remains intact. This is a source-only correction; installed `c6cd8fc` is unchanged and native ancestry/timing remain unverified.
 
 **Compatibility note (2026-10-25, Peak):** Tainted DeepSeek child lasers now share the parent's resolved boost and current paid/unpaid window without spending extra Compute. Detached children retain their classification and cannot delay a primary payment. This source correction is not installed; the current manual-test build is `c6cd8fc`, including the earlier helper and backlog child-laser fixes. Native timing, ownership and damage acceptance remain pending; older installation statements below describe their original checkpoints.
