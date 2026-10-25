@@ -431,6 +431,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 <details>
 <summary>最近の互換性修正 — 2026-10-24（開発者向け）</summary>
 
+**Compatibility note (2026-10-25, Peak):** Tainted DeepSeek child lasers now share the parent's resolved boost and current paid/unpaid window without spending extra Compute. Detached children retain their classification and cannot delay a primary payment. This source correction is not installed; the current manual-test build is `c6cd8fc`, including the earlier helper and backlog child-laser fixes. Native timing, ownership and damage acceptance remain pending; older installation statements below describe their original checkpoints.
+
 **Compatibility note (2026-10-25):** Backlog child lasers share a validated parent attack's resolved bonus, identity and original expiry. They do not consume another prime or advance attack counters again; independent primary shots still do. Source-only correction, not installed in `28fed37`; native ancestry and damage dispatch remain unverified.
 
 以下はソースの修正です。インストール済みの手動テスト版 `28fed37` は変更していません。オフラインの確認だけでは、ネイティブなコールバックのタイミングや実際のプレイは保証できません。

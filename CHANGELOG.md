@@ -1,5 +1,11 @@
 # Changelog
 
+## Tainted DeepSeek child laser boost (2026-10-25)
+
+- Share the parent laser's paid/unpaid Compute decision and original boost window instead of buying another child boost. Preserve native fields and subsequent independent primary payments.
+- Retain child classification after parent removal, validate ownership and invalidate transient decisions on room/run or binding changes. Peak's observer exclusion runs before taking a payment window.
+- Twelve offline groups pass, eleven fail on the old source, and eight targeted mutants fail. Native acceptance is pending; installed `c6cd8fc` remains unchanged.
+
 ## Backlog child laser inheritance (2026-10-25)
 
 - Let validated child lasers share a resolved parent attack and its original expiry without consuming new primes, scheduling Finger or advancing distinct-hit items again. Preserve damage bonuses and the next independent primary.
