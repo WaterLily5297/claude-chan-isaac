@@ -1,22 +1,14 @@
 # Claude handoff: consolidated development checkpoint
 
-## README-VOICE-02: simpler author introduction (2026-10-25)
-
-This supersedes README-VOICE-01's tone. The owner found the previous rewrite too artificial. The three READMEs now use a short account of the mod's inspiration and actual mechanics, without the slogan, per-family taglines or extra jokes above reference sections. The item examples are plain descriptions of All Tests Passing and Silent Update. Counts, mechanical rules, tables, localization coverage and compatibility records remain; the existing fan-work notice moves alongside the credits. English, Simplified Chinese and Japanese cover the same points. This is documentation only and does not replace the owner's installed manual-test build or add engine evidence.
-
-## README-VOICE-01: multilingual player introduction (2026-10-24)
-
-Documentation-only follow-up from main `8914cb9`. The English, Simplified Chinese and Japanese READMEs now share a player-facing opening, the same three item jokes and a short introduction to every model family. The humour refers to existing mechanics; item tables, numeric rules, controls, localization coverage, credits and licensing remain intact. The seven dated compatibility notes move from the opening to a developer disclosure after the test instructions, with matching Chinese and Japanese translations. The project-layout guide is now present in all three languages.
-
-The counts remain 11 families, 22 forms, 79 collectibles, 12 trinkets and four pills. No Lua, XML, assets, save data or installed files change. The owner's installed manual-test checkpoint is preserved; this prose change adds no engine acceptance. Required validation is the existing check.sh gate plus review of Markdown links, unchanged mechanic tables and matching multilingual section coverage.
-
 ## Start here: current handoff for GPT/Codex (updated 2026-10-25)
+
+**Next session:** the owner's project files hold `prompts/gpt-next-session-2026-10-25.md`. It reviews the 2026-10-24/25 work and sets the next queue: ask for the owner's manual-test results first, compact this file, fix the DROP tap/pocket-slot risk, then a small meme batch. Pause child-laser billing work until an engine probe shows the modeled Parent orderings occur. Keep this section first, and keep each dated entry below it to about five lines.
 
 This section is the current summary for the next agent (GPT/Codex or Claude). It supersedes older status lines further down; the dated sections below it are the change log and evidence records, and their file or suite counts describe their own checkpoint. Verify every fact here against the live repository before acting on it. For a long autonomous engine-testing session, also read the prompt prepared for GPT on 2026-10-24 (kept in the owner's project files as `prompts/gpt-long-task-architecture-2026-10-24.md`, written against `2ec15ef`; this section updates its "current state", "known risks" and "pending decisions" parts).
 
 ### Progress at a glance
 
-- **Source baseline:** main `220d542` includes PR #90 (DETACHED-LASER-01), #89 (PEAK-CHILD-LASER-01), #88 (BACKLOG-CHILD-LASER-01) and prior compatibility fixes. BACKLOG-LASER-INIT-01 below is the next focused source correction; verify its live PR/merge state. The full gate still covers 177 tracked Lua files, 5 XML files, deterministic assets and 67 offline suites. CI runs the same gate with Lua 5.4.
+- **Source baseline:** main `e1ff4d1` includes PR #91 (BACKLOG-LASER-INIT-01), #90 (DETACHED-LASER-01), #89 (PEAK-CHILD-LASER-01), #88 (BACKLOG-CHILD-LASER-01) and prior compatibility fixes. No pull requests are open. The full gate covers 177 tracked Lua files, 5 XML files, deterministic assets and 67 offline suites. CI runs the same gate with Lua 5.4.
 - **Source state:** feature-complete for the current scope. **Engine state: almost nothing is accepted in game.** Historical engine evidence includes the 22-form console smoke run, the tear-color fix, one tainted DeepSeek Continue, bounded PR #50 GPT credit checks and PR #51 Hit-frame observations (ENGINE_AUDIT_2026-10-24.md). Those narrow observations do not accept the current main, meme batch 1 or PAID-OBSERVERS-01 in game.
 - **Installed runtime:** the latest owner-authorized 2026-10-25 installation is `220d542` (433 tracked files verified against canonical Git bytes). A fresh allowlisted backup of all 432 prior files was reread-hash verified before replacement. The game was closed during installation and was not launched or controlled. PRs #89 and #90 are installed; BACKLOG-LASER-INIT-01 is a later source correction and is not installed. Preserve this manual-test build and consult the separate local deployment receipt. Installation is not engine acceptance; automated testing remains deferred. Older installed-version statements below describe their original checkpoints.
 
@@ -37,10 +29,7 @@ Fire-rate multipliers scale the whole shot interval (#63); co-op ghosts cannot u
 
 ### Open pull requests (check the live list first)
 
-Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at about 12:00 UTC; see "Meme gameplay batch 1" below. Its engine checks are still pending.
-
-
-- **#76 "1M Context exempts Ludovico tears from context rot"** is merged into main `5bbe9e4`. Its code, EID, ordinary-tear control and README/testing notes are preserved in this checkpoint. Native Ludovico and ordinary-tear behavior still require engine verification.
+None as of 2026-10-25 14:45 UTC. Meme batch 1 (#65) and 1M Context/Ludovico (#76) are merged; their engine checks are still pending.
 
 ### Unfinished tasks (priority order)
 
@@ -77,6 +66,16 @@ Meme batch 1 (PR #65: Em Dash, Blueberry, Benchmaxxed, I Panicked) merged at abo
 - **English** for in-game text, code, comments and Markdown; reply to the owner in their language (usually Japanese or Chinese).
 - **One small PR per change, based on main, no stacks.** Stacked PRs once got merged into intermediate branches and stranded work. Check the base is main before asking for a merge. The owner allows the agent to merge its own PR when the base is main, check.sh/CI pass, there is no blocking bug, the change is vanilla-compatible and it does not decide an open design question.
 - Update this section, the dated log below and the matching TESTING.md case in the same PR as each material change.
+
+## README-VOICE-02: simpler author introduction (2026-10-25)
+
+This supersedes README-VOICE-01's tone. The owner found the previous rewrite too artificial. The three READMEs now use a short account of the mod's inspiration and actual mechanics, without the slogan, per-family taglines or extra jokes above reference sections. The item examples are plain descriptions of All Tests Passing and Silent Update. Counts, mechanical rules, tables, localization coverage and compatibility records remain; the existing fan-work notice moves alongside the credits. English, Simplified Chinese and Japanese cover the same points. This is documentation only and does not replace the owner's installed manual-test build or add engine evidence.
+
+## README-VOICE-01: multilingual player introduction (2026-10-24)
+
+Documentation-only follow-up from main `8914cb9`. The English, Simplified Chinese and Japanese READMEs now share a player-facing opening, the same three item jokes and a short introduction to every model family. The humour refers to existing mechanics; item tables, numeric rules, controls, localization coverage, credits and licensing remain intact. The seven dated compatibility notes move from the opening to a developer disclosure after the test instructions, with matching Chinese and Japanese translations. The project-layout guide is now present in all three languages.
+
+The counts remain 11 families, 22 forms, 79 collectibles, 12 trinkets and four pills. No Lua, XML, assets, save data or installed files change. The owner's installed manual-test checkpoint is preserved; this prose change adds no engine acceptance. Required validation is the existing check.sh gate plus review of Markdown links, unchanged mechanic tables and matching multilingual section coverage.
 
 ## BACKLOG-LASER-INIT-01: observe ancestry before the first update (2026-10-25)
 
