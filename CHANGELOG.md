@@ -1,5 +1,10 @@
 # Changelog
 
+## Manual ancestry observation tool (2026-10-26; not run in game)
+
+- Prepare an explicitly enabled, bounded laser init/update observer for E2. It logs native link/frame fields and removes its callbacks on stop; main.lua never loads it.
+- Add offline lifecycle/format checks and an authorized-session procedure. No billing policy or gameplay behavior changes; E2 remains pending and installed e1ff4d1 stays unchanged.
+
 ## Native meme batch 2 (2026-10-26)
 
 - Add Let's Delve, a six-charge treasure active that delegates to the native shovel, and Six Seven, a pill that grants six or seven native blue flies using the player's seeded RNG.
