@@ -21,6 +21,9 @@ local function count(kind) return function(_, id, desc, name, lang)
     counts[kind] = (counts[kind] or 0) + 1
     assert(type(desc) == "string" and type(name) == "string" and lang)
     assert(desc ~= "" and not desc:find("##", 1, true) and desc:sub(1, 1) ~= "#" and desc:sub(-1) ~= "#", "malformed EID lines: " .. name)
+    if kind == "character" then
+        assert(desc:find("DROP ability requires at most one pocket item", 1, true), "missing pocket restriction: " .. name)
+    end
     if lang == "en_us" then english[kind .. id] = name end
 end end
 EID = { addCollectible = count("item"), addTrinket = count("trinket"), addPill = count("pill"), addCharacterInfo = count("character") }

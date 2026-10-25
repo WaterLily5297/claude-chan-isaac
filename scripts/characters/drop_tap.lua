@@ -3,6 +3,26 @@
 local DropTap = {}
 local MAX_TAP_FRAMES = 12
 
+local function hasPocketChoice(player)
+    local count = 0
+    -- Card/pill slots 0-3 are distinct from active slots. GetPocketItem is
+    -- unusable in base Repentance, so inspect the documented getters instead.
+    for slot = 0, 3 do
+        if player:GetCard(slot) ~= 0 or player:GetPill(slot) ~= 0 then
+            count = count + 1
+            if count > 1 then return true end
+        end
+    end
+    -- ActiveSlot.SLOT_POCKET and SLOT_POCKET2; exclude main and Schoolbag.
+    for slot = 2, 3 do
+        if player:GetActiveItem(slot) ~= 0 then
+            count = count + 1
+            if count > 1 then return true end
+        end
+    end
+    return false
+end
+
 function DropTap.New()
     local records = {}
     local tracker = {}
@@ -33,6 +53,14 @@ function DropTap.New()
             -- button held through entry, continue or control reassignment firing.
             records[pointer] = {seed=seed, kind=kind, controller=controller,
                 frame=frame, down=pressed}
+            return false
+        end
+        -- Native cycling owns any gesture that encounters multiple pocket
+        -- items. Never rearm it just because one was used/dropped while held.
+        -- Check before duplicate-frame rejection: inventory can change between
+        -- two callbacks in that same frame.
+        if (pressed or s.started) and hasPocketChoice(player) then
+            s.frame, s.down, s.started = frame, pressed, nil
             return false
         end
         if frame == s.frame then return false end

@@ -85,6 +85,9 @@ local function player(pointer,seed,controller)
         return t
     end
     function p:GetPlayerType() return self.kind end
+    function p:GetCard() return 0 end
+    function p:GetPill() return 0 end
+    function p:GetActiveItem() return 0 end
     function p:ToPlayer() return self end
     function p:IsDead() return self.dead end
     function p:AreControlsEnabled() return true end

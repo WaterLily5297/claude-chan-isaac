@@ -36,6 +36,9 @@ local function player(kind)
     function p:HasCollectible(id) return id==619 and self.birthright end
     function p:GetShootingInput() return {LengthSquared=function() return self.shooting and 1 or 0 end} end
     function p:GetPlayerType() return self.kind end
+    function p:GetCard() return 0 end
+    function p:GetPill() return 0 end
+    function p:GetActiveItem() return 0 end
     function p:GetData() return self.data end
     function p:ToPlayer() return self end
     function p:SetPocketActiveItem(id) self.pocket=id end

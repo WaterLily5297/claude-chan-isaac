@@ -62,10 +62,11 @@ function Dossiers:Init(mod)
                     Isaac.RenderText(def.name,50,70,1,0.9,0.7,1)
                     Isaac.RenderText(def.title,50,86,1,1,1,1)
                     for n,line in ipairs(def.lines) do Isaac.RenderText(line,50,98+n*12,1,1,1,1) end
-                    Isaac.RenderText("Release MAP to close",50,158,0.8,0.8,0.8,1)
-                    Isaac.RenderText("Design: ZipZipPipe | Non-commercial fan art",50,174,0.7,0.7,0.7,1)
+                    Isaac.RenderText("DROP ability: carry at most one pocket item",50,158,0.8,0.8,0.8,1)
+                    Isaac.RenderText("Release MAP to close",50,174,0.8,0.8,0.8,1)
+                    Isaac.RenderText("Design: ZipZipPipe | Non-commercial fan art",50,190,0.7,0.7,0.7,1)
                     if def.key=="deepseek" or def.key=="deepseek_b" then
-                        Isaac.RenderText("Whale girl: Shangshan Wuxing | CC BY-NC-SA 4.0",50,186,0.7,0.7,0.7,1)
+                        Isaac.RenderText("Whale girl: Shangshan Wuxing | CC BY-NC-SA 4.0",50,202,0.7,0.7,0.7,1)
                     end
                     return
                 end

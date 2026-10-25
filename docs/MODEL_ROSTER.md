@@ -6,6 +6,8 @@ The owner requested a new art pass and playable model-inspired mechanics on 2026
 
 ## Gameplay
 
+All 22 forms use the shared DROP rule: short release with at most one pocket item. Multiple cards/pills/pocket actives disable the ability and leave native selection untouched. Inventory changes during a held gesture cannot rearm it; release first. Long holds remain native. Main/Schoolbag actives are outside this pocket count. This is source behavior; physical input acceptance is pending.
+
 The following are fictional gameplay interpretations, not a performance ranking or literal claims about products. All new interface text is English as requested by the owner.
 
 | Family | Implemented loop | Tradeoff / limit |

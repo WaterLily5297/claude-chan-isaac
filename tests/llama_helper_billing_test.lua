@@ -48,6 +48,8 @@ local function fresh()
         player.form, player.InitSeed, player.ControllerIndex = index == 1 and 155 or 51, index * 10, index - 1
         player.coins, player.nativeShots = 5, {}
         function player:GetPlayerType() return self.form end
+        function player:GetCard() return 0 end
+        function player:GetPill() return 0 end
         function player:AreControlsEnabled() return true end
         function player:GetNumCoins() return self.coins end
         function player:AddCoins(n) self.coins = self.coins + n end
