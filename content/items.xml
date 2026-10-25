@@ -90,4 +90,5 @@
     <passive name="Blueberry" description="3 B's? Every third tear splits" gfx="collectibles/blueberry.png" quality="2" />
     <passive name="Benchmaxxed" description="DMG up in boss rooms, down elsewhere" gfx="collectibles/benchmaxxed.png" cache="damage" quality="2" />
     <active name="I Panicked" description="Wipe the room. And every pickup in it" gfx="collectibles/i_panicked.png" maxcharges="6" quality="2" tags="offensive" />
+    <active name="Let's Delve" description="A deeper understanding" gfx="collectibles/lets_delve.png" maxcharges="6" quality="1" />
 </items>

@@ -1,6 +1,6 @@
 # Contributing
 
-Start with docs/HANDOFF.md for current implementation, missing work and evidence boundaries. The source checkpoint contains 22 forms, 79 collectibles (including all 50 requested additions), 12 trinkets and four pills. Source completeness is not gameplay acceptance. New code, comments, Markdown and UI text must be English.
+Start with docs/HANDOFF.md for current implementation, missing work and evidence boundaries. The source checkpoint contains 22 forms, 80 collectibles (including all 50 requested additions), 12 trinkets and five pills. Source completeness is not gameplay acceptance. New code, comments, Markdown and UI text must be English.
 
 ## Workflow
 
