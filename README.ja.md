@@ -17,9 +17,9 @@ ClaudeちゃんはBANハンマーを持っていますが、自分の使用量�
 | 内容 | 数 |
 |---|---|
 | プレイアブル形態 | **22**：通常11 + 裏11 |
-| コレクティブル | **79**：オリジナル17、ミーム追加12、50アイテム拡張（[設計](docs/EXPANSION_DESIGN.md)） |
+| Collectibles | **80**: 17 original items, 13 meme extras and the 50-item expansion ([design](docs/EXPANSION_DESIGN.md)) |
 | トリンケット | **12** |
-| 薬（ピル） | **4** |
+| Pills | **5** |
 | 敵 | 1（中継スライム） |
 | 変身 | 1（Agentic） |
 | ストーリー | 異議申し立ての列（4章）＋ 他のモデル系統ごとに3章のアーク |
@@ -277,6 +277,7 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 | **Blueberry** | P、宝箱部屋 | 3発に1発が青い「B」の涙になり、命中時に分裂する。3つと言いながら4つに分かれる。Strawberryとは別カウント。涙のみ。 |
 | **Benchmaxxed** | P、宝箱部屋 | ボス、中ボス、チャレンジ、ボスラッシュの部屋ではダメージ+1.5、それ以外の部屋ではダメージ×0.9（1個ごと）。 |
 | **I Panicked** | A6、悪魔部屋 | 部屋のボス以外の敵に致死ダメージ、ボスは最大HPの15%を失う。ただし部屋に落ちているハート、コイン、鍵、爆弾、ピル、カード、電池、袋もすべて消える。台座、トリンケット、宝箱、ショップ商品は安全。敵がいなければチャージを消費しない。 |
+| **Let's Delve** | A6, treasure | Uses the native We Need to Go Deeper! effect. Native restrictions apply; a use spends its charge even if no dig is possible. Car Battery does not repeat it. |
 
 ### 50アイテム拡張（モデル系統別）
 
@@ -417,6 +418,7 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 | **Brb, Getting Food**（飯食ってくる） | 赤ハート1つ回復（巨大カプセルなら2つ）。ただし3秒間撃てない。 |
 | **9.11 > 9.9** | 大きいほうの数字を選ぶ：永続的にダメージ+0.11（ホースピル：+0.9）。プレイヤーごとに保存。 |
 | **Rolled Back** | この部屋の間、全ステータスアップ：ダメージ+1、連射アップ、移動速度+0.2、射程、弾速+0.1、運+1（ホースピル：2倍）。次の部屋で元に戻る。 |
+| **Six Seven** | Spawns 6 or 7 native blue flies using the player's seeded pill RNG. All pill sizes use the same roll; native fly modifiers still apply. |
 
 ## 開発用の導入方法
 

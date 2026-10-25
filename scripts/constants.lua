@@ -32,6 +32,7 @@ Constants.Item = {
     BLUEBERRY = Isaac.GetItemIdByName("Blueberry"),
     BENCHMAXXED = Isaac.GetItemIdByName("Benchmaxxed"),
     I_PANICKED = Isaac.GetItemIdByName("I Panicked"),
+    LETS_DELVE = Isaac.GetItemIdByName("Let's Delve"),
     -- Fifty-row backlog (docs/EXPANSION_DESIGN.md), rows 02-50.
     REJECTION_LETTER = Isaac.GetItemIdByName("Rejection Letter"),
     RED_STAMP = Isaac.GetItemIdByName("Dario's Red Stamp"),
@@ -104,6 +105,7 @@ Constants.Pill = {
     GETTING_FOOD = Isaac.GetPillEffectByName("Brb, Getting Food"),
     DECIMAL = Isaac.GetPillEffectByName("9.11 > 9.9"),
     ROLLED_BACK = Isaac.GetPillEffectByName("Rolled Back"),
+    SIX_SEVEN = Isaac.GetPillEffectByName("Six Seven"),
 }
 
 Constants.Player = {

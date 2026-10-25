@@ -50,6 +50,8 @@ include("scripts.items.em_dash"):Init(mod)
 include("scripts.items.blueberry"):Init(mod)
 include("scripts.items.benchmaxxed"):Init(mod)
 include("scripts.items.i_panicked"):Init(mod)
+include("scripts.items.lets_delve"):Init(mod)
+include("scripts.items.six_seven"):Init(mod)
 -- Fifty-row collectible backlog: one shared service, one module per family.
 local Backlog = include("scripts.items.backlog.common")
 Backlog:Init(mod, Risk)

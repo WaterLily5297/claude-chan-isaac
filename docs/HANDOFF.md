@@ -4,12 +4,18 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **GitHub and local source:** main `2182cb1` at this review, including merged PR #93 (D1 compaction), #92 (Claude's next-session handoff) and #91; merge CI passed. PR #94 (`codex/drop-pocket-audit`) implements the owner-selected multi-pocket restriction; verify its current CI/merge state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
+- **GitHub and local source:** main `ef42b13` at this review, including merged PR #94 (owner-selected multi-pocket DROP restriction) and #93 (D1 compaction); merge CI passed. Branch `codex/meme-batch-two` adds an O2 candidate awaiting owner balance approval; verify its live PR/CI state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
 - **Installed manual-test build:** `e1ff4d1` including #91, installed on 2026-10-25 after a fresh allowlisted backup was reread and hash-verified. All 433 installed tracked files matched canonical Git bytes. The local deployment receipt supersedes the next-session prompt's older `220d542` statement. Preserve this installation during offline work.
 - **Owner feedback:** asked about the installed build; owner replied "not tested yet" on 2026-10-25. No new engine or visual acceptance. No launch, input, process inspection, save access or runtime replacement in D1; current game state has not been inspected.
-- **Offline baseline:** 67 suites, 177 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** D1 complete; O1 owner-selected pocket restriction implemented with offline regression; native input pending; O2 a small meme batch; O3 read-only transformation/Tainted-item audit. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
+- **Offline baseline on main:** 67 suites, 177 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
+- **Current queue:** D1 complete; O1 owner-selected pocket restriction implemented with offline regression; native input pending; O2 a two-entry meme candidate awaiting owner balance approval; O3 read-only transformation/Tainted-item audit. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
 - **Stop speculative billing work:** no further child-laser, Parent-ancestry or derived-shot billing PR until E2 provides a native observation. The exploratory Bethany charge audit is parked, with no source fix or engine claim.
+
+## O2: two native meme extras (2026-10-26)
+
+Let's Delve delegates to the native shovel; Six Seven grants a seeded six or seven blue flies. [Candidate design](MEME_BATCH_2.md).
+Registration, English EID/README text, original placeholder icon and offline callback coverage are included; no custom enemy or boss.
+Draft PR #95 awaits owner approval for charge/pool/quality and pill balance choices before merge. This branch is not installed; engine acceptance is pending.
 
 ## O1: reserve multi-pocket DROP for native cycling (2026-10-26)
 
@@ -34,7 +40,7 @@ Full evidence remains in [TESTING.md](TESTING.md) and [the verbatim history](HAN
 | Area | Current implementation | Reference |
 |---|---|---|
 | Characters | 11 families, 22 normal/tainted forms: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM. Each has its own meme loop, Birthright behavior, starting-pickup contract and EID information. | [Actual behavior](MODEL_ROSTER.md), [design targets](CHARACTER_GAMEPLAY.md) |
-| Items | 79 collectibles: 25 originals, four meme batch 1 items and all 50 requested backlog rows. Also 12 trinkets, four pills, meme extras and Relay Slime. | [Generated item reference](ITEMS.md), [backlog](EXPANSION_DESIGN.md) |
+| Items | 80 collectibles in this candidate: 25 originals, four meme batch 1 items, one batch 2 item and all 50 requested backlog rows. Also 12 trinkets, five pills, meme extras and Relay Slime. | [Generated item reference](ITEMS.md), [backlog](EXPANSION_DESIGN.md) |
 | Shared mechanics | Native-weapon resource observers, DeepSeek Thought adapters, DROP tap recognition, meal countdown, scoped helper shots, tear tint, feedback and co-op HUD bands. | [Native Thought](NATIVE_THOUGHT.md), `scripts/characters/` |
 | Risk and saves | Risk covers Claude forms only; DeepSeek has no proxy/IP/risk mechanics. Versioned per-player state and floor checkpoints are implemented. | `scripts/risk.lua`, [save cases](TESTING.md) |
 | Appearance | All 22 skins, menus, stage portraits and MAP dossiers are wired. Fixed-look service clears item costume layers on mod forms while retaining item mechanics; vanilla forms remain native. | [Costume contract](COSTUME_COMPATIBILITY.md) |
@@ -44,8 +50,8 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 
 ## Unfinished tasks
 
-1. **O1: DROP tap and native pocket cycling.** The owner selected the multi-pocket restriction; implementation and regression are in PR #94 and [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md). Finish source/CI verification, then preserve the installed build. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
-2. **O2: meme batch 2.** After D1/O1, select two or three of Let's Delve (native shovel active), Feel the AGI / AGI achieved internally, and Six Seven pill. Keep one small PR; no new enemies/bosses. Open balance or design decisions still need the owner.
+1. **O1: DROP tap and native pocket cycling.** The owner selected the multi-pocket restriction; implementation and regression are in PR #94 and [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md). Merged at ef42b13 with source/CI verification complete; preserve the installed build. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
+2. **O2: meme batch 2.** Let's Delve and Six Seven are prepared in one focused candidate. See [the concrete decisions and limits](MEME_BATCH_2.md); obtain owner balance approval before merge. Feel the AGI remains deferred. No new enemies/bosses.
 3. **O3: vanilla compatibility audit.** Read-only first: transformations, Bag of Crafting, Tainted Eden rerolls and Tainted Lost Holy Cards on mod forms. Add a short table to TESTING.md with code path, expected risk and native case; fix only clear source bugs, one PR each.
 4. **New-item checklist.** Register module/constants/XML with ASCII pickup text; wire main in the right callback order; add EID, deterministic placeholder icon and pool entry; update `tests/eid_test.lua` counts, regenerate `docs/ITEMS.md`, update all three READMEs and relevant design records. Native systems first; new extras do not count again toward the completed fifty.
 5. **Art and story.** Nine tainted sets currently derive deeper colors from normal art. Distinct hand-designed replacements and Chinese/Japanese story text remain owner decisions. Improve anatomy, side profiles and special poses from observed failures. Workshop is not authorized.

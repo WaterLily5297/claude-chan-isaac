@@ -1246,7 +1246,22 @@ def i_panicked():
     return c
 
 
+def lets_delve():
+    """An original steel shovel with a paper note tied to its wooden shaft."""
+    c = clear()
+    rrect(c, 10, 3, 21, 9, 2, "W")
+    rect(c, 13, 5, 18, 7, ".")
+    rect(c, 14, 9, 17, 20, "W")
+    poly(c, [(8, 18), (23, 18), (23, 23), (16, 29), (8, 23)], "M")
+    line(c, 16, 21, 16, 26, "m")
+    rect(c, 18, 11, 26, 16, "P")
+    line(c, 15, 12, 18, 13, "G")
+    line(c, 20, 13, 24, 13, "T")
+    return c
+
+
 SPRITES = {
+    "lets_delve": lets_delve,
     "summary_stapler": summary_stapler,
     "lunch_break": lunch_break,
     "support_ticket": support_ticket,

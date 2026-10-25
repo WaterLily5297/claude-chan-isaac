@@ -17,9 +17,9 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 | 内容 | 数量 |
 |---|---|
 | 可操作形态 | **22**：普通11 + 里11 |
-| 收藏品 | **79**：原创17、梗扩展12、50道具扩展（[设计](docs/EXPANSION_DESIGN.md)） |
+| Collectibles | **80**: 17 original items, 13 meme extras and the 50-item expansion ([design](docs/EXPANSION_DESIGN.md)) |
 | 饰品 | **12** |
-| 药丸 | **4** |
+| Pills | **5** |
 | 敌人 | 1（中转站史莱姆） |
 | 变身 | 1（Agentic） |
 | 剧情 | 申诉队列（4章）＋ 其他每个模型家族各3章的剧情线 |
@@ -277,6 +277,7 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 | **Blueberry** | P，宝箱房 | 每第三发眼泪是蓝色“B”眼泪，命中时分裂。说好分成三份，实际分成四份。与Strawberry分开计数。仅限眼泪。 |
 | **Benchmaxxed** | P，宝箱房 | 在Boss、小Boss、挑战和Boss Rush房间伤害+1.5，其他房间伤害×0.9（每个叠加）。 |
 | **I Panicked** | A6，恶魔房 | 房间内所有非Boss敌人受到致命伤害，Boss损失15%最大生命值；但房间里散落的心、硬币、钥匙、炸弹、药丸、卡牌、电池和福袋也全部删除。道具台、饰品、箱子和商店商品不受影响。没有敌人时不消耗充能。 |
+| **Let's Delve** | A6, treasure | Uses the native We Need to Go Deeper! effect. Native restrictions apply; a use spends its charge even if no dig is possible. Car Battery does not repeat it. |
 
 ### 50道具扩展（按模型家族）
 
@@ -417,6 +418,7 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 | **Brb, Getting Food**（去吃饭了） | 回复1颗红心（巨型药丸为2颗），但3秒内无法射击。 |
 | **9.11 > 9.9** | 选大的那个数：永久伤害+0.11（马丸：+0.9）。按玩家保存。 |
 | **Rolled Back** | 本房间内全属性提升：伤害+1、射速提升、移速+0.2、射程、弹速+0.1、幸运+1（马丸：翻倍）。下一个房间回滚。 |
+| **Six Seven** | Spawns 6 or 7 native blue flies using the player's seeded pill RNG. All pill sizes use the same roll; native fly modifiers still apply. |
 
 ## 开发安装
 
