@@ -187,6 +187,144 @@ test("held primary windows still pay and child updates remain free", function()
     end
 end)
 
+for index, label in ipairs({ "Claude Usage", "Tainted Claude Quota", "Tainted GPT Credits" }) do
+    test("detached " .. label .. " stays free after init and leaves primary windows available", function()
+        local env, players, s = fresh()
+        local p = players[index]
+        local function paid(count)
+            resources(s, index == 1 and count * 4 or 0, index == 2 and 220 - count or 220,
+                index == 3 and 80 - count or 80)
+            wallet(p, count, 5)
+        end
+        local parent = env.laser(p)
+        init(env, parent)
+        local child = env.laser(p, parent)
+        init(env, child)
+        parent:Remove(); child.Parent, child.FrameCount = nil, 7
+        env.frame = 20
+        env.fire("MC_POST_LASER_UPDATE", nil, child)
+        env.fire("MC_POST_LASER_UPDATE", nil, child)
+        paid(1); unchanged(child, p, nil)
+        local primary = env.laser(p, p)
+        primary.FrameCount = 6
+        env.fire("MC_POST_LASER_UPDATE", nil, primary)
+        env.fire("MC_POST_LASER_UPDATE", nil, primary)
+        paid(2)
+        env.frame, primary.FrameCount = 26, 12
+        env.fire("MC_POST_LASER_UPDATE", nil, primary)
+        paid(3)
+        for other, partner in ipairs(players) do if other ~= index then wallet(partner, 0, 5) end end
+    end)
+end
+
+test("detached children observed only during early or paused updates retain classification", function()
+    for _, mode in ipairs({ "early", "paused", "eligible" }) do
+        local env, players, s = fresh()
+        local nativeGame = Game
+        function Game()
+            local game = nativeGame()
+            function game:IsPaused() return env.paused or false end
+            return game
+        end
+        local parents, children = {}, {}
+        for i, p in ipairs(players) do
+            parents[i] = env.laser(p); init(env, parents[i])
+            children[i] = env.laser(p, parents[i]) -- No child initialization callback.
+            children[i].FrameCount = mode == "eligible" and 7 or 0
+            env.paused = mode == "paused"
+            env.fire("MC_POST_LASER_UPDATE", nil, children[i])
+            env.paused = false
+            children[i].Parent, children[i].FrameCount = nil, 7
+        end
+        env.frame = 30
+        for i, p in ipairs(players) do
+            env.fire("MC_POST_LASER_UPDATE", nil, children[i])
+            unchanged(children[i], p, nil)
+            wallet(p, 1, 5)
+        end
+        resources(s, 4, 219, 79)
+        for i, parent in ipairs(parents) do
+            parent.FrameCount = 6
+            env.fire("MC_POST_LASER_UPDATE", nil, parent)
+            wallet(players[i], 2, 5)
+        end
+        resources(s, 8, 218, 78)
+    end
+end)
+
+test("detached classification lasts with the entity across resets but not reused pointer hashes", function()
+    for _, reset in ipairs({ "room", "new-run", "continue" }) do
+        local env, players = fresh()
+        local children = {}
+        for i, p in ipairs(players) do
+            children[i] = env.laser(p, env.laser(p))
+            init(env, children[i]); children[i].Parent = nil
+        end
+        if reset == "room" then env.fire("MC_POST_NEW_ROOM")
+        else
+            env.fire("MC_PRE_GAME_EXIT", nil, true)
+            env.fire("MC_POST_GAME_STARTED", nil, reset == "continue")
+        end
+        local s = { env.Risk.state.claudeUsage["0"], env.Risk.state.claudeAppeal["1"], env.Risk.state.gptReset["2"] }
+        s[3].fullSend = true
+        resources(s, 0, 220, 80)
+        env.frame = 30
+        for i, p in ipairs(players) do
+            children[i].FrameCount = 7
+            env.fire("MC_POST_LASER_UPDATE", nil, children[i]); wallet(p, 0, 5)
+        end
+        resources(s, 0, 220, 80)
+        for i, p in ipairs(players) do
+            local primary = env.laser(p)
+            primary.hash, primary.FrameCount = children[i].hash, 6 -- Fresh entity data at a reused address.
+            env.fire("MC_POST_LASER_UPDATE", nil, primary); wallet(p, 1, 5)
+        end
+        resources(s, 4, 219, 79)
+    end
+end)
+
+test("detached child classification predates Opus ownership and cannot spend the threshold coin", function()
+    local env, players, s = fresh()
+    local parents, children = {}, {}
+    for i, p in ipairs(players) do
+        p.items[env.Item.OPUS_MODE] = nil
+        parents[i] = env.laser(p); init(env, parents[i])
+        children[i] = env.laser(p, parents[i]); init(env, children[i])
+        env.give(p, "OPUS_MODE")
+        p:GetData().ccOpusTears = 9
+        children[i].Parent, children[i].FrameCount = nil, 7
+    end
+    env.frame = 30
+    for i, p in ipairs(players) do
+        env.fire("MC_POST_LASER_UPDATE", nil, children[i]); wallet(p, 9, 5)
+    end
+    resources(s, 4, 219, 79)
+    for i, parent in ipairs(parents) do
+        parent.FrameCount = 6
+        env.fire("MC_POST_LASER_UPDATE", nil, parent); wallet(players[i], 0, 4)
+    end
+    resources(s, 8, 218, 78)
+end)
+
+test("detached nested children do not become a co-op partner's paid attack", function()
+    local env, players, s = fresh()
+    local p, q = players[1], players[2]
+    local parent = env.laser(p); init(env, parent)
+    local child = env.laser(p, parent); init(env, child)
+    local nested = env.laser(p, child); init(env, nested)
+    child.Parent, nested.Parent = nil, nil
+    child.SpawnerEntity, nested.SpawnerEntity = q, q
+    child.FrameCount, nested.FrameCount = 7, 7
+    env.frame = 30
+    env.fire("MC_POST_LASER_UPDATE", nil, child)
+    env.fire("MC_POST_LASER_UPDATE", nil, nested)
+    resources(s, 4, 220, 80); wallet(p, 1, 5); wallet(q, 0, 5)
+    unchanged(child, q, nil); unchanged(nested, q, nil)
+    local primary = env.laser(q); primary.FrameCount = 6
+    env.fire("MC_POST_LASER_UPDATE", nil, primary)
+    resources(s, 4, 219, 80); wallet(q, 1, 5)
+end)
+
 for _, failure in ipairs(failures) do print("FAIL " .. failure) end
 assert(#failures == 0, tostring(#failures) .. " child-laser groups failed")
 print("PASS child-laser billing: " .. passed .. " callback groups")

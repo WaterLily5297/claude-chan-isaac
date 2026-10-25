@@ -170,6 +170,20 @@ test("detached children keep paid damage but never steal the next primary window
     near(env.hit(primary), 13)
 end)
 
+test("Peak still excludes a child first recognized by damage before Parent disappears", function()
+    local env, p = fresh()
+    local parent = env.laser(p)
+    env.init(parent, 1)
+    local child = env.laser(p, parent) -- No init/update observed by the paid service.
+    env.frame = 2; near(env.hit(child), 13)
+    parent:Remove(); child.Parent = nil
+    env.observe(child, 9, 7)
+    near(env.hit(child), 10); assert(env.state().compute == 10)
+    local primary = env.laser(p)
+    env.observe(primary, 9, 7)
+    assert(env.state().compute == 8); near(env.hit(primary), 13)
+end)
+
 test("removed parent references do not require surviving parent GetData", function()
     for _, laserSpawner in ipairs({ true, false }) do
         local env, p = fresh()
