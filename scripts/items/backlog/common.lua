@@ -295,6 +295,62 @@ function Common:Init(mod, Risk)
     end
     self.attack = attack
 
+    local function laserParent(entity)
+        if entity and entity.Type == EntityType.ENTITY_LASER and entity.Parent
+            and entity.Parent.Type == EntityType.ENTITY_LASER then return entity.Parent end
+    end
+    local childLaserKey = {}
+    local function childLaser(entity)
+        if not entity or entity.Type ~= EntityType.ENTITY_LASER then return false end
+        local data = entity:GetData()
+        if laserParent(entity) then data[childLaserKey] = true end
+        -- Keep the classification if the engine clears a removed parent.
+        return data[childLaserKey] == true
+    end
+    local function liveLease(entity)
+        local hash = GetPtrHash(entity)
+        local lease = leases[hash]
+        if lease and lease.expires < now() then leases[hash] = nil; return nil end
+        return lease
+    end
+    local function inheritLaserLease(laser)
+        local current, seen, owner = laser, {}, nil
+        while current do
+            local hash = GetPtrHash(current)
+            if seen[hash] then return nil end
+            seen[hash] = true
+            local lease = liveLease(current)
+            local player, familiar = Common.Owner(current)
+            if familiar then return nil end
+            local spawner = current.SpawnerEntity
+            if spawner and not spawner:ToPlayer() then
+                if spawner.Type ~= EntityType.ENTITY_LASER then return nil end
+                local parent = laserParent(current)
+                if not lease and (not parent or GetPtrHash(spawner) ~= GetPtrHash(parent)) then return nil end
+                local sourcePlayer, sourceFamiliar = Common.Owner(spawner)
+                if sourceFamiliar then return nil end
+                if sourcePlayer then
+                    if player and GetPtrHash(player) ~= GetPtrHash(sourcePlayer) then return nil end
+                    player = sourcePlayer
+                end
+            end
+            if player then
+                local pointer = GetPtrHash(player)
+                if owner and owner ~= pointer then return nil end
+                owner = pointer
+            end
+            if lease then
+                if lease.kind ~= "laser" or (owner and owner ~= lease.owner) then return nil end
+                -- Keep the parent's attack identity, resolved multiplier and
+                -- original expiry, even if the parent later disappears.
+                leases[GetPtrHash(laser)] = lease
+                return lease
+            end
+            current = laserParent(current)
+        end
+        -- A child seen first may retry later; never pay for a missing parent.
+    end
+
     -- Fire a native tear that is not an attack itself (no primes, no events).
     function self.FireDerived(player, velocity, mult, position)
         -- FireTear dispatches synchronously. Earlier consumers (including Opus)
@@ -323,6 +379,7 @@ function Common:Init(mod, Risk)
         if player then attack(player, "tear", tear) end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
+        if childLaser(laser) then inheritLaserLease(laser); return end
         if laser.FrameCount ~= 1 then return end
         local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
         if player then attack(player, "laser", laser) end
@@ -419,9 +476,20 @@ function Common:Init(mod, Risk)
         if not npc or npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then return nil end
         local src = source and source.Entity
         local owner, familiar = Common.Owner(src)
+        local lease
+        if childLaser(src) then
+            lease = inheritLaserLease(src)
+            if lease then
+                -- A child may name its laser spawner instead of the player.
+                -- Only a current owner matching the resolved lease can use it.
+                local inherited
+                for _, p in ipairs(Common.Players()) do
+                    if GetPtrHash(p) == lease.owner then inherited = p; break end
+                end
+                if inherited then owner, familiar = inherited, false else lease = nil end
+            end
+        elseif src then lease = liveLease(src) end
         if not owner then return nil end
-        local lease = src and leases[GetPtrHash(src)]
-        if lease and lease.expires < now() then leases[GetPtrHash(src)] = nil; lease = nil end
         local kind = lease and lease.kind or (familiar and "familiar") or (src:ToPlayer() and "contact") or "other"
         local mult = lease and lease.mult or 1
         for _, fn in ipairs(modifiers) do mult = mult * (fn(npc, owner, kind, lease) or 1) end
