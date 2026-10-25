@@ -4,12 +4,18 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **GitHub and local source:** main `2182cb1` at this review, including merged PR #93 (D1 compaction), #92 (Claude's next-session handoff) and #91; merge CI passed. PR #94 (`codex/drop-pocket-audit`) implements the owner-selected multi-pocket restriction; verify its current CI/merge state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
+- **GitHub and local source:** main `ef42b13` at this review, including merged PR #94 (owner-selected multi-pocket DROP restriction) and #93 (D1 compaction); merge CI passed. Draft PR #95 contains the separate O2 meme candidate and awaits owner balance approval. This O3 branch is documentation only; verify the live PR/CI state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
 - **Installed manual-test build:** `e1ff4d1` including #91, installed on 2026-10-25 after a fresh allowlisted backup was reread and hash-verified. All 433 installed tracked files matched canonical Git bytes. The local deployment receipt supersedes the next-session prompt's older `220d542` statement. Preserve this installation during offline work.
 - **Owner feedback:** asked about the installed build; owner replied "not tested yet" on 2026-10-25. No new engine or visual acceptance. No launch, input, process inspection, save access or runtime replacement in D1; current game state has not been inspected.
 - **Offline baseline:** 67 suites, 177 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** D1 complete; O1 owner-selected pocket restriction implemented with offline regression; native input pending; O2 a small meme batch; O3 read-only transformation/Tainted-item audit. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
+- **Current queue:** D1 and O1 merged; native input pending. O2 candidate is in draft PR #95 awaiting owner balance approval. O3 source audit is complete, with engine cases in TESTING.md and no gameplay fix justified by the inspected paths. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
 - **Stop speculative billing work:** no further child-laser, Parent-ancestry or derived-shot billing PR until E2 provides a native observation. The exploratory Bethany charge audit is parked, with no source fix or engine claim.
+
+## O3: native transformation and Tainted-item audit (2026-10-26)
+
+The [TESTING.md audit table](TESTING.md#o3-native-transformations-and-tainted-mechanics-2026-10-26-source-audit-only) maps transformations, Agentic/rerolls, crafting, Tainted Eden and Holy Card risks to concrete engine cases.
+No clear source bug was established in the inspected paths; no gameplay code changed. Native trait, item ownership and cosmetic layers are separate test cases.
+The 67-suite offline gate passes; this provides no engine acceptance. E4/E5 wait for the owner and installed e1ff4d1 stays unchanged.
 
 ## O1: reserve multi-pocket DROP for native cycling (2026-10-26)
 
@@ -44,9 +50,9 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 
 ## Unfinished tasks
 
-1. **O1: DROP tap and native pocket cycling.** The owner selected the multi-pocket restriction; implementation and regression are in PR #94 and [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md). Finish source/CI verification, then preserve the installed build. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
-2. **O2: meme batch 2.** After D1/O1, select two or three of Let's Delve (native shovel active), Feel the AGI / AGI achieved internally, and Six Seven pill. Keep one small PR; no new enemies/bosses. Open balance or design decisions still need the owner.
-3. **O3: vanilla compatibility audit.** Read-only first: transformations, Bag of Crafting, Tainted Eden rerolls and Tainted Lost Holy Cards on mod forms. Add a short table to TESTING.md with code path, expected risk and native case; fix only clear source bugs, one PR each.
+1. **O1: DROP tap and native pocket cycling.** The owner selected the multi-pocket restriction; implementation and regression are in PR #94 and [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md). Merged at ef42b13 with source/CI verification complete; preserve the installed build. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
+2. **O2: meme batch 2.** Draft PR #95 prepares Let's Delve and Six Seven with offline checks and CI passed. The owner must approve the new charge/pool/quality and pill balance before merge. It is not installed; Feel the AGI remains deferred.
+3. **O3: vanilla compatibility audit.** Source audit complete: see the O3 table in TESTING.md. No gameplay change was justified. E4/E5 must observe the listed transformation, bag controls, reroll and shield cases before further fixes.
 4. **New-item checklist.** Register module/constants/XML with ASCII pickup text; wire main in the right callback order; add EID, deterministic placeholder icon and pool entry; update `tests/eid_test.lua` counts, regenerate `docs/ITEMS.md`, update all three READMEs and relevant design records. Native systems first; new extras do not count again toward the completed fifty.
 5. **Art and story.** Nine tainted sets currently derive deeper colors from normal art. Distinct hand-designed replacements and Chinese/Japanese story text remain owner decisions. Improve anatomy, side profiles and special poses from observed failures. Workshop is not authorized.
 
