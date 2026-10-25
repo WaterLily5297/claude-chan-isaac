@@ -1,6 +1,13 @@
 # In-game test checklist
 
-Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `220d542` (433 canonical files verified), including PRs #89 and #90. BACKLOG-LASER-INIT-01 is a later source correction and is not installed. No new engine acceptance is recorded here. Older installed-version statements below describe their original checkpoints.
+Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `e1ff4d1`, including PR #91. The owner-authorized 2026-10-25 deployment followed a fresh allowlisted, reread-hash-verified backup; all 433 installed tracked files matched canonical Git bytes. This supersedes the older `220d542` installation statement. The owner reports no manual test yet. Preserve the build during offline work; another deployment or automated game session requires owner availability and authorization. Consult the local deployment receipt and HANDOFF.md; installation is not engine acceptance. Older installed-version statements below remain historical.
+
+## D1: handoff compaction (2026-10-26; documentation only)
+
+The canonical `docs/HANDOFF.md` from main `a1d4d7a` is retained in full after the archive preface in `docs/HANDOFF_HISTORY_2026-10-25.md`. A byte comparison verifies all 104075 original bytes, SHA-256 `710299327fb32162c5657ef9fa91601d927ce61892a3f98014b90be1d6f8553a`. This includes every dated log older than 2026-10-25 and the full recent notes; no historical wording or old evidence is rewritten. The older 2026-10-24 archive is unchanged.
+
+The current handoff is under 30 KB, begins with Start here and keeps its new dated entries to at most five lines each. Its source/install/owner-feedback summary and contributor entry points now agree. Review the docs-only diff and run the complete gate: 67 offline suites, 177 tracked Lua files, five XML files and deterministic assets. No runtime, saves or game settings are changed; no engine or visual acceptance is added.
+
 
 ## BACKLOG-LASER-INIT-01: Parent loss before the first update (offline passed; engine pending)
 
