@@ -1,5 +1,11 @@
 # Changelog
 
+## Backlog child laser initialization (2026-10-25)
+
+- Remember child identity and inherit an already resolved parent bonus at laser initialization, before Parent can disappear. Preserve the next prime, attack counters and the original expiry.
+- Leave primary attacks at their existing first-update payment point. Unresolved children never synthesize a payment; ownership and room/run cleanup still apply.
+- Six added regression groups cover initialization ordering; five fail on the prior source and the primary-timing control already passes. Six targeted mutants fail. Installed `220d542` includes PRs #89 and #90 but predates this source correction; engine acceptance remains pending.
+
 ## Detached child laser billing (2026-10-25)
 
 - Retain a laser child identity observed at init/update so clearing Parent cannot start another paid observer window. Pause, young-entity filters and window resets do not erase the classification.
