@@ -1,5 +1,10 @@
 # Changelog
 
+## Backlog child laser inheritance (2026-10-25)
+
+- Let validated child lasers share a resolved parent attack and its original expiry without consuming new primes, scheduling Finger or advancing distinct-hit items again. Preserve damage bonuses and the next independent primary.
+- Keep detached children classified and reject conflicting owners. Offline regressions cover ordering, ownership, cleanup and expiry; native ancestry and damage dispatch remain pending. Installed `28fed37` is unchanged.
+
 ## Child laser resource accounting (2026-10-24)
 
 - Skip normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credit charges at laser initialization when the direct `Parent` is a laser. This matches the existing Opus and shared paid-attack observer exclusions.

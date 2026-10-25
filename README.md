@@ -431,6 +431,8 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 <details>
 <summary>Recent compatibility fixes — 2026-10-24 (developer notes)</summary>
 
+**Compatibility note (2026-10-25):** Backlog child lasers share a validated parent attack's resolved bonus, identity and original expiry. They do not consume another prime or advance attack counters again; independent primary shots still do. Source-only correction, not installed in `28fed37`; native ancestry and damage dispatch remain unverified.
+
 These are source changes. The installed `28fed37` manual-test build was left alone; offline checks do not establish native callback timing or gameplay acceptance.
 
 - **Child lasers:** normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credits now follow Opus and the shared observer: a laser whose direct `Parent` is another laser is not billed. Primary starts and later eligible primary windows retain their costs. Native parent attribution and timing still need testing.

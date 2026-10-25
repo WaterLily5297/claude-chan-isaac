@@ -58,6 +58,7 @@ local function fresh()
             Position = Vector(30, 40), Velocity = Vector(2, 3), TearFlags = 17, alive = true }
         function laser:GetData() return data end
         function laser:ToPlayer() return nil end
+        function laser:ToFamiliar() return nil end
         function laser:IsCircleLaser() return false end
         function laser:Exists() return self.alive end
         function laser:Remove() self.alive = false end
