@@ -310,6 +310,173 @@ test("unobserved parents and ancestry cycles remain unleased without paying", fu
     native(a, p, b); native(b, p, a)
 end)
 
+test("init retains the paid parent before a child's first detached update", function()
+    for _, source in ipairs({ "player", "laser", "missing" }) do
+        local env, p = fresh()
+        local target = env.npc(60, { hp = 1000 })
+        env.give(p, "ONE_MORE_FINGER")
+        for _ = 1, 3 do env.observe(env.laser(p)) end
+        env.C.Prime(p, "parent", 2)
+        local parent = env.laser(p)
+        env.observe(parent)
+        local parentFrame, id = env.frame, env.attacks[4].id
+        env.C.Prime(p, "next", 3)
+        local spawner = source == "player" and p or (source == "laser" and parent or nil)
+        local child = env.laser(spawner, parent)
+        child.FrameCount = 0
+        env.frame = env.frame + 1
+        env.fire("MC_POST_LASER_INIT", nil, child)
+        parent:Remove(); child.Parent = nil; child.FrameCount = 1
+        env.observe(child)
+        local amount, hit = env.hit(target, child)
+        near(amount, 4); assert(hit.id == id and hit.kind == "laser" and hit.owner == p)
+        assert(#env.attacks == 4 and env.C.Primed(p, "next") and env.C.Data(p).fingers == 4)
+        assert(env.C.LastAttack(p) == parentFrame)
+        env.update(); assert(#p.fired == 0)
+        native(child, spawner, nil)
+        local primary = env.laser(p)
+        env.observe(primary)
+        near(env.hit(target, primary), 6)
+        assert(#env.attacks == 5 and not env.C.Primed(p, "next"))
+        env.update(); assert(#p.fired == 1, "only the next primary schedules Finger")
+    end
+end)
+
+test("init-only children share hit identity before any child update", function()
+    local env, p = fresh()
+    local target = env.npc(60, { hp = 1000 })
+    assert(env.use(env.Item.SANITY_TEST, p).Discharge)
+    env.C.Prime(p, "parent", 2)
+    local parent = env.laser(p)
+    env.observe(parent)
+    near(env.hit(target, parent), 4)
+    env.C.Prime(p, "next", 3)
+    local child = env.laser(p, parent)
+    child.FrameCount = 0
+    env.fire("MC_POST_LASER_INIT", nil, child)
+    local nested = env.laser(child, child)
+    nested.FrameCount = 0
+    env.fire("MC_POST_LASER_INIT", nil, nested)
+    parent:Remove(); child.Parent = nil
+    child:Remove(); nested.Parent = nil
+    local amount, hit = env.hit(target, nested)
+    near(amount, 4); assert(hit.id == env.attacks[1].id and hit.owner == p)
+    assert(env.C.Data(p).room.sanity.count == 1 and env.C.Primed(p, "next") and #env.attacks == 1)
+    native(nested, child, nil)
+end)
+
+test("init classifies unresolved children without inventing a parent attack", function()
+    for _, detached in ipairs({ true, false }) do
+        local env, p = fresh()
+        local target = env.npc(60, { hp = 1000 })
+        env.C.Prime(p, "parent", 2)
+        local parent = env.laser(p)
+        local child = env.laser(p, parent)
+        env.fire("MC_POST_LASER_INIT", nil, child)
+        assert(#env.attacks == 0 and env.C.Primed(p, "parent") and env.C.LastAttack(p) == nil)
+        if detached then parent:Remove(); child.Parent = nil end
+        env.observe(child)
+        local amount, hit = env.hit(target, child)
+        near(amount, 2); assert(hit.id == nil and #env.attacks == 0)
+        assert(env.C.Primed(p, "parent"))
+        local primary = detached and env.laser(p) or parent
+        env.observe(primary)
+        near(env.hit(target, primary), 4)
+        env.C.Prime(p, "next", 3)
+        env.observe(child)
+        amount, hit = env.hit(target, child)
+        near(amount, detached and 2 or 4)
+        assert(hit.id == (not detached and env.attacks[1].id or nil))
+        assert(#env.attacks == 1 and env.C.Primed(p, "next"))
+    end
+end)
+
+test("initialization leaves primary payment at the first update", function()
+    for _, source in ipairs({ "none", "player", "effect" }) do
+        local env, p = fresh()
+        local target = env.npc(60, { hp = 1000 })
+        local parent = source == "player" and p or nil
+        if source == "effect" then parent = Isaac.Spawn(EntityType.ENTITY_EFFECT, 0, 0, Vector.Zero, Vector.Zero, p) end
+        env.C.Prime(p, "next", 3)
+        local primary = env.laser(p, parent)
+        primary.FrameCount = 0
+        env.fire("MC_POST_LASER_INIT", nil, primary)
+        env.observe(primary)
+        near(env.hit(target, primary), 2)
+        assert(#env.attacks == 0 and env.C.Primed(p, "next"))
+        primary.FrameCount = 1
+        env.observe(primary)
+        near(env.hit(target, primary), 6)
+        assert(#env.attacks == 1 and not env.C.Primed(p, "next"))
+        env.C.Prime(p, "later", 4)
+        primary.FrameCount = 2
+        env.observe(primary)
+        assert(#env.attacks == 1 and env.C.Primed(p, "later"))
+        native(primary, p, parent)
+    end
+end)
+
+test("init inheritance keeps owner checks when ancestry disappears", function()
+    local env, p, q = fresh()
+    local target = env.npc(60, { hp = 1000 })
+    env.C.Prime(p, "parent", 2)
+    local parent = env.laser(p)
+    env.observe(parent)
+    env.C.Prime(p, "next", 3); env.C.Prime(q, "next", 4)
+    for _, source in ipairs({ q, env.familiar(p), env.npc(300), env.laser(p) }) do
+        local child = env.laser(source, parent)
+        env.fire("MC_POST_LASER_INIT", nil, child)
+        child.Parent = nil
+        env.observe(child)
+        near(env.hit(target, child), 2)
+        native(child, source, nil)
+    end
+    local own = env.laser(p, parent)
+    env.fire("MC_POST_LASER_INIT", nil, own)
+    parent:Remove(); own.Parent = nil; own.SpawnerEntity = q
+    env.observe(own)
+    local amount, hit = env.hit(target, own)
+    near(amount, 2); assert(hit.owner == q and hit.id == nil)
+    assert(#env.attacks == 1 and env.C.Primed(p, "next") and env.C.Primed(q, "next"))
+    local primary = env.laser(q)
+    env.observe(primary)
+    near(env.hit(target, primary), 8)
+    assert(#env.attacks == 2 and env.C.Primed(p, "next") and not env.C.Primed(q, "next"))
+end)
+
+test("init inheritance retains expiry and cleanup before the first child update", function()
+    for _, boundary in ipairs({ "expiry", "room", "new run", "continue" }) do
+        local env, p = fresh()
+        local target = env.npc(60, { hp = 1000 })
+        env.frame = 10
+        env.C.Prime(p, "parent", 2)
+        local parent = env.laser(p)
+        env.observe(parent, 0)
+        env.frame = 129
+        local child = env.laser(p, parent)
+        child.FrameCount = 0
+        env.fire("MC_POST_LASER_INIT", nil, child)
+        parent:Remove(); child.Parent = nil
+        near(env.hit(target, child), 4)
+        if boundary == "expiry" then
+            env.frame = 130; near(env.hit(target, child), 4)
+            env.frame = 131
+        elseif boundary == "room" then env.newRoom({ keep = true })
+        else env.fire("MC_POST_GAME_STARTED", nil, boundary == "continue") end
+        env.C.Prime(p, "next", 3)
+        child.FrameCount = 1
+        env.observe(child, 0)
+        local amount, hit = env.hit(target, child)
+        near(amount, 2); assert(hit.id == nil)
+        assert(env.C.Primed(p, "next") and #env.attacks == 1)
+        native(child, p, nil)
+        local primary = env.laser(p)
+        env.observe(primary)
+        near(env.hit(target, primary), 6)
+        assert(not env.C.Primed(p, "next") and #env.attacks == 2)
+    end
+end)
+
 for _, failure in ipairs(failures) do print("FAIL " .. failure) end
 assert(#failures == 0, tostring(#failures) .. " backlog child-laser groups failed")
 print("PASS backlog child-laser leases: " .. passed .. " callback groups")
