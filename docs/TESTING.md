@@ -1,6 +1,14 @@
 # In-game test checklist
 
-Current acceptance status is summarized in HANDOFF.md. Dated candidate and integration sections below retain their original commit, availability and evidence scope; they do not override the latest owner instruction. The current manual-test installation is `28fed37`, including PR #82. Later source fixes require a separate verified deployment before their engine cases can pass.
+Current acceptance status is summarized in HANDOFF.md. Dated candidate and integration sections below retain their original commit, availability and evidence scope; they do not override the latest owner instruction. The previous manual-test installation was `28fed37`, including PR #82. The owner authorized a new synchronized installation on 2026-10-25; consult the local deployment receipt for its exact commit and verification. Later source fixes require that verified deployment before their engine cases can pass. No new engine acceptance is recorded here.
+
+## BACKLOG-CHILD-LASER-01: inherited parent attacks (offline passed; engine pending)
+
+The backlog now inherits a resolved parent laser lease without consuming new primes, emitting an attack event or restarting its 120-frame lifetime. Parent and child share the laser source category and attack identity. Child-first updates/hits never synthesize a payment; later callbacks can resolve a subsequently observed parent. Detached resolved children retain the original lease, while foreign/familiar/unknown ownership, expiry and room/run cleanup prevent inheritance. These source rules do not establish when native Parent links appear or disappear.
+
+`tests/backlog_child_laser_test.lua` drives ten real-module groups; all fail on `475bd15` and pass with the correction. Five targeted mutations fail. Coverage includes primed parent versus next-primary damage, Finger scheduling and LastAttack, shared Sanity/Community Note progress, first-hit and Consensus categories, inclusive expiry, nested/child-first ordering, detached references, room/run resets, co-op owner conflicts, familiars and unknown sources. Native laser fields remain unchanged in the fixture.
+
+After a separately verified deployment, test Brimstone/Technology reflections and Tech X splits with primed Rice Cooker or Base Model, One More Finger, Sanity Test, Community Note and Consensus Coin. A child must carry its parent's resolved bonus and attack identity without consuming a newly primed next attack. Parent plus children cannot count as multiple distinct hits on one target. An independent primary still consumes its prime and advances items. Observe actual source/parent links, before/after-parent callbacks, parent removal, lease expiry, co-op, room transitions and save/continue on both game editions. Check damage once through other callbacks, including Peak and other mods. Do not assume unknown native ancestry is covered. Installed `28fed37` predates this correction; Peak's separate child Compute/boost issue remains unresolved.
 
 ## LLAMA-HELPER-01: stationary helper accounting (source correction; engine pending)
 
@@ -49,7 +57,7 @@ A private real-module fixture on `8c1ca789` initialized normal Claude, tainted C
 
 After verified deployment, test delayed child beams, reflected lasers and split rings with actual weapons. Record Parent/SpawnerEntity and initialization frames, and compare all three form resources and Opus against a true new primary beam. Include same-frame children, later-frame children, Swarm, near-limit resources, co-op, room changes and continued attacks. Verify primary held-beam windows and actual damage. A Parent assigned after initialization is outside this guard's evidence; record that timing instead of assuming every split or reflection is covered. This is not native acceptance or a change to tainted DeepSeek's separate boost policy.
 
-Separate unfixed follow-ups: a private real-module probe with the same supplied ancestry finds Peak Compute 12 -> 10 for a primary, then 10 -> 8 for a later child. That child gets its own boost. At its first backlog update it consumes a held 2x prime, advances One More Finger 4 -> 0 and Sanity Test 0 -> 1; a modeled base-5 hit becomes 13 after the prime and Peak boost. A laser-spawned child has no player ownership in these handlers. Preserve this distinction when designing a focused correction: account for damage/prime inheritance, and do not interpret a three-form accounting fix as acceptance of every child-beam consumer.
+Historical follow-up probe before BACKLOG-CHILD-LASER-01: a private real-module probe with the same supplied ancestry found Peak Compute 12 -> 10 for a primary, then 10 -> 8 for a later child. That child gets its own boost. At its first backlog update it consumes a held 2x prime, advances One More Finger 4 -> 0 and Sanity Test 0 -> 1; a modeled base-5 hit becomes 13 after the prime and Peak boost. A laser-spawned child has no player ownership in these handlers. BACKLOG-CHILD-LASER-01 above now addresses the backlog path; Peak is still unresolved. Preserve the ancestry distinction and do not interpret either correction as native acceptance of every child-beam consumer.
 
 ## VANILLA-COMPAT-01: vanilla item interactions (offline passed; engine pending)
 
@@ -490,4 +498,3 @@ Offline: `tests/paid_attacks_test.lua` drives the real observer; removing the st
 - New tainted Gemini/Grok/Qwen/Llama/Mistral/Doubao/Kimi/GLM runs start with one key and no bomb.
 - Mistral Pounce and Baguette, Doubao Apology, Kimi tasks and GLM requests show their poof or tint, which never hides an enemy, blocks a shot or lingers after room exit.
 - Tainted DeepSeek with Brimstone, Technology, Mom's Knife, a melee weapon, Dr. Fetus and Epic Fetus: in Forks On with enough Compute, each paid attack costs 2 (Valley) or 4 (Peak) Compute and hits for 1.3x; in Saving or at low Compute, native damage and no cost. A held beam boosts only while its windows are paid; a knife resting on the player is never boosted.
-
