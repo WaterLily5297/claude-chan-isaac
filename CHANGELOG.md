@@ -1,10 +1,10 @@
 # Changelog
 
-## Meme batch 2 candidate (2026-10-26; owner decision pending)
+## Native meme batch 2 (2026-10-26)
 
 - Add Let's Delve, a six-charge treasure active that delegates to the native shovel, and Six Seven, a pill that grants six or seven native blue flies using the player's seeded RNG.
 - Register English pickup/EID text, an original deterministic shovel icon, pool entry and generated item documentation. Totals: 80 collectibles, 12 trinkets, five pills and 22 forms.
-- This candidate is offline only. Charge, pool, quality, fly count and same-effect horse pills await the owner; installed e1ff4d1 is unchanged.
+- The owner approved charge, pool, quality, fly count and same-effect horse pills before #95 merged. This is offline only; installed e1ff4d1 is unchanged.
 
 ## DROP pocket compatibility (2026-10-26)
 

@@ -1,8 +1,8 @@
-# Meme batch 2: candidate for owner review
+# Meme batch 2: approved rules, engine acceptance pending
 
-Prepared offline on main `ef42b13`. This branch contains two entries from the owner's next-session queue. New balance choices are proposed, not approved. The installed manual-test build remains `e1ff4d1`.
+Prepared offline on main `ef42b13`. The owner approved these exact rules and PR #95's merge on 2026-10-26; it merged at `178269b`. This approval does not establish in-game balance or compatibility. The installed manual-test build remains `e1ff4d1`.
 
-| Entry | Concrete candidate | Trade-off |
+| Entry | Approved rule | Trade-off |
 |---|---|---|
 | Let's Delve | Active; six room charges; quality 1; treasure pool, weight 1. One native We Need to Go Deeper! use per primary activation; ignore the wrapper's Car Battery repeat. | The shovel decides whether and what to dig. A use consumes the charge even when no dig is possible. No custom exit or guaranteed crawlspace. |
 | Six Seven | Pill; one player-specific seeded roll grants six or seven native blue flies. Every pill size uses the same roll. | Horse pills have no separate multiplier. Fish Tail/native fly modifiers remain delegated to the engine. No permanent stat bonus or custom saved state. |
@@ -21,7 +21,7 @@ Existing XML entries retain their order; new entries are appended. The collectib
 
 `tests/meme_batch_two_test.lua` exercises filtered native delegation, a modeled nested callback without recursion, Car Battery suppression, independent primary uses, active-slot isolation, animation/HUD flags, both seeded pill outcomes, repeat uses and two-player isolation. It does not run the native shovel, Car Battery, horse pills, Void, Echo Chamber, wisps or fly combat. Existing EID/XML/asset checks cover registration and deterministic output. See TESTING.md MEME-BATCH-02 for the engine cases and final gate result.
 
-After owner approval and an authorized deployment: compare ordinary and blocked shovel rooms, native crawlspace/trapdoor behavior, floor transitions, stored charge, Schoolbag/pocket use, Car Battery, Void and Book of Virtues. Test normal/horse/golden pills, Placebo, Echo Chamber, Fish Tail, repeated use, co-op and continue. Record exact source and game version separately for Repentance and Repentance+. No engine or visual acceptance is claimed here.
+After an authorized deployment: compare ordinary and blocked shovel rooms, native crawlspace/trapdoor behavior, floor transitions, stored charge, Schoolbag/pocket use, Car Battery, Void and Book of Virtues. Test normal/horse/golden pills, Placebo, Echo Chamber, Fish Tail, repeated use, co-op and continue. Record exact source and game version separately for Repentance and Repentance+. No engine or visual acceptance is claimed here.
 
 ## API references
 
