@@ -378,6 +378,11 @@ function Common:Init(mod, Risk)
         if tear:GetData().ccThoughtDerived then return end
         if player then attack(player, "tear", tear) end
     end)
+    mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(_, laser)
+        -- Parent may disappear before the first update. Retain a known child
+        -- and any already resolved bonus without creating a primary attack.
+        if childLaser(laser) then inheritLaserLease(laser) end
+    end)
     mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, function(_, laser)
         if childLaser(laser) then inheritLaserLease(laser); return end
         if laser.FrameCount ~= 1 then return end
