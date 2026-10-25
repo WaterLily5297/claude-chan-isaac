@@ -4,7 +4,7 @@ Current acceptance status is summarized in HANDOFF.md. Dated sections preserve t
 
 ## MEME-BATCH-02: native shovel and Six Seven (2026-10-26; offline candidate)
 
-Source: `codex/meme-batch-two`, based on `ef42b13`; new balance choices await owner approval. No game version was exercised and installed e1ff4d1 is unchanged. The full gate passes 68 offline suites, 180 Lua files, five XML files and deterministic assets. The inventory is 80 collectibles, 12 trinkets and five pills; new XML entries are appended, preserving existing order. The original shovel placeholder was inspected at its native 32x32 size, which is not in-game visual acceptance.
+Source: draft PR #95 (`codex/meme-batch-two`), based on `ef42b13`; new balance choices await owner approval. No game version was exercised and installed e1ff4d1 is unchanged. The full gate passes 68 offline suites; the candidate contains 180 tracked Lua files, five XML files and deterministic assets. The inventory is 80 collectibles, 12 trinkets and five pills; new XML entries are appended, preserving existing order. The original shovel placeholder was inspected at its native 32x32 size, which is not in-game visual acceptance.
 
 `tests/meme_batch_two_test.lua` checks one native shovel delegation per primary wrapper use, a modeled nested callback without recursion, Car Battery repeat suppression, independent uses, no delegated active-slot ownership, no duplicate animation/wisp request, NOHUD, both seeded six/seven outcomes, repeat pill uses and co-op isolation. It does not execute any native effect. Registration, EID counts, English descriptions, generated ITEMS.md and icon reproducibility pass the existing gate. [Design, owner choices and API references](MEME_BATCH_2.md).
 

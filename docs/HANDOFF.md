@@ -15,7 +15,7 @@ Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIB
 
 Let's Delve delegates to the native shovel; Six Seven grants a seeded six or seven blue flies. [Candidate design](MEME_BATCH_2.md).
 Registration, English EID/README text, original placeholder icon and offline callback coverage are included; no custom enemy or boss.
-New charge/pool/quality and pill balance choices await the owner before merge. This branch is not installed; engine acceptance is pending.
+Draft PR #95 awaits owner approval for charge/pool/quality and pill balance choices before merge. This branch is not installed; engine acceptance is pending.
 
 ## O1: reserve multi-pocket DROP for native cycling (2026-10-26)
 
