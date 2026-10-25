@@ -1,6 +1,14 @@
 # In-game test checklist
 
-Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `c6cd8fc` (432 canonical files verified), including PRs #84, #85 and #88. PEAK-CHILD-LASER-01 is a later source correction and is not installed. No new engine acceptance is recorded here.
+Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `c6cd8fc` (432 canonical files verified), including PRs #84, #85 and #88. PEAK-CHILD-LASER-01 and DETACHED-LASER-01 are later source corrections and are not installed. No new engine acceptance is recorded here.
+
+## DETACHED-LASER-01: child identity after Parent loss (offline passed; engine pending)
+
+`tests/child_laser_billing_test.lua` now passes 14 real-module callback groups: the original seven pass on baseline `9fc2786`, while all seven new detached-child groups fail there. The new groups register real Opus, backlog and three allowance forms in main's order. They check resource/coin balances, the next primary window, unchanged native fields, init-only and update-only classification, paused/young updates, room/run boundaries, a new entity reusing a pointer hash, item acquisition and changed co-op ownership. `tests/peak_child_laser_test.lua` adds a passing damage-first child control (13 groups total), retaining Peak's optional exclusion when shared init/update callbacks never saw the Parent. Eight targeted mutations fail. Native callback order, entity recreation and save serialization are not simulated acceptance.
+
+After an authorized verified deployment, test native reflections and split lasers on normal Claude, tainted Claude, tainted GPT and tainted DeepSeek, with and without Opus. Observe whether Parent is set at init or an early update and whether it disappears while the child survives. When that ancestry was observed, subsequent child updates must not change allowances, Compute, Opus's counter or wallet. With Opus at nine attacks, the next independent primary must still spend one coin; children cannot spend it or delay that primary's payment window. Check pause, released versus held beams, nested splits, room/floor changes, save/continue, two players and other mods on both game editions.
+
+Record actual Parent/SpawnerEntity values, frames, damage and visuals. A child whose ancestry is never observed remains unresolved; this change does not guess from its player spawner or refund an earlier initialization payment. Damage and parent-boost behavior remain subject to the separate BACKLOG-CHILD-LASER-01 and PEAK-CHILD-LASER-01 cases. Installed `c6cd8fc` includes the backlog correction but predates Peak and detached-observer corrections.
 
 ## PEAK-CHILD-LASER-01: parent Compute and boost (offline passed; engine pending)
 

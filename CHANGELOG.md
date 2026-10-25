@@ -1,5 +1,11 @@
 # Changelog
 
+## Detached child laser billing (2026-10-25)
+
+- Retain a laser child identity observed at init/update so clearing Parent cannot start another paid observer window. Pause, young-entity filters and window resets do not erase the classification.
+- Preserve normal Claude Usage, tainted Claude Quota, tainted GPT Credits and Opus counters while the next independent primary remains paid. Keep Peak's damage-first exclusion and native damage/boost behavior unchanged.
+- Seven new regression groups fail on the prior source; eight targeted mutants fail. The full offline gate passes. Installed `c6cd8fc` remains unchanged; native acceptance is pending.
+
 ## Tainted DeepSeek child laser boost (2026-10-25)
 
 - Share the parent laser's paid/unpaid Compute decision and original boost window instead of buying another child boost. Preserve native fields and subsequent independent primary payments.
