@@ -165,4 +165,50 @@ tick(); assert(state().bowls==1 and state().speed==0 and not state().lunch)
 fire("MC_POST_GAME_STARTED",false); assert(state().bowls==1 and state().thought==0)
 tick(37); fire("MC_PRE_GAME_EXIT",true); load(); fire("MC_POST_GAME_STARTED",true)
 assert(state().thought==37,"continue retains partial Thought rather than real-time elapsed time")
+
+-- O1 characterization, not native replay or a compatibility pass: the actual
+-- Rice/Meal/DROP modules permit a native DROP poll AND spend a bowl on release.
+-- Keep this known-conflict fixture until an owner-approved gesture replaces it.
+-- The simulated pocket rotation below is a fixture input, not observed engine
+-- ordering. Supplying it before or after the mod update must not hide the issue.
+for _, pockets in ipairs({'card-active','card-pill'}) do
+    for _, nativeFirst in ipairs({true,false}) do
+        players={player(201,2011,0),player(202,2022,1)}
+        p,q=players[1],players[2]; frame=0; paused=false; down={}
+        p.selectedPocket=0
+        function p:GetCard(slot) return slot==0 and 1 or 0 end
+        function p:GetPill(slot) return pockets=='card-pill' and slot==1 and 1 or 0 end
+        function p:GetActiveItem(slot) return pockets=='card-active' and slot==2 and C.Item.LUNCH_BREAK or 0 end
+        load(); fire('MC_POST_GAME_STARTED',false); tick()
+        local function nativeDropPoll()
+            for _,hook in ipairs({0,1,2}) do
+                assert(fire('MC_INPUT_ACTION',p,hook,ButtonAction.ACTION_DROP)==nil,
+                    'current modules must leave native DROP input unmodified')
+            end
+            -- Model one native selection change, separately from mod callbacks.
+            p.selectedPocket=1-p.selectedPocket
+        end
+        down[0]=true
+        if nativeFirst then nativeDropPoll() end
+        tick()
+        if not nativeFirst then nativeDropPoll() end
+        assert(state().bowls==1, 'press itself must not spend Rice')
+        down[0]=false; tick()
+        assert(p.selectedPocket==1 and state().bowls==0 and Meal:Remaining(p)==60,
+            'known overlap: one gesture can rotate the pocket and start a meal')
+        assert(state(1).bowls==1 and Meal:Remaining(q)==0, 'other controller stays independent')
+    end
+end
+-- A long hold remains a separate control: no meal on release and no native
+-- DROP hook overridden. Actual item dropping still requires an engine run.
+players={player(301,3011,0)}; p=players[1]; frame=0; down={}
+load(); fire('MC_POST_GAME_STARTED',false); tick()
+down[0]=true
+for _=1,20 do
+    assert(fire('MC_INPUT_ACTION',p,InputHook.IS_ACTION_PRESSED,ButtonAction.ACTION_DROP)==nil)
+    tick()
+end
+down[0]=false; tick()
+assert(state().bowls==1 and Meal:Remaining(p)==0, 'long hold must not start a meal')
+print('O1: known DROP/pocket overlap reproduced offline; native input acceptance remains pending')
 print("OK: Rice economy, native DROP observer, meal/save lifecycle, volley ownership and untouched tear effects")

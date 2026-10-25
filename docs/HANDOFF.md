@@ -4,12 +4,18 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **GitHub and local source:** main `a1d4d7a` at this review, including merged PR #92 (Claude's next-session handoff) and #91. No open PRs were present at the review. D1 is the docs-only `codex/handoff-compaction` follow-up; check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
+- **GitHub and local source:** main `2182cb1` at this review, including merged PR #93 (D1 compaction), #92 (Claude's next-session handoff) and #91; merge CI passed. O1 is the `codex/drop-pocket-audit` draft follow-up, with no production changes. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
 - **Installed manual-test build:** `e1ff4d1` including #91, installed on 2026-10-25 after a fresh allowlisted backup was reread and hash-verified. All 433 installed tracked files matched canonical Git bytes. The local deployment receipt supersedes the next-session prompt's older `220d542` statement. Preserve this installation during offline work.
 - **Owner feedback:** asked about the installed build; owner replied "not tested yet" on 2026-10-25. No new engine or visual acceptance. No launch, input, process inspection, save access or runtime replacement in D1; current game state has not been inspected.
 - **Offline baseline:** 67 suites, 177 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** D1 compact this handoff; O1 inspect DROP/pocket cycling; O2 a small meme batch; O3 read-only transformation/Tainted-item audit. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
+- **Current queue:** D1 complete; O1 source/API audit and offline overlap reproduction complete, gesture decision pending; O2 a small meme batch; O3 read-only transformation/Tainted-item audit. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
 - **Stop speculative billing work:** no further child-laser, Parent-ancestry or derived-shot billing PR until E2 provides a native observation. The exploratory Bethany charge audit is parked, with no source fix or engine claim.
+
+## O1: DROP can also select a pocket item (2026-10-26)
+
+The real Rice/Meal/DROP modules permit native input and spend a bowl after the same short gesture; the offline fixture supplies the pocket rotation and is not engine evidence.
+[The review](DROP_POCKET_REVIEW.md) recommends MAP + short DROP with a scoped swap guard; keeping plain DROP only when no pocket can cycle is the alternative. Owner choice is required before changing controls.
+Production code and installed `e1ff4d1` are unchanged. The draft adds characterization coverage; physical keyboard/controller E4 remains pending.
 
 ## D1: compact current guidance (2026-10-26)
 
@@ -38,7 +44,7 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 
 ## Unfinished tasks
 
-1. **O1: DROP tap and native pocket cycling.** Review source and API documentation; reproduce the overlap offline. Preserve native cycling and long-hold dropping. If the solution changes the ability gesture, present concrete options and a recommendation to the owner before merging. E4 must later test physical keyboard/controller input with a card and pocket active.
+1. **O1: DROP tap and native pocket cycling.** Audit/reproduction are complete in [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md); choose the ability gesture with the owner before implementing or merging a control change. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
 2. **O2: meme batch 2.** After D1/O1, select two or three of Let's Delve (native shovel active), Feel the AGI / AGI achieved internally, and Six Seven pill. Keep one small PR; no new enemies/bosses. Open balance or design decisions still need the owner.
 3. **O3: vanilla compatibility audit.** Read-only first: transformations, Bag of Crafting, Tainted Eden rerolls and Tainted Lost Holy Cards on mod forms. Add a short table to TESTING.md with code path, expected risk and native case; fix only clear source bugs, one PR each.
 4. **New-item checklist.** Register module/constants/XML with ASCII pickup text; wire main in the right callback order; add EID, deterministic placeholder icon and pool entry; update `tests/eid_test.lua` counts, regenerate `docs/ITEMS.md`, update all three READMEs and relevant design records. Native systems first; new extras do not count again toward the completed fifty.

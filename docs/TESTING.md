@@ -2,6 +2,12 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `e1ff4d1`, including PR #91. The owner-authorized 2026-10-25 deployment followed a fresh allowlisted, reread-hash-verified backup; all 433 installed tracked files matched canonical Git bytes. This supersedes the older `220d542` installation statement. The owner reports no manual test yet. Preserve the build during offline work; another deployment or automated game session requires owner availability and authorization. Consult the local deployment receipt and HANDOFF.md; installation is not engine acceptance. Older installed-version statements below remain historical.
 
+## O1: DROP/pocket overlap audit (2026-10-26; offline reproduction, not fixed)
+
+Against main `2182cb1`, `tests/deepseek_rice_test.lua` now characterizes the known overlap using the real Rice, MealBreak and shared DropTap modules. Four combinations (card/active or card/pill, with a supplied rotation before or after the mod update) all permit native DROP polls and start a meal on release. A co-op controller is unaffected; a long-hold control spends no bowl and leaves the native held-state poll unmodified. The fixture explicitly models the rotation; it does not observe native pocket order, actual input or item dropping. The existing 67-suite gate remains the validation target.
+
+[DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md) records API sources, risks and two concrete control options. No production Lua, control text, runtime or saved data changes. A gesture decision is pending with the owner; the draft must not be presented as a fix. After implementation, replace the known-conflict assertion with the approved behavior and run physical E4 input cases on keyboard/controller, with card/pill/active combinations, holds, co-op, pause and interruption. Game version: not exercised in this audit.
+
 ## D1: handoff compaction (2026-10-26; documentation only)
 
 The canonical `docs/HANDOFF.md` from main `a1d4d7a` is retained in full after the archive preface in `docs/HANDOFF_HISTORY_2026-10-25.md`. A byte comparison verifies all 104075 original bytes, SHA-256 `710299327fb32162c5657ef9fa91601d927ce61892a3f98014b90be1d6f8553a`. This includes every dated log older than 2026-10-25 and the full recent notes; no historical wording or old evidence is rewritten. The older 2026-10-24 archive is unchanged.
