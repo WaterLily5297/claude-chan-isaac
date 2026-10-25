@@ -4,7 +4,7 @@ Current acceptance status is summarized in HANDOFF.md. Dated sections preserve t
 
 ## O3: native transformations and Tainted mechanics (2026-10-26; source audit only)
 
-Reviewed main `ef42b13`; no game version was exercised. This table records source paths and inferred risks, not engine compatibility. No clear source defect was established in these paths, so this audit changes no gameplay code. The full existing offline gate passes 67 suites; main contains 177 tracked Lua files. Engine cases remain part of E4/E5, waiting for owner availability. Installed e1ff4d1 is unchanged.
+Reviewed main `ef42b13`; no game version was exercised. This table records source paths and inferred risks, not engine compatibility. No clear source defect was established in these paths, so this audit changes no gameplay code. The audited ef42b13 passed the 67-suite gate and contains 177 tracked Lua files. Integration with merged O2 at 178269b passes 68 suites with 180 tracked Lua files; it changes no O3 gameplay path. Engine cases remain part of E4/E5, waiting for owner availability. Installed e1ff4d1 is unchanged.
 
 | Item or mechanic | Our code path | Expected risk, not a confirmed engine bug | Engine case to run |
 |---|---|---|---|
@@ -17,6 +17,14 @@ Reviewed main `ef42b13`; no game version was exercised. This table records sourc
 Read-only inspection covered the named modules, their registration order in `main.lua`, roster identity and existing costume/meal/Constitution fixtures. The source has no Bag of Crafting, Tainted Cain/Eden/Lost or Holy Card-specific overrides; that absence is not a compatibility pass. Existing fixtures do not model native transformations, crafting recipes, Eden rerolls or shield consumption. Do not add replacements based only on these inferred risks.
 
 API boundaries: community [ClearCostumes](https://wofsauge.github.io/IsaacDocs/rep/EntityPlayer.html#clearcostumes) documents costume removal, while [HasPlayerForm](https://wofsauge.github.io/IsaacDocs/rep/EntityPlayer.html#hasplayerform) and [ChangePlayerType](https://wofsauge.github.io/IsaacDocs/rep/EntityPlayer.html#changeplayertype) distinguish form queries from changing character type. REPENTOGON exposes [bag-content access](https://repentogon.com/EntityPlayer.html#getbagofcraftingcontent) and [RerollAllCollectibles](https://repentogon.com/EntityPlayer.html#rerollallcollectibles), but those extension APIs are not base Repentance contracts and are not introduced here. Repeat acceptance on base Repentance and Repentance+ before claiming both supported.
+
+## MEME-BATCH-02: native shovel and Six Seven (2026-10-26; offline passed, engine pending)
+
+Source: PR #95 (`codex/meme-batch-two`, head a58be61), merged at 178269b after the owner approved the exact rules and merge on 2026-10-26. No game version was exercised and installed e1ff4d1 is unchanged. The full gate passes 68 offline suites; the source contains 180 tracked Lua files, five XML files and deterministic assets. The inventory is 80 collectibles, 12 trinkets and five pills; new XML entries are appended, preserving existing order. The original shovel placeholder was inspected at its native 32x32 size, which is not in-game visual acceptance.
+
+`tests/meme_batch_two_test.lua` checks one native shovel delegation per primary wrapper use, a modeled nested callback without recursion, Car Battery repeat suppression, independent uses, no delegated active-slot ownership, no duplicate animation/wisp request, NOHUD, both seeded six/seven outcomes, repeat pill uses and co-op isolation. It does not execute any native effect. Registration, EID counts, English descriptions, generated ITEMS.md and icon reproducibility pass the existing gate. [Design, approved rules and API references](MEME_BATCH_2.md).
+
+After an authorized installation, test ordinary and restricted shovel rooms, crawlspaces/trapdoors and floor transitions; primary, Schoolbag and pocket use; stored charge, Car Battery, Void and Book of Virtues. Test Six Seven with ordinary/horse/golden pills, Placebo, Echo Chamber, Fish Tail, co-op and continue. Observe actual flies, damage, charge, animation and text on both Repentance and Repentance+. Every pill size intentionally uses the same six-or-seven roll; native fly modifiers may change the actual number spawned. This is the owner-approved balance rule, not a verified horse-pill interaction.
 
 ## O1: reserve multi-pocket DROP for native cycling (2026-10-26; offline correction, engine pending)
 

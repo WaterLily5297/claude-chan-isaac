@@ -161,6 +161,9 @@ local descriptions = {
     [Constants.Item.DEEP_RESEARCH] = {
         en_us = { "Deep Research", "12 room charges#Reveals the floor map, special rooms and secret rooms#Car Battery does not repeat it" },
     },
+    [Constants.Item.LETS_DELVE] = {
+        en_us = { "Let's Delve", "6 room charges#Uses the native We Need to Go Deeper! effect#Native room and floor restrictions apply; a use spends the charge even if nothing can be dug#Car Battery does not repeat it" },
+    },
     [Constants.Item.EM_DASH] = {
         en_us = { "Em Dash", "Tears pierce enemies#{{ArrowUp}} +0.16 shot speed per copy" },
     },
@@ -330,6 +333,9 @@ local trinketDescriptions = {
 }
 
 local pillDescriptions = {
+    [Constants.Pill.SIX_SEVEN] = {
+        en_us = { "Six Seven", "Spawns 6 or 7 native blue flies, chosen with this player's pill RNG#Every pill size uses the same 6-or-7 roll#Native fly modifiers, including Fish Tail, still apply" },
+    },
     [Constants.Pill.DECIMAL] = {
         en_us = { "9.11 > 9.9", "Picks the bigger number: permanent +0.11 damage#Horse pill: +0.9 damage instead#Saved per player" },
     },

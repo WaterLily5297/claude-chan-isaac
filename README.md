@@ -17,9 +17,9 @@ Currently **0.5-dev**. Still being worked on; not on the Workshop yet.
 | What | Count |
 |---|---|
 | Playable forms | **22**: 11 normal + 11 tainted |
-| Collectibles | **79**: 17 original items, 12 meme extras and the 50-item expansion ([design](docs/EXPANSION_DESIGN.md)) |
+| Collectibles | **80**: 17 original items, 13 meme extras and the 50-item expansion ([design](docs/EXPANSION_DESIGN.md)) |
 | Trinkets | **12** |
-| Pills | **4** |
+| Pills | **5** |
 | Enemies | 1 (Relay Slime) |
 | Transformations | 1 (Agentic) |
 | Story | The Appeal Queue (4 chapters) + a 3-chapter arc for each other model family |
@@ -277,6 +277,7 @@ Type: **A*n*** = active item with *n* room charges, **P** = passive. Pools come 
 | **Blueberry** | P, treasure | Every third tear is a blue "B" tear that splits on impact. It promises three pieces and makes four. Counted separately from Strawberry. Tears only. |
 | **Benchmaxxed** | P, treasure | +1.5 damage per copy in boss, mini-boss, challenge and Boss Rush rooms; ×0.9 damage per copy everywhere else. |
 | **I Panicked** | A6, devil | Every vulnerable non-boss enemy takes lethal damage and bosses lose 15% of max HP, but every loose heart, coin, key, bomb, pill, card, battery and sack in the room is deleted. Pedestals, trinkets, chests and shop items are safe. No enemy: keeps the charge. |
+| **Let's Delve** | A6, treasure | Uses the native We Need to Go Deeper! effect. Native restrictions apply; a use spends its charge even if no dig is possible. Car Battery does not repeat it. |
 
 ### Fifty-item expansion, by model family
 
@@ -417,6 +418,7 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 | **Brb, Getting Food** | Heals 1 red heart (2 from a horse pill), but you can't shoot for 3 seconds. |
 | **9.11 > 9.9** | Picks the bigger number: permanent +0.11 damage (horse pill: +0.9). Saved per player. |
 | **Rolled Back** | All stats up for this room: damage +1, tears up, speed +0.2, range, shot speed +0.1, luck +1 (horse pill: doubled). Rolled back in the next room. |
+| **Six Seven** | Spawns 6 or 7 native blue flies using the player's seeded pill RNG. All pill sizes use the same roll; native fly modifiers still apply. |
 
 ## Install for development
 

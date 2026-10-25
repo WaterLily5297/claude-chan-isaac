@@ -4,18 +4,24 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **GitHub and local source:** main `ef42b13` at this review, including merged PR #94 (owner-selected multi-pocket DROP restriction) and #93 (D1 compaction); merge CI passed. Draft PR #95 contains the separate O2 meme candidate and awaits owner balance approval. This O3 branch is documentation only; verify the live PR/CI state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
+- **GitHub and local source:** main `178269b` at this review includes merged PRs #93, #94 and #95. The owner approved the O2 rules and merge on 2026-10-26; #95 passed the full offline gate and CI. Branch `codex/vanilla-compat-audit` records the O3 source audit and approval checkpoint; verify its live PR/CI state. Check the [live PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) and main before continuing.
 - **Installed manual-test build:** `e1ff4d1` including #91, installed on 2026-10-25 after a fresh allowlisted backup was reread and hash-verified. All 433 installed tracked files matched canonical Git bytes. The local deployment receipt supersedes the next-session prompt's older `220d542` statement. Preserve this installation during offline work.
 - **Owner feedback:** asked about the installed build; owner replied "not tested yet" on 2026-10-25. No new engine or visual acceptance. No launch, input, process inspection, save access or runtime replacement in D1; current game state has not been inspected.
-- **Offline baseline:** 67 suites, 177 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** D1 and O1 merged; native input pending. O2 candidate is in draft PR #95 awaiting owner balance approval. O3 source audit is complete, with engine cases in TESTING.md and no gameplay fix justified by the inspected paths. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
+- **Offline baseline on main:** 68 suites, 180 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
+- **Current queue:** D1, O1 and owner-approved O2 are merged. O3 source audit is complete; the inspected paths justify no gameplay change. Physical input, the two new meme effects and the O3 compatibility table still require engine acceptance. Engine units E2-E5 are **waiting for owner**. E1 installation is already complete. The owner's `gpt-next-session-2026-10-25.md` sets this order and supersedes the old engine-first queue.
 - **Stop speculative billing work:** no further child-laser, Parent-ancestry or derived-shot billing PR until E2 provides a native observation. The exploratory Bethany charge audit is parked, with no source fix or engine claim.
 
 ## O3: native transformation and Tainted-item audit (2026-10-26)
 
 The [TESTING.md audit table](TESTING.md#o3-native-transformations-and-tainted-mechanics-2026-10-26-source-audit-only) maps transformations, Agentic/rerolls, crafting, Tainted Eden and Holy Card risks to concrete engine cases.
 No clear source bug was established in the inspected paths; no gameplay code changed. Native trait, item ownership and cosmetic layers are separate test cases.
-The 67-suite offline gate passes; this provides no engine acceptance. E4/E5 wait for the owner and installed e1ff4d1 stays unchanged.
+The audit passed the 67-suite base gate; integration with merged O2 passes 68 suites. This provides no engine acceptance. E4/E5 wait for the owner and installed e1ff4d1 stays unchanged.
+
+## O2: two native meme extras (2026-10-26)
+
+Let's Delve delegates to the native shovel; Six Seven grants a seeded six or seven blue flies. [Approved rules and remaining tests](MEME_BATCH_2.md).
+Registration, English EID/README text, original placeholder icon and offline callback coverage are included; no custom enemy or boss.
+The owner approved the exact rules; PR #95 merged at 178269b. The 68-suite gate and CI pass. It is not installed; engine acceptance is pending.
 
 ## O1: reserve multi-pocket DROP for native cycling (2026-10-26)
 
@@ -40,7 +46,7 @@ Full evidence remains in [TESTING.md](TESTING.md) and [the verbatim history](HAN
 | Area | Current implementation | Reference |
 |---|---|---|
 | Characters | 11 families, 22 normal/tainted forms: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM. Each has its own meme loop, Birthright behavior, starting-pickup contract and EID information. | [Actual behavior](MODEL_ROSTER.md), [design targets](CHARACTER_GAMEPLAY.md) |
-| Items | 79 collectibles: 25 originals, four meme batch 1 items and all 50 requested backlog rows. Also 12 trinkets, four pills, meme extras and Relay Slime. | [Generated item reference](ITEMS.md), [backlog](EXPANSION_DESIGN.md) |
+| Items | 80 collectibles: 25 originals, four meme batch 1 items, one batch 2 item and all 50 requested backlog rows. Also 12 trinkets, five pills, meme extras and Relay Slime. | [Generated item reference](ITEMS.md), [backlog](EXPANSION_DESIGN.md) |
 | Shared mechanics | Native-weapon resource observers, DeepSeek Thought adapters, DROP tap recognition, meal countdown, scoped helper shots, tear tint, feedback and co-op HUD bands. | [Native Thought](NATIVE_THOUGHT.md), `scripts/characters/` |
 | Risk and saves | Risk covers Claude forms only; DeepSeek has no proxy/IP/risk mechanics. Versioned per-player state and floor checkpoints are implemented. | `scripts/risk.lua`, [save cases](TESTING.md) |
 | Appearance | All 22 skins, menus, stage portraits and MAP dossiers are wired. Fixed-look service clears item costume layers on mod forms while retaining item mechanics; vanilla forms remain native. | [Costume contract](COSTUME_COMPATIBILITY.md) |
@@ -51,7 +57,7 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 ## Unfinished tasks
 
 1. **O1: DROP tap and native pocket cycling.** The owner selected the multi-pocket restriction; implementation and regression are in PR #94 and [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md). Merged at ef42b13 with source/CI verification complete; preserve the installed build. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
-2. **O2: meme batch 2.** Draft PR #95 prepares Let's Delve and Six Seven with offline checks and CI passed. The owner must approve the new charge/pool/quality and pill balance before merge. It is not installed; Feel the AGI remains deferred.
+2. **O2: meme batch 2.** Let's Delve and Six Seven are merged in #95 under the owner-approved rules. See [the design and native limits](MEME_BATCH_2.md). Engine cases remain pending and the installed build is unchanged. Feel the AGI remains deferred.
 3. **O3: vanilla compatibility audit.** Source audit complete: see the O3 table in TESTING.md. No gameplay change was justified. E4/E5 must observe the listed transformation, bag controls, reroll and shield cases before further fixes.
 4. **New-item checklist.** Register module/constants/XML with ASCII pickup text; wire main in the right callback order; add EID, deterministic placeholder icon and pool entry; update `tests/eid_test.lua` counts, regenerate `docs/ITEMS.md`, update all three READMEs and relevant design records. Native systems first; new extras do not count again toward the completed fifty.
 5. **Art and story.** Nine tainted sets currently derive deeper colors from normal art. Distinct hand-designed replacements and Chinese/Japanese story text remain owner decisions. Improve anatomy, side profiles and special poses from observed failures. Workshop is not authorized.
