@@ -1,5 +1,10 @@
 # Changelog
 
+## Installation checkpoint (2026-10-26; documentation only)
+
+- Record the verified f8b2b0b installation, including DROP pocket restrictions, both new meme effects and the opt-in ancestry observer.
+- Document the startup-only Repentance+ attempt, restored settings and pending native cases. No gameplay change or new engine acceptance; preserve the installed version at the owner's request.
+
 ## Manual ancestry observation tool (2026-10-26; not run in game)
 
 - Prepare an explicitly enabled, bounded laser init/update observer for E2. It logs native link/frame fields and removes its callbacks on stop; main.lua never loads it.
