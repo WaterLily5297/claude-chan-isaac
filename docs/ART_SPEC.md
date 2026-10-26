@@ -2,7 +2,7 @@
 
 Updated 2026-10-26 from source `8fd6a8c`. The roster has **11 families / 22 forms, 80 collectibles, 12 trinkets and five pill effects**. [ART_STATUS.md](ART_STATUS.md) inventories every bundled image/animation and the native presentations without custom files. That document is the art queue; this one defines how replacements are produced and checked.
 
-The designed-icon registry, producer and validator are now implemented in source. The pipeline migration preserved all 92 PNGs. The subsequent [first batch](ITEM_ART_BATCH_01.md) supplies ten designed icons and 1x/4x before-after sheets; 82 icons remain placeholders. Native art acceptance remains pending.
+The designed-icon registry, producer and validator are now implemented in source. The pipeline migration preserved all 92 PNGs. The [first](ITEM_ART_BATCH_01.md) and [second](ITEM_ART_BATCH_02.md) batches supply twenty designed icons and 1x/4x before-after sheets; 72 icons remain placeholders. Native art acceptance remains pending.
 
 ## Identity, compatibility and rights
 
@@ -63,7 +63,7 @@ The target is readable beside native pickups at the game's scale, using original
 | Colour | Separate materials by value as well as hue. Do not use colour alone to distinguish two otherwise identical icons. Check against light and dark preview backgrounds. |
 | Resampling | Author at 32x32; enlarge previews with nearest-neighbour only. Do not shrink a detailed portrait into an icon. |
 
-The existing Hardcoded Output digits are a recorded migration issue, not a reason to silently fail all legacy icons in a documentation change. Existing recognizable object icons may need refinement rather than replacement with an unrelated metaphor. New art does not authorize changing a registered name, effect, charge, quality or pool weight.
+Hardcoded Output now uses an original tear-die object instead of digits in batch 02. Remaining placeholders retain their legacy checks until individually migrated. Existing recognizable object icons may need refinement rather than replacement with an unrelated metaphor. New art does not authorize changing a registered name, effect, charge, quality or pool weight.
 
 ## Reproducible item pipeline
 

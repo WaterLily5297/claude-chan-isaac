@@ -1,5 +1,11 @@
 # Changelog
 
+## Second ten designed item icons (2026-10-27; offline art)
+
+- Redraw eight existing collectibles and two trinkets using original object geometry and material ramps. Give Hardcoded Output a tear-casting die instead of numeric text; use distinct injection, house, key, envelope, coin-meter, hourglass, bench, emergency-button and fuse silhouettes for the other effects.
+- Add reproducible batch 02 sheets at 1x/4x on light/dark backgrounds. Refine the relay key teeth and exposed gear during visual review. Registry now records 20 designed icons and 72 placeholders.
+- Preserve all 165 untargeted PNGs, 25 animations and gameplay/registration/pools. Full offline gate passes; installed 8fd6a8c and native acceptance remain unchanged.
+
 ## Claude Usage save validation (2026-10-26; offline hardening)
 
 - Validate normal Claude's Usage and Limited counters independently with their existing integer bounds. Missing, nonnumeric, non-finite, fractional or out-of-range fields recover to the existing zero default; valid debt, countdowns and unrelated progression remain intact.

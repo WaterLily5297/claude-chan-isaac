@@ -78,15 +78,15 @@
     {
       "name": "Residential IP",
       "gfx": "collectibles/residential_ip.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "residential_ip",
+        "file": "tools/make_item_art.py",
+        "function": "residential_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -97,20 +97,23 @@
       ],
       "palette": [
         "#080000",
-        "#345c31",
-        "#4c8548",
-        "#4fb8c9",
-        "#79c07a",
-        "#a9743f",
-        "#c43333",
-        "#e1c399",
-        "#f3d9b5",
-        "#ffeecd"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "756bf3e7f6d8b8eb88ca9b83dddd0bdea9a324d8b7c89fcea4075778af169dec",
-      "description": "Legacy placeholder for Residential IP; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "3a3278ac14d338608ede643dd33541051ac3f39657c1d64da2a2515fc526591e",
+      "description": "A cream cottage with a blue roof and a protected cable around its base; a safer residential connection.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "Compact",
@@ -184,15 +187,15 @@
     {
       "name": "9.9 Yuan Relay",
       "gfx": "collectibles/cheap_relay.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "cheap_relay",
+        "file": "tools/make_item_art.py",
+        "function": "relay_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -203,21 +206,23 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#5e5e5e",
-        "#777777",
-        "#8a8a8a",
-        "#a30000",
-        "#a7a7a7",
-        "#b08a24",
-        "#e70000",
-        "#f0c849",
-        "#ffe48a"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0"
       ],
       "palette_exception": "",
-      "sha256": "3811baefa48069c9d402b02de324dd30ee51f18ffdb28345cc98a7f222ec416c",
-      "description": "Legacy placeholder for 9.9 Yuan Relay; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "011398e01c86b663931b7a3e138596023d0aeb3f5ebd379f3abe6e647ad6253f",
+      "description": "A worn brass key with a cracked orange bow patched with tape; unreliable discount access.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "Ultrathink",
@@ -294,15 +299,15 @@
     {
       "name": "Silent Update",
       "gfx": "collectibles/silent_update.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "silent_update",
+        "file": "tools/make_item_art.py",
+        "function": "silent_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -313,18 +318,20 @@
       ],
       "palette": [
         "#080000",
-        "#7d5f16",
-        "#a30000",
-        "#b08a24",
-        "#e70000",
-        "#f0c849",
-        "#ff5a4a",
-        "#ffe48a"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#44324e",
+        "#826b93",
+        "#c4abc9"
       ],
       "palette_exception": "",
-      "sha256": "350429bc4c8c67d858104f99919e1a3495b7a26466ca09d89ba0c7abfcb8f59c",
-      "description": "Legacy placeholder for Silent Update; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "e2f409c6630cc0b0f68e78fe80392b53bad346a58f290c32d9acaa8701a3f358",
+      "description": "A sealed cream envelope concealing a steel gear behind its corner; an unannounced change.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "--dangerously-skip-permissions",
@@ -401,15 +408,15 @@
     {
       "name": "Banked Reset",
       "gfx": "collectibles/banked_reset.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "banked_reset",
+        "file": "tools/make_item_art.py",
+        "function": "reset_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -420,17 +427,20 @@
       ],
       "palette": [
         "#080000",
-        "#4c8548",
-        "#79c07a",
-        "#7d5f16",
-        "#b08a24",
-        "#f0c849",
-        "#ffe48a"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0"
       ],
       "palette_exception": "",
-      "sha256": "6d1a1b300823f86a38aaac98829e2fda828b515c04349d5cf42a897c90479c10",
-      "description": "Legacy placeholder for Banked Reset; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "bf67d5bda216f73a6b0891686ab973dc3e63fed646d3bbf789c93a556a6b46b2",
+      "description": "A blue-glass hourglass held inside brass vault rails, retaining pale sand; a stored reset.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "Subagent Swarm",
@@ -509,15 +519,15 @@
     {
       "name": "Opus Mode",
       "gfx": "collectibles/opus_mode.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "opus_mode",
+        "file": "tools/make_item_art.py",
+        "function": "opus_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -528,18 +538,20 @@
       ],
       "palette": [
         "#080000",
-        "#7d5f16",
-        "#b08a24",
-        "#c43333",
-        "#d8d2c4",
-        "#e70000",
-        "#f0c849",
-        "#ffe48a"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#44324e",
+        "#826b93",
+        "#c4abc9",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "03b7d6297bec32da168c40268b32a6bb4b0194c00d7b7140151a87abcbe2e6f7",
-      "description": "Legacy placeholder for Opus Mode; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "a196bf55da5d95ca8b1a83bbc5a0c7c6d2773f8b7be6ae35b9ce6db09f0d8f9c",
+      "description": "An ornate brass coin meter with a purple inset and blue tear dial; powerful shots billed in coins.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "Lunch Break",
@@ -584,15 +596,15 @@
     {
       "name": "529 Overloaded",
       "gfx": "trinkets/overloaded.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "overloaded",
+        "file": "tools/make_item_art.py",
+        "function": "overloaded_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -603,21 +615,17 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#2b2b2b",
-        "#3a3a3a",
-        "#454545",
-        "#575757",
-        "#79c07a",
-        "#c43333",
-        "#d8d2c4",
-        "#e06a6a",
-        "#e70000"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "b3645303307d48404abca9debba2c482f42006f1e409d75059b818f0e1145757",
-      "description": "Legacy placeholder for 529 Overloaded; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "2b7d928798276a30325a10d11a6726db9a13716a3a7d1b1a3f0ebd147ed8b5f1",
+      "description": "A broken glass fuse between steel caps, with cold shards hanging underneath; a frozen service outage.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "All Tests Passing",
@@ -660,15 +668,15 @@
     {
       "name": "Hardcoded Output",
       "gfx": "trinkets/hardcoded_output.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "hardcoded_output",
+        "file": "tools/make_item_art.py",
+        "function": "hardcoded_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -679,16 +687,17 @@
       ],
       "palette": [
         "#080000",
-        "#b39568",
-        "#c9bba4",
-        "#e1c399",
-        "#f3e7d6",
-        "#fffaf0"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "af0731e74422756c28181e003f14010af90f6d903fe95322be9c10bfd90bb8b8",
-      "description": "Legacy placeholder for Hardcoded Output; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "b33749551beafcfefa27ff238de2081c5af9fd4d64d9dcdda98254b08e52a9bc",
+      "description": "A bevelled steel tear die and two identical blue outputs; fixed output without numerical text.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "Thinking Cleared",
@@ -863,15 +872,15 @@
     {
       "name": "Ignore All Previous Instructions",
       "gfx": "collectibles/ignore_instructions.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "ignore_instructions",
+        "file": "tools/make_item_art.py",
+        "function": "injection_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -882,18 +891,23 @@
       ],
       "palette": [
         "#080000",
-        "#2b2b2b",
-        "#636363",
-        "#c9bba4",
-        "#e0713f",
-        "#e70000",
-        "#f3e7d6",
-        "#fffaf0"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#874155",
+        "#d28289",
+        "#ffbdaf"
       ],
       "palette_exception": "",
-      "sha256": "589c1367c1949c133f3b56345341fd4f75a863029e8f92531565778c5fe703ab",
-      "description": "Legacy placeholder for Ignore All Previous Instructions; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "57d55eac56afdf7644592090e486cb4e8b6dfa44e4e51f84684e38eb6054c666",
+      "description": "A glass syringe with pink fluid crossing a folded instruction sheet; injected orders and charm.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "Tungsten Cube",
@@ -3100,15 +3114,15 @@
     {
       "name": "Benchmaxxed",
       "gfx": "collectibles/benchmaxxed.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "benchmaxxed",
+        "file": "tools/make_item_art.py",
+        "function": "bench_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3119,32 +3133,33 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#3a3a3a",
-        "#404040",
-        "#636363",
-        "#8a8a8a",
-        "#b08a24",
-        "#f0c849",
-        "#ffe48a"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "4ed7251c76a884d69faadb2e7ed960211eebe5728c2abff948d3734fbca879fa",
-      "description": "Legacy placeholder for Benchmaxxed; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "2aca8845f97abcf117ecfa23ec8908fe366a4768813a792b2f431157e7c1750e",
+      "description": "A red padded weight bench under a loaded steel bar and small brass crown; strength for boss benchmarks.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "I Panicked",
       "gfx": "collectibles/i_panicked.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "i_panicked",
+        "file": "tools/make_item_art.py",
+        "function": "panic_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3155,20 +3170,20 @@
       ],
       "palette": [
         "#080000",
-        "#777777",
-        "#8a8a8a",
-        "#969696",
-        "#a30000",
-        "#a7a7a7",
-        "#cbcbcb",
-        "#e70000",
-        "#f2f2f2",
-        "#ff5a4a"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "8ac51d14330ed2e466b7d62568427fbc1ad02c8618b0dc0c13cadce0274ac9b3",
-      "description": "Legacy placeholder for I Panicked; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "25ef2c9d9f57c1305dd93fb64b914aaa1fe5d6d5fd159772a9c6b4aa7712a293",
+      "description": "A large emergency plunger on a cracked metal base with severed leads; a destructive panic action.",
+      "contact_sheet": "docs/art/item-batch-02-4x.png"
     },
     {
       "name": "Let's Delve",
