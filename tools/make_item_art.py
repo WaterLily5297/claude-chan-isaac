@@ -760,6 +760,159 @@ def tiny_art():
     return c.finish()
 
 
+def open_weights_art():
+    c = Canvas()
+    c.line(11,15,11,8,GOLD[0],3); c.line(11,8,15,4,GOLD[0],3)
+    c.line(15,4,20,4,GOLD[0],3); c.line(20,4,23,7,GOLD[0],3)
+    c.line(10,14,10,8,GOLD[2]); c.line(11,7,15,3,GOLD[2]); c.line(16,3,20,3,GOLD[2])
+    c.line(12,8,15,5,GOLD[1]); c.line(15,5,20,5,GOLD[1])
+    c.poly([(9,14),(22,14),(26,25),(24,28),(7,28),(5,25)],STEEL[0])
+    c.poly([(9,14),(21,14),(23,17),(7,17)],STEEL[2])
+    c.poly([(7,18),(22,18),(24,25),(8,26)],STEEL[1])
+    c.line(8,18,6,24,STEEL[2]); c.line(9,27,23,27,STEEL[0])
+    c.rect(14,20,18,24,GOLD[0]); c.rect(14,20,17,22,GOLD[1]); c.rect(14,20,15,20,GOLD[2])
+    for x,y in ((5,9),(27,6)):
+        c.oval(x-1,y-2,2,1,BLUE[2]); c.oval(x+2,y-1,1,2,STEEL[2])
+        c.oval(x,y+1,1.5,2,BLUE[0]); c.rect(x,y,x,y+1,BLUE[1])
+    return c.finish()
+
+
+def herd_bell_art():
+    c = Canvas()
+    c.oval(15,7,6,4,BLUE[0]); c.oval(14,6,5,3,BLUE[1]); c.oval(15,7,3,2,'.')
+    c.line(10,5,13,3,BLUE[2]); c.rect(18,5,19,7,GOLD[0]); c.rect(18,5,18,6,GOLD[2])
+    c.poly([(10,10),(21,10),(23,14),(25,23),(27,25),(25,27),(7,27),(5,25),(8,22)],GOLD[0])
+    c.poly([(10,11),(20,11),(22,15),(23,23),(9,23)],GOLD[1])
+    c.poly([(11,12),(15,11),(14,22),(10,23)],GOLD[2])
+    c.line(21,15,23,23,GOLD[0]); c.oval(16,25,10,2,GOLD[2])
+    c.oval(16,26,8,1.5,WOOD[0]); c.oval(16,27,2,2,GOLD[0]); c.rect(15,26,16,27,GOLD[1])
+    return c.finish()
+
+
+def come_back_art():
+    c = Canvas()
+    c.line(7,22,3,20,STEEL[0],2); c.line(3,20,3,13,STEEL[0],2)
+    c.line(3,13,7,10,STEEL[0],2); c.line(7,10,10,12,STEEL[0],2)
+    c.line(3,18,3,14,STEEL[2]); c.line(4,12,7,10,STEEL[1])
+    c.poly([(7,21),(23,19),(28,22),(27,27),(8,29),(5,26)],STEEL[0])
+    c.poly([(7,22),(23,20),(27,22),(10,25)],STEEL[2]); c.line(10,27,25,25,STEEL[1])
+    c.poly([(13,7),(20,5),(25,8),(24,22),(14,24),(11,21)],BLUE[0])
+    c.poly([(13,7),(20,5),(24,8),(15,10)],BLUE[2])
+    c.poly([(14,10),(23,8),(22,21),(14,22)],BLUE[1]); c.line(14,10,13,20,BLUE[2])
+    c.rect(16,3,20,5,GOLD[0]); c.rect(16,3,19,3,GOLD[2]); c.rect(16,4,19,5,GOLD[1])
+    c.poly([(7,12),(10,11),(13,15),(10,18),(7,16)],STEEL[0])
+    c.line(8,12,10,12,STEEL[2]); c.line(10,14,12,13,GOLD[1]); c.line(11,16,14,15,GOLD[2])
+    c.rect(17,17,19,20,GOLD[0]); c.rect(17,17,18,19,GOLD[2])
+    return c.finish()
+
+
+def release_art():
+    c = Canvas()
+    c.poly([(5,10),(20,6),(27,10),(27,25),(12,29),(5,25)],BLUE[0])
+    c.poly([(5,10),(20,6),(27,10),(12,14)],BLUE[2])
+    c.poly([(6,12),(11,15),(11,27),(6,24)],BLUE[1])
+    c.poly([(13,15),(26,11),(26,24),(13,27)],BLUE[1])
+    c.line(14,16,24,13,BLUE[2]); c.line(12,15,12,27,INK)
+    c.poly([(10,9),(13,8),(20,12),(17,13)],WOOD[2]); c.poly([(17,13),(20,12),(20,25),(17,26)],WOOD[1])
+    c.line(18,14,18,24,WOOD[2]); c.line(6,20,10,23,BLUE[0])
+    c.oval(21,19,5,5,GOLD[0]); c.oval(20,18,4,4,GOLD[1]); c.oval(20,18,3,3,STEEL[2])
+    c.line(20,18,20,15,STEEL[0]); c.line(20,18,22,19,STEEL[0]); c.rect(19,17,20,18,INK)
+    c.rect(18,12,21,13,GOLD[0]); c.rect(18,12,20,12,GOLD[2])
+    c.oval(8,5,3,2,GOLD[0]); c.oval(7,4,2,1,GOLD[1]); c.rect(7,5,8,10,GOLD[0]); c.rect(7,6,7,9,GOLD[2])
+    return c.finish()
+
+
+def baguette_art():
+    c = Canvas()
+    c.poly([(5,22),(19,5),(24,3),(28,6),(28,11),(12,28),(7,29),(3,26)],WOOD[0])
+    c.poly([(5,22),(20,5),(24,4),(27,7),(26,11),(11,27),(7,28),(4,25)],GOLD[0])
+    c.poly([(5,22),(20,6),(24,5),(26,7),(24,12),(10,26),(7,27),(5,25)],GOLD[1])
+    c.line(7,22,19,8,GOLD[2]); c.line(20,7,23,5,GOLD[2])
+    for x,y in ((11,21),(16,15),(21,9)):
+        c.line(x-2,y-2,x+2,y+2,WOOD[0],2)
+        c.line(x-2,y-2,x+1,y+1,PAPER[1])
+        c.line(x-1,y-2,x+2,y+1,PAPER[2])
+    c.poly([(4,23),(7,21),(13,26),(10,29),(6,28)],BLUE[0])
+    c.poly([(4,23),(6,22),(12,27),(10,28)],BLUE[1]); c.line(5,23,10,27,BLUE[2])
+    return c.finish()
+
+
+def boots_art():
+    c = Canvas()
+    c.poly([(7,4),(16,5),(16,15),(20,17),(20,21),(6,21),(5,18)],WOOD[0])
+    c.poly([(8,6),(14,7),(13,15),(18,18),(17,19),(7,19)],WOOD[1])
+    c.line(8,8,8,15,WOOD[2]); c.rect(7,4,15,7,BLUE[0]); c.rect(7,4,14,5,BLUE[2])
+    c.line(6,20,19,20,STEEL[0]); c.line(7,19,15,19,STEEL[1])
+    c.poly([(17,10),(25,9),(25,21),(28,23),(28,27),(14,29),(12,27),(13,24),(16,22)],WOOD[0])
+    c.poly([(18,12),(23,11),(23,21),(26,24),(26,26),(15,27),(14,25),(18,22)],WOOD[1])
+    c.line(18,14,18,21,WOOD[2]); c.line(17,24,23,23,WOOD[2])
+    c.poly([(16,10),(25,8),(26,12),(16,14)],BLUE[0]); c.line(17,10,24,9,BLUE[2])
+    c.line(17,12,24,11,BLUE[1]); c.rect(18,17,23,19,STEEL[0]); c.rect(20,17,22,19,STEEL[2]); c.rect(21,18,21,18,WOOD[0])
+    c.line(15,28,27,26,STEEL[0]); c.line(16,27,25,25,STEEL[1])
+    c.line(3,24,8,24,BLUE[2]); c.line(3,27,9,27,BLUE[1]); c.line(9,27,11,25,BLUE[1])
+    return c.finish()
+
+
+def kitten_art():
+    c = Canvas()
+    c.oval(23,23,5,4,ORANGE[0]); c.line(26,22,28,17,ORANGE[0],3); c.line(28,17,26,13,ORANGE[0],3)
+    c.line(26,21,27,17,ORANGE[1],2); c.line(27,17,25,14,ORANGE[2])
+    c.oval(15,22,8,6,ORANGE[0]); c.oval(13,21,6,5,ORANGE[1]); c.oval(15,23,4,4,PAPER[1])
+    c.oval(9,27,4,2,ORANGE[1]); c.oval(20,27,4,2,ORANGE[0]); c.line(7,26,10,26,ORANGE[2]); c.line(18,26,21,26,ORANGE[1])
+    c.poly([(5,12),(5,3),(11,6),(20,6),(25,3),(25,13),(22,19),(9,20)],ORANGE[0])
+    c.oval(15,12,10,7,ORANGE[1]); c.poly([(6,4),(10,7),(7,10)],PAPER[1]); c.poly([(23,5),(20,8),(24,10)],PAPER[0])
+    c.line(10,6,17,5,ORANGE[2]); c.line(6,11,6,14,ORANGE[2])
+    c.oval(15,16,5,3,PAPER[1]); c.oval(13,15,3,2,PAPER[2])
+    c.rect(9,11,10,13,INK); c.rect(20,11,21,13,INK); c.line(14,14,16,14,ORANGE[0]); c.rect(15,15,15,16,INK)
+    c.line(10,17,7,16,ORANGE[0]); c.line(20,17,23,16,ORANGE[0])
+    c.oval(3,20,1,2,BLUE[0]); c.rect(3,19,3,20,BLUE[2])
+    return c.finish()
+
+
+def compass_art():
+    c = Canvas()
+    c.poly([(25,5),(28,5),(28,28),(5,28),(5,24),(24,24)],STEEL[0])
+    c.rect(25,6,26,25,STEEL[2]); c.rect(6,25,24,26,STEEL[1])
+    for y in (10,17,23): c.line(26,y,28,y,INK)
+    for x in (11,18,24): c.line(x,26,x,28,INK)
+    c.rect(12,3,17,6,GOLD[0]); c.line(12,3,16,3,GOLD[2])
+    c.oval(15,15,10,10,GOLD[0]); c.oval(14,14,9,9,GOLD[1]); c.oval(14,14,7,7,BLUE[0])
+    c.oval(13,13,6,6,BLUE[1]); c.line(9,8,13,6,GOLD[2]); c.line(6,11,6,15,GOLD[2])
+    c.poly([(9,9),(14,16),(21,21),(16,14)],STEEL[2])
+    c.poly([(14,16),(21,21),(16,14)],ORANGE[1]); c.line(16,16,20,20,ORANGE[2])
+    c.oval(15,15,2,2,GOLD[0]); c.rect(14,14,15,15,GOLD[2])
+    return c.finish()
+
+
+def apology_art():
+    c = Canvas()
+    c.line(6,28,10,4,WOOD[0],3); c.line(5,27,9,5,WOOD[2]); c.line(7,25,10,5,WOOD[1])
+    c.oval(10,4,2,2,GOLD[0]); c.rect(9,3,10,3,GOLD[2])
+    c.poly([(11,6),(16,5),(21,8),(28,7),(26,17),(22,19),(17,16),(10,16)],PAPER[0])
+    c.poly([(11,7),(16,6),(21,9),(27,8),(25,16),(22,17),(17,14),(11,15)],PAPER[1])
+    c.poly([(12,7),(16,6),(18,8),(17,12),(11,13)],PAPER[2])
+    c.poly([(22,10),(26,9),(24,14),(22,15)],PAPER[2])
+    c.line(18,8,17,13,PAPER[0]); c.line(21,10,20,14,PAPER[0])
+    c.oval(21,25,3,3,BLUE[0]); c.oval(20,24,2,2,BLUE[1]); c.rect(19,23,20,23,BLUE[2])
+    c.rect(26,23,27,23,BLUE[1]); c.rect(27,27,28,27,BLUE[2])
+    return c.finish()
+
+
+def again_art():
+    c = Canvas()
+    c.poly([(4,5),(8,3),(25,12),(28,16),(26,20),(8,29),(4,27),(3,24),(18,16),(4,9)],WOOD[0])
+    c.poly([(5,5),(8,4),(24,13),(26,16),(24,19),(7,27),(5,26),(5,24),(21,16),(5,8)],WOOD[1])
+    c.line(6,5,23,14,WOOD[2]); c.line(6,24,21,17,WOOD[2])
+    c.line(7,8,18,14,WOOD[0]); c.line(9,25,20,20,WOOD[0])
+    c.poly([(19,10),(22,11),(27,15),(26,20),(22,22),(20,19),(23,16)],PAPER[0])
+    c.poly([(19,10),(21,11),(26,15),(25,19),(22,20),(21,18),(24,16)],PAPER[1])
+    c.line(20,11,25,15,PAPER[2]); c.line(23,16,25,17,PAPER[0]); c.line(22,19,24,18,PAPER[2])
+    c.rect(23,14,24,15,PINK[0]); c.rect(24,15,25,16,PINK[1])
+    c.poly([(26,25),(28,25),(29,27),(27,29),(24,28)],WOOD[0])
+    c.poly([(26,26),(28,26),(27,28),(25,27)],WOOD[2])
+    return c.finish()
+
+
 def design(draw, palette, meaning, batch='01'):
     return Design(draw, 1, (INK, *palette), meaning,
                   'Original project artwork, Codex-assisted',
@@ -808,6 +961,16 @@ DESIGNS = {
     'collectibles/another_adapter.png': design(adapter_art, (*STEEL,*GOLD,*BLUE), 'An angled blue adapter block with three brass contacts and a socket face; replacing one room bonus with another.', '04'),
     'collectibles/final_weights.png': design(weights_art, (*STEEL,*BLUE,*GOLD), 'Two stacked metal weight plates secured by a brass locking ring; two flawless clears bank strength.', '04'),
     'collectibles/tiny_variant.png': design(tiny_art, (*STEEL,*GOLD,*PINK), 'A small clockwork mouse with a large winding key and pink feet; speed for reduced damage, not player resizing.', '04'),
+    'collectibles/open_weights.png': design(open_weights_art, (*STEEL,*GOLD,*BLUE), 'An unlocked iron weight with two blue flies escaping past its open brass shackle; sharing native flies.', '05'),
+    'collectibles/herd_bell.png': design(herd_bell_art, (*GOLD,*BLUE,WOOD[0]), 'A brass cowbell with a blue leather loop and visible clapper; replenishing a missing fly after clears.', '05'),
+    'collectibles/please_come_back.png': design(come_back_art, (*STEEL,*BLUE,*GOLD), 'A blue battery in a steel charging cradle beside a loose looping plug; earning one active charge after waiting.', '05'),
+    'collectibles/release_soon.png': design(release_art, (*BLUE,*WOOD,*GOLD,*STEEL), 'A strapped blue parcel with a brass timer and winding key; a delayed protective release.', '05'),
+    'collectibles/emergency_baguette.png': design(baguette_art, (*WOOD,*GOLD,*PAPER,*BLUE), 'A long crusty diagonal baguette with pale scoring and a blue cloth grip; a forward bread strike.', '05'),
+    'collectibles/slipstream_boots.png': design(boots_art, (*WOOD,*BLUE,*STEEL), 'Overlapping brown ankle boots with blue cuffs, metal buckle and a short air trail; sustained movement and turning gusts.', '05'),
+    'collectibles/large_kitten.png': design(kitten_art, (*ORANGE,*PAPER,*BLUE), 'A large seated orange kitten with broad paws, curled tail and a small blue projectile beside it; a stationary bullet-pushing companion.', '05'),
+    'collectibles/edge_compass.png': design(compass_art, (*STEEL,*GOLD,*BLUE,*ORANGE), 'A brass compass with a coloured needle beside a stone corner; shot speed near outer walls.', '05'),
+    'collectibles/instant_apology.png': design(apology_art, (*WOOD,*GOLD,*PAPER,*BLUE), 'A folded white truce flag on a wooden pole above a dispersing blue bullet; local slowing and bullet removal, without healing.', '05'),
+    'collectibles/next_time_again.png': design(again_art, (*WOOD,*PAPER,*PINK), 'A chipped wooden boomerang repaired with pale tape and a small bruise-coloured patch; retaliation after a hit, not a returning-projectile effect.', '05'),
 }
 
 

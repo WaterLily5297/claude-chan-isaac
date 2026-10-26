@@ -1,5 +1,11 @@
 # Changelog
 
+## Fifth ten designed item icons (2026-10-27; offline art)
+
+- Replace ten Llama/Mistral/Doubao collectible placeholders with original 32x32 objects, including an unlocked weight, cowbell, charging cradle, timed parcel, baguette, boots, kitten, compass, truce flag and repaired boomerang.
+- Add deterministic drawings, metadata/provenance and 1x/4x light/dark before-after sheets. Refine bread colour/scoring, the boomerang bend and separation around the unlocked shackle during visual review. Fifty icons are now designed; 42 remain placeholders.
+- Preserve other art, all Lua/tests/XML, gameplay values and installed 8fd6a8c. The full gate includes all ten review sheets. Native appearance and the kitten's in-room entity sprite remain unfinished.
+
 ## Active-item integration and scheduled hardening (2026-10-27; offline evidence)
 
 - Add a filtered two-module fixture for Ignore Instructions and I Panicked: 24 supplied order/slot/owner sequences and four target-death sequences check effects after each callback.

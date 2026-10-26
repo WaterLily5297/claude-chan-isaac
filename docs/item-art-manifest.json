@@ -2042,15 +2042,15 @@
     {
       "name": "Open Weights",
       "gfx": "collectibles/open_weights.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "open_weights",
+        "file": "tools/make_item_art.py",
+        "function": "open_weights_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2061,31 +2061,33 @@
       ],
       "palette": [
         "#080000",
-        "#4fb8c9",
-        "#7d5028",
-        "#8f713c",
-        "#a9743f",
-        "#b69150",
-        "#c69355",
-        "#d8d2c4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "501acc9f0842511ea06654cbad7d79bbb7dd56b0da21818d2c73dfbf39f63ec7",
-      "description": "Legacy placeholder for Open Weights; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "0a25b7f9333f38a069a740be986640315ed6e6fe9fc6a74247d2691eeb873f41",
+      "description": "An unlocked iron weight with two blue flies escaping past its open brass shackle; sharing native flies.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Herd Bell",
       "gfx": "collectibles/herd_bell.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "herd_bell",
+        "file": "tools/make_item_art.py",
+        "function": "herd_bell_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2096,31 +2098,31 @@
       ],
       "palette": [
         "#080000",
-        "#7d5028",
-        "#7d5f16",
-        "#a9743f",
-        "#b08a24",
-        "#d4ad45",
-        "#f0c849",
-        "#ffe48a"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#684033"
       ],
       "palette_exception": "",
-      "sha256": "302cd93d4843a002fe6dfb7d34e071d883a642c107e5fcc807b3a0aff3eb1aa5",
-      "description": "Legacy placeholder for Herd Bell; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "ce42c67e005f9cb75f796fdac45cf80a4453e94ed6c7320388b78e8f6f5c4e07",
+      "description": "A brass cowbell with a blue leather loop and visible clapper; replenishing a missing fly after clears.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Please Come Back",
       "gfx": "collectibles/please_come_back.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "please_come_back",
+        "file": "tools/make_item_art.py",
+        "function": "come_back_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2131,27 +2133,33 @@
       ],
       "palette": [
         "#080000",
-        "#a9617a",
-        "#e79ab5",
-        "#ffc2d4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "38fb2959e2303a7dc0c70c79aa30f0dceac980afef2d76ec08e161b70e8de4cd",
-      "description": "Legacy placeholder for Please Come Back; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "c78dadb8647e9c796ac8fe536f3e880a79bbce9ac82c5c86cb5014469a21d733",
+      "description": "A blue battery in a steel charging cradle beside a loose looping plug; earning one active charge after waiting.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Release Soon",
       "gfx": "collectibles/release_soon.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "release_soon",
+        "file": "tools/make_item_art.py",
+        "function": "release_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2162,33 +2170,36 @@
       ],
       "palette": [
         "#080000",
-        "#161616",
-        "#2b2b2b",
-        "#636363",
-        "#a30000",
-        "#a8a191",
-        "#d8d2c4",
-        "#e70000",
-        "#f2eee4",
-        "#ff5a4a"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "759cf7eded1e108a9daa143f6907d8ed21ac71b6cda8339065443055f1b194bf",
-      "description": "Legacy placeholder for Release Soon; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "eece10b2a6590e2cb84d93595c666489970c7aee0c7547aa2c2dc4fbbff8793c",
+      "description": "A strapped blue parcel with a brass timer and winding key; a delayed protective release.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Emergency Baguette",
       "gfx": "collectibles/emergency_baguette.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "emergency_baguette",
+        "file": "tools/make_item_art.py",
+        "function": "baguette_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2199,28 +2210,36 @@
       ],
       "palette": [
         "#080000",
-        "#7d5028",
-        "#a86c1c",
-        "#a9743f",
-        "#e8a33d"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "9d1c561804bc3b409cb081b8134fb3b17830d50766cfe545d8330d16580a9d88",
-      "description": "Legacy placeholder for Emergency Baguette; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "46d904b44c1ec7789444b17c6ec3faa827d5433dad189ad6ddcae0208ccc91a0",
+      "description": "A long crusty diagonal baguette with pale scoring and a blue cloth grip; a forward bread strike.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Slipstream Boots",
       "gfx": "collectibles/slipstream_boots.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "slipstream_boots",
+        "file": "tools/make_item_art.py",
+        "function": "boots_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2231,30 +2250,33 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#7d5028",
-        "#a86c1c",
-        "#a9743f",
-        "#e8a33d",
-        "#ffc86b"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "eff28c40016ce0193cfae610942471b0806cbe196ad968573bdd009511a996aa",
-      "description": "Legacy placeholder for Slipstream Boots; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "687414b086fe93ed4e99c4d3f2f84994d202efddb5bc870e841085d1d1a260d5",
+      "description": "Overlapping brown ankle boots with blue cuffs, metal buckle and a short air trail; sustained movement and turning gusts.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Very Large Kitten",
       "gfx": "collectibles/large_kitten.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "large_kitten",
+        "file": "tools/make_item_art.py",
+        "function": "kitten_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2265,28 +2287,33 @@
       ],
       "palette": [
         "#080000",
-        "#a86c1c",
-        "#e79ab5",
-        "#e8a33d",
-        "#ffc86b"
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "13a3a56011526ad805560c82ab5d1fc297535d03a14fd7b945ecbe2bd4e42bbf",
-      "description": "Legacy placeholder for Very Large Kitten; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "1f8addf229d2011af8393d240e4e75263c7b79b7e322e6ec88e8f870890e6545",
+      "description": "A large seated orange kitten with broad paws, curled tail and a small blue projectile beside it; a stationary bullet-pushing companion.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Edge Compass",
       "gfx": "collectibles/edge_compass.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "edge_compass",
+        "file": "tools/make_item_art.py",
+        "function": "compass_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2297,33 +2324,36 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#3a3a3a",
-        "#575757",
-        "#636363",
-        "#b08a24",
-        "#d8d2c4",
-        "#e70000",
-        "#f0c849",
-        "#f2eee4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "6d765db3bbe47c7f0489fd09356705017d50e5bf3d9c09d5c34a55009604a942",
-      "description": "Legacy placeholder for Edge Compass; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "c44628d30132dad7adba4ab49f2d92f2351fb7fc0b57ac5c7ec7fb7807a2bb20",
+      "description": "A brass compass with a coloured needle beside a stone corner; shot speed near outer walls.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Instant Apology",
       "gfx": "collectibles/instant_apology.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "instant_apology",
+        "file": "tools/make_item_art.py",
+        "function": "apology_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2334,28 +2364,36 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#a9617a",
-        "#e79ab5"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "699fb936150882cb62c235f637ae879b5677514ad23894b8981fb2fe679640fd",
-      "description": "Legacy placeholder for Instant Apology; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "649651c2cff1d70a2ece6f949d5747ce66719c5822e74cb3ac493ff8ccea33d0",
+      "description": "A folded white truce flag on a wooden pole above a dispersing blue bullet; local slowing and bullet removal, without healing.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Next Time Again",
       "gfx": "collectibles/next_time_again.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "next_time_again",
+        "file": "tools/make_item_art.py",
+        "function": "again_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2366,15 +2404,20 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#a8a191",
-        "#d8d2c4"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#874155",
+        "#d28289",
+        "#ffbdaf"
       ],
       "palette_exception": "",
-      "sha256": "e7bcc2efde4258106ae4b6d7ab5eee4e5b0f6b9adbdc7447b7c5f6b175a0cbba",
-      "description": "Legacy placeholder for Next Time Again; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "6a6c031a0d26e477f05807931d988f3bc8485245a9d3039aa83a50d75c4d98cc",
+      "description": "A chipped wooden boomerang repaired with pale tape and a small bruise-coloured patch; retaliation after a hit, not a returning-projectile effect.",
+      "contact_sheet": "docs/art/item-batch-05-4x.png"
     },
     {
       "name": "Confident Answer",
