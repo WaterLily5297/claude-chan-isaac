@@ -123,7 +123,11 @@ local function npc(hp, opts)
     function n:IsVulnerableEnemy() return not opts.invulnerable end
     function n:IsBoss() return opts.boss or false end
     function n:HasEntityFlags(f) return ((opts.flags or 0) & f) ~= 0 end
-    function n:TakeDamage(amount, flags, source) self.taken = self.taken + amount; self.source = source.Entity; return true end
+    function n:TakeDamage(amount, flags, source)
+        self.taken = self.taken + amount; self.source = source.Entity
+        if opts.onDamage then opts.onDamage(self) end
+        return true
+    end
     return n
 end
 local function pickup(variant, shop)
@@ -163,3 +167,67 @@ assert(#captions == 1 and captions[1] == "I panicked")
 r = use(UseFlag.USE_CARBATTERY)
 assert(r.Discharge == true and close(boss.taken, 120) and #captions == 1, "Car Battery hits again without a second caption")
 print("PASS I Panicked: lethal non-boss damage, 15% boss damage, consumables deleted, safe pickups kept")
+
+-- Supply death drops during damage and pickups between callbacks. These are
+-- fixture events, not evidence of the engine's actual death/drop timing.
+local partner = player({ [913] = 1 })
+for slot = 0, 3 do
+    local initial = pickup(PickupVariant.PICKUP_COIN)
+    local reward = pickup(PickupVariant.PICKUP_KEY)
+    local between = pickup(PickupVariant.PICKUP_HEART)
+    local repeatReward = pickup(PickupVariant.PICKUP_BOMB)
+    local kept = pickup(PickupVariant.PICKUP_COLLECTIBLE)
+    local dying = { onDamage = function() entities[#entities + 1] = reward end }
+    local firstTarget = npc(20, dying)
+    local survivor = npc(400, { boss = true })
+    local count = #captions
+    entities = { firstTarget, survivor, initial, kept }
+    local first = fire("use", 913, nil, user, 4, slot) -- USE_OWNED
+    assert(first.Discharge and initial.removed and not reward.removed,
+        "ordinary use deletes its starting snapshot, not a supplied death drop")
+    assert(close(survivor.taken, 60) and firstTarget.source == user)
+
+    dying.dead = true
+    local secondTarget = npc(30, { onDamage = function() entities[#entities + 1] = repeatReward end })
+    entities = { firstTarget, survivor, secondTarget, reward, between, kept }
+    local repeated = fire("use", 913, nil, user, 4 | UseFlag.USE_CARBATTERY | 64, slot)
+    assert(repeated.Discharge and repeated.ShowAnim and repeated.Remove == false,
+        "repeat still reports an eligible damage use")
+    assert(close(survivor.taken, 120) and survivor.source == user
+        and secondTarget.taken == 60 and secondTarget.source == user,
+        "combined repeat flags preserve boss and non-boss native damage")
+    assert(firstTarget.taken == 40, "dead targets are not damaged again")
+    assert(not reward.removed and not between.removed and not repeatReward.removed,
+        "Car Battery must preserve first-hit, intervening and second-hit pickups")
+    assert(not kept.removed and #captions == count + 1,
+        "repeat keeps protected pickups and does not repeat the caption")
+
+    entities = { survivor, reward, between, repeatReward, kept }
+    local nextUse = fire("use", 913, nil, partner, 4, slot)
+    assert(nextUse.Discharge and reward.removed and between.removed and repeatReward.removed,
+        "a later ordinary use by another owner must still delete current consumables")
+    assert(close(survivor.taken, 180) and survivor.source == partner
+        and not kept.removed and #captions == count + 2,
+        "no room/player suppression leaks from the prior repeat")
+end
+
+-- Void and mimic bits alone are ordinary uses, not Car Battery duplicates.
+for _, flags in ipairs({ 4 | 64, 4 | 128 }) do
+    local looseNow, target = pickup(PickupVariant.PICKUP_COIN), npc(100, { boss = true })
+    entities = { target, looseNow }
+    assert(fire("use", 913, nil, user, flags, 0).Discharge and looseNow.removed
+        and close(target.taken, 15), "non-repeat flags keep normal cost and damage")
+end
+local nilFlagPickup = pickup(PickupVariant.PICKUP_COIN)
+entities = { npc(10), nilFlagPickup }
+assert(fire("use", 913, nil, user, nil, 0).Discharge and nilFlagPickup.removed,
+    "missing flags retain ordinary-use behavior")
+local refusedPickup = pickup(PickupVariant.PICKUP_COIN)
+entities = { refusedPickup, npc(10, { dead = true }), npc(10, { invulnerable = true }),
+    npc(10, { flags = EntityFlag.FLAG_FRIENDLY }) }
+local beforeRefusal = #captions
+local refused = fire("use", 913, nil, user, UseFlag.USE_CARBATTERY, 0)
+assert(refused.Discharge == false and refused.ShowAnim == false and refused.Remove == false
+    and not refusedPickup.removed and #captions == beforeRefusal,
+    "no eligible repeat target keeps the charge and has no pickup/HUD effects")
+print("PASS I Panicked: four-slot repeat drop protection, later owner use, flag controls and refusal")

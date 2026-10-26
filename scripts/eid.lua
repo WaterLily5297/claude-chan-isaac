@@ -174,7 +174,7 @@ local descriptions = {
         en_us = { "Benchmaxxed", "{{ArrowUp}} +1.5 damage in boss, mini-boss, challenge and Boss Rush rooms#{{ArrowDown}} x0.9 damage in every other room#Stacks per copy" },
     },
     [Constants.Item.I_PANICKED] = {
-        en_us = { "I Panicked", "6 room charges#Every vulnerable non-boss enemy in the room takes lethal damage#Bosses lose 15% of their max HP#Also deletes every loose heart, coin, key, bomb, pill, card, battery and sack in the room#Pedestals, trinkets, chests and shop items are safe#No enemy: keeps the charge" },
+        en_us = { "I Panicked", "6 room charges#Every vulnerable non-boss enemy in the room takes lethal damage#Bosses lose 15% of their max HP#Also deletes every loose heart, coin, key, bomb, pill, card, battery and sack in the room#Pedestals, trinkets, chests and shop items are safe#Car Battery repeats damage without deleting new pickups#No enemy: keeps the charge" },
     },
     [Constants.Item.STRAWBERRY] = {
         en_us = { "Strawberry", "Every third tear is a red \"R\" tear: x2 damage, slightly larger#Multi-shot volleys count each tear#Tears only: lasers, knives and bombs are not counted" },

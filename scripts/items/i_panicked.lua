@@ -24,6 +24,7 @@ end
 
 function Panic:Init(mod)
     mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player, flags)
+        local batteryRepeat = ((flags or 0) & UseFlag.USE_CARBATTERY) ~= 0
         local targets, pickups = {}, {}
         for _, entity in ipairs(Isaac.GetRoomEntities()) do
             local npc = entity:ToNPC()
@@ -31,7 +32,7 @@ function Panic:Init(mod)
             if npc and not npc:IsDead() and npc:IsVulnerableEnemy()
                     and not npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
                 targets[#targets + 1] = npc
-            elseif pickup and deletable(pickup) then
+            elseif pickup and not batteryRepeat and deletable(pickup) then
                 pickups[#pickups + 1] = pickup
             end
         end
@@ -48,7 +49,7 @@ function Panic:Init(mod)
         end
         for _, pickup in ipairs(pickups) do pickup:Remove() end
         -- Car Battery's second call hits again but deletes nothing new.
-        if ((flags or 0) & UseFlag.USE_CARBATTERY) == 0 then
+        if not batteryRepeat then
             Game():GetHUD():ShowItemText("I panicked", "This was a catastrophic failure on my part")
         end
         return { Discharge = true, Remove = false, ShowAnim = true }
