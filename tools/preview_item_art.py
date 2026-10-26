@@ -54,6 +54,18 @@ BATCHES = {
         ('collectibles/final_weights.png', 'Final Final Weights'),
         ('collectibles/tiny_variant.png', 'Tiny Variant'),
     ),
+    '05': (
+        ('collectibles/open_weights.png', 'Open Weights'),
+        ('collectibles/herd_bell.png', 'Herd Bell'),
+        ('collectibles/please_come_back.png', 'Please Come Back'),
+        ('collectibles/release_soon.png', 'Release Soon'),
+        ('collectibles/emergency_baguette.png', 'Emergency Baguette'),
+        ('collectibles/slipstream_boots.png', 'Slipstream Boots'),
+        ('collectibles/large_kitten.png', 'Very Large Kitten'),
+        ('collectibles/edge_compass.png', 'Edge Compass'),
+        ('collectibles/instant_apology.png', 'Instant Apology'),
+        ('collectibles/next_time_again.png', 'Next Time Again'),
+    ),
 }
 LIGHT, DARK = (221,205,175,255), (37,31,32,255)
 PAGE, TEXT = (238,229,209,255), (47,37,35,255)
