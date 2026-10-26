@@ -1,5 +1,11 @@
 # Changelog
 
+## Cache Cartridge combat expiry (2026-10-27; offline fix)
+
+- End the existing +0.15 entry bonus when a revisited clear room becomes hostile without changing rooms. Observe combat during the shared update and early speed-cache evaluation; clearing again does not regrant the consumed entry bonus.
+- Refresh affected holders once while preserving Error Budget, Checkpoint Pin and unrelated players. Keep room-entry eligibility, charge/reward behavior and the transient save boundary unchanged.
+- Extend real backlog-module regressions with in-place combat, early-cache, co-op and inventory controls. Native spawn/wave/room-clear timing remains open; installed 8fd6a8c is preserved.
+
 ## Second ten designed item icons (2026-10-27; offline art)
 
 - Redraw eight existing collectibles and two trinkets using original object geometry and material ramps. Give Hardcoded Output a tear-casting die instead of numeric text; use distinct injection, house, key, envelope, coin-meter, hourglass, bench, emergency-button and fuse silhouettes for the other effects.
