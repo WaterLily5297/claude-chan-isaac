@@ -10,11 +10,18 @@ Isaac = {
     GetPillEffectByName = function() return 50 end,
     GetPlayerTypeByName = function() return 41 end,
 }
-ModCallbacks = { MC_USE_ITEM = "use", MC_EVALUATE_CACHE = "cache", MC_POST_FIRE_TEAR = "fire", MC_POST_NEW_ROOM = "room" }
+ModCallbacks = { MC_USE_ITEM = "use", MC_EVALUATE_CACHE = "cache", MC_POST_FIRE_TEAR = "fire",
+    MC_POST_NEW_ROOM = "room", MC_POST_GAME_STARTED = "start" }
+UseFlag = { USE_CARBATTERY = 1 << 5, USE_OWNED = 1 << 2, USE_VOID = 1 << 6, USE_MIMIC = 1 << 7 }
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_SPEED = 16, CACHE_SHOTSPEED = 4, CACHE_TEARFLAG = 32, CACHE_RANGE = 8, CACHE_TEARCOLOR = 64 }
 EntityFlag = { FLAG_FRIENDLY = 1, FLAG_CHARM = 2 }
 TearFlags = { TEAR_KNOCKBACK = 1 << 9, TEAR_SLOW = 1 << 3, TEAR_SPECTRAL = 1 }
 function EntityRef(e) return { Entity = e } end
+function GetPtrHash(e) return e.pointer end
+-- A removed entity invalidates its pointer; this does not model native lifetime.
+function EntityPtr(e) return setmetatable({}, { __index = function(_, key)
+    if key == "Ref" and not e.removed then return e end
+end }) end
 function Color(...) return { ... } end
 local captions, roomClear, roomFirst, PLAYERS = {}, false, true, {}
 function Game() return { GetHUD = function() return {
@@ -47,20 +54,30 @@ include("scripts.items.golden_gate"):Init(mod)
 -- Ignore All Previous Instructions ------------------------------------------
 local entities = {}
 function Isaac.GetRoomEntities() return entities end
+local nextPointer = 100
 local function npc(x, opts)
     opts = opts or {}
-    local n = { Position = Vector(x, 0), Index = opts.index or x, flags = opts.flags or 0 }
+    nextPointer = nextPointer + 1
+    local n = { Position = Vector(x, 0), Index = opts.index or x, flags = opts.flags or 0,
+        pointer = opts.pointer or nextPointer, InitSeed = opts.seed or nextPointer }
     function n:ToNPC() if opts.notNpc then return nil end return self end
-    function n:Exists() return true end
+    function n:Exists() return not self.removed end
     function n:IsDead() return opts.dead or false end
     function n:IsVulnerableEnemy() return not opts.invulnerable end
     function n:IsBoss() return opts.boss or false end
     function n:HasEntityFlags(f) return (self.flags & f) ~= 0 end
-    function n:AddCharmed(ref, frames) self.charm = frames; self.flags = self.flags | EntityFlag.FLAG_CHARM; self.by = ref.Entity end
-    function n:AddConfusion(ref, frames) self.confused = frames; self.by = ref.Entity end
+    function n:AddCharmed(ref, frames)
+        self.charm = frames; self.charmCalls = (self.charmCalls or 0) + 1
+        if not opts.immune then self.flags = self.flags | EntityFlag.FLAG_CHARM end
+        self.by = ref.Entity
+    end
+    function n:AddConfusion(ref, frames)
+        self.confused = frames; self.confusionCalls = (self.confusionCalls or 0) + 1; self.by = ref.Entity
+    end
     return n
 end
-local p = { Position = Vector(0, 0) }
+local p = { Position = Vector(0, 0), pointer = 1, InitSeed = 1 }
+function p:Exists() return not self.removed end
 local function use(flags) return fire("use", 900, nil, p, flags or 0) end
 
 entities = {}
@@ -80,6 +97,132 @@ local boss = npc(10, { boss = true })
 entities = { boss, far }
 assert(use().Discharge == true and boss.confused == 60 and not boss.charm, "bosses are only confused")
 print("PASS Ignore All Previous Instructions: range, eligibility, nearest/tie order, boss and Car Battery")
+
+-- Pair the supplied primary/repeat callbacks without assuming a native frame delay.
+local function inject(owner, flags, slot) return fire("use", 900, nil, owner, flags, slot) end
+local function refused(result)
+    assert(not result.Discharge and not result.Remove and not result.ShowAnim, "no target keeps all refusal fields")
+end
+local function accepted(result)
+    assert(result.Discharge and not result.Remove and result.ShowAnim, "successful use preserves return fields")
+end
+local repeatFlags = UseFlag.USE_CARBATTERY | UseFlag.USE_OWNED | UseFlag.USE_VOID
+for slot = 0, 3 do
+    fire("start", false)
+    local first, second = npc(10, { boss = true }), npc(20, { boss = true })
+    entities = { second, first }
+    accepted(inject(p, UseFlag.USE_OWNED, slot))
+    accepted(inject(p, repeatFlags, slot))
+    assert(first.confusionCalls == 1 and second.confusionCalls == 1,
+        "Car Battery must select a different boss in each supplied active slot")
+    assert(first.confused == 60 and second.confused == 60 and second.by == p)
+    -- Confusion from this item or elsewhere never makes an ordinary use ineligible.
+    accepted(inject(p, UseFlag.USE_VOID | UseFlag.USE_MIMIC, slot))
+    assert(first.confusionCalls == 2, "a later non-repeat can select the same confused boss")
+    local beforeCaptions = #captions
+    entities = { first }
+    refused(inject(p, repeatFlags, slot))
+    assert(first.confusionCalls == 2 and #captions == beforeCaptions, "one-boss repeat has no new target or caption")
+    accepted(inject(p, nil, slot))
+    assert(first.confusionCalls == 3, "missing flags mean an ordinary use")
+end
+
+fire("room")
+local immune, nextEnemy = npc(10, { immune = true }), npc(200)
+entities = { nextEnemy, immune }
+accepted(inject(p, 0, 0)); accepted(inject(p, repeatFlags, 0))
+assert(immune.charmCalls == 1 and nextEnemy.charmCalls == 1 and nextEnemy.charm == 240,
+    "a refused native status still cannot make the repeat reuse the selected enemy")
+
+-- Interleaving owners and slots must not overwrite each other's first target.
+fire("room")
+local q = { Position = Vector(100, 0), pointer = 2, InitSeed = 2, Exists = p.Exists }
+local left, right = npc(10, { boss = true }), npc(90, { boss = true })
+entities = { left, right }
+accepted(inject(p, 0, 0)); accepted(inject(q, 0, 0))
+accepted(inject(p, repeatFlags, 0)); accepted(inject(q, repeatFlags, 0))
+assert(left.confusionCalls == 2 and right.confusionCalls == 2 and left.by == q and right.by == p,
+    "co-op repeat excludes only its own primary target")
+fire("room")
+accepted(inject(p, 0, 0))
+p.Position = Vector(100, 0)
+accepted(inject(p, 0, 1))
+p.Position = Vector(0, 0)
+accepted(inject(p, repeatFlags, 0))
+assert(left.confusionCalls == 3 and right.confusionCalls == 4,
+    "slot zero repeats against its own primary before slot one repeats")
+p.Position = Vector(100, 0)
+accepted(inject(p, repeatFlags, 1))
+assert(left.confusionCalls == 4 and right.confusionCalls == 4, "active slots retain independent primary targets")
+p.Position = Vector(0, 0)
+
+fire("room")
+accepted(inject(p, 0, 0))
+p.Position = Vector(100, 0)
+accepted(inject(p, 0, 0))
+accepted(inject(p, repeatFlags, 0))
+assert(left.confusionCalls == 6 and right.confusionCalls == 5,
+    "a new primary in the same slot replaces the old target even before a repeat")
+p.Position = Vector(0, 0)
+
+fire("room")
+local wrapped, alternate = npc(10, { boss = true }), npc(20, { boss = true })
+entities = { wrapped, alternate }
+accepted(inject(p, 0, 0))
+local alias = setmetatable({}, { __index = wrapped })
+entities = { alias, alternate }
+accepted(inject(p, repeatFlags, 0))
+assert(wrapped.confusionCalls == 1 and alternate.confusionCalls == 1 and rawget(alias, "confusionCalls") == nil,
+    "different Lua wrappers for the same entity cannot evade the exclusion")
+
+-- Replacement, refusal, consumption and lifecycle boundaries retire old pairing.
+local function solo()
+    fire("room")
+    local target = npc(10, { boss = true })
+    entities = { target }
+    accepted(inject(p, 0, 0))
+    return target
+end
+local target = solo()
+entities = {}
+refused(inject(p, 0, 0))
+entities = { target }
+accepted(inject(p, repeatFlags, 0))
+assert(target.confusionCalls == 2, "a refused new primary clears a previous successful primary")
+target = solo()
+refused(inject(p, repeatFlags, 0))
+accepted(inject(p, repeatFlags, 0))
+assert(target.confusionCalls == 2, "an unpaired repeat retains ordinary target selection after the pair is consumed")
+for _, reset in ipairs({ "room", "start" }) do
+    target = solo()
+    fire(reset, true)
+    accepted(inject(p, repeatFlags, 0))
+    assert(target.confusionCalls == 2, "room entry or game start clears pairing")
+end
+target = solo()
+target.removed = true
+local replacement = npc(10, { boss = true, index = target.Index, pointer = target.pointer, seed = target.InitSeed + 1 })
+entities = { replacement }
+accepted(inject(p, repeatFlags, 0))
+assert(replacement.confusionCalls == 1, "a recycled target pointer/index does not inherit exclusion")
+target = solo()
+target.InitSeed = target.InitSeed + 1
+accepted(inject(p, repeatFlags, 0))
+assert(target.confusionCalls == 2, "a changed target seed invalidates its exclusion")
+target = solo()
+local oldSeed = p.InitSeed
+p.InitSeed = oldSeed + 1
+accepted(inject(p, repeatFlags, 0))
+assert(target.confusionCalls == 2, "a changed owner seed invalidates its pairing")
+p.InitSeed = oldSeed
+target = solo()
+p.removed = true
+local replacementOwner = { Position = p.Position, pointer = p.pointer, InitSeed = p.InitSeed, Exists = p.Exists }
+accepted(inject(replacementOwner, repeatFlags, 0))
+assert(target.confusionCalls == 2 and target.by == replacementOwner, "an expired owner pointer cannot exclude a target")
+p.removed = nil
+fire("room")
+print("PASS Ignore All Previous Instructions: distinct repeats, slots, owners, refusal and transient identity cleanup")
 
 -- Tungsten Cube ---------------------------------------------------------------
 local function player(counts)

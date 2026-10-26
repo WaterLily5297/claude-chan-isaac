@@ -31,6 +31,7 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Flight cache | [transformation.lua](../scripts/transformation.lua) assigns `CanFly = true` only after its transformation predicate, within the flight cache. | Intentional grant, not an unconditional loss of native flight. Test acquisition/removal/type changes with fixed costumes separately; the scanner cannot prove native cache rebuild timing. |
 | Shared Risk roots | Risk owns serialization/default restoration; legacy `accountAge` is read/migrated by Claude; backlog families share the versioned service through local aliases. The scanner finds direct shared access to `claudeUsage` and `reviewApproved`. | Shared roots are expected in services, but do not prove per-player isolation. W6.1 must map ownership/migration and check Continue, type swaps, legacy saves and co-op. Dynamic or nested writes remain visible as unresolved work, not accepted coverage. |
 | Checkpoint Pin multi-assignment | [backlog/shared.lua](../scripts/items/backlog/shared.lua) restores `Position` and clears `Velocity` in one assignment. | Both targets are listed without pretending the RHS was resolved. Existing mechanism tests and a later native collision/room case determine acceptance. |
+| Ignore Instructions dynamic targets | [ignore_instructions.lua](../scripts/items/ignore_instructions.lua) indexes transient primary records by owner pointer and active slot. The four unresolved indexed assignments update/remove these local records; they do not write native entity fields or Risk state. | Manually reviewed for consume/refusal/replacement behavior, EntityPtr/seed identity and room/start clearing. Eight fault checks strengthen offline coverage. Native pairing and recursive external uses remain open in F2; the lexical warnings stay visible. |
 | Callback cancellation and explicit late callbacks | Constitution registers before Risk; Risk and Vibe damage bookkeeping use explicit LATE priority. Swarm's fire-tear callback also declares LATE. Other registrations generally use default priority. | Preserve cancellation/derived-shot regressions. Review callbacks with early returns and external integrations by actual event, not the whole-file callback list. Static default priority alone is not an ordering defect. |
 
 No gameplay fix was bundled with the original audit because those findings needed semantic checks before code changes. The later W2 audit reproduced normal-Claude account transfer on live slot replacement and added transient owner isolation with failing-before regressions; [TESTING.md](TESTING.md) retains the precise scope, same-entity debt exception and native limits. W4.2 takes other confirmed defects individually. W4.3 expands native categories and W4.4 adds seeded mod-item combinations. W2/W3 completion tables should link findings to exact registered content and current EID/HUD rules. W6 owns serialization/performance review. Do not treat an empty or manually classified overlap list as engine acceptance.
@@ -45,7 +46,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `6813c608669ab83fa3ada013ebb969d68b88c2fb21c47eb337f2d0a87829beea`.
+110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `307ebf4d20b172552dfd8c5ac88a9c57bd651e54120a0e8fa3fa53995a08d336`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1580,7 +1581,7 @@ Risk state roots: none detected.
 #### scripts/items/ignore_instructions.lua
 
 
-Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/ignore_instructions.lua:37](../scripts/items/ignore_instructions.lua#L37)).
+Callbacks: `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/ignore_instructions.lua:51](../scripts/items/ignore_instructions.lua#L51)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/ignore_instructions.lua:52](../scripts/items/ignore_instructions.lua#L52)), `ModCallbacks.MC_USE_ITEM` (`default`, [items/ignore_instructions.lua:53](../scripts/items/ignore_instructions.lua#L53)).
 
 
 Cache flag references: none detected.
@@ -1590,6 +1591,9 @@ Direct tracked-field writes: none detected.
 
 
 Risk state roots: none detected.
+
+
+Unresolved syntax: L61: dynamic field target requires manual review; L65: dynamic field target requires manual review; L66: dynamic field target requires manual review; L68: dynamic field target requires manual review.
 
 
 #### scripts/items/lets_delve.lua
