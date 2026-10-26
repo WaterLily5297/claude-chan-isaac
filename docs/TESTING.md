@@ -1,10 +1,18 @@
 # In-game test checklist
 
-Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, including PRs #93-#97. The owner-authorized 2026-10-26 deployment followed a fresh allowlisted, reread-hash-verified backup of 433 old files; all 443 installed tracked files matched canonical Git bytes, including a second check after shutdown. Repentance+ v1.9.7.17.J460 launched, but window/input conflicts prevented gameplay testing. No ancestry samples or fresh starts were recorded. The game is closed and settings restored. The owner then requested preserving this installation while unavailable; continue offline. Consult HANDOFF.md and ENGINE_AUDIT_2026-10-26.md. Installation/startup are not engine acceptance. Older installed-version statements below remain historical.
+Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Later documentation-only updates do not change this gameplay checkpoint; the local receipt records the exact deployed source SHA. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
-## B1 revision status (2026-10-26; all 22 draft features, offline only)
+## B1 installation (2026-10-26; files verified, game not launched)
 
-The owner rejected direct numerical weakening in draft #100 and requested added character-specific features/tradeoffs. #100 is superseded and must not merge. [DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md) specifies the 22 conditions implemented in draft #102 while preserving the original coefficients. #102 remains unmerged and uninstalled pending balance approval. No game version has exercised this draft. The integrated offline gate covers 69 suites, 184 Lua files, five XML files, deterministic assets and all 22 skin envelopes; CI must pass on the published head. These counts are offline evidence only.
+The owner approved #102 and local installation. Its reviewed head 5eab1c2 merged at ef7d2dd; both have tree 206bec8ea1e44b6a4b0fd768fcd2de168dd1ed6d. PR-head and merged-main CI passed. The earlier 69-suite source gate therefore covers the identical merged tree.
+
+Preflight matched every one of the 443 prior installed tracked files to f8b2b0b. A fresh allowlisted backup passed reread SHA-256 verification before any replacement. Installation updated 102 paths including eight new paths; all 451 tracked files matched canonical ef7d2dd bytes afterward. No paths were removed. Private receipts and backup manifests remain local.
+
+The game was closed before and after replacement; no launch, input, settings edit or save access occurred. This verifies deployment only, not any B1, O4, O5 or E2-E5 native case. Documentation-only synchronization may follow; the local receipt records its exact deployed SHA separately from this gameplay checkpoint.
+
+## B1 revision status (2026-10-26; all 22 features, offline only)
+
+The owner rejected direct numerical weakening in draft #100 and requested added character-specific features/tradeoffs. #100 is superseded and must not merge. [DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md) specifies the 22 conditions implemented in #102 while preserving the original coefficients. #102 is now owner-approved, merged and installed as recorded above. No game version has exercised these new mechanics. The integrated offline gate covers 69 suites, 184 Lua files, five XML files, deterministic assets and all 22 skin envelopes; PR-head and merged-main CI passed. These counts are offline evidence only.
 
 The first eight conditions were committed at 1422d81: safe-room reset/release, drying delay, one-second sight loss, helper range/lifetime, combat-only baking, clear-triggered recovery and completion range/sight. Fourteen more extend the same PR. Existing character suites retain baseline damage, resource, pause, duplicate, co-op and continuation controls while gaining the following regressions:
 
@@ -17,7 +25,7 @@ The first eight conditions were committed at 1422d81: safe-room reset/release, d
 
 The full-module smoke fixture now models native position/enemy queries needed by Review and verifies that merely changing floors earns no age. Its remaining cache/suspension controls explicitly seed earned age. Supplied fixtures test module behavior, not native input filtering, callback order, entity reconstruction or balance. Legacy state migrations and limits are detailed in DIFFICULTY_FEATURES.md; broad O6 save/continue work remains separate.
 
-After approval and an authorized backed-up installation, run this B1 matrix in addition to E3-E5. Record exact build/game version, form, equipment, observed HUD and outcome; a table row is not an acceptance claim.
+During a separately authorized game session, run this B1 matrix in addition to E3-E5. Record exact build/game version, form, equipment, observed HUD and outcome; a table row is not an acceptance claim.
 
 | Family | Normal form: required native cases | Tainted form: required native cases |
 |---|---|---|
@@ -33,7 +41,7 @@ After approval and an authorized backed-up installation, run this B1 matrix in a
 | Kimi | Three audience members, visible current speaker, death/friendly/revival ordering and expiry. | Assign then shoot versus leave delegated, rapid refresh, own helper/partner controls, resume without catch-up and same budget. |
 | GLM | Queue 3 claim versus missed next new fight, revisits, peaceful rooms, active pass and Continue. | Completion inside/outside 200 units with/without sight, early death versus invalid target, Retry and cooldown. |
 
-O4 #101 and O5 #103 are merged at main 654a8dc and absent from installed f8b2b0b. The owner supplied no usable checklist result. No runtime, saves or settings were accessed in this mechanics unit; no native acceptance is added.
+O4 #101 and O5 #103 are included in installed gameplay checkpoint ef7d2dd. The owner supplied no usable checklist result. Implementation was offline; the later installation above did not add native acceptance.
 
 ## O5: Hit, Death and side poses (2026-10-26; offline geometry only)
 

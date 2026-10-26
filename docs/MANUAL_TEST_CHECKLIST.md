@@ -1,8 +1,8 @@
 # Quick manual test
 
-Installed build: `f8b2b0b`. No debug tools are required. One or two ordinary runs are enough for an initial report; mark anything you do not encounter **not tried**.
+Installed gameplay checkpoint: `ef7d2dd` (approved #102, O4 and O5; later documentation-only updates may follow). No debug tools are required. One or two ordinary runs are enough for an initial report; mark anything you do not encounter **not tried**.
 Reply **OK / broken / not tried** for each number. Include the character/form and game version shown on the title screen. For a problem, add the item and the last action; screenshots are optional and should show only the game.
-The proposed difficulty pass is not in this installed build. Item 14 asks about the current feel now; repeat it on an approved newer build only after installation is confirmed.
+The character-specific B1 conditions are now installed. Item 14 asks whether the added choices feel a little harder but fair; the source rules do not establish play balance.
 
 | # | Check | What OK looks like |
 |---|---|---|
@@ -24,4 +24,4 @@ The proposed difficulty pass is not in this installed build. Item 14 asks about 
 Short reply template: `Build / game version / forms; 1 OK, 2 OK, 3 broken (action...), 4 not tried; 14 fair (form...)`.
 Owner observations are recorded at their stated scope; an OK here does not accept all 22 forms, every item or both game editions.
 
-Draft #102 implements character-specific conditions for all 22 forms; **none is in installed f8b2b0b**. After approval and confirmed installation, repeat items 3-5, 12-14 and the relevant family row in [the B1 native matrix](TESTING.md#b1-revision-status-2026-10-26-all-22-draft-features-offline-only). Report whether the condition was understandable, whether its reward/cost matched the HUD, and whether the added choice felt fair. Do not report an unplayed draft as tested.
+Approved #102 adds character-specific conditions for all 22 forms, now installed. Repeat items 3-5, 12-14 and the relevant family row in [the B1 native matrix](TESTING.md#b1-revision-status-2026-10-26-all-22-features-offline-only). Report whether the condition was understandable, whether its reward/cost matched the HUD, and whether the added choice felt fair. Mark every unplayed form or unencountered mechanic as not tried.

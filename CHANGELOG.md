@@ -1,11 +1,17 @@
 # Changelog
 
-## Character tradeoffs, all 22 forms (2026-10-26; draft, offline)
+## Approved B1 merge and installation (2026-10-26)
+
+- Merge owner-approved #102 at ef7d2dd after successful CI and install its 22 character conditions alongside O4 restoration and O5 Death packing.
+- Back up and reread-hash verify 443 prior allowlisted files before replacement; verify all 451 installed tracked files against canonical Git bytes. No paths removed.
+- Game closed throughout; no launch, settings/save changes or new engine acceptance. Reconcile current build/rule records and preserve the installed gameplay checkpoint during offline follow-ups.
+
+## Character tradeoffs, all 22 forms (2026-10-26; source implementation)
 
 - Add safe-room Tibo resets and Llama releases, wet paint, sustained-sight fact checks, owner-range demos, combat baking, clear-triggered Apology and connected requests. Existing numerical benefits are preserved.
 - Complete the other fourteen conditions: kill-order age review, quiet appeals, cancellable Rice, Peak reservation, focused checks/quotes, editing angles, Adapter installation, pinned builds, stored Pounce direction, aimed Apology, single-speaker focus, task interruption and missed queue calls.
-- Add versioned scalar migrations and source-owned meal cancellation. Reconcile same-attack target choices after damage, including delayed piercing hits, without changing native billing. Extend character and integration regressions; synchronize English HUD, dossiers, EID, all READMEs and review/acceptance records. #102 stays draft pending owner balance review; #100 is superseded.
-- No installation or game session; preserve f8b2b0b.
+- Add versioned scalar migrations and source-owned meal cancellation. Reconcile same-attack target choices after damage, including delayed piercing hits, without changing native billing. Extend character and integration regressions; synchronize English HUD, dossiers, EID, all READMEs and review/acceptance records. #102 was subsequently owner-approved and merged; #100 remains superseded.
+- Implementation was offline; the subsequent authorized installation is recorded above. No new game session.
 
 ## Death-pose geometry and all-form preview (2026-10-26; offline)
 
