@@ -15,7 +15,7 @@ Roster.definitions = {
     {key="qwen", name="Qwen-chan", title="Everyone's Base Model", color={0.8,0.5,1},
      lines={"Tap/release DROP: pick Range, Tempo or Power.", "Spend on entry; stop firing 1s to install.", "Earn an Adapter every two combat clears."}},
     {key="llama", name="Llama-chan", title="Please Stay Open", color={0.65,1,0.5},
-     lines={"Cleared room: tap DROP to spend a Release.", "Each living player gains two blue flies.", "Earn a Release every two combat clears."}},
+     lines={"Cleared room: tap DROP to spend a Release.", "Solo: 4 flies; co-op: 2 per living player.", "Earn a Release every two combat clears."}},
     {key="mistral", name="Mistral-chan", title="Le Chat", color={1,0.7,0.3},
      lines={"Move while firing for 2s: charge a Pounce.", "Tap DROP: 2x swipe in the stored direction.", "Standing still for 1s loses the Pounce."}},
     {key="doubao", name="Doubao-chan", title="Sorry, You're Right", color={1,0.7,0.6},
