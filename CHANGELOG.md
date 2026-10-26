@@ -1,5 +1,11 @@
 # Changelog
 
+## Sixth ten designed item icons (2026-10-27; offline art)
+
+- Replace ten Doubao/Kimi/GLM collectible placeholders with original megaphone, eraser, projection screen, thread spool, transparency stack, lectern, ticket roll, empty shielded crate, winding wheel and pass drawings.
+- Add deterministic sources, metadata/provenance and 1x/4x light/dark before-after sheets. Refine fly wings and gear teeth, and correct a projection-foot margin caught by the existing validator. Sixty icons are designed; 32 remain placeholders.
+- Preserve other artwork, all Lua/tests/XML, gameplay values and installed 8fd6a8c. The unchanged gate now checks twelve art sheets; native presentation remains unaccepted.
+
 ## Charm after ordinary shields (2026-10-27; offline fix)
 
 - Run You're Absolutely Right! after ordinary shields so Sold Out/Red Stamp can refuse a hit before its source is charmed. Preserve the 150-frame effect, owner/source checks, caption, nil return and existing damage-flag behavior.

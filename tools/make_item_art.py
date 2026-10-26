@@ -913,6 +913,167 @@ def again_art():
     return c.finish()
 
 
+def confident_art():
+    c = Canvas()
+    c.poly([(12,19),(17,18),(19,27),(16,29),(13,27)],WOOD[0])
+    c.poly([(13,20),(16,20),(17,26),(15,27)],WOOD[1]); c.line(14,21,15,25,WOOD[2])
+    c.poly([(5,12),(12,12),(24,6),(27,7),(28,23),(25,25),(12,19),(5,19)],GOLD[0])
+    c.poly([(6,13),(12,13),(24,7),(25,10),(13,16),(6,16)],GOLD[2])
+    c.poly([(6,17),(13,17),(24,12),(25,22),(13,18),(6,18)],GOLD[1])
+    c.oval(25,15,3,9,GOLD[0]); c.oval(25,14,2,7,GOLD[2])
+    c.oval(25,15,1,5,WOOD[0]); c.rect(4,14,6,18,STEEL[0]); c.rect(4,14,5,15,STEEL[2])
+    c.line(17,10,18,14,INK); c.line(18,14,17,17,INK); c.line(18,11,19,14,GOLD[2])
+    c.line(8,20,6,23,STEEL[0]); c.line(6,23,8,25,STEEL[0])
+    c.oval(8,26,3,1.5,PINK[0]); c.line(6,25,9,25,PINK[2])
+    return c.finish()
+
+
+def correction_art():
+    c = Canvas()
+    c.line(5,27,16,25,STEEL[0],2); c.rect(8,27,9,27,STEEL[1])
+    c.poly([(7,17),(17,7),(27,14),(17,25),(12,26),(5,21)],PINK[0])
+    c.poly([(7,17),(17,8),(25,14),(16,23)],PINK[1])
+    c.poly([(7,17),(17,8),(20,10),(10,20)],PINK[2])
+    c.poly([(13,12),(18,7),(27,14),(22,20)],BLUE[0])
+    c.poly([(14,12),(18,8),(25,14),(21,18)],BLUE[1]); c.line(15,11,18,8,BLUE[2])
+    c.poly([(7,19),(15,25),(12,26),(6,22)],PINK[2]); c.rect(3,24,4,24,PINK[1])
+    c.rect(19,27,20,27,PINK[1]); c.rect(23,25,24,25,PINK[0])
+    for x,y in ((5,9),(25,5)):
+        c.oval(x-2,y-1,1.5,1,STEEL[2]); c.oval(x+2,y-2,1.5,1,BLUE[2])
+        c.oval(x,y+1,1,2,BLUE[0]); c.rect(x,y,x,y+1,BLUE[1]); c.rect(x,y-1,x,y-1,INK)
+    return c.finish()
+
+
+def deadline_art():
+    c = Canvas()
+    c.line(15,21,15,27,STEEL[0],2); c.line(15,26,9,28,STEEL[0],2)
+    c.line(15,26,22,28,STEEL[0],2); c.line(15,22,15,26,STEEL[2])
+    c.rect(5,5,26,20,STEEL[0]); c.rect(6,6,25,19,PAPER[0])
+    c.rect(7,6,24,17,PAPER[1]); c.rect(7,6,24,7,PAPER[2])
+    c.rect(3,4,28,6,STEEL[0]); c.rect(4,4,27,4,STEEL[2]); c.rect(5,5,26,5,STEEL[1])
+    c.line(5,21,25,21,STEEL[1]); c.line(6,20,24,20,STEEL[2])
+    for x,y in ((10,11),(16,14),(22,10)):
+        c.oval(x,y,2,2,BLUE[0]); c.rect(x-1,y-1,x,y,BLUE[1]); c.rect(x-1,y-1,x-1,y-1,BLUE[2])
+    c.oval(24,23,5,5,GOLD[0]); c.oval(23,22,4,4,GOLD[1]); c.oval(23,22,3,3,PAPER[2])
+    c.line(23,22,23,20,STEEL[0]); c.line(23,22,25,23,STEEL[0]); c.rect(22,17,24,18,GOLD[2])
+    return c.finish()
+
+
+def citation_art():
+    c = Canvas()
+    c.poly([(20,4),(26,5),(29,11),(26,15),(19,12)],PAPER[0])
+    c.poly([(20,5),(25,6),(27,11),(25,13),(20,11)],PAPER[1]); c.line(20,5,24,6,PAPER[2])
+    c.rect(21,8,22,9,INK)
+    c.poly([(24,20),(29,22),(27,29),(20,27),(19,23)],PAPER[0])
+    c.poly([(24,21),(28,23),(26,27),(21,26),(20,23)],PAPER[1]); c.line(24,21,27,22,PAPER[2])
+    c.rect(23,23,24,24,INK)
+    c.line(13,10,17,7,ORANGE[0],2); c.line(17,7,21,9,ORANGE[1],2)
+    c.line(12,24,16,28,ORANGE[0],2); c.line(16,28,23,24,ORANGE[1],2)
+    c.oval(9,24,6,3,WOOD[0]); c.rect(4,10,14,24,WOOD[0])
+    c.rect(5,10,13,23,ORANGE[0]); c.rect(5,11,10,22,ORANGE[1])
+    for y in (12,15,18,21): c.line(5,y,12,y-1,ORANGE[2])
+    c.oval(9,9,6,3,WOOD[1]); c.oval(8,8,5,2,WOOD[2]); c.oval(9,8,2,1,WOOD[0])
+    c.line(5,25,11,26,WOOD[1]); c.line(5,24,9,25,WOOD[2])
+    c.line(16,8,20,9,ORANGE[2]); c.line(17,27,20,26,ORANGE[2])
+    return c.finish()
+
+
+def overtime_art():
+    c = Canvas()
+    c.poly([(4,9),(18,6),(23,23),(9,27)],PURPLE[0])
+    c.poly([(5,10),(17,7),(21,22),(10,25)],PAPER[1])
+    c.poly([(8,12),(15,10),(18,20),(11,22)],BLUE[0])
+    c.poly([(9,11),(23,10),(25,27),(11,28)],PURPLE[0])
+    c.poly([(10,12),(22,11),(23,26),(12,26)],PAPER[1])
+    c.poly([(12,14),(20,13),(21,23),(13,24)],BLUE[0])
+    c.poly([(15,11),(28,15),(23,29),(10,25)],PAPER[0])
+    c.poly([(16,12),(27,16),(22,27),(12,24)],PAPER[2])
+    c.poly([(17,15),(24,17),(21,24),(14,22)],BLUE[0])
+    c.poly([(17,16),(23,18),(21,22),(15,21)],BLUE[1]); c.line(17,16,21,17,BLUE[2])
+    c.oval(24,6,5,4,GOLD[0]); c.oval(23,5,4,3,GOLD[1]); c.line(21,3,23,3,GOLD[2])
+    c.oval(26,4,3,3,'.')
+    return c.finish()
+
+
+def meeting_art():
+    c = Canvas()
+    c.poly([(7,13),(23,12),(22,25),(10,27)],WOOD[0])
+    c.poly([(8,14),(20,13),(19,24),(10,25)],WOOD[1]); c.line(9,15,10,24,WOOD[2])
+    c.poly([(5,10),(21,7),(27,12),(10,16)],WOOD[0])
+    c.poly([(5,10),(20,8),(25,11),(10,14)],WOOD[2]); c.line(10,15,26,12,WOOD[1])
+    c.poly([(10,10),(19,9),(22,11),(13,13)],PAPER[1]); c.line(11,10,18,9,PAPER[2])
+    c.rect(9,26,23,28,WOOD[0]); c.rect(9,26,20,26,WOOD[2])
+    c.line(21,9,21,4,STEEL[0],2); c.line(21,4,17,3,STEEL[0],2)
+    c.line(21,8,21,4,STEEL[2]); c.oval(16,3,2,1,STEEL[1]); c.rect(15,2,16,2,STEEL[2])
+    for x,y in ((4,20),(26,19)):
+        c.poly([(x-1,y-2),(x+2,y),(x,y+3),(x-2,y+1)],BLUE[0])
+        c.poly([(x-1,y-1),(x+1,y),(x,y+1)],BLUE[2])
+    c.poly([(15,18),(18,20),(15,23),(13,21)],GOLD[0]); c.line(15,19,16,20,GOLD[2])
+    return c.finish()
+
+
+def queue_art():
+    c = Canvas()
+    c.oval(11,11,7,7,PAPER[0]); c.oval(10,10,6,6,PAPER[1]); c.oval(9,9,4,4,PAPER[2])
+    c.oval(10,10,2,2,WOOD[0]); c.rect(9,9,10,9,WOOD[1])
+    c.poly([(14,6),(23,8),(23,15),(26,19),(24,27),(17,28),(14,24),(16,18)],PAPER[0])
+    c.poly([(15,7),(22,9),(22,16),(25,20),(23,26),(18,26),(15,23),(17,18)],PAPER[1])
+    c.poly([(15,7),(18,8),(18,18),(16,22),(19,25),(18,26),(15,23),(17,18)],PAPER[2])
+    for x,y in ((19,11),(21,12),(18,20),(20,21),(22,22)): c.rect(x,y,x,y,WOOD[0])
+    c.poly([(4,20),(10,18),(14,21),(13,28),(6,29),(3,26)],BLUE[0])
+    c.poly([(4,21),(10,19),(13,21),(7,23)],BLUE[2]); c.poly([(7,24),(12,22),(11,27),(7,28)],BLUE[1])
+    c.rect(6,17,9,19,GOLD[0]); c.rect(6,17,8,17,GOLD[2]); c.rect(7,25,9,26,GOLD[1])
+    return c.finish()
+
+
+def sold_art():
+    c = Canvas()
+    c.poly([(4,10),(18,5),(28,10),(27,24),(15,29),(4,23)],WOOD[0])
+    c.poly([(5,10),(18,6),(27,10),(15,15)],WOOD[2])
+    c.poly([(7,10),(18,7),(24,10),(15,13)],INK)
+    c.poly([(5,12),(14,16),(14,27),(5,22)],WOOD[1]); c.line(6,13,6,21,WOOD[2])
+    c.poly([(16,16),(27,12),(26,23),(16,27)],WOOD[0]); c.line(17,17,25,14,WOOD[1])
+    c.line(5,17,13,20,WOOD[0]); c.line(5,21,13,24,WOOD[0])
+    c.poly([(14,15),(20,12),(27,15),(26,22),(21,28),(16,25)],BLUE[0])
+    c.poly([(15,16),(20,13),(25,16),(24,21),(20,26),(17,23)],BLUE[1])
+    c.poly([(15,16),(19,14),(19,24),(17,22)],BLUE[2])
+    c.line(20,14,20,24,STEEL[0]); c.line(17,17,24,18,STEEL[0]); c.rect(20,17,21,18,STEEL[2])
+    c.rect(6,12,6,12,STEEL[2]); c.rect(25,12,25,12,STEEL[1])
+    return c.finish()
+
+
+def retry_art():
+    c = Canvas()
+    for x0,y0,x1,y1 in ((11,3,16,7),(19,6,23,11),(20,15,24,19),(11,19,16,23),(4,14,8,19),(4,6,8,10)):
+        c.rect(x0,y0,x1,y1,GOLD[0])
+    c.oval(14,13,7,7,GOLD[0]); c.oval(13,12,6,6,GOLD[1]); c.oval(12,11,5,5,GOLD[2])
+    c.rect(11,3,15,5,GOLD[2]); c.rect(4,6,7,8,GOLD[2]); c.rect(4,14,6,16,GOLD[1])
+    c.rect(11,21,14,22,GOLD[1]); c.rect(21,16,23,17,GOLD[1]); c.rect(20,6,22,7,GOLD[1])
+    c.oval(14,13,4,4,STEEL[0]); c.oval(14,13,2,2,STEEL[1]); c.rect(13,12,14,12,STEEL[2])
+    c.line(14,13,21,8,WOOD[0],3); c.line(14,12,20,8,WOOD[2])
+    c.oval(23,7,3,2,WOOD[0]); c.oval(22,6,2,1,WOOD[1])
+    for x,y in ((7,26),(17,27),(27,23)):
+        c.poly([(x,y-4),(x+2,y-1),(x+2,y+1),(x,y+2),(x-2,y+1),(x-2,y-1)],BLUE[0])
+        c.poly([(x,y-2),(x+1,y),(x,y+1),(x-1,y)],BLUE[1]); c.rect(x-1,y-1,x-1,y-1,BLUE[2])
+    return c.finish()
+
+
+def access_art():
+    c = Canvas()
+    c.line(11,13,7,6,BLUE[0],3); c.line(7,6,11,3,BLUE[0],3)
+    c.line(11,3,20,4,BLUE[0],3); c.line(20,4,23,10,BLUE[0],3)
+    c.line(23,10,19,14,BLUE[0],3)
+    c.line(8,6,11,4,BLUE[2]); c.line(11,4,19,5,BLUE[1]); c.line(21,7,22,10,BLUE[1])
+    c.poly([(10,12),(22,13),(26,25),(23,29),(10,27),(7,15)],GOLD[0])
+    c.poly([(10,13),(21,14),(24,25),(22,27),(11,25),(8,15)],GOLD[1])
+    c.poly([(11,15),(20,16),(22,24),(12,23),(10,17)],PAPER[2])
+    c.line(9,15,11,24,GOLD[2]); c.line(12,26,21,28,GOLD[0])
+    c.oval(15,13,2,2,STEEL[0]); c.oval(15,13,1,1,STEEL[2])
+    c.oval(17,20,3,3,ORANGE[0]); c.oval(16,19,2,2,ORANGE[1]); c.rect(15,18,16,18,ORANGE[2])
+    c.rect(21,15,22,16,'.'); c.rect(24,23,25,24,'.')
+    return c.finish()
+
+
 def design(draw, palette, meaning, batch='01'):
     return Design(draw, 1, (INK, *palette), meaning,
                   'Original project artwork, Codex-assisted',
@@ -971,6 +1132,16 @@ DESIGNS = {
     'collectibles/edge_compass.png': design(compass_art, (*STEEL,*GOLD,*BLUE,*ORANGE), 'A brass compass with a coloured needle beside a stone corner; shot speed near outer walls.', '05'),
     'collectibles/instant_apology.png': design(apology_art, (*WOOD,*GOLD,*PAPER,*BLUE), 'A folded white truce flag on a wooden pole above a dispersing blue bullet; local slowing and bullet removal, without healing.', '05'),
     'collectibles/next_time_again.png': design(again_art, (*WOOD,*PAPER,*PINK), 'A chipped wooden boomerang repaired with pale tape and a small bruise-coloured patch; retaliation after a hit, not a returning-projectile effect.', '05'),
+    'collectibles/confident_answer.png': design(confident_art, (*GOLD,*WOOD,*STEEL,*PINK), 'A loud brass megaphone with a cracked seam and flattened squeeze bulb; confidence followed by a weaker phase, not a new projectile weapon.', '06'),
+    'collectibles/smiling_correction.png': design(correction_art, (*PINK,*BLUE,*STEEL), 'A pink beveled eraser in a blue sleeve over rubbed ink, with two small blue flies; a correction earned by a flawless clear after a hit.', '06'),
+    'collectibles/slide_deadline.png': design(deadline_art, (*STEEL,*PAPER,*BLUE,*GOLD), 'A pull-down projection screen on a tripod with three blue target dots and a small brass timer; a timed batch of marked enemies.', '06'),
+    'collectibles/citation_thread.png': design(citation_art, (*WOOD,*ORANGE,*PAPER), 'A wooden spool of orange thread linking two punched paper reference tags; alternating hit references.', '06'),
+    'collectibles/overtime_slides.png': design(overtime_art, (*PURPLE,*PAPER,*BLUE,*GOLD), 'Three fanned projection transparencies under a brass crescent; a delayed slowing outline after accumulated clears.', '06'),
+    'collectibles/standup_meeting.png': design(meeting_art, (*WOOD,*PAPER,*STEEL,*BLUE,*GOLD), 'A wooden lectern with a bent microphone and small blue burst markers; recalling temporary helpers without touching native familiars.', '06'),
+    'collectibles/queue_ticket.png': design(queue_art, (*PAPER,*WOOD,*BLUE,*GOLD), 'A curled perforated ticket roll above a small blue battery; earning an eligible active charge after unique clears, with no printed digits.', '06'),
+    'collectibles/sold_out.png': design(sold_art, (*WOOD,*BLUE,*STEEL), 'An open empty wooden stock crate with a riveted blue shield across its front; a temporary ordinary-bullet guard.', '06'),
+    'collectibles/please_retry.png': design(retry_art, (*GOLD,*STEEL,*WOOD,*BLUE), 'A brass winding wheel and wooden crank beside three separate blue drops; three delayed native tear retries.', '06'),
+    'collectibles/access_pass.png': design(access_art, (*BLUE,*GOLD,*PAPER,*STEEL,*ORANGE), 'A punched brass-edged pass on a blue lanyard with an orange seal and no lettering; a floor-scoped damage benefit after an observed charged use.', '06'),
 }
 
 
