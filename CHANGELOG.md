@@ -1,5 +1,11 @@
 # Changelog
 
+## First ten designed item icons (2026-10-26; offline art)
+
+- Redraw Ban Hammer, Compact, Summary Stapler, Ultrathink, Subagent Swarm, The Constitution, Lunch Break, Rice Cooker, Token Recall and Let's Delve using original pixel geometry, material ramps and transparent margins.
+- Provide reproducible 1x/4x before-after sheets on light/dark fields with original project reference shapes. Record source/provenance and review-sheet freshness; registry now has ten designed and 82 placeholder icons.
+- Preserve the other 163 existing PNGs, all animation content, character identities and gameplay/registration/pools. Full offline gate passes; native visuals and the owner-untried installed build remain unchanged.
+
 ## Explicit item-art production pipeline (2026-10-26; offline)
 
 - Register all 92 item icons with explicit placeholder/designed status, drawing source, provenance, palette/alpha contract and output hash; keep all current PNG bytes unchanged.

@@ -2,6 +2,16 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## W1.3 first icon batch (2026-10-26; offline art)
+
+[ITEM_ART_BATCH_01.md](ITEM_ART_BATCH_01.md) records ten original collectible redraws and their effect cues. Before/after sheets were inspected at exact 1x and integer 4x on both light and dark backgrounds; the stapler's open lever/hinge was refined during review. Original project reference shapes and label pixels are included; no native or private source images are published.
+
+Against 7e91788, exactly the intended ten PNGs change. The other 163 existing PNGs match canonical bytes, and all 25 ANM2 files match after Git line-ending normalization. Initial raw animation comparisons detected checkout CRLF versus canonical LF; this was a verifier distinction, not an animation edit. The 92 registered icon paths now partition into ten designed and 82 placeholder entries. Each new icon passes hard-alpha, palette, margin and 32x32 RGBA8 checks; actual visible colour counts are 7-13. Two new review sheets bring the art inventory to 200 files.
+
+The standard-library review producer is reproducible, and check_assets.py now checks both sheet outputs. The full gate passes 69 Lua suites, 11 Python scanner cases and 13 item-art regression groups plus XML/assets/poses/report freshness. One fixture now injects an empty design map explicitly for the missing-producer case, because a real Ban Hammer drawing now exists; the missing-producer assertion is retained. No gameplay or numerical test expectation changes.
+
+This is offline visual/source evidence only. Native pickup/pedestal/EID presentation, room lighting and all character/weapon/hurt cases remain unaccepted. Installed 8fd6a8c, game, settings and saves are untouched. Original-code MIT icon terms do not replace character-design credits or authorize publication.
+
 ## W1.2 item-art pipeline (2026-10-26; offline tooling)
 
 The new manifest partitions all 92 XML icon paths into explicit placeholder/designed status; initially all 92 remain placeholders. Every tracked item PNG was independently compared with canonical 2e63eb5 bytes and remained identical. No gameplay, registration, pool value, character art or runtime file changed.

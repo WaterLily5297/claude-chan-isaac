@@ -2,7 +2,7 @@
 
 Updated 2026-10-26 from source `8fd6a8c`. The roster has **11 families / 22 forms, 80 collectibles, 12 trinkets and five pill effects**. [ART_STATUS.md](ART_STATUS.md) inventories every bundled image/animation and the native presentations without custom files. That document is the art queue; this one defines how replacements are produced and checked.
 
-The designed-icon registry, producer and validator are now implemented in source. All 92 shipped icons still have placeholder status and retain their prior bytes; no icon is promoted by this tooling change. The first designed batch and native art acceptance remain pending.
+The designed-icon registry, producer and validator are now implemented in source. The pipeline migration preserved all 92 PNGs. The subsequent [first batch](ITEM_ART_BATCH_01.md) supplies ten designed icons and 1x/4x before-after sheets; 82 icons remain placeholders. Native art acceptance remains pending.
 
 ## Identity, compatibility and rights
 
@@ -91,7 +91,7 @@ Art-batch workflow:
 1. Add original drawing functions and Design definitions keyed by exact registered gfx paths to DESIGNS in make_item_art.py. Supply declared palette, version, meaning, author, original-pixel provenance and a review sheet. The pipeline is for original project MIT icon art; do not use it to relabel character derivatives or imported images.
 2. Change only intended registry entries to designed, then regenerate with --write. Review code, output and metadata together. Untargeted PNGs must stay byte-identical; the explicit metadata does not replace visual review.
 3. Run the contract regressions and full gate. Thirteen regression groups cover mixed status, malformed candidates, registration/pools, read-only validation and legacy overwrite protection. A valid original test shape passes the new contract but fails the old placeholder equality gate; the fixture is not shipped game art.
-4. Migrate about ten icons in a focused main-based PR, supplying the before/after 1x/4x review package and updating ART_STATUS, terms as needed, HANDOFF, TESTING and CHANGELOG. The tooling unit keeps all 92 placeholder PNGs unchanged; it is not a completed icon batch.
+4. Migrate about ten icons in a focused main-based PR, supplying the before/after 1x/4x review package and updating ART_STATUS, terms as needed, HANDOFF, TESTING and CHANGELOG. The tooling unit kept all 92 PNGs unchanged; the first subsequent art batch migrates ten. Keep tooling and artwork evidence distinct.
 5. After the required full gate, final-head CI and review, merge under the standing source policy. Runtime installation is a separate authorized, backed-up action; an icon PR must not overwrite the owner's manual-test installation.
 
 ## Review package and acceptance
