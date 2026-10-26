@@ -1,5 +1,11 @@
 # Changelog
 
+## Active-item integration and scheduled hardening (2026-10-27; offline evidence)
+
+- Add a filtered two-module fixture for Ignore Instructions and I Panicked: 24 supplied order/slot/owner sequences and four target-death sequences check effects after each callback.
+- Demonstrate a dispatch-coverage gap: four wrong/missing item-filter faults pass the existing isolated suites but fail the new integration suite. Production modules already pass the new cases; no new gameplay defect is claimed.
+- Review #121-#124 and retain native timing, F12, save/identity and art-acceptance limits. The gate grows to 71 Lua suites/188 tracked Lua files; all existing tests, gameplay, art, balance, save shapes and installed 8fd6a8c are preserved.
+
 ## Ignore Instructions distinct Car Battery target (2026-10-27; offline fix)
 
 - Honor the existing description's different-enemy repeat even when the first target is a boss or resists charm. Remember only the latest primary per live owner/active slot; consume that exclusion on the repeat and clear transient records on room entry/game start.
