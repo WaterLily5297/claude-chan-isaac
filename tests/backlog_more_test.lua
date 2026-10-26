@@ -305,6 +305,61 @@ T("45 Cache Cartridge only in revisited cleared rooms", function()
     env.newRoom(); near(p.MoveSpeed, 1)
 end)
 
+T("45 Cache Cartridge expires when combat starts without a room entry", function()
+    local env, p, Item = fresh("CACHE_CARTRIDGE", "ERROR_BUDGET")
+    local q, bystander = env.player(100), env.player(200)
+    env.give(q, "CACHE_CARTRIDGE")
+    env.newRoom({ clear = true, first = false })
+    -- Keep an independent room effect and a pin while the speed bonus expires.
+    env.hitPlayer(p, env.npc(320, { y = 200 }))
+    env.use(Item.CHECKPOINT_PIN, p)
+    near(p.MoveSpeed, 1.35); near(q.MoveSpeed, 1.15); near(bystander.MoveSpeed, 1)
+    local pin = env.C.Data(p).room.pin
+    local counts = {}
+    for _, owner in ipairs({p, q, bystander}) do
+        local original = owner.EvaluateItems
+        counts[owner] = 0
+        owner.EvaluateItems = function(self)
+            counts[self] = counts[self] + 1
+            return original(self)
+        end
+    end
+    active(env, p, 4); p.charge[0] = 2
+    local index = env.roomIndex
+    env.clear = false -- Supplied room-state transition; no NEW_ROOM callback.
+    env.update()
+    near(p.MoveSpeed, 1.2, "combat removes Cartridge while preserving Error Budget")
+    near(q.MoveSpeed, 1, "each holder loses only its own Cartridge bonus")
+    assert(env.roomIndex == index and env.C.Data(p).room.pin == pin, "other room state remains intact")
+    assert(counts[p] == 1 and counts[q] == 1 and counts[bystander] == 0,
+        "only active Cartridge owners need a single invalidation")
+    env.update(10)
+    assert(counts[p] == 1 and counts[q] == 1 and counts[bystander] == 0,
+        "unchanged combat cannot rebuild caches every update")
+    env.clearRoom(); env.update()
+    near(p.MoveSpeed, 1.2); near(q.MoveSpeed, 1)
+    p:EvaluateItems(); near(p.MoveSpeed, 1.2, "a clear cannot regrant a spent entry bonus")
+    assert(p.charge[0] == 2 and #env.spawned == 0, "no charge or pickup rewards are introduced")
+    env.newRoom({ clear = true, first = false })
+    near(p.MoveSpeed, 1.15); near(q.MoveSpeed, 1.15)
+end)
+
+T("45 Cache Cartridge checks combat during an early cache evaluation", function()
+    local env, p, Item = fresh("CACHE_CARTRIDGE")
+    env.newRoom({ clear = true, first = false }); near(p.MoveSpeed, 1.15)
+    env.clear = false
+    p:EvaluateItems()
+    near(p.MoveSpeed, 1, "cache evaluation before update must not retain a combat bonus")
+    env.clear = true; env.update(); p:EvaluateItems()
+    near(p.MoveSpeed, 1, "observed combat consumes the entry bonus even before the update")
+    env.newRoom({ clear = true, first = false }); near(p.MoveSpeed, 1.15)
+    p.items[Item.CACHE_CARTRIDGE] = nil; p:EvaluateItems(); near(p.MoveSpeed, 1)
+    env.clear = false; env.update()
+    env.give(p, "CACHE_CARTRIDGE"); near(p.MoveSpeed, 1)
+    env.clear = true; env.update(); p:EvaluateItems()
+    near(p.MoveSpeed, 1, "losing and regaining the item cannot revive a consumed room entry")
+end)
+
 T("46 Token Recall takes back only the owner's ordinary tears", function()
     local env, p, Item = fresh()
     local q = env.player(100)

@@ -45,7 +45,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `3262f13a49efd9ff8dce8979b84cf7f12a15d980f6da94a40c6f703fc77e4547`.
+110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `34b7d60ba4a630fd8d893059f4e03680e1122efe8d558e8b2ec67a621e8da996`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1275,7 +1275,7 @@ Risk state roots: none detected.
 #### scripts/items/backlog/shared.lua
 
 
-Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/shared.lua:39](../scripts/items/backlog/shared.lua#L39)), `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/shared.lua:61](../scripts/items/backlog/shared.lua#L61)).
+Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/shared.lua:48](../scripts/items/backlog/shared.lua#L48)), `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/shared.lua:70](../scripts/items/backlog/shared.lua#L70)).
 
 
 Cache flag references: none detected.
@@ -1284,16 +1284,16 @@ Cache flag references: none detected.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [items/backlog/shared.lua:65](../scripts/items/backlog/shared.lua#L65) | `player.Position` | `r.pin.position,Vector.Zero` | multiple-target; manual mapping |
+| [items/backlog/shared.lua:74](../scripts/items/backlog/shared.lua#L74) | `player.Position` | `r.pin.position,Vector.Zero` | multiple-target; manual mapping |
 
-| [items/backlog/shared.lua:65](../scripts/items/backlog/shared.lua#L65) | `player.Velocity` | `r.pin.position,Vector.Zero` | multiple-target; manual mapping |
+| [items/backlog/shared.lua:74](../scripts/items/backlog/shared.lua#L74) | `player.Velocity` | `r.pin.position,Vector.Zero` | multiple-target; manual mapping |
 
 
 
 Risk state roots: none detected.
 
 
-Unresolved syntax: L104: dynamic field target requires manual review; L65: multiple assignment requires manual mapping; L95: dynamic field target requires manual review.
+Unresolved syntax: L106: dynamic field target requires manual review; L115: dynamic field target requires manual review; L74: multiple assignment requires manual mapping.
 
 
 #### scripts/items/ban_hammer.lua

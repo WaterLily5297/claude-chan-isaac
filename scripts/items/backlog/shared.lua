@@ -22,6 +22,15 @@ local Shared = {}
 
 local PIN_FRAMES, VALVE_IDLE, CONSENSUS_FRAMES = 150, 60, 60
 
+local function expireCartridge(roomData, isClear)
+    if roomData.cartridge and not isClear then
+        -- Only a later eligible room entry can grant this bonus again.
+        roomData.cartridge = nil
+        return true
+    end
+    return false
+end
+
 function Shared:Init(mod, Risk, C)
     local Item = Constants.Item
 
@@ -72,14 +81,16 @@ function Shared:Init(mod, Risk, C)
         return C.NoUse()
     end, Item.CHECKPOINT_PIN)
 
-    -- 48 Rate-Limit Valve
+    -- 45/47/48: expire combat-sensitive speed, update pin lifetime and prime Valve.
     C.On("update", function(frame)
+        local isClear = Game():GetRoom():IsClear()
         for _, p in ipairs(C.Players()) do
             if p:HasCollectible(Item.RATE_LIMIT_VALVE) and not C.Primed(p, "valve") then
                 local last = C.LastAttack(p) or 0
                 if frame - last >= VALVE_IDLE then C.Prime(p, "valve", 1.3) end
             end
             local r = C.Data(p).room
+            if expireCartridge(r, isClear) then C.Refresh(p) end
             if r.pin and r.pin.expires < frame then r.pin = nil end
             C.Label(p, "pin", r.pin and "Checkpoint set" or nil)
         end
@@ -120,6 +131,8 @@ function Shared:Init(mod, Risk, C)
     C.Stat("speed", function(p)
         local r = C.Data(p).room
         local add = 0
+        -- A native cache rebuild can arrive before the next general update.
+        if r.cartridge then expireCartridge(r, Game():GetRoom():IsClear()) end
         if r.cartridge and p:HasCollectible(Item.CACHE_CARTRIDGE) then add = add + 0.15 end
         if r.budget then add = add + 0.2 end
         return add
