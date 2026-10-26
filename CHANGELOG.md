@@ -1,5 +1,11 @@
 # Changelog
 
+## Death-pose geometry and all-form preview (2026-10-26; offline)
+
+- Repack three oversized Death cells for all 22 forms using their measured native envelopes and ground anchors; retain Llama's complete Death-start source pose. Existing Hit, walking and other pixels are preserved.
+- Add a deterministic 45-pose-per-form review tool and a standard-library geometry gate; retain recorded walk revisions during repacking and support tainted skin-only regeneration.
+- No new art, native assets, gameplay rules or runtime deployment. The shared special animations and full native rendering still need acceptance. Feature-based difficulty remains a proposal in draft #102; numerical draft #100 must not merge.
+
 ## Native transformation costume restoration (2026-10-26; offline)
 
 - Restore currently acquired native transformation costumes once when a player leaves a mod form, alongside held item costumes; do not grant transformations or replay effects.

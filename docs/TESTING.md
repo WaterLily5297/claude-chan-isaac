@@ -8,6 +8,16 @@ The owner rejected direct numerical weakening in draft #100 and requested added 
 
 O4 PR #101 merged at ffc52bf after the 69-suite offline gate and successful CI; its departure restoration is source-only and absent from installed f8b2b0b. The owner supplied no usable checklist result. No runtime or settings were touched in this design revision.
 
+## O5: Hit, Death and side poses (2026-10-26; offline geometry only)
+
+Baseline ffc52bf. [All 22 findings, commands and limitations](POSE_REVIEW.md). The preview samples 45 native skin-layer keyframes/combinations per form using only mod pixels; native ghost, tint, interpolation, overlays and input are omitted. Reference ANM2/skin remain private. No game was launched or installed file changed.
+
+All 22 Hit cells already meet 28x32/bottom-55. The three other Death storage cells were oversized; the new standard-library check fails on all 66 cells before correction and passes afterward. Upright limits are 28x33/bottom-57; the actual fallen crop is 36x27/bottom-59 (storage bottom-61). Llama's Death-start source crop also needed its full body retained. No anatomical redraw.
+
+All 22 sheets have nonempty sampled cells, no sampled crop-edge contact and mirrored left/right geometry. Each has ten side-body keys, with five or six unique stride images. Repacking reproduces the candidate bytes; comparison to baseline confines changes to three storage cells. Menu/portrait bytes and all other skin pixels are preserved. The decoder equals Pillow's RGBA bytes for all 22 skins. Full offline gate and preview determinism are required before commit; no engine/visual acceptance follows from them.
+
+Shared cells also affect Appear, pickups, travel, jumps and other animations listed in POSE_REVIEW.md. Native acceptance must cover those, damage recovery, the full death/ghost sequence, movement/fire, costumes, size, flight, revival and other mods. B1 draft #102 is design-only and #100 is superseded; these geometry results do not validate either difficulty proposal.
+
 ## O4: effect layers and departure restoration (2026-10-26; source and stubs only)
 
 Baseline `aef6de9`; installed `f8b2b0b` is preserved. This audit reads the service, the existing bundled vanilla resource XML and public API documentation; no game version was run. Resource files remain private. `ClearCostumes` covers all costumes, while `AddPlayerFormCostume` restores a transformation's visual layer. The service never calls `ClearTemporaryEffects`, removes a weapon/effect entity or writes flight/scale. That is a source boundary, not proof of native rendering or mechanical compatibility.

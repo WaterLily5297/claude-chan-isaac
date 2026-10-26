@@ -3,91 +3,91 @@
     "key": "claude",
     "portrait_sha256": "2870d9420f71acc57f7c956be9336f18d56829a0b27a09ff96893068b0bf95fd",
     "sprite_sha256": "ddbacafde8afe615adf40d6d8a91d7110def328c1a9a18575a01a6ae587df18f",
-    "packed_sprite_sha256": "109c903e1aee3b179456d4bf24f5df547db0614b1c524bbf0c97c3686657ada5",
+    "packed_sprite_sha256": "97eb3861041dccd84edf5e399fd1bfb34bc7eb6b7ef2b6f8abbc19c5aced3ebb",
     "movement_source_sha256": "bf9dcaeb4b73dd6dd23919d1de296034aec30267935f00cb261cee504cb7a216"
   },
   {
     "key": "deepseek",
     "portrait_sha256": "95187218d1b35ab97c4add73cde739a7bc6ec7da2a1537daff21e81abf902d8d",
     "sprite_sha256": "4dc9b761cebb6309a804737e8becad83131fa1771da46f60bce3f142caa168a3",
-    "packed_sprite_sha256": "dae2197c98aa2f421d74d0ce768c292620ffdb658d40fcc2d62413171e403532",
+    "packed_sprite_sha256": "6b8d89c7686dee845b2b30cc74e7440b52aea12bd1e5a7fbcb8388a754b9d319",
     "movement_source_sha256": "0fc32a2b6e92c95356ca4101d55864e754dcd2dffbaa7633d316bf978eb2e5ee"
   },
   {
     "key": "gpt",
     "portrait_sha256": "324a7b0f58020a42006bb1e0145ecae4f140e855d0980126e2ace660348896e1",
     "sprite_sha256": "950a9bacd9c32f0b1ad347210a4ddc810c2bdd12b1fd44abc6996d7e0be48331",
-    "packed_sprite_sha256": "36ee2de76f7147af9f5195ea6be40fe19f34a8cbdb253c17ff853ff06187ce50",
+    "packed_sprite_sha256": "ebc65cda4442e4e88a348656a58eb85fee26dffe20747513a6e5f0e1db68efd0",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "gemini",
     "portrait_sha256": "abe1e2e41996b140b733c72f6835ca54daa178a537a766a60365a758579d1aa9",
     "sprite_sha256": "e2e919a4707ff7f5cd475a6160acd21582082c5e2b250689a96422142b2f4ded",
-    "packed_sprite_sha256": "83d2be72118ef553d0601d3b4b426b9d5e9b70756d485d76ccf3f98c50ab09f9",
+    "packed_sprite_sha256": "0dcd3e326c9afbd30109c3caca003a98ecedfa51b70646ebf9155a274bc25218",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "grok",
     "portrait_sha256": "d0af816200360d46e29c9e4e0fc3eaaa190e05010900fbd3470e2836550a35f6",
     "sprite_sha256": "22e6f304b9de1e71b2724bf65314705735733131ff28c08ced8858d8d0967c2c",
-    "packed_sprite_sha256": "0a5922c0a840eabc1be88725957d11d7f4aa6bc5e3065ec41bb98111cb7a278c",
+    "packed_sprite_sha256": "8b7399b026002abb93a919ffcb073078979c56f27672defa0ff39ac6b92028d8",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "qwen",
     "portrait_sha256": "7e184e70bab27072ebd4ae111b4f2c2d4719d39f1e69301dbfb3845f2778375c",
     "sprite_sha256": "f069fd9c69b87d9862350a98f6e8516f707b0d6065b171e38addeb7ee5307c52",
-    "packed_sprite_sha256": "9d4b022b2ee1533ad0f4c24f1aa6da0ce46ec71e2009e3acc408e2a3cc72befe",
+    "packed_sprite_sha256": "df65fb052a917a2088a79a1333cf2d986106db9246930dc434f0fc3667c52b40",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "llama",
     "portrait_sha256": "31ed8d9b643ba64bfeea1a5f8d71a0a11173e2bfa39bdffe2b77c73807e6a04f",
     "sprite_sha256": "0c803ea0970df6614f8c912c63881f0e5eadaa78d66f9d5d650a318065ec72f8",
-    "packed_sprite_sha256": "d2ccf7bd71359cee70ca4bf566fb63f659b4e03c89bf2b30d80b8fa11082801e",
+    "packed_sprite_sha256": "9882fd4ae35d1b9c3d42397afd5baa577a2d69ad2bc1165269baf19da6219d86",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "mistral",
     "portrait_sha256": "8e1952abae501742b99662c41f7112b87a5f4757188b697973abc281cc66d1a8",
     "sprite_sha256": "7aca2d2d1ce01d4ac80349bbfa630178890ff758f75f938137689d62ceaf00e2",
-    "packed_sprite_sha256": "3ff8b7f33cb72789bceedad3773c104b6a256ee1b4650f9534e0e2feefb62dba",
+    "packed_sprite_sha256": "0cda474c3d8a14ece393935f058f0e183e102274ee7bfa28e247c57e8264aa83",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "doubao",
     "portrait_sha256": "bf5a86389de78070a0b39e268d6165715541bf7a7ed69256ccb5d5b423115e56",
     "sprite_sha256": "34e9713e07f8538aa8b9859ebcb2558b83ffd91fc3e4f04ae790af184a2e3725",
-    "packed_sprite_sha256": "ddc02c4c42999add39539797f8363f9531b01d43ef898b768379b2597d98acbd",
+    "packed_sprite_sha256": "149072ac679ff17cc499d0ee271453448980896f93687d57e5cc75adf863a578",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "kimi",
     "portrait_sha256": "1ef863d8b831ec3e9a8a8bce0ece34e861b29047b5ceb88fc4dc257c6f8d7fc7",
     "sprite_sha256": "b1efec3d017e9e6ee28c3e7283cec465894d893b54af2c2d7389b209ce0a6625",
-    "packed_sprite_sha256": "b542bf687c457d92a0c3179e7e4eb4c7042866c9964544c0e834464868d33143",
+    "packed_sprite_sha256": "7eabacb25be254ca20ede2b0dd898bacb416ed0354b35411c540d56640091298",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "glm",
     "portrait_sha256": "352f9d539f96df28de96411287bf3c833c78414f7977eca2f6865e11336c6d82",
     "sprite_sha256": "e3ad27bda24556c794e3f050c3f28b5d61834384a8a815c70fb89588f8023d7c",
-    "packed_sprite_sha256": "7322ec0ba2cc75eb38fe8182d824913d09eb335d99a628d2a30f8aa156941221",
+    "packed_sprite_sha256": "b034bde830c365e9166ed8049f0251c14aabcddd8504e0cec4ba89ddd642838b",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "claude_b",
     "portrait_sha256": "07fb2b1f55ae4d52848aa6e79c01ad0e1800c21253fc2da2dae196e4b4314124",
     "sprite_sha256": "d8a6e646fc51c624db2adaf7600c8c4c81b148e70a37accd82b1100720d4ff52",
-    "packed_sprite_sha256": "15ef6203231cc58cc7d1e5c7634f3e0bc97d676ed9a7f35b69a026784e9abb65",
+    "packed_sprite_sha256": "6cb17a6a9d17bc037b8fa32ff124b9496a0e6f2d72091d6831db95ed1723ffb5",
     "movement_source_sha256": "73540b7808dfdf3ea6a9bcf948fd13e1b216f59f325611c376127b04b80b467b"
   },
   {
     "key": "deepseek_b",
     "portrait_sha256": "0622dd93329fa9c7d7fec0a620f900874dd6ea5ee21783f015a281a5e5e1b406",
     "sprite_sha256": "7ef7b5a923e8aeafc169d22764a7d8f3a1dc00740abb60b9cfc38d9384ee6202",
-    "packed_sprite_sha256": "90845f37b8807c7a9cb02025378e83b03daf1fc575f2a7c285a1849c22c53b80",
+    "packed_sprite_sha256": "123ae718dcdf43e7b3ccbd06dd6729790571f9d60c864dd687adfe550648e203",
     "movement_source_sha256": "58f60549c1a3b67a1a19ac042af4b94cb9a56249780488cc74584a4826635ec2"
   }
 ]

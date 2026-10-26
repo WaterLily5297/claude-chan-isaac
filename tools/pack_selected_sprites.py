@@ -101,13 +101,25 @@ def pack(source, key):
             # A 64px storage cell is not a 64px character: the measured vanilla
             # pose is 28x32, with its visible bottom at 55 before squash/stretch.
             hit = row == 1 and column == 2
-            if hit and key == 'llama':
+            death_upright = column == 0 and row in (0, 1)
+            death_fallen = row == 0 and column == 3
+            if key == 'llama' and row == 1 and column in (0, 2):
                 # This source row sits below the nominal grid; the generic
                 # crop stops through the face and discards the hands/feet.
                 y0, y1 = 490, 654
+            # Death mixes the corrected Hit cell with two upright cells and
+            # a fallen cell. Match their own measured envelopes, not Hit's.
+            # The fallen animation crops at y=130, two below its storage row.
+            limit, bottom = 58, None
+            if hit:
+                limit, bottom = (28, 32), 55
+            elif death_upright:
+                limit, bottom = (28, 33), 57
+            elif death_fallen:
+                limit, bottom = (36, 27), 61
             frame((column*2*step, y0, (column+1)*2*step, y1),
                   (column*64, 128+row*64), cell=64,
-                  limit=(28, 32) if hit else 58, bottom=55 if hit else None)
+                  limit=limit, bottom=bottom)
     # PickupWalk crops a head at (256,128), pivot (32,44), rather than a
     # complete character. Preserve the same chin offset as the 32px head.
     carry_head = Image.new('RGBA', (64, 64))
@@ -134,14 +146,17 @@ def main():
             if hashlib.sha256(path.read_bytes()).hexdigest() != record['movement_source_sha256']:
                 parser.error(f"Movement source hash mismatch: {record['key']}")
     for key in KEYS:
+        record = next(e for e in manifest if e['key'] == key)
         source = args.source/(key+'.png')
         atlas = pack(Image.open(source), key)
         if revised and key in ORIGINALS:
             atlas = pack_movement(atlas, Image.open(args.movement_source / (key + '.png')), key)
+        if record.get('walk_cycle') == 'tools/animate_roster_walk.py':
+            from animate_roster_walk import animate
+            atlas = animate(atlas)
         gamekey = key.replace('_b', 'chan_b') if key.endswith('_b') else key+'chan'
         target = ROOT/f'resources/gfx/characters/costumes/character_{gamekey}.png'
         atlas.save(target, optimize=True)
-        record = next(e for e in manifest if e['key'] == key)
         record['sprite_sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
         record['packed_sprite_sha256'] = hashlib.sha256(target.read_bytes()).hexdigest()
     manifest_path.write_text(json.dumps(manifest, indent=2)+'\n', encoding='utf-8')

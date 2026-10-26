@@ -1,0 +1,106 @@
+"""Check measured Hit/Death cell envelopes using only the standard library.
+
+These limits describe individual complete-pose cells, not all 64px cells or
+anatomical proportions. They do not establish in-engine visual acceptance.
+"""
+from pathlib import Path
+import struct
+import xml.etree.ElementTree as ET
+import zlib
+
+ROOT = Path(__file__).resolve().parent.parent
+# Crop x/y/w/h, maximum visible w/h, exclusive visible bottom within crop.
+# Death's last crop starts two rows below the packed 64px cell.
+CONTRACTS = {
+    'Hit': ((128, 192, 64, 64), (28, 32), 55),
+    'Death start': ((0, 192, 64, 64), (28, 33), 57),
+    'Death recoil': ((0, 128, 64, 64), (28, 33), 57),
+    'Death fallen': ((192, 130, 64, 64), (36, 27), 59),
+}
+
+
+def read_rgba(path):
+    """Decode only the noninterlaced RGBA8 PNGs used by our skin assets."""
+    data = path.read_bytes()
+    if data[:8] != b'\x89PNG\r\n\x1a\n':
+        raise ValueError(f'{path.name}: not PNG')
+    pos, chunks, header = 8, [], None
+    while pos < len(data):
+        size = struct.unpack_from('>I', data, pos)[0]
+        tag = data[pos+4:pos+8]
+        payload = data[pos+8:pos+8+size]
+        crc = struct.unpack_from('>I', data, pos+8+size)[0]
+        if zlib.crc32(tag + payload) != crc:
+            raise ValueError(f'{path.name}: bad PNG CRC')
+        if tag == b'IHDR':
+            header = struct.unpack('>IIBBBBB', payload)
+        if tag == b'IDAT':
+            chunks.append(payload)
+        pos += size + 12
+        if tag == b'IEND':
+            break
+    if header is None or header[2:] != (8, 6, 0, 0, 0):
+        raise ValueError(f'{path.name}: expected noninterlaced RGBA8')
+    width, height = header[:2]
+    raw = zlib.decompress(b''.join(chunks))
+    stride = width * 4
+    if len(raw) != height * (stride + 1):
+        raise ValueError(f'{path.name}: wrong decompressed length')
+    previous, rows = bytearray(stride), []
+    for y in range(height):
+        start = y * (stride + 1)
+        kind = raw[start]
+        row = bytearray(raw[start+1:start+1+stride])
+        if kind not in range(5):
+            raise ValueError(f'{path.name}: unknown PNG row filter')
+        for x in range(stride):
+            left = row[x-4] if x >= 4 else 0
+            up = previous[x]
+            corner = previous[x-4] if x >= 4 else 0
+            if kind == 0:
+                predictor = 0
+            elif kind == 1:
+                predictor = left
+            elif kind == 2:
+                predictor = up
+            elif kind == 3:
+                predictor = (left + up) // 2
+            else:
+                p = left + up - corner
+                distances = (abs(p-left), abs(p-up), abs(p-corner))
+                predictor = (left, up, corner)[distances.index(min(distances))]
+            row[x] = (row[x] + predictor) & 255
+        rows.append(row)
+        previous = row
+    return width, height, rows
+
+
+def alpha_bounds(rows, crop):
+    x0, y0, width, height = crop
+    points = [(x, y) for y in range(height) for x in range(width)
+              if rows[y0+y][4*(x0+x)+3] >= 128]
+    if not points:
+        return None
+    xs, ys = zip(*points)
+    return min(xs), min(ys), max(xs)+1, max(ys)+1
+
+
+def main():
+    players = ET.parse(ROOT / 'content/players.xml').getroot()
+    failures = []
+    for player in players:
+        path = ROOT / 'resources' / players.get('root') / player.get('skin')
+        width, height, rows = read_rgba(path)
+        for name, (crop, maximum, bottom) in CONTRACTS.items():
+            assert crop[0]+crop[2] <= width and crop[1]+crop[3] <= height
+            box = alpha_bounds(rows, crop)
+            if not (box and box[2]-box[0] <= maximum[0] and box[3]-box[1] <= maximum[1]
+                    and box[3] == bottom and abs(box[0]+box[2]-crop[2]) <= 1):
+                failures.append(f'{path.name} {name}: {box}; limit={maximum}, bottom={bottom}, centered')
+    if failures:
+        raise SystemExit('\n'.join(failures))
+    print(f'  OK: {len(players)} skins retain measured Hit/Death envelopes and anchors')
+
+
+if __name__ == '__main__':
+    main()
