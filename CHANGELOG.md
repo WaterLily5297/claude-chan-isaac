@@ -1,5 +1,11 @@
 # Changelog
 
+## Ordinary primary-tear integration (2026-10-27; offline evidence)
+
+- Add a real six-module fixture for all 64 loadouts: Hardcoded Output, 1M Context, Strawberry, Pizza Glue, Golden Gate Claude and Blueberry. Check 768 primary tears across two interleaved owners, age/scale/colour/flag composition and targeted controls.
+- Capture existing 3.5-to-7 Strawberry composition followed by Context decay; seven isolated faults fail the suite. Production already passes, so no gameplay rule or fix is introduced. Correct item coverage links that previously pointed at character-tint tests.
+- Preserve all existing tests, gameplay, assets, save shapes and installed 8fd6a8c. The gate grows to 72 Lua suites/189 tracked Lua files; native compatibility remains unaccepted.
+
 ## Fifth ten designed item icons (2026-10-27; offline art)
 
 - Replace ten Llama/Mistral/Doubao collectible placeholders with original 32x32 objects, including an unlocked weight, cowbell, charging cradle, timed parcel, baguette, boots, kitten, compass, truce flag and repaired boomerang.
