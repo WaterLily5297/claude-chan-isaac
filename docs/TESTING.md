@@ -2,6 +2,12 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, including PRs #93-#97. The owner-authorized 2026-10-26 deployment followed a fresh allowlisted, reread-hash-verified backup of 433 old files; all 443 installed tracked files matched canonical Git bytes, including a second check after shutdown. Repentance+ v1.9.7.17.J460 launched, but window/input conflicts prevented gameplay testing. No ancestry samples or fresh starts were recorded. The game is closed and settings restored. The owner then requested preserving this installation while unavailable; continue offline. Consult HANDOFF.md and ENGINE_AUDIT_2026-10-26.md. Installation/startup are not engine acceptance. Older installed-version statements below remain historical.
 
+## B1 revision status (2026-10-26; design only)
+
+The owner rejected direct numerical weakening in draft #100 and requested added character-specific features/tradeoffs. The draft remains unmerged and must not be installed. DIFFICULTY_FEATURES.md now specifies 22 alternative conditions while preserving the original coefficients. None is implemented or tested yet. The numerical candidate's passing suites apply only to that superseded candidate; new mechanics require their own failing-first regressions, clear UI, owner review and later native acceptance.
+
+O4 PR #101 merged at ffc52bf after the 69-suite offline gate and successful CI; its departure restoration is source-only and absent from installed f8b2b0b. The owner supplied no usable checklist result. No runtime or settings were touched in this design revision.
+
 ## O4: effect layers and departure restoration (2026-10-26; source and stubs only)
 
 Baseline `aef6de9`; installed `f8b2b0b` is preserved. This audit reads the service, the existing bundled vanilla resource XML and public API documentation; no game version was run. Resource files remain private. `ClearCostumes` covers all costumes, while `AddPlayerFormCostume` restores a transformation's visual layer. The service never calls `ClearTemporaryEffects`, removes a weapon/effect entity or writes flight/scale. That is a source boundary, not proof of native rendering or mechanical compatibility.
