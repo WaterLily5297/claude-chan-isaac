@@ -1,5 +1,11 @@
 # Changelog
 
+## Normal Claude account-owner isolation (2026-10-26; offline)
+
+- Prevent a replacement live player in the same slot from inheriting the retired Claude's age, Usage, Appeals and pending account state; prune observed removed slots and refresh replacement caches.
+- Preserve detached Continue, same-entity form-return debt, partner accounts and item aliases. Identity bindings remain transient; no save schema or B1 numerical change.
+- Add failing-before replacement, seed-reuse, same-frame, retirement and slot-reorder cases; retain the existing age-cap and Birthright controls. Installed 8fd6a8c is unchanged; native timing remains unverified.
+
 ## Static interaction audit (2026-10-26)
 
 - Add a non-executing Lua source scanner and reproducible callback/priority, cache, field-write and Risk-root inventory across 110 production files.

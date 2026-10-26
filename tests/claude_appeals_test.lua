@@ -245,7 +245,8 @@ nextFloor(11); early,other=foe(160,10),foe(161,40); enter(49,true); usage().age=
 kill(early); kill(other); clear=true; tick(); assert(usage().age==8)
 nextFloor(12); early,other=foe(170,10),foe(171,40); enter(50,true)
 players[1]=player(); p=players[1]; tick(); assert(usage().review.phase=="none","replacement gets no borrowed challenge")
-kill(early); kill(other); clear=true; tick(); assert(usage().age==8)
+kill(early); kill(other); clear=true; tick()
+assert(usage().age==0,"a replacement owner keeps neither the old age nor its unfinished review award")
 nextFloor(13); early,other=foe(180,10),foe(181,40); enter(51,true); p.kind=0; tick(); p.kind=41; tick()
 assert(usage().review.phase=="none","changing away and back cannot resume the challenge")
 usage().age=nil; usage(1).age=nil; Risk.state.accountAge=3

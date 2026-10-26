@@ -1,6 +1,6 @@
 # Source interaction audit
 
-W4.1, 2026-10-26. Baseline gameplay is `ef7d2dd`; the audit was added from documentation main `a9dca36`. This is an offline source inventory and triage queue, not a native compatibility verdict. No gameplay, balance, callback priority or save format changes are included.
+W4.1, 2026-10-26. Baseline gameplay is `ef7d2dd`; the audit was added from documentation main `a9dca36`. The generated section follows current source, including the later normal-Claude live-owner correction. This is an offline source inventory and triage queue, not a native compatibility verdict. The original audit changed no gameplay, balance, callback priority or save format.
 
 ## Reproduce and interpret
 
@@ -33,7 +33,7 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Checkpoint Pin multi-assignment | [backlog/shared.lua](../scripts/items/backlog/shared.lua) restores `Position` and clears `Velocity` in one assignment. | Both targets are listed without pretending the RHS was resolved. Existing mechanism tests and a later native collision/room case determine acceptance. |
 | Callback cancellation and explicit late callbacks | Constitution registers before Risk; Risk and Vibe damage bookkeeping use explicit LATE priority. Swarm's fire-tear callback also declares LATE. Other registrations generally use default priority. | Preserve cancellation/derived-shot regressions. Review callbacks with early returns and external integrations by actual event, not the whole-file callback list. Static default priority alone is not an ordering defect. |
 
-No gameplay fix is bundled because these findings need semantic checks before code changes. W4.2 takes confirmed defects individually with failing-before regressions. W4.3 expands native categories and W4.4 adds seeded mod-item combinations. W2/W3 completion tables should link findings to exact registered content and current EID/HUD rules. W6 owns serialization/performance review. Do not treat an empty or manually classified overlap list as engine acceptance.
+No gameplay fix was bundled with the original audit because those findings needed semantic checks before code changes. The later W2 audit reproduced normal-Claude account transfer on live slot replacement and added transient owner isolation with failing-before regressions; [TESTING.md](TESTING.md) retains the precise scope, same-entity debt exception and native limits. W4.2 takes other confirmed defects individually. W4.3 expands native categories and W4.4 adds seeded mod-item combinations. W2/W3 completion tables should link findings to exact registered content and current EID/HUD rules. W6 owns serialization/performance review. Do not treat an empty or manually classified overlap list as engine acceptance.
 
 ## Evidence and limits
 
@@ -45,7 +45,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 397 callback registrations; 109 candidate direct field writes. Source fingerprint: `31d86bb903b72c51a58d52c487313f515352d5fe2dfb716cde00c63bf125916d`.
+110 files; 398 callback registrations; 109 candidate direct field writes. Source fingerprint: `f2a5c5528cb54656138efe21fb9fb9d8cc43bdc0f30726e7345da024cde2d34d`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -134,7 +134,7 @@ Unresolved syntax: L12: dynamic field target requires manual review.
 #### scripts/characters/claude_chan.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:131](../scripts/characters/claude_chan.lua#L131)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan.lua:142](../scripts/characters/claude_chan.lua#L142)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan.lua:145](../scripts/characters/claude_chan.lua#L145)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan.lua:155](../scripts/characters/claude_chan.lua#L155)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan.lua:174](../scripts/characters/claude_chan.lua#L174)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:178](../scripts/characters/claude_chan.lua#L178)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan.lua:189](../scripts/characters/claude_chan.lua#L189)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan.lua:234](../scripts/characters/claude_chan.lua#L234)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan.lua:249](../scripts/characters/claude_chan.lua#L249)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan.lua:255](../scripts/characters/claude_chan.lua#L255)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [characters/claude_chan.lua:264](../scripts/characters/claude_chan.lua#L264)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan.lua:308](../scripts/characters/claude_chan.lua#L308)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:186](../scripts/characters/claude_chan.lua#L186)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan.lua:200](../scripts/characters/claude_chan.lua#L200)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan.lua:203](../scripts/characters/claude_chan.lua#L203)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan.lua:213](../scripts/characters/claude_chan.lua#L213)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan.lua:232](../scripts/characters/claude_chan.lua#L232)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/claude_chan.lua:233](../scripts/characters/claude_chan.lua#L233)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:244](../scripts/characters/claude_chan.lua#L244)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan.lua:255](../scripts/characters/claude_chan.lua#L255)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan.lua:301](../scripts/characters/claude_chan.lua#L301)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan.lua:316](../scripts/characters/claude_chan.lua#L316)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan.lua:322](../scripts/characters/claude_chan.lua#L322)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [characters/claude_chan.lua:331](../scripts/characters/claude_chan.lua#L331)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan.lua:376](../scripts/characters/claude_chan.lua#L376)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_SPEED`, `CACHE_TEARCOLOR`.
@@ -143,26 +143,26 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/claude_chan.lua:194](../scripts/characters/claude_chan.lua#L194) | `player.Damage` | `player.Damage+AGE_DAMAGE*usage.age` | self-dependent |
+| [characters/claude_chan.lua:260](../scripts/characters/claude_chan.lua#L260) | `player.Damage` | `player.Damage+AGE_DAMAGE*usage.age` | self-dependent |
 
-| [characters/claude_chan.lua:197](../scripts/characters/claude_chan.lua#L197) | `player.Damage` | `player.Damage*LIMITED_DAMAGE_MULT` | self-dependent |
+| [characters/claude_chan.lua:263](../scripts/characters/claude_chan.lua#L263) | `player.Damage` | `player.Damage*LIMITED_DAMAGE_MULT` | self-dependent |
 
-| [characters/claude_chan.lua:199](../scripts/characters/claude_chan.lua#L199) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
+| [characters/claude_chan.lua:266](../scripts/characters/claude_chan.lua#L266) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
 
-| [characters/claude_chan.lua:201](../scripts/characters/claude_chan.lua#L201) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
+| [characters/claude_chan.lua:268](../scripts/characters/claude_chan.lua#L268) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
 
-| [characters/claude_chan.lua:203](../scripts/characters/claude_chan.lua#L203) | `player.MoveSpeed` | `player.MoveSpeed-0.1` | self-dependent |
+| [characters/claude_chan.lua:270](../scripts/characters/claude_chan.lua#L270) | `player.MoveSpeed` | `player.MoveSpeed-0.1` | self-dependent |
 
-| [characters/claude_chan.lua:205](../scripts/characters/claude_chan.lua#L205) | `player.TearColor` | `Tint.Apply(player.TearColor,1,0.55,0.25,1)` | self-dependent |
+| [characters/claude_chan.lua:272](../scripts/characters/claude_chan.lua#L272) | `player.TearColor` | `Tint.Apply(player.TearColor,1,0.55,0.25,1)` | self-dependent |
 
-| [characters/claude_chan.lua:244](../scripts/characters/claude_chan.lua#L244) | `tear.Color` | `Tint.Apply(tear.Color,0.5,0.5,0.5,0.7)` | self-dependent |
-
-
-
-Risk state roots: `accountAge` direct write at L140; `accountAge` read/alias at L104; `claudeUsage` direct write at L98, L133; `claudeUsage` read/alias at L97.
+| [characters/claude_chan.lua:311](../scripts/characters/claude_chan.lua#L311) | `tear.Color` | `Tint.Apply(tear.Color,0.5,0.5,0.5,0.7)` | self-dependent |
 
 
-Unresolved syntax: L101: dynamic field target requires manual review; L217: dynamic field target requires manual review; L268: dynamic field target requires manual review; L284: dynamic field target requires manual review.
+
+Risk state roots: `accountAge` direct write at L198; `accountAge` read/alias at L159; `claudeUsage` direct write at L153, L188; `claudeUsage` read/alias at L94, L133, L152.
+
+
+Unresolved syntax: L105: dynamic field target requires manual review; L106: dynamic field target requires manual review; L121: dynamic field target requires manual review; L124: dynamic field target requires manual review; L129: dynamic field target requires manual review; L135: dynamic field target requires manual review; L140: dynamic field target requires manual review; L156: dynamic field target requires manual review; L284: dynamic field target requires manual review; L336: dynamic field target requires manual review; L352: dynamic field target requires manual review; L95: dynamic field target requires manual review; L96: dynamic field target requires manual review.
 
 
 #### scripts/characters/claude_chan_b.lua
