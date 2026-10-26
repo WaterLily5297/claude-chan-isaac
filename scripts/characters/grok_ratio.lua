@@ -6,6 +6,7 @@ local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
+local Choices = include("scripts.characters.attack_choices")
 local Ratio = {}
 
 local BASE_DAMAGE = 0.9
@@ -90,7 +91,8 @@ function Ratio:Init(mod, Risk)
         local target = from and Tools.Nearest(from, RADIUS)
         if not target then return false end
         quote.ref = EntityPtr(target); quote.hash = GetPtrHash(target)
-        quote.ratio = math.floor(quote.ratio / 2); quote.moved = true
+        Choices.Half(quote.choices)
+        quote.ratio = Choices.Resolve(quote.choices, RATIO_CAP); quote.moved = true
         return true
     end
 
@@ -127,10 +129,15 @@ function Ratio:Init(mod, Risk)
             if advanced then s.cooldown = math.max(0, s.cooldown - 1) end
             local quote = b.quote
             if quote then
+                local previous = quote.ratio
+                quote.ratio = Choices.Resolve(quote.choices, RATIO_CAP)
+                if quote.ratio < previous then Game():GetHUD():ShowItemText("Grok-chan", "Own reply: Ratio lost") end
                 local target = quote.ref.Ref
                 if target and target:Exists() then quote.position = target.Position end
                 -- An early defeat wastes the pulse unless Birthright moves it.
                 if not alive(quote.ref) and not transfer(p, b) then b.quote = nil
+                elseif alive(quote.ref) and (not quote.ref.Ref:IsVulnerableEnemy()
+                    or quote.ref.Ref:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)) then b.quote = nil
                 elseif advanced then
                     quote.remaining = quote.remaining - 1
                     if quote.remaining <= 0 then land(p, b) end
@@ -142,7 +149,7 @@ function Ratio:Init(mod, Risk)
                 if target then
                     s.cooldown = COOLDOWN_FRAMES
                     b.quote = {ref=EntityPtr(target), hash=GetPtrHash(target), position=target.Position,
-                        remaining=QUOTE_FRAMES, ratio=0, hits={}}
+                        remaining=QUOTE_FRAMES, ratio=0, choices=Choices.New()}
                     Game():GetHUD():ShowItemText("Grok-chan", "Quoted")
                 end
             end
@@ -154,15 +161,17 @@ function Ratio:Init(mod, Risk)
     end)
     -- Paid hits on anyone but the quoted target build Ratio, once per attack.
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, _, source)
-        if not ready or not next(bindings) or not entity:IsEnemy() then return end
+        if not ready or not next(bindings) or Game():IsPaused() or not entity:IsEnemy()
+            or not entity:IsVulnerableEnemy() or entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then return end
         local src = source and source.Entity
+        local data = src and src.GetData and src:GetData()
+        if data and (data.ccLlamaHelper or data.ccThoughtDerived) then return end
         local b = binding(Tools.Owner(src))
         local quote = b and b.quote
-        if not quote or GetPtrHash(entity) == quote.hash or quote.ratio >= RATIO_CAP then return end
+        if not quote then return end
         local key = Tools.AttackKey(src, Game():GetFrameCount())
-        if not key or quote.hits[key] then return end
-        quote.hits[key] = true
-        quote.ratio = quote.ratio + 1
+        if not key then return end
+        Choices.Record(quote.choices, key, GetPtrHash(entity) ~= quote.hash)
     end)
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, p, flag)
         if flag == CacheFlag.CACHE_DAMAGE and binding(p) then p.Damage = p.Damage * BASE_DAMAGE end

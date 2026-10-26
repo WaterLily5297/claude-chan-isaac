@@ -184,8 +184,9 @@ function TaintedClaude:Init(mod, Risk)
             if now < b.frame then b.volley = nil; drop:Forget(p) end
             b.frame = now
             if combat then b.armed[room] = true end
-            -- Review time is active combat only; cleared rooms and pause freeze it.
-            if advanced and combat and s.review then
+            -- Review advances during combat only while the owner stops attacking.
+            local firing = p:GetShootingInput():LengthSquared() > 0 or b.attacked == now
+            if advanced and combat and s.review and not firing then
                 s.review.remaining = s.review.remaining - 1
                 if s.review.remaining <= 0 then
                     s.review = nil
@@ -240,6 +241,7 @@ function TaintedClaude:Init(mod, Risk)
         local b = binding(p)
         if not b or p:IsDead() then return end
         local s, now = b.state, Game():GetFrameCount()
+        b.attacked = now -- Observation only: suspended native attacks remain free.
         -- One volley is one payment; Suspended attacks are free.
         if b.volley == now or s.quota == 0 then return end
         b.volley = now
@@ -274,12 +276,14 @@ function TaintedClaude:Init(mod, Risk)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         if Game():IsPaused() then drop:Reset() end
         if not ready or not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
             local s = b.state
             local y = HudLayout.PlayerRow(i)
             local pages = string.format("  Pages %d/%d", s.pages, PAGES)
             if s.review then
-                HudText:Draw(string.format("Under Review: %ds", math.ceil(s.review.remaining / 30)) .. pages,
+                local firing = p:GetShootingInput():LengthSquared() > 0 or b.attacked == Game():GetFrameCount()
+                local label = firing and "Waiting for silence: " or "Under Review: "
+                HudText:Draw(label..string.format("%ds", math.ceil(s.review.remaining / 30)) .. pages,
                     50, y, 1, 0.8, 0.4, 1)
             elseif s.quota == 0 then
                 HudText:Draw("Suspended" .. pages, 50, y, 1, 0.3, 0.3, 1)

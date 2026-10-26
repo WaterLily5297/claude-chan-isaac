@@ -4,6 +4,7 @@ local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
+local Feedback = include("scripts.characters.feedback")
 local Kimi = {}
 
 local SLIDE_CAP = 6
@@ -33,7 +34,8 @@ local function cost(p)
 end
 local function alive(ref)
     local e = ref and ref.Ref
-    return e and e:Exists() and not e:IsDead()
+    return e and e:Exists() and not e:IsDead() and e:IsVulnerableEnemy()
+        and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 end
 
 function Kimi:Init(mod, Risk)
@@ -109,13 +111,22 @@ function Kimi:Init(mod, Risk)
         return found
     end
     local function present(p, b, targets)
-        local marks = {}
+        local marks, order = {}, {}
         for _, e in ipairs(targets) do
             -- A light blue tint is the outline; no screen-covering slide.
             e:AddSlowing(EntityRef(p), PRESENT_FRAMES, SLOW_VALUE, Color(0.85, 0.9, 1.2, 1, 0, 0, 0.1))
             marks[GetPtrHash(e)] = EntityPtr(e)
+            order[#order + 1] = GetPtrHash(e)
         end
-        b.show = {marks=marks, remaining=PRESENT_FRAMES}
+        b.show = {marks=marks, order=order, speaker=1, remaining=PRESENT_FRAMES}
+    end
+    local function speaker(show)
+        while show.speaker <= #show.order do
+            local hash = show.order[show.speaker]
+            if alive(show.marks[hash]) then return hash end
+            show.marks[hash] = nil
+            show.speaker = show.speaker + 1
+        end
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
@@ -159,7 +170,11 @@ function Kimi:Init(mod, Risk)
                     if not alive(ref) then b.show.marks[hash] = nil end
                 end
                 if advanced then b.show.remaining = b.show.remaining - 1 end
-                if b.show.remaining <= 0 or not next(b.show.marks) then b.show = nil end
+                local focus = speaker(b.show)
+                if b.show.remaining <= 0 or not focus then b.show = nil
+                elseif advanced then
+                    Feedback.Mark(b.show.marks[focus].Ref, Color(0.7, 0.85, 1, 1, 0, 0.1, 0.3), 2)
+                end
             end
             if drop:Poll(p, s.slides >= cost(p)) then
                 local targets = audience(p)
@@ -187,7 +202,7 @@ function Kimi:Init(mod, Risk)
         if redealing or not ready or not next(bindings) then return end
         local p = Tools.Owner(source and source.Entity)
         local b = binding(p)
-        if not b or not b.show or not b.show.marks[GetPtrHash(entity)] then return end
+        if not b or not b.show or speaker(b.show) ~= GetPtrHash(entity) then return end
         redealing = true
         entity:TakeDamage(amount * BONUS, flags, source, countdown)
         redealing = false

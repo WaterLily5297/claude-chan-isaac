@@ -136,7 +136,7 @@ local function tear(owner,volley)
     if volley~=false then fire("MC_POST_FIRE_TEAR",t) end
     return t
 end
-local function hit(target,source,amount) target:TakeDamage(amount or 10,0,{Entity=source},0); return target.taken[#target.taken] end
+local function hit(target,source,amount) target:TakeDamage(amount or 10,0,{Entity=source},0); fire("MC_POST_UPDATE"); return target.taken[#target.taken] end
 local function reload(newPlayers)
     fire("MC_PRE_GAME_EXIT",true)
     players=newPlayers; frame=0
@@ -165,7 +165,7 @@ step(); local t=tear(p); near(hit(other,t),10); hit(third,t)
 assert(hud()=="Grok-chan: Ratio 1/3  6s","one volley counts once")
 local prop=enemy(60); prop.IsEnemy=function() return false end
 step(); hit(quoted,tear(p)); step(); hit(other,tear(q)); step(); hit(other,tear(p,false)); step(); hit(prop,tear(p))
-assert(hud()=="Grok-chan: Ratio 1/3  6s")
+assert(hud()=="Grok-chan: Ratio 0/3  6s","an own-only reply loses one Ratio")
 for _=1,4 do step(); hit(third,tear(p)) end
 assert(hud()=="Grok-chan: Ratio 3/3  6s","Ratio caps at three")
 tap(p); assert(state().cooldown<300 and hud():find("Ratio 3/3"),"no retarget during the quote")
@@ -173,7 +173,7 @@ tap(p); assert(state().cooldown<300 and hud():find("Ratio 3/3"),"no retarget dur
 -- At expiry the quoted target takes one 1x pulse per stack.
 local before=#quoted.taken
 paused=true; tick(200); paused=false
-tick(176); fire("MC_POST_UPDATE"); assert(#quoted.taken==before,"duplicate updates cannot age the quote")
+tick(state().cooldown-121); fire("MC_POST_UPDATE"); assert(#quoted.taken==before,"duplicate updates cannot age the quote")
 tick(1); assert(#quoted.taken==before+3 and quoted.taken[#quoted.taken]==9 and texts[#texts]=="Ratio'd")
 assert(state().cooldown==120 and hud()=="Grok-chan: Cooldown 4s",hud())
 tap(p); assert(state().cooldown<120,"no new quote during the cooldown")
@@ -205,4 +205,15 @@ players[1]=player(101,999,0); p=players[1]; tick(); assert(state().cooldown==0,"
 p.kind=0; tick(); assert(state()==nil)
 p.kind=153; tick(); Risk.state.grokRatio["0"]={version=1,cooldown=999}; tick(); assert(state().cooldown==0)
 fire("MC_POST_GAME_STARTED",false); assert(state().cooldown==0)
+-- Same attack: eligible other targets win over the quoted target in either order.
+enter(70,true); local focus,off=enemy(20),enemy(100); tap(p)
+step(); local area=tear(p); hit(focus,area); hit(off,area)
+assert(hud():find("Ratio 1/3"),"an area attack never both gains and loses")
+step(); area=tear(p); hit(off,area); hit(focus,area); assert(hud():find("Ratio 2/3"))
+step(); local contrary=tear(p); hit(focus,contrary); hit(focus,contrary); assert(hud():find("Ratio 1/3"))
+step(); hit(off,contrary); assert(hud():find("Ratio 3/3"),"a delayed hit gives the same final outcome")
+local helper=tear(p,false); helper:GetData().ccThoughtDerived=true; helper:GetData().ccLlamaHelper=true
+step(); hit(focus,helper); hit(focus,tear(q)); hit(focus,tear(p,false)); assert(hud():find("Ratio 3/3"))
+step(); local friend=enemy(80); friend.friendly=true; area=tear(p); hit(focus,area); hit(friend,area)
+assert(hud():find("Ratio 2/3"),"a friendly is not an eligible other target")
 print("OK: tainted Grok Ratio from other targets, expiry pulses, cooldown, early defeat, Birthright transfer and save/identity lifecycle")

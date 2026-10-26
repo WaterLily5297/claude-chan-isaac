@@ -14,6 +14,7 @@ local Peak = {}
 
 local PHASE_FRAMES = 360 -- Twelve active-combat seconds.
 local START_COMPUTE, CAP, BIRTHRIGHT_CAP = 12, 24, 32
+local RESERVATION = 4
 local REGEN_FRAMES = 10 -- Three Compute per second.
 local COST = {valley=2, peak=4}
 local TOGGLE_FRAMES = 30
@@ -29,7 +30,7 @@ local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)
 end
 local function fresh()
-    return {version=1, compute=START_COMPUTE, regen=0, phase="valley", remaining=PHASE_FRAMES, saving=false}
+    return {version=2, compute=START_COMPUTE, reserved=0, regen=0, phase="valley", remaining=PHASE_FRAMES, saving=false}
 end
 local function cap(p)
     return p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_CAP or CAP
@@ -58,9 +59,10 @@ function Peak:Init(mod, Risk)
         return Risk.state.deepseekPeak
     end
     local function valid(s)
-        return type(s) == "table" and s.version == 1 and integer(s.compute, 0, BIRTHRIGHT_CAP)
+        return type(s) == "table" and (s.version == 1 or s.version == 2) and integer(s.compute, 0, BIRTHRIGHT_CAP)
             and integer(s.regen, 0, REGEN_FRAMES - 1) and COST[s.phase] ~= nil
             and integer(s.remaining, 1, PHASE_FRAMES) and type(s.saving) == "boolean"
+            and (s.version == 1 or (integer(s.reserved, 0, RESERVATION) and s.compute + s.reserved <= BIRTHRIGHT_CAP))
     end
     local function bind()
         local all, nextBindings, nextSlots = allStates(), {}, {}
@@ -71,6 +73,7 @@ function Peak:Init(mod, Risk)
                 if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
                     or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
                 if not valid(all[key]) then all[key] = fresh() end
+                if all[key].version == 1 then all[key].version = 2; all[key].reserved = 0 end
                 local b = bindings[pointer]
                 if not b or b.seed ~= p.InitSeed or b.slot ~= key then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount(), clock=0, toggleReady=0}
@@ -90,12 +93,18 @@ function Peak:Init(mod, Risk)
         local b = bindings[GetPtrHash(p)]
         if b and b.seed == p.InitSeed then return b end
     end
-    local function observeFloor(s)
+    local function refund(p, s)
+        s.compute = math.min(cap(p), s.compute + s.reserved)
+        s.reserved = 0
+    end
+    local function observeFloor(p, s)
         local level = Game():GetLevel()
         local floor = tostring(level:GetDungeonPlacementSeed())..":"..level:GetStage()..":"..level:GetStageType()
         if s.floor ~= floor then
             -- Every floor starts in Valley; Compute carries over.
-            if s.floor ~= nil then s.phase = "valley"; s.remaining = PHASE_FRAMES; s.regen = 0 end
+            if s.floor ~= nil then
+                refund(p, s); s.phase = "valley"; s.remaining = PHASE_FRAMES; s.regen = 0
+            end
             s.floor = floor
         end
     end
@@ -111,7 +120,7 @@ function Peak:Init(mod, Risk)
         ready = true; bindings = {}; slots = {}; laserEpoch = {}; drop:Reset()
         if not continued then Risk.state.deepseekPeak = {} end
         bind()
-        each(function(_, b) observeFloor(b.state) end)
+        each(function(p, b) observeFloor(p, b.state) end)
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
         ready = false; bindings = {}; slots = {}; laserEpoch = {}; drop:Reset()
@@ -121,7 +130,7 @@ function Peak:Init(mod, Risk)
         drop:Reset()
         if not ready then return end
         bind()
-        each(function(_, b) b.volley = nil; observeFloor(b.state) end)
+        each(function(p, b) b.volley = nil; observeFloor(p, b.state) end)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function() drop:Reset() end)
     mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
@@ -136,8 +145,8 @@ function Peak:Init(mod, Risk)
         local combat = not Game():GetRoom():IsClear()
         each(function(p, b)
             local s = b.state
-            observeFloor(s)
-            s.compute = math.min(s.compute, cap(p))
+            observeFloor(p, s)
+            s.compute = math.min(s.compute, cap(p) - s.reserved)
             if p:IsDead() then drop:Forget(p); b.frame = now; return end
             local advanced = now > b.frame
             if now < b.frame then b.volley = nil; drop:Forget(p) end
@@ -149,6 +158,10 @@ function Peak:Init(mod, Risk)
                     s.remaining = s.remaining - 1
                     if s.remaining <= 0 then
                         s.phase = s.phase == "valley" and "peak" or "valley"
+                        if s.phase == "peak" then
+                            s.reserved = math.min(RESERVATION, s.compute)
+                            s.compute = s.compute - s.reserved
+                        else refund(p, s) end
                         s.remaining = PHASE_FRAMES; s.regen = 0
                     end
                     local firing = p:GetShootingInput():LengthSquared() > 0
@@ -307,6 +320,7 @@ function Peak:Init(mod, Risk)
             local s = b.state
             local text = string.format("Compute %d/%d  %s %.1fs  %s", s.compute, cap(p),
                 s.phase == "peak" and "Peak" or "Valley", s.remaining / 30, s.saving and "Saving" or "Forks On")
+            if s.reserved > 0 then text = text..string.format("  Reserved %d", s.reserved) end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.45, 1, 0.95, 1)
         end)
     end)

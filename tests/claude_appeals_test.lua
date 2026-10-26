@@ -3,7 +3,11 @@
 local root = arg[1]
 local callbacks, players, frame, saved = {}, {}, 1, nil
 local clear, room, floor, suspended, down = true, 1, 1, false, {}
-local captions, draws = {}, {}
+local captions, draws, enemies = {}, {}, {}
+local paused=false
+EntityFlag={FLAG_FRIENDLY=1}
+function EntityPtr(e) return {Ref=e} end
+local function pos(x) return {X=x,Y=0,Distance=function(self,o) return math.abs(self.X-o.X) end} end
 local C = {Player={CLAUDE_CHAN=41}, Item={BAN_HAMMER=733, SUBAGENT_SWARM=745}}
 local Hud = {T=function(_,key,...) return key..":"..table.concat({...},",") end,
     Draw=function(_,text) draws[#draws+1]=text end}
@@ -30,7 +34,7 @@ function GetPtrHash(p) return p.pointer end
 local nextPointer=0
 local function player()
     nextPointer=nextPointer+1
-    local p={kind=41,pointer=nextPointer,data={},InitSeed=nextPointer,ControllerIndex=#players,Damage=3.5}
+    local p={kind=41,pointer=nextPointer,data={},InitSeed=nextPointer,ControllerIndex=#players,Damage=3.5,Position=pos(0)}
     function p:GetPlayerType() return self.kind end
     function p:GetCard() return 0 end
     function p:GetPill() return 0 end
@@ -49,9 +53,9 @@ local function player()
     end
     return p
 end
-Isaac={GetPlayer=function(i) return players[i+1] end, GetScreenHeight=function() return 270 end}
+Isaac={GetPlayer=function(i) return players[i+1] end, GetScreenHeight=function() return 270 end, GetRoomEntities=function() return enemies end}
 function Game() return {GetNumPlayers=function() return #players end,
-    GetFrameCount=function() return frame end, IsPaused=function() return false end,
+    GetFrameCount=function() return frame end, IsPaused=function() return paused end,
     GetRoom=function() return {IsClear=function() return clear end} end,
     GetLevel=function() return {GetDungeonPlacementSeed=function() return floor end,
         GetStage=function() return 1 end, GetStageType=function() return 0 end,
@@ -75,7 +79,7 @@ local function load()
     include("scripts.characters.claude_chan"):Init(mod,Risk)
 end
 local function tick(n)
-    for _=1,n or 1 do frame=frame+1; for _,p in ipairs(players) do fire("MC_POST_PEFFECT_UPDATE",p) end end
+    for _=1,n or 1 do frame=frame+1; for _,p in ipairs(players) do fire("MC_POST_PEFFECT_UPDATE",p) end; fire("MC_POST_UPDATE") end
 end
 local function usage(i) return Risk.state.claudeUsage[tostring(i or 0)] end
 local function tap(p)
@@ -194,12 +198,56 @@ suspended=false; tick(); p.birthright=false
 suspended=true; tick(); assert(usage().age==0,"without Birthright suspension resets age")
 suspended=false
 
--- Account age is per player; a floor adds to each Claude, and an old shared
--- age is handed to every Claude present when the run continues.
-usage().age=1; usage(1).age=4
-fire("MC_POST_NEW_LEVEL"); assert(usage().age==2 and usage(1).age==5,"floors age each account")
-p:EvaluateItems(); assert(math.abs(p.Damage-3.9)<1e-9,"age adds +0.2 damage per floor")
-usage(1).age=8; fire("MC_POST_NEW_LEVEL"); assert(usage(1).age==8,"age caps at +1.6")
+-- Floors now offer a kill-order review instead of automatic account age.
+local function foe(seed,x)
+ local e={InitSeed=seed,Type=10,Variant=0,SubType=0,Position=pos(x),dead=false,friendly=false,vulnerable=true}
+ function e:Exists() return not self.removed end
+ function e:IsDead() return self.dead end
+ function e:IsEnemy() return true end
+ function e:IsVulnerableEnemy() return self.vulnerable end
+ function e:HasEntityFlags() return self.friendly end
+ enemies[#enemies+1]=e; return e
+end
+local function kill(e) e.dead=true; fire("MC_POST_ENTITY_KILL",e) end
+local function nextFloor(n)
+ floor=n; clear=true; enemies={}; room=1; fire("MC_POST_NEW_LEVEL"); fire("MC_POST_NEW_ROOM"); tick()
+end
+usage().age=1; usage(1).age=4; nextFloor(4)
+assert(usage().age==1 and usage(1).age==4,"a new floor does not grant unearned age")
+local reviewA,reviewB=foe(91,10),foe(92,40); enter(40,true)
+assert(usage().review.phase=="active" and usage().review.target=="91:10:0:0")
+kill(reviewB); tick(); kill(reviewA); clear=true; tick()
+assert(usage().age==2 and usage(1).age==5,"last target earns the original personal age award")
+fire("MC_POST_UPDATE"); complete(); assert(usage().age==2,"award is once per floor")
+p:EvaluateItems(); assert(math.abs(p.Damage-3.9)<1e-9)
+-- An early death misses only this floor; simultaneous deaths count as last.
+nextFloor(5); local early,other=foe(100,10),foe(101,50); enter(41,true); kill(early); tick()
+assert(usage().review.phase=="missed" and usage().age==2); kill(other); clear=true; tick(); assert(usage().age==2)
+nextFloor(6); early,other=foe(102,10),foe(103,50); enter(42,true)
+kill(early); kill(other); clear=true; tick(); assert(usage().age==3,"same-frame clear counts as last")
+-- Single-enemy rooms and peaceful rooms do not choose a target; revisits do not retry.
+nextFloor(7); early=foe(110,10); enter(43,true); assert(usage().review.phase=="waiting")
+other=foe(111,20); enter(43,true); assert(usage().review.phase=="waiting")
+enemies={}; local high,low=foe(120,20),foe(119,-20); enter(44,true)
+assert(usage().review.target=="119:10:0:0","equal-distance tie uses stable seed")
+-- Save contains only primitive target identity; continue can resolve recreated entities.
+reload(); p,q=players[1],players[2]; enemies={}; high,low=foe(120,20),foe(119,-20); tick()
+assert(usage().review.phase=="active"); kill(high); kill(low); clear=true; tick(); assert(usage().age==4)
+-- Departure cancels; a missing/changed target never grants age. Pause cannot settle a kill.
+nextFloor(8); early,other=foe(130,10),foe(131,40); enter(45,true); enter(46,false)
+assert(usage().review.phase=="missed" and usage().age==4)
+nextFloor(9); early,other=foe(140,10),foe(141,40); enter(47,true); early.friendly=true; tick()
+assert(usage().review.phase=="missed")
+nextFloor(10); early,other=foe(150,10),foe(151,40); enter(48,true); kill(early); kill(other); clear=true
+paused=true; tick(); assert(usage().age==4); paused=false; tick(); assert(usage().age==5)
+-- Prior suspension policy and eight-award cap remain; replacement cannot inherit an active review.
+nextFloor(11); early,other=foe(160,10),foe(161,40); enter(49,true); usage().age=8
+kill(early); kill(other); clear=true; tick(); assert(usage().age==8)
+nextFloor(12); early,other=foe(170,10),foe(171,40); enter(50,true)
+players[1]=player(); p=players[1]; tick(); assert(usage().review.phase=="none","replacement gets no borrowed challenge")
+kill(early); kill(other); clear=true; tick(); assert(usage().age==8)
+nextFloor(13); early,other=foe(180,10),foe(181,40); enter(51,true); p.kind=0; tick(); p.kind=41; tick()
+assert(usage().review.phase=="none","changing away and back cannot resume the challenge")
 usage().age=nil; usage(1).age=nil; Risk.state.accountAge=3
 reload(); p,q=players[1],players[2]
 assert(usage().age==3 and usage(1).age==3 and Risk.state.accountAge==nil,"a shared legacy age migrates per player")

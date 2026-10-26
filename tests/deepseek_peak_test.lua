@@ -135,6 +135,7 @@ tick(5); paused=true; tick(30); paused=false
 assert(state().remaining==315,"pause does not advance the schedule")
 fire("MC_POST_UPDATE"); assert(state().remaining==315,"a duplicate frame cannot advance the schedule")
 tick(315); assert(state().phase=="peak" and state().remaining==360,"twelve combat seconds switch to Peak")
+assert(state().reserved==4 and state().compute==20,"Peak reserves four from the recovered 24")
 local before=state().compute
 tick(30); assert(state().compute==before,"Peak does not recover Compute")
 tick(); shot(p); assert(#spawned==2 and state().compute==before-4,"Peak costs 4")
@@ -153,7 +154,7 @@ down[0]=true; tick(20); down[0]=false; tick(); assert(not state().saving,"a long
 assert(not state(1).saving,"another player's mode is untouched")
 
 -- Caps follow Birthright and clamp when it is lost.
-state().phase="valley"; state().compute=23; state().regen=0
+state().phase="valley"; state().reserved=0; state().compute=23; state().regen=0
 tick(40); assert(state().compute==24,"Valley recovery stops at 24")
 p.birthright=true; tick(80); assert(state().compute==32,"Birthright raises the cap to 32")
 p.birthright=false; tick(); assert(state().compute==24,"losing Birthright clamps to the base cap")
@@ -257,6 +258,21 @@ fire("MC_POST_RENDER")
 local hud=draws[#draws]
 assert(hud:match("Compute %d+/24") and hud:match("Valley") and hud:match("Forks On"),hud)
 
+-- Reservations are conserved across phases, floor changes and continuation.
+clear=false; p.shooting=true; state().saving=true; state().phase="valley"; state().compute=3; state().reserved=0; state().remaining=1
+tick(); assert(state().phase=="peak" and state().compute==0 and state().reserved==3)
+fire("MC_POST_UPDATE"); assert(state().reserved==3 and state().compute==0)
+reload({player(401,11,0),player(402,22,1)}); p,q=players[1],players[2]; p.shooting=true
+assert(state().reserved==3 and state().compute==0,"continue preserves exactly the reservation")
+state().remaining=1; tick(); assert(state().phase=="valley" and state().compute==3 and state().reserved==0)
+state().remaining=1; state().compute=10; tick(); assert(state().reserved==4 and state().compute==6)
+floor=77; enter(1,false); assert(state().phase=="valley" and state().compute==10 and state().reserved==0)
+fire("MC_POST_NEW_ROOM"); tick(); assert(state().compute==10,"floor refund occurs once")
+p.birthright=true; state().compute=28; state().reserved=4; state().phase="peak"
+p.birthright=false; tick(); assert(state().compute==20 and state().reserved==4,"cap loss clamps total Compute")
+floor=78; enter(1,false); assert(state().compute==24 and state().reserved==0)
+Risk.state.deepseekPeak["0"]={version=1,compute=7,regen=0,phase="peak",remaining=100,saving=true}
+tick(); assert(state().version==2 and state().compute==7 and state().reserved==0,"legacy Peak does not reserve retroactively")
 fire("MC_POST_GAME_STARTED",false)
 assert(state().compute==12 and state().phase=="valley","a new run resets Compute")
 print("OK: Peak / Valley schedule, Compute caps, volley forks, Saving mode and save/floor/identity lifecycle")

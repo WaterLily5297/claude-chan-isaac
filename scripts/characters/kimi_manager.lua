@@ -5,6 +5,7 @@ local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Feedback = include("scripts.characters.feedback")
+local Tools = include("scripts.characters.target_tools")
 local Manager = {}
 
 local BASE_DAMAGE = 0.85
@@ -12,6 +13,7 @@ local SLOTS = 3
 local RADIUS = 220
 local PULSES = 3
 local PULSE_FRAMES = 60 -- Two seconds between pulses.
+local INTERFERENCE_FRAMES = 30
 local TASK_TINT = Color and Color(1, 1, 1, 1, 0.1, 0.25, 0.35) or nil
 local ROOM_BUDGET = 9
 local PULSE_DAMAGE, BIRTHRIGHT_PULSE = 0.6, 0.7
@@ -31,7 +33,8 @@ local function valid(s)
 end
 local function alive(ref)
     local e = ref and ref.Ref
-    return e and e:Exists() and not e:IsDead()
+    return e and e:Exists() and not e:IsDead() and e:IsVulnerableEnemy()
+        and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 end
 
 function Manager:Init(mod, Risk)
@@ -147,7 +150,9 @@ function Manager:Init(mod, Risk)
             local kept = {}
             for _, task in ipairs(b.tasks) do
                 if alive(task.ref) then
-                    if advanced then
+                    if advanced and (task.pause or 0) > 0 then
+                        task.pause = task.pause - 1
+                    elseif advanced then
                         task.wait = task.wait - 1
                         if task.wait <= 0 then
                             local mult = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_PULSE or PULSE_DAMAGE
@@ -175,6 +180,22 @@ function Manager:Init(mod, Risk)
             end
         end)
     end)
+    mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
+        if ready and next(bindings) and tear:Exists() and binding(Tools.Owner(tear)) then
+            Tools.MarkVolley(tear, Game():GetFrameCount())
+        end
+    end)
+    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, _, source)
+        if not ready or not next(bindings) or Game():IsPaused() then return end
+        local src = source and source.Entity
+        local data = src and src.GetData and src:GetData()
+        if data and (data.ccLlamaHelper or data.ccThoughtDerived) then return end
+        local b = binding(Tools.Owner(src))
+        if not b or not Tools.AttackKey(src, Game():GetFrameCount()) then return end
+        for _, task in ipairs(b.tasks) do
+            if task.hash == GetPtrHash(entity) and alive(task.ref) then task.pause = INTERFERENCE_FRAMES end
+        end
+    end)
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, p, flag)
         if flag == CacheFlag.CACHE_DAMAGE and binding(p) then p.Damage = p.Damage * BASE_DAMAGE end
     end)
@@ -186,6 +207,9 @@ function Manager:Init(mod, Risk)
         each(function(_, b, i)
             local text = string.format("Kimi-chan: Tasks %d/%d  Budget %d/%d", #b.tasks, SLOTS,
                 ROOM_BUDGET - (b.state.budget[room] or 0), ROOM_BUDGET)
+            local paused = 0
+            for _, task in ipairs(b.tasks) do if (task.pause or 0) > 0 then paused = paused + 1 end end
+            if paused > 0 then text = text..string.format("  Micromanaged %d", paused) end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.45, 0.6, 1, 0.9)
         end)
     end)

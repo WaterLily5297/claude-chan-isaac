@@ -14,7 +14,7 @@ local function integer(v, maximum, fallback)
     return math.floor(v)
 end
 local function fresh()
-    return {version=1, bowls=1, clears=0, thought=0, speed=0, lunch=false, awards={},
+    return {version=2, bowls=1, clears=0, thought=0, speed=0, lunch=false, awards={},
         windowRemaining=0, windowFactor=1}
 end
 
@@ -38,11 +38,13 @@ function Rice:Init(mod, Risk, Meal)
                 if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
                     or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
                 local s = all[key]
-                if type(s) ~= "table" or s.version ~= 1
+                if type(s) ~= "table" or (s.version ~= 1 and s.version ~= 2)
                     or not integer(s.bowls,2) or not integer(s.clears,1)
                     or not integer(s.thought,150) or not integer(s.speed,180) then
                     s=fresh(); all[key]=s
                 end
+                if s.version == 1 then s.version=2; s.mealToken=nil end
+                s.mealToken=integer(s.mealToken,2147483647)
                 s.lunch = s.lunch == true
                 s.windowRemaining=integer(s.windowRemaining,6,0)
                 if type(s.windowFactor)~="number" or s.windowFactor~=s.windowFactor
@@ -160,6 +162,12 @@ function Rice:Init(mod, Risk, Meal)
                 return
             end
             local advanced=now>b.frame
+            local cancelled = false
+            if s.lunch and p:AreControlsEnabled() and p:GetMovementInput():LengthSquared()>0 then
+                -- Another food effect may have replaced the timer. Never cancel that effect.
+                if s.mealToken then Meal:CancelOwned(p,"rice",s.mealToken) end
+                s.lunch=false; s.mealToken=nil; s.bowls=math.min(2,s.bowls+1); cancelled=true
+            end
             if now<b.frame then
                 b.volley=nil; b.window=nil; b.attackFrame=nil; b.continuousFrame=nil
                 s.windowRemaining=0; s.windowFactor=1
@@ -177,19 +185,21 @@ function Rice:Init(mod, Risk, Meal)
                     if s.speed==0 then refresh(p) end
                 end
                 if s.lunch and Meal:Remaining(p)==0 then
-                    s.lunch=false; s.thought=150; s.speed=180
+                    s.lunch=false; s.mealToken=nil; s.thought=150; s.speed=180
                     refresh(p)
-                elseif Meal:Remaining(p)==0 and p:AreControlsEnabled()
+                elseif not cancelled and Meal:Remaining(p)==0 and p:AreControlsEnabled()
                     and p:GetShootingInput():LengthSquared()==0
                     and b.attackFrame~=now
                     and (not b.continuousFrame or b.continuousFrame<now-1) then
                     s.thought=math.min(150,s.thought+1)
                 end
             end
-            if drop:Poll(p,true) and s.bowls>0 and not s.lunch and Meal:Remaining(p)==0 then
+            if drop:Poll(p,true) and s.bowls>0 and not s.lunch and Meal:Remaining(p)==0
+                and p:GetMovementInput():LengthSquared()==0 then
                 local duration=p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 30 or 60
-                if Meal:Start(p,duration) then
-                    s.bowls=s.bowls-1; s.lunch=true
+                local started, token=Meal:Start(p,duration,"rice")
+                if started then
+                    s.bowls=s.bowls-1; s.lunch=true; s.mealToken=token
                 end
             end
         end)
@@ -251,7 +261,7 @@ function Rice:Init(mod, Risk, Meal)
         each(function(p,b,i)
             local s=b.state
             local text=string.format("Thought %.1fs  Rice %d/2",s.thought/30,s.bowls)
-            if s.lunch then text=text..string.format("  Lunch %.1fs",Meal:Remaining(p)/30) end
+            if s.lunch then text=text..string.format("  Lunch %.1fs: stay still",Meal:Remaining(p)/30) end
             HudText:Draw(text,50,HudLayout.PlayerRow(i),0.45,0.75,1,1)
         end)
     end)

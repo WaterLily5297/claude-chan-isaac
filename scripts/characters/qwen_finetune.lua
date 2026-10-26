@@ -15,17 +15,19 @@ local BUILDS = {
 local AWARD_CAP = 3
 local AWARD_DAMAGE, BIRTHRIGHT_DAMAGE = 0.2, 0.3
 local ALL_BUILDS = 7 -- One bit per build.
+local PIN_CLEARS = 2
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)
 end
 local function fresh()
-    return {version=1, build=3, used=0, awards=0, cleared={}}
+    return {version=2, build=3, used=0, awards=0, cleared={}, pinned=0}
 end
 local function valid(s)
-    if type(s) ~= "table" or s.version ~= 1 or not integer(s.build, 1, #BUILDS)
+    if type(s) ~= "table" or (s.version ~= 1 and s.version ~= 2) or not integer(s.build, 1, #BUILDS)
         or not integer(s.used, 0, ALL_BUILDS - 1) or not integer(s.awards, 0, AWARD_CAP)
-        or type(s.cleared) ~= "table" then return false end
+        or type(s.cleared) ~= "table"
+        or (s.version == 2 and not integer(s.pinned, 0, PIN_CLEARS)) then return false end
     for k, v in pairs(s.cleared) do
         if type(k) ~= "string" or v ~= true then return false end
     end
@@ -64,6 +66,7 @@ function FineTune:Init(mod, Risk)
                 if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
                     or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
                 if not valid(all[key]) then all[key] = fresh() end
+                if all[key].version == 1 then all[key].version = 2; all[key].pinned = 0 end
                 local b = bindings[pointer]
                 if not b or b.seed ~= p.InitSeed or b.slot ~= key then
                     b = {seed=p.InitSeed, slot=key, armed={}}
@@ -94,7 +97,10 @@ function FineTune:Init(mod, Risk)
         local s, floor = b.state, floorKey()
         if s.floor ~= floor then
             local changed = s.floor ~= nil
-            if changed then s.cleared = {}; s.used = 0; s.awards = 0; b.armed = {} end
+            if changed then
+                s.cleared = {}; s.used = 0; s.awards = 0; b.armed = {}
+                s.build = 3; s.pinned = 0
+            end
             s.floor = floor
             if changed then refresh(p) end
         end
@@ -133,11 +139,15 @@ function FineTune:Init(mod, Risk)
             observeFloor(p, b)
             if p:IsDead() then drop:Forget(p); return end
             if combat then b.armed[room] = true end
-            -- The build locks while enemies remain.
+            -- A new choice commits to two new combat clears, even in safe rooms.
             if drop:Poll(p, not combat) then
-                s.build = s.build % #BUILDS + 1
-                refresh(p)
-                Game():GetHUD():ShowItemText("Qwen-chan", BUILDS[s.build].name.." build")
+                if s.pinned > 0 then
+                    Game():GetHUD():ShowItemText("Qwen-chan", "Pinned: clear "..s.pinned.." new combat rooms")
+                else
+                    s.build = s.build % #BUILDS + 1; s.pinned = PIN_CLEARS
+                    refresh(p)
+                    Game():GetHUD():ShowItemText("Qwen-chan", BUILDS[s.build].name.." build")
+                end
             end
         end)
     end)
@@ -148,6 +158,7 @@ function FineTune:Init(mod, Risk)
             local s = b.state
             if p:IsDead() or not b.armed[room] or s.cleared[room] then return end
             s.cleared[room] = true
+            s.pinned = math.max(0, s.pinned - 1)
             if s.awards >= AWARD_CAP then return end
             s.used = s.used | (1 << (s.build - 1))
             if s.used == ALL_BUILDS then
@@ -177,6 +188,7 @@ function FineTune:Init(mod, Risk)
             local s = b.state
             local text = string.format("Qwen-chan: %s  Variants %d/%d  Awards %d/%d", BUILDS[s.build].name,
                 count(s.used), #BUILDS, s.awards, AWARD_CAP)
+            if s.pinned > 0 then text = text..string.format("  Pinned: %d clears", s.pinned) end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.75, 0.45, 1, 0.9)
         end)
     end)

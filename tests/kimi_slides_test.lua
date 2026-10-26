@@ -174,7 +174,11 @@ assert(hud()=="Kimi-chan: Slides 3/6  Cost 3  Presenting 4s",hud())
 near(hit(b,tear(p)),11.5)
 near(hit(a,tear(p)),10)
 near(hit(b,tear(q)),10)
-near(hit(c,{Type=EntityType.ENTITY_LASER,SpawnerEntity=p,ToPlayer=function() end}),11.5)
+near(hit(c,{Type=EntityType.ENTITY_LASER,SpawnerEntity=p,ToPlayer=function() end}),10)
+b.dead=true; near(hit(c,tear(p)),11.5); near(hit(d,tear(p)),10)
+b.dead=false; tick(); near(hit(b,tear(p)),10); near(hit(c,tear(p)),11.5) -- No backward focus after revival.
+c.friendly=true; tick(); near(hit(d,tear(p)),11.5); near(hit(c,tear(p)),10)
+c.friendly=false
 
 -- A new presentation replaces the old one.
 b.slowed=nil; c.slowed=nil; d.slowed=nil
@@ -219,4 +223,4 @@ tick(); assert(state().slides==0)
 
 fire("MC_POST_GAME_STARTED",false)
 assert(state().slides==0,"a new run resets Slides")
-print("OK: Kimi Slides clears, presentations, slowing, owner-only bonus, Birthright and save/floor/identity lifecycle")
+print("OK: Kimi single-speaker focus, Slides clears, presentations, slowing, owner-only bonus, Birthright and save/floor/identity lifecycle")

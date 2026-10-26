@@ -93,18 +93,26 @@ local player = { HasCollectible = function(_, id) return playerItems[id] end,
     AddCacheFlags = function() end,
     EvaluateItems = function(self) self.Damage = 3.5; for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end end }
 player.ToPlayer = function(self) return self end
+player.Position = {X=0,Y=0,Distance=function(self, other)
+    return math.sqrt((self.X-other.X)^2+(self.Y-other.Y)^2)
+end}
 player.IsDead = function() return false end
 player.InitSeed, player.ControllerIndex = 1, 0
 player.AreControlsEnabled = function() return true end
 player.GetShootingInput = function() return { LengthSquared = function() return 0 end } end
+player.GetMovementInput = function() return { LengthSquared = function() return 0 end } end
 player.TryRemoveTrinket = function(_, id) if HELD_TRINKET == id then HELD_TRINKET = nil; return true end return false end
 function Isaac.GetPlayer() return player end
 
 local spawned = 0
+local npcSeed = 1000
 local function makeNpc(boss)
     local data = {}
-    local npc = { Type = 10, Variant = 0, SubType = 0, Position = {}, MaxHitPoints = 10, HitPoints = 10, CanShutDoors = true }
+    npcSeed = npcSeed + 1
+    local npc = { InitSeed=npcSeed, Type = 10, Variant = 0, SubType = 0, Position = {X=50,Y=0}, MaxHitPoints = 10, HitPoints = 10, CanShutDoors = true }
     function npc:ToNPC() return self end
+    function npc:Exists() return not self.removed end
+    function npc:IsEnemy() return true end
     function npc:IsVulnerableEnemy() return true end
     function npc:IsBoss() return boss end
     function npc:HasEntityFlags(f) return f == EntityFlag.FLAG_CHARM and self.charmed ~= nil end
@@ -568,7 +576,9 @@ do
     -- Claude-chan account age.
     R.state.risk = 10; R.state.claudeUsage["0"].age = 0
     stage = 2; fire("MC_POST_NEW_LEVEL"); stage = 3; fire("MC_POST_NEW_LEVEL")
-    assert(R.state.claudeUsage["0"].age == 2, "two floors without suspension")
+    assert(R.state.claudeUsage["0"].age == 0 and R.state.claudeUsage["0"].review.phase == "waiting",
+        "later floors offer review instead of automatic age")
+    R.state.claudeUsage["0"].age = 2 -- Earned-age cache/suspension control; kill order has its own module regression.
     player.EvaluateItems = function(self)
         self.Damage = 3.5
         for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end

@@ -32,7 +32,7 @@ Input={IsActionPressed=function(_,controller) return down[controller] or false e
 function GetPtrHash(e) return e.pointer end
 function EntityPtr(e) return {Ref=e} end
 function EntityRef(e) return {Entity=e} end
-local function vec(x) return {x=x, Distance=function(self,o) return math.abs(self.x-o.x) end} end
+local function vec(x,y) return {x=x,X=x,Y=y or 0, Distance=function(self,o) return math.sqrt((self.X-o.X)^2+(self.Y-o.Y)^2) end} end
 function Game() return {
     GetFrameCount=function() return frame end, GetNumPlayers=function() return #players end,
     IsPaused=function() return paused end,
@@ -160,23 +160,25 @@ assert(hud()=="Gemini-chan: Crop 0/3  6s",hud())
 
 -- Distinct paid attacks on the target advance; damage itself is unchanged.
 local t1=tear(p); near(hit(close,t1),10); near(hit(close,t1),10)
-assert(hud()=="Gemini-chan: Recolor 1/3  6s","one volley counts once")
+frame=frame+1; near(hit(close,tear(p)),10)
+assert(hud():find("Recolor 1/3"),"the same angle cannot advance a distinct attack")
+assert(hud()=="Gemini-chan: Recolor 1/3  6s  Move 30deg","one volley counts once")
 frame=frame+1; hit(far,tear(p)); frame=frame+1; hit(close,tear(q)); frame=frame+1; hit(close,tear(p,false))
-assert(hud()=="Gemini-chan: Recolor 1/3  6s","other targets, partners and unregistered tears do not count")
-frame=frame+1; hit(close,tear(p)); assert(hud()=="Gemini-chan: Export 2/3  6s",hud())
-frame=frame+1; hit(close,tear(p))
+assert(hud()=="Gemini-chan: Recolor 1/3  6s  Move 30deg","other targets, partners and unregistered tears do not count")
+p.Position=vec(90,-90); frame=frame+1; hit(close,tear(p)); assert(hud()=="Gemini-chan: Export 2/3  6s  Move 30deg",hud())
+p.Position=vec(180,0); frame=frame+1; hit(close,tear(p))
 assert(texts[#texts]=="Exported" and close.taken[#close.taken-1]==18 and close.taken[#close.taken]==10,"export pulses 2x player damage")
 assert(hud()=="Gemini-chan: Exported")
 tap(p); assert(hud()=="Gemini-chan: Exported","one completed chain per room")
 
 -- Retargeting erases progress; an early defeat never completes; the chain times out.
-enter(3,true); local a,b=enemy(20),enemy(60)
-tap(p); frame=frame+1; hit(a,tear(p)); frame=frame+1; hit(a,tear(p)); assert(hud()=="Gemini-chan: Export 2/3  6s")
+p.Position=vec(0); enter(3,true); local a,b=enemy(20),enemy(60)
+tap(p); frame=frame+1; hit(a,tear(p)); p.Position=vec(20,-20); frame=frame+1; hit(a,tear(p)); assert(hud()=="Gemini-chan: Export 2/3  6s  Move 30deg")
 tap(p); assert(hud()=="Gemini-chan: Crop 0/3  6s","a new tap erases progress")
 frame=frame+1; hit(a,tear(p)); a.dead=true; tick(); assert(hud()=="Gemini-chan: DROP: start an edit","early defeat ends the chain")
 tap(p); frame=frame+1; hit(b,tear(p))
-paused=true; tick(300); paused=false; assert(hud()=="Gemini-chan: Recolor 1/3  6s","pause freezes the timer")
-tick(179); fire("MC_POST_UPDATE"); assert(hud()=="Gemini-chan: Recolor 1/3  1s","duplicate update cannot age it")
+paused=true; tick(300); paused=false; assert(hud()=="Gemini-chan: Recolor 1/3  6s  Move 30deg","pause freezes the timer")
+tick(179); fire("MC_POST_UPDATE"); assert(hud()=="Gemini-chan: Recolor 1/3  1s  Move 30deg","duplicate update cannot age it")
 tick(1); assert(hud()=="Gemini-chan: DROP: start an edit","six seconds pass")
 
 -- Birthright gives ten seconds; leaving the room cancels.
@@ -191,4 +193,13 @@ players[1]=player(101,999,0); p=players[1]; tick(); assert(state().doneRoom==nil
 p.kind=0; tick(); assert(state()==nil)
 p.kind=152; tick(); Risk.state.geminiEdit["0"]={version=1,doneRoom=5}; tick(); assert(state().doneRoom==nil,"corrupt data is discarded")
 fire("MC_POST_GAME_STARTED",false); assert(state().doneRoom==nil)
+-- Exactly 30 degrees advances; zero separation and an unchanged bearing do not.
+p.Position=vec(0); enter(50,true); local angled=enemy(0); tap(p)
+frame=frame+1; hit(angled,tear(p)); assert(hud():find("Crop 0/3"),"zero separation is not a bearing")
+p.Position=vec(100,0); frame=frame+1; hit(angled,tear(p)); assert(hud():find("Recolor 1/3"))
+p.Position=vec(100*math.cos(math.rad(29)),100*math.sin(math.rad(29)))
+frame=frame+1; hit(angled,tear(p)); assert(hud():find("Recolor 1/3"),"29 degrees remains native only")
+p.Position=vec(100*math.cos(math.rad(30)),100*math.sin(math.rad(30)))
+frame=frame+1; hit(angled,tear(p)); assert(hud():find("Export 2/3"),"30-degree boundary advances")
+angled.friendly=true; tick(); assert(hud()=="Gemini-chan: DROP: start an edit","unavailable target ends the chain")
 print("OK: tainted Gemini edit chain steps, export pulse, once per room, retarget, timers, Birthright and save/identity lifecycle")

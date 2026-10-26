@@ -113,7 +113,7 @@ local function tear(owner,volley)
     if volley~=false then fire("MC_POST_FIRE_TEAR",t) end
     return t
 end
-local function hit(target,source) fire("MC_ENTITY_TAKE_DMG",target,1,0,{Entity=source}) end
+local function hit(target,source) fire("MC_ENTITY_TAKE_DMG",target,1,0,{Entity=source}); fire("MC_POST_UPDATE") end
 local function reload(newPlayers)
     fire("MC_PRE_GAME_EXIT",true)
     players=newPlayers; frame=0
@@ -234,4 +234,25 @@ tick(); assert(state().verified and state().routing==0,"Routing above the cap is
 
 fire("MC_POST_GAME_STARTED",false)
 assert(state().verified and state().routing==0,"a new run resets routing")
+-- Distinct off-target paid attacks contradict once; the chosen target wins for the same attack.
+state().routing=3; enter(200,true); local focus,off=enemy(20),enemy(80); tap(p)
+frame=frame+1; hit(focus,tear(p)); frame=frame+1; local contrary=tear(p); hit(off,contrary); hit(off,contrary)
+draws={}; fire("MC_POST_RENDER"); assert(draws[1]:find("Check 0/3"),"one contradictory attack removes one hit, never below zero")
+-- A delayed piercing hit revises that attack's outcome instead of receiving both gain and loss.
+frame=frame+1; hit(focus,contrary)
+draws={}; fire("MC_POST_RENDER"); assert(draws[1]:find("Check 2/3"),"target priority also holds across updates")
+local helper=tear(p,false); helper:GetData().ccThoughtDerived=true; helper:GetData().ccLlamaHelper=true
+frame=frame+1; hit(off,helper); hit(off,tear(q)); hit(off,tear(p,false))
+draws={}; fire("MC_POST_RENDER"); assert(draws[1]:find("Check 2/3"),"unpaid/helper/partner hits do not contradict")
+frame=frame+1; local area=tear(p); hit(off,area); hit(focus,area); assert(state().verified,"mixed target order still verifies")
+-- Reverse order and multiple enemies never contradict the same paid attack.
+state().routing=3; enter(201,true); focus,off=enemy(20),enemy(80); tap(p)
+frame=frame+1; area=tear(p); hit(focus,area); hit(off,area)
+draws={}; fire("MC_POST_RENDER"); assert(draws[1]:find("Check 1/3"))
+-- Picking up Birthright must not re-interpret an old, already contradicted prefix as success.
+frame=frame+1; hit(focus,tear(p)); frame=frame+1; hit(off,tear(p)); frame=frame+1; hit(off,tear(p))
+p.birthright=true; tick(); assert(not state().verified,"old two-hit progress was already lost")
+frame=frame+1; hit(focus,tear(p)); assert(not state().verified)
+frame=frame+1; hit(focus,tear(p)); assert(state().verified,"current two-hit progress still earns Birthright completion")
+p.birthright=false
 print("OK: Verified / Fallback routing, Sanity Check attack accounting, Birthright and save/floor/identity lifecycle")

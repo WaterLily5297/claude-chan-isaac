@@ -205,6 +205,7 @@ test("foreign primary remains paid while helper and target credit stay owner-sco
     target:TakeDamage(q.Damage, 0, EntityRef(foreignShot))
     assert(env.C.Data(q).room.sanity.count == 1 and env.C.Data(p).room.sanity.count == 0)
     primary(env, q, target); primary(env, q, target)
+    env.fire("MC_POST_UPDATE", nil) -- Target-choice outcomes settle after the damage callbacks.
     assert(env.Risk.state.gptRouting["1"].verified and env.C.Data(q).room.sanity == nil,
         "GPT's own distinct attacks still complete its character and item checks")
     assert(env.C.Primed(p, "held") and env.C.Data(p).room.sanity.count == 0)

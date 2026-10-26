@@ -23,3 +23,5 @@ The proposed difficulty pass is not in this installed build. Item 14 asks about 
 
 Short reply template: `Build / game version / forms; 1 OK, 2 OK, 3 broken (action...), 4 not tried; 14 fair (form...)`.
 Owner observations are recorded at their stated scope; an OK here does not accept all 22 forms, every item or both game editions.
+
+Draft #102 implements character-specific conditions for all 22 forms; **none is in installed f8b2b0b**. After approval and confirmed installation, repeat items 3-5, 12-14 and the relevant family row in [the B1 native matrix](TESTING.md#b1-revision-status-2026-10-26-all-22-draft-features-offline-only). Report whether the condition was understandable, whether its reward/cost matched the HUD, and whether the added choice felt fair. Do not report an unplayed draft as tested.

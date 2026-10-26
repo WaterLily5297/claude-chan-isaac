@@ -16,9 +16,13 @@ function MealBreak:Init(mod, Risk)
         return Risk.state.mealBreaks
     end
     local function valid(s)
-        return type(s) == "table" and s.version == 1
+        return type(s) == "table" and (s.version == 1 or s.version == 2)
             and type(s.remaining) == "number" and s.remaining >= 0
             and s.remaining <= MAX_FRAMES and s.remaining == math.floor(s.remaining)
+            and (s.version == 1 or (type(s.serial) == "number" and s.serial >= 0 and s.serial <= 2147483647
+                and s.serial == math.floor(s.serial)
+                and (s.owner == nil or s.owner == "rice")
+                and (s.owner == nil or (type(s.priorDelay) == "number" and s.priorDelay >= 0 and s.priorDelay < math.huge))))
     end
     local function bindPlayers()
         local all, nextBindings, nextSlots = allStates(), {}, {}
@@ -29,7 +33,11 @@ function MealBreak:Init(mod, Risk)
             if old and (old.pointer ~= pointer or old.seed ~= p.InitSeed) then
                 all[key] = nil -- A replacement entity cannot inherit a departed player's meal.
             end
-            if not valid(all[key]) then all[key] = {version = 1, remaining = 0} end
+            if not valid(all[key]) then all[key] = {version = 2, remaining = 0, serial = 0} end
+            if all[key].version == 1 then
+                -- Legacy timers have no reliable source identity; never cancel them as Rice.
+                all[key].version = 2; all[key].serial = 0; all[key].owner = nil
+            end
             local b = bindings[pointer]
             if not b or b.seed ~= p.InitSeed or b.slot ~= key then
                 b = {seed = p.InitSeed, slot = key, frame = Game():GetFrameCount()}
@@ -54,14 +62,32 @@ function MealBreak:Init(mod, Risk)
         local b = binding(player)
         return b and b.state.remaining or 0
     end
-    function self:Start(player, frames)
+    function self:Start(player, frames, owner)
         if not ready or player:IsDead() then return false end
         bindPlayers()
         local b = binding(player)
         if not b then return false end
+        if owner and (owner ~= "rice" or b.state.remaining > 0) then return false end
+        b.state.serial = b.state.serial % 2147483647 + 1
+        b.state.owner = owner
+        b.state.priorDelay = owner and math.max(0, player.FireDelay) or nil
         b.state.remaining = math.max(b.state.remaining, math.min(MAX_FRAMES, frames))
         b.frame = Game():GetFrameCount()
+        b.foreignDelay = false
+        local imposed = owner and player.FireDelay < b.state.remaining
         keepDelay(player, b.state.remaining)
+        b.delay = imposed and player.FireDelay or nil
+        return true, b.state.serial
+    end
+    function self:CancelOwned(player, owner, serial)
+        if not ready then return false end
+        local b = binding(player)
+        if not b or b.state.owner ~= owner or b.state.serial ~= serial then return false end
+        -- Release only the delay last imposed here. A larger foreign cooldown survives.
+        if b.delay and player.FireDelay <= b.delay and player.FireDelay >= b.delay - 1 then
+            player.FireDelay = math.min(player.FireDelay, b.state.priorDelay or 0)
+        end
+        b.state.remaining = 0; b.state.owner = nil; b.state.priorDelay = nil; b.delay = nil
         return true
     end
 
@@ -73,6 +99,8 @@ function MealBreak:Init(mod, Risk)
         for i = 0, Game():GetNumPlayers() - 1 do
             local p = Isaac.GetPlayer(i)
             keepDelay(p, self:Remaining(p))
+            local b = binding(p)
+            b.delay = b.state.owner and p.FireDelay <= b.state.remaining and p.FireDelay or nil
         end
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
@@ -87,10 +115,16 @@ function MealBreak:Init(mod, Risk)
             local p = Isaac.GetPlayer(i)
             local b = binding(p)
             if p:IsDead() then
-                b.state.remaining = 0
+                b.state.remaining = 0; b.state.owner = nil; b.state.priorDelay = nil
             elseif not paused then
-                if now > b.frame then b.state.remaining = math.max(0, b.state.remaining - 1) end
+                if now > b.frame then
+                    b.state.remaining = math.max(0, b.state.remaining - 1)
+                    if b.state.priorDelay then b.state.priorDelay = math.max(0, b.state.priorDelay - 1) end
+                end
+                -- Remember whether another source replaced our imposed cooldown.
+                if b.delay and (p.FireDelay > b.delay or p.FireDelay < b.delay - 1) then b.foreignDelay = true end
                 keepDelay(p, b.state.remaining)
+                b.delay = b.delay and not b.foreignDelay and p.FireDelay or nil
             end
             b.frame = now
         end

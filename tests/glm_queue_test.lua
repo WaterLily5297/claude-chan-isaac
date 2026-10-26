@@ -165,7 +165,15 @@ tap(p); assert(state().pass==0 and state().queue==1,"DROP below three does nothi
 for r=4,6 do enter(r,true); finish() end
 assert(state().queue==3,"the Queue stops at three")
 assert(state(1).queue==3,"each player queues separately")
-assert(hud()=="GLM-chan: Your turn! Tap DROP",hud())
+assert(hud()=="GLM-chan: Ticket ready! Tap DROP before next fight",hud())
+
+-- A ready ticket survives safe rooms and revisits, but not another new fight.
+enter(3,false); assert(state().queue==3); enter(2,true); assert(state().queue==3)
+enter(70,true); assert(state().queue==2 and state().pass==0,"missing the call loses exactly one Queue step")
+fire("MC_POST_UPDATE"); enter(70,true); assert(state().queue==2,"duplicate/revisit cannot lose another step")
+finish(); assert(state().queue==3,"clear progress still earns the next call")
+reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
+assert(state().queue==3,"continue in the seen room keeps the ticket")
 
 -- A long hold or pause keeps native DROP; a tap redeems the Access Pass.
 down[0]=true; tick(20); down[0]=false; tick(); assert(state().queue==3,"a long hold keeps native DROP")

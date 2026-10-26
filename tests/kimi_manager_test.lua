@@ -203,4 +203,20 @@ for _,bad in ipairs({{version=1,budget={a=2}},{version=1,budget={a=10}},{version
     Risk.state.kimiManager["0"]=bad; tick(); assert(type(state().budget)=="table" and next(state().budget)==nil)
 end
 Risk.state.kimiManager["0"]={version=1,budget={a=9}}; tick(); assert(state().budget.a==9,"valid data is kept")
+-- A paid owner hit pauses only that task, for one refreshable second.
+enter(50,true); local taskTarget=enemy(40); tap(p); tick(20)
+local paid=tear(p); hit(taskTarget,paid); local nativeHits=#taskTarget.taken
+tick(29); assert(#taskTarget.taken==nativeHits,"micromanagement pauses the countdown")
+assert(hud():find("Micromanaged"))
+-- Helpers, direct pulses and partner attacks cannot refresh the pause.
+local helper=tear(p,false); helper:GetData().ccThoughtDerived=true; helper:GetData().ccLlamaHelper=true
+hit(taskTarget,helper); hit(taskTarget,tear(q)); hit(taskTarget,p)
+nativeHits=#taskTarget.taken; tick(40); assert(#taskTarget.taken==nativeHits,"resume keeps the old remaining delay")
+tick(); assert(#taskTarget.taken==nativeHits+1); near(taskTarget.taken[#taskTarget.taken],p.Damage*0.6)
+-- Repeated hits refresh to one second, never add another second.
+hit(taskTarget,tear(p)); tick(15); frame=frame+1; hit(taskTarget,tear(p)); nativeHits=#taskTarget.taken
+paused=true; tick(200); paused=false; fire("MC_POST_UPDATE"); tick(89)
+assert(#taskTarget.taken==nativeHits); tick(); assert(#taskTarget.taken==nativeHits+1)
+assert(state().budget[tostring(floor)..":"..tostring(room*13)]==3,"no additional budget charge")
+taskTarget.friendly=true; tick(); assert(hud():find("Tasks 0/3"),"friendly assignees are released")
 print("OK: tainted Kimi task assignment, slots, pulses, room budget, early death, exit, Birthright, floor and save/identity lifecycle")

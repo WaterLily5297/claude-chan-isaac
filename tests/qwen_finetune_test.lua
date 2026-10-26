@@ -153,40 +153,36 @@ local p,q=players[1],players[2]
 assert(hud()=="Qwen-chan: Balanced  Variants 0/3  Awards 0/3",hud())
 stats(p,10,9)
 
--- DROP in a cleared room cycles Heavy, Tiny, Balanced; holds keep native DROP.
-tap(p); assert(state().build==1 and texts[#texts]=="Heavy build"); stats(p,13,11)
-tap(p); assert(state().build==2); stats(p,8.5,7)
-down[0]=true; tick(20); down[0]=false; tick(); assert(state().build==2,"a long hold keeps native DROP")
-tap(p); assert(state().build==3); stats(p,10,9); stats(q,10,9)
-
--- The build locks while enemies remain.
-enter(2,true); tap(p); assert(state().build==3,"locked in combat")
-
--- Three unique clears with three different builds award +0.2 damage for the floor.
-finish(); assert(hud()=="Qwen-chan: Balanced  Variants 1/3  Awards 0/3",hud())
-tap(p); fire("MC_PRE_SPAWN_CLEAN_AWARD"); enter(2,true); finish(); assert(hud():find("Heavy  Variants 1/3"),"re-clearing a room does not count")
-tap(p); tap(p); assert(state().build==3)
-enter(3,true); finish(); assert(hud():find("Variants 1/3"),"repeating a build does not count")
-enter(4,false); fire("MC_PRE_SPAWN_CLEAN_AWARD"); tap(p); assert(state().build==1)
-enter(5,false); fire("MC_PRE_SPAWN_CLEAN_AWARD"); assert(hud():find("Variants 1/3"),"a peaceful room is not a clear")
-enter(6,true); finish(); assert(hud():find("Variants 2/3"))
-tap(p); enter(7,true); finish()
-assert(state().awards==1 and state().used==0 and texts[#texts]=="Final final version"); stats(p,8.67,7)
-assert(state(1).awards==0,"each player has their own checklist")
-
--- Up to three awards; Birthright raises each to +0.3.
-state().awards=2; state().used=3; tap(p); enter(8,true); finish(); assert(state().awards==3)
-state().used=0; tap(p); enter(9,true); finish(); assert(state().used==0,"capped awards stop the checklist")
-tap(p); tap(p); assert(state().build==3); stats(p,10.6,9)
-p.birthright=true; stats(p,10.9,9); p.birthright=false
-
--- Continue keeps build, checklist and awards; a new floor clears them.
-state().used=5; tap(p)
+-- A different selection is pinned through two distinct combat clears.
+tap(p); assert(state().build==1 and state().pinned==2); stats(p,13,11)
+tap(p); assert(state().build==1,"safe-room taps cannot skip the pin"); stats(q,10,9)
+enter(2,true); tap(p); assert(state().build==1,"combat cannot change builds")
+finish(); assert(state().pinned==1 and state().used==1)
+fire("MC_PRE_SPAWN_CLEAN_AWARD"); enter(2,true); finish(); assert(state().pinned==1,"duplicate/revisited clear is not new")
+enter(3,false); fire("MC_PRE_SPAWN_CLEAN_AWARD"); assert(state().pinned==1,"peaceful callback cannot unpin")
+enter(4,true); finish(); assert(state().pinned==0)
+tap(p); assert(state().build==2 and state().pinned==2); stats(p,8.5,7)
+down[0]=true; tick(20); down[0]=false; tick(); assert(state().build==2,"native long DROP remains")
+enter(5,true); finish(); enter(6,true); finish(); assert(state().pinned==0 and state().used==3)
+tap(p); assert(state().build==3); stats(p,10,9)
+enter(7,true); finish(); assert(state().awards==1 and state().used==0); stats(p,10.2,9)
+assert(state(1).awards==0,"partner checklist is independent")
+-- Pin releases even at the award cap, while the original cap/BR bonuses remain.
+state().awards=3; state().used=0; enter(8,true); finish(); assert(state().pinned==0 and state().used==0)
+stats(p,10.6,9); p.birthright=true; stats(p,10.9,9); p.birthright=false
+tap(p); assert(state().build==1 and state().pinned==2)
+-- Continue retains the chosen build and remaining commitment.
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
-assert(state().build==1 and state().used==5 and state().awards==3); stats(p,(10+0.6)*1.3,11)
-floor=20; enter(1,false); assert(state().used==0 and state().awards==0 and next(state().cleared)==nil); near(p.Damage,13); stats(p,13,11)
-enter(2,true); finish(); assert(state().used==1,"the same room seed on a new floor is new")
-tap(p); enter(3,true); p.dead=true; finish(); p.dead=false; assert(state().used==1,"a dead Qwen earns nothing")
+assert(state().version==2 and state().build==1 and state().pinned==2 and state().awards==3)
+stats(p,(10+0.6)*1.3,11); tap(p); assert(state().build==1)
+floor=20; enter(1,false)
+assert(state().build==3 and state().pinned==0 and state().used==0 and state().awards==0 and next(state().cleared)==nil)
+stats(p,10,9); tap(p); assert(state().build==1 and state().pinned==2,"new floor permits an immediate choice")
+enter(2,true); p.dead=true; finish(); p.dead=false; assert(state().pinned==2 and state().used==0,"dead players neither earn nor unpin")
+-- Old saves retain their selected build/award and receive no retroactive lock.
+Risk.state.qwenFineTune["0"]={version=1,build=2,used=5,awards=1,cleared={}}
+tick(); assert(state().version==2 and state().build==2 and state().pinned==0 and state().used==5 and state().awards==1)
+stats(p,10.2*0.85,7)
 
 -- Identity and character changes do not transfer progress; corrupt data resets.
 clear=true; players[1]=player(101,999,0); p=players[1]; tick(); assert(state().build==3 and state().used==0)
