@@ -188,7 +188,7 @@ enter(3,true); foe=enemy(50); local distant=enemy(400); local ally=enemy(60); al
 local b1,b2,b3,b4,b5,b6=bullet(10),bullet(20),bullet(30),bullet(40),bullet(50),bullet(300)
 hurt(p,foe); down[0]=true; tick(20); down[0]=false; tick(); assert(state().token,"a long hold keeps native DROP")
 tap(p); assert(state().token==nil and texts[#texts]=="Sorry, you're right.")
-assert(foe.slowed and foe.slowed[1]==60 and not distant.slowed and not ally.slowed,"slow hostile enemies within 100 for two seconds")
+assert(foe.slowed and foe.slowed[1]==45 and not distant.slowed and not ally.slowed,"slow hostile enemies within 100 for 1.5 seconds")
 assert(b1.removed and b2.removed and b3.removed and b4.removed and not b5.removed and not b6.removed)
 hurt(p,foe); assert(state().token==nil,"one Apology per room")
 

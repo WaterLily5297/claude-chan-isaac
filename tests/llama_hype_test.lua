@@ -192,7 +192,7 @@ tap(p); assert(#texts==1,"no Hype, no new helper")
 p.Position=vec(-300)
 tick(26); assert(#p.fired==0)
 tick(); local t=p.fired[1]
-assert(#p.fired==1 and t.mult==0.5 and t.pos.x==0 and t.velocity.x==10 and t.source==p and t:GetData().ccLlamaHelper)
+assert(#p.fired==1 and t.mult==0.45 and t.pos.x==0 and t.velocity.x==10 and t.source==p and t:GetData().ccLlamaHelper)
 p.ShotSpeed=1.5; e.Position=vec(-50)
 tick(30); assert(#p.fired==2 and p.fired[2].velocity.x==-15,"aims at the nearest enemy")
 e.dead=true; tick(30); assert(#p.fired==3 and p.fired[3].velocity.x==15,"the next nearest within 400")

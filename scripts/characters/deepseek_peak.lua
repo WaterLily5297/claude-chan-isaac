@@ -14,7 +14,7 @@ local Peak = {}
 
 local PHASE_FRAMES = 360 -- Twelve active-combat seconds.
 local START_COMPUTE, CAP, BIRTHRIGHT_CAP = 12, 24, 32
-local REGEN_FRAMES = 10 -- Three Compute per second.
+local REGEN_FRAMES = 12 -- 2.5 Compute per second; existing regen values remain valid.
 local COST = {valley=2, peak=4}
 local TOGGLE_FRAMES = 30
 local FORK_SPREAD, FORK_DAMAGE = 12, 0.5

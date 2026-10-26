@@ -11,7 +11,7 @@ local RELEASE_START, RELEASE_CAP = 1, 2
 local CLEARS_PER_RELEASE = 2
 local SHARED_FLIES, SOLO_FLIES, BIRTHRIGHT_FLIES = 2, 4, 2
 local MAX_RECIPIENTS = 4
-local BASE_DAMAGE = 0.95
+local BASE_DAMAGE = 0.92
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)

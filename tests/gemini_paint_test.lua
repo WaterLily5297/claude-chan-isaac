@@ -156,23 +156,23 @@ paused=true; down[0]=true; tick(); paused=false; down[0]=false; tick(); assert(s
 tap(p); assert(state().paint==1 and texts[#texts]=="One more edit")
 draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="Gemini-chan: Paint 1/3  Edit 8s",draws[1])
 
--- Only the owner's damage to the painted enemy gains +20%.
-near(hit(close,tear(p)),12)
+-- Only the owner's damage to the painted enemy gains +15%.
+near(hit(close,tear(p)),11.5)
 near(hit(far,tear(p)),10)
 near(hit(close,tear(q)),10)
-near(hit(close,{Type=EntityType.ENTITY_LASER,SpawnerEntity=p,ToPlayer=function() end}),12)
-near(hit(close,p),12)
+near(hit(close,{Type=EntityType.ENTITY_LASER,SpawnerEntity=p,ToPlayer=function() end}),11.5)
+near(hit(close,p),11.5)
 
 -- A new mark replaces the old one.
 tap(p); assert(state().paint==0)
-near(hit(close,tear(p)),12)
+near(hit(close,tear(p)),11.5)
 tap(p); assert(state().paint==0,"no Paint means no mark")
 
 -- The mark lasts eight seconds of updates and pause freezes it.
 close.Position=vec(500); far.Position=vec(20)
-state().paint=1; tap(p); near(hit(far,tear(p)),12); near(hit(close,tear(p)),10)
-paused=true; tick(300); paused=false; near(hit(far,tear(p)),12)
-tick(239); fire("MC_POST_UPDATE"); near(hit(far,tear(p)),12,"a duplicate update cannot age the mark")
+state().paint=1; tap(p); near(hit(far,tear(p)),11.5); near(hit(close,tear(p)),10)
+paused=true; tick(300); paused=false; near(hit(far,tear(p)),11.5)
+tick(239); fire("MC_POST_UPDATE"); near(hit(far,tear(p)),11.5,"a duplicate update cannot age the mark")
 tick(1); near(hit(far,tear(p)),10)
 
 -- The owner's defeat leaves one timed slowing peel; another killer leaves none.
@@ -186,9 +186,9 @@ local stolen=enemy(30); state().paint=1; tap(p); hit(stolen,tear(p)); tick(5)
 stolen.dead=true; fire("MC_POST_ENTITY_KILL",stolen)
 assert(#peels==2,"a defeat without the owner's credit leaves no peel")
 
--- Birthright raises the painted bonus to 30%.
+-- Birthright raises the painted bonus to 25%.
 local boss=enemy(30); state().paint=1; tap(p); p.birthright=true
-near(hit(boss,tear(p)),13); p.birthright=false
+near(hit(boss,tear(p)),12.5); p.birthright=false
 
 -- Leaving the room ends the mark without refund.
 local before=state().paint

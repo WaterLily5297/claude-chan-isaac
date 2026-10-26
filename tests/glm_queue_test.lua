@@ -177,12 +177,12 @@ dmg(p,10)
 -- The pass spends on new hostile rooms only; the bonus belongs to that room.
 enter(4,true); assert(state().pass==2,"revisiting a seen hostile room does not spend"); dmg(p,10)
 enter(7,false); assert(state().pass==2,"a peaceful room does not spend")
-enter(8,true); assert(state().pass==1 and state().activeRoom); dmg(p,12); dmg(q,10)
+enter(8,true); assert(state().pass==1 and state().activeRoom); dmg(p,11.5); dmg(q,10)
 assert(hud()=="GLM-chan: Access active  1 room(s) left",hud())
-finish(); assert(state().queue==0,"the Queue pauses while the pass boosts this room"); dmg(p,12)
+finish(); assert(state().queue==0,"the Queue pauses while the pass boosts this room"); dmg(p,11.5)
 enter(9,false); dmg(p,10)
 enter(8,true); dmg(p,10); assert(state().pass==1,"returning to a boosted room neither boosts nor spends")
-enter(10,true); assert(state().pass==0); dmg(p,12)
+enter(10,true); assert(state().pass==0); dmg(p,11.5)
 finish(); assert(state().queue==0,"the last pass room still pauses the Queue")
 enter(11,true); dmg(p,10); finish(); assert(state().queue==1,"the Queue resumes after the pass")
 
@@ -203,10 +203,10 @@ state().activeRoom=nil
 p.birthright=true; state().queue=3; tap(p); assert(state().pass==3); p.birthright=false
 
 -- Continue keeps the Queue, the pass and the boosted room.
-enter(13,true); assert(state().pass==2); dmg(p,12)
+enter(13,true); assert(state().pass==2); dmg(p,11.5)
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
-dmg(p,12); assert(state().pass==2,"continue does not spend again")
-room=99; dmg(p,10); room=13; dmg(p,12) -- the bonus is tied to its room even before room callbacks run
+dmg(p,11.5); assert(state().pass==2,"continue does not spend again")
+room=99; dmg(p,10); room=13; dmg(p,11.5) -- the bonus is tied to its room even before room callbacks run
 
 -- A new floor resets seen rooms and awards but keeps the pass.
 floor=20; enter(2,true); assert(state().pass==1,"the same room seed on a new floor is new")

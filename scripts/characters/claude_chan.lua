@@ -12,7 +12,7 @@
 -- clears) are spent with a DROP tap to remove 40 usage; they cannot cancel an
 -- active Limited penalty.
 -- Account age (per player): every floor reached without being Suspended adds
--- +0.2 damage, up to +1.6. A suspension resets it ("Banned again"); Birthright
+-- +0.15 damage, up to +1.2. A suspension resets it ("Banned again"); Birthright
 -- keeps it through the first suspension on each floor without cancelling the
 -- penalty. Older saves with one shared age give it to each Claude present.
 
@@ -36,7 +36,7 @@ local APPEAL_START, APPEAL_MAX = 1, 2
 local CLEARS_PER_APPEAL = 2
 local APPEAL_RELIEF = 40
 
-local AGE_DAMAGE = 0.2
+local AGE_DAMAGE = 0.15
 local AGE_MAX = 8
 
 local function isClaude(player)

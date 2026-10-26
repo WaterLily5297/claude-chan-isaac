@@ -9,7 +9,7 @@ local Gemini = {}
 local PAINT_START, PAINT_CAP = 2, 3
 local MARK_RADIUS = 180
 local MARK_FRAMES = 240 -- Eight seconds.
-local MARK_BONUS, BIRTHRIGHT_BONUS = 1.2, 1.3
+local MARK_BONUS, BIRTHRIGHT_BONUS = 1.15, 1.25
 local PEEL_FRAMES = 120 -- Four seconds of slowing creep.
 
 local function integer(v, minimum, maximum)

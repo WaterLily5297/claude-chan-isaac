@@ -198,8 +198,11 @@ suspended=false
 -- age is handed to every Claude present when the run continues.
 usage().age=1; usage(1).age=4
 fire("MC_POST_NEW_LEVEL"); assert(usage().age==2 and usage(1).age==5,"floors age each account")
-p:EvaluateItems(); assert(math.abs(p.Damage-3.9)<1e-9,"age adds +0.2 damage per floor")
-usage(1).age=8; fire("MC_POST_NEW_LEVEL"); assert(usage(1).age==8,"age caps at +1.6")
+p:EvaluateItems(); assert(math.abs(p.Damage-3.8)<1e-9,"age adds +0.15 damage per floor")
+usage(1).age=8; fire("MC_POST_NEW_LEVEL"); assert(usage(1).age==8,"age caps at +1.2")
+-- B1 boundary: eight floors stay capped, and cache reevaluation cannot stack.
+q:EvaluateItems(); assert(math.abs(q.Damage-4.7)<1e-9,"eight floors add exactly +1.2")
+q:EvaluateItems(); assert(math.abs(q.Damage-4.7)<1e-9,"age bonus is not cumulative across cache evaluations")
 usage().age=nil; usage(1).age=nil; Risk.state.accountAge=3
 reload(); p,q=players[1],players[2]
 assert(usage().age==3 and usage(1).age==3 and Risk.state.accountAge==nil,"a shared legacy age migrates per player")

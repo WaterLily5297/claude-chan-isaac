@@ -2,7 +2,7 @@
 -- Character design by ZipZipPipe, used non-commercially with credit.
 --
 -- Each floor starts with 220 Quota and two Appeal Pages (cap two). A paid
--- attack costs one Quota (two with Subagent Swarm) and she deals 1.25x damage:
+-- attack costs one Quota (two with Subagent Swarm) and she deals 1.2x damage:
 -- a same-frame volley of tears, laser starts and Dr. Fetus bombs, each further
 -- 0.2-second window of a held beam or Ludovico tear, a knife throw, a melee
 -- swing or an Epic Fetus rocket.
@@ -26,7 +26,7 @@ local CLEARS_PER_PAGE = 3
 local REVIEW_FRAMES = 180 -- Six active-combat seconds.
 local REVIEW_QUOTA, BIRTHRIGHT_REVIEW_QUOTA = 60, 90
 local SWARM_QUOTA = 1
-local DAMAGE_MULT, SUSPENDED_DAMAGE = 1.25, 0.5
+local DAMAGE_MULT, SUSPENDED_DAMAGE = 1.2, 0.5
 
 local TEAR_TINT = {0.85, 0.3, 0.2, 1}
 local SUSPENDED_TINT = {0.4, 0.4, 0.4, 0.7}

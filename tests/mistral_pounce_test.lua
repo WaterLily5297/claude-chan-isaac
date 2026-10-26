@@ -181,7 +181,7 @@ run(p,60); assert(state().ready)
 local ahead,behind,side,far,walled=enemy(50),enemy(-50),enemy(40,60),enemy(130),enemy(70,5)
 walls={60}
 p.aim=vec(1,0); down[0]=false; tick(); down[0]=true; tick(); down[0]=false; tick()
-assert(#ahead.taken==1 and ahead.taken[1]==20,"2x owner damage to a target ahead")
+assert(#ahead.taken==1 and ahead.taken[1]==18,"1.8x owner damage to a target ahead")
 assert(#behind.taken==0 and #side.taken==0 and #far.taken==0 and #walled.taken==0,"only the forward line, within reach, without walls")
 assert(not state().ready and texts[#texts]=="Pounce!")
 assert(hud()=="Mistral-chan: Cooldown 3s",hud())

@@ -127,8 +127,8 @@ test("children cannot trigger allowance thresholds; primary starts still do", fu
     resources(s, 100, 0, 0)
     assert(s[1].limited == 150 and not s[3].fullSend and #env.captions == captions + 3)
     near(players[1].Damage, damage[1] * 0.4)
-    near(players[2].Damage, damage[2] * 0.5 / 1.25)
-    near(players[3].Damage, damage[3] / 1.5)
+    near(players[2].Damage, damage[2] * 0.5 / 1.2)
+    near(players[3].Damage, damage[3] / 1.4)
     for _, p in ipairs(players) do wallet(p, 0, 4) end
 end)
 

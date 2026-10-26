@@ -1,5 +1,11 @@
 # Changelog
 
+## Modest character difficulty proposal (2026-10-26; awaiting approval)
+
+- Propose one small benefit reduction per form across all 22 forms; Qwen adjusts both offensive adapters. Preserve starting health, resources, native item effects and the owner-decided rules.
+- Update character descriptions and real-module numerical regressions, including cap/recovery and legacy paid-window boundaries. See docs/DIFFICULTY_PASS.md for old/new values.
+- Offline only, unmerged and uninstalled pending owner approval; preserve f8b2b0b. No new engine acceptance.
+
 ## Installation checkpoint (2026-10-26; documentation only)
 
 - Record the verified f8b2b0b installation, including DROP pocket restrictions, both new meme effects and the opt-in ancestry observer.

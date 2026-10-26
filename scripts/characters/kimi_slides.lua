@@ -12,7 +12,7 @@ local RADIUS = 220
 local AUDIENCE = 3
 local PRESENT_FRAMES = 120 -- Four seconds.
 local SLOW_VALUE = 0.6
-local BONUS = 1.15
+local BONUS = 1.12
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)

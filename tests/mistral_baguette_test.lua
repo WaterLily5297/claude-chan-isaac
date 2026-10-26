@@ -186,7 +186,7 @@ enter(2,true)
 local e1,e2,e3,e4=enemy(40,0),enemy(100,0),enemy(160,0),enemy(60,40)
 aim(p,1); tap(p); assert(state().baguettes==1 and texts[#texts]=="Baguette!")
 tick(); assert(#e1.taken==0,"the wave is slow")
-tick(); assert(#e1.taken==1); near(e1.taken[1],22.5)
+tick(); assert(#e1.taken==1); near(e1.taken[1],20.25)
 tick(14); assert(#e2.taken==0); tick(); assert(#e2.taken==1)
 tick(13); assert(#e1.taken==1 and #e3.taken==0 and #e4.taken==0,"one hit each; reach and width are bounded")
 local e5=enemy(120,0); tick(); assert(#e5.taken==0,"the wave is gone after 120 units"); e5.dead=true

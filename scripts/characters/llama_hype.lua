@@ -11,7 +11,7 @@ local BASE_DAMAGE = 0.9
 local HYPE_CAP = 3
 local FRAMES_PER_HYPE, BIRTHRIGHT_FRAMES = 120, 150 -- Four seconds; five with Birthright.
 local SHOT_FRAMES = 30 -- One tear per second.
-local TEAR_DAMAGE = 0.5
+local TEAR_DAMAGE = 0.45
 local RANGE = 400
 local TEAR_SPEED = 10
 

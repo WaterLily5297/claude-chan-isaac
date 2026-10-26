@@ -135,7 +135,7 @@ assert(hud()=="Credits 80/80  Standard  Next Reset 0/3",hud())
 
 -- Standard is free; Full Send costs one Credit per same-frame attack.
 tick(); shot(p); laser(p); assert(state().credits==80,"Standard is free")
-tap(p); assert(state().fullSend and texts[#texts]=="Full Send"); near(p.Damage,15)
+tap(p); assert(state().fullSend and texts[#texts]=="Full Send"); near(p.Damage,14)
 tick(); shot(p); shot(p); laser(p); shot(p,true); assert(state().credits==79,"one payment per frame")
 tick(); shot(p,true); assert(state().credits==79,"derived tears never pay")
 tick(); laser(p); assert(state().credits==78,"lasers pay")
@@ -185,7 +185,7 @@ floor=20; enter(1,false)
 assert(state().credits==33 and state().fullSend and state().ready and next(state().awards)==nil)
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
 assert(state().credits==33 and state().fullSend and state().ready,"continue preserves the allowance")
-near(p.Damage,15)
+near(p.Damage,14)
 
 -- Real time does nothing: pause and idle frames change no state.
 paused=true; tick(600); paused=false; tick(600); assert(state().credits==33)

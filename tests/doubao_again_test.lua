@@ -165,7 +165,7 @@ local p,q=players[1],players[2]
 near(p.Damage,10); assert(hud()=="Doubao-chan: Ready to promise",hud())
 
 -- DROP starts Confident at 1.35x; timers wait outside hostile combat.
-tap(p); assert(state().phase=="confident" and texts[#texts]=="Leave it to me!"); near(p.Damage,13.5)
+tap(p); assert(state().phase=="confident" and texts[#texts]=="Leave it to me!"); near(p.Damage,13)
 tick(90); assert(state().remaining==180,"no countdown in a cleared room")
 tap(p); assert(state().remaining==180,"one promise at a time")
 enter(2,true); assert(state().remaining==179)
@@ -200,7 +200,7 @@ tap(p); p.dead=true; tick(60); p.dead=false; tick(); assert(state().remaining==1
 
 -- Continue keeps the phase and its timer; damage is recomputed.
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
-assert(state().phase=="confident" and state().remaining==178); near(p.Damage,13.5)
+assert(state().phase=="confident" and state().remaining==178); near(p.Damage,13)
 
 -- Identity and character changes do not transfer progress; corrupt data resets.
 players[1]=player(101,999,0); p=players[1]; tick(); assert(state().phase==nil)

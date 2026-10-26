@@ -574,7 +574,7 @@ do
         for _, cb in ipairs(callbacks) do if cb.id == "MC_EVALUATE_CACHE" then cb.fn(mod, self, CacheFlag.CACHE_DAMAGE) end end
     end
     for k in pairs(pdata) do if k:find("^cc") and k ~= "ccUsage" then pdata[k] = nil end end
-    player:EvaluateItems(); assert(math.abs(player.Damage - 3.9) < 1e-9, "account age adds +0.2 per floor")
+    player:EvaluateItems(); assert(math.abs(player.Damage - 3.8) < 1e-9, "account age adds +0.15 per floor")
     R.state.risk = 95
     fire("MC_POST_PEFFECT_UPDATE", nil, player)
     assert(R.state.claudeUsage["0"].age == 0, "suspension resets account age (banned again)")

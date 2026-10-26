@@ -109,7 +109,7 @@ players={player(1,11,0),player(2,22,1)}; load(); fire("MC_POST_GAME_STARTED",fal
 local p,q=players[1],players[2]
 assert(state().quota==220 and state().pages==2 and state().review==nil,"a new run starts with 220 Quota and two Pages")
 assert(p.pocket==744,"Banked Reset is the pocket item")
-near(p.Damage,12.5); near(p.TearRange,160); near(p.ShotSpeed,1.2)
+near(p.Damage,12); near(p.TearRange,160); near(p.ShotSpeed,1.2)
 
 -- One paid volley costs one Quota; pellets, derived tears and duplicates share it.
 local t=shot(p); assert(state().quota==219 and t.CollisionDamage==4,"the tear itself is untouched")
@@ -152,7 +152,7 @@ assert(state().review.remaining==180,"pause freezes the review")
 draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="Under Review: 6s  Pages 0/2",draws[1])
 tick(179); assert(state().quota==0 and state().review.remaining==1)
 tick(); assert(state().review==nil and state().quota==60,"a finished review restores 60 Quota")
-near(p.Damage,12.5); near(p.TearColor.R,0.85)
+near(p.Damage,12); near(p.TearColor.R,0.85)
 assert(texts[#texts]=="Appeal accepted")
 
 -- No Pages means no review.
@@ -177,7 +177,7 @@ p.birthright=false
 state().quota=0; tick(); tap(p); local pages=state().pages
 assert(state().review)
 reset(p); assert(state().quota==220 and state().review==nil and state().pages==pages,"no double payout")
-near(p.Damage,12.5)
+near(p.Damage,12)
 reset(q); assert(state(1).quota==220)
 
 -- Continue keeps Quota, Pages and the review timer; entities are recreated.
@@ -192,7 +192,7 @@ tick(); assert(state().review.remaining==remaining-1,"the review resumes after c
 -- A new floor refills Quota and Pages and drops the review; continue on it does not.
 floor=20; enter(1,false)
 assert(state().quota==220 and state().pages==2 and state().review==nil and next(state().awards)==nil)
-near(p.Damage,12.5)
+near(p.Damage,12)
 state().quota=5
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]
 assert(state().quota==5,"continue does not refill")

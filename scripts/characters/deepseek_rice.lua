@@ -213,7 +213,7 @@ function Rice:Init(mod, Risk, Meal)
             if continuous and b.window and b.clock-b.window.clock<6 then
                 b.volley={frame=now,clock=b.clock,multiplier=b.window.multiplier}
             else
-                b.volley={frame=now,clock=b.clock,multiplier=1+b.state.thought/150,discrete=not continuous}
+                b.volley={frame=now,clock=b.clock,multiplier=1+0.9*b.state.thought/150,discrete=not continuous}
                 b.state.thought=0
             end
         end

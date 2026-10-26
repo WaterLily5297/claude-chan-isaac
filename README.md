@@ -86,18 +86,20 @@ Hold any **3** of Ultrathink, Compact, Vibe Coding, Subagent Swarm, --dangerousl
 
 ## Characters
 
+B1 candidate: the small numerical changes below await owner approval; installed `f8b2b0b` retains the old values. See [the 22-form comparison and proposal](docs/DIFFICULTY_PASS.md).
+
 Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, normal forms start with ❤❤💙 and 1 bomb, and tainted forms start with ❤💙💙 and 1 key (tainted Claude-chan has 1 bomb instead, and tainted DeepSeek-chan has neither). "Damage ×N" multiplies your final damage. Birthright upgrades are listed for each form.
 
 ### Claude-chan (Claude)
 
 **Normal: One More Day.** ❤❤💙, 1 bomb. Range +1.5 (long context window), shot speed +0.2, speed −0.1, orange tears. Pocket item: **Ban Hammer**.
-- **Usage:** each paid volley adds 4 usage (8 with Subagent Swarm), billed for every native weapon: each volley of tears, each laser start and Dr. Fetus bomb, each further 0.2 seconds of a held beam or steered Ludovico tear, each knife throw, each melee swing and each Epic Fetus rocket. Familiars and derived tears are free. Holding fire drains 10 per second. At 100 she is **Limited**: every weapon deals 40% damage for 5 seconds, then the meter resets.
+- **Usage:** each paid volley adds 4 usage (8 with Subagent Swarm), billed for every native weapon: each volley of tears, each laser start and Dr. Fetus bomb, each further 0.2 seconds of a held beam or steered Ludovico tear, each knife throw, each melee swing and each Epic Fetus rocket. Familiars and derived tears are free. Not firing drains 10 per second. At 100 she is **Limited**: every weapon deals 40% damage for 5 seconds, then the meter resets.
 - **Appeals:** start with 1 (cap 2). Earn 1 per two unique combat clears. Tap DROP to spend one and remove 40 usage. An Appeal cannot cancel an active Limited penalty, and is refused at zero usage rather than wasted.
-- **Account age (账号满月):** +0.2 damage for every floor reached without being Suspended (max +1.6). A suspension resets it ("Banned again"). Each Claude player has their own account age in co-op.
+- **Account age:** +0.15 damage for every floor reached without being Suspended (max +1.2). A suspension resets it ("Banned again"). Each Claude player has their own account age in co-op.
 - **Risk:** covered by the risk score above.
 - **Birthright:** keeps account age through the first suspension on each floor.
 
-**Tainted: Appeal Pending.** ❤💙💙, 1 bomb. Damage ×1.25, range +1.5, shot speed +0.2. Crimson hair with a black-and-gold dress. Pocket item: **Banked Reset**.
+**Tainted: Appeal Pending.** ❤💙💙, 1 bomb. Damage ×1.2, range +1.5, shot speed +0.2. Crimson hair with a black-and-gold dress. Pocket item: **Banked Reset**.
 - **Quota:** each floor starts with 220 Quota and 2 Appeal Pages (cap 2). Each paid attack costs 1 Quota (2 with Subagent Swarm), using the same every-weapon billing as normal Claude-chan.
 - At 0 Quota she is **Suspended**: damage ×0.5.
 - While Suspended, tap DROP in combat to spend a Page on a **6-second review**. When it finishes, 60 Quota is restored. Leaving the room cancels the review.
@@ -109,7 +111,7 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 **Normal: Rice First.** ❤❤💙, 3 coins, 1 key. Damage ×0.9, blue tears. Pocket item: **Lunch Break**.
 - **Direct connection (直连):** no proxy, so a DeepSeek-only run has no IP, no risk and no risk difficulty.
 - **Rice bowls:** start with 1 (cap 2). Earn 1 per two unique combat clears. Tap DROP to spend a bowl on a 2-second meal (no healing). When she finishes eating, she gets full Thought and +0.15 speed for 6 seconds.
-- **Thought:** stop attacking to store up to 5 seconds of Thought. Your next attack deals up to ×2 damage ("Thought for N s"). Tears, released Brimstone rings, thrown knives and Dr. Fetus bombs take a snapshot of Thought. Repeated-hit beams and controlled tears use short 0.2-second windows. Epic Fetus, melee, familiars and delayed bursts are still experimental.
+- **Thought:** stop attacking to store up to 5 seconds of Thought. Your next attack deals up to ×1.9 damage ("Thought for N s"). Tears, released Brimstone rings, thrown knives and Dr. Fetus bombs take a snapshot of Thought. Repeated-hit beams and controlled tears use short 0.2-second windows. Epic Fetus, melee, familiars and delayed bursts are still experimental.
 - There is no random shot deletion and no idle recharge.
 - **Birthright:** the meal takes 1 second.
 
@@ -117,7 +119,7 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - In combat, the phase alternates between 12 seconds of **Valley** and 12 seconds of **Peak**. Empty rooms freeze the timer, and each floor starts in Valley.
 - **Compute:** start 12, cap 24 (32 with Birthright), carried across floors.
 - Each paid tear volley adds 2 **forks** at ±12° (50% damage). They cost 2 Compute in Valley and 4 in Peak. Without enough Compute only the forks are skipped; the main tear always fires.
-- In Valley, she recovers 3 Compute per second in combat while not firing.
+- In Valley, she recovers 2.5 Compute per second in combat while not firing.
 - Tap DROP to toggle **Forks On / Saving** (1-second cooldown).
 - **Off-peak boost:** non-tear attacks pay the same Compute as a tear volley (2 in Valley, 4 in Peak) and hit for ×1.3. This covers laser starts and each 0.2 seconds of a held beam, knife throws, melee swings, Dr. Fetus bombs and Epic Fetus rockets. In Saving mode, or without enough Compute, they deal native damage and cost nothing.
 - **Birthright:** Compute cap 32.
@@ -125,13 +127,13 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 ### GPT-chan (GPT)
 
 **Normal: Same Name, Smaller Brain.** ❤❤💙, 1 bomb.
-- **Verified:** ×1.15 damage. Unique combat clears add Routing. At 3 Routing, the next combat room starts in **Fallback** (×0.8 damage).
+- **Verified:** ×1.1 damage. Unique combat clears add Routing. At 3 Routing, the next combat room starts in **Fallback** (×0.8 damage).
 - In Fallback, tap DROP to tag the nearest enemy as a **Sanity Check**. Three distinct paid hits on it, or its defeat, restore Verified. One check per room, and leaving the room fails it. A new floor restores Verified.
 - **Birthright:** the Sanity Check needs only 2 hits.
 
 **Tainted: Reset Watcher.** ❤💙💙, 1 key.
 - **Credits:** 80 per run (cap 80), carried across floors.
-- Tap DROP to toggle **Standard** (free) and **Full Send** (×1.5 damage, 1 Credit per paid attack, billed on every weapon like Claude-chan's usage). At 0 Credits she drops back to Standard.
+- Tap DROP to toggle **Standard** (free) and **Full Send** (×1.4 damage, 1 Credit per paid attack, billed on every weapon like Claude-chan's usage). At 0 Credits she drops back to Standard.
 - Every three unique combat clears **bank a Tibo reset**. While one is banked, room progress pauses. The next DROP tap claims it and refills Credits.
 - **Birthright:** cap and refill raised to 100.
 
@@ -139,73 +141,73 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 **Normal: Nano Banana.** ❤❤💙, 1 bomb.
 - **Paint:** start 2 (cap 3). Earn 1 per unique combat clear.
-- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. Your damage to it is ×1.2. If you kill it, it leaves a **banana peel** that slows enemies for 4 seconds. One mark and one peel per player. Bosses can be painted.
-- **Birthright:** ×1.3 damage to the painted enemy.
+- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. Your damage to it is ×1.15. If you kill it, it leaves a **banana peel** that slows enemies for 4 seconds. One mark and one peel per player. Bosses can be painted.
+- **Birthright:** ×1.25 damage to the painted enemy.
 
 **Tainted: One More Edit.** ❤💙💙, 1 key. Damage ×0.9.
 - Tap DROP to start a 6-second **edit chain** on the nearest enemy within 180 units. Three distinct paid hits advance **Crop → Recolor → Export**.
-- Export deals one extra pulse of 2× your damage. One completed chain per room.
+- Export deals one extra pulse of 1.8× your damage. One completed chain per room.
 - Tapping again restarts the chain and erases progress. An early kill does not complete it.
 - **Birthright:** 10-second chain.
 
 ### Grok-chan (Grok)
 
 **Normal: Is This True?** ❤❤💙, 1 bomb.
-- Once per hostile room, tap DROP to **fact-check** the nearest enemy within 220 units for 6 seconds. Your damage is ×1.3 to it and ×0.9 to everything else.
+- Once per hostile room, tap DROP to **fact-check** the nearest enemy within 220 units for 6 seconds. Your damage is ×1.25 to it and ×0.9 to everything else.
 - Three distinct paid hits on it, or its defeat, **verify** it: the modifiers end and you gain +0.15 speed for the room. A timeout gives nothing.
 - **Birthright:** verification also removes up to 3 nearby enemy bullets.
 
 **Tainted: Quote Without Reading.** ❤💙💙, 1 key. Damage ×0.9.
 - Tap DROP to **quote** the nearest enemy within 220 units for 6 seconds (10-second cooldown).
 - Your paid hits on *other* enemies build **Ratio** (once per attack, max 3).
-- When the 6 seconds end, the quoted enemy takes one 1× damage pulse per Ratio. If it dies first, the Ratio is wasted, and you cannot retarget.
+- When the 6 seconds end, the quoted enemy takes one 0.9× damage pulse per Ratio. If it dies first, the Ratio is wasted, and you cannot retarget.
 - **Birthright:** if the quoted enemy dies first, half the Ratio moves to the nearest surviving enemy.
 
 ### Qwen-chan (Qwen)
 
 **Normal: Everyone's Base Model.** ❤❤💙, 1 bomb.
 - **Adapters:** start 1 (cap 2). Earn 1 per two unique combat clears.
-- Tap DROP to pick the next adapter: **Range** (+60 range), **Tempo** (×0.9 fire interval) or **Power** (×1.1 damage). Entering a new hostile room spends one Adapter to apply that bonus for the room.
+- Tap DROP to pick the next adapter: **Range** (+60 range), **Tempo** (×0.92 fire interval) or **Power** (×1.08 damage). Entering a new hostile room spends one Adapter to apply that bonus for the room.
 - **Birthright:** Adapter cap 3.
 
 **Tainted: Final Final Fine-Tune.** ❤💙💙, 1 key.
 - In a cleared room, tap DROP to cycle builds: **Heavy** (×1.3 damage, ×1.2 fire interval), **Tiny** (×0.85 damage, ×0.8 interval) or **Balanced**. The build locks while enemies remain.
-- Clear unique combat rooms with all three builds to get **+0.2 damage for the floor**, up to three times. Repeating a build does not count. A new floor resets progress and the bonus.
-- **Birthright:** +0.3 per award.
+- Clear unique combat rooms with all three builds to get **+0.15 damage for the floor**, up to three times. Repeating a build does not count. A new floor resets progress and the bonus.
+- **Birthright:** +0.25 per award.
 
 ### Llama-chan (Llama)
 
-**Normal: Please Stay Open.** ❤❤💙, 1 bomb. Damage ×0.95.
+**Normal: Please Stay Open.** ❤❤💙, 1 bomb. Damage ×0.92.
 - **Releases:** start 1 (cap 2). Earn 1 per two unique combat clears.
 - Tap DROP to spend one: every living player (up to four) gets 2 **blue flies**. Solo, you get 4.
 - **Birthright:** 2 extra flies for you.
 
 **Tainted: Still Waiting.** ❤💙💙, 1 key. Damage ×0.9.
 - Each unique combat clear adds 1 **Hype** (max 3).
-- Tap DROP to spend all Hype on a stationary **helper** that lasts 4 seconds per Hype and fires one 0.5× native tear per second at the nearest enemy. One helper at a time: a new one replaces the old, and leaving the room removes it.
+- Tap DROP to spend all Hype on a stationary **helper** that lasts 4 seconds per Hype and fires one 0.45× native tear per second at the nearest enemy. One helper at a time: a new one replaces the old, and leaving the room removes it.
 - **Birthright:** 5 seconds per Hype.
 
 ### Mistral-chan (Mistral)
 
 **Normal: Le Chat.** ❤❤💙, 1 bomb. Speed +0.1.
 - Move while firing for 2 seconds to charge a **Pounce**. Standing still for 1 second loses it.
-- Tap DROP to swipe forward: 2× damage once per enemy in an 80-unit line. Walls block it, with a 3-second cooldown.
+- Tap DROP to swipe forward: 1.8× damage once per enemy in an 80-unit line. Walls block it, with a 3-second cooldown.
 - **Birthright:** 110-unit reach.
 
 **Tainted: Le Gros Chaton.** ❤💙💙, 1 key. Speed −0.1, damage ×0.9.
 - Stand still without firing for 2 seconds to bake a **Baguette** (max 2).
-- Tap DROP to spend one on a slow forward **shockwave** that travels 120 units and deals 2.5× once per enemy. Walls stop it, with a 2-second cooldown.
+- Tap DROP to spend one on a slow forward **shockwave** that travels 120 units and deals 2.25× once per enemy. Walls stop it, with a 2-second cooldown.
 - **Birthright:** Baguettes bake in 1.5 seconds.
 
 ### Doubao-chan (Doubao)
 
 **Normal: Sorry, You're Right.** ❤❤💙, 1 bomb.
 - The first enemy-caused hit in each room grants an **Apology** token for 6 seconds. Self-damage, fake damage and donation machines do not count.
-- Tap DROP to spend it: enemies within 100 units are slowed for 2 seconds, and up to 4 nearby enemy bullets are removed. It does not refund health.
+- Tap DROP to spend it: enemies within 100 units are slowed for 1.5 seconds, and up to 4 nearby enemy bullets are removed. It does not refund health.
 - **Birthright:** the token lasts until you leave the room.
 
 **Tainted: I'll Do It Again.** ❤💙💙, 1 key.
-- When ready, tap DROP for 6 seconds of **Confident** (×1.35 damage), then 4 seconds of **Apology** (×0.85), then ready again.
+- When ready, tap DROP for 6 seconds of **Confident** (×1.3 damage), then 4 seconds of **Apology** (×0.85), then ready again.
 - Timers only run in hostile rooms. Getting hit during Confident ends it early and starts the Apology.
 - **Birthright:** Apology lasts 3 seconds.
 
@@ -213,24 +215,24 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 **Normal: Another Slide Deck.** ❤❤💙, 1 bomb.
 - Each unique combat clear earns a **Slide** (cap 6).
-- Tap DROP to spend 3 and **present** to the three nearest enemies within 220 units: for 4 seconds they are slowed and take +15% damage from you. If there is no audience, nothing is spent.
+- Tap DROP to spend 3 and **present** to the three nearest enemies within 220 units: for 4 seconds they are slowed and take +12% damage from you. If there is no audience, nothing is spent.
 - **Birthright:** a presentation costs 2 Slides.
 
 **Tainted: You Are the Manager.** ❤💙💙, 1 key. Damage ×0.85.
-- In combat, tap DROP to **assign a task** to the nearest unassigned enemy within 220 units. Each task deals three 0.6× pulses, two seconds apart.
+- In combat, tap DROP to **assign a task** to the nearest unassigned enemy within 220 units. Each task deals three 0.55× pulses, two seconds apart.
 - Up to 3 tasks at once and 9 pulses per room. Leaving the room cancels tasks, and spent budget is not refunded.
-- **Birthright:** pulses deal 0.7×.
+- **Birthright:** pulses deal 0.65×.
 
 ### GLM-chan (GLM)
 
 **Normal: Number in Queue.** ❤❤💙, 1 bomb.
 - Each unique combat clear advances the **Queue** (max 3).
-- At 3, tap DROP to redeem an **Access Pass**: +20% damage in each of the next two new hostile rooms. The Queue pauses while the pass is active, and revisits neither spend nor stack it.
+- At 3, tap DROP to redeem an **Access Pass**: +15% damage in each of the next two new hostile rooms. The Queue pauses while the pass is active, and revisits neither spend nor stack it.
 - **Birthright:** the pass lasts three rooms.
 
 **Tainted: Please Retry.** ❤💙💙, 1 key. Damage ×0.9.
 - In combat, tap DROP to queue a 2-second **request** on the nearest enemy within 200 units (3-second cooldown).
-- If it is still there when the request finishes, it takes 2× damage plus 1× per **Retry** stack, which are consumed (max 5×). If it dies first, you gain a Retry (max 3). Leaving the room cancels the request.
+- If it is still there when the request finishes, it takes 1.8× damage plus 1× per **Retry** stack, which are consumed (max 4.8×). If it dies first, you gain a Retry (max 3). Leaving the room cancels the request.
 - **Birthright:** a failed request also removes one nearby enemy bullet.
 
 ## Collectibles
@@ -444,7 +446,7 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 These are source changes. The installed `28fed37` manual-test build was left alone; offline checks do not establish native callback timing or gameplay acceptance.
 
 - **Child lasers:** normal Claude Usage, tainted Claude Quota and tainted GPT Full Send Credits now follow Opus and the shared observer: a laser whose direct `Parent` is another laser is not billed. Primary starts and later eligible primary windows retain their costs. Native parent attribution and timing still need testing.
-- **Tainted Llama's helper:** Still Waiting keeps its stationary origin, duration and native 0.5× tears. Those shots no longer spend Opus coins, consume primed attack bonuses or trigger backlog paid-attack effects. Primary attacks and Summary Stapler are unchanged; engine checks are pending.
+- **Tainted Llama helper:** the candidate keeps its stationary origin, duration and derived attack accounting, with 0.45x native tears. Helper shots do not spend Opus coins, consume attack primes or trigger paid-attack effects. Primary shots and Summary Stapler keep their accounting. Engine acceptance is pending.
 - **Other helper shots:** Please Retry and One More Finger no longer advance Opus's ten-attack coin bill or spend primed bonuses. Normal attacks and Summary Stapler still count. Native callback timing needs testing.
 - **Consensus Coin:** owned familiar projectiles count as familiar damage. Pair that with another eligible source from the same player for the mixed-source pulse. Familiar weapons alone are one category and do not spend primed attack bonuses; native ownership attribution needs testing.
 - **The Battery:** spending its stored second charge now counts for Base Model, Please Come Back and Access Pass. Costs and rewards are unchanged. Native timing and special health-charge pools still need testing.

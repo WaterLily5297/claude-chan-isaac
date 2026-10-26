@@ -159,7 +159,7 @@ test("three helper hits do not complete Sanity; three primary attacks do", funct
     near(target.damage[7], p.Damage * 3)
 end)
 
-test("helper keeps stationary origin, native arguments and half damage", function()
+test("helper keeps stationary origin, native arguments and 0.45x damage", function()
     local env, p = fresh()
     p.Position, p.ShotSpeed = Vector(10, 20), 1.5
     local target = env.npc(70, { y = 100, hp = 1000 })
@@ -171,12 +171,12 @@ test("helper keeps stationary origin, native arguments and half damage", functio
     near(call.position.X, 10); near(call.position.Y, 20)
     near(call.velocity.X, 9); near(call.velocity.Y, 12)
     assert(call.canBeEye == false and call.noTractorBeam == true and call.canTriggerStreakEnd == false)
-    assert(call.source == p and call.mult == 0.5 and helper.SpawnerEntity == p)
+    assert(call.source == p and call.mult == 0.45 and helper.SpawnerEntity == p)
     assert(helper.Position == call.position and helper.Velocity == call.velocity and helper.Type == EntityType.ENTITY_TEAR)
-    near(helper.CollisionDamage, p.Damage * 0.5)
+    near(helper.CollisionDamage, p.Damage * 0.45)
     target:TakeDamage(helper.CollisionDamage, 0, EntityRef(helper))
     assert(#target.damage == 1, "helper damage is applied exactly once")
-    near(target.damage[1], p.Damage * 0.5)
+    near(target.damage[1], p.Damage * 0.45)
     assert(helper:GetData().ccLlamaHelper and helper:GetData().ccThoughtDerived and env.C.Primed(p, "held"))
 end)
 

@@ -6,7 +6,7 @@ local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
 local Gpt = {}
 
-local VERIFIED_DAMAGE, FALLBACK_DAMAGE = 1.15, 0.8
+local VERIFIED_DAMAGE, FALLBACK_DAMAGE = 1.1, 0.8
 local ROUTING_CAP = 3
 local CHECK_RADIUS = 200
 local CHECK_HITS, BIRTHRIGHT_HITS = 3, 2

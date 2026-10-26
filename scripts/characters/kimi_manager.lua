@@ -14,7 +14,7 @@ local PULSES = 3
 local PULSE_FRAMES = 60 -- Two seconds between pulses.
 local TASK_TINT = Color and Color(1, 1, 1, 1, 0.1, 0.25, 0.35) or nil
 local ROOM_BUDGET = 9
-local PULSE_DAMAGE, BIRTHRIGHT_PULSE = 0.6, 0.7
+local PULSE_DAMAGE, BIRTHRIGHT_PULSE = 0.55, 0.65
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)

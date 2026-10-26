@@ -153,7 +153,7 @@ local function flies() local r={}; for i,x in ipairs(players) do r[i]=x.flies en
 -- Solo: one Release gives four flies.
 players={player(1,11,0)}; load(); fire("MC_POST_GAME_STARTED",false)
 local p=players[1]
-assert(state().releases==1); p:EvaluateItems(); near(p.Damage,9.5)
+assert(state().releases==1); p:EvaluateItems(); near(p.Damage,9.2)
 assert(hud()=="Llama-chan: Releases 1/2  Next 0/2",hud())
 down[0]=true; tick(20); down[0]=false; tick(); assert(p.flies==0,"a long hold keeps native DROP")
 tap(p); assert(p.flies==4 and state().releases==0 and texts[#texts]=="Released")
