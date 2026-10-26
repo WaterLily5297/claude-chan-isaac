@@ -6,12 +6,30 @@ Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIB
 
 - **Current main:** [live main](https://github.com/WaterLily5297/claude-chan-isaac/tree/main); latest gameplay merge `ef7d2dd` is owner-approved [PR #102](https://github.com/WaterLily5297/claude-chan-isaac/pull/102), including earlier O4 #101 and O5 #103. PR-head and merged-main CI passed. Subsequent changes in this checkpoint are documentation only. PR #100 remains superseded and must not merge. Fetch main and inspect open PRs before editing.
 - **Reviewed gameplay source:** `ef7d2dd` implements all 22 B1 conditions, O4 departure restoration and O5 pose packing. Those source/asset changes are now installed, with offline regression coverage but no new engine or visual acceptance. Keep older engine evidence tied to its observed build.
-- **Installed manual-test build:** gameplay checkpoint `ef7d2dded1f5d849c8a638a310074278a90e81c2`, installed on 2026-10-26. A fresh allowlisted backup preserved 443 old files and passed reread SHA-256 verification before replacement. All 451 installed tracked files matched canonical Git bytes. No paths were deleted. Documentation-only synchronization can follow without changing gameplay; the local deployment receipt pins the exact source SHA.
-- **Owner availability:** the owner approved merging #102 and downloading/installing it locally. Installation completed with the game closed; no game launch/input, settings changes or save access occurred. Agent-run engine testing still needs a fresh stated availability window. The earlier checklist reply supplied no usable gameplay result; use the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md) for this new build.
+- **Installed manual-test build:** gameplay checkpoint `ef7d2dded1f5d849c8a638a310074278a90e81c2`, installed on 2026-10-26. A fresh allowlisted backup preserved 443 old files and passed reread SHA-256 verification before replacement. All 451 installed tracked files matched canonical Git bytes. No paths were deleted. Documentation sync #104 then installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c`; all 451 tracked files were independently reverified. Preserve that installed version during source follow-ups.
+- **Owner availability:** the owner approved merging #102 and downloading/installing it locally. Installation completed with the game closed; no game launch/input, settings changes or save access occurred. Agent-run engine testing still needs a fresh stated availability window. The owner replied "not tested yet" for installed `8fd6a8c` on 2026-10-26; no manual case is accepted. Keep the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md) available without repeating the question this session.
 - **Evidence:** #102 and merged main passed CI; the source gate passes 69 offline suites. The new installation has no gameplay observation. Historical f8b2b0b launched as Repentance+ v1.9.7.17.J460 but produced no gameplay keys, fresh starts or ancestry samples: [dated record](ENGINE_AUDIT_2026-10-26.md). Neither startup nor installation is engine acceptance.
 - **Offline gate:** 69 suites, 184 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** M1/D2, B1, O4 and O5 are merged; B1 rules were approved for merge and are installed. O6 save audit/regressions and O7 a two-item proposal remain (O7 implementation needs approval). E2-E5 wait for owner availability. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
+- **Current queue:** the long-term brief continues art, character/item completion, compatibility, optional synergies and hardening. [ART_STATUS.md](ART_STATUS.md) inventories 198 files and [ART_SPEC.md](ART_SPEC.md) specifies the icon pipeline; validator migration and redraws remain pending. **Next three units:** W4.1 callback/cache/state interaction audit, W2.1 all-form completion table, W3.1 all-item completion table. Then interleave icon batches, confirmed fixes and hardening. O6 save work remains in W6.1; O7/new synergy rules need approval. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
 - **Desktop gate:** before each engine block, obtain a fresh owner confirmation of being away from the keyboard for a stated duration. On user-input, missing-monitor or obscured-window errors, stop immediately; do not retry or send keys. Close only the process launched for that block and restore settings. One attempt per go-ahead; the installed manual-test checkpoint must not be replaced again without owner authorization.
+
+## Art inventory and production guide (2026-10-26; documentation only)
+
+[ART_STATUS.md](ART_STATUS.md) reconciles all 198 bundled art paths, 92 registered icons, 22 forms and five native-presentation pills; it records outstanding side profiles, GLM fallen poses, nine tainted identities and Relay Slime art.
+[ART_SPEC.md](ART_SPEC.md) replaces stale counts/templates with current contracts and a deterministic designed-icon pipeline specification. Validator migration and actual redraws remain pending.
+The source gate covers 69 offline suites; no new rendering or engine evidence is claimed. The owner has not tested installed `8fd6a8c`, which remains unchanged.
+The obsolete thumbnail-generator API is queued for a separate repair. No identity/balance decision, runtime deployment or Workshop publication is included.
+
+## Long-term completion gates
+
+| Area | Current evidence and remaining work |
+|---|---|
+| Art | Inventory/guide available; placeholder replacement, profiles, distinct tainted previews, Relay Slime and native visuals remain open. |
+| Characters | All 22 forms and approved B1 conditions implemented; W2 table, compatibility/save gaps and real starts/combat floors remain open. |
+| Items | 80 collectibles, 12 trinkets and five pills registered; W3 table and mechanism-by-mechanism native acceptance remain open. |
+| Compatibility | Offline regressions and bounded source audits exist; W4 interaction map, combinations and broader native matrix remain open. |
+| Optional synergies | Proposal/rule approval required before implementation; no implied approval from existing character rules. |
+| Stability | W6 save/performance/integration hardening and representative full runs remain open; green CI is not playability acceptance. |
 
 ## B1 merge and installation (2026-10-26; native acceptance pending)
 
