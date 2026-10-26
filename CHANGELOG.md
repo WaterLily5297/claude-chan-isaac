@@ -1,5 +1,11 @@
 # Changelog
 
+## Resource-text hardening (2026-10-26; offline)
+
+- Clarify normal Llama's dossier: four blue flies solo, two per living co-op recipient; existing mechanics and Birthright are unchanged.
+- Clarify DeepSeek's EID in all three language registrations: idle time never refills pocket charge; Thought charging remains unchanged.
+- Mark completion-audit T1/T2 corrected in source, regenerate the interaction fingerprint, and retain installed 8fd6a8c and all native acceptance gaps.
+
 ## All-form completion audit (2026-10-26; documentation only)
 
 - Map all 22 forms to their implemented loop, approved B1 tradeoff, Birthright regression, actual save boundary and remaining text/compatibility gaps in CHARACTER_COMPLETION.md.
