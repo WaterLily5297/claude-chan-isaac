@@ -82,6 +82,8 @@ fi
 
 if [ -n "$PY" ]; then
     "$PY" tools/check_assets.py || fail=1
+    "$PY" tests/test_interaction_audit.py || fail=1
+    "$PY" tools/audit_interactions.py --check || fail=1
 fi
 
 echo "== 4. 测试 / tests (stubbed Isaac API)"
