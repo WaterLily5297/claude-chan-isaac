@@ -45,7 +45,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `34b7d60ba4a630fd8d893059f4e03680e1122efe8d558e8b2ec67a621e8da996`.
+110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `7fe280c84f024f15f5240a10c9197cd52dfc710d86689a9a4b07194a7ecde102`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -486,7 +486,7 @@ Unresolved syntax: L45: dynamic field target requires manual review; L46: dynami
 #### scripts/characters/gpt_downgrade.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gpt_downgrade.lua:107](../scripts/characters/gpt_downgrade.lua#L107)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gpt_downgrade.lua:113](../scripts/characters/gpt_downgrade.lua#L113)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gpt_downgrade.lua:116](../scripts/characters/gpt_downgrade.lua#L116)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gpt_downgrade.lua:123](../scripts/characters/gpt_downgrade.lua#L123)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gpt_downgrade.lua:124](../scripts/characters/gpt_downgrade.lua#L124)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gpt_downgrade.lua:169](../scripts/characters/gpt_downgrade.lua#L169)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gpt_downgrade.lua:179](../scripts/characters/gpt_downgrade.lua#L179)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gpt_downgrade.lua:184](../scripts/characters/gpt_downgrade.lua#L184)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/gpt_downgrade.lua:200](../scripts/characters/gpt_downgrade.lua#L200)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gpt_downgrade.lua:210](../scripts/characters/gpt_downgrade.lua#L210)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gpt_downgrade.lua:215](../scripts/characters/gpt_downgrade.lua#L215)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gpt_downgrade.lua:109](../scripts/characters/gpt_downgrade.lua#L109)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gpt_downgrade.lua:115](../scripts/characters/gpt_downgrade.lua#L115)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gpt_downgrade.lua:118](../scripts/characters/gpt_downgrade.lua#L118)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gpt_downgrade.lua:125](../scripts/characters/gpt_downgrade.lua#L125)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gpt_downgrade.lua:126](../scripts/characters/gpt_downgrade.lua#L126)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gpt_downgrade.lua:171](../scripts/characters/gpt_downgrade.lua#L171)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gpt_downgrade.lua:181](../scripts/characters/gpt_downgrade.lua#L181)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gpt_downgrade.lua:186](../scripts/characters/gpt_downgrade.lua#L186)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/gpt_downgrade.lua:202](../scripts/characters/gpt_downgrade.lua#L202)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gpt_downgrade.lua:212](../scripts/characters/gpt_downgrade.lua#L212)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gpt_downgrade.lua:217](../scripts/characters/gpt_downgrade.lua#L217)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -495,14 +495,14 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/gpt_downgrade.lua:213](../scripts/characters/gpt_downgrade.lua#L213) | `p.Damage` | `p.Damage*(b.state.verified and VERIFIED_DAMAGE or FALLBACK_DAMAGE)` | self-dependent |
+| [characters/gpt_downgrade.lua:215](../scripts/characters/gpt_downgrade.lua#L215) | `p.Damage` | `p.Damage*(b.state.verified and VERIFIED_DAMAGE or FALLBACK_DAMAGE)` | self-dependent |
 
 
 
-Risk state roots: `gptRouting` direct write at L33, L109; `gptRouting` read/alias at L33, L34.
+Risk state roots: `gptRouting` direct write at L33, L111; `gptRouting` read/alias at L33, L34.
 
 
-Unresolved syntax: L136: dynamic field target requires manual review; L175: dynamic field target requires manual review; L60: dynamic field target requires manual review; L61: dynamic field target requires manual review; L66: dynamic field target requires manual review; L69: dynamic field target requires manual review; L71: dynamic field target requires manual review; L73: dynamic field target requires manual review.
+Unresolved syntax: L138: dynamic field target requires manual review; L177: dynamic field target requires manual review; L61: dynamic field target requires manual review; L62: dynamic field target requires manual review; L67: dynamic field target requires manual review; L70: dynamic field target requires manual review; L73: dynamic field target requires manual review; L75: dynamic field target requires manual review.
 
 
 #### scripts/characters/gpt_reset.lua
@@ -552,7 +552,7 @@ Unresolved syntax: L183: dynamic field target requires manual review; L54: dynam
 #### scripts/characters/grok_ratio.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/grok_ratio.lua:99](../scripts/characters/grok_ratio.lua#L99)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/grok_ratio.lua:105](../scripts/characters/grok_ratio.lua#L105)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/grok_ratio.lua:108](../scripts/characters/grok_ratio.lua#L108)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/grok_ratio.lua:114](../scripts/characters/grok_ratio.lua#L114)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/grok_ratio.lua:158](../scripts/characters/grok_ratio.lua#L158)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/grok_ratio.lua:163](../scripts/characters/grok_ratio.lua#L163)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/grok_ratio.lua:176](../scripts/characters/grok_ratio.lua#L176)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/grok_ratio.lua:179](../scripts/characters/grok_ratio.lua#L179)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/grok_ratio.lua:101](../scripts/characters/grok_ratio.lua#L101)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/grok_ratio.lua:107](../scripts/characters/grok_ratio.lua#L107)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/grok_ratio.lua:110](../scripts/characters/grok_ratio.lua#L110)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/grok_ratio.lua:116](../scripts/characters/grok_ratio.lua#L116)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/grok_ratio.lua:160](../scripts/characters/grok_ratio.lua#L160)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/grok_ratio.lua:165](../scripts/characters/grok_ratio.lua#L165)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/grok_ratio.lua:178](../scripts/characters/grok_ratio.lua#L178)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/grok_ratio.lua:181](../scripts/characters/grok_ratio.lua#L181)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -561,14 +561,14 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/grok_ratio.lua:177](../scripts/characters/grok_ratio.lua#L177) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
+| [characters/grok_ratio.lua:179](../scripts/characters/grok_ratio.lua#L179) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `grokRatio` direct write at L40, L101; `grokRatio` read/alias at L40, L41.
+Risk state roots: `grokRatio` direct write at L40, L103; `grokRatio` read/alias at L40, L41.
 
 
-Unresolved syntax: L50: dynamic field target requires manual review; L51: dynamic field target requires manual review; L56: dynamic field target requires manual review; L58: dynamic field target requires manual review; L60: dynamic field target requires manual review; L62: dynamic field target requires manual review.
+Unresolved syntax: L51: dynamic field target requires manual review; L52: dynamic field target requires manual review; L57: dynamic field target requires manual review; L59: dynamic field target requires manual review; L62: dynamic field target requires manual review; L64: dynamic field target requires manual review.
 
 
 #### scripts/characters/kimi_manager.lua

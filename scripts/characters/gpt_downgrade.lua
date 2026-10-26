@@ -54,10 +54,11 @@ function Gpt:Init(mod, Risk)
         local all, nextBindings, nextSlots = allStates(), {}, {}
         for i = 0, Game():GetNumPlayers() - 1 do
             local p, key = Isaac.GetPlayer(i), tostring(i)
-            local pointer, previous = GetPtrHash(p), slots[key]
-            if isGpt(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
+            local pointer, previous, kind = GetPtrHash(p), slots[key], p:GetPlayerType()
+            local changed = not previous or previous.pointer ~= pointer
+                or previous.seed ~= p.InitSeed or previous.kind ~= kind
+            if id >= 0 and kind == id then
+                if previous and changed then all[key] = nil end
                 if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
                 if not b or b.seed ~= p.InitSeed or b.slot ~= key then
@@ -68,7 +69,8 @@ function Gpt:Init(mod, Risk)
                 -- A character change discards GPT's routing instead of transferring it.
                 all[key] = nil
             end
-            nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
+            -- Keep the immutable identity snapshot while this slot is unchanged.
+            nextSlots[key] = changed and {pointer=pointer, seed=p.InitSeed, kind=kind} or previous
         end
         for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
         bindings, slots = nextBindings, nextSlots

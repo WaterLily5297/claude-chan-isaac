@@ -255,4 +255,21 @@ p.birthright=true; tick(); assert(not state().verified,"old two-hit progress was
 frame=frame+1; hit(focus,tear(p)); assert(not state().verified)
 frame=frame+1; hit(focus,tear(p)); assert(state().verified,"current two-hit progress still earns Birthright completion")
 p.birthright=false
+-- Stable observation keeps accounts; slot reuse must still retire the old owner.
+fire("MC_POST_GAME_STARTED",false); enter(300,false)
+state().routing=2; state(1).routing=1
+local stableFirst,stableSecond=state(),state(1)
+tick(20)
+assert(state()==stableFirst and state(1)==stableSecond and state().routing==2 and state(1).routing==1,
+    "unchanged owners retain their accounts and routing")
+players={q,p}; tick()
+assert(state().routing==0 and state(1).routing==0 and state()~=stableFirst and state(1)~=stableSecond,
+    "swapping occupied slots cannot transfer routing")
+state().routing=2; players={q}; tick()
+assert(state().routing==2 and state(1)==nil,"departure prunes only the absent slot")
+players[2]=p; tick()
+assert(state().routing==2 and state(1).routing==0,"a returning slot starts fresh")
+state(1).routing=1
+players[1]=player(701,q.InitSeed,0); tick()
+assert(state().routing==0 and state(1).routing==1,"pointer-only replacement cannot inherit the previous account")
 print("OK: Verified / Fallback routing, Sanity Check attack accounting, Birthright and save/floor/identity lifecycle")

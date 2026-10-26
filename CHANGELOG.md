@@ -1,5 +1,11 @@
 # Changelog
 
+## GPT/Grok binding allocation (2026-10-27; offline optimization)
+
+- Reuse unchanged per-slot identity snapshots for normal GPT and tainted Grok, and read each player's type once per binding pass. Preserve pointer/seed/type replacement, missing-slot retirement and all gameplay/save rules.
+- Add a repeatable isolated profiler and record allocation/attack-history measurements with explicit native-performance limits. Attack-choice reconciliation and billing are unchanged.
+- Extend existing character regressions for stable accounts, slot swaps, departures/rejoins and pointer-only replacements. Full offline gate passes; installed 8fd6a8c remains owner-untried and untouched.
+
 ## Cache Cartridge combat expiry (2026-10-27; offline fix)
 
 - End the existing +0.15 entry bonus when a revisited clear room becomes hostile without changing rooms. Observe combat during the shared update and early speed-cache evaluation; clearing again does not regrant the consumed entry bonus.
