@@ -1,5 +1,11 @@
 # Changelog
 
+## Charged-use replacement audit (2026-10-27; offline evidence)
+
+- Add a standalone diagnostic for refused/accepted active uses followed by supplied slot, item and charge changes. Reproduce false Base Model, Please Come Back and Access Pass observations across slots 0-3.
+- Record why charge-only and same-item predicate experiments do not establish a complete replacement: one retains false observations, the other loses accepted/removal cases. Keep production rules and code unchanged until the completion/removal contract can be verified.
+- Document native follow-ups and base/optional-extension API limits. The normal gameplay suites remain unchanged; diagnostic exit is not a compatibility pass. Installed 8fd6a8c is preserved.
+
 ## Third ten designed item icons (2026-10-27; offline art)
 
 - Replace ten existing collectible placeholders with original cake, guarded bowl, alarm clock, fish jar, target loupe, route receipt, winding power pack, identity badge, banana peel and broad brush drawings.
