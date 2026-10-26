@@ -1,5 +1,11 @@
 # Changelog
 
+## All-item completion audit (2026-10-26; documentation only)
+
+- Map all 80 collectibles, 12 trinkets and five pills to registration, actual source behavior/state, existing fixtures and specific native or semantic gaps; list Agentic, Hydra and Relay Slime separately.
+- Reconcile all 80 pool entries over 79 unique collectibles and distinguish shared-service tests, smoke observations and unverified native interactions. Record fifteen follow-up findings without changing gameplay or claiming new regressions.
+- Correct stale expansion rollout prose, retain unimplemented design components explicitly, and preserve the owner's untested installed 8fd6a8c checkpoint.
+
 ## Resource-text hardening (2026-10-26; offline)
 
 - Clarify normal Llama's dossier: four blue flies solo, two per living co-op recipient; existing mechanics and Birthright are unchanged.

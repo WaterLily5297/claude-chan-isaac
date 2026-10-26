@@ -1,14 +1,14 @@
 # Eleven families, twenty-two forms, fifty additional items
 
-Owner-requested scope, 2026-10-23. This is the target design, not an implementation inventory. Current source has 22 forms. Meme batch 2 adds one collectible and one pill outside the completed fifty-row expansion; the owner approved its exact rules before #95 merged. In-game balance remains unverified. See [MEME_BATCH_2.md](MEME_BATCH_2.md). All fifty rows of the item table are implemented locally with offline tests (Summary Stapler first, rows 02-50 on 2026-10-24); none of this expansion has engine acceptance. The character loops and tainted forms below remain targets. Existing mechanics remain until their replacements are implemented and migrated deliberately. Values below are initial balance targets, not claims about real model performance.
+Owner-requested scope, 2026-10-23. This records design targets, not completion or native acceptance. Current source has 22 forms and baseline implementations for all fifty expansion items (Summary Stapler first, rows 02-50 on 2026-10-24). Some target components remain absent or differ from the implementation, including Herd Bell gathering and the old Tibo Reset Credits proposal; see [ITEM_COMPLETION.md](ITEM_COMPLETION.md) for all 97 registered items, actual state boundaries and gaps. Meme batch 2 adds one collectible and one pill outside the fifty; its exact rules were owner-approved before #95 merged. See [MEME_BATCH_2.md](MEME_BATCH_2.md). In-game balance remains unverified. Preserve existing mechanics until replacements and migrations are deliberately approved; these fictional values are not claims about real model performance.
 
 Normal designs retain the selected ZipZipPipe identities. Tainted designs are alternate fictional roles, not interchangeable dark recolors. Existing tainted Claude/DeepSeek identities remain approved; the other nine require original derivative artwork and documented source terms. No complete artist-authored set of those nine darker variants has been verified.
 
 ## Character loops
 
-[CHARACTER_GAMEPLAY.md](CHARACTER_GAMEPLAY.md), revision 2, replaces the preliminary capability-based roles. The owner requested community-meme identities: Claude bans/appeals, DeepSeek rice and peak/valley wordplay, GPT downgrade and Tibo reset, followed by eight researched candidates. That document specifies all twenty-two proposed loops, input, resource caps, drawbacks, Birthright targets and persistence boundaries. They are not implemented or approved balance results.
+[CHARACTER_GAMEPLAY.md](CHARACTER_GAMEPLAY.md), revision 2, replaces the preliminary capability-based roles. The owner requested community-meme identities: Claude bans/appeals, DeepSeek rice and peak/valley wordplay, GPT downgrade and Tibo reset, followed by eight researched candidates. All twenty-two loops and the owner-approved B1 conditions now have source implementations; [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) separates their input, resources, Birthright fixtures and actual persistence from remaining targets. Approval of those rules and offline tests is not acceptance of native behavior or balance.
 
-See [COMMUNITY_MEME_RESEARCH.md](COMMUNITY_MEME_RESEARCH.md) for source quality and access limits, and [MOD_CHARACTER_REFERENCES.md](MOD_CHARACTER_REFERENCES.md) for public mod patterns and the unresolved hurt-pose issue. Do not retain a second contradictory character table here.
+See [COMMUNITY_MEME_RESEARCH.md](COMMUNITY_MEME_RESEARCH.md) for source quality and access limits, and [MOD_CHARACTER_REFERENCES.md](MOD_CHARACTER_REFERENCES.md) for public mod patterns. Hurt/Death packing has offline corrections; native pose acceptance remains open in [POSE_REVIEW.md](POSE_REVIEW.md). Do not retain a second contradictory character table here.
 
 ## Tainted art directions
 
@@ -30,7 +30,7 @@ All heads need front/fire/right/right-fire/rear/rear-fire views and an anchor-co
 
 ## Fifty additional collectibles
 
-Four items per family (44) plus six shared items (50). These are not fifty recolored stat upgrades. A = active with room charge count; P = passive. Unless marked **local implementation**, entries are designs only. Pool placement, icons, exact cooldowns and interactions require per-item implementation and review. Existing seventeen collectibles are excluded from this count.
+Four items per family (44) plus six shared items (50). A = active with room charge count; P = passive. **Local implementation** means baseline source exists, not that every sentence below is implemented or accepted. The original seventeen collectibles are excluded from this count; subsequent meme extras are also separate. Registration, pool placement and placeholder icons exist, while designed icons and native interactions remain open. Consult [ITEM_COMPLETION.md](ITEM_COMPLETION.md) before treating an old target as current behavior.
 
 | # | Family / item | Type | Intended behavior and limit |
 |---|---|---|---|
