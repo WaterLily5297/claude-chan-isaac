@@ -1,5 +1,11 @@
 # Changelog
 
+## Static interaction audit (2026-10-26)
+
+- Add a non-executing Lua source scanner and reproducible callback/priority, cache, field-write and Risk-root inventory across 110 production files.
+- Classify overlaps conservatively, retain source locations and manual review notes, and record unresolved damage/colour/order/save combinations without changing gameplay.
+- Add eleven scanner regression cases and a checked report-freshness gate. Preserve installed 8fd6a8c and all native acceptance limits.
+
 ## Art inventory and production specification (2026-10-26)
 
 - Inventory all 198 bundled art files, 22 forms, 92 item icons and native-only pill/Slime/HUD presentation with provenance, defects and target work.
