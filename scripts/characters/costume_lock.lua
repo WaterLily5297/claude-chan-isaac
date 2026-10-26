@@ -52,13 +52,17 @@ local function EachPlayer(fn)
 end
 
 -- A form changed away from ours (Clicker, revival): give back item costumes
--- the lock removed. Transformation layers are not rebuilt here.
+-- and acquired native transformation costumes the lock removed. This restores
+-- visuals only; never grant the transformation or replay its stat/effect gains.
 local function Restore(player)
     local config = Isaac.GetItemConfig()
     local size = config:GetCollectibles().Size
     for id = 1, size - 1 do
         local item = config:GetCollectible(id)
         if item and player:HasCollectible(id, true) then player:AddCostume(item, false) end
+    end
+    for form = 0, PlayerForm.NUM_PLAYER_FORMS - 1 do
+        if player:HasPlayerForm(form) then player:AddPlayerFormCostume(form) end
     end
 end
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## Native transformation costume restoration (2026-10-26; offline)
+
+- Restore currently acquired native transformation costumes once when a player leaves a mod form, alongside held item costumes; do not grant transformations or replay effects.
+- Add failing-first departure/co-op/form-boundary regressions and an effect-layer source audit. Fixed mod looks remain unchanged; visual timing, shield cues and size/flight cases still need native acceptance.
+- Preserve installed f8b2b0b. The owner redirected draft #100 from numerical reductions toward new character-specific gameplay tradeoffs; that draft is not approved.
+
 ## Installation checkpoint (2026-10-26; documentation only)
 
 - Record the verified f8b2b0b installation, including DROP pocket restrictions, both new meme effects and the opt-in ancestry observer.
