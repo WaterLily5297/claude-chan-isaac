@@ -2,7 +2,7 @@
 
 Updated 2026-10-26 from source `8fd6a8c`. The roster has **11 families / 22 forms, 80 collectibles, 12 trinkets and five pill effects**. [ART_STATUS.md](ART_STATUS.md) inventories every bundled image/animation and the native presentations without custom files. That document is the art queue; this one defines how replacements are produced and checked.
 
-This documentation unit specifies the designed-icon pipeline. It does **not** implement that pipeline, redraw an asset or change `tools/check_assets.py`. The current exact placeholder-byte gate remains active until the migration below ships with its own tests. Native art acceptance remains pending.
+The designed-icon registry, producer and validator are now implemented in source. All 92 shipped icons still have placeholder status and retain their prior bytes; no icon is promoted by this tooling change. The first designed batch and native art acceptance remain pending.
 
 ## Identity, compatibility and rights
 
@@ -65,18 +65,33 @@ The target is readable beside native pickups at the game's scale, using original
 
 The existing Hardcoded Output digits are a recorded migration issue, not a reason to silently fail all legacy icons in a documentation change. Existing recognizable object icons may need refinement rather than replacement with an unrelated metaphor. New art does not authorize changing a registered name, effect, charge, quality or pool weight.
 
-## Reproducible item pipeline: selected, implementation pending
+## Reproducible item pipeline
 
-Use **deterministic drawing code**, extending the project's existing reproducible approach. Commit the drawing source and generated PNGs, not private generation sessions. The planned source is `tools/make_item_art.py`; the planned per-icon registry is `docs/item-art-manifest.json`. These files do not yet exist. Keep character production and its existing manifests separate.
+Use **deterministic drawing code**, extending the project's existing reproducible approach. Commit the drawing source and generated PNGs, not private generation sessions. [make_item_art.py](../tools/make_item_art.py) produces and validates icons against [item-art-manifest.json](item-art-manifest.json). Keep character production and its existing manifests separate.
 
-Each designed-icon entry will record its exact registered name/gfx path, status, drawing function/version, author/provenance and applicable terms, declared palette and alpha contract, output SHA-256, semantic description and contact-sheet reference. Track explicit `placeholder` versus `designed` status; never infer a designed icon merely because a file was manually overwritten. A `designed` entry is production status, not owner or engine acceptance.
+Every entry records its exact registered name/gfx path, status, drawing function/version, author/provenance and applicable terms, palette and alpha contract, output SHA-256 and semantic description. Designed entries additionally require a contact-sheet path under docs/art. Track explicit `placeholder` versus `designed` status; never infer a designed icon merely because a file was manually overwritten. A `designed` entry is production status, not owner or engine acceptance.
 
-Migration order:
+The source gate dispatches by explicit status. Placeholders must still match the original producer, including its symmetry rules. Designed entries must match their drawing code and declared palette, use hard alpha, have a visible silhouette and a transparent outer pixel margin. More than sixteen declared colours requires a documented reason in the drawing definition. The registry must partition every registered icon; unknown/missing/duplicate paths, name/kind mismatches, unregistered files, stale metadata and invalid collectible-pool references fail. Other character/menu/pose gates are retained.
 
-1. Add the registry/producer and meaningful validator regressions. Cover unknown/duplicate paths, a missing registration, invalid dimensions/colour type, empty/opaque backgrounds, undeclared colours or alpha, stale output and invalid pool references. Demonstrate old-check failure for a valid designed icon and rejection of malformed candidates.
-2. Update `tools/check_assets.py` to dispatch explicitly by registry status. Legacy placeholders must still equal `make_placeholders.py` output. Designed entries must satisfy their geometry/palette/transparency/provenance contract and match their own deterministic producer, **not** placeholder bytes. The two sets must partition every registered icon with no gaps or overlap.
-3. Verify registered collectible pool names and all item gfx references independently of artwork status. Preserve existing player, menu, manifest and pose checks. Reject unexplained asset changes; do not make a broad hash update solely to silence the gate.
-4. Migrate about ten icons in a focused main-based PR. Keep all other PNGs byte-identical, provide the source and previews, and update ART_STATUS, art terms as needed, HANDOFF, TESTING and CHANGELOG. Do not count this guide as implementation of those checks.
+Commands (Python 3.9+, standard library):
+
+```sh
+python tools/make_item_art.py --check
+python tools/make_item_art.py --write
+python tools/make_item_art.py --write --out /path/to/review-export
+python tests/test_item_art.py
+```
+
+Check is read-only. Write regenerates registered PNGs and metadata from code after validating every producer; it does not accept manual PNG edits by updating their hashes. Export leaves the repository manifest unchanged and cannot target the canonical icon directory. Bootstrap with --init-manifest is only for a missing registry and refuses to replace an existing one. Do not use bootstrap to reset production statuses.
+
+The legacy make_placeholders.py default, including --out pointing back to the repository icons, now writes only registered placeholders. A separate temporary --out export still provides old artwork for before/after review. Its preview contains the placeholders produced by that invocation. Neither tool deploys to the game installation.
+
+Art-batch workflow:
+
+1. Add original drawing functions and Design definitions keyed by exact registered gfx paths to DESIGNS in make_item_art.py. Supply declared palette, version, meaning, author, original-pixel provenance and a review sheet. The pipeline is for original project MIT icon art; do not use it to relabel character derivatives or imported images.
+2. Change only intended registry entries to designed, then regenerate with --write. Review code, output and metadata together. Untargeted PNGs must stay byte-identical; the explicit metadata does not replace visual review.
+3. Run the contract regressions and full gate. Thirteen regression groups cover mixed status, malformed candidates, registration/pools, read-only validation and legacy overwrite protection. A valid original test shape passes the new contract but fails the old placeholder equality gate; the fixture is not shipped game art.
+4. Migrate about ten icons in a focused main-based PR, supplying the before/after 1x/4x review package and updating ART_STATUS, terms as needed, HANDOFF, TESTING and CHANGELOG. The tooling unit keeps all 92 placeholder PNGs unchanged; it is not a completed icon batch.
 5. After the required full gate, final-head CI and review, merge under the standing source policy. Runtime installation is a separate authorized, backed-up action; an icon PR must not overwrite the owner's manual-test installation.
 
 ## Review package and acceptance
