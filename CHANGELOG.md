@@ -1,5 +1,11 @@
 # Changelog
 
+## Art inventory and production specification (2026-10-26)
+
+- Inventory all 198 bundled art files, 22 forms, 92 item icons and native-only pill/Slime/HUD presentation with provenance, defects and target work.
+- Replace the stale art specification with current file/pose contracts, item-icon style and a planned deterministic designed-icon validation pipeline. No art or validator code changes yet.
+- Record the owner's untested installed `8fd6a8c` checkpoint and the next long-term audit units; preserve installed files and existing evidence boundaries.
+
 ## Approved B1 merge and installation (2026-10-26)
 
 - Merge owner-approved #102 at ef7d2dd after successful CI and install its 22 character conditions alongside O4 restoration and O5 Death packing.
