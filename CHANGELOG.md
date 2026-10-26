@@ -1,5 +1,11 @@
 # Changelog
 
+## All-form completion audit (2026-10-26; documentation only)
+
+- Map all 22 forms to their implemented loop, approved B1 tradeoff, Birthright regression, actual save boundary and remaining text/compatibility gaps in CHARACTER_COMPLETION.md.
+- Distinguish snapshot fixtures from real continuation, special-player mechanics and native weapon acceptance; retain every form as open.
+- Correct obsolete rollout and DeepSeek deployment statements. Record the Llama solo-fly dossier omission and DeepSeek pocket-charge wording for a separate readability fix. Installed 8fd6a8c remains unchanged.
+
 ## Normal Claude account-owner isolation (2026-10-26; offline)
 
 - Prevent a replacement live player in the same slot from inheriting the retired Claude's age, Usage, Appeals and pending account state; prune observed removed slots and refresh replacement caches.

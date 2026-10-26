@@ -6,6 +6,8 @@ The owner requested a new art pass and playable model-inspired mechanics on 2026
 
 ## Gameplay
 
+The [all-22-form completion audit](CHARACTER_COMPLETION.md) maps the current loops, Birthright fixtures, save boundaries and remaining work. Every form remains open for native acceptance; source coverage is not a finished gameplay rating.
+
 All 22 B1 feature revisions below are implemented in owner-approved, merged PR #102 and covered by offline regressions. They preserve baseline numerical benefits and are installed in gameplay checkpoint ef7d2dd. Native gameplay and balance are not yet accepted. Full rules and baseline comparison: [DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md).
 
 All 22 forms use the shared DROP rule: short release with at most one pocket item. Multiple cards/pills/pocket actives disable the ability and leave native selection untouched. Inventory changes during a held gesture cannot rearm it; release first. Long holds remain native. Main/Schoolbag actives are outside this pocket count. This is source behavior; physical input acceptance is pending.
