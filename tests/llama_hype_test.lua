@@ -241,4 +241,23 @@ p.Position=vec(120); tick(29); assert(#p.fired==firedBefore,"no immediate catch-
 tick(); assert(#p.fired==firedBefore+1,"the 120-unit boundary retains the original shot")
 p.Position=vec(121); tick(60); p.Position=vec(0); tick(30)
 assert(#p.fired==firedBefore+1 and not hud():find("Helper"),"out-of-range time still expires the helper")
+-- A deployed helper keeps the duration bought with Hype when Birthright changes.
+for _,initial in ipairs({false,true}) do
+    players={player(501,511,0),player(502,522,1)}; p,q=players[1],players[2]
+    down={}; paused=false; p.birthright=initial; q.birthright=not initial
+    load(); fire("MC_POST_GAME_STARTED",false); enter(201,true); enemy(40)
+    state().hype=1; state(1).hype=2; tap(p)
+    local duration=initial and 150 or 120
+    tick(30); p.birthright=not initial; tick(30)
+    p.birthright=initial; tick(30); p.birthright=not initial
+    tick(duration-91)
+    assert(hud():find("Helper 1s"),
+        "pending helper keeps its bought duration through Birthright gain/loss/reacquisition")
+    fire("MC_POST_UPDATE"); assert(hud():find("Helper 1s"),"duplicate update keeps the last helper frame")
+    tick(); assert(not hud():find("Helper"),"pending helper expires at its original deadline")
+    assert(state().hype==0 and state(1).hype==2,"inventory changes neither refund Hype nor spend a partner's Hype")
+    state().hype=1; tap(p)
+    assert(hud():find(initial and "Helper 4s" or "Helper 5s"),
+        "a later deployment samples the owner's current Birthright")
+end
 print("OK: tainted Llama Hype clears, helper duration, aiming, expiry, room exit, Birthright, floor and save/identity lifecycle")

@@ -1,5 +1,11 @@
 # Changelog
 
+## Pending Birthright timing coverage (2026-10-27; offline evidence)
+
+- Extend the tainted Gemini, Llama, Mistral and Kimi real-module suites with gain/loss/reacquisition while effects are pending. Preserve deployment-time durations, live bake thresholds and per-pulse multipliers according to each existing source contract.
+- Verify exact deadlines, progress/resources and owner separation. Four isolated sampling-policy faults pass the old suites and fail the added assertions. This closes a focused test gap without claiming a production gameplay defect.
+- Record the timing matrix and native follow-ups. Gameplay, balance, art, saved shapes and installed 8fd6a8c are unchanged; no engine or runtime access.
+
 ## Fourth ten designed item icons (2026-10-27; offline art)
 
 - Replace ten Gemini/Grok/Qwen collectible placeholders with original 32x32 objects, including a six-finger glove, paired preview frames, a megaphone, live cable, spring glove, pinned note, wooden mannequin, adapter, weight plates and clockwork mouse.
