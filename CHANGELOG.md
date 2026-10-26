@@ -1,5 +1,11 @@
 # Changelog
 
+## I Panicked repeat pickup protection (2026-10-27; offline fix)
+
+- Honor the existing source contract that Car Battery repeats damage without deleting newly appeared consumables. Ordinary uses still delete the starting pickup snapshot; boss damage, eligibility, charge return and protected pickup classes are unchanged.
+- Add real-module regressions for supplied first-hit and intervening drops, combined repeat flags, four active slots, subsequent co-op use and refusal. Baseline fails the new protection assertion; three isolated faulty implementations are rejected. Clarify the English EID and generated reference.
+- Native callback/drop timing remains unverified. Preserve installed 8fd6a8c; no runtime, save, settings or art changes.
+
 ## Thumbnail producer repair (2026-10-27; offline hardening)
 
 - Replace removed placeholder APIs with validation of the current registered Ban Hammer and an explicit 512x512 local preview export. Add a read-only comparison mode and prevent writes into game assets or art review sheets.
