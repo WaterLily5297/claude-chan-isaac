@@ -7,7 +7,7 @@ Style target, measured from the 722 vanilla collectible sprites:
   * 4-8 colours per sprite, silhouette about 26x26 of the 32x32 frame.
 
 Usage:
-    python3 tools/make_placeholders.py                  # rewrite resources/gfx/items
+    python3 tools/make_placeholders.py                  # rewrite remaining placeholders only
     python3 tools/make_placeholders.py --preview p.png  # also write a contact sheet
     python3 tools/make_placeholders.py --out DIR        # write somewhere else
     python3 tools/make_placeholders.py --check-symmetry # verify mirror-symmetric icons
@@ -1399,6 +1399,15 @@ def main():
     if "--out" in args:
         out_root = Path(args[args.index("--out") + 1])
 
+    allowed = None
+    if out_root.resolve() == (ROOT / "resources/gfx/items").resolve():
+        # The explicit registry protects migrated art even with --out pointing
+        # back at the canonical directory. Temporary legacy exports stay useful
+        # for before/after previews and byte comparisons.
+        from make_item_art import registry
+        allowed = {gfx for gfx, entry in registry(ROOT).items()
+                   if entry['status'] == 'placeholder'}
+
     grids = []
     for name in ORDER:
         grid = render(SPRITES[name]())
@@ -1408,6 +1417,8 @@ def main():
                 for x in range(SIZE // 2):
                     grid[y][SIZE - 1 - x] = grid[y][x]
         sub = "trinkets" if name in TRINKETS else "collectibles"
+        if allowed is not None and f"{sub}/{name}.png" not in allowed:
+            continue
         target = out_root / sub
         target.mkdir(parents=True, exist_ok=True)
         write_png(rgba(grid), target / (name + ".png"))
@@ -1429,7 +1440,7 @@ def main():
         if bad:
             raise SystemExit(1)
 
-    if "--preview" in args:
+    if "--preview" in args and grids:
         path = Path(args[args.index("--preview") + 1])
         preview(grids, path)
         print(f"wrote {path}")

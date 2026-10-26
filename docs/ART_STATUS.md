@@ -1,6 +1,6 @@
 # Art inventory and work queue
 
-Audited from source `8fd6a8c` on 2026-10-26. This inventory describes bundled files and source-controlled presentation, not a new visual or engine acceptance pass. The owner has not tested the installed `8fd6a8c`. Historical observations remain in [TESTING.md](TESTING.md) and [POSE_REVIEW.md](POSE_REVIEW.md).
+Art inventory audited from source `8fd6a8c` on 2026-10-26; the later W1.2 pipeline adds an explicit [92-icon registry](item-art-manifest.json) and validation without changing any PNG. This inventory describes bundled files and source-controlled presentation, not a new visual or engine acceptance pass. The owner has not tested the installed `8fd6a8c`. Historical observations remain in [TESTING.md](TESTING.md) and [POSE_REVIEW.md](POSE_REVIEW.md).
 
 ## Scope and evidence
 
@@ -303,7 +303,7 @@ Let's Delve is already counted among the 80 collectible icons; Six Seven is alre
 | Unit | Next deliverable | State / approval |
 |---|---|---|
 | W1.1 inventory | Keep this list reconciled with tracked art and XML whenever an asset changes. | Source inventory complete at the audited baseline; no new visual acceptance. |
-| W1.2 style/pipeline | Apply [ART_SPEC.md](ART_SPEC.md) through a designed-icon manifest and deliberate validator migration. | Guide specified; code migration remains pending. |
+| W1.2 style/pipeline | Apply [ART_SPEC.md](ART_SPEC.md) through a designed-icon manifest and deliberate validator migration. | Source pipeline and thirteen regression groups implemented; all 92 PNGs unchanged. Mixed-status test fixture is not shipped art or native acceptance. |
 | W1.3 item batches | About ten icons per batch, effect-specific silhouette, original reference shapes, 1x/4x sheet, provenance and checks. | All 92 remain I-P. Generic-placeholder replacements are authorized; respect any subsequently approved look. |
 | W1.4 mechanics | Correct 18 narrowed-front side profiles and two seated GLM fallen poses; inspect shared special animations and walk consistency. | Preserve selected identity; geometric fixes do not imply native acceptance. |
 | W1.5 tainted identities | Nine sets: portrait, front, side, back and hurt preview together. | Owner approval required before replacing identities. Do not overwrite C-T Claude/DeepSeek. |

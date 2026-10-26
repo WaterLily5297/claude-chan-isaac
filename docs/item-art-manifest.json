@@ -1,0 +1,3198 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "name": "Summary Stapler",
+      "gfx": "collectibles/summary_stapler.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "summary_stapler",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#5e5e5e",
+        "#636363",
+        "#8a8a8a",
+        "#a34d27",
+        "#a7a7a7",
+        "#b5b5b5",
+        "#c9bba4",
+        "#d6d6d6",
+        "#e0713f",
+        "#f2a077",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "38077549eee3eeb4c8d7952e8c2a0a30705575ea6ff3eb90d2c38ce8b257b3b2",
+      "description": "Legacy placeholder for Summary Stapler; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Ban Hammer",
+      "gfx": "collectibles/ban_hammer.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "ban_hammer",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#777777",
+        "#8f4a30",
+        "#a7a7a7",
+        "#a9743f",
+        "#c9704a",
+        "#e0713f",
+        "#e70000",
+        "#f2a077"
+      ],
+      "palette_exception": "",
+      "sha256": "249ae769de3266242110305d39237e4c3d6a18a90428c1f0f860ad5441df631f",
+      "description": "Legacy placeholder for Ban Hammer; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Residential IP",
+      "gfx": "collectibles/residential_ip.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "residential_ip",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#345c31",
+        "#4c8548",
+        "#4fb8c9",
+        "#79c07a",
+        "#a9743f",
+        "#c43333",
+        "#e1c399",
+        "#f3d9b5",
+        "#ffeecd"
+      ],
+      "palette_exception": "",
+      "sha256": "756bf3e7f6d8b8eb88ca9b83dddd0bdea9a324d8b7c89fcea4075778af169dec",
+      "description": "Legacy placeholder for Residential IP; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Compact",
+      "gfx": "collectibles/compact.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "compact",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#c9bba4",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "2ca26bbd72cc35dff0f8a263c3ab1ba5c970447c58ba4218ba7ed20560b3653f",
+      "description": "Legacy placeholder for Compact; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "You're Absolutely Right!",
+      "gfx": "collectibles/absolutely_right.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "absolutely_right",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#79c07a",
+        "#c9bba4",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "cff2907c44053a5e2952d779b780aa7212a35b7a650f7752d09989a575ed2c83",
+      "description": "Legacy placeholder for You're Absolutely Right!; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "9.9 Yuan Relay",
+      "gfx": "collectibles/cheap_relay.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "cheap_relay",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#5e5e5e",
+        "#777777",
+        "#8a8a8a",
+        "#a30000",
+        "#a7a7a7",
+        "#b08a24",
+        "#e70000",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "3811baefa48069c9d402b02de324dd30ee51f18ffdb28345cc98a7f222ec416c",
+      "description": "Legacy placeholder for 9.9 Yuan Relay; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Ultrathink",
+      "gfx": "collectibles/ultrathink.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "ultrathink",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#5e5e5e",
+        "#777777",
+        "#8a8a8a",
+        "#a34d27",
+        "#a7a7a7",
+        "#b08a24",
+        "#c9704a",
+        "#e0713f",
+        "#f0c849",
+        "#f2a077",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "79030075eed40ae13965b44eed5aa067565b92b23ccaa875544eac83594aa3b0",
+      "description": "Legacy placeholder for Ultrathink; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "1M Context",
+      "gfx": "collectibles/million_context.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "million_context",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4fb8c9",
+        "#b39568",
+        "#c9bba4",
+        "#e1c399",
+        "#f3dcb8",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "2bd8cebcfa18570e8c30d80c65612ac14890fc81a051cd5268cad7ba4e8f6ee5",
+      "description": "Legacy placeholder for 1M Context; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Silent Update",
+      "gfx": "collectibles/silent_update.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "silent_update",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#7d5f16",
+        "#a30000",
+        "#b08a24",
+        "#e70000",
+        "#f0c849",
+        "#ff5a4a",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "350429bc4c8c67d858104f99919e1a3495b7a26466ca09d89ba0c7abfcb8f59c",
+      "description": "Legacy placeholder for Silent Update; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "--dangerously-skip-permissions",
+      "gfx": "collectibles/skip_permissions.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "skip_permissions",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#777777",
+        "#7d5f16",
+        "#a7a7a7",
+        "#b08a24",
+        "#d6d6d6",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "77789c904df01789c2647f0151dcee61d8b9c1e0eda993b91e35daf47a976a65",
+      "description": "Legacy placeholder for --dangerously-skip-permissions; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Vibe Coding",
+      "gfx": "collectibles/vibe_coding.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "vibe_coding",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4fb8c9",
+        "#5b3a7c",
+        "#8a5bb5",
+        "#b08a24",
+        "#b48ad6",
+        "#d8d2c4",
+        "#f0c849"
+      ],
+      "palette_exception": "",
+      "sha256": "3605ba940d3b8adc4c5a977b3fff66b364bfb19e90d98629cdd7e3450a2fb1aa",
+      "description": "Legacy placeholder for Vibe Coding; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Banked Reset",
+      "gfx": "collectibles/banked_reset.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "banked_reset",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4c8548",
+        "#79c07a",
+        "#7d5f16",
+        "#b08a24",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "6d1a1b300823f86a38aaac98829e2fda828b515c04349d5cf42a897c90479c10",
+      "description": "Legacy placeholder for Banked Reset; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Subagent Swarm",
+      "gfx": "collectibles/subagent_swarm.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "subagent_swarm",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4fb8c9",
+        "#a34d27",
+        "#e0713f"
+      ],
+      "palette_exception": "",
+      "sha256": "89522a0c541f3a0912bb89b11736a8308fa63566e723c68f7d3ed6be7382b023",
+      "description": "Legacy placeholder for Subagent Swarm; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "The Constitution",
+      "gfx": "collectibles/constitution.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "constitution",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#8f713c",
+        "#b69150",
+        "#c43333",
+        "#d4b273",
+        "#e1c399",
+        "#e70000",
+        "#f3dcb8",
+        "#fffdf5"
+      ],
+      "palette_exception": "",
+      "sha256": "79b4511cc024e7fcf0be6aa588b455f56bef88d6ff585444d3d6d990602e1916",
+      "description": "Legacy placeholder for The Constitution; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Opus Mode",
+      "gfx": "collectibles/opus_mode.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "opus_mode",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#7d5f16",
+        "#b08a24",
+        "#c43333",
+        "#d8d2c4",
+        "#e70000",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "03b7d6297bec32da168c40268b32a6bb4b0194c00d7b7140151a87abcbe2e6f7",
+      "description": "Legacy placeholder for Opus Mode; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Lunch Break",
+      "gfx": "collectibles/lunch_break.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "lunch_break",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#7d5028",
+        "#8fe3ee",
+        "#a8a191",
+        "#d8d2c4",
+        "#f2eee4",
+        "#fffdf5"
+      ],
+      "palette_exception": "",
+      "sha256": "b3813cc7e794da79b6a226f4505f6bbe1aabe95e69b852ce14e13cb3ad04b0a1",
+      "description": "Legacy placeholder for Lunch Break; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "529 Overloaded",
+      "gfx": "trinkets/overloaded.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "overloaded",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#2b2b2b",
+        "#3a3a3a",
+        "#454545",
+        "#575757",
+        "#79c07a",
+        "#c43333",
+        "#d8d2c4",
+        "#e06a6a",
+        "#e70000"
+      ],
+      "palette_exception": "",
+      "sha256": "b3645303307d48404abca9debba2c482f42006f1e409d75059b818f0e1145757",
+      "description": "Legacy placeholder for 529 Overloaded; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "All Tests Passing",
+      "gfx": "collectibles/tests_passing.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "tests_passing",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4c8548",
+        "#777777",
+        "#79c07a",
+        "#a7a7a7",
+        "#b39568",
+        "#c9bba4",
+        "#cbcbcb",
+        "#e1c399",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "e5f648da20f48cadf8fa7aad2742d7b2a6f5060ee9c7d510ec9cdf2990b7db5d",
+      "description": "Legacy placeholder for All Tests Passing; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Hardcoded Output",
+      "gfx": "trinkets/hardcoded_output.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "hardcoded_output",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#b39568",
+        "#c9bba4",
+        "#e1c399",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "af0731e74422756c28181e003f14010af90f6d903fe95322be9c10bfd90bb8b8",
+      "description": "Legacy placeholder for Hardcoded Output; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Thinking Cleared",
+      "gfx": "trinkets/thinking_cleared.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "thinking_cleared",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#969696",
+        "#b39568",
+        "#cbcbcb",
+        "#e1c399",
+        "#f2f2f2",
+        "#f3d9b5",
+        "#f3dcb8"
+      ],
+      "palette_exception": "",
+      "sha256": "8e9c4cd4fef7c8220ef69c3be97e96eb0a972cf8c75569226010c035d5e26dd4",
+      "description": "Legacy placeholder for Thinking Cleared; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Welcome Notice",
+      "gfx": "trinkets/welcome_notice.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "welcome_notice",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#79c07a",
+        "#c9bba4",
+        "#d8d2c4",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "1a6d929e039290fd53475df8486efae1283feafcc15cb7b28f415789dca57812",
+      "description": "Legacy placeholder for Welcome Notice; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Status Page",
+      "gfx": "trinkets/status_page.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "status_page",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#2b2b2b",
+        "#3a3a3a",
+        "#575757",
+        "#79c07a",
+        "#e70000"
+      ],
+      "palette_exception": "",
+      "sha256": "b7ac55cb9159129a801db4d24557be3927ee4d200410d0c8fb7fdaccc1468022",
+      "description": "Legacy placeholder for Status Page; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Appeal Form",
+      "gfx": "trinkets/appeal_form.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "appeal_form",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#79c07a",
+        "#c9bba4",
+        "#e70000",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "197bc64750503f39570fc9b45111155f78cd18250420c56ce6230bc98a0e6c66",
+      "description": "Legacy placeholder for Appeal Form; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Support Ticket",
+      "gfx": "collectibles/support_ticket.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "support_ticket",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4fb8c9",
+        "#79c07a",
+        "#a7dd9f",
+        "#c9bba4",
+        "#d8d2c4",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "11d78fc3ef40f5b0c0a4923839a8bbfed56e9611675dea899e72fbfea6481db0",
+      "description": "Legacy placeholder for Support Ticket; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Ignore All Previous Instructions",
+      "gfx": "collectibles/ignore_instructions.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "ignore_instructions",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2b2b2b",
+        "#636363",
+        "#c9bba4",
+        "#e0713f",
+        "#e70000",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "589c1367c1949c133f3b56345341fd4f75a863029e8f92531565778c5fe703ab",
+      "description": "Legacy placeholder for Ignore All Previous Instructions; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Tungsten Cube",
+      "gfx": "collectibles/tungsten_cube.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "tungsten_cube",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#5e5e5e",
+        "#777777",
+        "#8a8a8a",
+        "#969696",
+        "#a7a7a7",
+        "#cbcbcb",
+        "#d6d6d6",
+        "#f2f2f2"
+      ],
+      "palette_exception": "",
+      "sha256": "b95c756f1067b17890e5c6530510363faf02fbc538852c5cc45b621cbdbf0c48",
+      "description": "Legacy placeholder for Tungsten Cube; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Pizza Glue",
+      "gfx": "collectibles/pizza_glue.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "pizza_glue",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#7d5028",
+        "#a34d27",
+        "#a86c1c",
+        "#a8a191",
+        "#a9743f",
+        "#d8d2c4",
+        "#e0713f",
+        "#e6ddc9",
+        "#e70000",
+        "#e8a33d",
+        "#f2eee4",
+        "#ffc86b",
+        "#fffdf5"
+      ],
+      "palette_exception": "",
+      "sha256": "86bed75a912d0c51721b25f05ef10875aaeb4c0b89ab62ef264e7d493fbccf59",
+      "description": "Legacy placeholder for Pizza Glue; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Strawberry",
+      "gfx": "collectibles/strawberry.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "strawberry",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#345c31",
+        "#4c8548",
+        "#79c07a",
+        "#a30000",
+        "#a8a191",
+        "#d8d2c4",
+        "#e70000",
+        "#f2eee4",
+        "#ff5a4a"
+      ],
+      "palette_exception": "",
+      "sha256": "c1adf93c985892eb6a64b130d612f31e78d4d278a152dd22cbe0d049f438be7c",
+      "description": "Legacy placeholder for Strawberry; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Golden Gate Claude",
+      "gfx": "collectibles/golden_gate.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "golden_gate",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#8a1e1e",
+        "#8fe3ee",
+        "#b08a24",
+        "#c43333",
+        "#f0c849"
+      ],
+      "palette_exception": "",
+      "sha256": "d895245e3c77d861375683e2627de91587bcd19a08d4722d4aa7eaecc76a1635",
+      "description": "Legacy placeholder for Golden Gate Claude; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Seahorse Emoji",
+      "gfx": "collectibles/seahorse_emoji.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "seahorse_emoji",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a8a191",
+        "#d8d2c4",
+        "#e70000",
+        "#e8a33d",
+        "#f2eee4",
+        "#ffc86b"
+      ],
+      "palette_exception": "",
+      "sha256": "7b806817ccb5506ca6b71668f4c279e4381def2be8ddd5ab84da2aee3c7c9d16",
+      "description": "Legacy placeholder for Seahorse Emoji; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Temperature Dial",
+      "gfx": "collectibles/temperature_dial.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "temperature_dial",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#2b2b2b",
+        "#3a3a3a",
+        "#4fb8c9",
+        "#a30000",
+        "#d8d2c4",
+        "#e70000"
+      ],
+      "palette_exception": "",
+      "sha256": "9ad29c450c656150d0ee9e042bcd9f8ed3b043f0b1fde7ff2624def7bfb448a5",
+      "description": "Legacy placeholder for Temperature Dial; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Deep Research",
+      "gfx": "collectibles/deep_research.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "deep_research",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4fb8c9",
+        "#636363",
+        "#777777",
+        "#7d5028",
+        "#8fe3ee",
+        "#a7a7a7",
+        "#a9743f",
+        "#c9bba4",
+        "#d6d6d6",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "1f0396eadccac0ae03a424f9330d97564eb6c0b014c2d13d74cb4ee2d7d11b50",
+      "description": "Legacy placeholder for Deep Research; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Rejection Letter",
+      "gfx": "collectibles/rejection_letter.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "rejection_letter",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#404040",
+        "#636363",
+        "#c9bba4",
+        "#d8d2c4",
+        "#e70000",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "b29b36f13405014c7c121844811cf5c1861bae486ce5901b419e8700d29b5859",
+      "description": "Legacy placeholder for Rejection Letter; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Dario's Red Stamp",
+      "gfx": "collectibles/red_stamp.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "red_stamp",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#161616",
+        "#2b2b2b",
+        "#454545",
+        "#7d5028",
+        "#a30000",
+        "#a9743f",
+        "#c69355",
+        "#e70000",
+        "#ff5a4a"
+      ],
+      "palette_exception": "",
+      "sha256": "619e87dcae7c687749b437a8e9c7dc2d1321b10c4d1962f15bf9ca6b82f7f053",
+      "description": "Legacy placeholder for Dario's Red Stamp; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Anniversary Cake",
+      "gfx": "collectibles/anniversary_cake.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "anniversary_cake",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a86c1c",
+        "#a8a191",
+        "#a9617a",
+        "#c9bba4",
+        "#d8d2c4",
+        "#e70000",
+        "#e79ab5",
+        "#e8a33d",
+        "#f2eee4",
+        "#f3e7d6",
+        "#ffc2d4",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "101e163a9807763a0a4a5618c494d5be871be236086b37cfbed96a7cc89d4441",
+      "description": "Legacy placeholder for Anniversary Cake; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Rice Cooker",
+      "gfx": "collectibles/rice_cooker.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "rice_cooker",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#161616",
+        "#2b2b2b",
+        "#4fb8c9",
+        "#969696",
+        "#a8a191",
+        "#cbcbcb",
+        "#d8d2c4",
+        "#e70000",
+        "#f2eee4",
+        "#f2f2f2"
+      ],
+      "palette_exception": "",
+      "sha256": "aa253b178770b5fd23bcfb51854aa3981e50e1ee1816e53e645ed2292ee1d974",
+      "description": "Legacy placeholder for Rice Cooker; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "One Bowl Only",
+      "gfx": "collectibles/one_bowl.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "one_bowl",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#8fe3ee",
+        "#a8a191",
+        "#d8d2c4"
+      ],
+      "palette_exception": "",
+      "sha256": "b7f1268746e0ce1253dba641d8231b02c70ad75b38eebc1330ea156c24ea23d3",
+      "description": "Legacy placeholder for One Bowl Only; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Wengu Clock",
+      "gfx": "collectibles/wengu_clock.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "wengu_clock",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2b2b2b",
+        "#2e8391",
+        "#4fb8c9",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "0c1df3e374f14f06a2fca83f943a21f11b4a5b34c5e3d897c9add9f648e3019f",
+      "description": "Legacy placeholder for Wengu Clock; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Seven-Second Memory",
+      "gfx": "collectibles/seven_second_memory.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "seven_second_memory",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#d8d2c4"
+      ],
+      "palette_exception": "",
+      "sha256": "25916995ee8d33fa2665927f9e95ed8c92445d03a6064534c3679bf760393824",
+      "description": "Legacy placeholder for Seven-Second Memory; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Sanity Test",
+      "gfx": "collectibles/sanity_test.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "sanity_test",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#3a3a3a",
+        "#79c07a",
+        "#a8a191",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "d813a5063287ba49af346bf990a3f8ea9a99c0ba4e946bfa7981a2627cdf1c60",
+      "description": "Legacy placeholder for Sanity Test; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Routing Receipt",
+      "gfx": "collectibles/routing_receipt.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "routing_receipt",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#636363",
+        "#a8a191",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "1dff6293206be9515c3c3e7233b3fc38fc98b552aa05fd0a453ef6b21513e817",
+      "description": "Legacy placeholder for Routing Receipt; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Tibo Reset",
+      "gfx": "collectibles/tibo_reset.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "tibo_reset",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4c8548",
+        "#79c07a",
+        "#a8a191",
+        "#d8d2c4"
+      ],
+      "palette_exception": "",
+      "sha256": "aa3140bec2ac4307f26224d111c314c24152b3a2a24592e52d0d1e66dd938bd3",
+      "description": "Legacy placeholder for Tibo Reset; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Same Model Badge",
+      "gfx": "collectibles/same_model_badge.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "same_model_badge",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a30000",
+        "#b08a24",
+        "#d4ad45",
+        "#d8d2c4",
+        "#e70000",
+        "#f0c849"
+      ],
+      "palette_exception": "",
+      "sha256": "6d81da66eb389d75f5d031c52ac010ef426d70f2975ac815904c4a8110131c0e",
+      "description": "Legacy placeholder for Same Model Badge; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Nano Banana",
+      "gfx": "collectibles/nano_banana.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "nano_banana",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#7d5028",
+        "#a9743f",
+        "#b08a24",
+        "#e8a33d",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "72d300ea11db9f94af8bad60b543fcdfbb70160461bb08beac40bde09601ec1f",
+      "description": "Legacy placeholder for Nano Banana; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "One More Finger",
+      "gfx": "collectibles/one_more_finger.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "one_more_finger",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a30000",
+        "#c9a87f",
+        "#e70000",
+        "#f3d9b5",
+        "#ffeecd"
+      ],
+      "palette_exception": "",
+      "sha256": "4fc1371215c5348603d03a853ff8e2c29c66c5b0f191965f2867ab4459c5d580",
+      "description": "Legacy placeholder for One More Finger; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Undo Brush",
+      "gfx": "collectibles/undo_brush.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "undo_brush",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#5b3a7c",
+        "#7d5028",
+        "#8a5bb5",
+        "#8fe3ee",
+        "#a9743f"
+      ],
+      "palette_exception": "",
+      "sha256": "384d18cedaf024450a9108a7f13667baee1dc269fe047daff99d94b53e5456b6",
+      "description": "Legacy placeholder for Undo Brush; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Unchanged Preview",
+      "gfx": "collectibles/unchanged_preview.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "unchanged_preview",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4fb8c9",
+        "#8fe3ee",
+        "#a8a191",
+        "#d8d2c4",
+        "#f0c849",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "e88929731082b4da5e61fd2f12d9b15ffd04b51bcb85a58d572523f34447d71f",
+      "description": "Legacy placeholder for Unchanged Preview; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Is This True?",
+      "gfx": "collectibles/is_this_true.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "is_this_true",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#161616",
+        "#2b2b2b",
+        "#454545",
+        "#d8d2c4"
+      ],
+      "palette_exception": "",
+      "sha256": "416fee9d62f5bd412786c64d365f75847913bb47f4bbebdef3af1bf938cf2833",
+      "description": "Legacy placeholder for Is This True?; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Live Wire",
+      "gfx": "collectibles/live_wire.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "live_wire",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a86c1c",
+        "#e8a33d"
+      ],
+      "palette_exception": "",
+      "sha256": "87d6ddd57090eff487251199f1975eed6786773f3eface13ec7cdae8f77738b0",
+      "description": "Legacy placeholder for Live Wire; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Quote Retort",
+      "gfx": "collectibles/quote_retort.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "quote_retort",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2b2b2b",
+        "#a8a191",
+        "#d8d2c4",
+        "#e70000",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "061ef93b95431150f2329639b8afbc53c650e32aa17d67582f296e98185d7b50",
+      "description": "Legacy placeholder for Quote Retort; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Community Note",
+      "gfx": "collectibles/community_note.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "community_note",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#636363",
+        "#8fe3ee",
+        "#a30000",
+        "#c9bba4",
+        "#e70000",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "96da72d74f2df8f643672cabac06c095a14f873b72f0e73dcc399ec6d98d2818",
+      "description": "Legacy placeholder for Community Note; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Base Model",
+      "gfx": "collectibles/base_model.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "base_model",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#5b3a7c",
+        "#8a5bb5",
+        "#8f713c",
+        "#b69150"
+      ],
+      "palette_exception": "",
+      "sha256": "3c65e4f0d683401b9c89e2bd62ce54f29fa7fdb5067845369e0e1931b861c989",
+      "description": "Legacy placeholder for Base Model; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Another Adapter",
+      "gfx": "collectibles/another_adapter.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "another_adapter",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#777777",
+        "#8a5bb5",
+        "#969696",
+        "#a7a7a7",
+        "#cbcbcb",
+        "#f2f2f2"
+      ],
+      "palette_exception": "",
+      "sha256": "7985cd7e0acec81789d1519189f73d2776a6b08f09ee6fd9a9926b55dc9fd0ee",
+      "description": "Legacy placeholder for Another Adapter; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Final Final Weights",
+      "gfx": "collectibles/final_weights.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "final_weights",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#161616",
+        "#222222",
+        "#2b2b2b",
+        "#3a3a3a",
+        "#454545",
+        "#777777",
+        "#a7a7a7",
+        "#d6d6d6"
+      ],
+      "palette_exception": "",
+      "sha256": "0e105ca6df8ed7d08bd4cb756a3a38050fc5ce0e946be4a97fb7324d119cd6ca",
+      "description": "Legacy placeholder for Final Final Weights; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Tiny Variant",
+      "gfx": "collectibles/tiny_variant.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "tiny_variant",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#404040",
+        "#5b3a7c",
+        "#8a5bb5",
+        "#b48ad6"
+      ],
+      "palette_exception": "",
+      "sha256": "fea746869b7a0c93842a85e0a1eda10efc79a9193d1b911c9a369814682afcdc",
+      "description": "Legacy placeholder for Tiny Variant; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Open Weights",
+      "gfx": "collectibles/open_weights.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "open_weights",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4fb8c9",
+        "#7d5028",
+        "#8f713c",
+        "#a9743f",
+        "#b69150",
+        "#c69355",
+        "#d8d2c4"
+      ],
+      "palette_exception": "",
+      "sha256": "501acc9f0842511ea06654cbad7d79bbb7dd56b0da21818d2c73dfbf39f63ec7",
+      "description": "Legacy placeholder for Open Weights; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Herd Bell",
+      "gfx": "collectibles/herd_bell.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "herd_bell",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#7d5028",
+        "#7d5f16",
+        "#a9743f",
+        "#b08a24",
+        "#d4ad45",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "302cd93d4843a002fe6dfb7d34e071d883a642c107e5fcc807b3a0aff3eb1aa5",
+      "description": "Legacy placeholder for Herd Bell; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Please Come Back",
+      "gfx": "collectibles/please_come_back.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "please_come_back",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a9617a",
+        "#e79ab5",
+        "#ffc2d4"
+      ],
+      "palette_exception": "",
+      "sha256": "38fb2959e2303a7dc0c70c79aa30f0dceac980afef2d76ec08e161b70e8de4cd",
+      "description": "Legacy placeholder for Please Come Back; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Release Soon",
+      "gfx": "collectibles/release_soon.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "release_soon",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#161616",
+        "#2b2b2b",
+        "#636363",
+        "#a30000",
+        "#a8a191",
+        "#d8d2c4",
+        "#e70000",
+        "#f2eee4",
+        "#ff5a4a"
+      ],
+      "palette_exception": "",
+      "sha256": "759cf7eded1e108a9daa143f6907d8ed21ac71b6cda8339065443055f1b194bf",
+      "description": "Legacy placeholder for Release Soon; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Emergency Baguette",
+      "gfx": "collectibles/emergency_baguette.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "emergency_baguette",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#7d5028",
+        "#a86c1c",
+        "#a9743f",
+        "#e8a33d"
+      ],
+      "palette_exception": "",
+      "sha256": "9d1c561804bc3b409cb081b8134fb3b17830d50766cfe545d8330d16580a9d88",
+      "description": "Legacy placeholder for Emergency Baguette; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Slipstream Boots",
+      "gfx": "collectibles/slipstream_boots.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "slipstream_boots",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#7d5028",
+        "#a86c1c",
+        "#a9743f",
+        "#e8a33d",
+        "#ffc86b"
+      ],
+      "palette_exception": "",
+      "sha256": "eff28c40016ce0193cfae610942471b0806cbe196ad968573bdd009511a996aa",
+      "description": "Legacy placeholder for Slipstream Boots; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Very Large Kitten",
+      "gfx": "collectibles/large_kitten.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "large_kitten",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a86c1c",
+        "#e79ab5",
+        "#e8a33d",
+        "#ffc86b"
+      ],
+      "palette_exception": "",
+      "sha256": "13a3a56011526ad805560c82ab5d1fc297535d03a14fd7b945ecbe2bd4e42bbf",
+      "description": "Legacy placeholder for Very Large Kitten; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Edge Compass",
+      "gfx": "collectibles/edge_compass.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "edge_compass",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#3a3a3a",
+        "#575757",
+        "#636363",
+        "#b08a24",
+        "#d8d2c4",
+        "#e70000",
+        "#f0c849",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "6d765db3bbe47c7f0489fd09356705017d50e5bf3d9c09d5c34a55009604a942",
+      "description": "Legacy placeholder for Edge Compass; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Instant Apology",
+      "gfx": "collectibles/instant_apology.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "instant_apology",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#a9617a",
+        "#e79ab5"
+      ],
+      "palette_exception": "",
+      "sha256": "699fb936150882cb62c235f637ae879b5677514ad23894b8981fb2fe679640fd",
+      "description": "Legacy placeholder for Instant Apology; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Next Time Again",
+      "gfx": "collectibles/next_time_again.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "next_time_again",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#a8a191",
+        "#d8d2c4"
+      ],
+      "palette_exception": "",
+      "sha256": "e7bcc2efde4258106ae4b6d7ab5eee4e5b0f6b9adbdc7447b7c5f6b175a0cbba",
+      "description": "Legacy placeholder for Next Time Again; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Confident Answer",
+      "gfx": "collectibles/confident_answer.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "confident_answer",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#8fe3ee",
+        "#d8d2c4"
+      ],
+      "palette_exception": "",
+      "sha256": "6fd2a4b0e2ce582e1bfe65a2477dd91cf35ffba55797efe400efa361e06f9bbb",
+      "description": "Legacy placeholder for Confident Answer; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Smiling Correction",
+      "gfx": "collectibles/smiling_correction.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "smiling_correction",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#7d5028",
+        "#a86c1c",
+        "#a9743f",
+        "#e8a33d"
+      ],
+      "palette_exception": "",
+      "sha256": "9725b4be5117f2a92f45c8c7bd8b63da71e077ca1b5bf9db6e74619d8165d278",
+      "description": "Legacy placeholder for Smiling Correction; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Slide Deadline",
+      "gfx": "collectibles/slide_deadline.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "slide_deadline",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#3a3a3a",
+        "#4fb8c9",
+        "#5b3a7c",
+        "#8a5bb5",
+        "#a8a191",
+        "#b48ad6",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "e20ae6fef31b3de107b082cb0446bad73aa990a675dd3d0b0f69f51f5d58e445",
+      "description": "Legacy placeholder for Slide Deadline; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Citation Thread",
+      "gfx": "collectibles/citation_thread.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "citation_thread",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a30000",
+        "#a8a191",
+        "#d8d2c4",
+        "#e70000",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "48080811bd45a30c1644bc5bbaa59d71cd610673bba6c670f2518a35ab98afb8",
+      "description": "Legacy placeholder for Citation Thread; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Overtime Slides",
+      "gfx": "collectibles/overtime_slides.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "overtime_slides",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#3a3a3a",
+        "#5b3a7c",
+        "#8a5bb5",
+        "#a8a191",
+        "#b48ad6",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "ab9d8ecea5279b97f40e90151e9e3d0265d1175a441ea3bbca249f66394ad672",
+      "description": "Legacy placeholder for Overtime Slides; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Stand-Up Meeting",
+      "gfx": "collectibles/standup_meeting.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "standup_meeting",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#5b3a7c",
+        "#7d5028",
+        "#8a5bb5",
+        "#a9743f",
+        "#b48ad6",
+        "#c69355",
+        "#c9a87f",
+        "#f3d9b5"
+      ],
+      "palette_exception": "",
+      "sha256": "0a0bc30de84bfb98c0d5976199c7d7997ee14b4449828e5f890ab4421e184237",
+      "description": "Legacy placeholder for Stand-Up Meeting; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Queue Ticket",
+      "gfx": "collectibles/queue_ticket.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "queue_ticket",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#636363",
+        "#79c07a",
+        "#c9bba4",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "5d45dcc67943e455e7296406b3e9130a6d6c8b98135fc2c6e21d34723a51665f",
+      "description": "Legacy placeholder for Queue Ticket; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Sold Out",
+      "gfx": "collectibles/sold_out.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "sold_out",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#636363",
+        "#a30000",
+        "#a8a191",
+        "#d8d2c4",
+        "#e70000",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "c1aa6cb07de3fb39ca99afb95b627e9aa7cc098253e2b73ff6588a1e29762f12",
+      "description": "Legacy placeholder for Sold Out; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Please Retry",
+      "gfx": "collectibles/please_retry.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "please_retry",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#404040",
+        "#636363",
+        "#79c07a",
+        "#8a8a8a",
+        "#a7dd9f",
+        "#a8a191",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "e599be31f88f91512b5e25c534c1167ce8ba9090a3a4755133c58118a6837348",
+      "description": "Legacy placeholder for Please Retry; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Access Pass",
+      "gfx": "collectibles/access_pass.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "access_pass",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#4c8548",
+        "#79c07a",
+        "#a7dd9f",
+        "#d8d2c4",
+        "#f0c849",
+        "#f3d9b5"
+      ],
+      "palette_exception": "",
+      "sha256": "3a31b0655c46534dd831c5cc1dd25a68f48522fa9b7f8e3c9ff7163bf0fdc0b9",
+      "description": "Legacy placeholder for Access Pass; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Cache Cartridge",
+      "gfx": "collectibles/cache_cartridge.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "cache_cartridge",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#3a3a3a",
+        "#4fb8c9",
+        "#575757",
+        "#8fe3ee",
+        "#b08a24",
+        "#f0c849"
+      ],
+      "palette_exception": "",
+      "sha256": "df61e5f3aa791aab17c0a39b4ae3dcd17605b531eeda6846eda6eefb36803d50",
+      "description": "Legacy placeholder for Cache Cartridge; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Token Recall",
+      "gfx": "collectibles/token_recall.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "token_recall",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e8391",
+        "#4fb8c9",
+        "#b08a24",
+        "#d4ad45",
+        "#d8d2c4",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "e95a6cef9e0553cdf7aeed77f3a9a8d923acadef78041bd3a81c8e25d946c3d4",
+      "description": "Legacy placeholder for Token Recall; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Checkpoint Pin",
+      "gfx": "collectibles/checkpoint_pin.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "checkpoint_pin",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#a30000",
+        "#d8d2c4",
+        "#e70000",
+        "#ff5a4a"
+      ],
+      "palette_exception": "",
+      "sha256": "7c3d055f7413deeaae30d581e1005289a46999eb11498484b6842d64c0378e66",
+      "description": "Legacy placeholder for Checkpoint Pin; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Rate-Limit Valve",
+      "gfx": "collectibles/rate_limit_valve.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "rate_limit_valve",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#3a3a3a",
+        "#777777",
+        "#a30000",
+        "#a7a7a7",
+        "#e70000",
+        "#ff5a4a"
+      ],
+      "palette_exception": "",
+      "sha256": "bae6bf89e6613a503204c3b6f00febb2e6da0dcb765980924806e7979f24a90e",
+      "description": "Legacy placeholder for Rate-Limit Valve; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Consensus Coin",
+      "gfx": "collectibles/consensus_coin.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "consensus_coin",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#b08a24",
+        "#d8d2c4",
+        "#f0c849"
+      ],
+      "palette_exception": "",
+      "sha256": "0e35d64c88d85c621ebc2bdaf1c1b6e52ff8a690e1945d80d0c7582d7ea3005d",
+      "description": "Legacy placeholder for Consensus Coin; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Error Budget",
+      "gfx": "collectibles/error_budget.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "error_budget",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#3a3a3a",
+        "#575757",
+        "#79c07a",
+        "#a86c1c",
+        "#e70000",
+        "#e8a33d"
+      ],
+      "palette_exception": "",
+      "sha256": "4cb69cdd682e38bf0164cc1386e8613668d50b053ae47c51b873d92b807d55b1",
+      "description": "Legacy placeholder for Error Budget; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Claudius's Discount",
+      "gfx": "trinkets/claudius_discount.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "claudius_discount",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#5b734b",
+        "#636363",
+        "#a34d27",
+        "#b39568",
+        "#e0713f",
+        "#e1c399"
+      ],
+      "palette_exception": "",
+      "sha256": "292b9fb64a38da1882c0b1aca79d4b5411901851fafb66b8368fcbfa07dfd31f",
+      "description": "Legacy placeholder for Claudius's Discount; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "One Small Rock a Day",
+      "gfx": "trinkets/small_rock.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "small_rock",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#3a3a3a",
+        "#404040",
+        "#636363",
+        "#8a8a8a",
+        "#a8a191",
+        "#cbcbcb",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "b6505d744a139ad8a2bd87a1541dc4ba190f5a43add95e96aaa660fb1e50974d",
+      "description": "Legacy placeholder for One Small Rock a Day; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Stuck in Mt. Moon",
+      "gfx": "trinkets/mt_moon.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "mt_moon",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#161616",
+        "#2b2b2b",
+        "#404040",
+        "#454545",
+        "#636363",
+        "#b08a24",
+        "#f0c849"
+      ],
+      "palette_exception": "",
+      "sha256": "3b7672d9430dfe4eb213654717762d4bfdf84bb762562898d4060fe45c845a8e",
+      "description": "Legacy placeholder for Stuck in Mt. Moon; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "As an AI Language Model",
+      "gfx": "trinkets/ai_language_model.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "ai_language_model",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#636363",
+        "#c9bba4",
+        "#e70000",
+        "#f3d9b5",
+        "#f3e7d6",
+        "#ff5a4a",
+        "#ffeecd",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "fe940cc0e330d13b4401bddfc6ed36c36487e1c0df3606d7bd434a13087e6a3c",
+      "description": "Legacy placeholder for As an AI Language Model; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "System Prompt Leak",
+      "gfx": "trinkets/prompt_leak.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "prompt_leak",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2b2b2b",
+        "#2e8391",
+        "#4fb8c9",
+        "#7d5028",
+        "#a9743f",
+        "#c69355",
+        "#e1c399",
+        "#f3dcb8"
+      ],
+      "palette_exception": "",
+      "sha256": "ed77b5287c9d8ab84f6bb6836e23f26cf2b0bba6dfd0d87163d7533023a25dac",
+      "description": "Legacy placeholder for System Prompt Leak; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Disgrace Loop",
+      "gfx": "trinkets/disgrace_loop.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "disgrace_loop",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#5b3a7c",
+        "#8a5bb5",
+        "#c9a87f",
+        "#f3d9b5",
+        "#ffeecd"
+      ],
+      "palette_exception": "",
+      "sha256": "9a1f9d130bebd73e4a47a3c3d4263a0101f80a61fd0fb79498e68f28eebefe30",
+      "description": "Legacy placeholder for Disgrace Loop; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Em Dash",
+      "gfx": "collectibles/em_dash.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "em_dash",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#161616",
+        "#2b2b2b",
+        "#454545",
+        "#636363",
+        "#c9bba4",
+        "#f3e7d6",
+        "#fffaf0"
+      ],
+      "palette_exception": "",
+      "sha256": "c0c1e0ea0afbd8471ed6e5123d0bda71d00defcceea5acd6925bd4f3fdc36285",
+      "description": "Legacy placeholder for Em Dash; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Blueberry",
+      "gfx": "collectibles/blueberry.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "blueberry",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#2e3b85",
+        "#4a5fc1",
+        "#5b3a7c",
+        "#8a5bb5",
+        "#d8d2c4",
+        "#f2eee4"
+      ],
+      "palette_exception": "",
+      "sha256": "2ff7b84246c5101f81f672bc33c04dde1b9db22794894915f4fa65cf00aae07f",
+      "description": "Legacy placeholder for Blueberry; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Benchmaxxed",
+      "gfx": "collectibles/benchmaxxed.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "benchmaxxed",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#222222",
+        "#3a3a3a",
+        "#404040",
+        "#636363",
+        "#8a8a8a",
+        "#b08a24",
+        "#f0c849",
+        "#ffe48a"
+      ],
+      "palette_exception": "",
+      "sha256": "4ed7251c76a884d69faadb2e7ed960211eebe5728c2abff948d3734fbca879fa",
+      "description": "Legacy placeholder for Benchmaxxed; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "I Panicked",
+      "gfx": "collectibles/i_panicked.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "i_panicked",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#777777",
+        "#8a8a8a",
+        "#969696",
+        "#a30000",
+        "#a7a7a7",
+        "#cbcbcb",
+        "#e70000",
+        "#f2f2f2",
+        "#ff5a4a"
+      ],
+      "palette_exception": "",
+      "sha256": "8ac51d14330ed2e466b7d62568427fbc1ad02c8618b0dc0c13cadce0274ac9b3",
+      "description": "Legacy placeholder for I Panicked; designed artwork pending.",
+      "contact_sheet": null
+    },
+    {
+      "name": "Let's Delve",
+      "gfx": "collectibles/lets_delve.png",
+      "status": "placeholder",
+      "drawing": {
+        "file": "tools/make_placeholders.py",
+        "function": "lets_delve",
+        "version": 1
+      },
+      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "license": "MIT",
+      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "size": [
+        32,
+        32
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "palette": [
+        "#080000",
+        "#636363",
+        "#777777",
+        "#7d5028",
+        "#8a8a8a",
+        "#a7a7a7",
+        "#a9743f",
+        "#c69355",
+        "#c9bba4",
+        "#d6d6d6",
+        "#f0c849",
+        "#f3e7d6"
+      ],
+      "palette_exception": "",
+      "sha256": "afa6d6d00830230536f954606ed9ca2155efe5f11e953e2727b4dc4e250d2ff3",
+      "description": "Legacy placeholder for Let's Delve; designed artwork pending.",
+      "contact_sheet": null
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 # Changelog
 
+## Explicit item-art production pipeline (2026-10-26; offline)
+
+- Register all 92 item icons with explicit placeholder/designed status, drawing source, provenance, palette/alpha contract and output hash; keep all current PNG bytes unchanged.
+- Add a deterministic producer/validator and status-aware asset gate, preserving existing character/menu/pose checks and exact legacy placeholder comparisons. Protect designed icons from the legacy generator's canonical writes.
+- Add thirteen regression groups and verify old-gate failure for a valid designed fixture plus four isolated fault rejections. First-batch artwork and native acceptance remain pending; the installed manual-test build is preserved.
+
 ## All-item completion audit (2026-10-26; documentation only)
 
 - Map all 80 collectibles, 12 trinkets and five pills to registration, actual source behavior/state, existing fixtures and specific native or semantic gaps; list Agentic, Hydra and Relay Slime separately.

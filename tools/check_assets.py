@@ -6,29 +6,14 @@ from pathlib import Path
 import struct
 import subprocess
 import sys
-import tempfile
 import xml.etree.ElementTree as ET
+
+from make_item_art import check as check_item_art
 
 root = Path(__file__).resolve().parent.parent
 for path in root.glob('tools/*.py'):
     ast.parse(path.read_text(encoding='utf-8'), filename=str(path))
-with tempfile.TemporaryDirectory() as temporary:
-    out = Path(temporary)
-    subprocess.run([sys.executable, str(root / 'tools/make_placeholders.py'),
-                    '--out', str(out), '--check-symmetry'], check=True, stdout=subprocess.PIPE)
-    definitions = ET.parse(root / 'content/items.xml').getroot()
-    for item in definitions:
-        relative = item.attrib['gfx'].removeprefix('gfx/items/')
-        path = root / 'resources/gfx/items' / relative
-        png = path.read_bytes()
-        assert png[:8] == b'\x89PNG\r\n\x1a\n', path
-        assert struct.unpack('>II', png[16:24]) == (32, 32), path
-        assert png[24:26] == bytes([8, 6]), f'{path}: expected RGBA8'
-        assert png == (out / relative).read_bytes(), f'{path}: generated sprite differs'
-    names = {item.attrib['name'] for item in definitions if item.tag != 'trinket'}
-    for item in ET.parse(root / 'content/itempools.xml').iter('Item'):
-        assert item.attrib['Name'] in names, f'Undefined pool entry: {item.attrib}'
-print('  OK: Python syntax, 32x32 RGBA sprites, deterministic generation and item pools')
+print('  OK: Python syntax, registered item art, deterministic pixels and pools:', check_item_art(root))
 
 players = ET.parse(root / 'content/players.xml').getroot()
 for player in players:
