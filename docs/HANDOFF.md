@@ -4,12 +4,21 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **Reviewed gameplay source:** main `f8b2b0b` includes merged PRs #93-#97; local/main/GitHub matched, main CI passed and no PR was open before this documentation follow-up. This follow-up records deployment and a blocked test attempt only. Verify the [live main and PR list](https://github.com/WaterLily5297/claude-chan-isaac/pulls) before continuing.
-- **Installed manual-test build:** `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, installed on 2026-10-26. A fresh allowlisted backup preserved 433 old files and passed reread SHA-256 verification before replacement. All 443 installed tracked files matched canonical Git bytes before launch and after shutdown. No files were removed. This supersedes installed e1ff4d1 statements in older entries.
-- **Owner availability:** the owner authorized installation/testing, then said the desktop was unavailable and requested keeping the installed version. Preserve f8b2b0b; continue offline. The game is closed, audio restored to the fresh session snapshot, and all options key/value pairs match that snapshot. The owner has not supplied manual gameplay results.
+- **Current main:** [live main](https://github.com/WaterLily5297/claude-chan-isaac/tree/main); last fetched at `6e1baa8` (PR #98 merged, CI passed, no open PR before this follow-up). This M1/D2 documentation change is based directly on that main; verify the live PR list before starting another branch.
+- **Reviewed gameplay source:** `f8b2b0b` includes PRs #93-#97. It differs from the fetched main only in Markdown. Keep gameplay evidence tied to that installed commit, not the later documentation commits.
+- **Installed manual-test build:** `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, installed on 2026-10-26. A fresh allowlisted backup preserved 433 old files and passed reread SHA-256 verification before replacement. All 443 installed tracked files matched canonical Git bytes before launch and after shutdown. No files were removed. Historical source hashes below are audit baselines, not current installation claims.
+- **Owner availability:** the owner authorized installation/testing, then said the desktop was unavailable and requested keeping the installed version. Preserve f8b2b0b; continue offline. The game is closed, audio restored to the fresh session snapshot, and all options key/value pairs match that snapshot. The owner has not supplied manual gameplay results. Use the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md); unencountered cases may be reported as not tried.
 - **Evidence:** the installed version launched as Repentance+ v1.9.7.17.J460, but window recovery failed and captures were obscured by other apps. No gameplay keys, menu fresh start or ancestry probe ran. [Dated deployment/startup record](ENGINE_AUDIT_2026-10-26.md). Startup is not engine or visual acceptance.
 - **Offline gate:** 69 suites, 182 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** D1 and O1-O3 are complete; E1 is refreshed to f8b2b0b. E2-E5 and the new meme effects remain unaccepted and await owner availability. Continue in the order set by gpt-next-session-2026-10-25.md; no further child-laser, Parent-ancestry or derived-shot billing PR without a native E2 observation. The exploratory Bethany audit stays parked.
+- **Current queue:** the 2026-10-26 prompt supersedes the old queue. M1/D2 provide the manual checklist and consistent records; B1 next proposes small nerfs for all 22 forms, implemented in an open PR until owner approval. Then O4 effect-layer audit, O5 pose preview, O6 save audit/regressions and O7 a two-item proposal (implement only after approval). E2-E5 wait for owner availability. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
+- **Desktop gate:** before each engine block, obtain a fresh owner confirmation of being away from the keyboard for a stated duration. On user-input, missing-monitor or obscured-window errors, stop immediately; do not retry or send keys. Close only the process launched for that block and restore settings. One attempt per go-ahead; installed f8b2b0b must not be replaced without separate permission.
+
+## Manual checklist and current records (2026-10-26)
+
+[Manual checklist](MANUAL_TEST_CHECKLIST.md): 14 ordinary-run checks, clear OK criteria and a short response template; difficulty feedback distinguishes the current build from a future approved pass.
+Current main, reviewed gameplay source and installed build are separate; obsolete installation claims were removed from current records without rewriting history files.
+Documentation only; no new native evidence, balance changes or deployment. The next gameplay unit is B1, with all 22 proposed rows requiring approval before merge.
+
 
 ## Installation and deferred engine session (2026-10-26)
 
@@ -21,25 +30,25 @@ The owner requested keeping this installation. Game closed and settings restored
 
 [Observer procedure](ENGINE_ANCESTRY_PROBE.md) and an explicitly loaded module are ready for a future authorized session; main.lua never loads it.
 Offline checks cover snapshots, bounds and callback cleanup only. No native observations or billing changes were made.
-E2 remains waiting for owner availability and authorization; installed e1ff4d1 is unchanged. Full gate: 69 offline suites, engine acceptance pending.
+E2 remains waiting for owner availability and authorization; no installation was performed during that audit. Full gate: 69 offline suites, engine acceptance pending.
 
 ## O3: native transformation and Tainted-item audit (2026-10-26)
 
 The [TESTING.md audit table](TESTING.md#o3-native-transformations-and-tainted-mechanics-2026-10-26-source-audit-only) maps transformations, Agentic/rerolls, crafting, Tainted Eden and Holy Card risks to concrete engine cases.
 No clear source bug was established in the inspected paths; no gameplay code changed. Native trait, item ownership and cosmetic layers are separate test cases.
-The audit passed the 67-suite base gate; integration with merged O2 passes 68 suites. This provides no engine acceptance. E4/E5 wait for the owner and installed e1ff4d1 stays unchanged.
+The audit passed the 67-suite base gate; integration with merged O2 passes 68 suites. This provides no engine acceptance. E4/E5 wait for the owner and no installation was performed during that audit.
 
 ## O2: two native meme extras (2026-10-26)
 
 Let's Delve delegates to the native shovel; Six Seven grants a seeded six or seven blue flies. [Approved rules and remaining tests](MEME_BATCH_2.md).
 Registration, English EID/README text, original placeholder icon and offline callback coverage are included; no custom enemy or boss.
-The owner approved the exact rules; PR #95 merged at 178269b. The 68-suite gate and CI pass. It is not installed; engine acceptance is pending.
+The owner approved the exact rules; PR #95 merged at 178269b. The 68-suite gate and CI pass. It is included in installed f8b2b0b; engine acceptance is pending.
 
 ## O1: reserve multi-pocket DROP for native cycling (2026-10-26)
 
 The owner kept short DROP and chose to disable abilities with multiple pocket items. All 22 forms share the new guard; native input and long holds remain untouched.
 The prior source fails the new pocket regression; current tests cover all slots, inventory changes during gestures, rearming and Rice/co-op behavior. [Review and limits](DROP_POCKET_REVIEW.md).
-PR #94 is source-only; installed e1ff4d1 stays unchanged. Physical keyboard/controller E4 and UI readability remain pending.
+PR #94 passed source/CI checks and is included in installed f8b2b0b. Physical keyboard/controller E4 and UI readability remain pending.
 
 ## D1: compact current guidance (2026-10-26)
 
@@ -78,7 +87,7 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 
 | Unit | Required observation | Status |
 |---|---|---|
-| E1 | Install `e1ff4d1` or newer only when requested, after the allowlisted backup and reread-hash check. | Complete for `f8b2b0b`, 443 files verified; preserve it. |
+| E1 | Preserve the current installation; a later requested replacement needs a fresh allowlisted backup and reread-hash check. | Complete for `f8b2b0b`, 443 files verified; preserve it. |
 | E2 | One ancestry probe: Parent, SpawnerEntity and FrameCount at init/update for Tech X splits, Prism reflections, Trisagion and Brimstone/Tech combinations. | Observer installed; attempted session produced no samples. Await owner availability; prerequisite to more child-billing work. |
 | E3 | Real menu fresh starts and first room for every normal/tainted form: stats, pockets, HUD, fixed look, dossier, story and errors. | Waiting for owner; type-change smoke does not satisfy this. |
 | E4 | Physical keyboard/controller DROP taps and holds, card/pill plus pocket active, pause, disabled controls, room changes, death and reassignment. | Waiting for owner; O1 stubs cannot accept native input. |

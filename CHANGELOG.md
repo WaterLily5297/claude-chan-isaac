@@ -8,19 +8,19 @@
 ## Manual ancestry observation tool (2026-10-26; not run in game)
 
 - Prepare an explicitly enabled, bounded laser init/update observer for E2. It logs native link/frame fields and removes its callbacks on stop; main.lua never loads it.
-- Add offline lifecycle/format checks and an authorized-session procedure. No billing policy or gameplay behavior changes; E2 remains pending and installed e1ff4d1 stays unchanged.
+- Add offline lifecycle/format checks and an authorized-session procedure. No billing policy or gameplay behavior changes; E2 remains pending and no installation was performed during that audit.
 
 ## Native meme batch 2 (2026-10-26)
 
 - Add Let's Delve, a six-charge treasure active that delegates to the native shovel, and Six Seven, a pill that grants six or seven native blue flies using the player's seeded RNG.
 - Register English pickup/EID text, an original deterministic shovel icon, pool entry and generated item documentation. Totals: 80 collectibles, 12 trinkets, five pills and 22 forms.
-- The owner approved charge, pool, quality, fly count and same-effect horse pills before #95 merged. This is offline only; installed e1ff4d1 is unchanged.
+- The owner approved charge, pool, quality, fly count and same-effect horse pills before #95 merged. This is offline only; no installation was performed during that audit.
 
 ## DROP pocket compatibility (2026-10-26)
 
 - Keep short DROP abilities, but disable them while carrying multiple cards, pills or pocket actives, as selected by the owner. Preserve native input and long-hold dropping.
 - Cancel a gesture that encounters multiple pocket items, including same-frame inventory changes; reducing inventory while held cannot trigger an ability on release.
-- Add failing-before pocket regressions and shared English control notices. Physical keyboard/controller acceptance remains pending; installed e1ff4d1 is unchanged.
+- Add failing-before pocket regressions and shared English control notices. Physical keyboard/controller acceptance remains pending; no installation was performed during that audit.
 
 ## Backlog child laser initialization (2026-10-25)
 

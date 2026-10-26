@@ -16,7 +16,7 @@ Missing fields at init, callbacks before Start, fields changed by earlier callba
 
 ## Authorized session procedure
 
-First obtain owner availability and permission for installation/testing. Verify a fresh allowlisted E:/ba backup before replacement, record canonical installed file hashes and source, use disposable File 1, mute the session and preserve other mods/saves. Follow the existing deployment workflow; do not copy this file ad hoc into the installed mod.
+First obtain a fresh confirmation in this session that the owner is away from the keyboard and the game may take focus for a stated time window. Installation permission is separate; preserve f8b2b0b unless replacement is explicitly requested. On a user-input, missing-monitor or obscured-window error, stop immediately without retrying or sending keys, close only the process launched for this block and restore settings. One failed attempt exhausts that go-ahead. Verify a fresh allowlisted E:/ba backup before replacement, record canonical installed file hashes and source, use disposable File 1, mute the session and preserve other mods/saves. Follow the existing deployment workflow; do not copy this file ad hoc into the installed mod.
 
 Start a real test run and record the game edition/version, player form, exact items, relevant other mods and test action. Replace the placeholder below with the full installed source commit from the verified receipt. The placeholder is intentionally rejected by Start.
 
