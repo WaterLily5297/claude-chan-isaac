@@ -134,7 +134,9 @@ function Baguette:Init(mod, Risk)
                 b.cooldown = math.max(0, b.cooldown - 1)
                 if b.wave and not roll(p, b.wave) then b.wave = nil end
                 local need = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_CHARGE or CHARGE_FRAMES
-                if s.baguettes < BAGUETTE_CAP and not moving(p) and not firing(p) then
+                if Game():GetRoom():IsClear() then
+                    -- Safety pauses partial baking; room exit still discards it.
+                elseif s.baguettes < BAGUETTE_CAP and not moving(p) and not firing(p) then
                     b.charge = b.charge + 1
                     if b.charge >= need then
                         b.charge = 0; s.baguettes = s.baguettes + 1
@@ -164,6 +166,7 @@ function Baguette:Init(mod, Risk)
         each(function(_, b, i)
             local text = string.format("Mistral-chan: Baguettes %d/%d", b.state.baguettes, BAGUETTE_CAP)
             if b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
+            if Game():GetRoom():IsClear() and b.state.baguettes < BAGUETTE_CAP then text = text.."  Combat to bake" end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.3, 0.9)
         end)
     end)

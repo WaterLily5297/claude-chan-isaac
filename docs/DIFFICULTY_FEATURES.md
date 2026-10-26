@@ -1,10 +1,10 @@
 # B1 revision: character-specific tradeoffs
 
-**Design proposal, not implemented.** On 2026-10-26 the owner redirected B1 toward additional character-specific features that make play harder. Draft PR #100's numerical reductions are superseded and must not merge. This proposal starts from `ffc52bf`, with the original damage multipliers, health, pickups, durations, reward amounts and resource prices retained except for the explicit new conditions below. Installed `f8b2b0b` is preserved.
+**Draft implementation: eight of 22 features implemented offline; 14 remain proposals.** On 2026-10-26 the owner redirected B1 toward additional character-specific features that make play harder. Draft PR #100's numerical reductions are superseded and must not merge. This proposal starts from `ffc52bf` and incorporates main `654a8dc`, with the original damage multipliers, health, pickups, durations, reward amounts and resource prices retained except for the explicit new conditions below. Installed `f8b2b0b` is preserved.
 
 These are original gameplay interpretations of the existing meme themes, not claims about actual providers or majority opinion. The intended difficulty comes from target choice, timing, positioning and preparation. A native main attack always remains available. No new enemy, health tax, random shot failure, hidden penalty, company logo or real-person enemy is introduced. The DeepSeek 1.3x non-tear rule, GLM's lack of a forced active, fixed looks and the multiple-pocket DROP restriction stay unchanged.
 
-## Proposed rules for all 22 forms
+## Rules for all 22 forms (draft; approval before merge)
 
 All times below are active, unpaused gameplay time. Conditions apply to the intrinsic character ability only, never to a standalone item with a similar name. A rejected activation retains its resource. HUD/captions must state the condition and the way to satisfy it. Initial numbers are reviewable design parameters, not accepted balance.
 
@@ -44,7 +44,7 @@ All times below are active, unpaused gameplay time. Conditions apply to the intr
 
 ## Verification boundary
 
-This document is the proposed rule set only. It does not establish that the new features are implemented, fun, balanced or compatible with every weapon. The initial numerical draft's 69 passing suites do not validate these mechanics. Each form needs its own before/after case and a later ordinary run. The original base-value inventory below is retained for comparison, not as evidence of vanilla parity.
+Implemented in draft #102: normal Gemini, Grok and Llama; tainted GPT, Llama, Mistral, Doubao and GLM. Their targeted regressions fail against the previous behavior and pass with the new conditions. The other 14 features above remain proposals, with no implementation claim. The full integrated gate is required for each commit. No game version has exercised these mechanics; fun, balance, native callbacks and weapon compatibility remain unaccepted. The superseded numerical draft does not validate this revision. The base-value inventory below remains a comparison, not evidence of vanilla parity.
 
 ## Baseline and comparison method
 

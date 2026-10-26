@@ -4,28 +4,28 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **Current main:** [live main](https://github.com/WaterLily5297/claude-chan-isaac/tree/main); last fetched `654a8dc` (O4 PR #101 merged; main CI passed). PR #100 is a superseded numerical draft and must not merge. [Draft #102](https://github.com/WaterLily5297/claude-chan-isaac/pull/102) contains the revised 22-form feature proposal, not implementation. Verify live main and PRs before another branch.
-- **Reviewed gameplay source:** `f8b2b0b` includes PRs #93-#97. O4 additionally restores acquired native transformation costumes after leaving a mod form; that source fix is not installed or engine-accepted. O5's candidate changes pose packing only. Keep gameplay evidence tied to the tested installed commit.
+- **Current main:** [live main](https://github.com/WaterLily5297/claude-chan-isaac/tree/main); last fetched `654a8dc` (O4 #101 and O5 #103 merged; main CI passed). PR #100 is a superseded numerical draft and must not merge. [Draft #102](https://github.com/WaterLily5297/claude-chan-isaac/pull/102) contains eight implemented draft features and 14 remaining proposals; balance approval is still required before merge. Verify live main and PRs before another branch.
+- **Reviewed gameplay source:** `f8b2b0b` includes PRs #93-#97. O4 additionally restores acquired native transformation costumes after leaving a mod form; that source fix is not installed or engine-accepted. O5 changes pose packing only. Draft #102 adds eight offline-tested conditions and is not merged or installed. Keep gameplay evidence tied to the tested installed commit.
 - **Installed manual-test build:** `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, installed on 2026-10-26. A fresh allowlisted backup preserved 433 old files and passed reread SHA-256 verification before replacement. All 443 installed tracked files matched canonical Git bytes before launch and after shutdown. No files were removed. Historical source hashes below are audit baselines, not current installation claims.
 - **Owner availability:** the owner authorized installation/testing, then said the desktop was unavailable and requested keeping the installed version. Preserve f8b2b0b; continue offline. The game is closed, audio restored to the fresh session snapshot, and all options key/value pairs match that snapshot. The checklist reply supplied no usable manual gameplay result; no item was accepted. Use the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md); unencountered cases may be reported as not tried.
 - **Evidence:** the installed version launched as Repentance+ v1.9.7.17.J460, but window recovery failed and captures were obscured by other apps. No gameplay keys, menu fresh start or ancestry probe ran. [Dated deployment/startup record](ENGINE_AUDIT_2026-10-26.md). Startup is not engine or visual acceptance.
 - **Offline gate:** 69 suites, 182 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** M1/D2 and O4 are merged. The owner redirected B1 to added character features; draft #102 preserves current coefficients and proposes 22 visible conditions, still unimplemented and requiring approval before balance merge. O5 supplies the all-form preview and bounded Death-packing correction below. O6 save audit/regressions and O7 a two-item proposal remain (O7 implementation needs approval). E2-E5 wait for owner availability. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
+- **Current queue:** M1/D2, O4 and O5 are merged. The owner redirected B1 to added character features; draft #102 preserves current coefficients, implements eight conditions and leaves 14 proposed, requiring approval before balance merge. O6 save audit/regressions and O7 a two-item proposal remain (O7 implementation needs approval). E2-E5 wait for owner availability. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
 - **Desktop gate:** before each engine block, obtain a fresh owner confirmation of being away from the keyboard for a stated duration. On user-input, missing-monitor or obscured-window errors, stop immediately; do not retry or send keys. Close only the process launched for that block and restore settings. One attempt per go-ahead; installed f8b2b0b must not be replaced without separate permission.
 
-## B1 revision: added character tradeoffs (2026-10-26; design only)
+## B1 revision: added character tradeoffs (2026-10-26; draft implementation)
 
 The owner requested extra character features instead of reducing existing coefficients. Superseded draft #100 remains unmerged.
 [DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md) proposes one visible challenge per form, its exact trigger/counterplay, original baseline values and implementation constraints.
-No revised mechanic is implemented yet; the old numerical tests do not validate this proposal. Implementation needs per-form regressions and readable cues; obtain approval before merging balance changes.
-Installed f8b2b0b is preserved. O4 #101 is merged in source; O5/O6/O7 and engine E2-E5 remain open.
+Eight conditions are implemented: normal Gemini, Grok and Llama; tainted GPT, Llama, Mistral, Doubao and GLM. Failing-first regressions cover activation, timers, position/visibility, resource retention, co-op and existing save boundaries; English HUD/dossiers/EID and current rules are synchronized. The other 14 forms remain proposed. Obtain approval before merging balance changes; no native acceptance.
+Installed f8b2b0b is preserved. O4 #101 and O5 #103 are merged in source; the remaining B1 features, O6/O7 and engine E2-E5 stay open.
 
 ## O5: all-form pose review and Death packing (2026-10-26; offline)
 
 [POSE_REVIEW.md](POSE_REVIEW.md) lists all 22 forms, measured defects, deterministic preview commands and the shared-animation limits.
 Three Death cells still used a 58px fit alongside the corrected Hit cell; they now use their measured native envelopes/anchors. Llama's Death-start source crop also retains the previously clipped body.
 The new geometry check fails on all 66 old Death cells and passes after correction; only those three storage cells changed on each skin, with no redraw or native asset import.
-Draft #102 remains the unimplemented feature proposal; #100 is superseded. Installed f8b2b0b is preserved; O6/O7 and engine acceptance remain open.
+Draft #102 now implements eight features offline; #100 is superseded. Installed f8b2b0b is preserved; O6/O7 and engine acceptance remain open.
 
 ## O4: effect layers and native-form restoration (2026-10-26)
 

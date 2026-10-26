@@ -2,11 +2,11 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, including PRs #93-#97. The owner-authorized 2026-10-26 deployment followed a fresh allowlisted, reread-hash-verified backup of 433 old files; all 443 installed tracked files matched canonical Git bytes, including a second check after shutdown. Repentance+ v1.9.7.17.J460 launched, but window/input conflicts prevented gameplay testing. No ancestry samples or fresh starts were recorded. The game is closed and settings restored. The owner then requested preserving this installation while unavailable; continue offline. Consult HANDOFF.md and ENGINE_AUDIT_2026-10-26.md. Installation/startup are not engine acceptance. Older installed-version statements below remain historical.
 
-## B1 revision status (2026-10-26; design only)
+## B1 revision status (2026-10-26; eight draft features, offline only)
 
-The owner rejected direct numerical weakening in draft #100 and requested added character-specific features/tradeoffs. The draft remains unmerged and must not be installed. DIFFICULTY_FEATURES.md now specifies 22 alternative conditions while preserving the original coefficients. None is implemented or tested yet. The numerical candidate's passing suites apply only to that superseded candidate; new mechanics require their own failing-first regressions, clear UI, owner review and later native acceptance.
+The owner rejected direct numerical weakening in draft #100 and requested added character-specific features/tradeoffs. The draft remains unmerged and must not be installed. DIFFICULTY_FEATURES.md now specifies 22 alternative conditions while preserving the original coefficients. Eight are implemented in draft #102: normal Gemini, Grok and Llama; tainted GPT, Llama, Mistral, Doubao and GLM. Their existing suites gained failing-first cases for the new conditions: safe-room reset/release, drying delay, one-second sight loss, helper range/lifetime, combat-only baking, clear-triggered recovery and completion range/sight. Boundary, pause, duplicate, co-op and continue controls remain. The other 14 are still proposed. The numerical candidate does not validate these rules. Full gate/CI are required before review; native acceptance and balance approval remain pending.
 
-O4 PR #101 merged at ffc52bf after the 69-suite offline gate and successful CI; its departure restoration is source-only and absent from installed f8b2b0b. The owner supplied no usable checklist result. No runtime or settings were touched in this design revision.
+O4 PR #101 merged at ffc52bf after the 69-suite offline gate and successful CI; its departure restoration is source-only and absent from installed f8b2b0b. The owner supplied no usable checklist result. No runtime or settings were touched in this draft revision.
 
 ## O5: Hit, Death and side poses (2026-10-26; offline geometry only)
 
@@ -16,7 +16,7 @@ All 22 Hit cells already meet 28x32/bottom-55. The three other Death storage cel
 
 All 22 sheets have nonempty sampled cells, no sampled crop-edge contact and mirrored left/right geometry. Each has ten side-body keys, with five or six unique stride images. Repacking reproduces the candidate bytes; comparison to baseline confines changes to three storage cells. Menu/portrait bytes and all other skin pixels are preserved. The decoder equals Pillow's RGBA bytes for all 22 skins. Full offline gate and preview determinism are required before commit; no engine/visual acceptance follows from them.
 
-Shared cells also affect Appear, pickups, travel, jumps and other animations listed in POSE_REVIEW.md. Native acceptance must cover those, damage recovery, the full death/ghost sequence, movement/fire, costumes, size, flight, revival and other mods. B1 draft #102 is design-only and #100 is superseded; these geometry results do not validate either difficulty proposal.
+Shared cells also affect Appear, pickups, travel, jumps and other animations listed in POSE_REVIEW.md. Native acceptance must cover those, damage recovery, the full death/ghost sequence, movement/fire, costumes, size, flight, revival and other mods. B1 draft #102 has eight implemented features and 14 proposals, and #100 is superseded; these geometry results do not validate either difficulty proposal.
 
 ## O4: effect layers and departure restoration (2026-10-26; source and stubs only)
 

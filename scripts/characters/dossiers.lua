@@ -12,7 +12,7 @@ local originals={
     {id=C.Player.DEEPSEEK_CHAN_B,key="deepseek_b",name="Tainted DeepSeek-chan",title="Wenfeng / Wengu",
      lines={"Paid volleys add two half-damage forks.","Valley: cost 2, recovers when not firing.","Peak: cost 4. Tap/release DROP: Forks On/Saving."}},
     {id=C.Player.GPT_CHAN_B,key="gpt_b",name="Tainted GPT-chan",title="Reset Watcher",
-     lines={"Tap/release DROP: Standard / Full Send (1.5x).","Full Send costs 1 of 80 Credits per attack.","3 clears bank a Tibo reset: DROP refills."}},
+     lines={"Tap/release DROP: Standard / Full Send (1.5x).","Full Send costs 1 of 80 Credits per attack.","3 clears bank a reset: claim in a safe room."}},
     {id=C.Player.GEMINI_CHAN_B,key="gemini_b",name="Tainted Gemini-chan",title="One More Edit",
      lines={"Tap/release DROP: start a 6s edit chain.", "3 paid hits: Crop, Recolor, Export.", "Export deals one 2x damage pulse per room."}},
     {id=C.Player.GROK_CHAN_B,key="grok_b",name="Tainted Grok-chan",title="Quote Without Reading",
@@ -20,15 +20,15 @@ local originals={
     {id=C.Player.QWEN_CHAN_B,key="qwen_b",name="Tainted Qwen-chan",title="Final Final Fine-Tune",
      lines={"Cleared room: tap/release DROP to switch build.", "Heavy, Tiny or Balanced; locks in combat.", "Clear with all 3 builds: +0.2 damage this floor."}},
     {id=C.Player.LLAMA_CHAN_B,key="llama_b",name="Tainted Llama-chan",title="Still Waiting",
-     lines={"Each combat clear adds Hype (max 3).", "Tap/release DROP: spend all on a helper.", "It stays put, 4s per Hype, 0.5x tears."}},
+     lines={"Each combat clear adds Hype (max 3).", "Tap/release DROP: spend all on a helper.", "4s per Hype; stay within 120 for 0.5x tears."}},
     {id=C.Player.MISTRAL_CHAN_B,key="mistral_b",name="Tainted Mistral-chan",title="Le Gros Chaton",
-     lines={"Stand still, not firing: bake a Baguette.", "Tap/release DROP: a slow bread wave.", "2.5x once per enemy; walls stop it."}},
+     lines={"In combat, stand still, not firing: bake.", "Tap/release DROP: a slow bread wave.", "2.5x once per enemy; walls stop it."}},
     {id=C.Player.DOUBAO_CHAN_B,key="doubao_b",name="Tainted Doubao-chan",title="I'll Do It Again",
-     lines={"Tap/release DROP: 6s Confident, 1.35x.", "Then 4s Apology at 0.85x, then ready.", "Getting hit ends Confident early."}},
+     lines={"Tap/release DROP: 6s Confident, 1.35x.", "Then 4s Apology at 0.85x, then ready.", "Getting hit or clearing starts Apology."}},
     {id=C.Player.KIMI_CHAN_B,key="kimi_b",name="Tainted Kimi-chan",title="You Are the Manager",
      lines={"Tap/release DROP: assign a nearby enemy.", "Each task: three 0.6x pulses, 2s apart.", "3 tasks at once; 9 pulses per room."}},
     {id=C.Player.GLM_CHAN_B,key="glm_b",name="Tainted GLM-chan",title="Please Retry",
-     lines={"Tap/release DROP: queue a 2s request.", "Target survives: 2x, +1x per Retry.", "Target dies first: +1 Retry (max 3)."}},
+     lines={"2s request: stay within 200 and in sight.", "Target survives: 2x, +1x per Retry.", "Target dies first: +1 Retry (max 3)."}},
 }
 function Dossiers:Init(mod)
     local ready=false

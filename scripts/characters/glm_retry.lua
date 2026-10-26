@@ -86,6 +86,10 @@ function Retry:Init(mod, Risk)
         Game():GetHUD():ShowItemText("GLM-chan", "Please retry")
         if p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then clearBullet(p) end
     end
+    local function connected(p, target)
+        return p.Position:Distance(target.Position) <= RADIUS
+            and Game():GetRoom():CheckLine(p.Position, target.Position, 3)
+    end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         ready = true; bindings = {}; slots = {}; drop:Reset()
@@ -126,14 +130,21 @@ function Retry:Init(mod, Risk)
                 local target = request.ref.Ref
                 if not target or not target:Exists() or target:IsDead() then
                     fail(p, b)
+                elseif not target:IsVulnerableEnemy() or target:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+                    b.request = nil
+                    Game():GetHUD():ShowItemText("GLM-chan", "Target unavailable: request cancelled")
                 elseif advanced then
                     request.remaining = request.remaining - 1
                     if request.remaining <= 0 then
                         b.request = nil
-                        target:TakeDamage(p.Damage * (REQUEST_DAMAGE + RETRY_DAMAGE * s.retries), 0, EntityRef(p), 0)
-                        Feedback.Burst(target.Position, Color(0.8, 0.5, 1, 1, 0.2, 0, 0.3))
-                        s.retries = 0
-                        Game():GetHUD():ShowItemText("GLM-chan", "Request complete")
+                        if connected(p, target) then
+                            target:TakeDamage(p.Damage * (REQUEST_DAMAGE + RETRY_DAMAGE * s.retries), 0, EntityRef(p), 0)
+                            Feedback.Burst(target.Position, Color(0.8, 0.5, 1, 1, 0.2, 0, 0.3))
+                            s.retries = 0
+                            Game():GetHUD():ShowItemText("GLM-chan", "Request complete")
+                        else
+                            Game():GetHUD():ShowItemText("GLM-chan", "Connection lost: request timed out")
+                        end
                     end
                 end
             end
@@ -157,10 +168,12 @@ function Retry:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
             local text = string.format("GLM-chan: Retries %d/%d", b.state.retries, RETRY_CAP)
             if b.request then text = text..string.format("  Request Pending %ds", math.ceil(b.request.remaining / 30))
             elseif b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
+            local target = b.request and b.request.ref.Ref
+            if target and target:Exists() and not connected(p, target) then text = text.."  Restore connection" end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.4, 0.8, 1, 0.9)
         end)
     end)

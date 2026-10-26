@@ -132,15 +132,15 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 **裏版：Reset Watcher（リセット待ち）。** ❤💙💙、鍵1。
 - **クレジット：** 1ランにつき80（上限80）。フロアをまたいで持ち越します。
 - DROPタップで **Standard（無料）** と **Full Send**（ダメージ×1.5、攻撃1回ごとにクレジット1。Claudeちゃんの使用量と同じくすべての武器が対象）を切り替えます。クレジットが0になるとStandardに戻ります。
-- 新規の戦闘クリア3回ごとに **Tiboリセット** が1つたまります。たまっている間は部屋の進行が止まります。次のDROPタップでそれを受け取り、クレジットが満タンになります。
+- Every three unique combat clears **bank a Tibo reset**. While banked, progress pauses. Claim it with DROP in a cleared room; combat taps still toggle modes and keep the reset.
 - **誕生権：** 上限と回復量が100になります。
 
 ### Geminiちゃん（Gemini）
 
 **通常版：Nano Banana。** ❤❤💙、爆弾1。
 - **ペイント：** 初期2（上限3）。新規の戦闘クリアごとに1増えます。
-- DROPをタップすると1つ使い、180ユニット以内で最も近い敵を8秒間ペイントします。その敵への自分のダメージが×1.2になります。自分で倒すと **バナナの皮** が残り、4秒間敵を減速させます。マークと皮は1人につき1つずつで、ボスもペイントできます。
-- **誕生権：** ペイントした敵へのダメージが×1.3になります。
+- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. The first second dries at native damage, then your damage to it is x1.2. Your kill, including during drying, leaves a **banana peel** slowing enemies for 4 seconds. One mark and peel per player; bosses can be painted.
+- **Birthright:** x1.3 damage to the painted enemy after drying.
 
 **裏版：One More Edit（もう1回だけ編集）。** ❤💙💙、鍵1。ダメージ×0.9。
 - DROPをタップすると、180ユニット以内で最も近い敵に6秒間の **編集チェーン** を始めます。自分の攻撃を3回別々に当てると **Crop（切り抜き）→ Recolor（色調整）→ Export（書き出し）** と進みます。
@@ -152,7 +152,7 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **通常版：Is This True?（これって本当？）。** ❤❤💙、爆弾1。
 - 敵のいる部屋につき1回、DROPをタップすると220ユニット以内で最も近い敵を6秒間 **ファクトチェック** します。その敵へのダメージは×1.3、それ以外へは×0.9になります。
-- その敵に自分の攻撃を3回別々に当てるか倒すと **検証完了**：倍率が終わり、その部屋の間は移動速度+0.15。時間切れでは何も得られません。
+- Three distinct paid hits on it, or its defeat, **verify** it: the modifiers end and you gain +0.15 speed for the room. A timeout or one continuous second without direct line of sight ends it unverified; briefly restored sight resets that obstruction timer.
 - **誕生権：** 検証完了時に近くの敵弾を最大3発消します。
 
 **裏版：Quote Without Reading（読まずに引用）。** ❤💙💙、鍵1。ダメージ×0.9。
@@ -177,12 +177,12 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **通常版：Please Stay Open（オープンのままでいて）。** ❤❤💙、爆弾1。ダメージ×0.95。
 - **リリース：** 初期1（上限2）。新規の戦闘クリア2回ごとに1増えます。
-- DROPタップで1つ使うと、生きている各プレイヤー（最大4人）が **青いハエ** を2匹ずつ得ます。1人プレイなら4匹です。
+- In a cleared room, tap DROP to spend one: every living player (up to four) gets 2 **blue flies**. Solo, you get 4. Combat attempts retain the Release.
 - **誕生権：** 自分はハエを2匹多く得ます。
 
 **裏版：Still Waiting（まだ待ってる）。** ❤💙💙、鍵1。ダメージ×0.9。
 - 新規の戦闘クリアごとに **期待（Hype）** が1たまります（最大3）。
-- DROPをタップすると期待をすべて使い、その場にとどまる **ヘルパー** を出します。ヘルパーは期待1につき4秒間とどまり、毎秒1発、最も近い敵へダメージ0.5倍の涙を撃ちます。ヘルパーは1体までで、新しく出すと古いものと入れ替わり、部屋を出ると消えます。
+- Tap DROP to spend all Hype on a stationary **helper** lasting 4 seconds per Hype. It fires one 0.5x native tear per second at the nearest enemy only while you stay within 120 units. Lifetime continues outside; return resumes the cadence without catch-up. One helper at a time; replacing or leaving removes it.
 - **誕生権：** 期待1につき5秒になります。
 
 ### Mistralちゃん（Mistral）
@@ -193,7 +193,7 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 - **誕生権：** 射程が110ユニットになります。
 
 **裏版：Le Gros Chaton（大きな子猫）。** ❤💙💙、鍵1。移動速度−0.1、ダメージ×0.9。
-- 撃たずに2秒間立ち止まると **バゲット** が1本焼けます（最大2本）。
+- In hostile combat, stand still without firing for 2 seconds to bake a **Baguette** (max 2). Cleared rooms pause partial baking; room exit discards the partial charge.
 - DROPタップで1本使い、前方へゆっくり進む **衝撃波** を放ちます。120ユニット進み、敵それぞれに2.5倍ダメージを1回与えます。壁で止まり、クールダウンは2秒です。
 - **誕生権：** バゲットが1.5秒で焼けます。
 
@@ -206,7 +206,7 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **裏版：I'll Do It Again（次もやります）。** ❤💙💙、鍵1。
 - 準備完了のときにDROPをタップすると、6秒間の **自信満々（Confident）**（ダメージ×1.35）、続いて4秒間の **お詫び（Apology）**（×0.85）を経て、再び準備完了になります。
-- タイマーは敵のいる部屋でのみ進みます。自信満々の間に被弾するとすぐに終わり、お詫びが始まります。
+- Timers only run in hostile combat. An enemy hit or a hostile room clear during Confident starts Apology immediately; unfinished recovery carries into the next fight. Clearing during Apology never restarts it.
 - **誕生権：** お詫びが3秒になります。
 
 ### Kimiちゃん（Kimi）
@@ -230,8 +230,8 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **裏版：Please Retry（再試行してください）。** ❤💙💙、鍵1。ダメージ×0.9。
 - 戦闘中にDROPをタップすると、200ユニット以内で最も近い敵に2秒間の **リクエスト** を送ります（クールダウン3秒）。
-- リクエスト完了時にその敵がまだいれば、2倍ダメージに **リトライ** 1つにつき1倍を加えたダメージを与え、リトライを消費します（最大5倍）。先に死んだ場合はリトライを1つ得ます（最大3）。部屋を出るとリクエストは取り消されます。
-- **誕生権：** 失敗したリクエストでも近くの敵弾を1発消します。
+- At completion, a surviving target within 200 units and direct line of sight takes 2x damage plus 1x per **Retry**, consuming the stacks (max 5x). A connection timeout deals no damage and neither gains nor spends Retries; cooldown still applies. Early target death adds a Retry (cap 3). Leaving cancels the request.
+- **Birthright:** early target death/removal also removes one nearby enemy bullet; connection timeouts do not.
 
 ## コレクティブル
 

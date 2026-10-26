@@ -201,4 +201,15 @@ Risk.state.gptReset["0"]={version=1,credits=500,fullSend=true,clears=0,ready=fal
 tick(); assert(state().credits==80 and not state().fullSend)
 
 fire("MC_POST_GAME_STARTED",false); assert(state().credits==80 and not state().ready)
+-- Waiting for Tibo: combat taps toggle modes but retain the banked refill.
+fire("MC_POST_GAME_STARTED",false); enter(100,true)
+state().credits=20; state().ready=true
+local partnerCredits=state(1).credits
+tap(p); assert(state().ready and state().credits==20 and state().fullSend,"combat cannot claim the reset")
+near(p.Damage,15); assert(hud():find("after combat"),hud())
+tap(p); assert(state().ready and state().credits==20 and not state().fullSend)
+assert(state(1).credits==partnerCredits,"the banked restriction is personal")
+reload({player(201,999,0),player(202,22,1)}); p,q=players[1],players[2]
+assert(state().ready and state().credits==20,"continue retains the banked reset")
+finish(); tap(p); assert(not state().ready and state().credits==80 and not state().fullSend)
 print("OK: Reset Watcher Credits, Full Send payments, banked Tibo reset, Birthright and save/floor/identity lifecycle")

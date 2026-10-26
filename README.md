@@ -132,15 +132,15 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 **Tainted: Reset Watcher.** ❤💙💙, 1 key.
 - **Credits:** 80 per run (cap 80), carried across floors.
 - Tap DROP to toggle **Standard** (free) and **Full Send** (×1.5 damage, 1 Credit per paid attack, billed on every weapon like Claude-chan's usage). At 0 Credits she drops back to Standard.
-- Every three unique combat clears **bank a Tibo reset**. While one is banked, room progress pauses. The next DROP tap claims it and refills Credits.
+- Every three unique combat clears **bank a Tibo reset**. While banked, progress pauses. Claim it with DROP in a cleared room; combat taps still toggle modes and keep the reset.
 - **Birthright:** cap and refill raised to 100.
 
 ### Gemini-chan (Gemini)
 
 **Normal: Nano Banana.** ❤❤💙, 1 bomb.
 - **Paint:** start 2 (cap 3). Earn 1 per unique combat clear.
-- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. Your damage to it is ×1.2. If you kill it, it leaves a **banana peel** that slows enemies for 4 seconds. One mark and one peel per player. Bosses can be painted.
-- **Birthright:** ×1.3 damage to the painted enemy.
+- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. The first second dries at native damage, then your damage to it is x1.2. Your kill, including during drying, leaves a **banana peel** slowing enemies for 4 seconds. One mark and peel per player; bosses can be painted.
+- **Birthright:** x1.3 damage to the painted enemy after drying.
 
 **Tainted: One More Edit.** ❤💙💙, 1 key. Damage ×0.9.
 - Tap DROP to start a 6-second **edit chain** on the nearest enemy within 180 units. Three distinct paid hits advance **Crop → Recolor → Export**.
@@ -152,7 +152,7 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 **Normal: Is This True?** ❤❤💙, 1 bomb.
 - Once per hostile room, tap DROP to **fact-check** the nearest enemy within 220 units for 6 seconds. Your damage is ×1.3 to it and ×0.9 to everything else.
-- Three distinct paid hits on it, or its defeat, **verify** it: the modifiers end and you gain +0.15 speed for the room. A timeout gives nothing.
+- Three distinct paid hits on it, or its defeat, **verify** it: the modifiers end and you gain +0.15 speed for the room. A timeout or one continuous second without direct line of sight ends it unverified; briefly restored sight resets that obstruction timer.
 - **Birthright:** verification also removes up to 3 nearby enemy bullets.
 
 **Tainted: Quote Without Reading.** ❤💙💙, 1 key. Damage ×0.9.
@@ -177,12 +177,12 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 **Normal: Please Stay Open.** ❤❤💙, 1 bomb. Damage ×0.95.
 - **Releases:** start 1 (cap 2). Earn 1 per two unique combat clears.
-- Tap DROP to spend one: every living player (up to four) gets 2 **blue flies**. Solo, you get 4.
+- In a cleared room, tap DROP to spend one: every living player (up to four) gets 2 **blue flies**. Solo, you get 4. Combat attempts retain the Release.
 - **Birthright:** 2 extra flies for you.
 
 **Tainted: Still Waiting.** ❤💙💙, 1 key. Damage ×0.9.
 - Each unique combat clear adds 1 **Hype** (max 3).
-- Tap DROP to spend all Hype on a stationary **helper** that lasts 4 seconds per Hype and fires one 0.5× native tear per second at the nearest enemy. One helper at a time: a new one replaces the old, and leaving the room removes it.
+- Tap DROP to spend all Hype on a stationary **helper** lasting 4 seconds per Hype. It fires one 0.5x native tear per second at the nearest enemy only while you stay within 120 units. Lifetime continues outside; return resumes the cadence without catch-up. One helper at a time; replacing or leaving removes it.
 - **Birthright:** 5 seconds per Hype.
 
 ### Mistral-chan (Mistral)
@@ -193,7 +193,7 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 - **Birthright:** 110-unit reach.
 
 **Tainted: Le Gros Chaton.** ❤💙💙, 1 key. Speed −0.1, damage ×0.9.
-- Stand still without firing for 2 seconds to bake a **Baguette** (max 2).
+- In hostile combat, stand still without firing for 2 seconds to bake a **Baguette** (max 2). Cleared rooms pause partial baking; room exit discards the partial charge.
 - Tap DROP to spend one on a slow forward **shockwave** that travels 120 units and deals 2.5× once per enemy. Walls stop it, with a 2-second cooldown.
 - **Birthright:** Baguettes bake in 1.5 seconds.
 
@@ -206,7 +206,7 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 **Tainted: I'll Do It Again.** ❤💙💙, 1 key.
 - When ready, tap DROP for 6 seconds of **Confident** (×1.35 damage), then 4 seconds of **Apology** (×0.85), then ready again.
-- Timers only run in hostile rooms. Getting hit during Confident ends it early and starts the Apology.
+- Timers only run in hostile combat. An enemy hit or a hostile room clear during Confident starts Apology immediately; unfinished recovery carries into the next fight. Clearing during Apology never restarts it.
 - **Birthright:** Apology lasts 3 seconds.
 
 ### Kimi-chan (Kimi)
@@ -230,8 +230,8 @@ Health notation: ❤ = red heart, 💙 = soul heart. Unless stated otherwise, no
 
 **Tainted: Please Retry.** ❤💙💙, 1 key. Damage ×0.9.
 - In combat, tap DROP to queue a 2-second **request** on the nearest enemy within 200 units (3-second cooldown).
-- If it is still there when the request finishes, it takes 2× damage plus 1× per **Retry** stack, which are consumed (max 5×). If it dies first, you gain a Retry (max 3). Leaving the room cancels the request.
-- **Birthright:** a failed request also removes one nearby enemy bullet.
+- At completion, a surviving target within 200 units and direct line of sight takes 2x damage plus 1x per **Retry**, consuming the stacks (max 5x). A connection timeout deals no damage and neither gains nor spends Retries; cooldown still applies. Early target death adds a Retry (cap 3). Leaving cancels the request.
+- **Birthright:** early target death/removal also removes one nearby enemy bullet; connection timeouts do not.
 
 ## Collectibles
 

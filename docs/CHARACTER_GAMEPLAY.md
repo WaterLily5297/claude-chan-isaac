@@ -68,9 +68,9 @@ Source status (scripts/characters/gpt_downgrade.lua): implemented and replaces t
 
 ### Tainted: Reset Watcher
 
-Start a new run with 80 Credits, cap 80. DROP toggles Standard (1x damage, free) and Full Send (1.5x, one credit per paid attack). At zero return to Standard. Every three unique clears earns Reset Ready, max one. When ready, DROP consumes the reset and refills credits before any mode toggle. Room progress pauses while a reset is banked.
+Start a new run with 80 Credits, cap 80. DROP toggles Standard (1x damage, free) and Full Send (1.5x, one credit per paid attack). At zero return to Standard. Every three unique clears earns Reset Ready, max one. In a cleared room, DROP consumes a banked reset and refills credits before any mode toggle. In combat it toggles modes and keeps the reset. Room progress pauses while a reset is banked.
 
-Floor changes and continue preserve credits, progress and banked reset. Real time does nothing. Spend an allowance before claiming the reset, or claim early for immediate pressure. Birthright raises the cap/refill to 100. HUD: Credits, Next Reset 0/3, `Tibo: Reset Ready`. No network requests.
+Floor changes and continue preserve credits, progress and banked reset. Real time does nothing. Prepare enough Credits before combat; a banked reset cannot refill mid-fight. Birthright raises the cap/refill to 100. HUD: Credits, Next Reset 0/3, `Tibo: Reset Ready`. No network requests.
 
 Source status (scripts/characters/gpt_reset.lua): implemented and registered with the deeper-colour tainted GPT art. A paid attack is a registered tear volley, a laser init or a Dr. Fetus bomb, one payment per frame, plus the shared observer's held-beam and Ludovico windows, knife throws, swings and Epic Fetus rockets, so Full Send is never free on a non-tear build. Engine acceptance pending.
 
@@ -80,7 +80,7 @@ These roles are concrete proposals. Their source strength varies; do not present
 
 ### Gemini — Nano Banana / One More Edit
 
-**Normal:** Start with two Paint, cap three; earn one per unique clear. DROP spends one to paint the nearest hostile within 180 units for eight seconds, giving +20% owner damage to it. Its defeat leaves a four-second slowing banana peel. Max one mark and one peel per owner; replacement discards the previous effect. Bosses can be painted. Birthright: +30% marked damage. HUD: Paint.
+**Normal:** Start with two Paint, cap three; earn one per unique clear. DROP spends one to paint the nearest hostile within 180 units for eight seconds. The first second dries at native damage, then owner damage is +20% for the remaining mark time. Its defeat leaves a four-second slowing banana peel. Max one mark and one peel per owner; replacement discards the previous effect. Bosses can be painted. Birthright: +30% marked damage after drying. HUD: Paint.
 
 Source status (scripts/characters/gemini_paint.lua): normal form implemented and replaces Prism / Echo. The bonus re-deals the owner's damage once at the higher value with a recursion guard, so other mods' damage callbacks see one cancelled and one re-dealt hit. The peel is vanilla black player creep (slows enemies) tinted yellow. Paint carries across floors; awards reset per floor. Engine acceptance pending.
 
@@ -90,7 +90,7 @@ Source status (scripts/characters/gemini_edit.lua): implemented and registered w
 
 ### Grok — Is This True? / Quote Without Reading
 
-**Normal:** Once per hostile room, DROP challenges the nearest vulnerable target within 220 units for six seconds. Owner damage is 1.3x to it, 0.9x to others. Its defeat or three distinct paid hits verifies it, ends the modifiers and grants +0.15 speed for that room. Timeout gives nothing. Birthright: verification removes up to three nearby ordinary hostile bullets once. HUD: Check progress/timer.
+**Normal:** Once per hostile room, DROP challenges the nearest vulnerable target within 220 units for six seconds. Owner damage is 1.3x to it, 0.9x to others. Its defeat or three distinct paid hits verifies it, ends the modifiers and grants +0.15 speed for that room. Timeout or one continuous second without direct line of sight ends the check unverified. Restoring sight resets the obstruction timer. Birthright: verification removes up to three nearby ordinary hostile bullets once. HUD: Check progress/timer.
 
 Source status (scripts/characters/grok_check.lua): normal form implemented and replaces movement momentum. Damage modifiers re-deal the owner's hit once behind a recursion guard, like Gemini. "Nearby" bullets means the three nearest projectiles within 120 units. Engine acceptance pending.
 
@@ -110,13 +110,13 @@ Source status (scripts/characters/qwen_finetune.lua): implemented and registered
 
 ### Llama — Please Stay Open / Still Waiting
 
-**Normal:** Start with one Release, cap two; earn one every two unique clears. DROP spends one to grant two blue flies to each living player, max four recipients; solo gets four flies. Base damage 0.95x. Flies cannot generate release progress; duplicate Llamas own separate budgets. Birthright gives the owner two extra flies. HUD: Releases.
+**Normal:** Start with one Release, cap two; earn one every two unique clears. In a cleared room, DROP spends one to grant two blue flies to each living player, max four recipients; solo gets four flies. Base damage 0.95x. Flies cannot generate release progress; duplicate Llamas own separate budgets. Birthright gives the owner two extra flies. HUD: Releases.
 
 Source status (scripts/characters/llama_release.lua): normal form implemented and replaces the automatic flies. Recipients are the first four living players in slot order. Engine acceptance pending.
 
 **Tainted:** Base damage 0.9x. Start with zero Hype, cap three; each unique clear adds one. DROP spends all hype to create one stationary helper for four seconds per stack. It fires one native 0.5x tear per second. Max one helper; replacement discards remaining duration. Room exit removes it. Birthright: five seconds per stack. HUD: Hype. The contrast is sharing a small release now versus saving anticipation for a longer release, without claims about Meta's future policy.
 
-Source status (scripts/characters/llama_hype.lua): implemented and registered with the deeper-colour tainted Llama art. The helper is a position, not an entity; the shared derived-shot path still calls native `FireTear` at that position with a 0.5x damage multiplier. Helper shots do not bill Opus Mode, consume primed attack bonuses or advance backlog paid-attack triggers; primary shots and Summary Stapler keep their normal accounting. Cadence, duration and Birthright are unchanged. LLAMA-HELPER-01 is an offline correction; native callback timing, tear effects and weapon replacements still need engine acceptance.
+Source status (scripts/characters/llama_hype.lua): implemented and registered with the deeper-colour tainted Llama art. The helper is a position, not an entity; the shared derived-shot path still calls native `FireTear` at that position with a 0.5x damage multiplier. Helper shots do not bill Opus Mode, consume primed attack bonuses or advance backlog paid-attack triggers; primary shots and Summary Stapler keep their normal accounting. It fires only while the owner stays within 120 units of the origin; lifetime and cadence continue outside, with no catch-up shots on return. Duration and Birthright are unchanged. LLAMA-HELPER-01 is an offline correction; native callback timing, tear effects and weapon replacements still need engine acceptance.
 
 ### Mistral — Le Chat / Le Gros Chaton
 
@@ -124,7 +124,7 @@ Source status (scripts/characters/llama_hype.lua): implemented and registered wi
 
 Source status (scripts/characters/mistral_pounce.lua): normal form implemented and replaces tailwind. Forward is the aim direction, else movement, else down. The line is about 20 units wide plus the enemy's size; `Room:CheckLine` in projectile mode stops it at walls and rocks. The cooldown blocks charging. The swipe shows tinted vanilla dust poofs (`scripts/characters/feedback.lua`) at its midpoint and on each hit; there is no dedicated swipe sprite. Engine acceptance pending.
 
-**Tainted:** Speed -0.1, damage 0.9x. Stand without firing for two seconds to store one Baguette, cap two. DROP spends one on a slow forward shockwave, max travel 120 units, damage 2.5x once per target; walls stop it, cooldown two seconds. Birthright: 1.5-second charge. HUD: Baguettes. A particular satire thread supports the giant-kitten/baguette joke; the approved portrait stays intact. Put exaggeration in the bread effect, not an enlarged hurt head or collision box.
+**Tainted:** Speed -0.1, damage 0.9x. Stand without firing in hostile combat for two seconds to store one Baguette, cap two. DROP spends one on a slow forward shockwave, max travel 120 units, damage 2.5x once per target; walls stop it, cooldown two seconds. Birthright: 1.5-second charge. Cleared rooms pause partial baking; room exit discards it. HUD: Baguettes. A particular satire thread supports the giant-kitten/baguette joke; the approved portrait stays intact. Put exaggeration in the bread effect, not an enlarged hurt head or collision box.
 
 Source status (scripts/characters/mistral_baguette.lua): implemented and registered with the deeper-colour tainted Mistral art. The shockwave is a moving point checked each frame, not an entity; golden vanilla dust poofs mark it every 24 units. There is no dedicated bread sprite. Engine acceptance pending.
 
@@ -134,7 +134,7 @@ Source status (scripts/characters/mistral_baguette.lua): implemented and registe
 
 Source status (scripts/characters/doubao_apology.lua): normal form implemented and replaces the meal. A hit qualifies when its source is a projectile or a non-friendly enemy, it is not fake or no-penalty damage, and the room is not clear. Only one hit per room counts, even if the first token expires unused. The four nearest projectiles within 100 units are removed. Spending the Apology shows a pink vanilla dust poof at the player, plus the slow tint and a caption. Engine acceptance pending.
 
-**Tainted:** DROP starts six seconds of Confident at 1.35x damage, followed by four seconds of Apology at 0.85x, then becomes ready. Timers advance only in hostile combat. Default damage is 1x when ready. An enemy hit during Confident ends it early and starts Apology; it never cancels the damage. Birthright: Apology lasts three seconds. HUD: phase/timer. This is a deliberate overpromise/recovery cycle, not a second rice character. Indexed titles support the apology motif; no exact unviewed audio quote is claimed.
+**Tainted:** DROP starts six seconds of Confident at 1.35x damage, followed by four seconds of Apology at 0.85x, then becomes ready. Timers advance only in hostile combat. Default damage is 1x when ready. An enemy hit or hostile room clear during Confident ends it early and starts Apology; recovery carries into the next fight. Clearing during Apology does not restart it. The ability never cancels damage. Birthright: Apology lasts three seconds. HUD: phase/timer. This is a deliberate overpromise/recovery cycle, not a second rice character. Indexed titles support the apology motif; no exact unviewed audio quote is claimed.
 
 Source status (scripts/characters/doubao_again.lua): implemented and registered with the deeper-colour tainted Doubao art. The hit rule matches normal Doubao's qualifying-hit rule. The phase is saved so a continued run keeps its multiplier. Engine acceptance pending.
 
@@ -154,7 +154,7 @@ Source status (scripts/characters/kimi_manager.lua): implemented and registered 
 
 Source status (scripts/characters/glm_queue.lua): normal form implemented and replaces tool links and the pocket Book of Secrets. A new hostile room is the first combat in a room not yet entered in combat this floor; a pass redeemed mid-fight starts with the next one. Clears are paused while pass rooms remain or the current room is boosted. Engine acceptance pending.
 
-**Tainted:** Base damage 0.9x. DROP selects a hostile within 200 units and schedules a two-second request. If it survives in the room, deal 2x damage and consume all Retry stacks, adding 1x per stack (cap three; max 5x total). Early target death instead gives one Retry. One pending request; three-second cooldown from selection. Exit cancels without earning a stack. Birthright: a failed request also removes one nearby ordinary hostile bullet. HUD: Retries, Request Pending. Retries are bounded and deterministic, not a random missing-shot mechanic.
+**Tainted:** Base damage 0.9x. DROP selects a hostile within 200 units and schedules a two-second request. If it survives within 200 units and direct line of sight at completion, deal 2x damage and consume all Retry stacks, adding 1x per stack (cap three; max 5x total). A connection timeout deals no damage and neither gains nor spends Retries; normal cooldown remains. Early target death instead gives one Retry. One pending request; three-second cooldown from selection. Exit cancels without earning a stack. Birthright: early target death/removal also removes one nearby ordinary hostile bullet; connection timeouts do not. HUD: Retries, Request Pending. Retries are bounded and deterministic, not a random missing-shot mechanic.
 
 Source status (scripts/characters/glm_retry.lua): implemented and registered with the deeper-colour tainted GLM art. Retries are deterministic and bounded. The request damage is direct owner-sourced damage. The requested enemy gets a fading violet tint for the two seconds, and a completed request shows a violet poof. Engine acceptance pending.
 

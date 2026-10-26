@@ -164,7 +164,7 @@ test("helper keeps stationary origin, native arguments and half damage", functio
     p.Position, p.ShotSpeed = Vector(10, 20), 1.5
     local target = env.npc(70, { y = 100, hp = 1000 })
     env.startHelper()
-    p.Position = Vector(300, 300)
+    p.Position = Vector(100, 80) -- Move within the 120-unit owner radius; origin must stay fixed.
     env.C.Prime(p, "held", 2)
     local helper = nextHelper(env, p)
     local call = p.nativeShots[1]

@@ -168,9 +168,11 @@ local function aim(p,x,y) p.Velocity=vec(0,0); p.aim=vec(x,y or 0) end
 players={player(1,11,0),player(2,22,1)}; load(); fire("MC_POST_GAME_STARTED",false)
 local p,q=players[1],players[2]
 near(p.MoveSpeed,0.9); near(p.Damage,9)
-assert(hud()=="Mistral-chan: Baguettes 0/2",hud())
+assert(hud()=="Mistral-chan: Baguettes 0/2  Combat to bake",hud())
 
 -- Two seconds standing without firing bakes one Baguette; firing or moving resets.
+stand(p,90); assert(state().baguettes==0 and state(1).baguettes==0,"a safe room cannot bake")
+assert(hud():find("Combat to bake"),hud()); clear=false
 stand(p,59); assert(state().baguettes==0)
 aim(p,1); tick(); stand(p,59); assert(state().baguettes==0,"firing resets the charge")
 p.Velocity=vec(3,0); tick(); stand(p,59); assert(state().baguettes==0,"moving resets the charge")
@@ -224,4 +226,10 @@ players[1]=player(101,999,0); p=players[1]; tick(); assert(state().baguettes==0)
 p.kind=0; tick(); assert(state()==nil); p:EvaluateItems(); near(p.MoveSpeed,1); near(p.Damage,10)
 p.kind=156; tick(); Risk.state.mistralBaguette["0"]={version=1,baguettes=3}; tick(); assert(state().baguettes==0)
 Risk.state.mistralBaguette["0"]={version=1,baguettes=0.5}; tick(); assert(state().baguettes==0)
+-- Clearing pauses partial baking; a later fight resumes it, while room exit resets it.
+fire("MC_POST_GAME_STARTED",false); clear=false; stand(p,30)
+clear=true; stand(p,90); assert(state().baguettes==0)
+clear=false; stand(p,29); assert(state().baguettes==0); tick(); assert(state().baguettes==1)
+stand(p,30); enter(200,false); clear=false; stand(p,59); assert(state().baguettes==1)
+tick(); assert(state().baguettes==2,"the new room requires the full baking interval")
 print("OK: tainted Mistral baking, cap, slow wave, walls, cooldown, room exit, direction, Birthright and save/identity lifecycle")

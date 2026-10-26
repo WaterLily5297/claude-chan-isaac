@@ -1,5 +1,11 @@
 # Changelog
 
+## Character tradeoffs, first eight forms (2026-10-26; draft, offline)
+
+- Add safe-room Tibo resets and Llama releases, wet paint, sustained-sight fact checks, owner-range demos, combat baking, clear-triggered Apology and connected requests. Existing numerical benefits are preserved.
+- Add failing-first regressions and matching English HUD, dossier, EID and rule text. Fourteen other proposed features remain unimplemented; #102 stays draft pending completion and owner balance review.
+- No installation or game session; preserve f8b2b0b.
+
 ## Death-pose geometry and all-form preview (2026-10-26; offline)
 
 - Repack three oversized Death cells for all 22 forms using their measured native envelopes and ground anchors; retain Llama's complete Death-start source pose. Existing Hit, walking and other pixels are preserved.

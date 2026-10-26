@@ -1,6 +1,7 @@
 -- Real tainted GLM Please Retry: requests, Retry stacks, cooldown and save/continue snapshots.
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
+local lineOfSight=true
 local callbacks, players, saved, draws, texts, enemies = {}, {}, nil, {}, {}, {}
 local C={Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
 function include(name)
@@ -37,7 +38,7 @@ local function vec(x) return {x=x, Distance=function(self,o) return math.abs(sel
 function Game() return {
     GetFrameCount=function() return frame end, GetNumPlayers=function() return #players end,
     IsPaused=function() return paused end,
-    GetRoom=function() return {IsClear=function() return clear end} end,
+    GetRoom=function() return {IsClear=function() return clear end, CheckLine=function() return lineOfSight end} end,
     GetLevel=function() return {
         GetDungeonPlacementSeed=function() return floor end,
         GetStage=function() return 1 end,GetStageType=function() return 0 end,
@@ -217,4 +218,19 @@ for _,bad in ipairs({{version=1,retries=4},{version=1,retries=-1},{version=1,ret
     Risk.state.glmRetry["0"]=bad; tick(); assert(state().retries==0 and state().version==1)
 end
 Risk.state.glmRetry["0"]={version=1,retries=3}; tick(); assert(state().retries==3,"valid data is kept")
+-- Stay connected: failed distance/visibility does not consume or award stored Retries.
+fire("MC_POST_GAME_STARTED",false); enter(100,true); local remote=enemy(100)
+state().retries=2; p.birthright=true; local safeBullet=bullet(10); tap(p)
+p.Position=vec(-101); tick(60)
+assert(#remote.taken==0 and state().retries==2 and last()=="Connection lost: request timed out")
+assert(not safeBullet.removed and state(1).retries==0,"timeouts are not early-target-death rewards")
+assert(hud():find("Cooldown"),hud()); fire("MC_POST_UPDATE")
+p.Position=vec(0); tick(30); lineOfSight=false; tap(p)
+assert(hud():find("Restore connection"),hud()); tick(60)
+assert(#remote.taken==0 and state().retries==2,"blocked completion cannot hit through the wall")
+lineOfSight=true; tick(30); tap(p); p.Position=vec(-100); tick(60)
+assert(#remote.taken==1 and state().retries==0,"200 units is inclusive")
+near(remote.taken[1],36)
+tick(30); tap(p); remote.friendly=true; tick()
+assert(state().retries==0 and #remote.taken==1 and not hud():find("Pending"),"friendly targets cancel without reward")
 print("OK: tainted GLM requests, cooldown, Retry stacks, exit cancel, Birthright bullet, dead owner and save/identity lifecycle")
