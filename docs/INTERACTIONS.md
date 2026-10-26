@@ -45,7 +45,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 398 callback registrations; 109 candidate direct field writes. Source fingerprint: `91f41d3ed90d5da04db587eaeaa6f367a4a4bb273098bbec87c1731c65357c21`.
+110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `73958516f494b565b9889f2c20b82be98a700e49855a45f66127ee228a4196c1`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1989,7 +1989,7 @@ Risk state roots: none detected.
 #### scripts/items/thinking_cleared.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/thinking_cleared.lua:14](../scripts/items/thinking_cleared.lua#L14)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/thinking_cleared.lua:36](../scripts/items/thinking_cleared.lua#L36)).
+Callbacks: `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/thinking_cleared.lua:25](../scripts/items/thinking_cleared.lua#L25)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [items/thinking_cleared.lua:42](../scripts/items/thinking_cleared.lua#L42)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/thinking_cleared.lua:46](../scripts/items/thinking_cleared.lua#L46)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -1998,7 +1998,7 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [items/thinking_cleared.lua:38](../scripts/items/thinking_cleared.lua#L38) | `player.Damage` | `player.Damage+ROOM_DAMAGE` | self-dependent |
+| [items/thinking_cleared.lua:49](../scripts/items/thinking_cleared.lua#L49) | `player.Damage` | `player.Damage+ROOM_DAMAGE` | self-dependent |
 
 
 

@@ -10,12 +10,22 @@ local ThinkingCleared = {}
 
 local ROOM_DAMAGE = 1
 
+local function refreshHeldDamage(player)
+    local data = player:GetData()
+    local holds = player:HasTrinket(Constants.Trinket.THINKING_CLEARED)
+    if holds ~= (data.ccThinkingCleared == true) then
+        -- This transient marker only schedules a refresh; inventory owns the bonus.
+        data.ccThinkingCleared = holds
+        player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+        player:EvaluateItems()
+    end
+end
+
 function ThinkingCleared:Init(mod)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
         local firstVisit = Game():GetRoom():IsFirstVisit()
         for i = 0, Game():GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
-            local data = player:GetData()
             local holds = player:HasTrinket(Constants.Trinket.THINKING_CLEARED)
 
             if holds and firstVisit then
@@ -25,16 +35,17 @@ function ThinkingCleared:Init(mod)
                 end
             end
 
-            if holds ~= (data.ccThinkingCleared == true) then
-                data.ccThinkingCleared = holds
-                player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-                player:EvaluateItems()
-            end
+            refreshHeldDamage(player)
         end
     end)
 
+    mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
+        refreshHeldDamage(player)
+    end)
+
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
-        if flag == CacheFlag.CACHE_DAMAGE and player:GetData().ccThinkingCleared then
+        if flag == CacheFlag.CACHE_DAMAGE
+            and player:HasTrinket(Constants.Trinket.THINKING_CLEARED) then
             player.Damage = player.Damage + ROOM_DAMAGE
         end
     end)

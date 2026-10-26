@@ -1,5 +1,11 @@
 # Changelog
 
+## Thinking Cleared inventory refresh (2026-10-26; offline fix)
+
+- Apply/remove the existing +1 damage when the trinket is picked up/dropped within a room. Damage evaluation reads current inventory even before the next player update; unchanged inventory does not cause repeated cache rebuilds.
+- Preserve first-visit primary-charge drain, additive damage, partner isolation and the existing trinket-scaling policy. Add a real-module inventory/cache regression with failing-before evidence and charge controls.
+- Native callback timing, special charge types and Continue remain unverified. Preserve the owner-untried installed 8fd6a8c build.
+
 ## First ten designed item icons (2026-10-26; offline art)
 
 - Redraw Ban Hammer, Compact, Summary Stapler, Ultrathink, Subagent Swarm, The Constitution, Lunch Break, Rice Cooker, Token Recall and Let's Delve using original pixel geometry, material ramps and transparent margins.
