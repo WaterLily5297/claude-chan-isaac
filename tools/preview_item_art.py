@@ -42,6 +42,18 @@ BATCHES = {
         ('collectibles/nano_banana.png', 'Nano Banana'),
         ('collectibles/undo_brush.png', 'Undo Brush'),
     ),
+    '04': (
+        ('collectibles/one_more_finger.png', 'One More Finger'),
+        ('collectibles/unchanged_preview.png', 'Unchanged Preview'),
+        ('collectibles/is_this_true.png', 'Is This True?'),
+        ('collectibles/live_wire.png', 'Live Wire'),
+        ('collectibles/quote_retort.png', 'Quote Retort'),
+        ('collectibles/community_note.png', 'Community Note'),
+        ('collectibles/base_model.png', 'Base Model'),
+        ('collectibles/another_adapter.png', 'Another Adapter'),
+        ('collectibles/final_weights.png', 'Final Final Weights'),
+        ('collectibles/tiny_variant.png', 'Tiny Variant'),
+    ),
 }
 LIGHT, DARK = (221,205,175,255), (37,31,32,255)
 PAGE, TEXT = (238,229,209,255), (47,37,35,255)
@@ -89,6 +101,7 @@ FONT = {
     '/':'00001/00001/00010/00100/01000/10000/10000',
     ':':'00000/00100/00100/00000/00100/00100/00000',
     '.':'00000/00000/00000/00000/00000/00100/00100',
+    '?':'01110/10001/00001/00010/00100/00000/00100',
     ' ':'00000/00000/00000/00000/00000/00000/00000',
 }
 

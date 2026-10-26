@@ -1635,15 +1635,15 @@
     {
       "name": "One More Finger",
       "gfx": "collectibles/one_more_finger.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "one_more_finger",
+        "file": "tools/make_item_art.py",
+        "function": "finger_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1654,16 +1654,17 @@
       ],
       "palette": [
         "#080000",
-        "#a30000",
-        "#c9a87f",
-        "#e70000",
-        "#f3d9b5",
-        "#ffeecd"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "4fc1371215c5348603d03a853ff8e2c29c66c5b0f191965f2867ab4459c5d580",
-      "description": "Legacy placeholder for One More Finger; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "c90e535488394cc7dc544cfd22fd21ca5023575eb5660a20e16495f08761e1f1",
+      "description": "A cream glove with five upright fingers and a side thumb, plus a blue cuff; one extra shot.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Undo Brush",
@@ -1708,15 +1709,15 @@
     {
       "name": "Unchanged Preview",
       "gfx": "collectibles/unchanged_preview.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "unchanged_preview",
+        "file": "tools/make_item_art.py",
+        "function": "preview_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1727,30 +1728,33 @@
       ],
       "palette": [
         "#080000",
-        "#4fb8c9",
-        "#8fe3ee",
-        "#a8a191",
-        "#d8d2c4",
-        "#f0c849",
-        "#f2eee4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "e88929731082b4da5e61fd2f12d9b15ffd04b51bcb85a58d572523f34447d71f",
-      "description": "Legacy placeholder for Unchanged Preview; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "95fb510ebe052dd0bcc3124d12c77f64d98a7b9a5b4edcdf6390ea5ba29447d8",
+      "description": "Two overlapping slide frames containing the same faceless bust; temporary paired decoys.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Is This True?",
       "gfx": "collectibles/is_this_true.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "is_this_true",
+        "file": "tools/make_item_art.py",
+        "function": "challenge_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1761,28 +1765,33 @@
       ],
       "palette": [
         "#080000",
-        "#161616",
-        "#2b2b2b",
-        "#454545",
-        "#d8d2c4"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "416fee9d62f5bd412786c64d365f75847913bb47f4bbebdef3af1bf938cf2833",
-      "description": "Legacy placeholder for Is This True?; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "48d5cd72e644f35319dd60b8803c50e49994f3942bc6c4da5b78f7afdf4ecc11",
+      "description": "A brass megaphone with a dark mouth and a blue handle; challenging one selected target.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Live Wire",
       "gfx": "collectibles/live_wire.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "live_wire",
+        "file": "tools/make_item_art.py",
+        "function": "wire_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1793,26 +1802,33 @@
       ],
       "palette": [
         "#080000",
-        "#a86c1c",
-        "#e8a33d"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "87d6ddd57090eff487251199f1975eed6786773f3eface13ec7cdae8f77738b0",
-      "description": "Legacy placeholder for Live Wire; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "958da21478b106786c50cf90cfd2f3006de51184c033484acbe4dc07d6a33a53",
+      "description": "A loop of blue cable with exposed copper strands and one orange spark; speed under nearby fire.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Quote Retort",
       "gfx": "collectibles/quote_retort.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "quote_retort",
+        "file": "tools/make_item_art.py",
+        "function": "retort_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1823,29 +1839,33 @@
       ],
       "palette": [
         "#080000",
-        "#2b2b2b",
-        "#a8a191",
-        "#d8d2c4",
-        "#e70000",
-        "#f2eee4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "061ef93b95431150f2329639b8afbc53c650e32aa17d67582f296e98185d7b50",
-      "description": "Legacy placeholder for Quote Retort; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "679c57c6abe0f36184fb3e6c7916e3214802df1f07fdc2e87e207aa93cbb2f14",
+      "description": "An orange boxing glove on a compressed steel spring; a primed retaliation after a hit.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Community Note",
       "gfx": "collectibles/community_note.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "community_note",
+        "file": "tools/make_item_art.py",
+        "function": "note_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1856,33 +1876,33 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#636363",
-        "#8fe3ee",
-        "#a30000",
-        "#c9bba4",
-        "#e70000",
-        "#f3e7d6",
-        "#fffaf0"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "96da72d74f2df8f643672cabac06c095a14f873b72f0e73dcc399ec6d98d2818",
-      "description": "Legacy placeholder for Community Note; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "67be49a0bea0b23e979a1a2d75e45f18d5a8e38219ed19a012e7c2981f0f257e",
+      "description": "A pinned evidence note with a folded corner and three punctures, without written text; repeated hits expose a target.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Base Model",
       "gfx": "collectibles/base_model.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "base_model",
+        "file": "tools/make_item_art.py",
+        "function": "base_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1893,28 +1913,33 @@
       ],
       "palette": [
         "#080000",
-        "#5b3a7c",
-        "#8a5bb5",
-        "#8f713c",
-        "#b69150"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "3c65e4f0d683401b9c89e2bd62ce54f29fa7fdb5067845369e0e1931b861c989",
-      "description": "Legacy placeholder for Base Model; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "7cfe59aa235e46d885b5b28d315caf224c789a7766ec6d6deee5f87b567cbddc",
+      "description": "An unfinished wooden training mannequin on a steel stand, with a blue chest socket; a base waiting to be primed.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Another Adapter",
       "gfx": "collectibles/another_adapter.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "another_adapter",
+        "file": "tools/make_item_art.py",
+        "function": "adapter_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1925,30 +1950,33 @@
       ],
       "palette": [
         "#080000",
-        "#777777",
-        "#8a5bb5",
-        "#969696",
-        "#a7a7a7",
-        "#cbcbcb",
-        "#f2f2f2"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "7985cd7e0acec81789d1519189f73d2776a6b08f09ee6fd9a9926b55dc9fd0ee",
-      "description": "Legacy placeholder for Another Adapter; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "418f905f537c18539ad2d16d261d0660d1f2cf9222b68ce1aea80147907e58e9",
+      "description": "An angled blue adapter block with three brass contacts and a socket face; replacing one room bonus with another.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Final Final Weights",
       "gfx": "collectibles/final_weights.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "final_weights",
+        "file": "tools/make_item_art.py",
+        "function": "weights_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1959,32 +1987,33 @@
       ],
       "palette": [
         "#080000",
-        "#161616",
-        "#222222",
-        "#2b2b2b",
-        "#3a3a3a",
-        "#454545",
-        "#777777",
-        "#a7a7a7",
-        "#d6d6d6"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "0e105ca6df8ed7d08bd4cb756a3a38050fc5ce0e946be4a97fb7324d119cd6ca",
-      "description": "Legacy placeholder for Final Final Weights; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "61ad73984da66356c968be8fde359afec5903872b952d7540f35fe96e1b6e48e",
+      "description": "Two stacked metal weight plates secured by a brass locking ring; two flawless clears bank strength.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Tiny Variant",
       "gfx": "collectibles/tiny_variant.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "tiny_variant",
+        "file": "tools/make_item_art.py",
+        "function": "tiny_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1995,15 +2024,20 @@
       ],
       "palette": [
         "#080000",
-        "#404040",
-        "#5b3a7c",
-        "#8a5bb5",
-        "#b48ad6"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#874155",
+        "#d28289",
+        "#ffbdaf"
       ],
       "palette_exception": "",
-      "sha256": "fea746869b7a0c93842a85e0a1eda10efc79a9193d1b911c9a369814682afcdc",
-      "description": "Legacy placeholder for Tiny Variant; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "df232a7edea097f4d45cf5b8efaac8d4bc588a5caa45d50e522d1db3482c3d62",
+      "description": "A small clockwork mouse with a large winding key and pink feet; speed for reduced damage, not player resizing.",
+      "contact_sheet": "docs/art/item-batch-04-4x.png"
     },
     {
       "name": "Open Weights",

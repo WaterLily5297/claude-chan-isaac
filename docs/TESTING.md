@@ -2,6 +2,16 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## W1.3 batch 04: ten original item icons (2026-10-27; offline)
+
+[Batch 04](ITEM_ART_BATCH_04.md) changes One More Finger, Unchanged Preview, Is This True?, Live Wire, Quote Retort, Community Note, Base Model, Another Adapter, Final Final Weights and Tiny Variant. Reproducible drawing code and explicit registry entries retain the existing names, paths, effects, charge, quality and pools. New geometry replaces placeholder lettering/symbols with object silhouettes; no native or third-party pixels are imported.
+
+The 1x/4x sheets were inspected at their original resolution on light/dark fields. The glove initially had narrow, rigid fingers; rounded wider tips improve its intentional six-digit reading. The boxing glove's two vertical creases looked like eyes and were replaced with a single side fold. Both final sheets were reviewed after these refinements. This is offline visual review, not owner aesthetic approval or native acceptance.
+
+The full gate retains 70 Lua suites, 11 scanner cases, 13 item-art groups and six thumbnail groups, plus 187 tracked Lua files, five XML files, character/pose checks and eight review-sheet freshness checks. Isolation checks cover exactly ten changed existing PNGs, 169 unchanged PNGs, 25 unchanged canonical ANM2 files, 82 untouched registry records and all production Lua/tests/XML. Two new sheets bring the exact linked art inventory to 206 files. Current inventory subtotals now correctly report 38 designed collectibles and two designed trinkets, with 42 collectible/ten trinket placeholders.
+
+No engine, runtime, save or settings access occurs. Installed 8fd6a8c remains preserved and owner-untried. Native pedestal/EID sizing, room lighting and pickup presentation for these icons remain pending; no broad mechanism row is closed by this art work.
+
 ## W3 F11: I Panicked / Car Battery pickups (2026-10-27; offline)
 
 `texlua tests/meme_batch_test.lua .` retains all previous assertions and adds a sequence around the real item callback. At baseline 5e3f392, a surviving boss keeps the repeat eligible and the first new pickup-protection assertion fails. The fixture explicitly supplies drops during damage and another pickup between callbacks; it does not observe native death or reward timing.

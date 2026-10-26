@@ -76,3 +76,9 @@ Three existing complete-pose cells on all 22 skins were mechanically repacked to
 ## Trademark notice
 
 "Claude", "GPT", "DeepSeek" and other model names belong to their respective owners. This is an unofficial fan parody, not affiliated with or endorsed by Anthropic or any other company.
+
+## Original designed item icons, batch 04 (2026-10-27)
+
+One More Finger, Unchanged Preview, Is This True?, Live Wire, Quote Retort, Community Note, Base Model, Another Adapter, Final Final Weights and Tiny Variant use original project pixel geometry and material shading in `tools/make_item_art.py`. Their drawing definitions and item-art registry entries record palettes, versions, meanings, provenance and exact output hashes. The drawings and code are Codex-assisted project contributions under the MIT license; they contain no imported image pixels, native artwork or official company logos.
+
+The two `docs/art/item-batch-04-*.png` review sheets combine existing MIT placeholders, these original drawings and the shared project reference shapes/alphabet. The added question-mark glyph labels an item outside its icon. Earlier batches and all character artwork remain unchanged. These original-item terms do not replace the credited non-commercial character-design terms or authorize Workshop publication.
