@@ -27,6 +27,7 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Damage cache additions and multipliers | Constitution is initialized before Risk; ordinary items precede the shared backlog service and character modules in [main.lua](../main.lua). [backlog/common.lua](../scripts/items/backlog/common.lua) multiplies collected damage factors, while other callbacks also add or multiply. | Source order is explicit, but mixed operations are noncommutative and mutually exclusive forms are not simultaneous writers. W4.4 should assert documented outcomes for representative item pairs/triples, one cache evaluation and reroll/removal. No priority change is justified solely by overlap. |
 | Hardcoded Output and 1M Context | [hardcoded_output.lua](../scripts/items/hardcoded_output.lua) intentionally sets a tear to 3.5 on fire. [million_context.lua](../scripts/items/million_context.lua) later assigns saved base damage times its age factor, excluding Ludovico. Backlog/character helpers can also affect projectile damage. | **Existing ordinary-source composition covered:** the [six-module matrix](PRIMARY_TEAR_COMPOSITION.md) captures 3.5, Strawberry third-tear doubling to 7, then Context snapshot/age decay without compounding. Production already passes; this is not a final-writer rule approval or native-order acceptance. Other writers remain open; child/Parent/derived-shot billing still requires native E2 evidence. |
 | Colour writes across items and forms | Golden Gate and several item tints read colour through a local alias; roster and tainted Claude do the same. [tear_tint.lua](../scripts/characters/tear_tint.lua) preserves additive channels. New NPC/effect colours also appear under the same `Color` field name. | Indirect assignments are not automatically destructive. The [six-module fixture](PRIMARY_TEAR_COMPOSITION.md) now checks Golden Gate/Pizza Glue/Strawberry/Blueberry over supplied native colour, including alpha/additive offsets and unchanged shared objects. Character tints retain separate coverage; native renderer and other writers remain open. NPC/effect decoration has a different receiver. |
+| Charm before ordinary shields | Absolutely Right previously registered a default-priority observer before backlog guards. The real-module fixture reproduced charm on a Sold Out-blocked bullet. | [Corrected to LATE](CHARM_DAMAGE_ORDER.md), with existing source/duration/flag behavior retained. Native final health/status timing, vetoes after LATE and other hit reactions remain open. |
 | Tear copying and helper damage | [tear_fork.lua](../scripts/tear_fork.lua) copies parent damage/colour/flags into a new child. Other helpers use native creation, scaling and later field writes. | Copying to a new entity is not replacing the parent's field. Preserve established ownership/derived-shot rules; no child-billing fix from static findings. Native E2 remains required for unresolved ancestry. |
 | Flight cache | [transformation.lua](../scripts/transformation.lua) assigns `CanFly = true` only after its transformation predicate, within the flight cache. | Intentional grant, not an unconditional loss of native flight. Test acquisition/removal/type changes with fixed costumes separately; the scanner cannot prove native cache rebuild timing. |
 | Shared Risk roots | Risk owns serialization/default restoration; legacy `accountAge` is read/migrated by Claude; backlog families share the versioned service through local aliases. The scanner finds direct shared access to `claudeUsage` and `reviewApproved`. | Shared roots are expected in services, but do not prove per-player isolation. W6.1 must map ownership/migration and check Continue, type swaps, legacy saves and co-op. Dynamic or nested writes remain visible as unresolved work, not accepted coverage. |
@@ -50,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `307ebf4d20b172552dfd8c5ac88a9c57bd651e54120a0e8fa3fa53995a08d336`.
+110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `1c85a45e5bad4a1e37a72fc68911933f826d8a4ed8b80ab2566fedc3c56e6595`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1012,7 +1013,7 @@ Risk state roots: none detected.
 #### scripts/items/absolutely_right.lua
 
 
-Callbacks: `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/absolutely_right.lua:12](../scripts/items/absolutely_right.lua#L12)).
+Callbacks: `ModCallbacks.MC_ENTITY_TAKE_DMG` (`CallbackPriority.LATE`, [items/absolutely_right.lua:14](../scripts/items/absolutely_right.lua#L14)).
 
 
 Cache flag references: none detected.
