@@ -2,6 +2,10 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, including PRs #93-#97. The owner-authorized 2026-10-26 deployment followed a fresh allowlisted, reread-hash-verified backup of 433 old files; all 443 installed tracked files matched canonical Git bytes, including a second check after shutdown. Repentance+ v1.9.7.17.J460 launched, but window/input conflicts prevented gameplay testing. No ancestry samples or fresh starts were recorded. The game is closed and settings restored. The owner then requested preserving this installation while unavailable; continue offline. Consult HANDOFF.md and ENGINE_AUDIT_2026-10-26.md. Installation/startup are not engine acceptance. Older installed-version statements below remain historical.
 
+## M1/D2: owner reporting and current-record consistency (2026-10-26; documentation only)
+
+MANUAL_TEST_CHECKLIST.md supplies 14 checks and explicit OK criteria for one or two ordinary runs, including current difficulty feedback. It does not claim the unapproved difficulty pass is installed. Current records separate live main, reviewed gameplay and installed f8b2b0b; obsolete installation claims were removed without editing history files. The full offline gate is required before commit; no additional game session is performed.
+
 ## E1 deployment / E2 attempt (2026-10-26; installation verified, gameplay deferred)
 
 See [the dated record](ENGINE_AUDIT_2026-10-26.md) for the exact source/tree and startup limits. E1 is complete at f8b2b0b; E2 has zero native samples and E3 has zero fresh starts in this session. No E4/E5 case ran. The explicitly loaded observer remains inactive. Physical input, costumes, weapons, saves, co-op, new items and base Repentance remain unaccepted. Do not reopen child-billing fixes from this startup attempt.
@@ -16,7 +20,7 @@ Follow [ENGINE_ANCESTRY_PROBE.md](ENGINE_ANCESTRY_PROBE.md) only after the owner
 
 ## O3: native transformations and Tainted mechanics (2026-10-26; source audit only)
 
-Reviewed main `ef42b13`; no game version was exercised. This table records source paths and inferred risks, not engine compatibility. No clear source defect was established in these paths, so this audit changes no gameplay code. The audited ef42b13 passed the 67-suite gate and contains 177 tracked Lua files. Integration with merged O2 at 178269b passes 68 suites with 180 tracked Lua files; it changes no O3 gameplay path. Engine cases remain part of E4/E5, waiting for owner availability. Installed e1ff4d1 is unchanged.
+Reviewed main `ef42b13`; no game version was exercised. This table records source paths and inferred risks, not engine compatibility. No clear source defect was established in these paths, so this audit changes no gameplay code. The audited ef42b13 passed the 67-suite gate and contains 177 tracked Lua files. Integration with merged O2 at 178269b passes 68 suites with 180 tracked Lua files; it changes no O3 gameplay path. Engine cases remain part of E4/E5, waiting for owner availability. No installation was performed during that audit; see the current checkpoint above.
 
 | Item or mechanic | Our code path | Expected risk, not a confirmed engine bug | Engine case to run |
 |---|---|---|---|
@@ -32,7 +36,7 @@ API boundaries: community [ClearCostumes](https://wofsauge.github.io/IsaacDocs/r
 
 ## MEME-BATCH-02: native shovel and Six Seven (2026-10-26; offline passed, engine pending)
 
-Source: PR #95 (`codex/meme-batch-two`, head a58be61), merged at 178269b after the owner approved the exact rules and merge on 2026-10-26. No game version was exercised and installed e1ff4d1 is unchanged. The full gate passes 68 offline suites; the source contains 180 tracked Lua files, five XML files and deterministic assets. The inventory is 80 collectibles, 12 trinkets and five pills; new XML entries are appended, preserving existing order. The original shovel placeholder was inspected at its native 32x32 size, which is not in-game visual acceptance.
+Source: PR #95 (`codex/meme-batch-two`, head a58be61), merged at 178269b after the owner approved the exact rules and merge on 2026-10-26. No game version was exercised and no installation was performed during that audit. The full gate passes 68 offline suites; the source contains 180 tracked Lua files, five XML files and deterministic assets. The inventory is 80 collectibles, 12 trinkets and five pills; new XML entries are appended, preserving existing order. The original shovel placeholder was inspected at its native 32x32 size, which is not in-game visual acceptance.
 
 `tests/meme_batch_two_test.lua` checks one native shovel delegation per primary wrapper use, a modeled nested callback without recursion, Car Battery repeat suppression, independent uses, no delegated active-slot ownership, no duplicate animation/wisp request, NOHUD, both seeded six/seven outcomes, repeat pill uses and co-op isolation. It does not execute any native effect. Registration, EID counts, English descriptions, generated ITEMS.md and icon reproducibility pass the existing gate. [Design, approved rules and API references](MEME_BATCH_2.md).
 
@@ -44,7 +48,7 @@ Owner choice: retain short DROP; disable character abilities when multiple pocke
 
 The expanded `tests/drop_tap_test.lua` fails on main `2182cb1` at card + pocket active, then passes with the correction. It covers all card/pill slot pairs, pocket-active combinations, empty/single controls, inventory changes at press/hold/release and twice within one frame, clean rearming, co-op and the existing interruption/hold rules. The real Rice/Meal regression supplies pocket rotation before or after a mod update and now verifies no bowl or meal is spent, while native polls and another controller remain untouched. This is modeled input, not native pocket timing. See [the review](DROP_POCKET_REVIEW.md) for API references and limits.
 
-All character ability instructions below assume at most one pocket item. E4 must additionally test card + pocket active, multiple cards/pills, both pocket actives, slot 2/3 contents, item use/pickup during a press, keyboard/controller, long holds, pause, room changes, death/ghost, co-op and rearming after inventory reduction. Check ordinary cycling/use/drop, MAP/EID readability, Schoolbag/Marked and both supported game variants separately. The full gate passes 67 suites, 177 tracked Lua files, five XML files and deterministic assets; five focused mutations fail the pocket regression. This is offline only; installed e1ff4d1 is preserved. Game version: not exercised in this audit.
+All character ability instructions below assume at most one pocket item. E4 must additionally test card + pocket active, multiple cards/pills, both pocket actives, slot 2/3 contents, item use/pickup during a press, keyboard/controller, long holds, pause, room changes, death/ghost, co-op and rearming after inventory reduction. Check ordinary cycling/use/drop, MAP/EID readability, Schoolbag/Marked and both supported game variants separately. The full gate passes 67 suites, 177 tracked Lua files, five XML files and deterministic assets; five focused mutations fail the pocket regression. This is offline only; no deployment was performed during that audit. Game version: not exercised in this audit.
 
 ## D1: handoff compaction (2026-10-26; documentation only)
 
