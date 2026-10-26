@@ -202,4 +202,26 @@ frame=frame+1; hit(angled,tear(p)); assert(hud():find("Recolor 1/3"),"29 degrees
 p.Position=vec(100*math.cos(math.rad(30)),100*math.sin(math.rad(30)))
 frame=frame+1; hit(angled,tear(p)); assert(hud():find("Export 2/3"),"30-degree boundary advances")
 angled.friendly=true; tick(); assert(hud()=="Gemini-chan: DROP: start an edit","unavailable target ends the chain")
+-- Birthright is sampled when a chain starts, not while that chain is pending.
+for _,initial in ipairs({false,true}) do
+    players={player(501,511,0),player(502,522,1)}; p,q=players[1],players[2]
+    down={}; paused=false; p.birthright=initial; q.birthright=not initial
+    load(); fire("MC_POST_GAME_STARTED",false); enter(201,true)
+    local pending=enemy(40); tap(p); hit(pending,tear(p))
+    local duration=initial and 300 or 180
+    assert(hud():find("Recolor 1/3"),"a paid step is present before inventory changes")
+    tick(60); p.birthright=not initial; tick(30)
+    p.birthright=initial; tick(30); p.birthright=not initial
+    tick(duration-121)
+    assert(hud():find("Recolor 1/3  1s"),
+        "pending edit keeps its original duration and step through Birthright gain/loss/reacquisition")
+    fire("MC_POST_UPDATE")
+    assert(hud():find("Recolor 1/3  1s"),"duplicate update does not spend the last edit frame")
+    tick(); assert(hud()=="Gemini-chan: DROP: start an edit",
+        "pending edit expires at its original deadline")
+    assert(state().doneRoom==nil and state(1).doneRoom==nil,"expiry neither exports nor spends a partner's room")
+    tap(p)
+    assert(hud():find(initial and "Crop 0/3  6s" or "Crop 0/3  10s"),
+        "a later edit samples the owner's current Birthright")
+end
 print("OK: tainted Gemini edit chain steps, export pulse, once per room, retarget, timers, Birthright and save/identity lifecycle")

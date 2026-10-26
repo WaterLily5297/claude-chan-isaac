@@ -232,4 +232,25 @@ clear=true; stand(p,90); assert(state().baguettes==0)
 clear=false; stand(p,29); assert(state().baguettes==0); tick(); assert(state().baguettes==1)
 stand(p,30); enter(200,false); clear=false; stand(p,59); assert(state().baguettes==1)
 tick(); assert(state().baguettes==2,"the new room requires the full baking interval")
+-- Baking reads the current threshold without throwing away accumulated progress.
+local function freshBake(birthright)
+    players={player(501,511,0),player(502,522,1)}; p,q=players[1],players[2]
+    down={}; paused=false; room=201; clear=false; enemies={}
+    p.birthright=birthright; q.birthright=not birthright
+    load(); fire("MC_POST_GAME_STARTED",false)
+end
+freshBake(false); stand(p,40); p.birthright=true; stand(p,4)
+assert(state().baguettes==0,"gaining Birthright does not bake before frame 45")
+tick(); assert(state().baguettes==1 and state(1).baguettes==1,
+    "mid-bake Birthright gain uses accumulated progress and the current threshold")
+freshBake(true); stand(p,40); p.birthright=false; stand(p,19)
+assert(state().baguettes==0 and state(1).baguettes==0,
+    "mid-bake Birthright loss restores the 60-frame threshold for that owner")
+tick(); assert(state().baguettes==1 and state(1).baguettes==1,
+    "losing Birthright preserves elapsed baking progress")
+freshBake(true); stand(p,30); p.birthright=false; stand(p,10)
+p.birthright=true; stand(p,4); fire("MC_POST_UPDATE")
+assert(state().baguettes==0 and state(1).baguettes==0,"reacquisition and duplicate updates do not grant early bread")
+tick(); assert(state().baguettes==1 and state(1).baguettes==0,
+    "reacquisition uses existing progress without changing the partner's threshold")
 print("OK: tainted Mistral baking, cap, slow wave, walls, cooldown, room exit, direction, Birthright and save/identity lifecycle")
