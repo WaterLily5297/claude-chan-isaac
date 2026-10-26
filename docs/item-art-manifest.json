@@ -4,15 +4,15 @@
     {
       "name": "Summary Stapler",
       "gfx": "collectibles/summary_stapler.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "summary_stapler",
+        "file": "tools/make_item_art.py",
+        "function": "stapler_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -23,36 +23,33 @@
       ],
       "palette": [
         "#080000",
-        "#5e5e5e",
-        "#636363",
-        "#8a8a8a",
-        "#a34d27",
-        "#a7a7a7",
-        "#b5b5b5",
-        "#c9bba4",
-        "#d6d6d6",
-        "#e0713f",
-        "#f2a077",
-        "#f3e7d6",
-        "#fffaf0"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "38077549eee3eeb4c8d7952e8c2a0a30705575ea6ff3eb90d2c38ce8b257b3b2",
-      "description": "Legacy placeholder for Summary Stapler; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "a07fb5bca6161dd6b49eb931363a9cc54358019f8fe32ee417fb2bb485567645",
+      "description": "An open orange stapler over three blue projectile capsules; combining bullets into one shot.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "Ban Hammer",
       "gfx": "collectibles/ban_hammer.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "ban_hammer",
+        "file": "tools/make_item_art.py",
+        "function": "hammer_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -63,19 +60,20 @@
       ],
       "palette": [
         "#080000",
-        "#777777",
-        "#8f4a30",
-        "#a7a7a7",
-        "#a9743f",
-        "#c9704a",
-        "#e0713f",
-        "#e70000",
-        "#f2a077"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "249ae769de3266242110305d39237e4c3d6a18a90428c1f0f860ad5441df631f",
-      "description": "Legacy placeholder for Ban Hammer; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "b7feccad86b1db601c0017893ca8413d36fcadce9727740d6995e12c6f35c8c1",
+      "description": "A heavy diagonal orange gavel with worn steel ends and a wrapped wooden handle; room bans.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "Residential IP",
@@ -117,15 +115,15 @@
     {
       "name": "Compact",
       "gfx": "collectibles/compact.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "compact",
+        "file": "tools/make_item_art.py",
+        "function": "compact_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -136,16 +134,20 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#c9bba4",
-        "#f3e7d6",
-        "#fffaf0"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "2ca26bbd72cc35dff0f8a263c3ab1ba5c970447c58ba4218ba7ed20560b3653f",
-      "description": "Legacy placeholder for Compact; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "7769f87658a8d1f332d218e764adb62e75dca479556d745596cce210c0f62b33",
+      "description": "An iron press compressing a bound paper stack; compacting context and bullets.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "You're Absolutely Right!",
@@ -220,15 +222,15 @@
     {
       "name": "Ultrathink",
       "gfx": "collectibles/ultrathink.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "ultrathink",
+        "file": "tools/make_item_art.py",
+        "function": "ultrathink_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -239,22 +241,20 @@
       ],
       "palette": [
         "#080000",
-        "#5e5e5e",
-        "#777777",
-        "#8a8a8a",
-        "#a34d27",
-        "#a7a7a7",
-        "#b08a24",
-        "#c9704a",
-        "#e0713f",
-        "#f0c849",
-        "#f2a077",
-        "#ffe48a"
+        "#874155",
+        "#d28289",
+        "#ffbdaf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "79030075eed40ae13965b44eed5aa067565b92b23ccaa875544eac83594aa3b0",
-      "description": "Legacy placeholder for Ultrathink; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "36e10eb2ed50ea4bcac9b7ebfca4b0de907a8aed72a2aaf0427858a3f0424805",
+      "description": "A folded pink brain on a brass bulb base with small sparks; escalating thought.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "1M Context",
@@ -435,15 +435,15 @@
     {
       "name": "Subagent Swarm",
       "gfx": "collectibles/subagent_swarm.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "subagent_swarm",
+        "file": "tools/make_item_art.py",
+        "function": "swarm_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -454,27 +454,30 @@
       ],
       "palette": [
         "#080000",
-        "#4fb8c9",
-        "#a34d27",
-        "#e0713f"
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "89522a0c541f3a0912bb89b11736a8308fa63566e723c68f7d3ed6be7382b023",
-      "description": "Legacy placeholder for Subagent Swarm; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "80f7553898fe90fbf70b57cb0ad74cac57d200965e61c07ddb50237fbd39843d",
+      "description": "One large orange tear connected to two smaller tears by blue branching trails; resolved child shots.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "The Constitution",
       "gfx": "collectibles/constitution.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "constitution",
+        "file": "tools/make_item_art.py",
+        "function": "constitution_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -485,19 +488,23 @@
       ],
       "palette": [
         "#080000",
-        "#8f713c",
-        "#b69150",
-        "#c43333",
-        "#d4b273",
-        "#e1c399",
-        "#e70000",
-        "#f3dcb8",
-        "#fffdf5"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#874155",
+        "#d28289",
+        "#ffbdaf"
       ],
       "palette_exception": "",
-      "sha256": "79b4511cc024e7fcf0be6aa588b455f56bef88d6ff585444d3d6d990602e1916",
-      "description": "Legacy placeholder for The Constitution; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "a60862245ef20bb88af1bac0d895254685559d9490ac12d72306258e8ace26ee",
+      "description": "A bound cream rulebook with an embossed shield and hanging wax seal; protective rules.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "Opus Mode",
@@ -537,15 +544,15 @@
     {
       "name": "Lunch Break",
       "gfx": "collectibles/lunch_break.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "lunch_break",
+        "file": "tools/make_item_art.py",
+        "function": "lunch_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -556,19 +563,23 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#7d5028",
-        "#8fe3ee",
-        "#a8a191",
-        "#d8d2c4",
-        "#f2eee4",
-        "#fffdf5"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#874155",
+        "#d28289",
+        "#ffbdaf"
       ],
       "palette_exception": "",
-      "sha256": "b3813cc7e794da79b6a226f4505f6bbe1aabe95e69b852ce14e13cb3ad04b0a1",
-      "description": "Legacy placeholder for Lunch Break; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "62e45fb312667a6641e2930e6d455bcdc226f05ca88d5c22cef1a2a75a3d5a6b",
+      "description": "A turquoise rice bowl, individual rice highlights, chopsticks and a small napkin; a healing food break.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "529 Overloaded",
@@ -1256,15 +1267,15 @@
     {
       "name": "Rice Cooker",
       "gfx": "collectibles/rice_cooker.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "rice_cooker",
+        "file": "tools/make_item_art.py",
+        "function": "cooker_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1275,21 +1286,23 @@
       ],
       "palette": [
         "#080000",
-        "#161616",
-        "#2b2b2b",
-        "#4fb8c9",
-        "#969696",
-        "#a8a191",
-        "#cbcbcb",
-        "#d8d2c4",
-        "#e70000",
-        "#f2eee4",
-        "#f2f2f2"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "aa253b178770b5fd23bcfb51854aa3981e50e1ee1816e53e645ed2292ee1d974",
-      "description": "Legacy placeholder for Rice Cooker; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "1a51b21490bf1a7ada9ed155dad65ce6ef5772a1b06575c2141cc0d1b5433d06",
+      "description": "A steaming cream cooker with a steel lid and blue window; cook first, attack afterward.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "One Bowl Only",
@@ -2639,15 +2652,15 @@
     {
       "name": "Token Recall",
       "gfx": "collectibles/token_recall.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "token_recall",
+        "file": "tools/make_item_art.py",
+        "function": "recall_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2658,18 +2671,20 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#b08a24",
-        "#d4ad45",
-        "#d8d2c4",
-        "#f0c849",
-        "#ffe48a"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#44324e",
+        "#826b93",
+        "#c4abc9",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "e95a6cef9e0553cdf7aeed77f3a9a8d923acadef78041bd3a81c8e25d946c3d4",
-      "description": "Legacy placeholder for Token Recall; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "8b16e7967783d1ea6909ad9cd2652ec2ed18990340339fb166f9cc6b60d1d306",
+      "description": "A brass reel pulling a blue tear along a curved tether; recalling fired tokens.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     },
     {
       "name": "Checkpoint Pin",
@@ -3158,15 +3173,15 @@
     {
       "name": "Let's Delve",
       "gfx": "collectibles/lets_delve.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "lets_delve",
+        "file": "tools/make_item_art.py",
+        "function": "delve_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3177,22 +3192,17 @@
       ],
       "palette": [
         "#080000",
-        "#636363",
-        "#777777",
-        "#7d5028",
-        "#8a8a8a",
-        "#a7a7a7",
-        "#a9743f",
-        "#c69355",
-        "#c9bba4",
-        "#d6d6d6",
-        "#f0c849",
-        "#f3e7d6"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "afa6d6d00830230536f954606ed9ca2155efe5f11e953e2727b4dc4e250d2ff3",
-      "description": "Legacy placeholder for Let's Delve; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "6791e984aba53ce656cda095694ef40f9269ad4073debceef2627cb3e596aead",
+      "description": "A diagonal spade with an open wooden handle, bevelled steel and a small soil clod; native digging.",
+      "contact_sheet": "docs/art/item-batch-01-4x.png"
     }
   ]
 }

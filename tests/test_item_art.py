@@ -173,7 +173,7 @@ class ItemArtTests(unittest.TestCase):
     def test_missing_producer_provenance_palette_and_contact_fail_before_writes(self):
         data = self.load(); data['entries'][0]['status'] = 'designed'; self.save(data)
         before = {p:p.read_bytes() for p in (self.root / art.ICON_ROOT).rglob('*.png')}
-        with self.assertRaisesRegex(ValueError, 'missing designed producer'): art.write(self.root)
+        with self.assertRaisesRegex(ValueError, 'missing designed producer'): art.write(self.root, designs={})
         candidates = [
             (replace(self.designs[self.gfx], author=''), 'provenance'),
             (replace(self.designs[self.gfx], palette=('#080000',)), 'Undeclared visible colour'),

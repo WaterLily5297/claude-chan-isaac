@@ -84,3 +84,4 @@ print('  OK: character atlases match the art manifest')
 
 subprocess.run([sys.executable, str(root / 'tools/make_roster_tainted_art.py'), '--check'], check=True)
 subprocess.run([sys.executable, str(root / 'tools/check_pose_geometry.py')], check=True)
+subprocess.run([sys.executable, str(root / 'tools/preview_item_art.py'), '--check'], check=True)
