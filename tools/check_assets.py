@@ -98,3 +98,4 @@ for record in json.loads((root / 'docs/roster-art-manifest.json').read_text(enco
 print('  OK: character atlases match the art manifest')
 
 subprocess.run([sys.executable, str(root / 'tools/make_roster_tainted_art.py'), '--check'], check=True)
+subprocess.run([sys.executable, str(root / 'tools/check_pose_geometry.py')], check=True)

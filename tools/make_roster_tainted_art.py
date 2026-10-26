@@ -1,6 +1,6 @@
 """Derive tainted art for the nine newer roster families by deepening colours.
 
-Usage: python3 tools/make_roster_tainted_art.py [--check]
+Usage: python3 tools/make_roster_tainted_art.py [--check | --skins-only]
 
 No pixels are drawn and no shapes change: every output keeps its normal
 counterpart's outline, alpha and frame placement, so walk-cycle and hurt-pose
@@ -84,13 +84,20 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def generate():
+def generate(skins_only=False):
     from PIL import Image
-    records = {}
+    records = json.loads(MANIFEST.read_text(encoding='utf-8'))['files'] if skins_only else {}
     for src, dst in outputs():
+        if skins_only and '/characters/costumes/' not in src:
+            continue
         deepen(Image.open(ROOT / src).convert("RGBA")).save(ROOT / dst)
         records[dst] = {"source": src, "source_sha256": sha(ROOT / src), "sha256": sha(ROOT / dst)}
         print(f"wrote {dst}")
+    if skins_only:
+        MANIFEST.write_text(json.dumps({"tool": "tools/make_roster_tainted_art.py", "files": records},
+                                      indent=2) + "\n", encoding='utf-8')
+        print('Updated skin hashes; menu and portrait bytes preserved')
+        return
     for key in FAMILIES:
         anm2 = (ROOT / f"resources/gfx/ui/dossiers/{key}.anm2").read_text(encoding="utf-8")
         old = f'gfx/ui/dossiers/{key}.png"'
@@ -129,4 +136,4 @@ def check():
 
 
 if __name__ == "__main__":
-    check() if "--check" in sys.argv else generate()
+    check() if "--check" in sys.argv else generate(skins_only='--skins-only' in sys.argv)
