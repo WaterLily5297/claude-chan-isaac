@@ -1,5 +1,11 @@
 # Changelog
 
+## Claude Usage save validation (2026-10-26; offline hardening)
+
+- Validate normal Claude's Usage and Limited counters independently with their existing integer bounds. Missing, nonnumeric, non-finite, fractional or out-of-range fields recover to the existing zero default; valid debt, countdowns and unrelated progression remain intact.
+- Preserve the legacy saved-table shape and item aliases. Extend the real Risk load/character regression with 18 boundary cases and a second detached save/load; retain all existing Continue, owner, timer and item controls.
+- Review the recent art pipeline, first icon batch and Thinking Cleared refresh without changing their scope. Native save acceptance and whole-mod performance measurement remain open; installed 8fd6a8c is preserved.
+
 ## Thinking Cleared inventory refresh (2026-10-26; offline fix)
 
 - Apply/remove the existing +1 damage when the trinket is picked up/dropped within a room. Damage evaluation reads current inventory even before the next player update; unchanged inventory does not cause repeated cache rebuilds.

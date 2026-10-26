@@ -291,4 +291,59 @@ fire("MC_PRE_GAME_EXIT",true)
 players={player(),player()}; fire("MC_POST_GAME_STARTED",true)
 assert(players[1].data.ccUsage.value==36 and players[1].data.ccUsage.age==2,
     "same-session Continue must preserve saved debt despite recreated entities")
-print("OK: Claude save/continue, live-owner isolation, wrapper/type-return debt and item aliases")
+-- Load partially missing/malformed counters without erasing valid fields.
+-- Non-finite cases represent in-memory corruption: the detached JSON stub
+-- does not claim native JSON can serialize those numbers.
+local malformed = {
+    {name="missing both", record={}, value=0, limited=0},
+    {name="missing value", record={limited=37}, value=0, limited=37},
+    {name="missing limited", record={value=60}, value=60, limited=0},
+    {name="string value", record={value="40", limited=12}, value=0, limited=12},
+    {name="table value", record={value={}, limited=12}, value=0, limited=12},
+    {name="boolean limited", record={value=40, limited=true}, value=40, limited=0},
+    {name="string limited", record={value=40, limited="12"}, value=40, limited=0},
+    {name="negative value", record={value=-1, limited=12}, value=0, limited=12},
+    {name="excess value", record={value=101, limited=12}, value=0, limited=12},
+    {name="fractional value", record={value=0.5, limited=12}, value=0, limited=12},
+    {name="negative limited", record={value=40, limited=-1}, value=40, limited=0},
+    {name="excess limited", record={value=40, limited=151}, value=40, limited=0},
+    {name="fractional limited", record={value=40, limited=0.5}, value=40, limited=0},
+    {name="NaN value", record={value=0/0, limited=12}, value=0, limited=12},
+    {name="infinite limited", record={value=40, limited=math.huge}, value=40, limited=0},
+    {name="valid zero", record={value=0, limited=0}, value=0, limited=0},
+    {name="valid maxima", record={value=100, limited=150}, value=100, limited=150},
+    {name="valid last frame", record={value=100, limited=1}, value=100, limited=1},
+}
+local failures = {}
+for _, case in ipairs(malformed) do
+    local ok, err = pcall(function()
+        local record = copy(case.record)
+        record.age, record.appeals, record.clears, record.awards = 4, 0, 1, {["kept"]=true}
+        record.floor, record.room = tostring(floor)..":1:0", tostring(room)..":"..tostring(room)
+        saved = {risk=0, claudeUsage={
+            ["0"]=record, ["1"]={value=36, limited=12, age=2, appeals=2},
+        }}
+        players={player(),player()}; module(); fire("MC_POST_GAME_STARTED",true)
+        local loaded, partner = players[1].data.ccUsage, players[2].data.ccUsage
+        assert(loaded.value==case.value and loaded.limited==case.limited,
+            "invalid counters use the existing zero default independently")
+        assert(loaded.age==4 and loaded.appeals==0 and loaded.clears==1 and loaded.awards.kept,
+            "counter repair must retain unrelated valid progression")
+        assert(partner.value==36 and partner.limited==12 and partner.age==2 and partner.appeals==2,
+            "one repaired account must not reset its valid partner")
+        local expectedDamage = (3.5 + 0.8) * (case.limited > 0 and 0.4 or 1)
+        assert(math.abs(players[1].Damage-expectedDamage)<1e-9,
+            "continued damage uses the preserved valid Limited countdown")
+        assert(loaded==Risk.state.claudeUsage["0"] and loaded~=partner,
+            "normalization preserves the saved-table alias and player isolation")
+        fire("MC_PRE_GAME_EXIT",true)
+        players={player(),player()}; module(); fire("MC_POST_GAME_STARTED",true)
+        loaded=players[1].data.ccUsage
+        assert(loaded.value==case.value and loaded.limited==case.limited and loaded.age==4,
+            "repaired fields survive a second detached save/load")
+        fire("MC_POST_RENDER")
+    end)
+    if not ok then failures[#failures+1]=case.name..": "..tostring(err) end
+end
+assert(#failures==0, table.concat(failures,"\n"))
+print("OK: Claude save/continue, counter normalization, live-owner isolation, wrapper/type-return debt and item aliases")
