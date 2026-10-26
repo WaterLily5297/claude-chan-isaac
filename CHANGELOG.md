@@ -1,5 +1,11 @@
 # Changelog
 
+## Thumbnail producer repair (2026-10-27; offline hardening)
+
+- Replace removed placeholder APIs with validation of the current registered Ban Hammer and an explicit 512x512 local preview export. Add a read-only comparison mode and prevent writes into game assets or art review sheets.
+- Add six Python regression groups to the shared gate and inspect a temporary preview. Keep every tracked image, including the legacy thumbnail, unchanged; the tool does not publish or supply an accepted final cover.
+- Review recent art, Cartridge, binding and F12 diagnostic boundaries. Gameplay and installed 8fd6a8c are unchanged; F12 and native acceptance remain open.
+
 ## Charged-use replacement audit (2026-10-27; offline evidence)
 
 - Add a standalone diagnostic for refused/accepted active uses followed by supplied slot, item and charge changes. Reproduce false Base Model, Please Come Back and Access Pass observations across slots 0-3.

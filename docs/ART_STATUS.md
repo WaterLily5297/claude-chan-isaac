@@ -279,7 +279,7 @@ All 12 trinkets are 32x32 RGBA, I-P placeholders. Their exact legacy bytes remai
 
 | Asset | Size | Source/status | Known limitation and target |
 |---|---|---|---|
-| [thumb.png](../thumb.png) | 512x512 | Legacy project placeholder; [make_thumb.py](../tools/make_thumb.py) | Producer still requests removed `ART`/`PALETTES` members and the old `write_png` signature. Reproduction is not established. Queue a separate tool repair; keep Workshop unpublished. |
+| [thumb.png](../thumb.png) | 512x512 | Historical project placeholder, unchanged by the [producer repair](ART_SPEC.md#local-item-preview-export-2026-10-27). | `make_thumb.py` now exports the current registered Ban Hammer to an explicit destination and offers read-only comparison. Its temporary output was inspected; it does not reproduce this legacy file. Final cover/publication remain pending. |
 
 ## Item review sheets: six
 
@@ -320,7 +320,7 @@ Let's Delve is already counted among the 80 collectible icons; Six Seven is alre
 | W1.4 mechanics | Correct 18 narrowed-front side profiles and two seated GLM fallen poses; inspect shared special animations and walk consistency. | Preserve selected identity; geometric fixes do not imply native acceptance. |
 | W1.5 tainted identities | Nine sets: portrait, front, side, back and hurt preview together. | Owner approval required before replacing identities. Do not overwrite C-T Claude/DeepSeek. |
 | W1.6 Relay Slime | Original fictional creature art, animation/registration, split-stage readability. | Bespoke art pending; preserve approved gameplay unless a new rule is separately approved. |
-| Tool hardening | Repair the obsolete thumbnail generator API and verify output in a temporary directory. | Source defect recorded; not repaired in this documentation unit. No publication authorization. |
+| Tool hardening | Keep preview generation compatible with the registered item-art pipeline. | Repaired with six regression groups, explicit output and read-only comparison. Temporary preview inspected; all tracked images remain unchanged. Final cover/publication remain pending. |
 | Native acceptance | All forms' movement/hit/death/special poses, menus, dossiers, size/flight/weapons and representative designed item icons. | Fresh owner availability required. The oversized-hurt-head report remains unclosed in the engine. |
 
 An art batch is finished only when its source, provenance, deterministic output, isolated pixel changes and preview are reviewable. Full art acceptance additionally requires the listed native cases. Current hash and geometry success must not erase outstanding anatomy, readability or compatibility work.

@@ -94,6 +94,19 @@ Art-batch workflow:
 4. Migrate about ten icons in a focused main-based PR, supplying the before/after 1x/4x review package and updating ART_STATUS, terms as needed, HANDOFF, TESTING and CHANGELOG. The tooling unit kept all 92 PNGs unchanged; the first subsequent art batch migrates ten. Keep tooling and artwork evidence distinct.
 5. After the required full gate, final-head CI and review, merge under the standing source policy. Runtime installation is a separate authorized, backed-up action; an icon PR must not overwrite the owner's manual-test installation.
 
+## Local item preview export (2026-10-27)
+
+`make_thumb.py` now reads the registered Ban Hammer icon through the current item-art producer and manifest. It checks the selected metadata and PNG against the deterministic source, then exports an opaque 512x512 preview on the existing dark background at integer 16x scale. It follows explicit placeholder/designed status rather than the removed legacy ART/PALETTES API.
+
+```sh
+python tools/make_thumb.py --out work/previews/ban-hammer.png
+python tools/make_thumb.py --out work/previews/ban-hammer.png --check
+```
+
+An output path is required. Importing the module or omitting `--out` does not generate a preview. `--check` compares without creating or repairing files, and fails on a missing/stale output. Stale source metadata or icon bytes fail before output replacement. PNG destinations inside resolved `resources`, `content` or `docs/art` directories are rejected so this utility cannot replace game art or existing review sheets. An explicitly selected root `thumb.png` destination is possible for a future reviewed replacement, but was not used during this repair.
+
+Six regression groups cover current designed pixels/scale/determinism, CLI export/read-only checks, inert preview behavior, stale input rejection, protected destinations and explicit placeholder status. A temporary output was visually inspected. The tracked `thumb.png` remains the historical placeholder; the new item preview is neither an exact reproduction of that old file nor a final cover. No image or animation is changed by the tooling repair, and no Workshop upload is implemented or authorized. The exported Ban Hammer image retains its original project MIT terms.
+
 ## Review package and acceptance
 
 Every icon batch supplies a labelled contact sheet at actual 1x and nearest-neighbour 4x, on light and dark backgrounds, beside a few **original project-drawn reference shapes**. Labels belong outside the icon. List each icon's current effect/meme, intended visual cue, provenance and changed files. Include before/after comparisons and the deterministic output check. Do not use extracted game icons in the public comparison sheet.
