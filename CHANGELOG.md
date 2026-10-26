@@ -1,5 +1,11 @@
 # Changelog
 
+## Fourth ten designed item icons (2026-10-27; offline art)
+
+- Replace ten Gemini/Grok/Qwen collectible placeholders with original 32x32 objects, including a six-finger glove, paired preview frames, a megaphone, live cable, spring glove, pinned note, wooden mannequin, adapter, weight plates and clockwork mouse.
+- Add reproducible 1x/4x light/dark before-after sheets, provenance and manifest entries. Refine finger shape and glove folds after visual review. Forty icons are now designed; 52 remain placeholders. Correct the stale current collectible subtotal.
+- Preserve other art, game Lua, existing tests, registration, gameplay values and installed 8fd6a8c. Native appearance remains unverified; all eight review sheets join the unchanged offline gate.
+
 ## I Panicked repeat pickup protection (2026-10-27; offline fix)
 
 - Honor the existing source contract that Car Battery repeats damage without deleting newly appeared consumables. Ordinary uses still delete the starting pickup snapshot; boss damage, eligibility, charge return and protected pickup classes are unchanged.
