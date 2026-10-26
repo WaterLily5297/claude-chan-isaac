@@ -1,4 +1,4 @@
-"""Reproduce the original item batch's 1x/4x before/after review sheets.
+"""Reproduce original item batches' 1x/4x before/after review sheets.
 
 Standard library only. Icons retain hard pixels; text stays outside them.
 Reference shapes are original project examples, not extracted game art.
@@ -16,6 +16,21 @@ BATCH = (
     ('lunch_break', 'Lunch Break'), ('rice_cooker', 'Rice Cooker'),
     ('token_recall', 'Token Recall'), ('lets_delve', "Let's Delve"),
 )
+BATCHES = {
+    '01': tuple(('collectibles/'+key+'.png', name) for key, name in BATCH),
+    '02': (
+        ('collectibles/ignore_instructions.png', 'Ignore All Previous Instructions'),
+        ('collectibles/residential_ip.png', 'Residential IP'),
+        ('collectibles/cheap_relay.png', '9.9 Yuan Relay'),
+        ('collectibles/silent_update.png', 'Silent Update'),
+        ('collectibles/opus_mode.png', 'Opus Mode'),
+        ('collectibles/banked_reset.png', 'Banked Reset'),
+        ('collectibles/benchmaxxed.png', 'Benchmaxxed'),
+        ('collectibles/i_panicked.png', 'I Panicked'),
+        ('trinkets/overloaded.png', '529 Overloaded'),
+        ('trinkets/hardcoded_output.png', 'Hardcoded Output'),
+    ),
+}
 LIGHT, DARK = (221,205,175,255), (37,31,32,255)
 PAGE, TEXT = (238,229,209,255), (47,37,35,255)
 
@@ -61,6 +76,7 @@ FONT = {
     '-':'00000/00000/00000/11111/00000/00000/00000',
     '/':'00001/00001/00010/00100/01000/10000/10000',
     ':':'00000/00100/00100/00000/00100/00100/00000',
+    '.':'00000/00000/00000/00000/00000/00100/00100',
     ' ':'00000/00000/00000/00000/00000/00000/00000',
 }
 
@@ -102,7 +118,7 @@ def references():
     return coin, heart, c.finish()
 
 
-def sheet(scale):
+def sheet(scale, batch='01'):
     size = 32 * scale
     panel = size + 10
     card_w = max(280, panel * 4 + 16)
@@ -111,17 +127,17 @@ def sheet(scale):
     top, bottom = 66, size + 58
     height = top + card_h * 5 + bottom
     canvas = [[PAGE for _ in range(width)] for _ in range(height)]
-    label(canvas,16,12,f'ITEM ART - BATCH 01 - {scale}X',2)
+    label(canvas,16,12,f'ITEM ART - BATCH {batch} - {scale}X',2)
     label(canvas,16,35,'OLD / NEW ON LIGHT AND DARK BACKGROUNDS')
     label(canvas,16,48,'ORIGINAL PROJECT PIXELS - NATIVE PRESENTATION UNVERIFIED')
-    for i,(key,name) in enumerate(BATCH):
+    for i,(gfx,name) in enumerate(BATCHES[batch]):
         x,y = 12 + (i%2)*card_w, top + (i//2)*card_h
         label(canvas,x+4,y,name)
         start = x + (card_w - panel*4)//2
         label(canvas,start+panel-10,y+14,'OLD')
         label(canvas,start+panel*3-10,y+14,'NEW')
-        old = art.placeholder_pixels('collectibles/'+key+'.png')
-        new = art.DESIGNS['collectibles/'+key+'.png'].draw()
+        old = art.placeholder_pixels(gfx)
+        new = art.DESIGNS[gfx].draw()
         for j,pixels in enumerate((old,old,new,new)):
             px,py = start+j*panel,y+26
             fill(canvas,px,py,size+4,size+4,LIGHT if j%2==0 else DARK)
@@ -141,14 +157,16 @@ def main():
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument('--write',action='store_true')
     mode.add_argument('--check',action='store_true')
+    parser.add_argument('--batch', choices=('all', *BATCHES), default='all')
     args=parser.parse_args()
-    for scale in (1,4):
-        path=ROOT/f'docs/art/item-batch-01-{scale}x.png'
-        data=sheet(scale)
-        if args.check:
-            art.require(path.is_file() and path.read_bytes()==data,f'Stale review sheet: {path.name}')
-        else:
-            path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(data)
+    for batch in BATCHES if args.batch == 'all' else (args.batch,):
+        for scale in (1,4):
+            path=ROOT/f'docs/art/item-batch-{batch}-{scale}x.png'
+            data=sheet(scale,batch)
+            if args.check:
+                art.require(path.is_file() and path.read_bytes()==data,f'Stale review sheet: {path.name}')
+            else:
+                path.parent.mkdir(parents=True,exist_ok=True); path.write_bytes(data)
     print('  OK: original item-art 1x/4x before/after sheets')
 
 

@@ -259,11 +259,181 @@ def delve_art():
     return c.finish()
 
 
-def design(draw, palette, meaning):
+def injection_art():
+    c = Canvas()
+    c.poly([(5,8),(17,5),(23,11),(22,26),(6,28)], PAPER[0])
+    c.poly([(5,8),(17,5),(17,12),(22,11),(21,25),(6,26)], PAPER[1])
+    c.line(6,9,14,7,PAPER[2]); c.line(7,10,7,23,PAPER[2])
+    c.poly([(18,7),(22,11),(18,11)], PAPER[2])
+    c.line(9,15,15,14,PAPER[0]); c.line(9,19,12,18,PAPER[0])
+    c.line(8,26,14,20,STEEL[1]); c.line(8,25,13,20,STEEL[2])
+    c.poly([(12,19),(22,8),(26,12),(16,23)], STEEL[0])
+    c.poly([(13,19),(22,9),(25,12),(16,22)], BLUE[1])
+    c.poly([(13,19),(17,15),(20,18),(16,22)], PINK[1])
+    c.line(14,19,22,10,BLUE[2]); c.line(16,21,18,19,PINK[2])
+    c.line(22,9,25,6,STEEL[1],2)
+    c.line(23,4,28,9,STEEL[0],2); c.line(23,4,27,8,STEEL[2])
+    c.line(12,17,18,23,STEEL[0]); c.line(13,17,18,22,STEEL[2])
+    return c.finish()
+
+
+def residential_art():
+    c = Canvas()
+    c.line(6,25,4,27,BLUE[0],2); c.line(4,27,25,27,BLUE[0],2)
+    c.line(6,26,24,26,BLUE[1]); c.line(25,26,27,22,BLUE[0],2)
+    c.poly([(7,13),(15,6),(24,13),(24,24),(7,24)], PAPER[0])
+    c.rect(8,13,21,23,PAPER[1]); c.rect(8,13,9,22,PAPER[2])
+    c.poly([(4,13),(15,3),(27,13),(25,16),(15,8),(6,16)], BLUE[0])
+    c.poly([(4,13),(15,3),(26,13),(24,13),(15,6),(6,14)], BLUE[1])
+    c.line(6,12,15,4,BLUE[2])
+    c.rect(12,16,16,23,WOOD[0]); c.rect(13,17,15,23,WOOD[1])
+    c.rect(19,16,21,19,GOLD[0]); c.rect(19,16,20,18,GOLD[2])
+    c.rect(24,18,28,22,BLUE[0]); c.rect(24,18,27,20,BLUE[1])
+    c.rect(25,16,25,17,PAPER[2]); c.rect(28,16,28,17,PAPER[2])
+    return c.finish()
+
+
+def relay_art():
+    c = Canvas()
+    c.poly([(11,14),(15,12),(28,25),(25,28)], GOLD[0])
+    c.poly([(12,14),(15,13),(27,25),(25,26)], GOLD[1])
+    c.line(14,15,24,25,GOLD[2])
+    c.poly([(18,21),(21,24),(18,27),(16,25)], GOLD[0])
+    c.poly([(18,22),(20,24),(18,26),(17,25)], GOLD[1])
+    c.line(17,24,18,23,GOLD[2])
+    c.poly([(22,25),(24,27),(22,29),(20,27)], GOLD[0])
+    c.line(21,27,22,26,GOLD[1])
+    c.oval(10,10,7,7,ORANGE[0]); c.oval(9,9,6,6,ORANGE[1])
+    c.line(5,7,8,4,ORANGE[2]); c.line(8,4,11,4,ORANGE[2])
+    c.oval(9,8,3,3,INK); c.oval(9,8,2,2,STEEL[0]); c.line(8,7,9,6,STEEL[2])
+    c.poly([(4,12),(6,10),(15,14),(13,17)], PAPER[0])
+    c.poly([(5,12),(6,11),(14,14),(13,16)], PAPER[1])
+    c.line(7,12,12,14,PAPER[2]); c.line(11,11,13,12,INK)
+    c.line(13,12,12,14,INK)
+    return c.finish()
+
+
+def silent_art():
+    c = Canvas()
+    for x,y,w,h in ((21,3,3,3),(26,5,3,3),(26,10,3,3),(18,6,4,3)):
+        c.rect(x,y,x+w-1,y+h-1,STEEL[0])
+    c.oval(23,9,5,5,STEEL[0]); c.oval(22,8,4,4,STEEL[1])
+    c.line(20,6,23,5,STEEL[2]); c.oval(23,8,1,1,INK)
+    c.poly([(3,13),(20,9),(26,15),(24,26),(5,28)], PAPER[0])
+    c.poly([(4,14),(20,10),(25,15),(23,25),(6,27)], PAPER[1])
+    c.poly([(4,14),(16,21),(24,15),(20,10)], PAPER[2])
+    c.line(6,25,11,19,PAPER[0]); c.line(18,21,23,24,PAPER[0])
+    c.line(5,15,15,22,PAPER[0]); c.line(16,22,24,16,PAPER[0])
+    c.oval(16,21,3,3,PURPLE[0]); c.oval(15,20,2,2,PURPLE[1])
+    c.line(14,19,16,19,PURPLE[2])
+    return c.finish()
+
+
+def opus_art():
+    c = Canvas()
+    c.poly([(8,9),(22,7),(27,12),(25,27),(8,28),(5,22)], GOLD[0])
+    c.poly([(9,10),(22,9),(25,13),(23,25),(9,26),(7,22)], GOLD[1])
+    c.line(9,11,9,23,GOLD[2]); c.line(10,10,21,9,GOLD[2])
+    c.poly([(11,13),(21,12),(23,15),(21,24),(12,24),(9,21)], PURPLE[0])
+    c.poly([(12,14),(20,13),(22,15),(20,22),(12,22),(10,20)], PURPLE[1])
+    c.line(12,15,13,21,PURPLE[2])
+    c.oval(17,6,5,4,GOLD[0]); c.oval(16,5,4,3,GOLD[1])
+    c.line(13,4,16,3,GOLD[2]); c.rect(13,9,21,10,INK)
+    c.poly([(17,14),(14,19),(14,21),(16,23),(19,23),(21,20)], BLUE[0])
+    c.poly([(17,15),(15,19),(15,21),(17,22),(19,21),(20,20)], BLUE[1])
+    c.line(16,18,17,16,BLUE[2]); c.rect(9,27,11,29,GOLD[0]); c.rect(22,26,24,28,GOLD[0])
+    return c.finish()
+
+
+def reset_art():
+    c = Canvas()
+    c.rect(6,4,9,28,GOLD[0]); c.rect(23,4,26,28,GOLD[0])
+    c.rect(6,5,7,27,GOLD[2]); c.rect(23,5,24,27,GOLD[1])
+    c.poly([(10,7),(22,7),(21,12),(18,16),(21,20),(22,25),(10,25),(11,20),(14,16),(11,12)], BLUE[0])
+    c.poly([(11,8),(21,8),(20,12),(16,16),(20,21),(21,24),(11,24),(12,20),(15,16),(12,12)], BLUE[1])
+    c.line(12,9,13,12,BLUE[2]); c.line(12,21,12,23,BLUE[2])
+    c.poly([(13,10),(20,10),(17,14),(15,13)], PAPER[1]); c.line(14,10,19,10,PAPER[2])
+    c.line(16,15,16,19,PAPER[2]); c.poly([(12,24),(16,20),(20,24)], PAPER[1])
+    c.line(13,23,16,21,PAPER[2])
+    c.rect(4,3,28,5,GOLD[0]); c.rect(5,3,27,3,GOLD[2]); c.rect(5,4,27,4,GOLD[1])
+    c.rect(4,27,28,29,GOLD[0]); c.rect(5,27,27,27,GOLD[2]); c.rect(5,28,26,28,GOLD[1])
+    return c.finish()
+
+
+def bench_art():
+    c = Canvas()
+    c.rect(7,15,9,28,STEEL[0]); c.rect(24,14,26,27,STEEL[0])
+    c.rect(7,16,7,27,STEEL[2]); c.rect(24,15,24,26,STEEL[1])
+    c.poly([(5,21),(21,18),(27,21),(11,25)], ORANGE[0])
+    c.poly([(5,20),(21,17),(27,20),(11,23)], ORANGE[1])
+    c.line(6,20,20,18,ORANGE[2]); c.line(11,24,25,21,INK)
+    c.rect(13,25,15,28,STEEL[0]); c.line(13,25,13,28,STEEL[1])
+    c.line(4,11,28,8,STEEL[0],3); c.line(4,10,28,7,STEEL[2])
+    for x,y in ((4,10),(24,7)):
+        c.oval(x+2,y,3,5,STEEL[0]); c.oval(x+1,y-1,2,4,STEEL[1])
+        c.line(x,y-3,x,y+1,STEEL[2])
+    c.poly([(12,8),(11,4),(14,6),(16,3),(18,6),(21,4),(20,8)], GOLD[0])
+    c.poly([(13,7),(12,5),(14,7),(16,4),(18,7),(20,5),(19,7)], GOLD[1])
+    c.line(14,8,19,8,GOLD[2])
+    return c.finish()
+
+
+def panic_art():
+    c = Canvas()
+    c.line(8,25,5,28,STEEL[0],2); c.line(5,28,3,25,STEEL[1])
+    c.line(24,23,28,26,STEEL[0],2); c.line(28,26,28,28,GOLD[1])
+    c.poly([(5,17),(23,14),(28,19),(25,26),(8,28),(4,23)], STEEL[0])
+    c.poly([(5,17),(23,14),(27,18),(24,23),(8,25),(4,22)], STEEL[1])
+    c.line(6,18,21,15,STEEL[2]); c.line(6,21,8,23,STEEL[2])
+    c.rect(12,13,22,20,ORANGE[0]); c.rect(12,13,15,19,ORANGE[1])
+    c.oval(16,12,10,7,ORANGE[0]); c.oval(15,10,9,6,ORANGE[1])
+    c.line(9,7,15,5,ORANGE[2]); c.line(8,8,8,10,ORANGE[2])
+    c.line(20,16,18,19,INK); c.line(18,19,21,21,INK)
+    c.line(21,21,18,25,INK); c.line(19,25,21,22,STEEL[2])
+    c.rect(7,21,8,22,GOLD[0]); c.rect(7,21,7,21,GOLD[2])
+    return c.finish()
+
+
+def overloaded_art():
+    c = Canvas()
+    c.poly([(7,9),(24,12),(25,21),(8,18)], BLUE[0])
+    c.poly([(8,10),(23,13),(24,19),(9,17)], BLUE[1])
+    c.line(10,11,21,13,BLUE[2]); c.line(12,14,14,16,INK)
+    c.line(14,16,17,14,INK); c.line(17,14,19,18,INK)
+    c.poly([(4,6),(9,7),(11,11),(10,20),(5,19),(3,15)], STEEL[0])
+    c.poly([(4,7),(8,8),(9,11),(8,18),(5,17),(4,14)], STEEL[1])
+    c.line(5,8,5,14,STEEL[2])
+    c.poly([(23,10),(28,11),(29,15),(28,24),(23,23),(22,19)], STEEL[0])
+    c.poly([(24,11),(27,12),(28,15),(26,22),(24,21)], STEEL[1])
+    c.line(24,12,24,18,STEEL[2])
+    c.poly([(12,18),(15,19),(13,24)], BLUE[1]); c.line(12,19,13,21,BLUE[2])
+    c.poly([(18,20),(21,21),(19,27)], BLUE[0]); c.line(19,22,19,24,BLUE[2])
+    c.line(16,6,16,9,BLUE[2]); c.line(14,7,18,7,BLUE[1])
+    return c.finish()
+
+
+def hardcoded_art():
+    c = Canvas()
+    c.poly([(4,8),(17,4),(24,9),(23,22),(10,26),(4,20)], STEEL[0])
+    c.poly([(5,8),(17,5),(23,9),(10,13)], STEEL[2])
+    c.poly([(5,10),(10,14),(22,10),(21,21),(10,24),(5,19)], STEEL[1])
+    c.poly([(10,14),(22,10),(21,21),(10,24)], STEEL[0])
+    c.poly([(15,12),(11,18),(12,21),(15,22),(18,19)], INK)
+    c.poly([(15,14),(13,18),(13,20),(15,21),(17,19)], BLUE[0])
+    c.line(14,18,15,16,BLUE[2]); c.rect(14,19,15,19,BLUE[1])
+    c.line(6,11,6,18,STEEL[2]); c.line(10,22,10,15,STEEL[1])
+    for x,y in ((24,17),(25,25)):
+        c.poly([(x,y-3),(x-2,y),(x-2,y+2),(x,y+3),(x+2,y+2),(x+2,y)], BLUE[0])
+        c.poly([(x,y-2),(x-1,y),(x-1,y+2),(x+1,y+2),(x+1,y)], BLUE[1])
+        c.rect(x-1,y,x-1,y,BLUE[2])
+    return c.finish()
+
+
+def design(draw, palette, meaning, batch='01'):
     return Design(draw, 1, (INK, *palette), meaning,
                   'Original project artwork, Codex-assisted',
                   'Original pixel geometry and material shading authored in make_item_art.py; no external pixels.',
-                  'docs/art/item-batch-01-4x.png')
+                  f'docs/art/item-batch-{batch}-4x.png')
 
 
 DESIGNS = {
@@ -277,6 +447,16 @@ DESIGNS = {
     'collectibles/rice_cooker.png': design(cooker_art, (*PAPER,*STEEL,*BLUE,*ORANGE), 'A steaming cream cooker with a steel lid and blue window; cook first, attack afterward.'),
     'collectibles/token_recall.png': design(recall_art, (*GOLD,*PURPLE,*BLUE), 'A brass reel pulling a blue tear along a curved tether; recalling fired tokens.'),
     'collectibles/lets_delve.png': design(delve_art, (*WOOD,*STEEL), 'A diagonal spade with an open wooden handle, bevelled steel and a small soil clod; native digging.'),
+    'collectibles/ignore_instructions.png': design(injection_art, (*PAPER,*STEEL,*BLUE,*PINK), 'A glass syringe with pink fluid crossing a folded instruction sheet; injected orders and charm.', '02'),
+    'collectibles/residential_ip.png': design(residential_art, (*PAPER,*WOOD,*BLUE,*GOLD), 'A cream cottage with a blue roof and a protected cable around its base; a safer residential connection.', '02'),
+    'collectibles/cheap_relay.png': design(relay_art, (*GOLD,*ORANGE,*STEEL,*PAPER), 'A worn brass key with a cracked orange bow patched with tape; unreliable discount access.', '02'),
+    'collectibles/silent_update.png': design(silent_art, (*PAPER,*STEEL,*PURPLE), 'A sealed cream envelope concealing a steel gear behind its corner; an unannounced change.', '02'),
+    'collectibles/opus_mode.png': design(opus_art, (*GOLD,*PURPLE,*BLUE), 'An ornate brass coin meter with a purple inset and blue tear dial; powerful shots billed in coins.', '02'),
+    'collectibles/banked_reset.png': design(reset_art, (*GOLD,*BLUE,*PAPER), 'A blue-glass hourglass held inside brass vault rails, retaining pale sand; a stored reset.', '02'),
+    'collectibles/benchmaxxed.png': design(bench_art, (*STEEL,*ORANGE,*GOLD), 'A red padded weight bench under a loaded steel bar and small brass crown; strength for boss benchmarks.', '02'),
+    'collectibles/i_panicked.png': design(panic_art, (*STEEL,*ORANGE,*GOLD), 'A large emergency plunger on a cracked metal base with severed leads; a destructive panic action.', '02'),
+    'trinkets/overloaded.png': design(overloaded_art, (*STEEL,*BLUE), 'A broken glass fuse between steel caps, with cold shards hanging underneath; a frozen service outage.', '02'),
+    'trinkets/hardcoded_output.png': design(hardcoded_art, (*STEEL,*BLUE), 'A bevelled steel tear die and two identical blue outputs; fixed output without numerical text.', '02'),
 }
 
 
