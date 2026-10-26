@@ -9,7 +9,9 @@ local AbsolutelyRight = {}
 local CHARM_FRAMES = 150
 
 function AbsolutelyRight:Init(mod)
-    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, _, source)
+    -- React after ordinary shields, including the later-registered backlog.
+    -- This is still pre-damage: a veto after LATE cannot be observed here.
+    mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, function(_, entity, _, _, source)
         local player = entity:ToPlayer()
         if not player or not player:HasCollectible(Constants.Item.ABSOLUTELY_RIGHT) then
             return

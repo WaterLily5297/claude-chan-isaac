@@ -1,5 +1,11 @@
 # Changelog
 
+## Charm after ordinary shields (2026-10-27; offline fix)
+
+- Run You're Absolutely Right! after ordinary shields so Sold Out/Red Stamp can refuse a hit before its source is charmed. Preserve the 150-frame effect, owner/source checks, caption, nil return and existing damage-flag behavior.
+- Reproduce the old guarded-bullet reaction with real modules, then cover both shield and unguarded paths, Constitution, co-op, source exclusions and explicit early/late callback limits. Four faulty copies fail the new regression; the full gate grows to 73 Lua suites/190 tracked Lua files.
+- Preserve existing suites, art, tooling/XML, balance and save formats. Native health/status timing and other F9 cases remain open; installed 8fd6a8c is untouched.
+
 ## Ordinary primary-tear integration (2026-10-27; offline evidence)
 
 - Add a real six-module fixture for all 64 loadouts: Hardcoded Output, 1M Context, Strawberry, Pizza Glue, Golden Gate Claude and Blueberry. Check 768 primary tears across two interleaved owners, age/scale/colour/flag composition and targeted controls.
