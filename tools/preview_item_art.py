@@ -30,6 +30,18 @@ BATCHES = {
         ('trinkets/overloaded.png', '529 Overloaded'),
         ('trinkets/hardcoded_output.png', 'Hardcoded Output'),
     ),
+    '03': (
+        ('collectibles/anniversary_cake.png', 'Anniversary Cake'),
+        ('collectibles/one_bowl.png', 'One Bowl Only'),
+        ('collectibles/wengu_clock.png', 'Wengu Clock'),
+        ('collectibles/seven_second_memory.png', 'Seven-Second Memory'),
+        ('collectibles/sanity_test.png', 'Sanity Test'),
+        ('collectibles/routing_receipt.png', 'Routing Receipt'),
+        ('collectibles/tibo_reset.png', 'Tibo Reset'),
+        ('collectibles/same_model_badge.png', 'Same Model Badge'),
+        ('collectibles/nano_banana.png', 'Nano Banana'),
+        ('collectibles/undo_brush.png', 'Undo Brush'),
+    ),
 }
 LIGHT, DARK = (221,205,175,255), (37,31,32,255)
 PAGE, TEXT = (238,229,209,255), (47,37,35,255)

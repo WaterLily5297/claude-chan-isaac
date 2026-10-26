@@ -29,6 +29,12 @@ Ignore All Previous Instructions, Residential IP, 9.9 Yuan Relay, Silent Update,
 
 The two `docs/art/item-batch-02-*.png` sheets combine the existing MIT placeholders with the new drawings and the same original project reference shapes/alphabet used in batch 01. The shared preview producer adds batch selection; batch 01's pixels stay unchanged. This original-item license does not change any character-design credit or non-commercial condition and does not grant Workshop publication approval.
 
+## Original designed item icons, batch 03 (2026-10-27)
+
+Anniversary Cake, One Bowl Only, Wengu Clock, Seven-Second Memory, Sanity Test, Routing Receipt, Tibo Reset, Same Model Badge, Nano Banana and Undo Brush now use original project pixel geometry and material shading in `tools/make_item_art.py`. The item-art registry records their drawing functions, palettes, versions, provenance and output hashes. These drawings and code are Codex-assisted project contributions under the MIT license, without imported image pixels, company logos or native artwork.
+
+The two `docs/art/item-batch-03-*.png` sheets combine the prior MIT placeholders with the new drawings and the shared original project reference shapes/alphabet. Adding this batch preserves both earlier batches. These original-item terms do not change character-design credits or non-commercial conditions and do not authorize Workshop publication.
+
 ## Selected normal portraits (2026-10-23)
 
 All eleven normal portraits follow the owner's selected **ZipZipPipe AI-personification series**: Claude, DeepSeek, GPT, Gemini, Grok, Qwen, Llama, Mistral, Seed / Doubao, Kimi and GLM. The source illustrations are credited to [ZipZipPipe](https://www.pixiv.net/users/18604994). DeepSeek additionally credits [Shangshan Wuxing](https://www.pixiv.net/users/62155430) for the original whale girl and ZipZipPipe for the maid adaptation, under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).

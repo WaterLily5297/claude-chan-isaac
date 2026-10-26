@@ -1241,15 +1241,15 @@
     {
       "name": "Anniversary Cake",
       "gfx": "collectibles/anniversary_cake.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "anniversary_cake",
+        "file": "tools/make_item_art.py",
+        "function": "cake_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1260,23 +1260,25 @@
       ],
       "palette": [
         "#080000",
-        "#a86c1c",
-        "#a8a191",
-        "#a9617a",
-        "#c9bba4",
-        "#d8d2c4",
-        "#e70000",
-        "#e79ab5",
-        "#e8a33d",
-        "#f2eee4",
-        "#f3e7d6",
-        "#ffc2d4",
-        "#fffaf0"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#874155",
+        "#d28289",
+        "#ffbdaf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#e16c3c"
       ],
       "palette_exception": "",
-      "sha256": "101e163a9807763a0a4a5618c494d5be871be236086b37cfbed96a7cc89d4441",
-      "description": "Legacy placeholder for Anniversary Cake; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "d7b200ca819b7a545f0b276f97522b1060be48dfbc9336a2d7618a5900caaf41",
+      "description": "A frosted cake slice with layered filling, a plate and one lit candle; an unspoiled floor streak.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Rice Cooker",
@@ -1321,15 +1323,15 @@
     {
       "name": "One Bowl Only",
       "gfx": "collectibles/one_bowl.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "one_bowl",
+        "file": "tools/make_item_art.py",
+        "function": "guarded_bowl_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1340,29 +1342,33 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#8fe3ee",
-        "#a8a191",
-        "#d8d2c4"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "b7f1268746e0ce1253dba641d8231b02c70ad75b38eebc1330ea156c24ea23d3",
-      "description": "Legacy placeholder for One Bowl Only; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "a1d4180394882e6870588b405e517e1d5b09405524327a0d1a9d51e823acadbb",
+      "description": "A deep rice bowl with a steel shield on its front and no chopsticks; the one-bullet guard.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Wengu Clock",
       "gfx": "collectibles/wengu_clock.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "wengu_clock",
+        "file": "tools/make_item_art.py",
+        "function": "clock_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1373,29 +1379,36 @@
       ],
       "palette": [
         "#080000",
-        "#2b2b2b",
-        "#2e8391",
-        "#4fb8c9",
-        "#d8d2c4",
-        "#f2eee4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0"
       ],
       "palette_exception": "",
-      "sha256": "0c1df3e374f14f06a2fca83f943a21f11b4a5b34c5e3d897c9add9f648e3019f",
-      "description": "Legacy placeholder for Wengu Clock; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "e71b2935987a50b5bfd48e62ecf3b11740eaabcecfbeddaa2dd8465bc500cb6a",
+      "description": "A blue alarm clock with brass bells, plain hands and a cream dial without digits; rest before attacking.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Seven-Second Memory",
       "gfx": "collectibles/seven_second_memory.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "seven_second_memory",
+        "file": "tools/make_item_art.py",
+        "function": "memory_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1406,27 +1419,36 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#d8d2c4"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#a76b43",
+        "#e0a66b"
       ],
       "palette_exception": "",
-      "sha256": "25916995ee8d33fa2665927f9e95ed8c92445d03a6064534c3679bf760393824",
-      "description": "Legacy placeholder for Seven-Second Memory; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "f82ae8b40932b665cb9f2219301c693236e63c3bee45fbd750446ec54037ce84",
+      "description": "An orange fish held in a rounded blue memory jar with a cork and rising bubbles; a brief target memory.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Sanity Test",
       "gfx": "collectibles/sanity_test.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "sanity_test",
+        "file": "tools/make_item_art.py",
+        "function": "sanity_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1437,29 +1459,37 @@
       ],
       "palette": [
         "#080000",
-        "#3a3a3a",
-        "#79c07a",
-        "#a8a191",
-        "#d8d2c4",
-        "#f2eee4"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#96382d"
       ],
       "palette_exception": "",
-      "sha256": "d813a5063287ba49af346bf990a3f8ea9a99c0ba4e946bfa7981a2627cdf1c60",
-      "description": "Legacy placeholder for Sanity Test; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "f5b83080948a343636e8612afe0169c913dae9610ceca38d91267c9feb942b16",
+      "description": "A heavy magnifying glass framing a target inside blue glass; test the selected enemy.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Routing Receipt",
       "gfx": "collectibles/routing_receipt.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "routing_receipt",
+        "file": "tools/make_item_art.py",
+        "function": "receipt_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1470,28 +1500,36 @@
       ],
       "palette": [
         "#080000",
-        "#636363",
-        "#a8a191",
-        "#d8d2c4",
-        "#f2eee4"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "1dff6293206be9515c3c3e7233b3fc38fc98b552aa05fd0a453ef6b21513e817",
-      "description": "Legacy placeholder for Routing Receipt; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "c7b9082f355fafc26ece6dd5214a6d4f718ca6b857dd0b157793bc4bd02571e5",
+      "description": "A curled receipt with three brass punch points joined by a blue route; banked room progress.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Tibo Reset",
       "gfx": "collectibles/tibo_reset.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "tibo_reset",
+        "file": "tools/make_item_art.py",
+        "function": "tibo_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1502,28 +1540,33 @@
       ],
       "palette": [
         "#080000",
-        "#4c8548",
-        "#79c07a",
-        "#a8a191",
-        "#d8d2c4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "aa3140bec2ac4307f26224d111c314c24152b3a2a24592e52d0d1e66dd938bd3",
-      "description": "Legacy placeholder for Tibo Reset; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "ba89b45c4bb67a5452943b6353e071acde7ca37546ca949003a3db0256110c77",
+      "description": "A twin-cell blue power pack with a brass winding key; a temporary two-room boost rather than a world reset.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Same Model Badge",
       "gfx": "collectibles/same_model_badge.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "same_model_badge",
+        "file": "tools/make_item_art.py",
+        "function": "badge_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1534,30 +1577,33 @@
       ],
       "palette": [
         "#080000",
-        "#a30000",
-        "#b08a24",
-        "#d4ad45",
-        "#d8d2c4",
-        "#e70000",
-        "#f0c849"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "6d81da66eb389d75f5d031c52ac010ef426d70f2975ac815904c4a8110131c0e",
-      "description": "Legacy placeholder for Same Model Badge; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "2b764ea0c7582fdf18a01d9fd40ca088dfd8b16d1fc4fe45e07bc557b9c7e5f6",
+      "description": "A clipped identity badge with one portrait divided into bright brass and dull steel; Verified and Fallback phases.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Nano Banana",
       "gfx": "collectibles/nano_banana.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "nano_banana",
+        "file": "tools/make_item_art.py",
+        "function": "banana_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1568,17 +1614,23 @@
       ],
       "palette": [
         "#080000",
-        "#7d5028",
-        "#a9743f",
-        "#b08a24",
-        "#e8a33d",
-        "#f0c849",
-        "#ffe48a"
+        "#9c682e",
+        "#f5c84a",
+        "#fff1a5",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "72d300ea11db9f94af8bad60b543fcdfbb70160461bb08beac40bde09601ec1f",
-      "description": "Legacy placeholder for Nano Banana; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "e1ede6ab31bdc78d6c47ff27eb0502dd0f36664a3895680052b9c42006adda88",
+      "description": "A curled yellow banana with splayed peel tips and a small blue paint spot; painting followed by a slowing peel.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "One More Finger",
@@ -1616,15 +1668,15 @@
     {
       "name": "Undo Brush",
       "gfx": "collectibles/undo_brush.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "undo_brush",
+        "file": "tools/make_item_art.py",
+        "function": "undo_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1635,18 +1687,23 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#5b3a7c",
-        "#7d5028",
-        "#8a5bb5",
-        "#8fe3ee",
-        "#a9743f"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "384d18cedaf024450a9108a7f13667baee1dc269fe047daff99d94b53e5456b6",
-      "description": "Legacy placeholder for Undo Brush; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "bb1b4fd178a5545e526c4a5bf87cfb5e69488fa312570a4e74ad8ff698c4736d",
+      "description": "A broad diagonal paintbrush sweeping a blue trail past a breaking projectile; erasing bullets for speed.",
+      "contact_sheet": "docs/art/item-batch-03-4x.png"
     },
     {
       "name": "Unchanged Preview",

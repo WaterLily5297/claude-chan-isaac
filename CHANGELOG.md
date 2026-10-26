@@ -1,5 +1,11 @@
 # Changelog
 
+## Third ten designed item icons (2026-10-27; offline art)
+
+- Replace ten existing collectible placeholders with original cake, guarded bowl, alarm clock, fish jar, target loupe, route receipt, winding power pack, identity badge, banana peel and broad brush drawings.
+- Add batch 03 before/after sheets at 1x/4x on light/dark backgrounds, with a dedicated fruit-yellow ramp and warm candle flame refined during visual review. The registry now records 30 designed/62 placeholder icons.
+- Preserve all 167 untargeted PNGs, 25 animations and gameplay/registration/tests. Full offline gate checks all six review sheets; installed 8fd6a8c remains owner-untried and unchanged.
+
 ## GPT/Grok binding allocation (2026-10-27; offline optimization)
 
 - Reuse unchanged per-slot identity snapshots for normal GPT and tainted Grok, and read each player's type once per binding pass. Preserve pointer/seed/type replacement, missing-slot retirement and all gameplay/save rules.

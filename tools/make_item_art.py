@@ -48,6 +48,7 @@ BLUE = ('#285362', '#4c9ba8', '#a0dfd6')
 GOLD = ('#8e5c27', '#d5a044', '#ffe091')
 PINK = ('#874155', '#d28289', '#ffbdaf')
 PURPLE = ('#44324e', '#826b93', '#c4abc9')
+YELLOW = ('#9c682e', '#f5c84a', '#fff1a5')
 
 
 class Canvas:
@@ -429,6 +430,167 @@ def hardcoded_art():
     return c.finish()
 
 
+def cake_art():
+    c = Canvas()
+    c.oval(16,26,13,3,STEEL[0]); c.oval(15,25,12,2,STEEL[2])
+    c.poly([(5,15),(17,10),(27,16),(27,24),(15,28),(5,24)],PAPER[0])
+    c.poly([(5,15),(16,19),(16,27),(5,23)],PAPER[1])
+    c.poly([(16,19),(27,16),(27,24),(16,27)],WOOD[0])
+    c.poly([(17,21),(26,18),(26,20),(17,23)],PAPER[1])
+    c.line(17,25,26,22,PINK[1]); c.line(6,20,15,23,PINK[0],2)
+    c.poly([(5,14),(17,9),(27,15),(16,20),(5,17)],PINK[0])
+    c.poly([(5,14),(17,9),(27,15),(16,18)],PAPER[2])
+    c.rect(6,16,8,18,PAPER[2]); c.rect(12,18,14,20,PAPER[1])
+    c.rect(19,6,21,13,BLUE[0]); c.rect(19,6,20,12,BLUE[1])
+    c.line(19,7,20,7,BLUE[2]); c.line(19,10,20,10,PAPER[2])
+    c.poly([(20,2),(18,5),(19,6),(21,5)],ORANGE[1]); c.rect(20,4,20,5,PAPER[2])
+    c.oval(11,13,2,1,PINK[1]); c.rect(10,12,10,12,PINK[2])
+    return c.finish()
+
+
+def guarded_bowl_art():
+    c = Canvas()
+    c.rect(11,26,22,28,BLUE[0]); c.rect(12,26,19,27,BLUE[1])
+    c.poly([(4,13),(28,13),(26,23),(22,27),(11,27),(6,22)],BLUE[0])
+    c.poly([(5,14),(25,14),(23,23),(20,25),(11,25),(7,21)],BLUE[1])
+    c.poly([(5,15),(8,16),(9,22),(7,20)],BLUE[2])
+    c.oval(16,13,12,4,PAPER[0]); c.oval(15,12,11,4,PAPER[1])
+    for x,y in ((7,11),(10,8),(14,9),(18,8),(22,10),(10,12),(17,12),(23,12)):
+        c.line(x,y,x+2,y-1,PAPER[2])
+    c.line(5,15,11,17,BLUE[0]); c.line(22,16,27,14,BLUE[0])
+    c.poly([(13,17),(22,17),(22,22),(18,26),(13,22)],STEEL[0])
+    c.poly([(14,18),(21,18),(21,21),(18,24),(14,21)],STEEL[2])
+    c.poly([(18,18),(21,18),(21,21),(18,24)],STEEL[1])
+    c.line(15,19,17,19,PAPER[2])
+    return c.finish()
+
+
+def clock_art():
+    c = Canvas()
+    c.line(9,25,7,28,STEEL[0],2); c.line(23,25,25,28,STEEL[0],2)
+    c.line(7,27,8,26,STEEL[2]); c.line(23,26,24,27,STEEL[1])
+    c.line(8,10,12,13,STEEL[0],2); c.line(24,10,21,13,STEEL[0],2)
+    c.poly([(4,8),(7,4),(11,4),(14,7),(9,11)],GOLD[0])
+    c.poly([(5,7),(8,4),(11,5),(12,7),(8,9)],GOLD[1]); c.line(7,5,10,5,GOLD[2])
+    c.poly([(20,7),(23,4),(26,5),(28,8),(23,11)],GOLD[0])
+    c.poly([(21,7),(23,5),(26,6),(26,8),(23,9)],GOLD[1]); c.line(23,5,25,6,GOLD[2])
+    c.oval(16,18,10,10,BLUE[0]); c.oval(15,17,9,9,BLUE[1])
+    c.oval(16,18,8,8,PAPER[0]); c.oval(15,17,7,7,PAPER[2])
+    c.line(15,11,15,12,GOLD[0]); c.line(9,17,10,17,GOLD[0]); c.line(21,17,22,17,GOLD[0])
+    c.line(16,18,16,13,INK); c.line(16,18,20,21,INK)
+    c.rect(15,17,16,18,GOLD[1]); c.line(10,22,13,24,PAPER[1])
+    c.rect(15,4,17,6,STEEL[0]); c.rect(15,4,16,4,STEEL[2])
+    return c.finish()
+
+
+def memory_art():
+    c = Canvas()
+    c.oval(16,19,11,9,BLUE[0]); c.oval(15,18,10,8,BLUE[1])
+    c.poly([(8,13),(24,13),(26,20),(23,25),(11,26),(6,21)],BLUE[1])
+    c.line(8,13,23,13,BLUE[2]); c.line(8,16,7,20,BLUE[2])
+    c.line(10,25,20,26,BLUE[2]); c.line(24,21,23,24,BLUE[0])
+    c.poly([(18,18),(24,15),(23,22),(18,20)],ORANGE[0])
+    c.poly([(20,18),(23,16),(22,20)],ORANGE[2])
+    c.oval(14,19,6,4,ORANGE[0]); c.oval(13,18,5,3,ORANGE[1])
+    c.line(11,16,15,16,ORANGE[2]); c.rect(10,18,10,18,INK)
+    c.poly([(14,21),(17,21),(15,24)],ORANGE[1])
+    c.rect(19,10,20,11,PAPER[2]); c.rect(23,7,24,8,BLUE[2])
+    c.rect(9,5,22,8,WOOD[0]); c.rect(10,5,21,6,WOOD[2])
+    c.line(10,8,21,8,PAPER[1]); c.rect(11,9,20,10,BLUE[0])
+    c.line(10,4,13,4,WOOD[1]); c.line(18,4,21,4,WOOD[1])
+    return c.finish()
+
+
+def sanity_art():
+    c = Canvas()
+    c.poly([(20,19),(23,19),(29,26),(26,29),(19,22)],WOOD[0])
+    c.poly([(21,20),(23,20),(28,26),(26,27)],WOOD[1]); c.line(22,20,26,24,WOOD[2])
+    c.oval(13,13,10,10,STEEL[0]); c.oval(12,12,9,9,STEEL[2])
+    c.oval(13,13,8,8,BLUE[0]); c.oval(12,12,7,7,BLUE[1])
+    c.line(7,8,9,6,BLUE[2]); c.line(6,10,6,13,BLUE[2])
+    c.oval(13,13,4,4,PAPER[1]); c.oval(13,13,2,2,ORANGE[0])
+    c.line(13,7,13,9,STEEL[0]); c.line(13,17,13,19,STEEL[0])
+    c.line(7,13,9,13,STEEL[0]); c.line(17,13,19,13,STEEL[0])
+    c.rect(11,11,12,12,PAPER[2]); c.line(19,20,21,22,STEEL[2])
+    return c.finish()
+
+
+def receipt_art():
+    c = Canvas()
+    c.poly([(9,5),(24,4),(25,21),(22,28),(19,26),(16,28),(13,26),(10,28),(8,23)],PAPER[0])
+    c.poly([(9,5),(22,5),(23,20),(21,25),(18,24),(16,26),(13,24),(10,25)],PAPER[1])
+    c.line(10,8,10,22,PAPER[2]); c.line(12,6,21,6,PAPER[2])
+    c.oval(9,6,4,3,STEEL[0]); c.oval(9,5,4,2,PAPER[2]); c.rect(8,5,10,5,PAPER[0])
+    c.line(14,10,19,10,BLUE[0]); c.line(19,10,19,17,BLUE[0]); c.line(14,17,19,17,BLUE[0])
+    for x,y in ((14,10),(19,14),(14,18)):
+        c.oval(x,y,2,2,GOLD[0]); c.oval(x-0.5,y-0.5,1,1,GOLD[2])
+    c.line(12,22,18,22,PAPER[0]); c.line(13,24,19,24,PAPER[2])
+    return c.finish()
+
+
+def tibo_art():
+    c = Canvas()
+    c.poly([(7,13),(21,10),(26,14),(26,26),(12,29),(6,25)],STEEL[0])
+    c.poly([(7,13),(21,10),(26,14),(12,17)],STEEL[2])
+    c.poly([(7,14),(12,18),(12,27),(7,24)],STEEL[1])
+    c.poly([(13,18),(25,15),(25,25),(13,28)],BLUE[0])
+    c.poly([(14,19),(18,18),(18,25),(14,26)],BLUE[1]); c.line(14,19,16,19,BLUE[2])
+    c.poly([(20,17),(23,17),(23,24),(20,25)],BLUE[1]); c.line(20,18,22,18,BLUE[2])
+    c.rect(15,6,18,14,GOLD[0]); c.rect(15,6,16,13,GOLD[2])
+    for x in (11,22):
+        c.oval(x,6,5,3,GOLD[0]); c.oval(x-1,5,4,2,GOLD[1])
+        c.oval(x,6,2,1,INK); c.line(x-2,4,x,4,GOLD[2])
+    c.line(8,18,9,20,STEEL[2]); c.rect(9,23,9,23,INK)
+    return c.finish()
+
+
+def badge_art():
+    c = Canvas()
+    c.poly([(5,10),(24,8),(27,11),(27,26),(8,29),(4,26)],STEEL[0])
+    c.poly([(5,10),(24,8),(26,10),(8,13)],STEEL[2])
+    c.poly([(6,14),(25,11),(25,25),(8,27),(6,25)],PAPER[0])
+    c.poly([(7,14),(16,13),(16,25),(8,26)],GOLD[1])
+    c.poly([(17,13),(24,12),(24,24),(17,25)],STEEL[1])
+    c.oval(16,17,4,4,INK); c.oval(15,16,3,3,GOLD[2])
+    c.poly([(17,13),(19,14),(19,18),(17,20)],STEEL[0])
+    c.poly([(12,21),(18,20),(21,22),(21,24),(11,25),(11,23)],INK)
+    c.line(12,23,15,22,GOLD[2]); c.line(18,22,19,23,STEEL[0])
+    c.rect(12,4,18,11,STEEL[0]); c.rect(12,4,16,9,STEEL[2])
+    c.rect(14,5,16,7,INK); c.line(13,11,17,11,STEEL[1])
+    c.poly([(23,21),(25,21),(25,24),(23,24)],PAPER[1])
+    return c.finish()
+
+
+def banana_art():
+    c = Canvas()
+    c.poly([(8,4),(11,3),(12,8),(16,13),(21,15),(26,12),(25,18),(21,22),(14,22),(8,16),(7,9)],YELLOW[0])
+    c.poly([(8,5),(10,4),(11,10),(16,16),(21,17),(24,15),(23,19),(19,21),(14,20),(9,15)],YELLOW[1])
+    c.line(9,8,11,13,YELLOW[2]); c.line(12,15,16,18,YELLOW[2])
+    c.poly([(12,14),(14,18),(13,24),(8,28),(10,20)],PAPER[0])
+    c.poly([(12,15),(13,18),(11,23),(9,25),(11,19)],PAPER[2])
+    c.poly([(16,20),(20,21),(25,26),(22,28),(18,25)],YELLOW[0])
+    c.poly([(17,21),(20,22),(23,26),(21,26),(18,24)],YELLOW[2])
+    c.line(8,4,10,3,WOOD[0]); c.rect(25,12,26,13,WOOD[0])
+    c.oval(24,24,4,2,BLUE[0]); c.oval(23,23,3,1,BLUE[1]); c.rect(22,22,23,22,BLUE[2])
+    return c.finish()
+
+
+def undo_art():
+    c = Canvas()
+    c.poly([(19,13),(26,3),(28,4),(28,7),(22,16)],WOOD[0])
+    c.poly([(20,13),(26,4),(27,4),(26,8),(21,14)],WOOD[1])
+    c.line(22,10,26,5,WOOD[2])
+    c.poly([(16,13),(19,11),(24,15),(21,19)],STEEL[0])
+    c.poly([(17,13),(19,12),(22,15),(20,17)],STEEL[2])
+    c.poly([(15,15),(20,19),(17,24),(10,26),(5,24),(11,21)],PAPER[0])
+    c.poly([(15,16),(18,19),(15,23),(9,25),(7,24),(12,21)],PAPER[1])
+    c.line(14,18,10,23,PAPER[2]); c.line(17,20,14,24,WOOD[0])
+    c.line(5,27,10,28,BLUE[1]); c.line(12,27,16,26,BLUE[0])
+    c.oval(7,14,3,3,BLUE[0]); c.oval(6,13,2,2,BLUE[1]); c.rect(5,12,5,13,BLUE[2])
+    c.rect(3,20,4,21,BLUE[1]); c.rect(5,18,5,18,BLUE[2])
+    return c.finish()
+
+
 def design(draw, palette, meaning, batch='01'):
     return Design(draw, 1, (INK, *palette), meaning,
                   'Original project artwork, Codex-assisted',
@@ -457,6 +619,16 @@ DESIGNS = {
     'collectibles/i_panicked.png': design(panic_art, (*STEEL,*ORANGE,*GOLD), 'A large emergency plunger on a cracked metal base with severed leads; a destructive panic action.', '02'),
     'trinkets/overloaded.png': design(overloaded_art, (*STEEL,*BLUE), 'A broken glass fuse between steel caps, with cold shards hanging underneath; a frozen service outage.', '02'),
     'trinkets/hardcoded_output.png': design(hardcoded_art, (*STEEL,*BLUE), 'A bevelled steel tear die and two identical blue outputs; fixed output without numerical text.', '02'),
+    'collectibles/anniversary_cake.png': design(cake_art, (*STEEL,*PAPER,WOOD[0],*PINK,*BLUE,ORANGE[1]), 'A frosted cake slice with layered filling, a plate and one lit candle; an unspoiled floor streak.', '03'),
+    'collectibles/one_bowl.png': design(guarded_bowl_art, (*BLUE,*PAPER,*STEEL), 'A deep rice bowl with a steel shield on its front and no chopsticks; the one-bullet guard.', '03'),
+    'collectibles/wengu_clock.png': design(clock_art, (*STEEL,*GOLD,*BLUE,*PAPER), 'A blue alarm clock with brass bells, plain hands and a cream dial without digits; rest before attacking.', '03'),
+    'collectibles/seven_second_memory.png': design(memory_art, (*BLUE,*ORANGE,*PAPER,*WOOD), 'An orange fish held in a rounded blue memory jar with a cork and rising bubbles; a brief target memory.', '03'),
+    'collectibles/sanity_test.png': design(sanity_art, (*WOOD,*STEEL,*BLUE,*PAPER,ORANGE[0]), 'A heavy magnifying glass framing a target inside blue glass; test the selected enemy.', '03'),
+    'collectibles/routing_receipt.png': design(receipt_art, (*PAPER,*STEEL,*BLUE,*GOLD), 'A curled receipt with three brass punch points joined by a blue route; banked room progress.', '03'),
+    'collectibles/tibo_reset.png': design(tibo_art, (*STEEL,*BLUE,*GOLD), 'A twin-cell blue power pack with a brass winding key; a temporary two-room boost rather than a world reset.', '03'),
+    'collectibles/same_model_badge.png': design(badge_art, (*STEEL,*PAPER,*GOLD), 'A clipped identity badge with one portrait divided into bright brass and dull steel; Verified and Fallback phases.', '03'),
+    'collectibles/nano_banana.png': design(banana_art, (*YELLOW,*PAPER,*WOOD,*BLUE), 'A curled yellow banana with splayed peel tips and a small blue paint spot; painting followed by a slowing peel.', '03'),
+    'collectibles/undo_brush.png': design(undo_art, (*WOOD,*STEEL,*PAPER,*BLUE), 'A broad diagonal paintbrush sweeping a blue trail past a breaking projectile; erasing bullets for speed.', '03'),
 }
 
 
