@@ -44,6 +44,7 @@ local function player(kind)
     function p:SetPocketActiveItem(id) self.pocket=id end
     function p:AddCacheFlags() end
     function p:EvaluateItems()
+        self.evaluations=(self.evaluations or 0)+1
         self.Damage=3.5
         for _,c in ipairs(callbacks) do if c.id=="MC_EVALUATE_CACHE" then c.fn(mod,self,CacheFlag.CACHE_DAMAGE) end end
     end
@@ -216,4 +217,78 @@ for _, interruption in ipairs({"pause", "death"}) do
     down=false; frame=frame+1; fire("MC_POST_PEFFECT_UPDATE",p)
     assert(a.appeals==0 and a.value==20,"a fresh DROP gesture after recovery still works")
 end
-print("OK: Claude usage save/continue, detached entities, wrapper identity, co-op and item aliases")
+-- Live slot replacement must not transfer another entity's account/debt.
+-- Continue is a separate boundary: the existing detached-load cases above stay valid.
+fire("MC_PRE_GAME_EXIT",false); players={player(),player()}; module()
+fire("MC_POST_GAME_STARTED",false)
+p,q=players[1],players[2]
+local oldUsage, partnerUsage=p.data.ccUsage,q.data.ccUsage
+oldUsage.age=5; oldUsage.value=48; oldUsage.appeals=2
+partnerUsage.age=3; partnerUsage.value=28; partnerUsage.appeals=2
+players[1]=player(); players[1].InitSeed=p.InitSeed; p=players[1]
+fire("MC_POST_UPDATE"); p:EvaluateItems()
+assert(p.data.ccUsage~=oldUsage and p.data.ccUsage.age==0,
+    "a replacement player must not inherit another Claude's account age")
+assert(p.data.ccUsage.value==0 and p.data.ccUsage.appeals==1,
+    "replacement accounts start with the existing fresh allowance")
+assert(Risk.state.claudeUsage["1"]==partnerUsage and partnerUsage.value==28 and partnerUsage.age==3,
+    "retiring one slot must not reset the partner")
+fire("MC_USE_ITEM",C.Item.COMPACT,nil,p)
+assert(p.data.ccUsage.value==50 and oldUsage.value==48,
+    "item aliases must bind the new saved table, not the retired owner's debt")
+
+-- Keep the deliberate same-entity type-return debt rule and wrapper identity.
+local current=p.data.ccUsage
+p.kind=0; fire("MC_POST_PEFFECT_UPDATE",p); fire("MC_POST_UPDATE")
+p.kind=41; fire("MC_POST_PEFFECT_UPDATE",wrap(p)); fire("MC_POST_UPDATE")
+assert(p.data.ccUsage==current and current.value==50,
+    "changing form on the same entity must not erase its existing debt")
+
+-- Pointer reuse with a new initialization seed is a different owner, even in one frame.
+current.age=4; current.value=80; current.limited=40
+p:EvaluateItems(); assert(p.Damage<3.5)
+p.InitSeed=p.InitSeed+1000
+fire("MC_POST_PEFFECT_UPDATE",wrap(p))
+assert(p.data.ccUsage~=current and p.data.ccUsage.age==0 and p.data.ccUsage.limited==0,
+    "a reused pointer must not inherit an old initialization seed's account")
+assert(math.abs(p.Damage-3.5)<1e-9,"identity replacement refreshes the old account's cache once")
+local evaluations=p.evaluations
+for _=1,10 do fire("MC_POST_UPDATE"); fire("MC_POST_PEFFECT_UPDATE",wrap(p)) end
+assert(p.evaluations==evaluations,"unchanged owners must not rebuild damage on every observation")
+
+-- A shot before the next general update still observes the new slot owner.
+shot(p)
+local previous=p.data.ccUsage
+players[1]=player(); p=players[1]
+local shotData={}
+fire("MC_POST_FIRE_TEAR",{SpawnerEntity=p,CollisionDamage=10,GetData=function() return shotData end})
+assert(p.data.ccUsage~=previous and p.data.ccUsage.value==4,
+    "same-frame replacement must not share the retired owner's paid volley")
+
+-- Remove an unused slot before saving; later co-op joins cannot inherit it.
+players={p}; fire("MC_POST_UPDATE")
+assert(Risk.state.claudeUsage["1"]==nil,"retired slots must be removed from the saved account map")
+fire("MC_PRE_GAME_EXIT",true)
+players={player(),player()}; module(); fire("MC_POST_GAME_STARTED",true)
+assert(players[1].data.ccUsage.value==4,"continue retains the remaining player's account")
+assert(players[2].data.ccUsage.value==0 and players[2].data.ccUsage.age==0,
+    "a later joining player cannot inherit a removed co-op account")
+assert(saved.claudeUsage["0"].pointer==nil and saved.claudeUsage["0"].seed==nil,
+    "transient owner identity must not enter saved usage")
+-- Slot reordering invalidates both slot accounts; one retirement must not
+-- erase the other replacement's pending cache refresh.
+p,q=players[1],players[2]
+p.data.ccUsage.age=2; q.data.ccUsage.age=3
+p:EvaluateItems(); q:EvaluateItems()
+players={q,p}; fire("MC_POST_UPDATE")
+assert(p.data.ccUsage.age==0 and q.data.ccUsage.age==0,
+    "reordered slots must not swap the two players' saved accounts")
+assert(math.abs(p.Damage-3.5)<1e-9 and math.abs(q.Damage-3.5)<1e-9,
+    "both reordered owners must receive the fresh account's cache")
+-- Continue without reloading Lua must clear live identities before rebinding.
+players[1].data.ccUsage.value=36; players[1].data.ccUsage.age=2
+fire("MC_PRE_GAME_EXIT",true)
+players={player(),player()}; fire("MC_POST_GAME_STARTED",true)
+assert(players[1].data.ccUsage.value==36 and players[1].data.ccUsage.age==2,
+    "same-session Continue must preserve saved debt despite recreated entities")
+print("OK: Claude save/continue, live-owner isolation, wrapper/type-return debt and item aliases")

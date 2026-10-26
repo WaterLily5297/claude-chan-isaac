@@ -88,8 +88,63 @@ function ClaudeChan:Init(mod, Risk)
     local volleys = {} -- Transient: slot -> {frame, limited}.
     local updates = {} -- Transient: player pointer -> {seed, frame}.
     local applied = {} -- Transient: player pointer -> Limited state in the damage stat.
+    local owners, refreshNeeded = {}, {} -- Live slot identity; never serialized.
+
+    local function retireOwner(key, previous, replacement)
+        local all = Risk.state.claudeUsage
+        if type(all) == "table" then all[key] = nil end
+        volleys[key] = nil
+        if previous then
+            updates[previous.pointer] = nil
+            applied[previous.pointer] = nil
+            refreshNeeded[previous.pointer] = nil
+        end
+        if replacement then
+            local pointer = GetPtrHash(replacement)
+            replacement:GetData().ccUsage = nil
+            updates[pointer] = nil; applied[pointer] = nil
+            refreshNeeded[pointer] = nil
+            drop:Forget(replacement)
+        end
+    end
+
+    local function observeOwners()
+        if not ready then return end
+        local count = Game():GetNumPlayers()
+        local replacements
+        for i = 0, count - 1 do
+            local p, key = Isaac.GetPlayer(i), tostring(i)
+            local pointer, previous = GetPtrHash(p), owners[key]
+            if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed) then
+                retireOwner(key, previous, p)
+                replacements = replacements or {}
+                replacements[pointer] = true
+                previous = nil
+            end
+            if not previous then owners[key] = {pointer=pointer, seed=p.InitSeed} end
+        end
+        for key, previous in pairs(owners) do
+            if tonumber(key) >= count then
+                retireOwner(key, previous, nil)
+                owners[key] = nil
+            end
+        end
+        -- A removed player's record must not survive a save and later co-op join.
+        local all = Risk.state.claudeUsage
+        if type(all) == "table" then
+            for key in pairs(all) do if not owners[key] then all[key] = nil end end
+        end
+        -- Finish every retirement before marking replacements: a slot swap
+        -- can retire a pointer that was just rebound in an earlier slot.
+        if replacements then
+            for pointer in pairs(replacements) do refreshNeeded[pointer] = true end
+        end
+        -- Type changes on the same pointer/seed deliberately keep existing debt.
+        -- Only the live owner changes above invalidate an account.
+    end
 
     local function getUsage(player)
+        observeOwners()
         local data = player:GetData()
         for i = 0, Game():GetNumPlayers() - 1 do
             if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then
@@ -131,7 +186,10 @@ function ClaudeChan:Init(mod, Risk)
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
         -- Risk has already loaded or reset its state, before any item use or shot.
         if not continued then Risk.state.claudeUsage = {} end
-        ready = true; volleys = {}; updates = {}; applied = {}; drop:Reset()
+        ready = true; volleys = {}; updates = {}; applied = {}; owners = {}; refreshNeeded = {}; drop:Reset()
+        -- Reset transient identities at the load boundary: recreated players
+        -- must still receive their saved slot's account on Continue.
+        observeOwners()
         for i = 0, Game():GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
             if isClaude(player) then observeRoom(getUsage(player)); refreshDamage(player) end
@@ -140,7 +198,7 @@ function ClaudeChan:Init(mod, Risk)
         Risk.state.accountAge = nil
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
-        ready = false; volleys = {}; updates = {}; drop:Reset()
+        ready = false; volleys = {}; updates = {}; owners = {}; refreshNeeded = {}; drop:Reset()
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
         drop:Reset()
@@ -172,6 +230,14 @@ function ClaudeChan:Init(mod, Risk)
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function() drop:Reset() end)
+    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+        if not ready then return end
+        observeOwners()
+        for i = 0, Game():GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            if isClaude(player) and refreshNeeded[GetPtrHash(player)] then refreshDamage(player) end
+        end
+    end)
 
     -- Give the Ban Hammer as a pocket active on a fresh run only, so continuing
     -- a run doesn't reset its charge.
@@ -195,6 +261,7 @@ function ClaudeChan:Init(mod, Risk)
             -- Limited weakens every weapon through the damage stat.
             applied[GetPtrHash(player)] = usage.limited > 0
             if usage.limited > 0 then player.Damage = player.Damage * LIMITED_DAMAGE_MULT end
+            refreshNeeded[GetPtrHash(player)] = nil
         elseif flag == CacheFlag.CACHE_RANGE then
             player.TearRange = player.TearRange + 1.5 * 40
         elseif flag == CacheFlag.CACHE_SHOTSPEED then
@@ -263,6 +330,7 @@ function ClaudeChan:Init(mod, Risk)
 
     mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, function(_, player)
         if not ready then return end
+        observeOwners()
         local pointer = GetPtrHash(player)
         if not isClaude(player) then
             updates[pointer] = nil
@@ -295,7 +363,7 @@ function ClaudeChan:Init(mod, Risk)
         end
 
         -- Items such as Banked Reset can end Limited outside this module.
-        if (usage.limited > 0) ~= (applied[pointer] or false) then refreshDamage(player) end
+        if refreshNeeded[pointer] or (usage.limited > 0) ~= (applied[pointer] or false) then refreshDamage(player) end
 
         -- No usage means nothing to appeal: the Appeal is kept.
         if drop:Poll(player, true) and usage.appeals > 0 and usage.limited == 0 and usage.value > 0 then
