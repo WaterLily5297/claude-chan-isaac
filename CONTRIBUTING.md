@@ -10,7 +10,7 @@ Start with docs/HANDOFF.md for current implementation, missing work and evidence
 4. Update HANDOFF.md, TESTING.md and relevant design/status records. Say exactly what is implemented, simulated, tested in the engine or still planned.
 5. Publish the branch, verify remote file-tree equality and CI, then merge only within the owner's authorization. Never overwrite or force-reset shared history.
 
-The installed manual-test checkpoint is `e1ff4d1`, including PR #91. The owner-authorized 2026-10-25 deployment followed a fresh allowlisted, reread-hash-verified backup; all 433 installed tracked files matched canonical Git bytes. This supersedes the older `220d542` installation statement. The owner reports no manual test yet. Preserve the build during offline work; another deployment or automated game session requires owner availability and authorization. Consult the local deployment receipt and HANDOFF.md; installation is not engine acceptance.
+The installed manual-test checkpoint is `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, including PRs #93-#97. The owner-authorized 2026-10-26 deployment followed a fresh allowlisted, reread-hash-verified backup of 433 old files; all 443 installed tracked files matched canonical Git bytes, including a second check after shutdown. Repentance+ v1.9.7.17.J460 launched, but window/input conflicts prevented gameplay testing. No ancestry samples or fresh starts were recorded. The game is closed and settings restored. The owner then requested preserving this installation while unavailable; continue offline. Consult HANDOFF.md and ENGINE_AUDIT_2026-10-26.md. Installation/startup are not engine acceptance.
 
 ## New content checklist
 

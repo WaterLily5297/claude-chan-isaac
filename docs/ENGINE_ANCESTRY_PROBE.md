@@ -1,6 +1,6 @@
 # E2 laser ancestry observer: preparation, not engine evidence
 
-`tests/laser_ancestry_probe.lua` is an explicitly loaded observation tool. It is not included by main.lua and loading it alone registers nothing. It has not been run in either game edition. Existing installed e1ff4d1 does not contain this tool; preserve that installation until the owner authorizes a replacement and a game session.
+`tests/laser_ancestry_probe.lua` is an explicitly loaded observation tool. It is not included by main.lua and loading it alone registers nothing. It has not been run in either game edition. Installed f8b2b0b includes the tool, verified on 2026-10-26. The authorized session did not reach gameplay because window recovery failed; the owner then requested keeping this installation while unavailable. See ENGINE_AUDIT_2026-10-26.md. Do not launch or send input until the owner is available again.
 
 The older `tests/runtime_probe.lua` is unsuitable for E2: it replaces a pocket item, changes coins/risk and floors, adds Car Battery and exercises mod saves. The local files named child_laser_probe and child_laser_followup_probe are offline callback fixtures, not native observations. Do not treat their output as E2 evidence.
 
