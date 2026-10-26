@@ -2422,15 +2422,15 @@
     {
       "name": "Confident Answer",
       "gfx": "collectibles/confident_answer.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "confident_answer",
+        "file": "tools/make_item_art.py",
+        "function": "confident_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2441,28 +2441,36 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#8fe3ee",
-        "#d8d2c4"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#874155",
+        "#d28289",
+        "#ffbdaf"
       ],
       "palette_exception": "",
-      "sha256": "6fd2a4b0e2ce582e1bfe65a2477dd91cf35ffba55797efe400efa361e06f9bbb",
-      "description": "Legacy placeholder for Confident Answer; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "e125522816cb5bb3f385bbd441ce5fa3b070fa9e9a8252fe845f047271f8656f",
+      "description": "A loud brass megaphone with a cracked seam and flattened squeeze bulb; confidence followed by a weaker phase, not a new projectile weapon.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Smiling Correction",
       "gfx": "collectibles/smiling_correction.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "smiling_correction",
+        "file": "tools/make_item_art.py",
+        "function": "correction_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2473,28 +2481,33 @@
       ],
       "palette": [
         "#080000",
-        "#7d5028",
-        "#a86c1c",
-        "#a9743f",
-        "#e8a33d"
+        "#874155",
+        "#d28289",
+        "#ffbdaf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "9725b4be5117f2a92f45c8c7bd8b63da71e077ca1b5bf9db6e74619d8165d278",
-      "description": "Legacy placeholder for Smiling Correction; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "858d6de7ceaf28926170bc84f86b1a610a02fef564165eba388ed89c425235ee",
+      "description": "A pink beveled eraser in a blue sleeve over rubbed ink, with two small blue flies; a correction earned by a flawless clear after a hit.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Slide Deadline",
       "gfx": "collectibles/slide_deadline.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "slide_deadline",
+        "file": "tools/make_item_art.py",
+        "function": "deadline_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2505,33 +2518,36 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#3a3a3a",
-        "#4fb8c9",
-        "#5b3a7c",
-        "#8a5bb5",
-        "#a8a191",
-        "#b48ad6",
-        "#d8d2c4",
-        "#f2eee4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "e20ae6fef31b3de107b082cb0446bad73aa990a675dd3d0b0f69f51f5d58e445",
-      "description": "Legacy placeholder for Slide Deadline; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "d80ff83026ab46de0ab1f1a9193ddf8b23983ea7009cfdc8c98db5e2f893d2c7",
+      "description": "A pull-down projection screen on a tripod with three blue target dots and a small brass timer; a timed batch of marked enemies.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Citation Thread",
       "gfx": "collectibles/citation_thread.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "citation_thread",
+        "file": "tools/make_item_art.py",
+        "function": "citation_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2542,29 +2558,33 @@
       ],
       "palette": [
         "#080000",
-        "#a30000",
-        "#a8a191",
-        "#d8d2c4",
-        "#e70000",
-        "#f2eee4"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0"
       ],
       "palette_exception": "",
-      "sha256": "48080811bd45a30c1644bc5bbaa59d71cd610673bba6c670f2518a35ab98afb8",
-      "description": "Legacy placeholder for Citation Thread; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "073e36677330ede4cee9abecbe1a56e7c959e86d61f0031770869801c59ab5f1",
+      "description": "A wooden spool of orange thread linking two punched paper reference tags; alternating hit references.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Overtime Slides",
       "gfx": "collectibles/overtime_slides.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "overtime_slides",
+        "file": "tools/make_item_art.py",
+        "function": "overtime_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2575,32 +2595,36 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#3a3a3a",
-        "#5b3a7c",
-        "#8a5bb5",
-        "#a8a191",
-        "#b48ad6",
-        "#d8d2c4",
-        "#f2eee4"
+        "#44324e",
+        "#826b93",
+        "#c4abc9",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "ab9d8ecea5279b97f40e90151e9e3d0265d1175a441ea3bbca249f66394ad672",
-      "description": "Legacy placeholder for Overtime Slides; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "b93639129dc169d9ac6b43e8cec09c5b28c0ccb88573fa3341b35fb6a34b7e17",
+      "description": "Three fanned projection transparencies under a brass crescent; a delayed slowing outline after accumulated clears.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Stand-Up Meeting",
       "gfx": "collectibles/standup_meeting.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "standup_meeting",
+        "file": "tools/make_item_art.py",
+        "function": "meeting_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2611,32 +2635,39 @@
       ],
       "palette": [
         "#080000",
-        "#5b3a7c",
-        "#7d5028",
-        "#8a5bb5",
-        "#a9743f",
-        "#b48ad6",
-        "#c69355",
-        "#c9a87f",
-        "#f3d9b5"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "0a0bc30de84bfb98c0d5976199c7d7997ee14b4449828e5f890ab4421e184237",
-      "description": "Legacy placeholder for Stand-Up Meeting; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "320318f953e847debad16af87c46db2f78ddc1db991ea301e78c8a6edc0262e6",
+      "description": "A wooden lectern with a bent microphone and small blue burst markers; recalling temporary helpers without touching native familiars.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Queue Ticket",
       "gfx": "collectibles/queue_ticket.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "queue_ticket",
+        "file": "tools/make_item_art.py",
+        "function": "queue_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2647,29 +2678,36 @@
       ],
       "palette": [
         "#080000",
-        "#636363",
-        "#79c07a",
-        "#c9bba4",
-        "#f3e7d6",
-        "#fffaf0"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "5d45dcc67943e455e7296406b3e9130a6d6c8b98135fc2c6e21d34723a51665f",
-      "description": "Legacy placeholder for Queue Ticket; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "fac282e3ab0837ed281e711818bb36cdcef28fb29b38d07843db243e35bf5cc5",
+      "description": "A curled perforated ticket roll above a small blue battery; earning an eligible active charge after unique clears, with no printed digits.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Sold Out",
       "gfx": "collectibles/sold_out.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "sold_out",
+        "file": "tools/make_item_art.py",
+        "function": "sold_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2680,30 +2718,33 @@
       ],
       "palette": [
         "#080000",
-        "#636363",
-        "#a30000",
-        "#a8a191",
-        "#d8d2c4",
-        "#e70000",
-        "#f2eee4"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "c1aa6cb07de3fb39ca99afb95b627e9aa7cc098253e2b73ff6588a1e29762f12",
-      "description": "Legacy placeholder for Sold Out; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "0bc88fb5d418bdab7b1a14de9c906c840883f41dfe956f85576c9d7d0a177f7c",
+      "description": "An open empty wooden stock crate with a riveted blue shield across its front; a temporary ordinary-bullet guard.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Please Retry",
       "gfx": "collectibles/please_retry.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "please_retry",
+        "file": "tools/make_item_art.py",
+        "function": "retry_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2714,32 +2755,36 @@
       ],
       "palette": [
         "#080000",
-        "#404040",
-        "#636363",
-        "#79c07a",
-        "#8a8a8a",
-        "#a7dd9f",
-        "#a8a191",
-        "#d8d2c4",
-        "#f2eee4"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "e599be31f88f91512b5e25c534c1167ce8ba9090a3a4755133c58118a6837348",
-      "description": "Legacy placeholder for Please Retry; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "9b5631e9c77000bb6eceff6ca6b557b5b555521916cea0737f92d63a769610c1",
+      "description": "A brass winding wheel and wooden crank beside three separate blue drops; three delayed native tear retries.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Access Pass",
       "gfx": "collectibles/access_pass.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "access_pass",
+        "file": "tools/make_item_art.py",
+        "function": "access_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Codex-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2750,17 +2795,26 @@
       ],
       "palette": [
         "#080000",
-        "#4c8548",
-        "#79c07a",
-        "#a7dd9f",
-        "#d8d2c4",
-        "#f0c849",
-        "#f3d9b5"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "3a31b0655c46534dd831c5cc1dd25a68f48522fa9b7f8e3c9ff7163bf0fdc0b9",
-      "description": "Legacy placeholder for Access Pass; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "1ae0c7a2bb10c8915a73a3fe832c18281d0eb17c02ea1895475b348fde092c7d",
+      "description": "A punched brass-edged pass on a blue lanyard with an orange seal and no lettering; a floor-scoped damage benefit after an observed charged use.",
+      "contact_sheet": "docs/art/item-batch-06-4x.png"
     },
     {
       "name": "Cache Cartridge",
