@@ -45,7 +45,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `73958516f494b565b9889f2c20b82be98a700e49855a45f66127ee228a4196c1`.
+110 files; 399 callback registrations; 109 candidate direct field writes. Source fingerprint: `3262f13a49efd9ff8dce8979b84cf7f12a15d980f6da94a40c6f703fc77e4547`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -134,7 +134,7 @@ Unresolved syntax: L12: dynamic field target requires manual review.
 #### scripts/characters/claude_chan.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:186](../scripts/characters/claude_chan.lua#L186)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan.lua:200](../scripts/characters/claude_chan.lua#L200)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan.lua:203](../scripts/characters/claude_chan.lua#L203)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan.lua:213](../scripts/characters/claude_chan.lua#L213)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan.lua:232](../scripts/characters/claude_chan.lua#L232)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/claude_chan.lua:233](../scripts/characters/claude_chan.lua#L233)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:244](../scripts/characters/claude_chan.lua#L244)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan.lua:255](../scripts/characters/claude_chan.lua#L255)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan.lua:301](../scripts/characters/claude_chan.lua#L301)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan.lua:316](../scripts/characters/claude_chan.lua#L316)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan.lua:322](../scripts/characters/claude_chan.lua#L322)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [characters/claude_chan.lua:331](../scripts/characters/claude_chan.lua#L331)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan.lua:376](../scripts/characters/claude_chan.lua#L376)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:189](../scripts/characters/claude_chan.lua#L189)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan.lua:203](../scripts/characters/claude_chan.lua#L203)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan.lua:206](../scripts/characters/claude_chan.lua#L206)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan.lua:216](../scripts/characters/claude_chan.lua#L216)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan.lua:235](../scripts/characters/claude_chan.lua#L235)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/claude_chan.lua:236](../scripts/characters/claude_chan.lua#L236)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:247](../scripts/characters/claude_chan.lua#L247)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan.lua:258](../scripts/characters/claude_chan.lua#L258)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan.lua:304](../scripts/characters/claude_chan.lua#L304)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan.lua:319](../scripts/characters/claude_chan.lua#L319)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan.lua:325](../scripts/characters/claude_chan.lua#L325)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [characters/claude_chan.lua:334](../scripts/characters/claude_chan.lua#L334)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan.lua:379](../scripts/characters/claude_chan.lua#L379)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_SPEED`, `CACHE_TEARCOLOR`.
@@ -143,26 +143,26 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/claude_chan.lua:260](../scripts/characters/claude_chan.lua#L260) | `player.Damage` | `player.Damage+AGE_DAMAGE*usage.age` | self-dependent |
+| [characters/claude_chan.lua:263](../scripts/characters/claude_chan.lua#L263) | `player.Damage` | `player.Damage+AGE_DAMAGE*usage.age` | self-dependent |
 
-| [characters/claude_chan.lua:263](../scripts/characters/claude_chan.lua#L263) | `player.Damage` | `player.Damage*LIMITED_DAMAGE_MULT` | self-dependent |
+| [characters/claude_chan.lua:266](../scripts/characters/claude_chan.lua#L266) | `player.Damage` | `player.Damage*LIMITED_DAMAGE_MULT` | self-dependent |
 
-| [characters/claude_chan.lua:266](../scripts/characters/claude_chan.lua#L266) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
+| [characters/claude_chan.lua:269](../scripts/characters/claude_chan.lua#L269) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
 
-| [characters/claude_chan.lua:268](../scripts/characters/claude_chan.lua#L268) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
+| [characters/claude_chan.lua:271](../scripts/characters/claude_chan.lua#L271) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
 
-| [characters/claude_chan.lua:270](../scripts/characters/claude_chan.lua#L270) | `player.MoveSpeed` | `player.MoveSpeed-0.1` | self-dependent |
+| [characters/claude_chan.lua:273](../scripts/characters/claude_chan.lua#L273) | `player.MoveSpeed` | `player.MoveSpeed-0.1` | self-dependent |
 
-| [characters/claude_chan.lua:272](../scripts/characters/claude_chan.lua#L272) | `player.TearColor` | `Tint.Apply(player.TearColor,1,0.55,0.25,1)` | self-dependent |
+| [characters/claude_chan.lua:275](../scripts/characters/claude_chan.lua#L275) | `player.TearColor` | `Tint.Apply(player.TearColor,1,0.55,0.25,1)` | self-dependent |
 
-| [characters/claude_chan.lua:311](../scripts/characters/claude_chan.lua#L311) | `tear.Color` | `Tint.Apply(tear.Color,0.5,0.5,0.5,0.7)` | self-dependent |
-
-
-
-Risk state roots: `accountAge` direct write at L198; `accountAge` read/alias at L159; `claudeUsage` direct write at L153, L188; `claudeUsage` read/alias at L94, L133, L152.
+| [characters/claude_chan.lua:314](../scripts/characters/claude_chan.lua#L314) | `tear.Color` | `Tint.Apply(tear.Color,0.5,0.5,0.5,0.7)` | self-dependent |
 
 
-Unresolved syntax: L105: dynamic field target requires manual review; L106: dynamic field target requires manual review; L121: dynamic field target requires manual review; L124: dynamic field target requires manual review; L129: dynamic field target requires manual review; L135: dynamic field target requires manual review; L140: dynamic field target requires manual review; L156: dynamic field target requires manual review; L284: dynamic field target requires manual review; L336: dynamic field target requires manual review; L352: dynamic field target requires manual review; L95: dynamic field target requires manual review; L96: dynamic field target requires manual review.
+
+Risk state roots: `accountAge` direct write at L201; `accountAge` read/alias at L162; `claudeUsage` direct write at L156, L191; `claudeUsage` read/alias at L97, L136, L155.
+
+
+Unresolved syntax: L108: dynamic field target requires manual review; L109: dynamic field target requires manual review; L124: dynamic field target requires manual review; L127: dynamic field target requires manual review; L132: dynamic field target requires manual review; L138: dynamic field target requires manual review; L143: dynamic field target requires manual review; L159: dynamic field target requires manual review; L287: dynamic field target requires manual review; L339: dynamic field target requires manual review; L355: dynamic field target requires manual review; L98: dynamic field target requires manual review; L99: dynamic field target requires manual review.
 
 
 #### scripts/characters/claude_chan_b.lua

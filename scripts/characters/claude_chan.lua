@@ -52,6 +52,9 @@ end
 -- Older saves have no appeal or age fields; start them with the normal
 -- allowance. A save with the old shared age hands it to this player.
 local function normalize(usage, legacyAge)
+    -- Repair each counter independently; valid debt/countdowns survive Continue.
+    if not integer(usage.value, USAGE_MAX) then usage.value = 0 end
+    if not integer(usage.limited, LIMIT_FRAMES) then usage.limited = 0 end
     if not integer(usage.appeals, APPEAL_MAX) then usage.appeals = APPEAL_START end
     if not integer(usage.age, AGE_MAX) then
         usage.age = integer(legacyAge, AGE_MAX) and legacyAge or 0
