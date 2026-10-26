@@ -216,4 +216,21 @@ local helper=tear(p,false); helper:GetData().ccThoughtDerived=true; helper:GetDa
 step(); hit(focus,helper); hit(focus,tear(q)); hit(focus,tear(p,false)); assert(hud():find("Ratio 3/3"))
 step(); local friend=enemy(80); friend.friendly=true; area=tear(p); hit(focus,area); hit(friend,area)
 assert(hud():find("Ratio 2/3"),"a friendly is not an eligible other target")
+-- Repeated binds retain cooldowns; slot reuse cannot give them to a new owner.
+fire("MC_POST_GAME_STARTED",false)
+state().cooldown=200; state(1).cooldown=150
+local stableFirst,stableSecond=state(),state(1)
+tick(20)
+assert(state()==stableFirst and state(1)==stableSecond and state().cooldown==180 and state(1).cooldown==130,
+    "unchanged owners retain their accounts and advance cooldowns once per frame")
+players={q,p}; tick()
+assert(state().cooldown==0 and state(1).cooldown==0 and state()~=stableFirst and state(1)~=stableSecond,
+    "swapping occupied slots cannot transfer cooldowns")
+state().cooldown=20; players={q}; tick()
+assert(state().cooldown==19 and state(1)==nil,"departure prunes only the absent slot")
+players[2]=p; tick()
+assert(state().cooldown==18 and state(1).cooldown==0,"a returning slot starts fresh")
+state(1).cooldown=100
+players[1]=player(701,q.InitSeed,0); tick()
+assert(state().cooldown==0 and state(1).cooldown==99,"pointer-only replacement cannot inherit the previous cooldown")
 print("OK: tainted Grok Ratio from other targets, expiry pulses, cooldown, early defeat, Birthright transfer and save/identity lifecycle")
