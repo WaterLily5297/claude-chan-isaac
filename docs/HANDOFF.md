@@ -10,8 +10,15 @@ Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIB
 - **Owner availability:** the owner approved merging #102 and downloading/installing it locally. Installation completed with the game closed; no game launch/input, settings changes or save access occurred. Agent-run engine testing still needs a fresh stated availability window. The owner replied "not tested yet" for installed `8fd6a8c` on 2026-10-26; no manual case is accepted. Keep the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md) available without repeating the question this session.
 - **Evidence:** #102 and merged main passed CI; the source gate passes 69 offline suites. The new installation has no gameplay observation. Historical f8b2b0b launched as Repentance+ v1.9.7.17.J460 but produced no gameplay keys, fresh starts or ancestry samples: [dated record](ENGINE_AUDIT_2026-10-26.md). Neither startup nor installation is engine acceptance.
 - **Offline gate:** 69 Lua suites, 11 Python scanner cases, 184 tracked Lua files, five XML files, deterministic assets and interaction-inventory freshness. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** the long-term brief continues art, character/item completion, compatibility, optional synergies and hardening. [ART_STATUS.md](ART_STATUS.md) inventories 198 art files; [ART_SPEC.md](ART_SPEC.md) specifies the still-pending icon pipeline, and [INTERACTIONS.md](INTERACTIONS.md) maps source writes/registrations without claiming native compatibility. **Next three units:** W2.1 all-form completion table, W3.1 all-item completion table, W1.2 validator implementation with the first W1.3 icon batch. Then interleave confirmed fixes and hardening, including the open W4 combinations. O6 save work remains in W6.1; O7/new synergy rules need approval. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
+- **Current queue:** [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) maps all 22 open forms; [ART_STATUS.md](ART_STATUS.md) inventories 198 art files, [ART_SPEC.md](ART_SPEC.md) defines the pending icon pipeline, and [INTERACTIONS.md](INTERACTIONS.md) maps source candidates. **Next three units:** focused hardening/readability review (Llama solo-fly dossier and DeepSeek pocket-charge wording), W3.1 all-item completion table, W1.2 designed-icon validator followed by a first W1.3 batch. Then interleave W2/W4/W6 weapon/save/identity gaps and mechanical art. O7/new synergies or additional persistence rules need explicit rule decisions. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
 - **Desktop gate:** before each engine block, obtain a fresh owner confirmation of being away from the keyboard for a stated duration. On user-input, missing-monitor or obscured-window errors, stop immediately; do not retry or send keys. Close only the process launched for that block and restore settings. One attempt per go-ahead; the installed manual-test checkpoint must not be replaced again without owner authorization.
+
+## W2.1 all-form completion audit (2026-10-26; documentation only)
+
+[CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) maps all 22 XML forms to source loops/B1, Birthright fixtures, actual save boundaries and concrete/common gaps. All 22 remain open; no native acceptance is added.
+The audit records the Llama solo-four dossier omission, ambiguous DeepSeek idle pocket-charge wording and broad Continue targets versus transient source effects. Fix text separately; resolve rule changes before implementing them.
+Obsolete initial-rollout and DeepSeek installed-version statements are corrected. The full offline gate and 22-row/link reconciliation validate this documentation unit, not engine behavior.
+Installed `8fd6a8c` remains untested and untouched. Next: hardening/readability, W3.1 item audit, then icon pipeline/art batches.
 
 ## Normal Claude live-owner isolation (2026-10-26; offline fix, not installed)
 
@@ -39,7 +46,7 @@ The obsolete thumbnail-generator API is queued for a separate repair. No identit
 | Area | Current evidence and remaining work |
 |---|---|
 | Art | Inventory/guide available; placeholder replacement, profiles, distinct tainted previews, Relay Slime and native visuals remain open. |
-| Characters | All 22 forms and approved B1 conditions implemented; W2 table, compatibility/save gaps and real starts/combat floors remain open. |
+| Characters | [W2 table](CHARACTER_COMPLETION.md) maps all 22 open forms and approved B1 conditions; text, weapon/save/identity gaps and real starts/combat floors remain open. |
 | Items | 80 collectibles, 12 trinkets and five pills registered; W3 table and mechanism-by-mechanism native acceptance remain open. |
 | Compatibility | W4 source interaction map and scanner exist; candidate semantics, combinations and broader native matrix remain open. |
 | Optional synergies | Proposal/rule approval required before implementation; no implied approval from existing character rules. |
