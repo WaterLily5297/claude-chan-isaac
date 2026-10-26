@@ -53,6 +53,7 @@ local function player(pointer,seed,controller)
     function p:GetPill() return 0 end
     function p:GetActiveItem() return 0 end
     function p:ToPlayer() return self end
+    function p:GetShootingInput() return {LengthSquared=function() return self.shooting and 1 or 0 end} end
     function p:IsDead() return self.dead end
     function p:AreControlsEnabled() return true end
     function p:GetData() return self.data end
@@ -150,6 +151,9 @@ tap(p); assert(state().pages==0 and state().review.remaining==180)
 paused=true; tick(30); paused=false
 assert(state().review.remaining==180,"pause freezes the review")
 draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="Under Review: 6s  Pages 0/2",draws[1])
+p.shooting=true; tick(45); assert(state().review.remaining==180 and state().pages==0,"shooting pauses without spending another Page")
+draws={}; fire("MC_POST_RENDER"); assert(draws[1]:find("Waiting for silence"))
+near(p.Damage,5); p.shooting=false
 tick(179); assert(state().quota==0 and state().review.remaining==1)
 tick(); assert(state().review==nil and state().quota==60,"a finished review restores 60 Quota")
 near(p.Damage,12.5); near(p.TearColor.R,0.85)

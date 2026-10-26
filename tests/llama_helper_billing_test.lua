@@ -164,7 +164,7 @@ test("helper keeps stationary origin, native arguments and half damage", functio
     p.Position, p.ShotSpeed = Vector(10, 20), 1.5
     local target = env.npc(70, { y = 100, hp = 1000 })
     env.startHelper()
-    p.Position = Vector(300, 300)
+    p.Position = Vector(100, 80) -- Move within the 120-unit owner radius; origin must stay fixed.
     env.C.Prime(p, "held", 2)
     local helper = nextHelper(env, p)
     local call = p.nativeShots[1]
@@ -205,6 +205,7 @@ test("foreign primary remains paid while helper and target credit stay owner-sco
     target:TakeDamage(q.Damage, 0, EntityRef(foreignShot))
     assert(env.C.Data(q).room.sanity.count == 1 and env.C.Data(p).room.sanity.count == 0)
     primary(env, q, target); primary(env, q, target)
+    env.fire("MC_POST_UPDATE", nil) -- Target-choice outcomes settle after the damage callbacks.
     assert(env.Risk.state.gptRouting["1"].verified and env.C.Data(q).room.sanity == nil,
         "GPT's own distinct attacks still complete its character and item checks")
     assert(env.C.Primed(p, "held") and env.C.Data(p).room.sanity.count == 0)

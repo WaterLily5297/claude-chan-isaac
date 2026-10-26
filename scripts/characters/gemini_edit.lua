@@ -12,6 +12,7 @@ local RADIUS = 180
 local CHAIN_FRAMES, BIRTHRIGHT_FRAMES = 180, 300 -- Six seconds; ten with Birthright.
 local STEPS = {"Crop", "Recolor", "Export"}
 local PULSE = 2
+local ANGLE_COS = math.cos(math.rad(30))
 
 local function fresh()
     return {version=1}
@@ -21,7 +22,8 @@ local function valid(s)
 end
 local function alive(ref)
     local e = ref and ref.Ref
-    return e and e:Exists() and not e:IsDead()
+    return e and e:Exists() and not e:IsDead() and e:IsVulnerableEnemy()
+        and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
 end
 
 function Edit:Init(mod, Risk)
@@ -142,10 +144,16 @@ function Edit:Init(mod, Risk)
         local p = Tools.Owner(src)
         local b = binding(p)
         local chain = b and b.chain
-        if not chain or GetPtrHash(entity) ~= chain.hash then return end
+        if not chain or not alive(chain.ref) or GetPtrHash(entity) ~= chain.hash then return end
         local key = Tools.AttackKey(src, Game():GetFrameCount())
         if not key or chain.hits[key] then return end
         chain.hits[key] = true
+        local dx, dy = p.Position.X - entity.Position.X, p.Position.Y - entity.Position.Y
+        local length = math.sqrt(dx * dx + dy * dy)
+        if length < 0.001 then return end
+        dx, dy = dx / length, dy / length
+        if chain.angleX and dx * chain.angleX + dy * chain.angleY > ANGLE_COS + 1e-9 then return end
+        chain.angleX, chain.angleY = dx, dy
         chain.step = chain.step + 1
         if chain.step >= #STEPS then export(p, b, entity) end
     end)
@@ -162,6 +170,7 @@ function Edit:Init(mod, Risk)
             if b.chain then
                 text = string.format("Gemini-chan: %s %d/%d  %ds", STEPS[b.chain.step + 1], b.chain.step, #STEPS,
                     math.ceil(b.chain.remaining / 30))
+                if b.chain.step > 0 then text = text.."  Move 30deg" end
             elseif b.state.doneRoom == room then text = "Gemini-chan: Exported"
             else text = "Gemini-chan: DROP: start an edit" end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.55, 0.45, 0.9, 0.9)

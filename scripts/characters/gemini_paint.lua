@@ -9,6 +9,7 @@ local Gemini = {}
 local PAINT_START, PAINT_CAP = 2, 3
 local MARK_RADIUS = 180
 local MARK_FRAMES = 240 -- Eight seconds.
+local DRY_FRAMES = 30 -- Included in the mark's original lifetime.
 local MARK_BONUS, BIRTHRIGHT_BONUS = 1.2, 1.3
 local PEEL_FRAMES = 120 -- Four seconds of slowing creep.
 
@@ -147,7 +148,7 @@ function Gemini:Init(mod, Risk)
                 if target then
                     s.paint = s.paint - 1
                     b.mark = {ref=EntityPtr(target), hash=GetPtrHash(target), remaining=MARK_FRAMES}
-                    Game():GetHUD():ShowItemText("Gemini-chan", "One more edit")
+                    Game():GetHUD():ShowItemText("Gemini-chan", "Wet paint: wait one second")
                 end
             end
         end)
@@ -169,6 +170,8 @@ function Gemini:Init(mod, Risk)
         local b = binding(p)
         if not b or not b.mark or GetPtrHash(entity) ~= b.mark.hash then return end
         b.mark.credit = Game():GetFrameCount()
+        -- Early hits still give owner kill credit, but no amplification.
+        if b.mark.remaining > MARK_FRAMES - DRY_FRAMES then return end
         local bonus = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_BONUS or MARK_BONUS
         redealing = true
         entity:TakeDamage(amount * bonus, flags, source, countdown)
@@ -201,7 +204,11 @@ function Gemini:Init(mod, Risk)
         if not Game():GetHUD():IsVisible() then return end
         each(function(_, b, i)
             local text = string.format("Gemini-chan: Paint %d/%d", b.state.paint, PAINT_CAP)
-            if b.mark then text = text..string.format("  Edit %ds", math.ceil(b.mark.remaining / 30)) end
+            if b.mark then
+                local drying = b.mark.remaining - (MARK_FRAMES - DRY_FRAMES)
+                text = text..(drying > 0 and string.format("  Drying %ds", math.ceil(drying / 30))
+                    or string.format("  Edit %ds", math.ceil(b.mark.remaining / 30)))
+            end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.7, 0.6, 1, 0.9)
         end)
     end)

@@ -11,7 +11,7 @@
 -- weapon for 5 seconds, then the meter resets. Appeals (start 1, cap 2, one per two unique combat
 -- clears) are spent with a DROP tap to remove 40 usage; they cannot cancel an
 -- active Limited penalty.
--- Account age (per player): every floor reached without being Suspended adds
+-- Account age (per player): each later floor offers a kill-order review for
 -- +0.2 damage, up to +1.6. A suspension resets it ("Banned again"); Birthright
 -- keeps it through the first suspension on each floor without cancelling the
 -- penalty. Older saves with one shared age give it to each Claude present.
@@ -22,6 +22,7 @@ local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tint = include("scripts.characters.tear_tint")
 local PaidAttacks = include("scripts.characters.paid_attacks")
+local Review = include("scripts.characters.claude_review")
 
 local ClaudeChan = {}
 
@@ -170,19 +171,7 @@ function ClaudeChan:Init(mod, Risk)
         end
     end)
 
-    -- POST_NEW_LEVEL also fires before the run starts; only count real floors.
-    mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
-        drop:Reset()
-        if not ready or Risk:IsSuspended() then return end
-        for i = 0, Game():GetNumPlayers() - 1 do
-            local player = Isaac.GetPlayer(i)
-            if isClaude(player) then
-                local usage = getUsage(player)
-                usage.age = math.min(AGE_MAX, usage.age + 1)
-                refreshDamage(player)
-            end
-        end
-    end)
+    mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function() drop:Reset() end)
 
     -- Give the Ban Hammer as a pocket active on a fresh run only, so continuing
     -- a run doesn't reset its charge.
@@ -325,7 +314,11 @@ function ClaudeChan:Init(mod, Risk)
             if isClaude(player) then
                 local usage = getUsage(player)
                 local y = HudLayout.PlayerRow(i)
-                HudText:Draw(HudText:T("age", usage.age), 50, HudLayout.PlayerRow(i, 1), 1, 0.85, 0.5, 0.9)
+                local ageText = HudText:T("age", usage.age)
+                local labels = {waiting="  Review pending", active="  Review: marked target last",
+                    won="  Review passed", missed="  Review missed"}
+                ageText = ageText..(usage.review and labels[usage.review.phase] or "")
+                HudText:Draw(ageText, 50, HudLayout.PlayerRow(i, 1), 1, 0.85, 0.5, 0.9)
                 local appeals = string.format("  Appeals %d/%d", usage.appeals, APPEAL_MAX)
                 if usage.limited > 0 then
                     HudText:Draw(HudText:T("limited", math.ceil(usage.limited / 30)) .. appeals, 50, y, 1, 0.3, 0.3, 1)
@@ -335,6 +328,7 @@ function ClaudeChan:Init(mod, Risk)
             end
         end
     end)
+    Review:Init(mod, Risk, getUsage, refreshDamage)
 end
 
 return ClaudeChan

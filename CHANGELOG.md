@@ -1,10 +1,17 @@
 # Changelog
 
+## Character tradeoffs, all 22 forms (2026-10-26; draft, offline)
+
+- Add safe-room Tibo resets and Llama releases, wet paint, sustained-sight fact checks, owner-range demos, combat baking, clear-triggered Apology and connected requests. Existing numerical benefits are preserved.
+- Complete the other fourteen conditions: kill-order age review, quiet appeals, cancellable Rice, Peak reservation, focused checks/quotes, editing angles, Adapter installation, pinned builds, stored Pounce direction, aimed Apology, single-speaker focus, task interruption and missed queue calls.
+- Add versioned scalar migrations and source-owned meal cancellation. Reconcile same-attack target choices after damage, including delayed piercing hits, without changing native billing. Extend character and integration regressions; synchronize English HUD, dossiers, EID, all READMEs and review/acceptance records. #102 stays draft pending owner balance review; #100 is superseded.
+- No installation or game session; preserve f8b2b0b.
+
 ## Death-pose geometry and all-form preview (2026-10-26; offline)
 
 - Repack three oversized Death cells for all 22 forms using their measured native envelopes and ground anchors; retain Llama's complete Death-start source pose. Existing Hit, walking and other pixels are preserved.
 - Add a deterministic 45-pose-per-form review tool and a standard-library geometry gate; retain recorded walk revisions during repacking and support tainted skin-only regeneration.
-- No new art, native assets, gameplay rules or runtime deployment. The shared special animations and full native rendering still need acceptance. Feature-based difficulty remains a proposal in draft #102; numerical draft #100 must not merge.
+- No new art, native assets, gameplay rules or runtime deployment in this pose unit. The shared special animations and full native rendering still need acceptance. See the current B1 entry above; numerical draft #100 must not merge.
 
 ## Native transformation costume restoration (2026-10-26; offline)
 

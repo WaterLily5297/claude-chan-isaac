@@ -2,6 +2,39 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, including PRs #93-#97. The owner-authorized 2026-10-26 deployment followed a fresh allowlisted, reread-hash-verified backup of 433 old files; all 443 installed tracked files matched canonical Git bytes, including a second check after shutdown. Repentance+ v1.9.7.17.J460 launched, but window/input conflicts prevented gameplay testing. No ancestry samples or fresh starts were recorded. The game is closed and settings restored. The owner then requested preserving this installation while unavailable; continue offline. Consult HANDOFF.md and ENGINE_AUDIT_2026-10-26.md. Installation/startup are not engine acceptance. Older installed-version statements below remain historical.
 
+## B1 revision status (2026-10-26; all 22 draft features, offline only)
+
+The owner rejected direct numerical weakening in draft #100 and requested added character-specific features/tradeoffs. #100 is superseded and must not merge. [DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md) specifies the 22 conditions implemented in draft #102 while preserving the original coefficients. #102 remains unmerged and uninstalled pending balance approval. No game version has exercised this draft. The integrated offline gate covers 69 suites, 184 Lua files, five XML files, deterministic assets and all 22 skin envelopes; CI must pass on the published head. These counts are offline evidence only.
+
+The first eight conditions were committed at 1422d81: safe-room reset/release, drying delay, one-second sight loss, helper range/lifetime, combat-only baking, clear-triggered recovery and completion range/sight. Fourteen more extend the same PR. Existing character suites retain baseline damage, resource, pause, duplicate, co-op and continuation controls while gaining the following regressions:
+
+- Claude: unearned floor age is withheld; early/last/simultaneous kills, deterministic selection, target loss, saved target keys, identity/type changes and the age cap. Tainted review freezes during shooting without spending another Page; its six-second reward stays unchanged.
+- DeepSeek: movement refuses/cancels intrinsic Rice once, refunds within cap, grants no cancellation reward and leaves partners/unrelated meals/foreign cooldowns intact. Peak reserves and refunds existing Compute once across phase, floor, Continue and Birthright-cap changes; existing non-tear 1.3x and payment controls remain.
+- GPT/Grok: paid attacks are aggregated independently of target callback order, including a later piercing hit and zero/cap clamps. Partners, helpers and unpaid hits are excluded. Birthright mid-check cannot recover lost historical progress; quote transfer preserves prior attack identity. The integrated Llama-helper fixture now waits for the real end-of-update settlement instead of expecting immediate verification.
+- Gemini: 29-degree rejection, 30-degree acceptance, zero separation, repeated paid identity, partners, timer and Birthright. Qwen: continuous silent installation/restart, room exit and saved partial install; pinned choices, unique clears, award-cap release, fresh floor and legacy migration.
+- Mistral: stored movement direction despite changed aim, initial free turns, steady replacement charge, gradual-turn rejection, pause/duplicates, Continue and legacy Down fallback. Doubao: cone boundary and range, behind-player bullet relief, saved aim and owner isolation.
+- Kimi: only the current speaker is amplified, focus advances without returning to a revived earlier member, all audience slows persist, and invalid targets are removed. Tainted paid hits refresh a one-second pause without stacking; helpers/direct task pulses/partners do not, and room budget is unchanged. GLM: one missed-ticket decrement per new hostile entry, with revisit, safe-room and Continue controls.
+
+The full-module smoke fixture now models native position/enemy queries needed by Review and verifies that merely changing floors earns no age. Its remaining cache/suspension controls explicitly seed earned age. Supplied fixtures test module behavior, not native input filtering, callback order, entity reconstruction or balance. Legacy state migrations and limits are detailed in DIFFICULTY_FEATURES.md; broad O6 save/continue work remains separate.
+
+After approval and an authorized backed-up installation, run this B1 matrix in addition to E3-E5. Record exact build/game version, form, equipment, observed HUD and outcome; a table row is not an acceptance claim.
+
+| Family | Normal form: required native cases | Tainted form: required native cases |
+|---|---|---|
+| Claude | Two-enemy review, early versus last/simultaneous kills, suspension, multi-phase boss, room exit and Continue. | Hold/charge/release native weapons during review, then stop; timer, Page and Quota, pause and Continue. |
+| DeepSeek | Stand/move/knockback, cancel at meal end, overlapping Lunch Break/food, native FireDelay, Continue and co-op. | Valley/Peak with 0-4 and full Compute, Saving, BR gain/loss, floor/Continue; confirm original tear and non-tear costs. |
+| GPT | Off-target versus focused hits, piercing/explosion order and delayed hits, BR mid-check, long sustained combat and helper control. | Bank Tibo, attempt during combat, claim safely once; Full Send toggling and Continue. |
+| Gemini | Drying boundary, early target kill, BR and ordinary/native area weapons. | Orbit by less/more than 30 degrees, overlap target, leave/return, multi-hit weapons, Export once. |
+| Grok | Brief and sustained cover around rocks/doors, target invalidation, verification and spent room attempt. | Quote-only versus another enemy, same/delayed attack on both, Ratio clamps, BR transfer and expiry. |
+| Qwen | Stop/hold/charge fire through installation, exit before finish, co-op and Continue. | Choose in safety, reject while pinned, two unique clears, revisits, award cap, floor reset and Continue. |
+| Llama | Reject combat Release without spending, use safely with co-op/BR and native fly modifiers. | Cross 120-unit boundary around a stationary demo, expiry while away, return without catch-up, helper accounting. |
+| Mistral | Turn aim after charge, initial free turns, stable replacement, slow rotation, idle loss, walls and saved direction. | Bake only during hostile combat, safe partial pause, held bread, firing/movement, room/Continue. |
+| Doubao | Aim/no aim, 60-degree edges, enemies at 100 units, bullets behind, saved aim, no healing. | Clear while Confident versus Apology, duplicate/wave clears, safe-room pause and next-room recovery. |
+| Kimi | Three audience members, visible current speaker, death/friendly/revival ordering and expiry. | Assign then shoot versus leave delegated, rapid refresh, own helper/partner controls, resume without catch-up and same budget. |
+| GLM | Queue 3 claim versus missed next new fight, revisits, peaceful rooms, active pass and Continue. | Completion inside/outside 200 units with/without sight, early death versus invalid target, Retry and cooldown. |
+
+O4 #101 and O5 #103 are merged at main 654a8dc and absent from installed f8b2b0b. The owner supplied no usable checklist result. No runtime, saves or settings were accessed in this mechanics unit; no native acceptance is added.
+
 ## O5: Hit, Death and side poses (2026-10-26; offline geometry only)
 
 Baseline ffc52bf. [All 22 findings, commands and limitations](POSE_REVIEW.md). The preview samples 45 native skin-layer keyframes/combinations per form using only mod pixels; native ghost, tint, interpolation, overlays and input are omitted. Reference ANM2/skin remain private. No game was launched or installed file changed.
@@ -10,7 +43,7 @@ All 22 Hit cells already meet 28x32/bottom-55. The three other Death storage cel
 
 All 22 sheets have nonempty sampled cells, no sampled crop-edge contact and mirrored left/right geometry. Each has ten side-body keys, with five or six unique stride images. Repacking reproduces the candidate bytes; comparison to baseline confines changes to three storage cells. Menu/portrait bytes and all other skin pixels are preserved. The decoder equals Pillow's RGBA bytes for all 22 skins. Full offline gate and preview determinism are required before commit; no engine/visual acceptance follows from them.
 
-Shared cells also affect Appear, pickups, travel, jumps and other animations listed in POSE_REVIEW.md. Native acceptance must cover those, damage recovery, the full death/ghost sequence, movement/fire, costumes, size, flight, revival and other mods. B1 draft #102 is design-only and #100 is superseded; these geometry results do not validate either difficulty proposal.
+Shared cells also affect Appear, pickups, travel, jumps and other animations listed in POSE_REVIEW.md. Native acceptance must cover those, damage recovery, the full death/ghost sequence, movement/fire, costumes, size, flight, revival and other mods. B1 status is maintained above and #100 is superseded; these geometry results do not validate difficulty changes.
 
 ## O4: effect layers and departure restoration (2026-10-26; source and stubs only)
 

@@ -34,7 +34,7 @@ local down={}
 Input={IsActionPressed=function(_,controller) return down[controller] or false end}
 function GetPtrHash(e) return e.pointer end
 function EntityPtr(e) return {Ref=e} end
-local function vec(x) return {x=x, Distance=function(self,o) return math.abs(self.x-o.x) end} end
+local function vec(x,y) return {x=x,X=x,Y=y or 0,Distance=function(self,o) return math.sqrt((self.X-o.X)^2+(self.Y-o.Y)^2) end} end
 function Game() return {
     GetFrameCount=function() return frame end, GetNumPlayers=function() return #players end,
     IsPaused=function() return paused end,
@@ -78,6 +78,7 @@ local function player(pointer,seed,controller)
     function p:GetPill() return 0 end
     function p:GetActiveItem() return 0 end
     function p:ToPlayer() return self end
+    function p:GetShootingInput() return self.aim or vec(0,0) end
     function p:IsDead() return self.dead end
     function p:AreControlsEnabled() return true end
     function p:HasCollectible(id) return id==619 and self.birthright end
@@ -176,7 +177,7 @@ hurt(p,bullet(500)); assert(state().token==180 and texts[#texts]=="Apology ready
 bullets={}
 assert(state(1).token==nil,"the partner was not hit")
 tick(30); hurt(p,foe); assert(state().token==150,"only the first hit in a room counts")
-assert(hud()=="Doubao-chan: Apology Ready 5s",hud())
+assert(hud()=="Doubao-chan: Apology Ready 5s  Aim Down",hud())
 
 -- The token lasts six seconds of updates; pause freezes it.
 paused=true; tick(300); paused=false; fire("MC_POST_UPDATE"); assert(state().token==150)
@@ -184,10 +185,12 @@ tick(149); assert(state().token==1); tick(); assert(state().token==nil)
 tap(p); assert(texts[#texts]~="Sorry, you're right.","no token, no apology")
 
 -- DROP slows nearby enemies and removes the four nearest bullets.
-enter(3,true); foe=enemy(50); local distant=enemy(400); local ally=enemy(60); ally.friendly=true
-local b1,b2,b3,b4,b5,b6=bullet(10),bullet(20),bullet(30),bullet(40),bullet(50),bullet(300)
+p.aim=vec(1,0); enter(3,true); foe=enemy(50); local distant=enemy(400); local ally=enemy(60); ally.friendly=true
+local behind=enemy(-40)
+local b1,b2,b3,b4,b5,b6=bullet(-10),bullet(-20),bullet(30),bullet(40),bullet(50),bullet(300)
 hurt(p,foe); down[0]=true; tick(20); down[0]=false; tick(); assert(state().token,"a long hold keeps native DROP")
 tap(p); assert(state().token==nil and texts[#texts]=="Sorry, you're right.")
+assert(not behind.slowed,"the slow is directed, not radial")
 assert(foe.slowed and foe.slowed[1]==60 and not distant.slowed and not ally.slowed,"slow hostile enemies within 100 for two seconds")
 assert(b1.removed and b2.removed and b3.removed and b4.removed and not b5.removed and not b6.removed)
 hurt(p,foe); assert(state().token==nil,"one Apology per room")
@@ -195,7 +198,7 @@ hurt(p,foe); assert(state().token==nil,"one Apology per room")
 -- Leaving the room ends the token; Birthright keeps it until exit.
 enter(4,true); foe=enemy(50); hurt(p,foe); enter(5,true); assert(state().token==nil,"exit ends the token")
 p.birthright=true; foe=enemy(50); hurt(p,foe); assert(state().token==0)
-tick(500); assert(state().token==0 and hud()=="Doubao-chan: Apology Ready","Birthright lasts until exit")
+tick(500); assert(state().token==0 and hud()=="Doubao-chan: Apology Ready  Aim Right","Birthright lasts until exit")
 
 -- Continue keeps the token and the room's spent hit.
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
@@ -209,4 +212,14 @@ p.kind=0; tick(); assert(state()==nil); p.kind=57; tick(); assert(state())
 Risk.state.doubaoApology["0"]={version=1,token=5}; tick(); assert(state().token==nil,"a token without its room is corrupt")
 
 fire("MC_POST_GAME_STARTED",false); assert(state().token==nil and state().hitRoom==nil)
+-- Aim memory is per-player, survives continue and includes the 60-degree cone edge.
+p.aim=vec(1,0); tick(); p.aim=vec(0,0); enter(80,true)
+local edge,outer,outside=enemy(0),enemy(0),enemy(101)
+edge.Position=vec(50,50*math.sqrt(3)); outer.Position=vec(50,88)
+hurt(p,edge); tap(p)
+assert(edge.slowed and not outer.slowed and not outside.slowed,"120-degree cone and 100-unit radius include only the boundary")
+reload({player(301,11,0),player(302,22,1)}); p,q=players[1],players[2]
+assert(state().aimX==1 and state().aimY==0 and state(1).aimX==0 and state(1).aimY==1)
+Risk.state.doubaoApology["0"]={version=1}; tick()
+assert(state().version==2 and state().aimX==0 and state().aimY==1,"old saves receive downward aim")
 print("OK: Doubao Apology qualifying hits, token timer, slowing, bullet removal, Birthright and save/identity lifecycle")

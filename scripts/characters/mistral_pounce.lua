@@ -16,10 +16,12 @@ local HALF_WIDTH = 20
 local DAMAGE = 2
 
 local function fresh()
-    return {version=1, ready=false}
+    return {version=2, ready=false, dirX=0, dirY=1}
 end
 local function valid(s)
-    return type(s) == "table" and s.version == 1 and type(s.ready) == "boolean"
+    return type(s) == "table" and type(s.ready) == "boolean" and (s.version == 1
+        or (s.version == 2 and type(s.dirX) == "number" and type(s.dirY) == "number"
+            and math.abs(s.dirX * s.dirX + s.dirY * s.dirY - 1) < 0.0001))
 end
 local function moving(p) return p.Velocity:Length() > 0.5 end
 local function firing(p) return p:GetShootingInput():LengthSquared() > 0 end
@@ -44,6 +46,7 @@ function Mistral:Init(mod, Risk)
                 if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
                     or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
                 if not valid(all[key]) then all[key] = fresh() end
+                if all[key].version == 1 then all[key].version = 2; all[key].dirX = 0; all[key].dirY = 1 end
                 local b = bindings[pointer]
                 if not b or b.seed ~= p.InitSeed or b.slot ~= key then
                     b = {seed=p.InitSeed, slot=key, charge=0, idle=0, cooldown=0, frame=Game():GetFrameCount()}
@@ -69,16 +72,14 @@ function Mistral:Init(mod, Risk)
             if b then fn(p, b, i) end
         end
     end
-    -- Aim first, then movement; a standing, non-firing cat swipes downward.
-    local function forward(p)
-        local aim = p:GetShootingInput()
-        if aim:LengthSquared() > 0 then return aim:Normalized() end
-        if moving(p) then return p.Velocity:Normalized() end
-        return Vector(0, 1)
+    local function direction(s)
+        local names = {"Right", "Down-right", "Down", "Down-left", "Left", "Up-left", "Up", "Up-right"}
+        local angle = math.atan(s.dirY, s.dirX)
+        return names[math.floor(angle / (math.pi / 4) + 0.5) % 8 + 1]
     end
     -- One hit per target along a forward line; walls between stop it.
-    local function swipe(p)
-        local dir = forward(p)
+    local function swipe(p, s)
+        local dir = Vector(s.dirX, s.dirY)
         local reach = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_REACH or REACH
         local room = Game():GetRoom()
         local hit = 0
@@ -134,17 +135,27 @@ function Mistral:Init(mod, Risk)
                     s.ready = false
                     Game():GetHUD():ShowItemText("Mistral-chan", "Pounce lost")
                 end
-                if not s.ready and b.cooldown == 0 and moving(p) and firing(p) then
+                if b.cooldown == 0 and moving(p) and firing(p) then
+                    local dir = p.Velocity:Normalized()
+                    -- Preserve free movement during the initial charge. Replacing
+                    -- a ready direction requires holding a new course, not slowly
+                    -- rotating through many small turns that evade the threshold.
+                    if s.ready and b.chargeX and dir.X * b.chargeX + dir.Y * b.chargeY < 0.99 then
+                        b.charge = 0
+                    end
+                    if b.charge == 0 then b.chargeX, b.chargeY = dir.X, dir.Y end
                     b.charge = b.charge + 1
-                    if b.charge >= CHARGE_FRAMES then b.charge = 0; s.ready = true end
-                elseif not s.ready then
-                    b.charge = 0
+                    if b.charge >= CHARGE_FRAMES then
+                        b.charge = 0; s.ready = true; s.dirX, s.dirY = dir.X, dir.Y
+                    end
+                else
+                    b.charge = 0; b.chargeX = nil; b.chargeY = nil
                 end
             end
             b.frame = now
             if drop:Poll(p, s.ready) then
                 s.ready = false; b.cooldown = COOLDOWN_FRAMES; b.charge = 0
-                swipe(p)
+                swipe(p, s)
                 Game():GetHUD():ShowItemText("Mistral-chan", "Pounce!")
             end
         end)
@@ -158,7 +169,7 @@ function Mistral:Init(mod, Risk)
         if not Game():GetHUD():IsVisible() then return end
         each(function(_, b, i)
             local text
-            if b.state.ready then text = "Mistral-chan: Pounce Ready"
+            if b.state.ready then text = "Mistral-chan: Pounce Ready "..direction(b.state)
             elseif b.cooldown > 0 then text = string.format("Mistral-chan: Cooldown %ds", math.ceil(b.cooldown / 30))
             else text = string.format("Mistral-chan: Charge %d%%", math.floor(b.charge * 100 / CHARGE_FRAMES)) end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.3, 0.9)

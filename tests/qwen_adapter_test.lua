@@ -28,6 +28,7 @@ EntityPartition={ENEMY=8,BULLET=2}
 local bullets={}
 EntityFlag={FLAG_FRIENDLY=1}
 ButtonAction={ACTION_DROP=11}
+Direction={NO_DIRECTION=-1}
 local down={}
 Input={IsActionPressed=function(_,controller) return down[controller] or false end}
 function GetPtrHash(e) return e.pointer end
@@ -76,6 +77,7 @@ local function player(pointer,seed,controller)
     function p:GetPill() return 0 end
     function p:GetActiveItem() return 0 end
     function p:ToPlayer() return self end
+    function p:GetFireDirection() return self.firing and 0 or Direction.NO_DIRECTION end
     function p:IsDead() return self.dead end
     function p:AreControlsEnabled() return true end
     function p:HasCollectible(id) return id==619 and self.birthright end
@@ -160,7 +162,12 @@ paused=true; down[0]=true; tick(); paused=false; down[0]=false; tick(); assert(s
 
 -- Entering a new hostile room spends one adapter on the selection, for that room only.
 enter(2,true); assert(state().adapters==0 and state().active==2)
-stats(p,10,8,100); stats(q,10,9,160) -- the partner spends its own Range pick
+stats(p,10,9,100); stats(q,10,9,100) -- Installation has no bonus yet.
+assert(state().install==30 and state(1).install==30)
+tick(20); p.firing=true; tick(); assert(state().install==30 and state(1).install==9,"firing restarts only the owner's install")
+p.firing=false; paused=true; tick(50); paused=false; assert(state().install==30)
+tick(29); fire("MC_POST_UPDATE"); stats(p,10,9,100); assert(state().install==1,"duplicates do not install")
+tick(); stats(p,10,8,100); stats(q,10,9,160) -- Same original benefits after installation.
 assert(hud()=="Qwen-chan: Adapters 0/2  Next Tempo  Active Tempo",hud())
 tap(p); stats(p,10,8,100); assert(hud()=="Qwen-chan: Adapters 0/2  Next Power  Active Tempo","changing the next pick keeps the active one")
 enter(3,true); stats(p,10,9,100); assert(state().active==nil,"no adapter means normal stats")
@@ -170,7 +177,7 @@ finish(); fire("MC_PRE_SPAWN_CLEAN_AWARD"); assert(state().clears==1)
 enter(4,false); fire("MC_PRE_SPAWN_CLEAN_AWARD"); assert(state().clears==1,"a peaceful room is not a clear")
 enter(3,true); finish(); assert(state().clears==1 and state().adapters==0,"re-entering a seen room neither spends nor farms")
 enter(5,true); finish(); assert(state().adapters==1 and state().clears==0)
-enter(6,true); assert(state().active==3); stats(p,11,9,100)
+enter(6,true); assert(state().active==3); tick(30); stats(p,11,9,100)
 finish(); stats(p,11,9,100)
 enter(5,true); stats(p,10,9,100)
 assert(state().adapters==0,"re-entering an earlier room does not spend")
@@ -179,14 +186,15 @@ clear=true; state().adapters=0
 
 -- Range is +60; the cap is two, three with Birthright, and clamps when lost.
 state().adapters=2; state().selected=1; state().clears=1
-enter(7,true); stats(p,10,9,160); finish(); assert(state().adapters==2)
+enter(7,true); tick(30); stats(p,10,9,160); finish(); assert(state().adapters==2)
 state().adapters=2; state().clears=1; enter(8,true); state().adapters=2; finish(); assert(state().adapters==2,"two is the cap")
 p.birthright=true; enter(9,true); state().adapters=2; state().clears=1; finish(); assert(state().adapters==3,"Birthright raises the cap to three")
 p.birthright=false; tick(); assert(state().adapters==2,"losing Birthright clamps to two")
 
 -- Continue keeps adapters, selection and the active room bonus.
-state().selected=3; enter(10,true); stats(p,11,9,100)
+state().selected=3; enter(10,true); tick(12); assert(state().install==18); stats(p,10,9,100)
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
+assert(state().install==17,"continue keeps primitive install progress"); tick(17)
 stats(p,11,9,100); assert(state().active==3,"continue keeps the active adapter in its room")
 assert(state().adapters==1,"continue does not spend again")
 
@@ -201,5 +209,10 @@ p.kind=54; tick(); assert(state().adapters==1)
 Risk.state.qwenAdapter["0"]={version=1,adapters=1,clears=0,selected=1,awards={},seen={},active=2}
 tick(); assert(state().active==nil,"an active adapter without its room is corrupt")
 
+-- Version-one saves keep their already granted room bonus, with no new spend.
+Risk.state.qwenAdapter["0"]={version=1,adapters=2,clears=1,selected=2,awards={},seen={},active=3,activeRoom=tostring(floor)..":"..tostring(room*13)}
+clear=true; tick(); assert(state().version==2 and state().install==0 and state().adapters==2); stats(p,11,9,100)
+state().adapters=1; enter(40,true); tick(8); enter(41,false)
+assert(state().active==nil and state().install==0 and state().adapters==0,"exit discards spent installation")
 fire("MC_POST_GAME_STARTED",false); assert(state().adapters==1 and state().selected==1)
 print("OK: Qwen adapter selection, per-room spending, clear rewards, Birthright cap and save/floor/identity lifecycle")

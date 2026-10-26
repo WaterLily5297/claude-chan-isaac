@@ -189,7 +189,7 @@ tap(p); assert(state().hype==0 and texts[#texts]=="Still waiting...")
 assert(hud()=="Llama-chan: Hype 0/3  Helper 12s",hud())
 tap(p); assert(#texts==1,"no Hype, no new helper")
 -- One weak tear per second at the nearest enemy, fired from where the helper stands.
-p.Position=vec(-300)
+p.Position=vec(-120)
 tick(26); assert(#p.fired==0)
 tick(); local t=p.fired[1]
 assert(#p.fired==1 and t.mult==0.5 and t.pos.x==0 and t.velocity.x==10 and t.source==p and t:GetData().ccLlamaHelper)
@@ -230,4 +230,15 @@ p.kind=155; tick(); Risk.state.llamaHype["0"]={version=1,hype=4,cleared={}}; tic
 Risk.state.llamaHype["0"]={version=1,hype=1.5,cleared={}}; tick(); assert(state().hype==0)
 Risk.state.llamaHype["0"]={version=1,hype=1,cleared={x=1}}; tick(); assert(state().hype==0 and next(state().cleared)==nil)
 state().hype=2; fire("MC_POST_GAME_STARTED",false); assert(state().hype==0,"a new run starts empty")
+-- Stay near the demo: range is inclusive, lifetime/cadence never accumulate catch-up shots.
+fire("MC_POST_GAME_STARTED",false); enter(100,true); enemy(100)
+p.Position=vec(0); q.Position=vec(0); state().hype=1; tap(p)
+local firedBefore=#p.fired
+p.Position=vec(121); tick(30)
+assert(#p.fired==firedBefore and hud():find("Return to demo"),"a nearby partner cannot enable the owner's demo")
+paused=true; tick(100); paused=false; fire("MC_POST_UPDATE")
+p.Position=vec(120); tick(29); assert(#p.fired==firedBefore,"no immediate catch-up on return")
+tick(); assert(#p.fired==firedBefore+1,"the 120-unit boundary retains the original shot")
+p.Position=vec(121); tick(60); p.Position=vec(0); tick(30)
+assert(#p.fired==firedBefore+1 and not hud():find("Helper"),"out-of-range time still expires the helper")
 print("OK: tainted Llama Hype clears, helper duration, aiming, expiry, room exit, Birthright, floor and save/identity lifecycle")

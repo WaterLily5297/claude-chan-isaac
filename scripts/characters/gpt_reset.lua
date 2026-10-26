@@ -145,8 +145,8 @@ function Reset:Init(mod, Risk)
             if p:IsDead() then drop:Forget(p); return end
             if combat then b.armed[room] = true end
             if drop:Poll(p, true) then
-                if s.ready then
-                    -- The banked reset is claimed before any mode toggle.
+                if s.ready and not combat then
+                    -- Combat keeps the refill banked and still allows mode toggles.
                     s.ready = false; s.credits = cap(p)
                     Game():GetHUD():ShowItemText("Tibo", "Limits reset")
                 elseif s.fullSend or s.credits > 0 then
@@ -204,7 +204,8 @@ function Reset:Init(mod, Risk)
         each(function(p, b, i)
             local s = b.state
             local text = string.format("Credits %d/%d  %s  ", s.credits, cap(p), s.fullSend and "Full Send" or "Standard")
-            text = text..(s.ready and "Tibo: Reset Ready" or string.format("Next Reset %d/%d", s.clears, CLEARS_PER_RESET))
+            text = text..(s.ready and (Game():GetRoom():IsClear() and "Tibo: Reset Ready" or "Tibo: after combat")
+                or string.format("Next Reset %d/%d", s.clears, CLEARS_PER_RESET))
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.3, 0.85, 0.6, 0.9)
         end)
     end)

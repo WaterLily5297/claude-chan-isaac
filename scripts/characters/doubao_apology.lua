@@ -15,11 +15,13 @@ local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)
 end
 local function fresh()
-    return {version=1}
+    return {version=2, aimX=0, aimY=1}
 end
 -- token: remaining frames, or 0 for a Birthright token that lasts until room exit.
 local function valid(s)
-    return type(s) == "table" and s.version == 1
+    return type(s) == "table" and (s.version == 1 or (s.version == 2
+        and type(s.aimX) == "number" and type(s.aimY) == "number"
+        and math.abs(s.aimX * s.aimX + s.aimY * s.aimY - 1) < 0.0001))
         and (s.hitRoom == nil or type(s.hitRoom) == "string")
         and (s.tokenRoom == nil or type(s.tokenRoom) == "string")
         and (s.tokenRoom == nil) == (s.token == nil)
@@ -50,6 +52,7 @@ function Doubao:Init(mod, Risk)
                 if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
                     or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
                 if not valid(all[key]) then all[key] = fresh() end
+                if all[key].version == 1 then all[key].version = 2; all[key].aimX = 0; all[key].aimY = 1 end
                 local b = bindings[pointer]
                 if not b or b.seed ~= p.InitSeed or b.slot ~= key then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
@@ -83,16 +86,28 @@ function Doubao:Init(mod, Risk)
         if e.Type == EntityType.ENTITY_PROJECTILE then return true end
         return e:IsEnemy() and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
     end
-    local function apologize(p)
+    local function rememberAim(p, s)
+        local aim = p:GetShootingInput()
+        local length = math.sqrt(aim.X * aim.X + aim.Y * aim.Y)
+        if length > 0 then s.aimX, s.aimY = aim.X / length, aim.Y / length end
+    end
+    local function direction(s)
+        local names = {"Right", "Down-right", "Down", "Down-left", "Left", "Up-left", "Up", "Up-right"}
+        return names[math.floor(math.atan(s.aimY, s.aimX) / (math.pi / 4) + 0.5) % 8 + 1]
+    end
+    local function apologize(p, s)
         Feedback.Burst(p.Position, Color(1, 0.6, 0.7, 1, 0.3, 0.1, 0.15))
         for _, e in ipairs(Isaac.FindInRadius(p.Position, RADIUS, EntityPartition.ENEMY)) do
-            if e:IsVulnerableEnemy() and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+            local dx, dy = e.Position.X - p.Position.X, e.Position.Y - p.Position.Y
+            local distance = math.sqrt(dx * dx + dy * dy)
+            if e:IsVulnerableEnemy() and not e:IsDead() and not e:HasEntityFlags(EntityFlag.FLAG_FRIENDLY)
+                and distance <= RADIUS + 1e-9 and dx * s.aimX + dy * s.aimY >= 0.5 * distance - 1e-9 then
                 e:AddSlowing(EntityRef(p), SLOW_FRAMES, SLOW_VALUE, Color(1, 0.8, 0.8, 1, 0, 0, 0))
             end
         end
         local bullets = {}
         for _, e in ipairs(Isaac.FindInRadius(p.Position, RADIUS, EntityPartition.BULLET)) do
-            if e:ToProjectile() and e:Exists() then bullets[#bullets + 1] = e end
+            if e:ToProjectile() and e:Exists() and p.Position:Distance(e.Position) <= RADIUS then bullets[#bullets + 1] = e end
         end
         table.sort(bullets, function(a, b) return p.Position:Distance(a.Position) < p.Position:Distance(b.Position) end)
         for i = 1, math.min(BULLETS, #bullets) do bullets[i]:Remove() end
@@ -127,6 +142,7 @@ function Doubao:Init(mod, Risk)
         each(function(p, b)
             local s = b.state
             if p:IsDead() then drop:Forget(p); b.frame = now; return end
+            rememberAim(p, s)
             if now > b.frame and s.token and s.token > 0 then
                 s.token = s.token - 1
                 if s.token == 0 then dropToken(s) end
@@ -134,7 +150,7 @@ function Doubao:Init(mod, Risk)
             b.frame = now
             if drop:Poll(p, s.token ~= nil) then
                 dropToken(s)
-                apologize(p)
+                apologize(p, s)
                 Game():GetHUD():ShowItemText("Doubao-chan", "Sorry, you're right.")
             end
         end)
@@ -162,6 +178,7 @@ function Doubao:Init(mod, Risk)
             local text = "Doubao-chan: No apology needed"
             if s.token == 0 then text = "Doubao-chan: Apology Ready"
             elseif s.token then text = string.format("Doubao-chan: Apology Ready %ds", math.ceil(s.token / 30)) end
+            if s.token then text = text.."  Aim "..direction(s) end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.6, 0.9)
         end)
     end)

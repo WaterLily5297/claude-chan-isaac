@@ -1,6 +1,7 @@
 -- Real Grok fact check, damage re-deal, room speed, Birthright bullets and DROP callbacks with save/continue snapshots.
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
+local lineOfSight=true
 local callbacks, players, saved, draws, texts, enemies = {}, {}, nil, {}, {}, {}
 local C={Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
 function include(name)
@@ -36,7 +37,7 @@ local function vec(x) return {x=x, Distance=function(self,o) return math.abs(sel
 function Game() return {
     GetFrameCount=function() return frame end, GetNumPlayers=function() return #players end,
     IsPaused=function() return paused end,
-    GetRoom=function() return {IsClear=function() return clear end} end,
+    GetRoom=function() return {IsClear=function() return clear end, CheckLine=function() return lineOfSight end} end,
     GetLevel=function() return {
         GetDungeonPlacementSeed=function() return floor end,
         GetStage=function() return 1 end,GetStageType=function() return 0 end,
@@ -220,4 +221,18 @@ Risk.state.grokCheck["0"]={version=1,checkRoom=7}
 tick(); assert(state().checkRoom==nil,"corrupt saves are discarded")
 
 fire("MC_POST_GAME_STARTED",false); assert(state().checkRoom==nil and state().verifiedRoom==nil)
+-- Show the receipts: one uninterrupted second without sight fails the spent check.
+enter(100,true); target=enemy(50); tap(p); lineOfSight=false; tick(29)
+local sightWarning=hud():find("Restore sight"); fire("MC_POST_UPDATE")
+paused=true; tick(60); paused=false; fire("MC_POST_UPDATE")
+assert(hud():find("Check"),"pause/duplicate callbacks do not consume the grace interval")
+tick(); assert(hud()=="Grok-chan: Unverified" and not state().verifiedRoom)
+assert(sightWarning,"obstruction has a visible counterplay cue")
+near(hit(target,tear(p)),10); near(p.MoveSpeed,1)
+lineOfSight=true; tap(p); assert(hud()=="Grok-chan: Unverified","no second check after losing sight")
+enter(101,true); target=enemy(50); tap(p)
+lineOfSight=false; tick(20); lineOfSight=true; tick(); lineOfSight=false; tick(29)
+assert(hud():find("Check"),"seeing the target resets the consecutive obstruction interval")
+lineOfSight=true; tick(); target.friendly=true; tick()
+assert(hud()=="Grok-chan: Unverified","a friendly target ends the check safely")
 print("OK: Grok fact check, target/other damage, room speed, Birthright bullets and save/identity lifecycle")

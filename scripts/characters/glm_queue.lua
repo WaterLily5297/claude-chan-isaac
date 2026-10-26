@@ -145,6 +145,10 @@ function GLM:Init(mod, Risk)
                 -- Only a newly entered hostile room uses a pass room; revisits never do.
                 if not s.seen[room] then
                     s.seen[room] = true
+                    if s.queue == QUEUE_MAX and not passActive(s) then
+                        s.queue = QUEUE_MAX - 1
+                        Game():GetHUD():ShowItemText("GLM-chan", "Missed the call: Queue 2/3")
+                    end
                     if s.pass > 0 then
                         s.pass = s.pass - 1
                         s.activeRoom = room
@@ -178,7 +182,7 @@ function GLM:Init(mod, Risk)
             local text
             if boosted(s) then text = string.format("GLM-chan: Access active  %d room(s) left", s.pass)
             elseif s.pass > 0 then text = string.format("GLM-chan: Access %d room(s)", s.pass)
-            elseif s.queue >= QUEUE_MAX then text = "GLM-chan: Your turn! Tap DROP"
+            elseif s.queue >= QUEUE_MAX then text = "GLM-chan: Ticket ready! Tap DROP before next fight"
             else text = string.format("GLM-chan: Number in queue %d/%d", s.queue, QUEUE_MAX) end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.3, 0.95, 0.7, 0.9)
         end)

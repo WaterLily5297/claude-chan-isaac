@@ -60,6 +60,7 @@ local function player(pointer,seed,controller)
     function p:IsDead() return self.dead end
     function p:AreControlsEnabled() return self.controls end
     function p:HasCollectible(id) return id==619 and self.birthright end
+    function p:GetMovementInput() return {LengthSquared=function() return self.moving and 1 or 0 end} end
     function p:GetShootingInput() return {LengthSquared=function() return self.shooting and 1 or 0 end} end
     function p:AddCacheFlags() end
     function p:EvaluateItems() self.MoveSpeed=1; fire("MC_EVALUATE_CACHE",self,1) end
@@ -77,7 +78,10 @@ local function load()
     include("scripts.characters.deepseek_rice"):Init(mod,Risk,Meal)
 end
 local function tick(n)
-    for _=1,n or 1 do frame=frame+1; fire("MC_POST_UPDATE") end
+    for _=1,n or 1 do
+        if not paused then for _,p in ipairs(players) do p.FireDelay=math.max(0,p.FireDelay-1) end end
+        frame=frame+1; fire("MC_POST_UPDATE")
+    end
 end
 local function state(i) return Risk.state.deepseekRice[tostring(i or 0)] end
 local function tap(p)
@@ -212,3 +216,30 @@ down[0]=false; tick()
 assert(state().bowls==1 and Meal:Remaining(p)==0, 'long hold must not start a meal')
 print('O1: multi-pocket DROP preserves Rice offline; native input acceptance remains pending')
 print("OK: Rice economy, native DROP observer, meal/save lifecycle, volley ownership and untouched tear effects")
+
+-- Intrinsic Rice refunds exactly its own bowl on voluntary movement.
+players={player(501,5011,0),player(502,5022,1)}; p,q=players[1],players[2]; frame=0; down={}; paused=false
+load(); fire("MC_POST_GAME_STARTED",false); tap(p); tap(q)
+local before=state().thought; p.moving=true; tick()
+assert(state().bowls==1 and not state().lunch and Meal:Remaining(p)==0,"movement cancels intrinsic Rice")
+assert(p.FireDelay==0 and state().speed==0 and state().thought==before,"no meal reward or stale firing delay")
+assert(state(1).lunch and Meal:Remaining(q)>0 and state(1).bowls==0,"only the moving owner cancels")
+fire("MC_POST_UPDATE"); assert(state().bowls==1,"duplicate callback cannot refund twice")
+p.moving=false; p.FireDelay=200; tap(p); p.moving=true; local oldDelay=p.FireDelay; tick()
+assert(p.FireDelay==oldDelay-1,"a longer external firing delay is not erased")
+p.moving=false; p.FireDelay=0; tap(p); tick(5)
+fire("MC_PRE_GAME_EXIT",true); players={player(601,5011,0),player(602,5022,1)};p,q=players[1],players[2];frame=0
+load(); fire("MC_POST_GAME_STARTED",true); p.moving=true; tick()
+assert(state().bowls==1 and Meal:Remaining(p)==0,"owned cancellation works after continue")
+-- A later food effect supersedes Rice's timer ownership, so cancellation cannot erase it.
+p.moving=false; tap(p); Meal:Start(p,90); p.moving=true; tick()
+assert(state().bowls==1 and not state().lunch and Meal:Remaining(p)==89,"unrelated food restriction remains")
+assert(fire("MC_INPUT_ACTION",p,0,4)==false and state().speed==0)
+tick(90); assert(state().speed==0,"cancelled Rice never completes through another meal")
+print("OK: Rice movement cancellation, ownership, one refund, continue and external food/delay isolation")
+
+-- Reject a moving start, retain a genuine pre-meal cooldown, and clamp a refund at two.
+p.moving=true; local bowls=state().bowls; tap(p); assert(state().bowls==bowls and not state().lunch)
+p.moving=false; p.FireDelay=20; tap(p); tick(5); p.moving=true; tick()
+assert(p.FireDelay==11,"cancellation restores only the remaining pre-meal delay")
+p.moving=false; p.FireDelay=0; tap(p); state().bowls=2; p.moving=true; tick(); assert(state().bowls==2)

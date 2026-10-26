@@ -96,7 +96,7 @@ function Again:Init(mod, Risk)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
         drop:Reset()
-        if ready then bind() end
+        if ready then bind(); each(function(_, b) b.armed = false end) end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function() drop:Reset() end)
     mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
@@ -115,6 +115,7 @@ function Again:Init(mod, Risk)
             if p:IsDead() then drop:Forget(p); b.frame = now; return end
             local advanced = now > b.frame
             b.frame = now
+            if combat then b.armed = true end
             if s.phase and combat and advanced then
                 s.remaining = s.remaining - 1
                 if s.remaining <= 0 then
@@ -131,6 +132,14 @@ function Again:Init(mod, Risk)
                 Game():GetHUD():ShowItemText("Doubao-chan", "Leave it to me!")
                 refresh(p)
             end
+        end)
+    end)
+    mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, function()
+        if not ready then return end
+        each(function(p, b)
+            if not b.armed then return end
+            b.armed = false
+            if not p:IsDead() and b.state.phase == "confident" then apologize(p, b.state) end
         end)
     end)
     -- A real enemy hit during Confident starts the Apology early; the hit still lands.
@@ -156,7 +165,7 @@ function Again:Init(mod, Risk)
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         each(function(_, b, i)
             local s, text = b.state, "Doubao-chan: Ready to promise"
-            if s.phase == "confident" then text = string.format("Doubao-chan: Confident %ds", math.ceil(s.remaining / 30))
+            if s.phase == "confident" then text = string.format("Doubao-chan: Confident %ds  Clear -> Apology", math.ceil(s.remaining / 30))
             elseif s.phase == "apology" then text = string.format("Doubao-chan: Apology %ds", math.ceil(s.remaining / 30)) end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.6, 0.9)
         end)

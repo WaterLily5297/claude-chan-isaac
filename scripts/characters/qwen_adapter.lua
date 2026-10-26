@@ -11,12 +11,13 @@ local ADAPTER_START, ADAPTER_CAP, BIRTHRIGHT_CAP = 1, 2, 3
 local CLEARS_PER_ADAPTER = 2
 local KINDS = {"Range", "Tempo", "Power"}
 local RANGE_BONUS, TEMPO_INTERVAL, POWER_DAMAGE = 60, 0.9, 1.1
+local INSTALL_FRAMES = 30
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)
 end
 local function fresh()
-    return {version=1, adapters=ADAPTER_START, clears=0, selected=1, awards={}, seen={}}
+    return {version=2, adapters=ADAPTER_START, clears=0, selected=1, awards={}, seen={}, install=0}
 end
 local function keys(t)
     if type(t) ~= "table" then return false end
@@ -26,12 +27,13 @@ local function keys(t)
     return true
 end
 local function valid(s)
-    return type(s) == "table" and s.version == 1 and integer(s.adapters, 0, BIRTHRIGHT_CAP)
+    return type(s) == "table" and (s.version == 1 or s.version == 2) and integer(s.adapters, 0, BIRTHRIGHT_CAP)
         and integer(s.clears, 0, CLEARS_PER_ADAPTER - 1) and integer(s.selected, 1, #KINDS)
         and keys(s.awards) and keys(s.seen)
         and (s.activeRoom == nil or type(s.activeRoom) == "string")
         and (s.activeRoom == nil) == (s.active == nil)
         and (s.active == nil or integer(s.active, 1, #KINDS))
+        and (s.version == 1 or (integer(s.install, 0, INSTALL_FRAMES) and (s.active ~= nil or s.install == 0)))
 end
 local function cap(p)
     return p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_CAP or ADAPTER_CAP
@@ -69,9 +71,13 @@ function Qwen:Init(mod, Risk)
                 if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
                     or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
                 if not valid(all[key]) then all[key] = fresh() end
+                if all[key].version == 1 then
+                    -- An old active bonus was already earned; never charge it again.
+                    all[key].version = 2; all[key].install = 0
+                end
                 local b = bindings[pointer]
                 if not b or b.seed ~= p.InitSeed or b.slot ~= key then
-                    b = {seed=p.InitSeed, slot=key, armed={}}
+                    b = {seed=p.InitSeed, slot=key, armed={}, frame=Game():GetFrameCount()}
                 end
                 b.state = all[key]; nextBindings[pointer] = b
             else
@@ -104,7 +110,7 @@ function Qwen:Init(mod, Risk)
     -- The bonus belongs to the room it was spent in.
     local function active(b)
         local s = b.state
-        if s.activeRoom and s.activeRoom == roomKey() then return s.active end
+        if s.activeRoom and s.activeRoom == roomKey() and s.install == 0 then return s.active end
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function(_, continued)
@@ -126,7 +132,7 @@ function Qwen:Init(mod, Risk)
             local s = b.state
             observeFloor(b)
             if s.activeRoom and s.activeRoom ~= room then
-                s.activeRoom = nil; s.active = nil; refresh(p)
+                s.activeRoom = nil; s.active = nil; s.install = 0; refresh(p)
             end
         end)
     end)
@@ -135,14 +141,29 @@ function Qwen:Init(mod, Risk)
         if not ready then return end
         bind()
         if not next(bindings) then return end
-        if Game():IsPaused() then drop:Reset(); return end
+        local now = Game():GetFrameCount()
+        if Game():IsPaused() then
+            drop:Reset(); each(function(_, b) b.frame = now end); return
+        end
         local combat = not Game():GetRoom():IsClear()
         local room = roomKey()
         each(function(p, b)
             local s = b.state
             observeFloor(b)
             s.adapters = math.min(s.adapters, cap(p))
-            if p:IsDead() then drop:Forget(p); return end
+            if p:IsDead() then drop:Forget(p); b.frame = now; return end
+            local advanced = now > b.frame
+            b.frame = now
+            if s.activeRoom == room and s.install > 0 and advanced then
+                if p:GetFireDirection() ~= Direction.NO_DIRECTION then s.install = INSTALL_FRAMES
+                else
+                    s.install = s.install - 1
+                    if s.install == 0 then
+                        refresh(p)
+                        Game():GetHUD():ShowItemText("Qwen-chan", KINDS[s.active].." installed")
+                    end
+                end
+            end
             if drop:Poll(p, true) then
                 s.selected = s.selected % #KINDS + 1
                 Game():GetHUD():ShowItemText("Qwen-chan", "Next adapter: "..KINDS[s.selected])
@@ -154,8 +175,8 @@ function Qwen:Init(mod, Risk)
                     s.seen[room] = true
                     if s.adapters > 0 and s.activeRoom ~= room then
                         s.adapters = s.adapters - 1
-                        s.active = s.selected; s.activeRoom = room
-                        Game():GetHUD():ShowItemText("Qwen-chan", KINDS[s.active].." adapter")
+                        s.active = s.selected; s.activeRoom = room; s.install = INSTALL_FRAMES
+                        Game():GetHUD():ShowItemText("Qwen-chan", "Installing: stop firing for one second")
                         refresh(p)
                     end
                 end
@@ -196,6 +217,7 @@ function Qwen:Init(mod, Risk)
             local s, kind = b.state, active(b)
             local text = string.format("Qwen-chan: Adapters %d/%d  Next %s  Active %s",
                 s.adapters, cap(p), KINDS[s.selected], kind and KINDS[kind] or "none")
+            if s.activeRoom == roomKey() and s.install > 0 then text = text.."  Installing: stop firing" end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.8, 0.5, 1, 0.9)
         end)
     end)

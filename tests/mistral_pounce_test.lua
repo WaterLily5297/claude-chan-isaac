@@ -167,7 +167,8 @@ near(p.MoveSpeed,1.1); assert(not state().ready)
 -- Two seconds of moving while firing charges one Pounce; stopping resets the charge.
 run(p,59); assert(not state().ready and hud()=="Mistral-chan: Charge 98%",hud())
 p.aim=vec(0,0); tick(); assert(hud()=="Mistral-chan: Charge 0%","moving without firing resets")
-run(p,60); assert(state().ready and hud()=="Mistral-chan: Pounce Ready")
+run(p,60); assert(state().ready and state().dirX==1 and state().dirY==0)
+assert(hud()=="Mistral-chan: Pounce Ready Right")
 assert(not state(1).ready,"charge is personal")
 
 -- Standing for one second loses an unused Pounce; pause does not count.
@@ -180,7 +181,7 @@ tick(); assert(not state().ready and texts[#texts]=="Pounce lost")
 run(p,60); assert(state().ready)
 local ahead,behind,side,far,walled=enemy(50),enemy(-50),enemy(40,60),enemy(130),enemy(70,5)
 walls={60}
-p.aim=vec(1,0); down[0]=false; tick(); down[0]=true; tick(); down[0]=false; tick()
+p.aim=vec(-1,0); down[0]=false; tick(); down[0]=true; tick(); down[0]=false; tick()
 assert(#ahead.taken==1 and ahead.taken[1]==20,"2x owner damage to a target ahead")
 assert(#behind.taken==0 and #side.taken==0 and #far.taken==0 and #walled.taken==0,"only the forward line, within reach, without walls")
 assert(not state().ready and texts[#texts]=="Pounce!")
@@ -201,7 +202,7 @@ assert(#reach.taken==1,"Birthright extends the reach"); p.birthright=false
 -- The ready Pounce survives continue; charge and cooldown are transient.
 run(p,200); assert(state().ready)
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
-assert(state().ready and hud()=="Mistral-chan: Pounce Ready")
+assert(state().ready and state().dirX==1 and state().dirY==0 and hud()=="Mistral-chan: Pounce Ready Right")
 
 -- Identity and character changes do not transfer it.
 players[1]=player(101,999,0); p=players[1]; tick(); assert(not state().ready)
@@ -210,4 +211,28 @@ p.kind=56; tick(); assert(not state().ready)
 Risk.state.mistralPounce["0"]={version=1,ready="yes"}; tick(); assert(state().ready==false,"corrupt saves are discarded")
 
 fire("MC_POST_GAME_STARTED",false); assert(not state().ready)
+-- A full charge in a different movement direction replaces the stored direction.
+p.Velocity=vec(0,-3); p.aim=vec(1,0); tick(59); assert(not state().ready)
+tick(); assert(state().ready and state().dirY==-1 and state().dirX==0)
+p.Velocity=vec(-3,0); tick(59); assert(state().dirY==-1,"turning is not immediate")
+paused=true; tick(100); paused=false; fire("MC_POST_UPDATE"); assert(state().dirY==-1)
+tick(); assert(state().dirX==-1 and state().dirY==0 and hud():find("Left"))
+reload({player(201,11,0),player(202,22,1)}); p,q=players[1],players[2]
+assert(state().dirX==-1 and state().ready,"direction persists without serializing a vector")
+Risk.state.mistralPounce["0"]={version=1,ready=true}; tick()
+assert(state().version==2 and state().ready and state().dirX==0 and state().dirY==1,"legacy ready charge migrates with visible Down direction")
+
+-- Initial charging retains the old freedom to turn. A replacement must keep
+-- its course; gradual turns cannot accumulate a charge across every direction.
+fire("MC_POST_GAME_STARTED",false)
+p.aim=vec(1,0); p.Velocity=vec(3,0); tick(30)
+p.Velocity=vec(0,-3); tick(30)
+assert(state().ready and state().dirY==-1,"turning does not penalize the initial charge")
+for i=1,90 do
+    local angle=math.rad(i*3)
+    p.Velocity=vec(3*math.cos(angle),3*math.sin(angle)); tick()
+end
+assert(state().dirX==0 and state().dirY==-1,"a drifting course cannot replace the stored direction")
+p.Velocity=vec(3,0); tick(59); assert(state().dirY==-1)
+tick(); assert(state().dirX==1 and state().dirY==0,"a full steady replacement charge still succeeds")
 print("OK: Mistral Pounce charge, idle loss, forward swipe, walls, cooldown, Birthright reach and save/identity lifecycle")

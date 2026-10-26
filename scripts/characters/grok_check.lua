@@ -9,6 +9,7 @@ local Grok = {}
 
 local CHECK_RADIUS = 220
 local CHECK_FRAMES = 180 -- Six seconds.
+local LOST_SIGHT_FRAMES = 30
 local CHECK_HITS = 3
 local TARGET_DAMAGE, OTHER_DAMAGE = 1.3, 0.9
 local VERIFIED_SPEED = 0.15
@@ -136,12 +137,18 @@ function Grok:Init(mod, Risk)
             b.frame = now
             if b.check then
                 local target = b.check.ref.Ref
-                if not target or not target:Exists() or target:IsDead() then
+                if not target or not target:Exists() or target:IsDead()
+                    or not target:IsVulnerableEnemy() or target:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
                     b.check = nil
                 elseif advanced then
                     b.check.remaining = b.check.remaining - 1
+                    b.check.obscured = Game():GetRoom():CheckLine(p.Position, target.Position, 3)
+                        and 0 or (b.check.obscured or 0) + 1
                     -- Timeout gives nothing.
-                    if b.check.remaining <= 0 then b.check = nil end
+                    if b.check.obscured >= LOST_SIGHT_FRAMES then
+                        b.check = nil
+                        Game():GetHUD():ShowItemText("Grok-chan", "Lost sight: unverified")
+                    elseif b.check.remaining <= 0 then b.check = nil end
                 end
             end
             if drop:Poll(p, combat and s.checkRoom ~= room and b.check == nil) then
@@ -210,6 +217,7 @@ function Grok:Init(mod, Risk)
             if b.check then
                 text = string.format("Grok-chan: Check %d/%d  %ds", b.check.count, CHECK_HITS,
                     math.ceil(b.check.remaining / 30))
+                if (b.check.obscured or 0) > 0 then text = text.."  Restore sight" end
             elseif s.verifiedRoom == room then text = "Grok-chan: Verified"
             elseif s.checkRoom == room then text = "Grok-chan: Unverified"
             else text = "Grok-chan: DROP: Is this true?" end

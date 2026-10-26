@@ -170,7 +170,7 @@ tick(90); assert(state().remaining==180,"no countdown in a cleared room")
 tap(p); assert(state().remaining==180,"one promise at a time")
 enter(2,true); assert(state().remaining==179)
 paused=true; tick(30); paused=false; fire("MC_POST_UPDATE"); fire("MC_POST_UPDATE")
-assert(state().remaining==179 and hud()=="Doubao-chan: Confident 6s",hud())
+assert(state().remaining==179 and hud()=="Doubao-chan: Confident 6s  Clear -> Apology",hud())
 tick(178); assert(state().phase=="confident" and state().remaining==1)
 -- Then four seconds of Apology at 0.85x, then ready.
 tick(); assert(state().phase=="apology" and state().remaining==120 and texts[#texts]=="Sorry, you're right"); near(p.Damage,8.5)
@@ -213,4 +213,17 @@ for _,bad in ipairs({{version=1,phase="confident",remaining=181},{version=1,phas
 end
 clear=false; Risk.state.doubaoAgain["0"]={version=1,phase="apology",remaining=120}; tick(); assert(state().remaining==119,"valid data is kept")
 state().phase="confident"; fire("MC_POST_GAME_STARTED",false); assert(state().phase==nil,"a new run starts ready")
+-- Promise fulfilled: only an armed hostile clear ends Confident, once.
+clear=true; tap(p); fire("MC_PRE_SPAWN_CLEAN_AWARD")
+assert(state().phase=="confident","peaceful callbacks do not end a promise")
+enter(100,true); finish()
+assert(state().phase=="apology" and state().remaining==120,"clear begins the normal recovery")
+near(p.Damage,8.5); assert(state(1).phase==nil,"clearing does not start a partner's phase")
+state().remaining=100; fire("MC_PRE_SPAWN_CLEAN_AWARD"); tick(90)
+assert(state().remaining==100,"duplicates and safe-room time do not restart or pay recovery")
+enter(101,true); assert(state().remaining==99); finish(); assert(state().remaining==99,"Apology clear does not restart it")
+reload({player(201,999,0),player(202,22,1)}); p,q=players[1],players[2]
+assert(state().phase=="apology" and state().remaining==99,"continue retains the carried recovery")
+clear=false; tick(99); p.birthright=true; tap(p); finish()
+assert(state().phase=="apology" and state().remaining==90,"Birthright keeps its original recovery time")
 print("OK: tainted Doubao Confident/Apology cycle, combat-only timers, early apology, Birthright and save/identity lifecycle")

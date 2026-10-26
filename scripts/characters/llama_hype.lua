@@ -13,6 +13,7 @@ local FRAMES_PER_HYPE, BIRTHRIGHT_FRAMES = 120, 150 -- Four seconds; five with B
 local SHOT_FRAMES = 30 -- One tear per second.
 local TEAR_DAMAGE = 0.5
 local RANGE = 400
+local OWNER_RANGE = 120
 local TEAR_SPEED = 10
 
 local function integer(v, minimum, maximum)
@@ -139,7 +140,10 @@ function Hype:Init(mod, Risk, Backlog)
             if helper and advanced then
                 helper.remaining = helper.remaining - 1
                 helper.shot = helper.shot + 1
-                if helper.shot >= SHOT_FRAMES then helper.shot = 0; shoot(p, helper) end
+                if helper.shot >= SHOT_FRAMES then
+                    helper.shot = 0
+                    if p.Position:Distance(helper.position) <= OWNER_RANGE then shoot(p, helper) end
+                end
                 if helper.remaining <= 0 then b.helper = nil end
             end
             -- Spending all Hype replaces any helper and its remaining time.
@@ -168,9 +172,10 @@ function Hype:Init(mod, Risk, Backlog)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
             local text = string.format("Llama-chan: Hype %d/%d", b.state.hype, HYPE_CAP)
             if b.helper then text = text..string.format("  Helper %ds", math.ceil(b.helper.remaining / 30)) end
+            if b.helper and p.Position:Distance(b.helper.position) > OWNER_RANGE then text = text.."  Return to demo" end
             HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.6, 0.95, 0.45, 0.9)
         end)
     end)

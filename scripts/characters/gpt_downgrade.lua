@@ -4,6 +4,7 @@ local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
 local Tools = include("scripts.characters.target_tools")
+local Choices = include("scripts.characters.attack_choices")
 local Gpt = {}
 
 local VERIFIED_DAMAGE, FALLBACK_DAMAGE = 1.15, 0.8
@@ -139,14 +140,27 @@ function Gpt:Init(mod, Risk)
                     refresh(p)
                 end
             end
-            if b.check and (not b.check.ref.Ref or not b.check.ref.Ref:Exists()) then b.check = nil end
+            if b.check then
+                local target = b.check.ref.Ref
+                if not target or not target:Exists() or target:IsDead() or not target:IsVulnerableEnemy()
+                    or target:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then b.check = nil
+                else
+                    local previous = b.check.count
+                    -- Birthright lowers the current completion threshold, not historical clamps.
+                    b.check.count = Choices.Resolve(b.check.choices, CHECK_HITS)
+                    if b.check.count < previous then
+                        Game():GetHUD():ShowItemText("GPT-chan", "Contradiction: focus the marked target")
+                    end
+                    if b.check.count >= needed(p) then verify(p, b) end
+                end
+            end
             local canCheck = not s.verified and s.checkRoom ~= room and b.check == nil
             if drop:Poll(p, canCheck) then
                 local target = Tools.Nearest(p.Position, CHECK_RADIUS)
                 -- No target means no attempt is spent.
                 if target then
                     s.checkRoom = room
-                    b.check = {ref=EntityPtr(target), hash=GetPtrHash(target), hits={}, count=0}
+                    b.check = {ref=EntityPtr(target), hash=GetPtrHash(target), choices=Choices.New(), count=0}
                     Game():GetHUD():ShowItemText("GPT-chan", "Sanity Check")
                 end
             end
@@ -168,19 +182,20 @@ function Gpt:Init(mod, Risk)
         Tools.MarkVolley(tear, Game():GetFrameCount())
     end)
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, _, source)
-        if not ready or not next(bindings) then return end
+        if not ready or not next(bindings) or Game():IsPaused() then return end
         local src = source and source.Entity
+        local data = src and src.GetData and src:GetData()
+        if data and (data.ccLlamaHelper or data.ccThoughtDerived) then return end
         local p = Tools.Owner(src)
         local b = binding(p)
-        if not b or not b.check or GetPtrHash(entity) ~= b.check.hash then return end
+        if not b or not b.check or not entity:IsVulnerableEnemy()
+            or entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then return end
         local now = Game():GetFrameCount()
-        b.check.credit = now
+        local target = GetPtrHash(entity) == b.check.hash
+        if target then b.check.credit = now end
         local key = Tools.AttackKey(src, now)
         if not key then return end
-        if b.check.hits[key] then return end
-        b.check.hits[key] = true
-        b.check.count = b.check.count + 1
-        if b.check.count >= needed(p) then verify(p, b) end
+        Choices.Record(b.check.choices, key, target)
     end)
     mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, function(_, entity)
         if not ready or not next(bindings) then return end

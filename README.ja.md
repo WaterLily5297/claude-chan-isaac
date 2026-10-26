@@ -91,16 +91,16 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 ### Claudeちゃん（Claude）
 
 **通常版：One More Day（あと1日）。** ❤❤💙、爆弾1。射程+1.5（ロングコンテキスト）、弾速+0.2、移動速度−0.1、オレンジ色の涙。ポケットアイテム：**Ban Hammer（BANハンマー）**。
-- **使用量：** 攻撃1回ごとに使用量が4増えます（Subagent Swarm所持時は8）。ゲーム本来のすべての武器が課金対象です：涙の1斉射、レーザーの撃ち始めとDr. Fetusの爆弾1個ごと、押し続けるビームや操作中のLudovicoの涙は0.2秒ごと、ナイフの投擲、近接の一振り、Epic Fetusのロケット1発ごと。使い魔や派生した涙は無料です。撃たずにいると毎秒10減ります。100に達すると **Limited（制限中）** になり、5秒間すべての武器のダメージが40%になった後、メーターがリセットされます。
+- **Usage:** each paid volley adds 4 usage (8 with Subagent Swarm), billed for every native weapon: each volley of tears, each laser start and Dr. Fetus bomb, each further 0.2 seconds of a held beam or steered Ludovico tear, each knife throw, each melee swing and each Epic Fetus rocket. Familiars and derived tears are free. Not firing drains 10 per second. At 100 she is **Limited**: every weapon deals 40% damage for 5 seconds, then the meter resets.
 - **異議申し立て（Appeal）：** 1回分を持って始まります（上限2）。新規の戦闘クリア2回ごとに1回分増えます。DROPをタップすると1回分を使って使用量を40減らします。発動中のLimitedは解除できず、使用量0のときは無駄にならないよう拒否されます。
-- **アカウント年齢（账号满月）：** 停止されずに到達したフロアごとにダメージ+0.2（最大+1.6）。停止されるとリセットされます（「又封了」）。協力プレイではClaudeのプレイヤーごとに別々のアカウント年齢を持ちます。
+- **Account age:** from the second floor, the first new fight with at least two vulnerable enemies marks a **Review Target**. Defeat it last for the original +0.2 damage (cap +1.6); simultaneous room-clear deaths count. Early defeat, leaving or an unavailable target misses only this floor. No eligible room means no award. Suspension and the Birthright shield keep their existing rules.
 - **リスク：** 上記のリスク値の対象です。
 - **誕生権：** 各フロアで最初の停止を受けてもアカウント年齢を保持します。
 
 **裏版：Appeal Pending（審査待ち）。** ❤💙💙、爆弾1。ダメージ×1.25、射程+1.5、弾速+0.2。赤い髪に黒と金のドレス。ポケットアイテム：**Banked Reset（バンク済みリセット）**。
 - **クォータ：** 各フロアはクォータ220と異議申し立てページ2枚（上限2）で始まります。攻撃1回ごとにクォータを1消費します（Subagent Swarm所持時は2）。課金の対象は通常版Claudeちゃんと同じく、すべての武器です。
 - クォータが0になると **停止（Suspended）**：ダメージ×0.5。
-- 停止中に戦闘中にDROPをタップすると、ページ1枚を使って **6秒間の審査** を始めます。終わるとクォータが60回復します。部屋を出ると審査は取り消されます。
+- While Suspended, tap DROP to spend a Page on a **6-second review**. Its timer runs in combat only while you stop attacking; shooting pauses it without spending another Page. Completion restores 60 Quota. Leaving cancels the review.
 - 新規の戦闘クリア3回ごとにページが1枚増えます。Banked Resetはクォータを即座に満タンにしますが、進行中の審査は取り消され、ページは戻りません。
 - **誕生権：** 審査で回復するクォータが90になります。
 
@@ -108,14 +108,14 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **通常版：Rice First（まずはご飯）。** ❤❤💙、コイン3、鍵1。ダメージ×0.9、青い涙。ポケットアイテム：**Lunch Break（飯食ってくる）**。
 - **直結（直连）：** プロキシ不要なので、DeepSeekだけのランにはIPもリスクも、リスクによる難易度上昇もありません。
-- **ご飯：** 1杯を持って始まります（上限2）。新規の戦闘クリア2回ごとに1杯増えます。DROPをタップすると1杯使って2秒間食事をします（回復なし）。食べ終わると思考が満タンになり、6秒間移動速度+0.15。
+- **Rice bowls:** start with 1 (cap 2). Earn 1 per two unique combat clears. Stand still and tap DROP for a 2-second meal without healing. Finishing grants full Thought and +0.15 speed for 6 seconds. Voluntary movement cancels, refunds this Bowl once and grants no meal reward; other food lockouts remain separate.
 - **思考：** 攻撃をやめると最大5秒分の思考がたまり、次の攻撃のダメージが最大×2になります（「Thought for N s」と表示）。涙、離したブリムストーンのリング、投げたナイフ、Dr. Fetusの爆弾は撃った時点の思考を記録します。連続ヒットするビームや操作型の涙は0.2秒の短い枠を使います。Epic Fetus、近接、使い魔、遅延爆発はまだ実験的です。
 - 涙がランダムに消えることも、放置でチャージがたまることもありません。
 - **誕生権：** 食事が1秒になります。
 
 **裏版：Wenfeng / Wengu（ピーク／バレー）。** ❤💙。ダメージ×0.8、シアンの涙。こちらも直結です。
 - 戦闘中は **バレー** 12秒と **ピーク** 12秒が交互に切り替わります。空の部屋ではタイマーが止まり、各フロアはバレーから始まります。
-- **計算資源（Compute）：** 初期12、上限24（誕生権で32）。フロアをまたいで持ち越します。
+- **Compute:** start 12, total cap 24 (32 with Birthright), carried across floors. Entering Peak reserves up to 4 available Compute. Return it once at the next Valley or floor, within the total cap; it cannot be spent during Peak.
 - 涙を撃つたびに ±12° に2発の **フォーク**（ダメージ50%）が追加されます。コストはバレーで2、ピークで4です。計算資源が足りないときはフォークだけが省かれ、本体の涙は必ず出ます。
 - バレー中は、戦闘中に撃たずにいると毎秒3回復します。
 - DROPタップで **Forks On／Saving（節約）** を切り替えます（1秒のクールダウン）。
@@ -126,24 +126,24 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **通常版：Same Name, Smaller Brain（同じ名前、小さい脳）。** ❤❤💙、爆弾1。
 - **Verified（認証済み）：** ダメージ×1.15。新規の戦闘クリアでRoutingがたまり、3になると次の戦闘部屋は **Fallback（代替）**（ダメージ×0.8）で始まります。
-- Fallback中にDROPをタップすると、最も近い敵を **Sanity Check（正気チェック）** に指定します。その敵に自分の攻撃を3回別々に当てるか倒すと、Verifiedに戻ります。チェックは1部屋1回で、部屋を出ると失敗します。新しいフロアではVerifiedに戻ります。
+- In Fallback, tap DROP to tag a **Sanity Check** enemy. Three distinct paid hits or your defeat of it restore Verified. A distinct off-target attack erases one hit, minimum zero; the target wins for a mixed attack, including delayed piercing hits. Helpers, unpaid hits and partners do not contradict. One check per room; leaving fails it. New floors restore Verified.
 - **誕生権：** Sanity Checkに必要な命中が2回になります。
 
 **裏版：Reset Watcher（リセット待ち）。** ❤💙💙、鍵1。
 - **クレジット：** 1ランにつき80（上限80）。フロアをまたいで持ち越します。
 - DROPタップで **Standard（無料）** と **Full Send**（ダメージ×1.5、攻撃1回ごとにクレジット1。Claudeちゃんの使用量と同じくすべての武器が対象）を切り替えます。クレジットが0になるとStandardに戻ります。
-- 新規の戦闘クリア3回ごとに **Tiboリセット** が1つたまります。たまっている間は部屋の進行が止まります。次のDROPタップでそれを受け取り、クレジットが満タンになります。
+- Every three unique combat clears **bank a Tibo reset**. While banked, progress pauses. Claim it with DROP in a cleared room; combat taps still toggle modes and keep the reset.
 - **誕生権：** 上限と回復量が100になります。
 
 ### Geminiちゃん（Gemini）
 
 **通常版：Nano Banana。** ❤❤💙、爆弾1。
 - **ペイント：** 初期2（上限3）。新規の戦闘クリアごとに1増えます。
-- DROPをタップすると1つ使い、180ユニット以内で最も近い敵を8秒間ペイントします。その敵への自分のダメージが×1.2になります。自分で倒すと **バナナの皮** が残り、4秒間敵を減速させます。マークと皮は1人につき1つずつで、ボスもペイントできます。
-- **誕生権：** ペイントした敵へのダメージが×1.3になります。
+- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. The first second dries at native damage, then your damage to it is x1.2. Your kill, including during drying, leaves a **banana peel** slowing enemies for 4 seconds. One mark and peel per player; bosses can be painted.
+- **Birthright:** x1.3 damage to the painted enemy after drying.
 
 **裏版：One More Edit（もう1回だけ編集）。** ❤💙💙、鍵1。ダメージ×0.9。
-- DROPをタップすると、180ユニット以内で最も近い敵に6秒間の **編集チェーン** を始めます。自分の攻撃を3回別々に当てると **Crop（切り抜き）→ Recolor（色調整）→ Export（書き出し）** と進みます。
+- Tap DROP for a 6-second **edit chain** on the nearest enemy within 180 units. Three distinct paid hits advance **Crop, Recolor, Export**. The first sets your angle; each next step needs at least 30 degrees of movement around the target. Unchanged angles still deal native damage; zero separation cannot set an angle.
 - Exportで自分のダメージの2倍の追撃が1回入ります。チェーンの完成は1部屋1回です。
 - もう一度タップするとチェーンが最初からになり、進行は消えます。途中で敵を倒しても完成にはなりません。
 - **誕生権：** チェーンが10秒になります。
@@ -152,12 +152,12 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **通常版：Is This True?（これって本当？）。** ❤❤💙、爆弾1。
 - 敵のいる部屋につき1回、DROPをタップすると220ユニット以内で最も近い敵を6秒間 **ファクトチェック** します。その敵へのダメージは×1.3、それ以外へは×0.9になります。
-- その敵に自分の攻撃を3回別々に当てるか倒すと **検証完了**：倍率が終わり、その部屋の間は移動速度+0.15。時間切れでは何も得られません。
+- Three distinct paid hits on it, or its defeat, **verify** it: the modifiers end and you gain +0.15 speed for the room. A timeout or one continuous second without direct line of sight ends it unverified; briefly restored sight resets that obstruction timer.
 - **誕生権：** 検証完了時に近くの敵弾を最大3発消します。
 
 **裏版：Quote Without Reading（読まずに引用）。** ❤💙💙、鍵1。ダメージ×0.9。
 - DROPをタップすると、220ユニット以内で最も近い敵を6秒間 **引用** します（クールダウン10秒）。
-- *他の* 敵に自分の攻撃を当てると **Ratio（炎上値）** がたまります（攻撃1回につき1、最大3）。
+- Paid hits on *other* eligible enemies build **Ratio** once per attack, cap 3. A paid attack hitting only the quoted enemy removes one Ratio, minimum zero. Other-target hits win for a mixed attack, regardless of callback order; helpers, unpaid hits and partners do not affect it.
 - 6秒が終わると、引用した敵にRatio 1につき1倍ダメージの追撃が入ります。先に死んだ場合Ratioは無駄になり、対象の変更もできません。
 - **誕生権：** 引用した敵が先に死んだ場合、Ratioの半分が最も近い生存中の敵に移ります。
 
@@ -165,35 +165,35 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **通常版：Everyone's Base Model（みんなのベースモデル）。** ❤❤💙、爆弾1。
 - **アダプター：** 初期1（上限2）。新規の戦闘クリア2回ごとに1増えます。
-- DROPタップで次のアダプターを選びます：**Range**（射程+60）、**Tempo**（連射間隔×0.9）、**Power**（ダメージ×1.1）。新しい敵の部屋に入るとアダプターを1つ使い、その部屋の間その効果が付きます。
+- Tap DROP to pick **Range** (+60 range), **Tempo** (x0.9 firing interval) or **Power** (x1.1 damage). A new hostile room spends an Adapter; stop attacking for one continuous second to install its full room bonus. Firing restarts installation. Leaving discards the spent Adapter.
 - **誕生権：** アダプターの上限が3になります。
 
 **裏版：Final Final Fine-Tune（最終最終ファインチューン）。** ❤💙💙、鍵1。
-- クリア済みの部屋でDROPをタップするとビルドを切り替えます：**Heavy**（ダメージ×1.3、連射間隔×1.2）、**Tiny**（ダメージ×0.85、間隔×0.8）、**Balanced**。敵がいる間はビルドが固定されます。
-- 3種類すべてのビルドで新規の戦闘部屋をクリアすると、**そのフロアの間ダメージ+0.2**（最大3回）。同じビルドの繰り返しは数えません。新しいフロアで進行とボーナスはリセットされます。
+- In a cleared room, tap DROP to cycle **Heavy** (x1.3 damage, x1.2 interval), **Tiny** (x0.85 damage, x0.8 interval) or **Balanced**. A new selection pins the build through two new combat clears. Safe rooms, duplicates and revisits cannot shorten the commitment.
+- Clear unique combat rooms with all three builds for **+0.2 damage this floor**, up to three awards. Repeating a build does not add a variant. A new floor resets progress/bonus, selects Balanced and releases the pin for an immediate choice.
 - **誕生権：** 1回あたり+0.3になります。
 
 ### Llamaちゃん（Llama）
 
 **通常版：Please Stay Open（オープンのままでいて）。** ❤❤💙、爆弾1。ダメージ×0.95。
 - **リリース：** 初期1（上限2）。新規の戦闘クリア2回ごとに1増えます。
-- DROPタップで1つ使うと、生きている各プレイヤー（最大4人）が **青いハエ** を2匹ずつ得ます。1人プレイなら4匹です。
+- In a cleared room, tap DROP to spend one: every living player (up to four) gets 2 **blue flies**. Solo, you get 4. Combat attempts retain the Release.
 - **誕生権：** 自分はハエを2匹多く得ます。
 
 **裏版：Still Waiting（まだ待ってる）。** ❤💙💙、鍵1。ダメージ×0.9。
 - 新規の戦闘クリアごとに **期待（Hype）** が1たまります（最大3）。
-- DROPをタップすると期待をすべて使い、その場にとどまる **ヘルパー** を出します。ヘルパーは期待1につき4秒間とどまり、毎秒1発、最も近い敵へダメージ0.5倍の涙を撃ちます。ヘルパーは1体までで、新しく出すと古いものと入れ替わり、部屋を出ると消えます。
+- Tap DROP to spend all Hype on a stationary **helper** lasting 4 seconds per Hype. It fires one 0.5x native tear per second at the nearest enemy only while you stay within 120 units. Lifetime continues outside; return resumes the cadence without catch-up. One helper at a time; replacing or leaving removes it.
 - **誕生権：** 期待1につき5秒になります。
 
 ### Mistralちゃん（Mistral）
 
 **通常版：Le Chat（猫）。** ❤❤💙、爆弾1。移動速度+0.1。
-- 撃ちながら2秒間動くと **飛びかかり（Pounce）** がたまります。1秒間立ち止まると失われます。
-- DROPタップで前方に引っかき：80ユニットの直線上の敵それぞれに2倍ダメージを1回与えます。壁で止まり、クールダウンは3秒です。
+- Move while firing for 2 seconds to charge a **Pounce**, storing your movement direction. A full charge in another direction replaces it. Standing still for 1 second loses it.
+- Tap DROP for a swipe in the **stored direction**, shown in the HUD: 2x damage once per enemy in an 80-unit line. Later aim changes do not redirect it. Walls block it; cooldown remains 3 seconds.
 - **誕生権：** 射程が110ユニットになります。
 
 **裏版：Le Gros Chaton（大きな子猫）。** ❤💙💙、鍵1。移動速度−0.1、ダメージ×0.9。
-- 撃たずに2秒間立ち止まると **バゲット** が1本焼けます（最大2本）。
+- In hostile combat, stand still without firing for 2 seconds to bake a **Baguette** (max 2). Cleared rooms pause partial baking; room exit discards the partial charge.
 - DROPタップで1本使い、前方へゆっくり進む **衝撃波** を放ちます。120ユニット進み、敵それぞれに2.5倍ダメージを1回与えます。壁で止まり、クールダウンは2秒です。
 - **誕生権：** バゲットが1.5秒で焼けます。
 
@@ -201,37 +201,37 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 **通常版：Sorry, You're Right（すみません、おっしゃる通りです）。** ❤❤💙、爆弾1。
 - 各部屋で敵から最初に受けた被弾で、6秒間有効な **お詫び（Apology）** トークンを得ます。自傷、偽ダメージ、献血機などは数えません。
-- DROPタップで使うと、100ユニット以内の敵が2秒間減速し、近くの敵弾が最大4発消えます。体力は戻りません。
+- Tap DROP for a **120-degree slow cone** centered on your aim, within 100 units, lasting 2 seconds. With no aim, use the last direction, initially Down. Removal of up to four nearby enemy bullets remains radial. No health refund.
 - **誕生権：** トークンが部屋を出るまで持続します。
 
 **裏版：I'll Do It Again（次もやります）。** ❤💙💙、鍵1。
 - 準備完了のときにDROPをタップすると、6秒間の **自信満々（Confident）**（ダメージ×1.35）、続いて4秒間の **お詫び（Apology）**（×0.85）を経て、再び準備完了になります。
-- タイマーは敵のいる部屋でのみ進みます。自信満々の間に被弾するとすぐに終わり、お詫びが始まります。
+- Timers only run in hostile combat. An enemy hit or a hostile room clear during Confident starts Apology immediately; unfinished recovery carries into the next fight. Clearing during Apology never restarts it.
 - **誕生権：** お詫びが3秒になります。
 
 ### Kimiちゃん（Kimi）
 
 **通常版：Another Slide Deck（またスライド資料）。** ❤❤💙、爆弾1。
 - 新規の戦闘クリアごとに **スライド** を1枚得ます（上限6）。
-- DROPタップで3枚使い、220ユニット以内で最も近い3体の敵に **プレゼン** します：4秒間、減速し、自分から受けるダメージが+15%になります。聞き手がいなければ消費しません。
+- Tap DROP to spend 3 and **present** to the three nearest enemies within 220 units for 4 seconds. All are slowed; only the current speaker receives +15% owner damage. Focus advances in the original nearest-first order when a speaker dies or becomes unavailable, without extending the timer. No audience means no spend.
 - **誕生権：** プレゼンのコストが2枚になります。
 
 **裏版：You Are the Manager（あなたがマネージャー）。** ❤💙💙、鍵1。ダメージ×0.85。
 - 戦闘中にDROPをタップすると、220ユニット以内でまだ割り当てていない最も近い敵に **タスク** を割り当てます。各タスクは2秒おきに0.6倍の追撃を3回与えます。
-- 同時に3タスク、1部屋につき追撃9回までです。部屋を出るとタスクは取り消され、使った分は戻りません。
+- Up to 3 tasks and 9 pulses per room. Your paid hit on an assigned target pauses only its task for 1 second; repeated hits refresh, never stack. Helpers and partners do not pause tasks. Leaving cancels tasks without refunding budget.
 - **誕生権：** 追撃が0.7倍になります。
 
 ### GLMちゃん（GLM）
 
 **通常版：Number in Queue（順番待ち）。** ❤❤💙、爆弾1。
 - 新規の戦闘クリアごとに **キュー** が進みます（最大3）。
-- 3になったらDROPタップで **アクセスパス** と交換：次の新しい敵の部屋2つでそれぞれダメージ+20%。パスが有効な間はキューが止まり、再訪問では消費も重複もしません。
+- At 3, tap DROP to redeem an **Access Pass**: +20% damage for two new hostile rooms. Entering another new fight with an unclaimed ticket reduces Queue to 2 once; safe rooms and revisits do not. The Queue pauses while the pass is active.
 - **誕生権：** パスが3部屋分になります。
 
 **裏版：Please Retry（再試行してください）。** ❤💙💙、鍵1。ダメージ×0.9。
 - 戦闘中にDROPをタップすると、200ユニット以内で最も近い敵に2秒間の **リクエスト** を送ります（クールダウン3秒）。
-- リクエスト完了時にその敵がまだいれば、2倍ダメージに **リトライ** 1つにつき1倍を加えたダメージを与え、リトライを消費します（最大5倍）。先に死んだ場合はリトライを1つ得ます（最大3）。部屋を出るとリクエストは取り消されます。
-- **誕生権：** 失敗したリクエストでも近くの敵弾を1発消します。
+- At completion, a surviving target within 200 units and direct line of sight takes 2x damage plus 1x per **Retry**, consuming the stacks (max 5x). A connection timeout deals no damage and neither gains nor spends Retries; cooldown still applies. Early target death adds a Retry (cap 3). Leaving cancels the request.
+- **Birthright:** early target death/removal also removes one nearby enemy bullet; connection timeouts do not.
 
 ## コレクティブル
 
