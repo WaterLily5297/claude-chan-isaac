@@ -36,6 +36,10 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 
 No gameplay fix was bundled with the original audit because those findings needed semantic checks before code changes. The later W2 audit reproduced normal-Claude account transfer on live slot replacement and added transient owner isolation with failing-before regressions; [TESTING.md](TESTING.md) retains the precise scope, same-entity debt exception and native limits. W4.2 takes other confirmed defects individually. W4.3 expands native categories and W4.4 adds seeded mod-item combinations. W2/W3 completion tables should link findings to exact registered content and current EID/HUD rules. W6 owns serialization/performance review. Do not treat an empty or manually classified overlap list as engine acceptance.
 
+## Scheduled integration review (2026-10-27)
+
+The [review after #121-#124](HARDENING_2026-10-27.md) adds an item-filtered fixture loading both active modules. Twenty-eight supplied sequences preserve effects across other item callbacks and a target death; four wrong/missing-filter faults missed by the isolated suites are rejected. Existing source registrations are correct, so production code and this generated inventory stay unchanged. Actual native dispatch/order, charge processing and the F12 completion observer remain unverified.
+
 ## Evidence and limits
 
 Scanner fixtures cover comments, quoted/long strings, line preservation, callback priorities, multiline expressions, direct versus indirect/literal writes, similar field names, cache flags, selected mutators, direct/shared/dynamic state roots, multiple assignments, malformed lexical regions, deterministic output and stale-report detection. The Tungsten source case explicitly remains indirect. These tests validate the audit tool, not Isaac's semantics.
