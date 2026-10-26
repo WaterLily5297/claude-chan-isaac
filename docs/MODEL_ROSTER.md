@@ -6,13 +6,13 @@ The owner requested a new art pass and playable model-inspired mechanics on 2026
 
 ## Gameplay
 
-All 22 B1 feature revisions below are implemented in draft #102 and covered by offline regressions. They preserve baseline numerical benefits, require owner balance approval before merge and are not installed or engine-accepted. Full rules and baseline comparison: [DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md).
+All 22 B1 feature revisions below are implemented in owner-approved, merged PR #102 and covered by offline regressions. They preserve baseline numerical benefits and are installed in gameplay checkpoint ef7d2dd. Native gameplay and balance are not yet accepted. Full rules and baseline comparison: [DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md).
 
 All 22 forms use the shared DROP rule: short release with at most one pocket item. Multiple cards/pills/pocket actives disable the ability and leave native selection untouched. Inventory changes during a held gesture cannot rearm it; release first. Long holds remain native. Main/Schoolbag actives are outside this pocket count. This is source behavior; physical input acceptance is pending.
 
 The following are fictional gameplay interpretations, not a performance ranking or literal claims about products. All new interface text is English as requested by the owner.
 
-| Family | Normal form: B1 draft | Tainted form: B1 draft |
+| Family | Normal form: B1 | Tainted form: B1 |
 |---|---|---|
 | Claude | Usage and Appeals retain their original costs; later floors offer a marked-target-last review for the +0.2 account-age award | Tainted reviews require six combat seconds without attacking. Shooting pauses them; native zero-Quota attacks remain available. Suspension and Birthright retain their existing rules |
 | DeepSeek | Rice requires standing still; movement cancels and refunds its Bowl once without a meal reward. Other food lockouts stay separate | Tainted Peak reserves up to four Compute and returns it at the next Valley/floor within the total cap. Fork prices/output and the non-tear 1.3x rule remain unchanged; neither form uses proxy risk |

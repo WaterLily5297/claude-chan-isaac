@@ -4,35 +4,42 @@
 
 Updated 2026-10-26. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. This section is current; dated histories retain their original evidence scope.
 
-- **Current main:** [live main](https://github.com/WaterLily5297/claude-chan-isaac/tree/main); last fetched `654a8dc` (O4 #101 and O5 #103 merged; main CI passed). PR #100 is a superseded numerical draft and must not merge. [Draft #102](https://github.com/WaterLily5297/claude-chan-isaac/pull/102) implements one added condition for each of all 22 forms; balance approval is still required before merge. Verify live main and PRs before another branch.
-- **Reviewed gameplay source:** `f8b2b0b` includes PRs #93-#97. O4 additionally restores acquired native transformation costumes after leaving a mod form; that source fix is not installed or engine-accepted. O5 changes pose packing only. Draft #102 adds 22 conditions with offline regression coverage and is not merged or installed. Keep gameplay evidence tied to the tested installed commit.
-- **Installed manual-test build:** `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, installed on 2026-10-26. A fresh allowlisted backup preserved 433 old files and passed reread SHA-256 verification before replacement. All 443 installed tracked files matched canonical Git bytes before launch and after shutdown. No files were removed. Historical source hashes below are audit baselines, not current installation claims.
-- **Owner availability:** the owner authorized installation/testing, then said the desktop was unavailable and requested keeping the installed version. Preserve f8b2b0b; continue offline. The game is closed, audio restored to the fresh session snapshot, and all options key/value pairs match that snapshot. The checklist reply supplied no usable manual gameplay result; no item was accepted. Use the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md); unencountered cases may be reported as not tried.
-- **Evidence:** the installed version launched as Repentance+ v1.9.7.17.J460, but window recovery failed and captures were obscured by other apps. No gameplay keys, menu fresh start or ancestry probe ran. [Dated deployment/startup record](ENGINE_AUDIT_2026-10-26.md). Startup is not engine or visual acceptance.
-- **Offline gate:** 69 suites, 184 tracked Lua files on draft #102 (182 on main), five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
-- **Current queue:** M1/D2, O4 and O5 are merged. The owner redirected B1 to added character features; draft #102 preserves current coefficients and implements all 22 conditions, requiring approval before balance merge. O6 save audit/regressions and O7 a two-item proposal remain (O7 implementation needs approval). E2-E5 wait for owner availability. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
-- **Desktop gate:** before each engine block, obtain a fresh owner confirmation of being away from the keyboard for a stated duration. On user-input, missing-monitor or obscured-window errors, stop immediately; do not retry or send keys. Close only the process launched for that block and restore settings. One attempt per go-ahead; installed f8b2b0b must not be replaced without separate permission.
+- **Current main:** [live main](https://github.com/WaterLily5297/claude-chan-isaac/tree/main); latest gameplay merge `ef7d2dd` is owner-approved [PR #102](https://github.com/WaterLily5297/claude-chan-isaac/pull/102), including earlier O4 #101 and O5 #103. PR-head and merged-main CI passed. Subsequent changes in this checkpoint are documentation only. PR #100 remains superseded and must not merge. Fetch main and inspect open PRs before editing.
+- **Reviewed gameplay source:** `ef7d2dd` implements all 22 B1 conditions, O4 departure restoration and O5 pose packing. Those source/asset changes are now installed, with offline regression coverage but no new engine or visual acceptance. Keep older engine evidence tied to its observed build.
+- **Installed manual-test build:** gameplay checkpoint `ef7d2dded1f5d849c8a638a310074278a90e81c2`, installed on 2026-10-26. A fresh allowlisted backup preserved 443 old files and passed reread SHA-256 verification before replacement. All 451 installed tracked files matched canonical Git bytes. No paths were deleted. Documentation-only synchronization can follow without changing gameplay; the local deployment receipt pins the exact source SHA.
+- **Owner availability:** the owner approved merging #102 and downloading/installing it locally. Installation completed with the game closed; no game launch/input, settings changes or save access occurred. Agent-run engine testing still needs a fresh stated availability window. The earlier checklist reply supplied no usable gameplay result; use the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md) for this new build.
+- **Evidence:** #102 and merged main passed CI; the source gate passes 69 offline suites. The new installation has no gameplay observation. Historical f8b2b0b launched as Repentance+ v1.9.7.17.J460 but produced no gameplay keys, fresh starts or ancestry samples: [dated record](ENGINE_AUDIT_2026-10-26.md). Neither startup nor installation is engine acceptance.
+- **Offline gate:** 69 suites, 184 tracked Lua files, five XML files and deterministic assets. CI runs the same gate. Passing stubs do not prove native callbacks, animation, controller input, real continuation or playability.
+- **Current queue:** M1/D2, B1, O4 and O5 are merged; B1 rules were approved for merge and are installed. O6 save audit/regressions and O7 a two-item proposal remain (O7 implementation needs approval). E2-E5 wait for owner availability. No further child-laser/Parent/derived-shot billing PR without native E2 evidence.
+- **Desktop gate:** before each engine block, obtain a fresh owner confirmation of being away from the keyboard for a stated duration. On user-input, missing-monitor or obscured-window errors, stop immediately; do not retry or send keys. Close only the process launched for that block and restore settings. One attempt per go-ahead; the installed manual-test checkpoint must not be replaced again without owner authorization.
 
-## B1 revision: added character tradeoffs (2026-10-26; draft implementation)
+## B1 merge and installation (2026-10-26; native acceptance pending)
+
+The owner approved merging #102 and installing locally; it merged at ef7d2dd after successful PR-head CI, and merged-main CI passed.
+A fresh allowlisted backup preserved and reread-hash verified all 443 old files before replacement; all 451 new tracked files matched canonical Git bytes. No paths were deleted.
+The game remained closed. No launch, input, settings change, save access or native observation occurred; preserve this checkpoint for manual testing.
+O4, O5 and all 22 B1 conditions are installed. O6/O7 and E2-E5 remain; #100 is superseded. Exact private deployment/backup receipts stay local.
+
+## B1 revision: added character tradeoffs (2026-10-26; implemented and approved)
 
 The owner requested extra character features instead of reducing existing coefficients. Superseded draft #100 remains unmerged.
-[DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md) records all 22 implemented draft challenges, exact trigger/counterplay, original baseline values, migrations and native limits.
+[DIFFICULTY_FEATURES.md](DIFFICULTY_FEATURES.md) records all 22 implemented challenges, exact trigger/counterplay, original baseline values, migrations and native limits.
 The first eight conditions landed in draft #102 at 1422d81; the remaining fourteen add kill-order reviews, silence, Rice cancellation, reservation, target-choice penalties, angles, installation/build locks, stored direction, cones, speaker focus, task interruption and missed tickets. English HUD/dossiers/EID and current rules are synchronized; [TESTING.md](TESTING.md) records offline coverage and the native matrix.
-Obtain balance approval before merge. Installed f8b2b0b is preserved; O6/O7 and engine E2-E5 remain open. No game/runtime/settings access occurred in this mechanics unit.
+The owner subsequently approved merge and installation, recorded above. Implementation itself was offline; O6/O7 and engine E2-E5 remain open.
 
 ## O5: all-form pose review and Death packing (2026-10-26; offline)
 
 [POSE_REVIEW.md](POSE_REVIEW.md) lists all 22 forms, measured defects, deterministic preview commands and the shared-animation limits.
 Three Death cells still used a 58px fit alongside the corrected Hit cell; they now use their measured native envelopes/anchors. Llama's Death-start source crop also retains the previously clipped body.
 The new geometry check fails on all 66 old Death cells and passes after correction; only those three storage cells changed on each skin, with no redraw or native asset import.
-B1 status is maintained in Start here; #100 is superseded. Installed f8b2b0b is preserved; O6/O7 and engine acceptance remain open.
+B1 and current installation status are maintained in Start here; #100 is superseded. O6/O7 and engine acceptance remain open.
 
 ## O4: effect layers and native-form restoration (2026-10-26)
 
 [Source audit and engine cases](TESTING.md#o4-effect-layers-and-departure-restoration-2026-10-26-source-and-stubs-only) distinguish cleared costumes from native mechanics/effect entities.
 The departure helper now restores acquired native transformation costumes once; the new regression fails on aef6de9 and passes with the fix. Fixed mod looks stay unchanged.
 Wings, state-driven shield cues, Mega Mush and remaining departure layers still need engine observation; an allowlist is an owner visual-policy choice.
-No installation or engine session. Preserve f8b2b0b; B1 numerical draft #100 is held after the owner requested added gameplay tradeoffs.
+No installation or engine session occurred during O4. Its later deployment is recorded above; B1 numerical draft #100 remains superseded.
 
 ## Manual checklist and current records (2026-10-26)
 
@@ -63,13 +70,13 @@ The audit passed the 67-suite base gate; integration with merged O2 passes 68 su
 
 Let's Delve delegates to the native shovel; Six Seven grants a seeded six or seven blue flies. [Approved rules and remaining tests](MEME_BATCH_2.md).
 Registration, English EID/README text, original placeholder icon and offline callback coverage are included; no custom enemy or boss.
-The owner approved the exact rules; PR #95 merged at 178269b. The 68-suite gate and CI pass. It is included in installed f8b2b0b; engine acceptance is pending.
+The owner approved the exact rules; PR #95 merged at 178269b. The 68-suite gate and CI pass. It is included in the current installed build; engine acceptance is pending.
 
 ## O1: reserve multi-pocket DROP for native cycling (2026-10-26)
 
 The owner kept short DROP and chose to disable abilities with multiple pocket items. All 22 forms share the new guard; native input and long holds remain untouched.
 The prior source fails the new pocket regression; current tests cover all slots, inventory changes during gestures, rearming and Rice/co-op behavior. [Review and limits](DROP_POCKET_REVIEW.md).
-PR #94 passed source/CI checks and is included in installed f8b2b0b. Physical keyboard/controller E4 and UI readability remain pending.
+PR #94 passed source/CI checks and is included in the current installed build. Physical keyboard/controller E4 and UI readability remain pending.
 
 ## D1: compact current guidance (2026-10-26)
 
@@ -98,8 +105,8 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 
 ## Unfinished tasks
 
-1. **O1: DROP tap and native pocket cycling.** The owner selected the multi-pocket restriction; implementation and regression are in PR #94 and [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md). Merged at ef42b13 and included in installed f8b2b0b; source/CI verification is complete. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
-2. **O2: meme batch 2.** Let's Delve and Six Seven are merged in #95 under the owner-approved rules. See [the design and native limits](MEME_BATCH_2.md). Both extras are included in installed f8b2b0b; engine cases remain pending. Feel the AGI remains deferred.
+1. **O1: DROP tap and native pocket cycling.** The owner selected the multi-pocket restriction; implementation and regression are in PR #94 and [DROP_POCKET_REVIEW.md](DROP_POCKET_REVIEW.md). Merged at ef42b13 and included in the current installed build; source/CI verification is complete. Preserve native cycling and long-hold dropping. E4 must later test physical keyboard/controller input with a card and pocket active.
+2. **O2: meme batch 2.** Let's Delve and Six Seven are merged in #95 under the owner-approved rules. See [the design and native limits](MEME_BATCH_2.md). Both extras are included in the current installed build; engine cases remain pending. Feel the AGI remains deferred.
 3. **O3: vanilla compatibility audit.** Source audit complete: see the O3 table in TESTING.md. No gameplay change was justified. E4/E5 must observe the listed transformation, bag controls, reroll and shield cases before further fixes.
 4. **New-item checklist.** Register module/constants/XML with ASCII pickup text; wire main in the right callback order; add EID, deterministic placeholder icon and pool entry; update `tests/eid_test.lua` counts, regenerate `docs/ITEMS.md`, update all three READMEs and relevant design records. Native systems first; new extras do not count again toward the completed fifty.
 5. **Art and story.** Nine tainted sets currently derive deeper colors from normal art. Distinct hand-designed replacements and Chinese/Japanese story text remain owner decisions. Improve anatomy, side profiles and special poses from observed failures. Workshop is not authorized.
@@ -108,7 +115,7 @@ Compatibility fixes through #91 are merged in source, including fire-rate scalin
 
 | Unit | Required observation | Status |
 |---|---|---|
-| E1 | Preserve the current installation; a later requested replacement needs a fresh allowlisted backup and reread-hash check. | Complete for `f8b2b0b`, 443 files verified; preserve it. |
+| E1 | Preserve the current installation; a later requested replacement needs a fresh allowlisted backup and reread-hash check. | Complete for gameplay checkpoint `ef7d2dd`, 451 files verified; preserve it. |
 | E2 | One ancestry probe: Parent, SpawnerEntity and FrameCount at init/update for Tech X splits, Prism reflections, Trisagion and Brimstone/Tech combinations. | Observer installed; attempted session produced no samples. Await owner availability; prerequisite to more child-billing work. |
 | E3 | Real menu fresh starts and first room for every normal/tainted form: stats, pockets, HUD, fixed look, dossier, story and errors. | Waiting for owner; type-change smoke does not satisfy this. |
 | E4 | Physical keyboard/controller DROP taps and holds, card/pill plus pocket active, pause, disabled controls, room changes, death and reassignment. | Waiting for owner; O1 stubs cannot accept native input. |
@@ -123,7 +130,7 @@ For an authorized run: follow the owner's E:/ba backup workflow before replaceme
 - **Input:** PR #94 disables abilities when the observer sees multiple pocket items; native timing and inventory changes between samples remain E4 cases. Meal hooks block directional shooting, not every charged/programmatic/familiar attack.
 - **Native attacks:** Incubus/Twisted Pair timing, melee hitbox lifetime, knife flight, Epic Fetus attribution, Ludovico steering, multi-shot allowance limits and Peak's 1.3x non-tear boost require engine cases. Modeled Parent ordering is not observed engine evidence.
 - **Composition and saves:** CollisionDamage writer order with other mods, native save/exit order, exit during knife flight, Seahorse wisps, player-type changes and co-op reassignment remain open. Agentic's inventory/cache latch updates on the next player-effect callback; consequences require native observation.
-- **Draft mechanics:** #102's migrations and conditional rewards pass supplied offline callbacks only. Legacy unowned meal timers are not cancelled as Rice; actual FireDelay and kill ordering remain unobserved. GPT attack history lasts for the current check, without a hard per-room cap. See DIFFICULTY_FEATURES.md and the B1 native matrix before approving or deploying.
+- **New mechanics:** #102's migrations and conditional rewards pass supplied offline callbacks only. Legacy unowned meal timers are not cancelled as Rice; actual FireDelay and kill ordering remain unobserved. GPT attack history lasts for the current check, without a hard per-room cap. See DIFFICULTY_FEATURES.md and the B1 native matrix before claiming native acceptance.
 - **Environment:** historical Stackable Items v2 load errors belong to that mod and must not be silently claimed fixed here.
 
 ## Evidence boundaries and history

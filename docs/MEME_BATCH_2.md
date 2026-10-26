@@ -1,6 +1,6 @@
 # Meme batch 2: approved rules, engine acceptance pending
 
-Prepared offline on main `ef42b13`. The owner approved these exact rules and PR #95's merge on 2026-10-26; it merged at `178269b`. This approval does not establish in-game balance or compatibility. Both effects are included in installed `f8b2b0b`; installation is not native acceptance. Preserve that build at the owner's request.
+Prepared offline on main `ef42b13`. The owner approved these exact rules and PR #95's merge on 2026-10-26; it merged at `178269b`. This approval does not establish in-game balance or compatibility. Both effects remain included in the current installed gameplay checkpoint `ef7d2dd`; installation is not native acceptance. Preserve that checkpoint during source follow-ups.
 
 | Entry | Approved rule | Trade-off |
 |---|---|---|
