@@ -13,7 +13,7 @@ local BUILDS = {
     {name="Balanced", damage=1, interval=1},
 }
 local AWARD_CAP = 3
-local AWARD_DAMAGE, BIRTHRIGHT_DAMAGE = 0.2, 0.3
+local AWARD_DAMAGE, BIRTHRIGHT_DAMAGE = 0.15, 0.25
 local ALL_BUILDS = 7 -- One bit per build.
 
 local function integer(v, minimum, maximum)

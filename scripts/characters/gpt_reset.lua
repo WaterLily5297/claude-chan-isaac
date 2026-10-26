@@ -9,7 +9,7 @@ local Reset = {}
 
 local CREDITS, BIRTHRIGHT_CREDITS = 80, 100
 local CLEARS_PER_RESET = 3
-local FULL_SEND_DAMAGE = 1.5
+local FULL_SEND_DAMAGE = 1.4
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)

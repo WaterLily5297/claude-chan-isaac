@@ -1,5 +1,7 @@
 # Balance sheet
 
+Character figures include the unapproved B1 candidate; the full baseline comparison is in [DIFFICULTY_PASS.md](DIFFICULTY_PASS.md). Item figures are unchanged. Installed `f8b2b0b` retains the baseline character values.
+
 Every tunable number in the mod, next to vanilla reference points. **Nothing here has been playtested yet.** Use this during the in-game test to decide what to change, then edit the constant named in the "Where" column.
 
 ## Vanilla reference (Repentance)
@@ -57,10 +59,10 @@ These are from memory (the wiki is blocked from this environment), except Haemol
 
 | Character | Numbers | Watch for | Where |
 |---|---|---|---|
-| DeepSeek-chan | Damage ×0.9; Deep Think +0.2× per second idle, max ×2 after 5 s; Server busy 3%/enemy, max 25% | No risk at all may make her runs easier than Claude-chan's; Server busy may feel bad in big rooms | `deepseek_chan.lua` `THINK_*`, `BUSY` |
-| Tainted DeepSeek-chan | Damage ×0.8; paid volley forks 2 × 50% (≈ ×1.6 if all hit); Compute 12 start, cap 24 (32 Birthright); cost 2 Valley / 4 Peak; Valley +3/s in combat while not firing; 12 s phases | Multi-shot items fork every pellet for one payment; Peak may feel empty; Saving may be rarely worth it | `deepseek_peak.lua` constants |
+| DeepSeek-chan | Damage ×0.9; Rice First Thought +0.18× per second idle, max ×1.9 after 5 s | No proxy risk; Rice rewards stopping attacks. No random shot deletion. | `deepseek_rice.lua` Thought policy |
+| Tainted DeepSeek-chan | Damage ×0.8; paid volley forks 2 × 50% (≈ ×1.6 if all hit); Compute 12 start, cap 24 (32 Birthright); cost 2 Valley / 4 Peak; Valley +2.5/s in combat while not firing; 12 s phases | Multi-shot items fork every pellet for one payment; Peak may feel empty; Saving may be rarely worth it | `deepseek_peak.lua` constants |
 | Claude-chan (One More Day) | 4 usage per volley (8 with Swarm); drain 10/s when not firing; Limited 0.4× for 5 s; Appeals start 1, cap 2, +1 per 2 unique clears, −40 usage each | Faster idle drain may make Limited rare; multi-shot volleys now cost the same as one tear | `claude_chan.lua` constants |
-| Tainted Claude-chan | Damage ×1.25; 220 Quota per floor (1 per volley), then Suspended 0.5x with Page reviews (+60) | Long floors (Womb+) may run out; boss rooms after the quota | `claude_chan_b.lua` `QUOTA`, `REVIEW_QUOTA` |
-| Claude-chan account age | +0.2 damage per floor, max +1.6 | Rewards clean play; suspension reset may snowball with ×0.75 | `claude_chan.lua` `AGE_*` |
+| Tainted Claude-chan | Damage ×1.2; 220 Quota per floor (1 per volley), then Suspended 0.5x with Page reviews (+60) | Long floors (Womb+) may run out; boss rooms after the quota | `claude_chan_b.lua` `QUOTA`, `REVIEW_QUOTA` |
+| Claude-chan account age | +0.15 damage per floor, max +1.2 | Rewards clean play; suspension reset may snowball with ×0.75 | `claude_chan.lua` `AGE_*` |
 | Lunch Break | 6 charges: +1 red heart, enemies slowed 3 s, no shooting 3 s | Heal per room-clear may be strong | `lunch_break.lua` |
 | 529 Overloaded | Shooting allowed during the 2 s outage at 50% | Now strictly good; may need a downside | `overloaded.lua` `MANUAL_DAMAGE` |

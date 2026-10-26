@@ -86,18 +86,19 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 
 ## 角色
 
+B1 candidate: the small numerical changes below await owner approval; installed `f8b2b0b` retains the old values. See [the 22-form comparison and proposal](docs/DIFFICULTY_PASS.md).
 血量记法：❤ = 红心，💙 = 魂心。没有特别说明时，普通形态初始为 ❤❤💙 和1个炸弹，里形态初始为 ❤💙💙 和1把钥匙（里Claude娘改为1个炸弹，里DeepSeek娘两者都没有）。"伤害×N"是对最终伤害的倍率。每个形态都列出了长子权（Birthright）的强化效果。
 
 ### Claude娘（Claude）
 
 **普通形态：One More Day（再用一天）。** ❤❤💙，1炸弹。射程+1.5（长上下文）、弹速+0.2、移速−0.1，橙色眼泪。口袋道具：**Ban Hammer（封号锤）**。
-- **用量：** 每次攻击增加4用量（持有Subagent Swarm时为8）。游戏原生的所有武器都会计费：每轮眼泪、每次激光开始发射和每个胎儿博士炸弹，持续光束或操控中的卢多维科眼泪每0.2秒，每次掷刀、每次近战挥击和每发史诗胎儿火箭。跟班和衍生的眼泪免费。不攻击时每秒减少10。达到100时进入 **Limited（限额中）**：5秒内所有武器伤害降为40%，之后用量条重置。
+- **Usage:** each paid volley adds 4 usage (8 with Subagent Swarm), billed for every native weapon: each volley of tears, each laser start and Dr. Fetus bomb, each further 0.2 seconds of a held beam or steered Ludovico tear, each knife throw, each melee swing and each Epic Fetus rocket. Familiars and derived tears are free. Not firing drains 10 per second. At 100 she is **Limited**: every weapon deals 40% damage for 5 seconds, then the meter resets.
 - **申诉（Appeal）：** 初始1次（上限2），每2次首次战斗清理获得1次。轻按DROP消耗1次，减少40用量。不能解除正在生效的Limited，用量为0时会被拒绝而不会浪费。
-- **账号满月：** 每到达一层且未被封禁，伤害+0.2（最多+1.6）。被封禁就清零（"又封了"）。多人合作时每位Claude玩家有各自的账号年龄。
+- **Account age:** +0.15 damage for every floor reached without being Suspended (max +1.2). A suspension resets it ("Banned again"). Each Claude player has their own account age in co-op.
 - **风控：** 受上述风控值影响。
 - **长子权：** 每层第一次被封禁时保留账号年龄。
 
-**里形态：Appeal Pending（申诉审核中）。** ❤💙💙，1炸弹。伤害×1.25、射程+1.5、弹速+0.2。红发配黑金色连衣裙。口袋道具：**Banked Reset（储存的重置）**。
+**Tainted: Appeal Pending.** ❤💙💙, 1 bomb. Damage ×1.2, range +1.5, shot speed +0.2. Crimson hair with a black-and-gold dress. Pocket item: **Banked Reset**.
 - **配额：** 每层开始时有220配额和2张申诉页（上限2）。每次攻击消耗1配额（持有Subagent Swarm时为2），与普通Claude娘一样所有武器都计费。
 - 配额为0时 **被封禁**：伤害×0.5。
 - 封禁期间在战斗中轻按DROP，消耗1张申诉页开始 **6秒审核**，结束后恢复60配额。离开房间会取消审核。
@@ -109,7 +110,7 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 **普通形态：Rice First（先吃饭）。** ❤❤💙，3硬币，1钥匙。伤害×0.9，蓝色眼泪。口袋道具：**Lunch Break（去吃饭了）**。
 - **直连：** 不需要代理，所以只有DeepSeek的对局没有IP、没有风控，也没有风控难度。
 - **米饭：** 初始1碗（上限2），每2次首次战斗清理获得1碗。轻按DROP吃1碗，用餐2秒（不回血）。吃完后思考值全满，并在6秒内移速+0.15。
-- **思考：** 停止攻击可积累最多5秒思考，下一次攻击伤害最高×2（显示"Thought for N s"）。眼泪、松开后的硫磺火环、投出的刀和胎儿博士炸弹会记录发射时的思考值；持续命中的光束和可操控眼泪使用0.2秒的短窗口。史诗胎儿、近战、跟班和延迟爆发仍属实验性支持。
+- **Thought:** stop attacking to store up to 5 seconds of Thought. Your next attack deals up to ×1.9 damage ("Thought for N s"). Tears, released Brimstone rings, thrown knives and Dr. Fetus bombs take a snapshot of Thought. Repeated-hit beams and controlled tears use short 0.2-second windows. Epic Fetus, melee, familiars and delayed bursts are still experimental.
 - 不会随机吞掉眼泪，也不会挂机充能。
 - **长子权：** 用餐只需1秒。
 
@@ -117,7 +118,7 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 - 战斗中 **谷时** 12秒和 **峰时** 12秒交替。空房间里计时暂停，每层从谷时开始。
 - **算力（Compute）：** 初始12，上限24（长子权为32），跨层保留。
 - 每次发射眼泪会在±12°额外分叉出2发 **fork**（50%伤害）。谷时消耗2算力，峰时消耗4。算力不足时只跳过分叉，主眼泪一定会发出。
-- 谷时在战斗中不射击时每秒恢复3算力。
+- In Valley, she recovers 2.5 Compute per second in combat while not firing.
 - 轻按DROP切换 **Forks On／Saving（节省）**（1秒冷却）。
 - **错峰优惠：** 非眼泪攻击与眼泪一样消耗算力（谷时2，峰时4），并以×1.3伤害命中。包括激光开始发射和持续光束每0.2秒、掷刀、近战挥击、胎儿博士炸弹和史诗胎儿火箭。在Saving模式下或算力不足时，按原生伤害命中，不消耗算力。
 - **长子权：** 算力上限32。
@@ -125,13 +126,13 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 ### GPT娘（GPT）
 
 **普通形态：Same Name, Smaller Brain（名字一样，脑子变小）。** ❤❤💙，1炸弹。
-- **Verified（已验证）：** 伤害×1.15。首次战斗清理会累积Routing，达到3时下一个战斗房间以 **Fallback（降级）** 开始（伤害×0.8）。
+- **Verified:** ×1.1 damage. Unique combat clears add Routing. At 3 Routing, the next combat room starts in **Fallback** (×0.8 damage).
 - 降级时轻按DROP，把最近的敌人标记为 **Sanity Check（智力检测）**。用自己的攻击分别命中它3次，或击杀它，即可恢复Verified。每个房间只能检测一次，离开房间即失败。进入新的一层会恢复Verified。
 - **长子权：** 智力检测只需命中2次。
 
 **里形态：Reset Watcher（蹲重置）。** ❤💙💙，1钥匙。
 - **额度：** 每局80（上限80），跨层保留。
-- 轻按DROP切换 **Standard（免费）** 和 **Full Send**（伤害×1.5，每次攻击消耗1额度，与Claude娘的用量一样所有武器都计费）。额度为0时回到Standard。
+- Tap DROP to toggle **Standard** (free) and **Full Send** (×1.4 damage, 1 Credit per paid attack, billed on every weapon like Claude-chan's usage). At 0 Credits she drops back to Standard.
 - 每3次首次战斗清理 **存下一次Tibo重置**；存着的时候房间进度暂停。下一次轻按DROP领取它并补满额度。
 - **长子权：** 上限和补充量提高到100。
 
@@ -139,73 +140,73 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 
 **普通形态：Nano Banana。** ❤❤💙，1炸弹。
 - **颜料：** 初始2（上限3），每次首次战斗清理获得1。
-- 轻按DROP消耗1份，给180单位内最近的敌人涂色8秒，你对它的伤害×1.2。由你击杀时会留下 **香蕉皮**，减速敌人4秒。每位玩家同时只有一个标记和一块香蕉皮。Boss也可以涂色。
-- **长子权：** 对涂色敌人伤害×1.3。
+- Tap DROP to spend one and paint the nearest enemy within 180 units for 8 seconds. Your damage to it is ×1.15. If you kill it, it leaves a **banana peel** that slows enemies for 4 seconds. One mark and one peel per player. Bosses can be painted.
+- **Birthright:** ×1.25 damage to the painted enemy.
 
 **里形态：One More Edit（再改一版）。** ❤💙💙，1钥匙。伤害×0.9。
 - 轻按DROP，对180单位内最近的敌人开始6秒的 **编辑链**。用自己的攻击分别命中3次，依次推进 **Crop（裁剪）→ Recolor（调色）→ Export（导出）**。
-- Export时额外造成一次相当于你伤害2倍的脉冲。每个房间只能完成一次。
+- Export deals one extra pulse of 1.8× your damage. One completed chain per room.
 - 再次轻按会重新开始并清除进度；目标提前死亡不算完成。
 - **长子权：** 编辑链延长到10秒。
 
 ### Grok娘（Grok）
 
 **普通形态：Is This True?（这是真的吗？）** ❤❤💙，1炸弹。
-- 每个有敌人的房间一次，轻按DROP对220单位内最近的敌人进行6秒 **事实核查**：你对它的伤害×1.3，对其他敌人×0.9。
+- Once per hostile room, tap DROP to **fact-check** the nearest enemy within 220 units for 6 seconds. Your damage is ×1.25 to it and ×0.9 to everything else.
 - 用自己的攻击分别命中它3次或击杀它即 **核查完成**：倍率结束，本房间内移速+0.15。超时则什么也得不到。
 - **长子权：** 核查完成时清除附近最多3发敌弹。
 
 **里形态：Quote Without Reading（不看就转发）。** ❤💙💙，1钥匙。伤害×0.9。
 - 轻按DROP **引用** 220单位内最近的敌人6秒（10秒冷却）。
 - 用自己的攻击命中 *其他* 敌人会累积 **Ratio（被反驳值）**（每次攻击1点，最多3）。
-- 6秒结束时，被引用的敌人每点Ratio受到一次1倍伤害的脉冲。如果它提前死亡，Ratio作废，且不能更换目标。
+- When the 6 seconds end, the quoted enemy takes one 0.9× damage pulse per Ratio. If it dies first, the Ratio is wasted, and you cannot retarget.
 - **长子权：** 被引用的敌人提前死亡时，一半Ratio转移到最近的存活敌人身上。
 
 ### 通义千问娘（Qwen）
 
 **普通形态：Everyone's Base Model（大家的基座模型）。** ❤❤💙，1炸弹。
 - **适配器：** 初始1（上限2），每2次首次战斗清理获得1。
-- 轻按DROP选择下一个适配器：**Range**（射程+60）、**Tempo**（射击间隔×0.9）、**Power**（伤害×1.1）。进入新的有敌房间时消耗1个适配器，在该房间内获得对应效果。
+- Tap DROP to pick the next adapter: **Range** (+60 range), **Tempo** (×0.92 fire interval) or **Power** (×1.08 damage). Entering a new hostile room spends one Adapter to apply that bonus for the room.
 - **长子权：** 适配器上限3。
 
 **里形态：Final Final Fine-Tune（最终最终版微调）。** ❤💙💙，1钥匙。
 - 在已清理的房间轻按DROP切换构建：**Heavy**（伤害×1.3、射击间隔×1.2）、**Tiny**（伤害×0.85、间隔×0.8）或 **Balanced**。有敌人时构建锁定。
-- 用三种构建分别首次清理战斗房间，即可获得 **本层伤害+0.2**，最多三次。重复同一构建不计数。进入新的一层会重置进度和加成。
-- **长子权：** 每次+0.3。
+- Clear unique combat rooms with all three builds to get **+0.15 damage for the floor**, up to three times. Repeating a build does not count. A new floor resets progress and the bonus.
+- **Birthright:** +0.25 per award.
 
 ### Llama娘（Llama）
 
-**普通形态：Please Stay Open（请继续开源）。** ❤❤💙，1炸弹。伤害×0.95。
+**Normal: Please Stay Open.** ❤❤💙, 1 bomb. Damage ×0.92.
 - **发布：** 初始1（上限2），每2次首次战斗清理获得1。
 - 轻按DROP消耗1次，每位存活玩家（最多4人）获得2只 **蓝苍蝇**；单人时获得4只。
 - **长子权：** 自己额外获得2只。
 
 **里形态：Still Waiting（还在等）。** ❤💙💙，1钥匙。伤害×0.9。
 - 每次首次战斗清理增加1点 **期待（Hype）**（最多3）。
-- 轻按DROP消耗全部期待，召唤一个固定不动的 **帮手**：每点期待持续4秒，每秒向最近的敌人发射一发0.5倍伤害的原生眼泪。同时只有一个帮手，新召唤会替换旧的，离开房间会消失。
+- Tap DROP to spend all Hype on a stationary **helper** that lasts 4 seconds per Hype and fires one 0.45× native tear per second at the nearest enemy. One helper at a time: a new one replaces the old, and leaving the room removes it.
 - **长子权：** 每点期待持续5秒。
 
 ### Mistral娘（Mistral）
 
 **普通形态：Le Chat（猫）。** ❤❤💙，1炸弹。移速+0.1。
 - 边射击边移动2秒可蓄出一次 **飞扑（Pounce）**；站着不动1秒会失去。
-- 轻按DROP向前扑击：对80单位直线上的每个敌人造成一次2倍伤害。会被墙挡住，冷却3秒。
+- Tap DROP to swipe forward: 1.8× damage once per enemy in an 80-unit line. Walls block it, with a 3-second cooldown.
 - **长子权：** 距离延长到110单位。
 
 **里形态：Le Gros Chaton（大猫猫）。** ❤💙💙，1钥匙。移速−0.1，伤害×0.9。
 - 不射击并站立2秒可烤好一根 **法棍**（最多2根）。
-- 轻按DROP消耗1根，向前方发出缓慢的 **冲击波**：前进120单位，对每个敌人造成一次2.5倍伤害。会被墙挡住，冷却2秒。
+- Tap DROP to spend one on a slow forward **shockwave** that travels 120 units and deals 2.25× once per enemy. Walls stop it, with a 2-second cooldown.
 - **长子权：** 1.5秒就能烤好法棍。
 
 ### 豆包娘（Doubao）
 
 **普通形态：Sorry, You're Right（抱歉，您说得对）。** ❤❤💙，1炸弹。
 - 每个房间第一次被敌人打中时获得一个持续6秒的 **道歉** 标记。自伤、假伤害和献血机等不计。
-- 轻按DROP使用：100单位内的敌人减速2秒，并清除附近最多4发敌弹。不会返还血量。
+- Tap DROP to spend it: enemies within 100 units are slowed for 1.5 seconds, and up to 4 nearby enemy bullets are removed. It does not refund health.
 - **长子权：** 标记持续到离开房间。
 
 **里形态：I'll Do It Again（下次还敢）。** ❤💙💙，1钥匙。
-- 就绪时轻按DROP：6秒 **自信满满（Confident）**（伤害×1.35），然后4秒 **道歉（Apology）**（×0.85），之后再次就绪。
+- When ready, tap DROP for 6 seconds of **Confident** (×1.3 damage), then 4 seconds of **Apology** (×0.85), then ready again.
 - 计时只在有敌人的房间中进行。自信满满期间被打中会提前结束并进入道歉。
 - **长子权：** 道歉只持续3秒。
 
@@ -213,25 +214,26 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 
 **普通形态：Another Slide Deck（又一份PPT）。** ❤❤💙，1炸弹。
 - 每次首次战斗清理获得1张 **幻灯片**（上限6）。
-- 轻按DROP消耗3张，向220单位内最近的3个敌人 **做汇报**：4秒内它们被减速，并且受到你的伤害+15%。没有听众时不消耗。
+- Tap DROP to spend 3 and **present** to the three nearest enemies within 220 units: for 4 seconds they are slowed and take +12% damage from you. If there is no audience, nothing is spent.
 - **长子权：** 汇报只需2张。
 
 **里形态：You Are the Manager（你就是经理）。** ❤💙💙，1钥匙。伤害×0.85。
-- 战斗中轻按DROP，给220单位内最近的未分配敌人 **派任务**。每个任务每2秒造成一次0.6倍伤害的脉冲，共3次。
+- In combat, tap DROP to **assign a task** to the nearest unassigned enemy within 220 units. Each task deals three 0.55× pulses, two seconds apart.
 - 同时最多3个任务，每个房间最多9次脉冲。离开房间会取消任务，已用的预算不返还。
-- **长子权：** 脉冲伤害0.7倍。
+- **Birthright:** pulses deal 0.65×.
 
 ### 智谱GLM娘（GLM）
 
 **普通形态：Number in Queue（排队中）。** ❤❤💙，1炸弹。
 - 每次首次战斗清理推进 **队列**（最多3）。
-- 达到3时轻按DROP兑换 **通行证**：接下来两个新的有敌房间伤害各+20%。通行证生效期间队列暂停，重复进入房间既不消耗也不叠加。
+- At 3, tap DROP to redeem an **Access Pass**: +15% damage in each of the next two new hostile rooms. The Queue pauses while the pass is active, and revisits neither spend nor stack it.
 - **长子权：** 通行证持续3个房间。
 
 **里形态：Please Retry（请重试）。** ❤💙💙，1钥匙。伤害×0.9。
 - 战斗中轻按DROP，对200单位内最近的敌人发出一个2秒的 **请求**（3秒冷却）。
-- 请求完成时它如果还在，就受到2倍伤害，每层 **重试** 再加1倍，并消耗所有重试（最多5倍）。如果它提前死亡，获得1层重试（最多3）。离开房间会取消请求。
+- If it is still there when the request finishes, it takes 1.8× damage plus 1× per **Retry** stack, which are consumed (max 4.8×). If it dies first, you gain a Retry (max 3). Leaving the room cancels the request.
 - **长子权：** 请求失败时也会清除附近1发敌弹。
+
 
 ## 收藏品
 
@@ -444,7 +446,7 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 以下是源码修复，未替换已安装的 `28fed37` 手动测试版。离线检查不能证明游戏原生回调的时序或实际游玩表现。
 
 - **子激光：** 普通Claude用量、里Claude配额和里GPT的Full Send点数现与Opus及共享观察器一致：直接 `Parent` 为另一道激光的子激光不计费。主攻击起始和后续符合条件的主攻击窗口仍照常计费。原生父级归属和时序仍待测试。
-- **里Llama的帮手：** Still Waiting保留固定发射位置、持续时间和原生0.5×眼泪。帮手不再花费Opus硬币、消耗待触发的攻击加成或触发扩展道具的付费攻击效果。主攻击与Summary Stapler不变，待实机确认。
+- **Tainted Llama helper:** the candidate keeps its stationary origin, duration and derived attack accounting, with 0.45x native tears. Helper shots do not spend Opus coins, consume attack primes or trigger paid-attack effects. Primary shots and Summary Stapler keep their accounting. Engine acceptance is pending.
 - **其他帮手攻击：** Please Retry和One More Finger不再推进Opus每十次攻击的扣币计数，也不消耗待触发加成。普通攻击与Summary Stapler仍计数。原生回调时序待测试。
 - **Consensus Coin：** 属于玩家的跟班投射物计入跟班伤害，与同一玩家的另一类有效来源组合可触发混合伤害脉冲。仅有跟班武器仍算一类，也不会消耗待触发攻击加成；原生归属判断待测试。
 - **The Battery：** 消耗储存的第二格充能现可触发Base Model、Please Come Back和Access Pass。费用与奖励不变，原生时序及特殊生命充能池仍待测试。

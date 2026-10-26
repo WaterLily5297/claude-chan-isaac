@@ -16,7 +16,7 @@ local COOLDOWN_FRAMES = 60
 local WAVE_STEP = 4 -- Units per frame; full travel takes one second.
 local WAVE_TRAVEL = 120
 local HALF_WIDTH = 24
-local DAMAGE = 2.5
+local DAMAGE = 2.25
 
 local function fresh()
     return {version=1, baguettes=0}

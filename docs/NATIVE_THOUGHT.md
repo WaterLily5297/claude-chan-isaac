@@ -1,6 +1,6 @@
 # Native Thought attack adapters
 
-This document describes the integrated normal DeepSeek Thought adapters in `scripts/characters/thought_attacks.lua`. The current installed manual-test checkpoint is `220d542`, including PRs #89 and #90. BACKLOG-LASER-INIT-01 is a later source correction and is not installed. See HANDOFF.md and the local receipt for exact source/runtime evidence. Agent-run engine testing remains deferred; no engine acceptance is claimed. Existing 0.9x base damage and Rice meal rules remain in place, and attacks use native weapon entities.
+This document describes the integrated normal DeepSeek Thought adapters in `scripts/characters/thought_attacks.lua`. The installed manual-test checkpoint is `f8b2b0b`, including PRs #89-#91. B1 proposes a Thought maximum of 1.9x rather than 2x, with the same charge and window timing; the candidate is not installed. Existing paid save windows up to 2x retain only their saved remaining time. See HANDOFF.md and the local receipt for exact source/runtime evidence. Agent-run engine testing remains deferred; no engine acceptance is claimed. Existing 0.9x base damage and Rice meal rules remain in place, and attacks use native weapon entities.
 
 ## Current source rules
 

@@ -2,6 +2,14 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed manual-test checkpoint is `f8b2b0bbd1267a37c2c299dd1c54c4ca9a739f79`, including PRs #93-#97. The owner-authorized 2026-10-26 deployment followed a fresh allowlisted, reread-hash-verified backup of 433 old files; all 443 installed tracked files matched canonical Git bytes, including a second check after shutdown. Repentance+ v1.9.7.17.J460 launched, but window/input conflicts prevented gameplay testing. No ancestry samples or fresh starts were recorded. The game is closed and settings restored. The owner then requested preserving this installation while unavailable; continue offline. Consult HANDOFF.md and ENGINE_AUDIT_2026-10-26.md. Installation/startup are not engine acceptance. Older installed-version statements below remain historical.
 
+## B1-DIFFICULTY-01 (2026-10-26; offline candidate, approval pending)
+
+Baseline aef6de9 and installed f8b2b0b share gameplay. [DIFFICULTY_PASS.md](DIFFICULTY_PASS.md) records starting health/pickups/stats, baseline loops, vanilla comparisons and 22 proposed changes. The full candidate gate passes 69 suites, 182 tracked Lua files, five XML files and deterministic assets. No game version was exercised for B1; the candidate is not installed.
+
+All 22 updated real-module character suites fail against an isolated aef6de9 export on the expected old numerical value and pass the candidate. Existing timing, resource, attribution, co-op, save and input assertions remain. Native Thought/Swarm/helper and billing tests change only expectations for the new factors; no derived-shot implementation changes. New boundary assertions cover the eight-floor Claude cap, repeat caches, Valley frame 11 versus 12, legacy recovery remainder and expiry of a saved old 2x Thought window. EID tests pin all 22 values in all three registrations and the numeric normal dossiers.
+
+Private logs: B1-old-expectations.log, B1-baseline-differential.json and B1-candidate-gate.log. These are stub executions, not native save or balance evidence. The checklist response supplied no usable manual result. Owner approval must precede merge; preserve the current installation. After a separately authorized deployment, repeat manual item 14 per tested form, ordinary-run resource cycles, Birthright, native weapons and save/continue. E2-E5 remain pending.
+
 ## M1/D2: owner reporting and current-record consistency (2026-10-26; documentation only)
 
 MANUAL_TEST_CHECKLIST.md supplies 14 checks and explicit OK criteria for one or two ordinary runs, including current difficulty feedback. It does not claim the unapproved difficulty pass is installed. Current records separate live main, reviewed gameplay and installed f8b2b0b; obsolete installation claims were removed without editing history files. The full offline gate is required before commit; no additional game session is performed.

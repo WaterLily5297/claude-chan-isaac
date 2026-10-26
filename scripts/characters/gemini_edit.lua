@@ -11,7 +11,7 @@ local BASE_DAMAGE = 0.9
 local RADIUS = 180
 local CHAIN_FRAMES, BIRTHRIGHT_FRAMES = 180, 300 -- Six seconds; ten with Birthright.
 local STEPS = {"Crop", "Recolor", "Export"}
-local PULSE = 2
+local PULSE = 1.8
 
 local function fresh()
     return {version=1}

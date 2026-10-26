@@ -160,9 +160,9 @@ paused=true; down[0]=true; tick(); paused=false; down[0]=false; tick(); assert(s
 
 -- Entering a new hostile room spends one adapter on the selection, for that room only.
 enter(2,true); assert(state().adapters==0 and state().active==2)
-stats(p,10,8,100); stats(q,10,9,160) -- the partner spends its own Range pick
+stats(p,10,8.2,100); stats(q,10,9,160) -- the partner spends its own Range pick
 assert(hud()=="Qwen-chan: Adapters 0/2  Next Tempo  Active Tempo",hud())
-tap(p); stats(p,10,8,100); assert(hud()=="Qwen-chan: Adapters 0/2  Next Power  Active Tempo","changing the next pick keeps the active one")
+tap(p); stats(p,10,8.2,100); assert(hud()=="Qwen-chan: Adapters 0/2  Next Power  Active Tempo","changing the next pick keeps the active one")
 enter(3,true); stats(p,10,9,100); assert(state().active==nil,"no adapter means normal stats")
 
 -- Two unique combat clears earn an adapter; re-entry and peaceful rooms do not.
@@ -170,8 +170,8 @@ finish(); fire("MC_PRE_SPAWN_CLEAN_AWARD"); assert(state().clears==1)
 enter(4,false); fire("MC_PRE_SPAWN_CLEAN_AWARD"); assert(state().clears==1,"a peaceful room is not a clear")
 enter(3,true); finish(); assert(state().clears==1 and state().adapters==0,"re-entering a seen room neither spends nor farms")
 enter(5,true); finish(); assert(state().adapters==1 and state().clears==0)
-enter(6,true); assert(state().active==3); stats(p,11,9,100)
-finish(); stats(p,11,9,100)
+enter(6,true); assert(state().active==3); stats(p,10.8,9,100)
+finish(); stats(p,10.8,9,100)
 enter(5,true); stats(p,10,9,100)
 assert(state().adapters==0,"re-entering an earlier room does not spend")
 state().adapters=1; enter(6,true); clear=false; tick(); assert(state().adapters==1,"re-entering a seen hostile room does not spend")
@@ -185,9 +185,9 @@ p.birthright=true; enter(9,true); state().adapters=2; state().clears=1; finish()
 p.birthright=false; tick(); assert(state().adapters==2,"losing Birthright clamps to two")
 
 -- Continue keeps adapters, selection and the active room bonus.
-state().selected=3; enter(10,true); stats(p,11,9,100)
+state().selected=3; enter(10,true); stats(p,10.8,9,100)
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
-stats(p,11,9,100); assert(state().active==3,"continue keeps the active adapter in its room")
+stats(p,10.8,9,100); assert(state().active==3,"continue keeps the active adapter in its room")
 assert(state().adapters==1,"continue does not spend again")
 
 -- A new floor resets seen rooms and awards but keeps adapters.

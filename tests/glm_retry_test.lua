@@ -168,7 +168,7 @@ enter(2,true); local far=enemy(250); tap(p); assert(not texts[1] and hud()=="GLM
 -- DROP queues a two-second request; a surviving target takes 2x.
 local e=enemy(50); tap(p); assert(last()=="Request queued" and hud()=="GLM-chan: Retries 0/3  Request Pending 2s",hud())
 paused=true; tick(30); paused=false; fire("MC_POST_UPDATE"); fire("MC_POST_UPDATE")
-tick(59); assert(#e.taken==0); tick(); assert(#e.taken==1 and last()=="Request complete"); near(e.taken[1],18)
+tick(59); assert(#e.taken==0); tick(); assert(#e.taken==1 and last()=="Request complete"); near(e.taken[1],16.2)
 assert(#far.taken==0)
 -- The three-second cooldown starts at selection and blocks DROP.
 assert(hud()=="GLM-chan: Retries 0/3  Cooldown 1s",hud())
@@ -183,7 +183,7 @@ for i=1,4 do
 end
 assert(state(1).retries==0)
 -- A successful request consumes all Retries: 2x + 3x = 5x.
-tap(p); tick(60); near(e.taken[#e.taken],45); assert(state().retries==0)
+tap(p); tick(60); near(e.taken[#e.taken],43.2); assert(state().retries==0)
 tick(30)
 
 -- Leaving cancels a request without a Retry.
@@ -201,7 +201,7 @@ tick(90)
 
 -- A dead GLM's request waits.
 tap(p); p.dead=true; tick(90); p.dead=false; tick(59); assert(#t.taken==0); tick(); assert(#t.taken==1)
-assert(state().retries==0); near(t.taken[1],45)
+assert(state().retries==0); near(t.taken[1],43.2)
 
 -- Continue keeps Retries, not the request.
 state().retries=2; tick(30); tap(p)

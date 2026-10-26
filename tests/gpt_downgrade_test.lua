@@ -123,7 +123,7 @@ end
 players={player(1,11,0),player(2,22,1)}; load(); fire("MC_POST_GAME_STARTED",false)
 local p,q=players[1],players[2]
 assert(state().verified and state().routing==0,"a new run starts Verified")
-near(p.Damage,11.5)
+near(p.Damage,11)
 
 -- Unique combat clears add Routing; re-entry and peaceful rooms do not.
 enter(2,true); finish(); assert(state().routing==1)
@@ -164,7 +164,7 @@ assert(not state().verified,"one continuous window counts once")
 tap(p); assert(not state().verified,"a second tag in the same room is ignored")
 frame=frame+1; hit(close,laser)
 assert(state().verified and state().routing==0,"three paid hits restore Verified and clear Routing")
-near(p.Damage,11.5); assert(texts[#texts]=="Verified")
+near(p.Damage,11); assert(texts[#texts]=="Verified")
 assert(not state(1).verified,"the partner remains in Fallback")
 near(q.Damage,8)
 
@@ -212,7 +212,7 @@ assert(not state().verified,"continue cannot grant a second check in the same ro
 -- A new floor restores Verified and clears Routing; continue on it does not reset again.
 floor=20; enter(1,false)
 assert(state().verified and state().routing==0 and next(state().awards)==nil,"a new floor restores Verified")
-near(p.Damage,11.5)
+near(p.Damage,11)
 enter(2,true); finish(); assert(state().routing==1,"awards are per floor")
 state().routing=3; enter(3,true); assert(not state().verified)
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()

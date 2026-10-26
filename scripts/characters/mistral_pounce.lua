@@ -13,7 +13,7 @@ local IDLE_FRAMES = 30 -- Standing still for one second loses an unused Pounce.
 local COOLDOWN_FRAMES = 90
 local REACH, BIRTHRIGHT_REACH = 80, 110
 local HALF_WIDTH = 20
-local DAMAGE = 2
+local DAMAGE = 1.8
 
 local function fresh()
     return {version=1, ready=false}

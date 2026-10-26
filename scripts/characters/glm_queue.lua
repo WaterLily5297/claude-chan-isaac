@@ -8,7 +8,7 @@ local GLM = {}
 
 local QUEUE_MAX = 3
 local PASS_ROOMS, BIRTHRIGHT_ROOMS = 2, 3
-local BONUS = 1.2
+local BONUS = 1.15
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)

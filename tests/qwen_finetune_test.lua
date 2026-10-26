@@ -162,7 +162,7 @@ tap(p); assert(state().build==3); stats(p,10,9); stats(q,10,9)
 -- The build locks while enemies remain.
 enter(2,true); tap(p); assert(state().build==3,"locked in combat")
 
--- Three unique clears with three different builds award +0.2 damage for the floor.
+-- Three unique clears with three different builds award +0.15 damage for the floor.
 finish(); assert(hud()=="Qwen-chan: Balanced  Variants 1/3  Awards 0/3",hud())
 tap(p); fire("MC_PRE_SPAWN_CLEAN_AWARD"); enter(2,true); finish(); assert(hud():find("Heavy  Variants 1/3"),"re-clearing a room does not count")
 tap(p); tap(p); assert(state().build==3)
@@ -171,19 +171,19 @@ enter(4,false); fire("MC_PRE_SPAWN_CLEAN_AWARD"); tap(p); assert(state().build==
 enter(5,false); fire("MC_PRE_SPAWN_CLEAN_AWARD"); assert(hud():find("Variants 1/3"),"a peaceful room is not a clear")
 enter(6,true); finish(); assert(hud():find("Variants 2/3"))
 tap(p); enter(7,true); finish()
-assert(state().awards==1 and state().used==0 and texts[#texts]=="Final final version"); stats(p,8.67,7)
+assert(state().awards==1 and state().used==0 and texts[#texts]=="Final final version"); stats(p,8.6275,7)
 assert(state(1).awards==0,"each player has their own checklist")
 
--- Up to three awards; Birthright raises each to +0.3.
+-- Up to three awards; Birthright raises each to +0.25.
 state().awards=2; state().used=3; tap(p); enter(8,true); finish(); assert(state().awards==3)
 state().used=0; tap(p); enter(9,true); finish(); assert(state().used==0,"capped awards stop the checklist")
-tap(p); tap(p); assert(state().build==3); stats(p,10.6,9)
-p.birthright=true; stats(p,10.9,9); p.birthright=false
+tap(p); tap(p); assert(state().build==3); stats(p,10.45,9)
+p.birthright=true; stats(p,10.75,9); p.birthright=false
 
 -- Continue keeps build, checklist and awards; a new floor clears them.
 state().used=5; tap(p)
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
-assert(state().build==1 and state().used==5 and state().awards==3); stats(p,(10+0.6)*1.3,11)
+assert(state().build==1 and state().used==5 and state().awards==3); stats(p,(10+0.45)*1.3,11)
 floor=20; enter(1,false); assert(state().used==0 and state().awards==0 and next(state().cleared)==nil); near(p.Damage,13); stats(p,13,11)
 enter(2,true); finish(); assert(state().used==1,"the same room seed on a new floor is new")
 tap(p); enter(3,true); p.dead=true; finish(); p.dead=false; assert(state().used==1,"a dead Qwen earns nothing")

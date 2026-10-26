@@ -8,7 +8,7 @@ local Again = {}
 
 local CONFIDENT_FRAMES = 180 -- Six seconds.
 local APOLOGY_FRAMES, BIRTHRIGHT_APOLOGY = 120, 90 -- Four seconds; three with Birthright.
-local CONFIDENT_DAMAGE, APOLOGY_DAMAGE = 1.35, 0.85
+local CONFIDENT_DAMAGE, APOLOGY_DAMAGE = 1.3, 0.85
 local PHASES = {confident=CONFIDENT_FRAMES, apology=APOLOGY_FRAMES}
 
 local function fresh()

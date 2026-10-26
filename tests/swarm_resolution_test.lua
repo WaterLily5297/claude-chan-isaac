@@ -125,8 +125,8 @@ become(42)
 enemies, roll = 0, 0.99
 think()
 local thought = shot(deepseek)
-assert(thought.CollisionDamage == 8, "Deep Think must resolve before inspecting child damage")
-assert(#spawned == 2 and spawned[1].CollisionDamage == 4 and spawned[2].CollisionDamage == 4,
+assert(thought.CollisionDamage == 7.6, "Deep Think must resolve before inspecting child damage")
+assert(#spawned == 2 and spawned[1].CollisionDamage == 3.8 and spawned[2].CollisionDamage == 3.8,
     "Swarm tears must deal half the resolved Deep Think damage")
 assert(spawned[1].Velocity == -15 and spawned[2].Velocity == 15, "keep the two-shot fan")
 assert(spawned[1].SpawnerEntity == deepseek, "keep the owner")
@@ -206,7 +206,7 @@ deepseek.swarm=false; become(142)
 inherited(effectShot(deepseek),2)
 deepseek.swarm=true; inherited(effectShot(deepseek),4)
 become(42); think()
-local boosted=effectShot(deepseek); assert(boosted.Scale==1.7 and boosted.CollisionDamage==20); inherited(boosted,2)
+local boosted=effectShot(deepseek); assert(boosted.Scale==1.7 and boosted.CollisionDamage==19); inherited(boosted,2)
 enemies,roll=10,0.1
 local blocked=effectShot(deepseek); assert(not blocked.removed and #spawned==2)
 print("OK: Swarm shot resolution, player isolation and resolved fork effects/flight")

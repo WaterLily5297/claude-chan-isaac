@@ -12,7 +12,7 @@ local BASE_DAMAGE = 0.9
 local RADIUS = 200
 local REQUEST_FRAMES = 60 -- Two seconds.
 local COOLDOWN_FRAMES = 90 -- Three seconds from selection.
-local REQUEST_DAMAGE, RETRY_DAMAGE = 2, 1
+local REQUEST_DAMAGE, RETRY_DAMAGE = 1.8, 1
 local RETRY_CAP = 3
 local BULLET_RADIUS = 120
 

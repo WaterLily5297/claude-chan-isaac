@@ -170,31 +170,31 @@ tap(p); assert(state().slides==3 and texts[#texts]=="Another slide deck")
 assert(b.slowed and b.slowed[1]==120 and c.slowed and d.slowed and not a.slowed,"the three nearest are slowed for four seconds")
 assert(hud()=="Kimi-chan: Slides 3/6  Cost 3  Presenting 4s",hud())
 
--- Only the owner's damage to the audience gains +15%.
-near(hit(b,tear(p)),11.5)
+-- Only the owner's damage to the audience gains +12%.
+near(hit(b,tear(p)),11.2)
 near(hit(a,tear(p)),10)
 near(hit(b,tear(q)),10)
-near(hit(c,{Type=EntityType.ENTITY_LASER,SpawnerEntity=p,ToPlayer=function() end}),11.5)
+near(hit(c,{Type=EntityType.ENTITY_LASER,SpawnerEntity=p,ToPlayer=function() end}),11.2)
 
 -- A new presentation replaces the old one.
 b.slowed=nil; c.slowed=nil; d.slowed=nil
 b.Position=vec(600); c.Position=vec(600); d.Position=vec(600)
 tap(p); assert(state().slides==0 and a.slowed)
-near(hit(a,tear(p)),11.5); near(hit(b,tear(p)),10)
+near(hit(a,tear(p)),11.2); near(hit(b,tear(p)),10)
 state().slides=2; tap(p); assert(state().slides==2,"too few Slides means no presentation"); state().slides=0
 
 -- The presentation lasts four seconds of updates and pause freezes it.
-paused=true; tick(300); paused=false; near(hit(a,tear(p)),11.5)
-tick(116); fire("MC_POST_UPDATE"); near(hit(a,tear(p)),11.5,"a duplicate update cannot age the deck")
+paused=true; tick(300); paused=false; near(hit(a,tear(p)),11.2)
+tick(116); fire("MC_POST_UPDATE"); near(hit(a,tear(p)),11.2,"a duplicate update cannot age the deck")
 tick(1); near(hit(a,tear(p)),10)
 
 -- The deck ends once its audience is gone.
-state().slides=3; a.Position=vec(10); tap(p); near(hit(a,tear(p)),11.5)
+state().slides=3; a.Position=vec(10); tap(p); near(hit(a,tear(p)),11.2)
 a.dead=true; tick(); a.dead=false; near(hit(a,tear(p)),10)
 
 -- Birthright lowers the cost to two.
 p.birthright=true; state().slides=2; assert(hud()=="Kimi-chan: Slides 2/6  Cost 2",hud())
-tap(p); assert(state().slides==0); near(hit(a,tear(p)),11.5); p.birthright=false
+tap(p); assert(state().slides==0); near(hit(a,tear(p)),11.2); p.birthright=false
 
 -- Leaving the room ends the presentation without refund.
 enter(12,true); near(hit(a,tear(p)),10); assert(state().slides==0)

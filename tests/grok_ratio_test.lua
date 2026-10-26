@@ -174,7 +174,7 @@ tap(p); assert(state().cooldown<300 and hud():find("Ratio 3/3"),"no retarget dur
 local before=#quoted.taken
 paused=true; tick(200); paused=false
 tick(176); fire("MC_POST_UPDATE"); assert(#quoted.taken==before,"duplicate updates cannot age the quote")
-tick(1); assert(#quoted.taken==before+3 and quoted.taken[#quoted.taken]==9 and texts[#texts]=="Ratio'd")
+tick(1); assert(#quoted.taken==before+3 and math.abs(quoted.taken[#quoted.taken]-8.1)<1e-8 and texts[#texts]=="Ratio'd")
 assert(state().cooldown==120 and hud()=="Grok-chan: Cooldown 4s",hud())
 tap(p); assert(state().cooldown<120,"no new quote during the cooldown")
 tick(117); assert(state().cooldown==0 and hud()=="Grok-chan: DROP: quote someone","ten-second cooldown from selection")

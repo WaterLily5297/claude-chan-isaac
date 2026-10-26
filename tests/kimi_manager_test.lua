@@ -153,14 +153,14 @@ near(p.Damage,8.5); assert(hud()=="Kimi-chan: Tasks 0/3  Budget 9/9",hud())
 -- No tasks outside combat.
 local idle=enemy(40); tap(p); assert(not texts[1] and #idle.taken==0)
 
--- DROP assigns the nearest unassigned enemy; three slots; three 0.6x pulses two seconds apart.
+-- DROP assigns the nearest unassigned enemy; three slots; three 0.55x pulses two seconds apart.
 enter(2,true)
 local e1,e2,e3,e4,far=enemy(50),enemy(100),enemy(150),enemy(200),enemy(300)
 tap(p); tap(p); tap(p); assert(texts[#texts]=="You are the manager" and #texts==3)
 assert(hud()=="Kimi-chan: Tasks 3/3  Budget 0/9",hud())
 tap(p); assert(#texts==3,"three slots")
 tick(50); assert(#e1.taken==0)
-tick(); assert(#e1.taken==1 and #e2.taken==0); near(e1.taken[1],5.1)
+tick(); assert(#e1.taken==1 and #e2.taken==0); near(e1.taken[1],4.675)
 tick(3); assert(#e2.taken==1 and #e3.taken==0); tick(3); assert(#e3.taken==1)
 paused=true; tick(30); paused=false; fire("MC_POST_UPDATE"); fire("MC_POST_UPDATE")
 tick(53); assert(#e1.taken==1); tick(); assert(#e1.taken==2)
@@ -184,10 +184,10 @@ local fragile=enemy(40); function fragile:TakeDamage(a) self.taken[#self.taken+1
 tap(p); tick(60); assert(#fragile.taken==1 and hud()=="Kimi-chan: Tasks 0/3  Budget 6/9",hud())
 enter(3,true); assert(hud()=="Kimi-chan: Tasks 0/3  Budget 3/9",hud())
 
--- Birthright pulses are 0.7x; a dead Kimi's tasks wait.
+-- Birthright pulses are 0.65x; a dead Kimi's tasks wait.
 local boss=enemy(30); p.birthright=true; tap(p)
 p.dead=true; tick(90); p.dead=false; assert(#boss.taken==0)
-tick(60); assert(#boss.taken==1); near(boss.taken[1],5.95); p.birthright=false
+tick(60); assert(#boss.taken==1); near(boss.taken[1],5.525); p.birthright=false
 
 -- Continue keeps budgets, not tasks; a new floor forgets old rooms.
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()

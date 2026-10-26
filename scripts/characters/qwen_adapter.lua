@@ -10,7 +10,7 @@ local Qwen = {}
 local ADAPTER_START, ADAPTER_CAP, BIRTHRIGHT_CAP = 1, 2, 3
 local CLEARS_PER_ADAPTER = 2
 local KINDS = {"Range", "Tempo", "Power"}
-local RANGE_BONUS, TEMPO_INTERVAL, POWER_DAMAGE = 60, 0.9, 1.1
+local RANGE_BONUS, TEMPO_INTERVAL, POWER_DAMAGE = 60, 0.92, 1.08
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)

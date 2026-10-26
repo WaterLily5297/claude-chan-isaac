@@ -10,7 +10,7 @@ local Grok = {}
 local CHECK_RADIUS = 220
 local CHECK_FRAMES = 180 -- Six seconds.
 local CHECK_HITS = 3
-local TARGET_DAMAGE, OTHER_DAMAGE = 1.3, 0.9
+local TARGET_DAMAGE, OTHER_DAMAGE = 1.25, 0.9
 local VERIFIED_SPEED = 0.15
 local BULLET_RADIUS, BULLETS = 120, 3
 
@@ -160,7 +160,7 @@ function Grok:Init(mod, Risk)
         if not ready or not next(bindings) or not tear:Exists() then return end
         if binding(Tools.Owner(tear)) then Tools.MarkVolley(tear, Game():GetFrameCount()) end
     end)
-    -- While a check runs, owner damage is re-dealt once: 1.3x to the target, 0.9x to others.
+    -- While a check runs, owner damage is re-dealt once: 1.25x to the target, 0.9x to others.
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, amount, flags, source, countdown)
         if redealing or not ready or not next(bindings) then return end
         local src = source and source.Entity

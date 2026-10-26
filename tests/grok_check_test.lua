@@ -168,15 +168,15 @@ down[0]=true; tick(20); down[0]=false; tick(); assert(state().checkRoom==nil,"a 
 tap(p); assert(state().checkRoom and texts[#texts]=="Is this true?")
 assert(hud()=="Grok-chan: Check 0/3  6s",hud())
 
--- During a check the owner deals 1.3x to the target and 0.9x to others.
-near(hit(target,tear(p)),13); near(hit(other,tear(p)),9); near(hit(target,tear(q)),10)
+-- During a check the owner deals 1.25x to the target and 0.9x to others.
+near(hit(target,tear(p)),12.5); near(hit(other,tear(p)),9); near(hit(target,tear(q)),10)
 assert(hud()=="Grok-chan: Check 1/3  6s",hud())
-tick(); local v=tear(p); near(hit(target,v),13); near(hit(target,v),13)
+tick(); local v=tear(p); near(hit(target,v),12.5); near(hit(target,v),12.5)
 assert(hud()=="Grok-chan: Check 2/3  6s","one volley is one attack")
 tap(p); assert(hud()=="Grok-chan: Check 2/3  6s","no second check in the same room")
 
 -- A third distinct attack verifies: modifiers end and speed rises for the room.
-tick(); near(hit(target,tear(p)),13)
+tick(); near(hit(target,tear(p)),12.5)
 assert(hud()=="Grok-chan: Verified" and state().verifiedRoom); near(p.MoveSpeed,1.15)
 near(hit(target,tear(p)),10); near(hit(other,tear(p)),10)
 near(q.MoveSpeed,1,"the partner is not verified")
@@ -190,7 +190,7 @@ assert(not stray.removed,"only Birthright clears bullets"); bullets={}
 
 -- Timeout or another killer gives nothing.
 enter(4,true); target=enemy(50); tap(p)
-tick(179); fire("MC_POST_UPDATE"); near(hit(target,tear(p)),13,"a duplicate update cannot age the check")
+tick(179); fire("MC_POST_UPDATE"); near(hit(target,tear(p)),12.5,"a duplicate update cannot age the check")
 tick(); near(hit(target,tear(p)),10)
 assert(hud()=="Grok-chan: Unverified"); near(p.MoveSpeed,1)
 enter(5,true); target=enemy(50); tap(p); hit(target,tear(p)); tick(5)

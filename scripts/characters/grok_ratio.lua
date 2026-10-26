@@ -13,6 +13,7 @@ local RADIUS = 220
 local QUOTE_FRAMES = 180 -- Six seconds.
 local COOLDOWN_FRAMES = 300 -- Ten seconds from selection.
 local RATIO_CAP = 3
+local PULSE_DAMAGE = 0.9
 
 local function integer(v, minimum, maximum)
     return type(v) == "number" and v == v and v >= minimum and v <= maximum and v == math.floor(v)
@@ -73,12 +74,12 @@ function Ratio:Init(mod, Risk)
             if b then fn(p, b, i) end
         end
     end
-    -- One pulse of 1x player damage per Ratio stack, credited to the player.
+    -- One pulse of 0.9x player damage per Ratio stack, credited to the player.
     local function land(p, b)
         local quote = b.quote
         b.quote = nil
         local target = quote.ref.Ref
-        for _ = 1, quote.ratio do target:TakeDamage(p.Damage, 0, EntityRef(p), 0) end
+        for _ = 1, quote.ratio do target:TakeDamage(p.Damage * PULSE_DAMAGE, 0, EntityRef(p), 0) end
         if quote.ratio > 0 then Game():GetHUD():ShowItemText("Grok-chan", "Ratio'd") end
     end
     -- Birthright: if the quoted target died first, half the Ratio moves once to

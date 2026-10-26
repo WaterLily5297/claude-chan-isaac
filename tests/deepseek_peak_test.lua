@@ -128,13 +128,14 @@ tick(); shot(p,false); assert(#spawned==0 and state().compute==10,"a cancelled t
 -- Empty rooms freeze the schedule and recovery.
 tick(100); assert(state().remaining==360 and state().compute==10,"cleared rooms freeze the timer")
 enter(2,true)
-tick(10); assert(state().remaining==350 and state().compute==11,"Valley recovers 3 per second in combat")
+tick(11); assert(state().compute==10 and state().regen==11,"no recovery before twelve combat frames")
+tick(); assert(state().remaining==348 and state().compute==11 and state().regen==0,"Valley recovers 2.5 per second in combat")
 p.shooting=true; tick(30); assert(state().compute==11,"firing blocks recovery")
 p.shooting=false
 tick(5); paused=true; tick(30); paused=false
-assert(state().remaining==315,"pause does not advance the schedule")
-fire("MC_POST_UPDATE"); assert(state().remaining==315,"a duplicate frame cannot advance the schedule")
-tick(315); assert(state().phase=="peak" and state().remaining==360,"twelve combat seconds switch to Peak")
+assert(state().remaining==313,"pause does not advance the schedule")
+fire("MC_POST_UPDATE"); assert(state().remaining==313,"a duplicate frame cannot advance the schedule")
+tick(313); assert(state().phase=="peak" and state().remaining==360,"twelve combat seconds switch to Peak")
 local before=state().compute
 tick(30); assert(state().compute==before,"Peak does not recover Compute")
 tick(); shot(p); assert(#spawned==2 and state().compute==before-4,"Peak costs 4")
@@ -155,7 +156,7 @@ assert(not state(1).saving,"another player's mode is untouched")
 -- Caps follow Birthright and clamp when it is lost.
 state().phase="valley"; state().compute=23; state().regen=0
 tick(40); assert(state().compute==24,"Valley recovery stops at 24")
-p.birthright=true; tick(80); assert(state().compute==32,"Birthright raises the cap to 32")
+p.birthright=true; tick(96); assert(state().compute==32,"Birthright raises the cap to 32")
 p.birthright=false; tick(); assert(state().compute==24,"losing Birthright clamps to the base cap")
 
 -- Continue keeps Compute, phase, timer and mode, with recreated entities.
@@ -165,6 +166,14 @@ assert(partner>12,"the partner recovered independently in combat")
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]
 s=state(); assert(s.compute==17 and s.phase=="peak" and s.remaining==123 and s.saving,"continue preserves state")
 assert(state(1).compute==partner)
+
+-- B1 migration: old partial recovery is kept, then uses the twelve-frame boundary.
+state().phase="valley"; state().compute=17; state().regen=9; state().remaining=123
+reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]
+assert(state().compute==17 and state().regen==9,"old recovery progress remains valid")
+tick(2); assert(state().compute==17 and state().regen==11)
+tick(); assert(state().compute==18 and state().regen==0,"recovery completes on frame twelve")
+state().compute=17
 
 -- A new floor resets the phase but keeps Compute.
 floor=20; enter(1,false)

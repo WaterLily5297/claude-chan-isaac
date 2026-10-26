@@ -8,7 +8,7 @@ local Doubao = {}
 
 local TOKEN_FRAMES = 180 -- Six seconds.
 local RADIUS = 100
-local SLOW_FRAMES, SLOW_VALUE = 60, 0.5
+local SLOW_FRAMES, SLOW_VALUE = 45, 0.5
 local BULLETS = 4
 
 local function integer(v, minimum, maximum)

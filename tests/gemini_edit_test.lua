@@ -165,7 +165,7 @@ frame=frame+1; hit(far,tear(p)); frame=frame+1; hit(close,tear(q)); frame=frame+
 assert(hud()=="Gemini-chan: Recolor 1/3  6s","other targets, partners and unregistered tears do not count")
 frame=frame+1; hit(close,tear(p)); assert(hud()=="Gemini-chan: Export 2/3  6s",hud())
 frame=frame+1; hit(close,tear(p))
-assert(texts[#texts]=="Exported" and close.taken[#close.taken-1]==18 and close.taken[#close.taken]==10,"export pulses 2x player damage")
+assert(texts[#texts]=="Exported" and math.abs(close.taken[#close.taken-1]-16.2)<1e-8 and close.taken[#close.taken]==10,"export pulses 1.8x player damage")
 assert(hud()=="Gemini-chan: Exported")
 tap(p); assert(hud()=="Gemini-chan: Exported","one completed chain per room")
 

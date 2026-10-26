@@ -161,33 +161,33 @@ end
 
 -- Delayed bursts: discrete shots before the native firing cycle could repeat share one payment.
 freshRun(); p.MaxFireDelay=10
-local first=shot(p); assert(first.CollisionDamage==8 and state().thought==0)
+local first=shot(p); assert(first.CollisionDamage==7.6 and state().thought==0)
 tick(3); local late=shot(p)
-assert(late.CollisionDamage==8 and state().thought==3,"a delayed burst rides on the paid volley")
-tick(6); local edge=shot(p); assert(edge.CollisionDamage==8,"still inside the ten-update cycle")
+assert(late.CollisionDamage==7.6 and state().thought==3,"a delayed burst rides on the paid volley")
+tick(6); local edge=shot(p); assert(edge.CollisionDamage==7.6,"still inside the ten-update cycle")
 tick(1); local next=shot(p)
-near(next.CollisionDamage,4*(1+10/150)); assert(state().thought==0,"the next firing cycle pays again")
-p.MaxFireDelay=30; tick(30); local slow=shot(p); near(slow.CollisionDamage,4*(1+30/150))
+near(next.CollisionDamage,4*(1+0.9*10/150)); assert(state().thought==0,"the next firing cycle pays again")
+p.MaxFireDelay=30; tick(30); local slow=shot(p); near(slow.CollisionDamage,4*(1+0.9*30/150))
 tick(14); assert(shot(p).CollisionDamage==slow.CollisionDamage,"slow builds still burst")
-tick(1); near(shot(p).CollisionDamage,4*(1+15/150)); assert(state().thought==0,"bursts are capped at fifteen updates")
+tick(1); near(shot(p).CollisionDamage,4*(1+0.9*15/150)); assert(state().thought==0,"bursts are capped at fifteen updates")
 p.MaxFireDelay=0.5; tick(30); shot(p); tick(1); local fast=shot(p)
-near(fast.CollisionDamage,4*(1+1/150)); assert(state().thought==0,"very fast fire keeps same-frame volleys only")
-p.MaxFireDelay=9.5; tick(150); shot(p); tick(9); near(shot(p).CollisionDamage,4*(1+9/150)); p.MaxFireDelay=10
+near(fast.CollisionDamage,4*(1+0.9*1/150)); assert(state().thought==0,"very fast fire keeps same-frame volleys only")
+p.MaxFireDelay=9.5; tick(150); shot(p); tick(9); near(shot(p).CollisionDamage,4*(1+0.9*9/150)); p.MaxFireDelay=10
 local lead=entity(p,7); tick(150); update({{"MC_POST_LASER_UPDATE",lead}}); state().thought=150; tick(2)
-assert(shot(p).CollisionDamage==8 and state().thought==0,"a discrete shot never rides a continuous volley")
+assert(shot(p).CollisionDamage==7.6 and state().thought==0,"a discrete shot never rides a continuous volley")
 tick(150); shot(p); paused=true; tick(30); paused=false; tick(2)
-assert(shot(p).CollisionDamage==8,"pause does not age a burst")
-local held=state().thought; enter(2,true); near(shot(p).CollisionDamage,4*(1+held/150)); assert(held>0); assert(state().thought==0,"a new room starts a new volley")
+assert(shot(p).CollisionDamage==7.6,"pause does not age a burst")
+local held=state().thought; enter(2,true); near(shot(p).CollisionDamage,4*(1+0.9*held/150)); assert(held>0); assert(state().thought==0,"a new room starts a new volley")
 local beamAfter=entity(p,7); tick(150); shot(p); tick(1)
-update({{"MC_POST_LASER_UPDATE",beamAfter}}); assert(state().thought==0,"continuous attacks never ride a discrete burst"); near(beamAfter.CollisionDamage,4*(1+1/150))
+update({{"MC_POST_LASER_UPDATE",beamAfter}}); assert(state().thought==0,"continuous attacks never ride a discrete burst"); near(beamAfter.CollisionDamage,4*(1+0.9*1/150))
 
 -- Mimic familiars copy a paid volley without paying; other familiars stay native.
 freshRun(); p.MaxFireDelay=10
 local incubus,twin,bobby=familiar(80,p),familiar(270,p),familiar(1,p)
 local unpaid=copyTear(incubus); assert(unpaid.CollisionDamage==4 and state().thought==150,"no volley, no bonus")
 shot(p); local copy=copyTear(incubus); local copy2=copyTear(twin)
-assert(copy.CollisionDamage==8 and copy2.CollisionDamage==8 and state().thought==2,"copies share the paid multiplier")
-update({{"MC_POST_TEAR_UPDATE",copy}},5); assert(copy.CollisionDamage==8,"never multiplied twice")
+assert(copy.CollisionDamage==7.6 and copy2.CollisionDamage==7.6 and state().thought==2,"copies share the paid multiplier")
+update({{"MC_POST_TEAR_UPDATE",copy}},5); assert(copy.CollisionDamage==7.6,"never multiplied twice")
 assert(copyTear(bobby).CollisionDamage==4,"ordinary familiars keep native damage")
 assert(copyTear(familiar(80,q)).CollisionDamage==4,"another player's familiar does not borrow p's volley")
 tick(12); assert(copyTear(incubus).CollisionDamage==4,"a copy after the cycle gets nothing")
@@ -209,9 +209,9 @@ local weapon=entity(p,8); weapon.SubType=0
 update({{"MC_POST_KNIFE_UPDATE",weapon}},5); assert(weapon.CollisionDamage==4 and state().thought==150,"holding the club pays nothing")
 local swing=entity(nil,8); swing.SubType=4; swing.Parent=weapon
 update({{"MC_POST_KNIFE_UPDATE",swing},{"MC_POST_KNIFE_UPDATE",weapon}},6)
-assert(swing.CollisionDamage==8 and weapon.CollisionDamage==4 and state().thought==5,"one payment per swing")
+assert(swing.CollisionDamage==7.6 and weapon.CollisionDamage==4 and state().thought==5,"one payment per swing")
 tick(30); local swing2=entity(nil,8); swing2.SubType=4; swing2.Parent=weapon
-update({{"MC_POST_KNIFE_UPDATE",swing2}}); near(swing2.CollisionDamage,4*(1+35/150)); assert(swing.CollisionDamage==8)
+update({{"MC_POST_KNIFE_UPDATE",swing2}}); near(swing2.CollisionDamage,4*(1+0.9*35/150)); assert(swing.CollisionDamage==7.6)
 local held=entity(familiar(80,p),8); local foreign=entity(nil,8); foreign.SubType=4; foreign.Parent=held
 tick(30); update({{"MC_POST_KNIFE_UPDATE",foreign}}); assert(foreign.CollisionDamage==4,"familiar-held weapons are not billed")
 local direct=entity(p,8); direct.SubType=4; update({{"MC_POST_KNIFE_UPDATE",direct}}); assert(direct.CollisionDamage>4,"a hitbox spawned by the player is billed")
@@ -223,13 +223,13 @@ local rocket=entity(target,1000); rocket.Variant=31
 fire("MC_POST_EFFECT_UPDATE",rocket); tick(5); fire("MC_POST_EFFECT_UPDATE",rocket)
 assert(state().thought==5,"one payment per rocket")
 local v=victim(); v:TakeDamage(30,DamageFlag.DAMAGE_EXPLOSION,{Entity=rocket},0)
-assert(#v.hits==1 and v.hits[1]==60,"the explosion is re-dealt at 2x")
+assert(#v.hits==1 and v.hits[1]==57,"the explosion is re-dealt at 1.9x")
 v:TakeDamage(30,0,{Entity=rocket},0); assert(v.hits[2]==30,"only explosions")
 assert(fire("MC_ENTITY_TAKE_DMG",p,30,DamageFlag.DAMAGE_EXPLOSION,{Entity=rocket},0)==nil,"players are never re-dealt")
 v:TakeDamage(30,DamageFlag.DAMAGE_EXPLOSION,{Entity=target},0); assert(v.hits[3]==30,"the marker itself is not a rocket")
 v:TakeDamage(30,DamageFlag.DAMAGE_EXPLOSION,nil,0); assert(v.hits[4]==30)
 tick(1); local own=entity(p,1000); own.Variant=31; fire("MC_POST_EFFECT_UPDATE",own)
-v:TakeDamage(30,DamageFlag.DAMAGE_EXPLOSION,{Entity=own},0); near(v.hits[5],30*(1+6/150))
+v:TakeDamage(30,DamageFlag.DAMAGE_EXPLOSION,{Entity=own},0); near(v.hits[5],30*(1+0.9*6/150))
 local stranger=entity(familiar(1,p),1000); stranger.Variant=30
 local stray=entity(stranger,1000); stray.Variant=31; tick(30); fire("MC_POST_EFFECT_UPDATE",stray)
 assert(state().thought==30 and stray:GetData().ccThoughtAttack==nil,"a familiar's rocket is not billed")
