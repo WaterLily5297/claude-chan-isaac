@@ -1,5 +1,11 @@
 # Changelog
 
+## Ignore Instructions distinct Car Battery target (2026-10-27; offline fix)
+
+- Honor the existing description's different-enemy repeat even when the first target is a boss or resists charm. Remember only the latest primary per live owner/active slot; consume that exclusion on the repeat and clear transient records on room entry/game start.
+- Preserve ordinary targeting of confused bosses, range, duration, deterministic ties and return fields. Add real-module regressions for four supplied slots, interleaved owners/slots, status refusal, target/owner replacement and cleanup. The original source fails the new two-boss assertion; eight isolated faults pass retained old assertions with expanded API stubs and fail the added cases.
+- Native callback timing, actual charge behavior and special-player routes remain open. No balance, save schema, art or runtime change; installed 8fd6a8c remains preserved.
+
 ## Pending Birthright timing coverage (2026-10-27; offline evidence)
 
 - Extend the tainted Gemini, Llama, Mistral and Kimi real-module suites with gain/loss/reacquisition while effects are pending. Preserve deployment-time durations, live bake thresholds and per-pulse multipliers according to each existing source contract.
