@@ -939,15 +939,15 @@
     {
       "name": "Tungsten Cube",
       "gfx": "collectibles/tungsten_cube.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "tungsten_cube",
+        "file": "tools/make_item_art.py",
+        "function": "tungsten_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -958,32 +958,27 @@
       ],
       "palette": [
         "#080000",
-        "#5e5e5e",
-        "#777777",
-        "#8a8a8a",
-        "#969696",
-        "#a7a7a7",
-        "#cbcbcb",
-        "#d6d6d6",
-        "#f2f2f2"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "b95c756f1067b17890e5c6530510363faf02fbc538852c5cc45b621cbdbf0c48",
-      "description": "Legacy placeholder for Tungsten Cube; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "317165967d02ead8fb902e09f05f9a64ca095a3a65bd095e53693cde25c5d1a0",
+      "description": "A dense grey metal cube with a heavy shadow face; more damage and knockback for a slower carrier.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Pizza Glue",
       "gfx": "collectibles/pizza_glue.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "pizza_glue",
+        "file": "tools/make_item_art.py",
+        "function": "pizza_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -994,37 +989,36 @@
       ],
       "palette": [
         "#080000",
-        "#7d5028",
-        "#a34d27",
-        "#a86c1c",
-        "#a8a191",
-        "#a9743f",
-        "#d8d2c4",
-        "#e0713f",
-        "#e6ddc9",
-        "#e70000",
-        "#e8a33d",
-        "#f2eee4",
-        "#ffc86b",
-        "#fffdf5"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#9c682e",
+        "#f5c84a",
+        "#fff1a5",
+        "#7a1f2b",
+        "#c83a3f",
+        "#f08a7a",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0"
       ],
       "palette_exception": "",
-      "sha256": "86bed75a912d0c51721b25f05ef10875aaeb4c0b89ab62ef264e7d493fbccf59",
-      "description": "Legacy placeholder for Pizza Glue; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "68035d79db3636887fbd7e85f108e6f3f0e112e98c427dbd61b4fe6b9efab157",
+      "description": "A pizza slice with white glue strands dripping from its tip; sticky tears that sometimes slow.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Strawberry",
       "gfx": "collectibles/strawberry.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "strawberry",
+        "file": "tools/make_item_art.py",
+        "function": "strawberry_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1035,33 +1029,33 @@
       ],
       "palette": [
         "#080000",
-        "#345c31",
-        "#4c8548",
-        "#79c07a",
-        "#a30000",
-        "#a8a191",
-        "#d8d2c4",
-        "#e70000",
-        "#f2eee4",
-        "#ff5a4a"
+        "#7a1f2b",
+        "#c83a3f",
+        "#f08a7a",
+        "#9c682e",
+        "#f5c84a",
+        "#fff1a5",
+        "#2f5b3a",
+        "#5f9a4f",
+        "#b5d98a"
       ],
       "palette_exception": "",
-      "sha256": "c1adf93c985892eb6a64b130d612f31e78d4d278a152dd22cbe0d049f438be7c",
-      "description": "Legacy placeholder for Strawberry; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "b00c280e72e0fe3b5f4cf650c8f46f7354601774208d9e620857fedbec9781ea",
+      "description": "A plain strawberry with yellow seeds and a green crown, and no lettering; every third tear counts double.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Golden Gate Claude",
       "gfx": "collectibles/golden_gate.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "golden_gate",
+        "file": "tools/make_item_art.py",
+        "function": "gate_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1072,31 +1066,30 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#8a1e1e",
-        "#8fe3ee",
-        "#b08a24",
-        "#c43333",
-        "#f0c849"
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "d895245e3c77d861375683e2627de91587bcd19a08d4722d4aa7eaecc76a1635",
-      "description": "Legacy placeholder for Golden Gate Claude; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "1b5fd643b1d9a0a4ddeb8f214eaebec98aa36f6353eb8654569e23ea7e26cd54",
+      "description": "A generic orange suspension-bridge tower over blue water; spectral tears that pass over obstacles like a bridge.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Seahorse Emoji",
       "gfx": "collectibles/seahorse_emoji.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "seahorse_emoji",
+        "file": "tools/make_item_art.py",
+        "function": "seahorse_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1107,30 +1100,30 @@
       ],
       "palette": [
         "#080000",
-        "#a8a191",
-        "#d8d2c4",
-        "#e70000",
-        "#e8a33d",
-        "#f2eee4",
-        "#ffc86b"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6"
       ],
       "palette_exception": "",
-      "sha256": "7b806817ccb5506ca6b71668f4c279e4381def2be8ddd5ab84da2aee3c7c9d16",
-      "description": "Legacy placeholder for Seahorse Emoji; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "9205de3a2ec98fed476fdfc14f0ba9b2b72af4047a80fefbd837e146e6eb1223",
+      "description": "A golden seahorse with a curled tail inside a faint blue wisp; summoning something that definitely exists.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Temperature Dial",
       "gfx": "collectibles/temperature_dial.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "temperature_dial",
+        "file": "tools/make_item_art.py",
+        "function": "dial_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1141,31 +1134,36 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#2b2b2b",
-        "#3a3a3a",
-        "#4fb8c9",
-        "#a30000",
-        "#d8d2c4",
-        "#e70000"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "9ad29c450c656150d0ee9e042bcd9f8ed3b043f0b1fde7ff2624def7bfb448a5",
-      "description": "Legacy placeholder for Temperature Dial; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "18703768b5b6d342f05ddecd842a1b967f35a75f5e39fea7326e42cbb5746440",
+      "description": "A round knob whose scale runs from cool blue to hot orange; a toggle between steady damage and random tear effects.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Deep Research",
       "gfx": "collectibles/deep_research.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "deep_research",
+        "file": "tools/make_item_art.py",
+        "function": "research_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1176,35 +1174,39 @@
       ],
       "palette": [
         "#080000",
-        "#4fb8c9",
-        "#636363",
-        "#777777",
-        "#7d5028",
-        "#8fe3ee",
-        "#a7a7a7",
-        "#a9743f",
-        "#c9bba4",
-        "#d6d6d6",
-        "#f3e7d6",
-        "#fffaf0"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#7a1f2b",
+        "#c83a3f",
+        "#f08a7a",
+        "#2f5b3a",
+        "#5f9a4f",
+        "#b5d98a",
+        "#44324e",
+        "#826b93",
+        "#c4abc9",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0"
       ],
       "palette_exception": "",
-      "sha256": "1f0396eadccac0ae03a424f9330d97564eb6c0b014c2d13d74cb4ee2d7d11b50",
-      "description": "Legacy placeholder for Deep Research; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "bb10d5c89c81ec5470dc96eed65b722694865c58cac2d47111cbd5e5dbbe23d3",
+      "description": "A tall stack of coloured books topped by a rolled map; reading many sources to reveal the floor.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Rejection Letter",
       "gfx": "collectibles/rejection_letter.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "rejection_letter",
+        "file": "tools/make_item_art.py",
+        "function": "rejection_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1215,31 +1217,30 @@
       ],
       "palette": [
         "#080000",
-        "#404040",
-        "#636363",
-        "#c9bba4",
-        "#d8d2c4",
-        "#e70000",
-        "#f3e7d6",
-        "#fffaf0"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#7a1f2b",
+        "#c83a3f",
+        "#f08a7a"
       ],
       "palette_exception": "",
-      "sha256": "b29b36f13405014c7c121844811cf5c1861bae486ce5901b419e8700d29b5859",
-      "description": "Legacy placeholder for Rejection Letter; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "360f690aada4cd369ef7dc6f4f50c45c083b94fae8245d778a303698fbb25117",
+      "description": "An opened envelope holding a letter crossed out in red; a hit that clears nearby bullets.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Dario's Red Stamp",
       "gfx": "collectibles/red_stamp.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "red_stamp",
+        "file": "tools/make_item_art.py",
+        "function": "stamp_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -1250,20 +1251,21 @@
       ],
       "palette": [
         "#080000",
-        "#161616",
-        "#2b2b2b",
-        "#454545",
-        "#7d5028",
-        "#a30000",
-        "#a9743f",
-        "#c69355",
-        "#e70000",
-        "#ff5a4a"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#7a1f2b",
+        "#c83a3f",
+        "#f08a7a",
+        "#fff1d0"
       ],
       "palette_exception": "",
-      "sha256": "619e87dcae7c687749b437a8e9c7dc2d1321b10c4d1962f15bf9ca6b82f7f053",
-      "description": "Legacy placeholder for Dario's Red Stamp; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "f733120ad8559b08ccae1107eba69591ef83e793f996dfeecb631d10976b2600",
+      "description": "A rubber stamp with a wooden knob above a red mark; stamping an enemy so it slows and cannot hurt on contact.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Anniversary Cake",
@@ -2846,15 +2848,15 @@
     {
       "name": "Cache Cartridge",
       "gfx": "collectibles/cache_cartridge.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "cache_cartridge",
+        "file": "tools/make_item_art.py",
+        "function": "cartridge_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2865,18 +2867,21 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#3a3a3a",
-        "#4fb8c9",
-        "#575757",
-        "#8fe3ee",
-        "#b08a24",
-        "#f0c849"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#d5a044"
       ],
       "palette_exception": "",
-      "sha256": "df61e5f3aa791aab17c0a39b4ae3dcd17605b531eeda6846eda6eefb36803d50",
-      "description": "Legacy placeholder for Cache Cartridge; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "3ec3c78aba2deab4b09b53e7140bb4eb0e0e44670cf69333b7ccb0912f8f945a",
+      "description": "A game cartridge with a blank label, gold contacts and speed lines; faster movement in rooms already cached.",
+      "contact_sheet": "docs/art/item-batch-08-4x.png"
     },
     {
       "name": "Token Recall",
