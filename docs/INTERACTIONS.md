@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `1c85a45e5bad4a1e37a72fc68911933f826d8a4ed8b80ab2566fedc3c56e6595`.
+110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `39672d07008ad9916b9b00f19d38865a3a86b62126f210b117a7bd2304ce4787`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 

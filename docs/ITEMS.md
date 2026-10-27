@@ -31,7 +31,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Please Retry | Server busy: 3 delayed tears | 2 | 6 rooms | 6 room charges; Fires 3 tears at 0.6x damage, half a second apart, along your aim; Leaving the room cancels the rest |
 | Release Soon | Two more weeks: delayed bullet guards | 1 | 6 rooms | 6 room charges; 2 seconds later: 3 guards against ordinary enemy bullets for 6 seconds; Leaving the room cancels it |
 | Rice Cooker | Lunch first, then a x2 attack | 2 | 4 rooms | 4 room charges; 3-second lunch: can't shoot, can move, no healing; Then your next attack within 7 seconds deals x2; Car Battery does not double the meal |
-| Sanity Test | Mark an enemy: 3 kinds of hits, x3 pulse | 2 | 4 rooms | 4 room charges; Marks the nearest enemy within 220 units for 6 seconds; 3 different attacks hitting it trigger a 3x damage pulse; No target: keeps the charge |
+| Sanity Test | Mark an enemy: 3 separate attacks, x3 pulse | 2 | 4 rooms | 4 room charges; Marks the nearest enemy within 220 units for 6 seconds; 3 different attacks hitting it trigger a 3x damage pulse; No target: keeps the charge |
 | Seahorse Emoji | It definitely exists: summon a random wisp | 1 | 3 rooms | 3 room charges; Summons a Book of Virtues wisp of a random vanilla active; It disappears when you leave the room; One per player; using again replaces it |
 | Slide Deadline | Due in eight seconds: kill marks, DMG up | 2 | 4 rooms | 4 room charges; Marks up to 3 enemies within 250 units for 8 seconds; Kill them all in time: +15% damage for this room |
 | Sold Out | Out of stock: brief guard + speed | 2 | 4 rooms | 4 room charges; 1 guard against an ordinary enemy bullet for 4 seconds, with +0.15 speed while it lasts; Doesn't stack |
@@ -89,7 +89,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Slipstream Boots | Le vent se lève: keep moving, speed up | 2 | Moving for 2 seconds: +0.15 speed; A sharp turn while boosted slows nearby enemies for 1 second (3-second cooldown) |
 | Smiling Correction | Let me fix that: hit, clean clear, flies | 1 | After you take enemy damage, your next new room cleared without getting hit gives 2 blue flies |
 | Strawberry | How many R's? Every third tear hits x2 | 2 | Every third tear is a red "R" tear: x2 damage, slightly larger; Multi-shot volleys count each tear; Tears only: lasers, knives and bombs are not counted |
-| Subagent Swarm | Every tear brings two subagents | 3 | Every tear spawns 2 subagent tears at ±15° (50% damage); Claude-chan: each tear costs double usage |
+| Subagent Swarm | Every tear brings two subagents | 3 | Every tear spawns 2 subagent tears at ±15° (50% damage); Claude forms: each paid attack costs double usage or Quota |
 | The Constitution | Soul heart + first hit refused, DMG down | 3 | +1 soul heart once per player per run; Safety first: each holder refuses their first hit on each floor; Helpfulness ranks last: damage x0.9; Long document: speed -0.1 |
 | Tiny Variant | 0.5B parameters: speed up, DMG down | 1 | +0.15 speed; x0.9 damage |
 | Tungsten Cube | DMG up + knockback, speed down | 2 | +0.8 damage; -0.15 speed; Tears knock enemies back; Stacks per copy |
