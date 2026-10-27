@@ -69,6 +69,10 @@ The hurt-pose correction mechanically repacks the existing thirteen generated so
 
 Three existing complete-pose cells on all 22 skins were mechanically repacked to their measured native envelopes and anchors. Llama's Death-start source crop now includes its existing hands and feet. No source illustration changed, no pixels were drawn and no native artwork or animation XML was imported. Source hashes and designer terms remain unchanged; packed and tainted-skin hashes are updated. The offline preview renders only this mod's pixels. The same credits and non-commercial conditions apply.
 
+## Pose-cell leftover cleanup (2026-10-27)
+
+`tools/clean_pose_cells.py` makes 219 crop-leftover pixels transparent in complete-pose cells: neighbour slivers and stray one-pixel lines on Tainted Claude, Qwen, Mistral and Doubao (and the matching tainted skins). It draws nothing and adds no external or native pixels. Source hashes and designer terms are unchanged; packed and tainted-skin hashes are updated. The same credits and non-commercial conditions apply.
+
 ## Tainted art for the nine newer families (2026-10-24)
 
 `tools/make_roster_tainted_art.py` derives tainted gameplay sheets, stage portraits, dossiers and menu cells for GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM from their normal art. It only recolours existing pixels by role (colour and pale cloth deeper, skin slightly greyer, hue kept); no pixels are drawn, no external images or image generators are used, and shapes, alpha and frame placement are unchanged. Source and output hashes are in `docs/tainted-roster-art-manifest.json`, and `tools/check_assets.py` fails if a normal sheet changes without regenerating them. These are derivatives of the same ZipZipPipe designs and keep their credits and non-commercial terms. The hand-approved tainted Claude and DeepSeek art is untouched.

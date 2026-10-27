@@ -38,7 +38,7 @@
     "key": "qwen",
     "portrait_sha256": "7e184e70bab27072ebd4ae111b4f2c2d4719d39f1e69301dbfb3845f2778375c",
     "sprite_sha256": "f069fd9c69b87d9862350a98f6e8516f707b0d6065b171e38addeb7ee5307c52",
-    "packed_sprite_sha256": "df65fb052a917a2088a79a1333cf2d986106db9246930dc434f0fc3667c52b40",
+    "packed_sprite_sha256": "1e698bc02055f3b811cf46201dec9b759f39a7bfde16ad70bd4cdde53b1a7725",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
@@ -52,14 +52,14 @@
     "key": "mistral",
     "portrait_sha256": "8e1952abae501742b99662c41f7112b87a5f4757188b697973abc281cc66d1a8",
     "sprite_sha256": "7aca2d2d1ce01d4ac80349bbfa630178890ff758f75f938137689d62ceaf00e2",
-    "packed_sprite_sha256": "0cda474c3d8a14ece393935f058f0e183e102274ee7bfa28e247c57e8264aa83",
+    "packed_sprite_sha256": "77ad022ea3e9c1f90fd7fa7d688ef0769fefc552e14d44346fe5cd68a5b482a4",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
     "key": "doubao",
     "portrait_sha256": "bf5a86389de78070a0b39e268d6165715541bf7a7ed69256ccb5d5b423115e56",
     "sprite_sha256": "34e9713e07f8538aa8b9859ebcb2558b83ffd91fc3e4f04ae790af184a2e3725",
-    "packed_sprite_sha256": "149072ac679ff17cc499d0ee271453448980896f93687d57e5cc75adf863a578",
+    "packed_sprite_sha256": "6795df41ebfb3cb68168fc30242b640d4e0d619b4b2157e852279c0f2caaa50b",
     "walk_cycle": "tools/animate_roster_walk.py"
   },
   {
@@ -80,7 +80,7 @@
     "key": "claude_b",
     "portrait_sha256": "07fb2b1f55ae4d52848aa6e79c01ad0e1800c21253fc2da2dae196e4b4314124",
     "sprite_sha256": "d8a6e646fc51c624db2adaf7600c8c4c81b148e70a37accd82b1100720d4ff52",
-    "packed_sprite_sha256": "6cb17a6a9d17bc037b8fa32ff124b9496a0e6f2d72091d6831db95ed1723ffb5",
+    "packed_sprite_sha256": "f266ca02458f75e22e7b752f7b488de8b889846d35eeb8fcd132494e74b47df6",
     "movement_source_sha256": "73540b7808dfdf3ea6a9bcf948fd13e1b216f59f325611c376127b04b80b467b"
   },
   {

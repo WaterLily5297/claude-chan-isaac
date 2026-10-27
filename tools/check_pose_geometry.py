@@ -8,6 +8,8 @@ import struct
 import xml.etree.ElementTree as ET
 import zlib
 
+from clean_pose_cells import leftovers
+
 ROOT = Path(__file__).resolve().parent.parent
 # Crop x/y/w/h, maximum visible w/h, exclusive visible bottom within crop.
 # Death's last crop starts two rows below the packed 64px cell.
@@ -97,9 +99,13 @@ def main():
             if not (box and box[2]-box[0] <= maximum[0] and box[3]-box[1] <= maximum[1]
                     and box[3] == bottom and abs(box[0]+box[2]-crop[2]) <= 1):
                 failures.append(f'{path.name} {name}: {box}; limit={maximum}, bottom={bottom}, centered')
+        found = leftovers(lambda x, y: rows[y][4*x+3] >= 128)
+        if found:
+            cells = ', '.join(f'{cell} {len(points)}px' for cell, points in found)
+            failures.append(f'{path.name} crop leftovers in pose cells: {cells}; run tools/clean_pose_cells.py')
     if failures:
         raise SystemExit('\n'.join(failures))
-    print(f'  OK: {len(players)} skins retain measured Hit/Death envelopes and anchors')
+    print(f'  OK: {len(players)} skins retain measured Hit/Death envelopes and anchors, with no crop leftovers')
 
 
 if __name__ == '__main__':

@@ -10,6 +10,7 @@ import hashlib
 import json
 from pathlib import Path
 from PIL import Image
+from clean_pose_cells import clean as clean_pose_cells
 from fix_character_cells import main_component
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -154,6 +155,8 @@ def main():
         if record.get('walk_cycle') == 'tools/animate_roster_walk.py':
             from animate_roster_walk import animate
             atlas = animate(atlas)
+        # Last step: drop neighbour slivers and stray lines caught by pose crops.
+        clean_pose_cells(atlas)
         gamekey = key.replace('_b', 'chan_b') if key.endswith('_b') else key+'chan'
         target = ROOT/f'resources/gfx/characters/costumes/character_{gamekey}.png'
         atlas.save(target, optimize=True)
