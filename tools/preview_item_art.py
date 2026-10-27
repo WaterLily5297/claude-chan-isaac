@@ -78,6 +78,18 @@ BATCHES = {
         ('collectibles/please_retry.png', 'Please Retry'),
         ('collectibles/access_pass.png', 'Access Pass'),
     ),
+    '07': (
+        ('collectibles/absolutely_right.png', "You're Absolutely Right"),
+        ('collectibles/million_context.png', '1M Context'),
+        ('collectibles/skip_permissions.png', 'Skip Permissions'),
+        ('collectibles/vibe_coding.png', 'Vibe Coding'),
+        ('collectibles/tests_passing.png', 'All Tests Passing'),
+        ('trinkets/thinking_cleared.png', 'Thinking Cleared'),
+        ('trinkets/welcome_notice.png', 'Welcome Notice'),
+        ('trinkets/status_page.png', 'Status Page'),
+        ('trinkets/appeal_form.png', 'Appeal Form'),
+        ('collectibles/support_ticket.png', 'Support Ticket'),
+    ),
 }
 LIGHT, DARK = (221,205,175,255), (37,31,32,255)
 PAGE, TEXT = (238,229,209,255), (47,37,35,255)
