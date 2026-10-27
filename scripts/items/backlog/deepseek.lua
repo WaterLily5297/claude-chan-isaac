@@ -27,15 +27,27 @@ function DeepSeek:Init(mod, Risk, C, MealBreak)
     mod:AddCallback(ModCallbacks.MC_USE_ITEM, function(_, _, _, player, flags)
         if C.Battery(flags) or not MealBreak or MealBreak:Remaining(player) > 0
             or not MealBreak:Start(player, MEAL) then return C.NoUse() end
-        C.Data(player).riceMeal = C.Now() + MEAL
+        -- MealBreak saves the lockout, so the pending reward is saved too:
+        -- Continue during lunch must not keep the lockout and lose the prime.
+        local s = C.State(player)
+        if s then s.riceCooker = true end
+        C.Data(player).riceMeal = true
         C.Caption("Rice Cooker", "Lunch first, then a double shot")
         return C.Used()
     end, Item.RICE_COOKER)
-    C.On("update", function(frame)
+    C.On("started", function()
+        for _, p in ipairs(C.Players()) do
+            local s = C.Peek(p)
+            if s and s.riceCooker == true then C.Data(p).riceMeal = true end
+        end
+    end)
+    C.On("update", function()
         for _, p in ipairs(C.Players()) do
             local d = C.Data(p)
-            if d.riceMeal and frame >= d.riceMeal and MealBreak:Remaining(p) <= 0 then
+            if d.riceMeal and MealBreak:Remaining(p) <= 0 then
                 d.riceMeal = nil
+                local s = C.Peek(p)
+                if s then s.riceCooker = nil end
                 C.Prime(p, "rice", 2, RICE_WINDOW)
             end
             C.Label(p, "rice", C.Primed(p, "rice") and "Rice: 2x ready" or nil)
