@@ -38,7 +38,7 @@
     <passive name="One Bowl Only" description="First red heart in a room guards a bullet" gfx="collectibles/one_bowl.png" quality="1" />
     <active name="Wengu Clock" description="Rest, then compute: pause for +30% DMG" gfx="collectibles/wengu_clock.png" maxcharges="3" quality="2" />
     <passive name="Seven-Second Memory" description="Wait, who was that? Re-hits pulse" gfx="collectibles/seven_second_memory.png" quality="2" />
-    <active name="Sanity Test" description="Mark an enemy: 3 kinds of hits, x3 pulse" gfx="collectibles/sanity_test.png" maxcharges="4" quality="2" />
+    <active name="Sanity Test" description="Mark an enemy: 3 separate attacks, x3 pulse" gfx="collectibles/sanity_test.png" maxcharges="4" quality="2" />
     <passive name="Routing Receipt" description="Every 3 clears: DMG up next room" gfx="collectibles/routing_receipt.png" quality="2" />
     <active name="Tibo Reset" description="Limits reset: DMG up for 2 rooms" gfx="collectibles/tibo_reset.png" maxcharges="12" quality="2" />
     <passive name="Same Model Badge" description="Same name, trust me: DMG up, then down" gfx="collectibles/same_model_badge.png" quality="1" />

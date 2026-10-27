@@ -265,9 +265,9 @@ local descriptions = {
         ja_jp = { "バンク済みリセット", "リスク値-25#Claudeちゃん：使用量がリセットされ、利用上限もすぐ解除#裏Claudeちゃん：週間上限が回復" },
     },
     [Constants.Item.SUBAGENT_SWARM] = {
-        en_us = { "Subagent Swarm", "Every tear spawns 2 subagent tears at ±15° (50% damage)#Claude-chan: each tear costs double usage" },
-        zh_cn = { "子代理大军", "每发眼泪额外生成2发±15°的子代理眼泪（50%伤害）#Claude娘：每发眼泪消耗双倍用量" },
-        ja_jp = { "サブエージェント軍団", "涙を撃つたびに±15°にサブエージェントの涙が2発出る（ダメージ50%）#Claudeちゃん：涙1発の使用量が2倍" },
+        en_us = { "Subagent Swarm", "Every tear spawns 2 subagent tears at ±15° (50% damage)#Claude forms: each paid attack costs double usage or Quota" },
+        zh_cn = { "子代理大军", "每发眼泪额外生成2发±15°的子代理眼泪（50%伤害）#Claude娘形态：每次付费攻击消耗双倍用量或配额" },
+        ja_jp = { "サブエージェント軍団", "涙を撃つたびに±15°にサブエージェントの涙が2発出る（ダメージ50%）#Claudeちゃん形態：有料攻撃1回ごとの使用量／クォータが2倍" },
     },
     [Constants.Item.CONSTITUTION] = {
         en_us = { "The Constitution", "+1 soul heart once per player per run#Safety first: each holder refuses their first hit on each floor#Helpfulness ranks last: damage x0.9#Long document: speed -0.1" },
