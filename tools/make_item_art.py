@@ -49,6 +49,7 @@ GOLD = ('#8e5c27', '#d5a044', '#ffe091')
 PINK = ('#874155', '#d28289', '#ffbdaf')
 PURPLE = ('#44324e', '#826b93', '#c4abc9')
 YELLOW = ('#9c682e', '#f5c84a', '#fff1a5')
+GREEN = ('#2f5b3a', '#5f9a4f', '#b5d98a')
 
 
 class Canvas:
@@ -1074,9 +1075,153 @@ def access_art():
     return c.finish()
 
 
-def design(draw, palette, meaning, batch='01'):
+def right_art():
+    c = Canvas()
+    # Pink speech bubble with a tail, holding a small heart.
+    c.oval(16,13,12,9,PINK[0]); c.oval(15,12,11,8,PINK[1])
+    c.poly([(8,19),(12,21),(6,28)],PINK[0]); c.poly([(9,19),(11,20),(7,26)],PINK[1])
+    c.line(7,9,12,5,PINK[2]); c.line(6,11,6,13,PINK[2])
+    c.oval(13,11,3,3,ORANGE[1]); c.oval(19,11,3,3,ORANGE[1])
+    c.poly([(10,12),(22,12),(16,19)],ORANGE[1])
+    c.poly([(10,12),(16,12),(16,19)],ORANGE[0])
+    c.rect(12,9,13,9,ORANGE[2])
+    return c.finish()
+
+
+def context_art():
+    c = Canvas()
+    # A tall fan-folded printout: fresh pages at the top, browned pages below.
+    folds = ((4,PAPER),(9,PAPER),(14,PAPER),(19,WOOD),(24,WOOD))
+    for i,(y,ramp) in enumerate(folds):
+        dx = 2 if i % 2 else 0
+        c.poly([(5+dx,y),(25+dx,y),(27+dx,y+4),(7+dx,y+4)],ramp[0])
+        c.poly([(6+dx,y+1),(24+dx,y+1),(25+dx,y+3),(7+dx,y+3)],ramp[1])
+        c.line(6+dx,y+1,23+dx,y+1,ramp[2])
+        for x in (10,14,18): c.line(x+dx,y+2,x+2+dx,y+2,ramp[0])
+        if i < 4:
+            # Each fold joins the next page on alternating sides.
+            fx = 26 if i % 2 == 0 else 7
+            c.rect(fx,y+4,fx+1,y+5,ramp[0])
+    c.rect(29,26,29,26,'.'); c.rect(28,27,28,28,'.'); c.rect(9,28,10,28,'.')
+    return c.finish()
+
+
+def skip_art():
+    c = Canvas()
+    # An open steel padlock with a cracked body and an orange warning band.
+    c.line(9,13,9,7,STEEL[0],3); c.line(9,6,13,3,STEEL[0],3); c.line(13,3,18,3,STEEL[0],3)
+    c.line(19,4,22,7,STEEL[0],3)
+    c.line(8,7,11,4,STEEL[2]); c.line(12,3,17,3,STEEL[1])
+    c.poly([(5,13),(22,13),(24,15),(24,28),(5,28),(4,26),(4,15)],GOLD[0])
+    c.poly([(5,14),(22,14),(23,16),(23,26),(5,26)],GOLD[1])
+    c.line(6,15,6,25,GOLD[2]); c.line(6,15,21,15,GOLD[2])
+    for x in (8,13,18):
+        c.poly([(x,18),(x+3,18),(x+1,22),(x-2,22)],ORANGE[1])
+    c.rect(5,18,23,18,ORANGE[0]); c.rect(5,22,23,22,ORANGE[0])
+    c.line(16,23,19,26,INK); c.line(19,26,18,28,INK)
+    return c.finish()
+
+
+def vibe_art():
+    c = Canvas()
+    # Purple headphones over three differently coloured drops.
+    c.line(6,12,6,8,PURPLE[0],3); c.line(6,8,10,3,PURPLE[0],3)
+    c.line(10,3,21,3,PURPLE[0],3); c.line(21,3,25,8,PURPLE[0],3); c.line(25,8,25,12,PURPLE[0],3)
+    c.line(7,8,10,4,PURPLE[2]); c.line(11,3,20,3,PURPLE[1])
+    for x in (6,25):
+        c.rect(x-4,10,x+3,18,PURPLE[0]); c.rect(x-3,11,x+2,17,PURPLE[1])
+    c.rect(3,11,4,13,PURPLE[2]); c.rect(22,11,23,13,PURPLE[2])
+    c.rect(10,10,21,18,'.')
+    for x,y,ramp in ((8,26,BLUE),(16,26,PINK),(24,26,GOLD)):
+        c.poly([(x,y-4),(x+2,y-1),(x+2,y+1),(x,y+2),(x-2,y+1),(x-2,y-1)],ramp[0])
+        c.poly([(x,y-2),(x+1,y),(x,y+1),(x-1,y)],ramp[1]); c.rect(x-1,y-1,x-1,y-1,ramp[2])
+    return c.finish()
+
+
+def tests_art():
+    c = Canvas()
+    # A clipboard with three ticked rows.
+    c.poly([(6,5),(25,5),(26,6),(26,28),(25,29),(6,29),(5,28),(5,6)],WOOD[0])
+    c.rect(6,6,25,28,WOOD[1]); c.line(6,6,6,27,WOOD[2])
+    c.rect(8,8,23,27,PAPER[1]); c.line(8,8,23,8,PAPER[2]); c.line(23,9,23,27,PAPER[0])
+    c.rect(11,3,20,7,STEEL[0]); c.rect(12,4,19,5,STEEL[2]); c.rect(13,6,18,6,STEEL[1])
+    for y in (12,17,22):
+        c.line(10,y,11,y+2,GREEN[0],2); c.line(11,y+2,15,y-2,GREEN[0],2)
+        c.line(10,y,11,y+1,GREEN[2]); c.line(12,y+1,14,y-1,GREEN[1])
+        c.line(17,y+1,21,y+1,PAPER[0])
+    return c.finish()
+
+
+def cleared_art():
+    c = Canvas()
+    # A wiped slate in a wooden frame, a sponge, and one orange spark.
+    c.rect(3,6,26,25,WOOD[0]); c.rect(4,7,25,24,WOOD[1]); c.line(4,7,25,7,WOOD[2]); c.line(4,8,4,23,WOOD[2])
+    c.rect(6,9,23,22,STEEL[0])
+    c.poly([(7,13),(15,10),(19,12),(9,17)],STEEL[1]); c.poly([(8,19),(17,15),(21,17),(12,21)],STEEL[1])
+    c.line(9,14,15,11,STEEL[2])
+    c.poly([(17,22),(26,19),(29,24),(20,28)],YELLOW[0]); c.poly([(18,22),(25,20),(27,23),(20,26)],YELLOW[1])
+    c.line(18,22,24,20,YELLOW[2]); c.rect(21,24,21,24,YELLOW[0]); c.rect(24,23,24,23,YELLOW[0])
+    c.poly([(26,2),(27,5),(30,6),(27,7),(26,10),(25,7),(22,6),(25,5)],ORANGE[1]); c.rect(26,5,26,6,ORANGE[2])
+    return c.finish()
+
+
+def welcome_art():
+    c = Canvas()
+    # A woven doormat with a stitched heart and a blue ribbon tag.
+    c.poly([(3,14),(26,10),(29,23),(6,28)],WOOD[0])
+    c.poly([(4,14),(25,11),(27,22),(6,26)],ORANGE[1])
+    for i in range(5):
+        c.line(6+i*4,15-i,7+i*4,25-i,ORANGE[0])
+    c.line(5,14,24,11,ORANGE[2])
+    c.oval(13,17,2.5,2.5,PINK[0]); c.oval(18,16,2.5,2.5,PINK[0]); c.poly([(10,18),(21,16),(17,23)],PINK[0])
+    c.oval(13,17,1.5,1.5,PINK[1]); c.oval(18,16,1.5,1.5,PINK[1]); c.poly([(12,18),(19,17),(16,21)],PINK[1])
+    c.rect(12,16,12,16,PINK[2])
+    return c.finish()
+
+
+def status_art():
+    c = Canvas()
+    # A monitor showing three healthy lights while smoke rises behind it.
+    c.rect(3,9,26,24,STEEL[0]); c.rect(4,10,25,22,STEEL[1]); c.line(4,10,25,10,STEEL[2])
+    c.rect(6,12,23,21,BLUE[0])
+    for y in (14,17,20):
+        c.rect(8,y-1,9,y,GREEN[1]); c.rect(8,y-1,8,y-1,GREEN[2]); c.line(11,y,20,y,BLUE[1])
+    c.rect(13,24,16,26,STEEL[0]); c.rect(8,27,21,28,STEEL[0]); c.line(9,27,20,27,STEEL[2])
+    c.poly([(23,22),(26,17),(28,22),(26,25)],ORANGE[1]); c.poly([(25,22),(26,20),(27,23)],ORANGE[2])
+    return c.finish()
+
+
+def appeal_art():
+    c = Canvas()
+    # A folded form tied with a blue ribbon, and a quill.
+    c.poly([(5,8),(21,6),(24,26),(8,28)],PAPER[0]); c.poly([(6,9),(20,7),(22,25),(8,26)],PAPER[1])
+    c.line(6,9,19,7,PAPER[2])
+    for y in (11,14,20,23): c.line(9,y,19,y-1,PAPER[0])
+    c.rect(7,16,22,18,BLUE[0]); c.line(7,16,22,16,BLUE[2]); c.rect(7,17,22,17,BLUE[1])
+    c.poly([(13,17),(10,22),(12,22),(14,19)],BLUE[0]); c.poly([(15,17),(18,22),(16,22),(14,19)],BLUE[1])
+    c.poly([(27,2),(29,4),(21,15),(19,13)],PAPER[0]); c.poly([(27,3),(28,4),(21,13),(20,13)],PAPER[2])
+    c.line(20,14,17,19,WOOD[0])
+    return c.finish()
+
+
+def support_art():
+    c = Canvas()
+    # A support headset with a boom microphone and a brass coin.
+    c.line(6,16,6,10,STEEL[0],3); c.line(6,10,10,5,STEEL[0],3); c.line(10,5,19,5,STEEL[0],3)
+    c.line(19,5,23,10,STEEL[0],3); c.line(23,10,23,16,STEEL[0],3)
+    c.line(7,10,10,6,STEEL[2]); c.line(11,5,18,5,STEEL[1])
+    c.oval(6,18,3,4,BLUE[0]); c.oval(6,17,2,3,BLUE[1]); c.oval(23,18,3,4,BLUE[0]); c.oval(23,17,2,3,BLUE[1])
+    c.line(5,21,9,25,STEEL[0],2); c.line(9,25,14,25,STEEL[0],2); c.oval(16,25,2,1.5,STEEL[1])
+    c.oval(23,26,4,4,GOLD[0]); c.oval(22,25,3,3,GOLD[1]); c.rect(21,23,22,23,GOLD[2]); c.line(23,25,23,27,GOLD[0])
+    return c.finish()
+
+
+CLAUDE_ART = 'Original project artwork, Claude-assisted'
+
+
+def design(draw, palette, meaning, batch='01', author='Original project artwork, Codex-assisted'):
     return Design(draw, 1, (INK, *palette), meaning,
-                  'Original project artwork, Codex-assisted',
+                  author,
                   'Original pixel geometry and material shading authored in make_item_art.py; no external pixels.',
                   f'docs/art/item-batch-{batch}-4x.png')
 
@@ -1142,6 +1287,16 @@ DESIGNS = {
     'collectibles/sold_out.png': design(sold_art, (*WOOD,*BLUE,*STEEL), 'An open empty wooden stock crate with a riveted blue shield across its front; a temporary ordinary-bullet guard.', '06'),
     'collectibles/please_retry.png': design(retry_art, (*GOLD,*STEEL,*WOOD,*BLUE), 'A brass winding wheel and wooden crank beside three separate blue drops; three delayed native tear retries.', '06'),
     'collectibles/access_pass.png': design(access_art, (*BLUE,*GOLD,*PAPER,*STEEL,*ORANGE), 'A punched brass-edged pass on a blue lanyard with an orange seal and no lettering; a floor-scoped damage benefit after an observed charged use.', '06'),
+    'collectibles/absolutely_right.png': design(right_art, (*PINK,*ORANGE), 'A pink speech bubble holding a warm orange heart; agreeable words that charm whoever hurts you, without blocking the damage.', '07', CLAUDE_ART),
+    'collectibles/million_context.png': design(context_art, (*PAPER,*WOOD), 'A tall fan-folded printout whose lower pages brown with age; long range whose tears lose strength in flight.', '07', CLAUDE_ART),
+    'collectibles/skip_permissions.png': design(skip_art, (*STEEL,*GOLD,*ORANGE), 'An unlatched brass padlock with an orange hazard band and a crack; locks open themselves at the risk of deletion.', '07', CLAUDE_ART),
+    'collectibles/vibe_coding.png': design(vibe_art, (*PURPLE,*BLUE,*PINK,*GOLD), 'Purple headphones above three differently coloured drops; random tear effects shipped on feel.', '07', CLAUDE_ART),
+    'collectibles/tests_passing.png': design(tests_art, (*WOOD,*PAPER,*STEEL,*GREEN), 'A clipboard with three green ticked rows and no text; the room reports cleared while its enemies remain.', '07', CLAUDE_ART),
+    'trinkets/thinking_cleared.png': design(cleared_art, (*WOOD,*STEEL,*YELLOW,*ORANGE), 'A wiped slate in a wooden frame with a yellow sponge and an orange spark; damage up while active charge is lost.', '07', CLAUDE_ART),
+    'trinkets/welcome_notice.png': design(welcome_art, (*WOOD,*ORANGE,*PINK), 'A woven orange doormat with a stitched pink heart; the Ban Hammer welcomes enemies as allies instead of banning them.', '07', CLAUDE_ART),
+    'trinkets/status_page.png': design(status_art, (*STEEL,*BLUE,*GREEN,*ORANGE), 'A monitor showing three healthy green lights while a small flame burns at its corner; slower risk with an always-calm display.', '07', CLAUDE_ART),
+    'trinkets/appeal_form.png': design(appeal_art, (*PAPER,*BLUE,WOOD[0]), 'A folded form tied with a blue ribbon beside a quill; one filed appeal that survives a suspension.', '07', CLAUDE_ART),
+    'collectibles/support_ticket.png': design(support_art, (*STEEL,*BLUE,*GOLD), 'A support headset with a boom microphone and a brass coin; paying coins for a human to lower risk.', '07', CLAUDE_ART),
 }
 
 

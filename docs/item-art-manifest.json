@@ -155,15 +155,15 @@
     {
       "name": "You're Absolutely Right!",
       "gfx": "collectibles/absolutely_right.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "absolutely_right",
+        "file": "tools/make_item_art.py",
+        "function": "right_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -174,15 +174,17 @@
       ],
       "palette": [
         "#080000",
-        "#79c07a",
-        "#c9bba4",
-        "#f3e7d6",
-        "#fffaf0"
+        "#874155",
+        "#d28289",
+        "#ffbdaf",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "cff2907c44053a5e2952d779b780aa7212a35b7a650f7752d09989a575ed2c83",
-      "description": "Legacy placeholder for You're Absolutely Right!; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "f352ad9f4523f8f1a8ad7498e7161026fe0df5f23dd5d2603c6f34baac0ec05a",
+      "description": "A pink speech bubble holding a warm orange heart; agreeable words that charm whoever hurts you, without blocking the damage.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "9.9 Yuan Relay",
@@ -264,15 +266,15 @@
     {
       "name": "1M Context",
       "gfx": "collectibles/million_context.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "million_context",
+        "file": "tools/make_item_art.py",
+        "function": "context_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -283,18 +285,17 @@
       ],
       "palette": [
         "#080000",
-        "#4fb8c9",
-        "#b39568",
-        "#c9bba4",
-        "#e1c399",
-        "#f3dcb8",
-        "#f3e7d6",
-        "#fffaf0"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#a76b43",
+        "#e0a66b"
       ],
       "palette_exception": "",
-      "sha256": "2bd8cebcfa18570e8c30d80c65612ac14890fc81a051cd5268cad7ba4e8f6ee5",
-      "description": "Legacy placeholder for 1M Context; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "e35b3b995cc3d393f7a4b69e37d922544f4909ac70fc17d7f97a2688fd360a23",
+      "description": "A tall fan-folded printout whose lower pages brown with age; long range whose tears lose strength in flight.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Silent Update",
@@ -336,15 +337,15 @@
     {
       "name": "--dangerously-skip-permissions",
       "gfx": "collectibles/skip_permissions.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "skip_permissions",
+        "file": "tools/make_item_art.py",
+        "function": "skip_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -355,33 +356,33 @@
       ],
       "palette": [
         "#080000",
-        "#2e8391",
-        "#4fb8c9",
-        "#777777",
-        "#7d5f16",
-        "#a7a7a7",
-        "#b08a24",
-        "#d6d6d6",
-        "#f0c849",
-        "#ffe48a"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "77789c904df01789c2647f0151dcee61d8b9c1e0eda993b91e35daf47a976a65",
-      "description": "Legacy placeholder for --dangerously-skip-permissions; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "416449f9c246290addeded013cd0be115629cc2eac5410bfeafd7894be7e7f79",
+      "description": "An unlatched brass padlock with an orange hazard band and a crack; locks open themselves at the risk of deletion.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Vibe Coding",
       "gfx": "collectibles/vibe_coding.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "vibe_coding",
+        "file": "tools/make_item_art.py",
+        "function": "vibe_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -392,18 +393,23 @@
       ],
       "palette": [
         "#080000",
-        "#4fb8c9",
-        "#5b3a7c",
-        "#8a5bb5",
-        "#b08a24",
-        "#b48ad6",
-        "#d8d2c4",
-        "#f0c849"
+        "#44324e",
+        "#826b93",
+        "#c4abc9",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#874155",
+        "#d28289",
+        "#ffbdaf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "3605ba940d3b8adc4c5a977b3fff66b364bfb19e90d98629cdd7e3450a2fb1aa",
-      "description": "Legacy placeholder for Vibe Coding; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "4003e34810b3aa1a31a7ff5828c1c822f791d96c691921c460f79a30a409f40c",
+      "description": "Purple headphones above three differently coloured drops; random tear effects shipped on feel.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Banked Reset",
@@ -630,15 +636,15 @@
     {
       "name": "All Tests Passing",
       "gfx": "collectibles/tests_passing.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "tests_passing",
+        "file": "tools/make_item_art.py",
+        "function": "tests_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -649,21 +655,23 @@
       ],
       "palette": [
         "#080000",
-        "#4c8548",
-        "#777777",
-        "#79c07a",
-        "#a7a7a7",
-        "#b39568",
-        "#c9bba4",
-        "#cbcbcb",
-        "#e1c399",
-        "#f3e7d6",
-        "#fffaf0"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#2f5b3a",
+        "#5f9a4f",
+        "#b5d98a"
       ],
       "palette_exception": "",
-      "sha256": "e5f648da20f48cadf8fa7aad2742d7b2a6f5060ee9c7d510ec9cdf2990b7db5d",
-      "description": "Legacy placeholder for All Tests Passing; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "865f3807118289c5eaed1280d36ff7a33b11a321f5ed90ced1338ec32570df85",
+      "description": "A clipboard with three green ticked rows and no text; the room reports cleared while its enemies remain.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Hardcoded Output",
@@ -702,15 +710,15 @@
     {
       "name": "Thinking Cleared",
       "gfx": "trinkets/thinking_cleared.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "thinking_cleared",
+        "file": "tools/make_item_art.py",
+        "function": "cleared_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -721,31 +729,36 @@
       ],
       "palette": [
         "#080000",
-        "#969696",
-        "#b39568",
-        "#cbcbcb",
-        "#e1c399",
-        "#f2f2f2",
-        "#f3d9b5",
-        "#f3dcb8"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9c682e",
+        "#f5c84a",
+        "#fff1a5",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "8e9c4cd4fef7c8220ef69c3be97e96eb0a972cf8c75569226010c035d5e26dd4",
-      "description": "Legacy placeholder for Thinking Cleared; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "140946b2c1a3124cf063f6926de961db5d006f5581f6db59313df18fcb9b5c95",
+      "description": "A wiped slate in a wooden frame with a yellow sponge and an orange spark; damage up while active charge is lost.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Welcome Notice",
       "gfx": "trinkets/welcome_notice.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "welcome_notice",
+        "file": "tools/make_item_art.py",
+        "function": "welcome_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -756,29 +769,33 @@
       ],
       "palette": [
         "#080000",
-        "#79c07a",
-        "#c9bba4",
-        "#d8d2c4",
-        "#f3e7d6",
-        "#fffaf0"
+        "#684033",
+        "#a76b43",
+        "#e0a66b",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b",
+        "#874155",
+        "#d28289",
+        "#ffbdaf"
       ],
       "palette_exception": "",
-      "sha256": "1a6d929e039290fd53475df8486efae1283feafcc15cb7b28f415789dca57812",
-      "description": "Legacy placeholder for Welcome Notice; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "9c00798fa2edc140b748b3b240c61d56e096c4a4164b0074b2e8aa7bac3f7d3e",
+      "description": "A woven orange doormat with a stitched pink heart; the Ban Hammer welcomes enemies as allies instead of banning them.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Status Page",
       "gfx": "trinkets/status_page.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "status_page",
+        "file": "tools/make_item_art.py",
+        "function": "status_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -789,30 +806,36 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#2b2b2b",
-        "#3a3a3a",
-        "#575757",
-        "#79c07a",
-        "#e70000"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#2f5b3a",
+        "#5f9a4f",
+        "#b5d98a",
+        "#96382d",
+        "#e16c3c",
+        "#ffb66b"
       ],
       "palette_exception": "",
-      "sha256": "b7ac55cb9159129a801db4d24557be3927ee4d200410d0c8fb7fdaccc1468022",
-      "description": "Legacy placeholder for Status Page; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "584d1b14187284228b956b96e6ca5632c5961037179e0de9d85ff3e81bee7af6",
+      "description": "A monitor showing three healthy green lights while a small flame burns at its corner; slower risk with an always-calm display.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Appeal Form",
       "gfx": "trinkets/appeal_form.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "appeal_form",
+        "file": "tools/make_item_art.py",
+        "function": "appeal_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -823,29 +846,31 @@
       ],
       "palette": [
         "#080000",
-        "#79c07a",
-        "#c9bba4",
-        "#e70000",
-        "#f3e7d6",
-        "#fffaf0"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#684033"
       ],
       "palette_exception": "",
-      "sha256": "197bc64750503f39570fc9b45111155f78cd18250420c56ce6230bc98a0e6c66",
-      "description": "Legacy placeholder for Appeal Form; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "1a66c06cb782c59d4ed6041fc47397e6bde5218fe639530cc9594472f5659767",
+      "description": "A folded form tied with a blue ribbon beside a quill; one filed appeal that survives a suspension.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Support Ticket",
       "gfx": "collectibles/support_ticket.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "support_ticket",
+        "file": "tools/make_item_art.py",
+        "function": "support_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -856,18 +881,20 @@
       ],
       "palette": [
         "#080000",
-        "#4fb8c9",
-        "#79c07a",
-        "#a7dd9f",
-        "#c9bba4",
-        "#d8d2c4",
-        "#f3e7d6",
-        "#fffaf0"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "11d78fc3ef40f5b0c0a4923839a8bbfed56e9611675dea899e72fbfea6481db0",
-      "description": "Legacy placeholder for Support Ticket; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "9c98ea94663a27de657a4079d49427914a4d490546e3baf2307cc1c09db0649a",
+      "description": "A support headset with a boom microphone and a brass coin; paying coins for a human to lower risk.",
+      "contact_sheet": "docs/art/item-batch-07-4x.png"
     },
     {
       "name": "Ignore All Previous Instructions",
