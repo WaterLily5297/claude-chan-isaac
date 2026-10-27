@@ -1,9 +1,10 @@
 -- Disgrace Loop (trinket)
 -- Parody of the widely shared "I am a disgrace" self-criticism loop: the
 -- first real hit a holder takes in a room freezes every vulnerable enemy for
--- 1.5 seconds while they watch the meltdown. Fake and self-inflicted damage
--- (Blood Donation, IV Bag, sacrifice rooms) never trigger it. The hit is not
--- cancelled. Once per room per player; nothing is saved.
+-- 1.5 seconds while they watch the meltdown. Fake and penalty-free damage
+-- (Blood Donation, IV Bag) never triggers it; other self-inflicted hits such
+-- as your own bombs do. The hit is not cancelled. Once per room per player;
+-- nothing is saved.
 
 local Constants = include("scripts.constants")
 

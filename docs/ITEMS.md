@@ -104,7 +104,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Appeal Form | Survive one suspension | When your risk reaches 90 (Suspended), this is used up and your risk drops to 50 instead |
 | As an AI Language Model | I can't help with that curse | Refuses and removes one curse on each floor; Curse of the Labyrinth is never removed |
 | Claudius's Discount | Shop refunds, floor fees | Paid purchases of 2+ coins refund 1 coin; Each new floor: lose 1 coin if you have any |
-| Disgrace Loop | I am a disgrace: first hit freezes enemies | The first real hit you take in a room freezes all enemies for 1.5 seconds; You still take the hit; self-damage does not count |
+| Disgrace Loop | I am a disgrace: first hit freezes enemies | The first real hit you take in a room freezes all enemies for 1.5 seconds; You still take the hit; Fake and penalty-free damage (such as blood donations or IV Bag) does not count; your own bombs do |
 | Hardcoded Output | Every tear deals exactly 3.5 | Every tear deals exactly 3.5 damage, the expected output; Great when weak, terrible when strong |
 | One Small Rock a Day | Geologists recommend it: rocks heal | Once per floor, breaking a rock heals half a red heart; Kept for later while you are at full health |
 | Status Page | Risk rises slower. All systems operational | Every risk increase is 1 smaller; But the HUD only ever says "all systems operational" |

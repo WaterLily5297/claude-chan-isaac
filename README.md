@@ -408,7 +408,7 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 | **Stuck in Mt. Moon** | Re-enter cleared rooms 6 times on one floor to reveal the floor map. Once per floor. |
 | **As an AI Language Model** | Refuses and removes one curse on each floor. Curse of the Labyrinth is never removed. |
 | **System Prompt Leak** | Reveals the special rooms on each floor. |
-| **Disgrace Loop** | The first real hit you take in a room freezes all enemies for 1.5 seconds. Self-damage does not count. |
+| **Disgrace Loop** | The first real hit you take in a room freezes all enemies for 1.5 seconds. Fake and penalty-free damage (such as blood donations or IV Bag) does not count; your own bombs do. |
 
 ## Pills
 
