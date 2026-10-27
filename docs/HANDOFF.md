@@ -17,26 +17,26 @@ Pick the top unit that is not gated. A bug the owner reports beats everything.
 
 1. **Owner-visible correctness first.** Remaining [ITEM_COMPLETION.md](ITEM_COMPLETION.md) findings F1, F6, F7 and F14, F10's native save/reload case, plus Disgrace Loop's late-cancellation/restart lifecycle; F12 waits for native completion/removal evidence. Same Model Badge re-entry (F5 remainder) and F3 target gaps are rule decisions.
 2. **Art.** All 92 icons are designed offline; their native pedestal/EID look is unreviewed ([ART_STATUS.md](ART_STATUS.md)). Character work: proper side profiles for the nine newer families, GLM's fallen pose, special poses, Relay Slime and `thumb.png`. Distinct designs for the nine derived tainted families need an owner preview first.
-3. **Characters.** [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) keeps all 22 rows open on shared gaps G1-G7 and special cases S1-S4; refusal-cue readability (W2.4) is still unaudited.
+3. **Characters.** [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) keeps all 22 rows open on shared gaps G1-G7 and special cases S1-S4; W2.4 refusal conditions are audited in [DROP_REFUSALS.md](DROP_REFUSALS.md); adding cues and the narrow-screen/co-op string audit remain.
 4. **Compatibility and stability.** Interaction candidates in [INTERACTIONS.md](INTERACTIONS.md), the wider vanilla matrix (special characters, Greed, challenges), seeded mod-item combination invariants, O6 save/continue audit and a whole-mod performance budget ([PERFORMANCE.md](PERFORMANCE.md)).
 5. **Gated content.** Meme batch 3 (O7), character synergies (W5), Chinese/Japanese roster story text and Workshop all need explicit owner decisions.
 
 No further child-laser/Parent/derived-shot billing PR without native E2 evidence. Repeat a scheduled hardening review after three to five substantive units or a concrete failure.
 
-## Recent units (#104-#130)
+## Recent units (#104-#140)
 
 All are offline source/tooling/documentation work; none is installed or engine-accepted. Full entries: [history](HANDOFF_HISTORY_2026-10-27.md).
 
 | Area | PRs | Result |
 |---|---|---|
 | Audits | #105, #106, #108, #110 | [ART_STATUS.md](ART_STATUS.md), [INTERACTIONS.md](INTERACTIONS.md) scanner, [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) (22 forms, G1-G7/S1-S4), [ITEM_COMPLETION.md](ITEM_COMPLETION.md) (97 registrations, F1-F15). |
-| Item art | #111, #112, #115, #118, #122, #126, #129, #134, #135, #136 | Designed-icon pipeline and validator ([make_item_art.py](../tools/make_item_art.py)); all 92 icons designed with 1x/4x light/dark review sheets ([batches 01-06](ITEM_ART_BATCH_01.md), [07](ITEM_ART_BATCH_07.md), [08](ITEM_ART_BATCH_08.md), [09](ITEM_ART_BATCH_09.md)). |
-| Item fixes | #113, #116, #121, #124, #128, #130, #132, #137, #139 | F8 Thinking Cleared refresh, F13 Cache Cartridge expiry, F11 I Panicked pickup protection, F2 Ignore Instructions distinct repeat target, F9 [charm after shields](CHARM_DAMAGE_ORDER.md), F4/F5 Subagent Swarm and Sanity Test text, F15 Rice Cooker reward saved across Continue (#132), Disgrace Loop text says own bombs count (#137), F10 Seahorse offline co-op/exit cases (#139). |
-| Characters | #107, #109, #123 | Normal Claude live-owner isolation (preserves same-entity form-return debt), T1/T2 text corrections, [pending Birthright timing](BIRTHRIGHT_TIMING.md) for four tainted forms. |
+| Item art | #111, #112, #115, #118, #122, #126, #129, #134, #135, #136 | Icon pipeline and validator ([make_item_art.py](../tools/make_item_art.py)); all 92 icons designed with 1x/4x review sheets ([batch 01](ITEM_ART_BATCH_01.md) to [09](ITEM_ART_BATCH_09.md)). |
+| Item fixes | #113, #116, #121, #124, #128, #130, #132, #137, #139 | F8, F13, F11, F2, F9 [charm after shields](CHARM_DAMAGE_ORDER.md), F4/F5 text, F15 Rice Cooker Continue, Disgrace Loop text (own bombs count), F10 Seahorse co-op/exit tests. Details in [ITEM_COMPLETION.md](ITEM_COMPLETION.md). |
+| Characters | #107, #109, #123, #140 | Normal Claude live-owner isolation, T1/T2 text, [Birthright timing](BIRTHRIGHT_TIMING.md) for four tainted forms, [DROP refusal audit](DROP_REFUSALS.md). |
 | Evidence only | #119, #127 | F12 [charged-use replacement](CHARGED_USE_AUDIT.md) reproduced, not fixed; [primary-tear composition](PRIMARY_TEAR_COMPOSITION.md) matrix, no defect found. |
 | Stability | #114, #117, #120, #125 | Usage/Limited load validation, GPT/Grok binding allocation ([PERFORMANCE.md](PERFORMANCE.md)), thumbnail exporter repair, scheduled [hardening](HARDENING_2026-10-27.md). |
 | Install record | #104 | Documentation sync installed as `8fd6a8c`. |
-| Documentation | #131, #133, #138 | Handoff compacted (D2 in TESTING.md); [PUBLISHING.md](PUBLISHING.md) refreshed with current counts, an owner go-ahead item and an explicit "not authorized yet" note; CHANGELOG caught up for #130-#137. |
+| Documentation | #131, #133, #138 | Handoff compacted (D2 in TESTING.md), [PUBLISHING.md](PUBLISHING.md) refreshed (Workshop still not authorized), CHANGELOG caught up. |
 
 ## Long-term completion gates
 
@@ -44,7 +44,7 @@ All are offline source/tooling/documentation work; none is installed or engine-a
 |---|---|
 | Art | All 92 icons designed (offline review only). Side profiles, GLM fallen pose, nine distinct tainted identities, Relay Slime, thumbnail and native visuals remain open. |
 | Characters | All 22 forms have a loop, B1 tradeoff and Birthright in source; every completion row is open pending G1-G7/S1-S4 and real fresh starts/combat floors. |
-| Items | 80 collectibles, 12 trinkets and five pills registered. Five findings fixed in source; the rest and mechanism-by-mechanism native acceptance remain open. |
+| Items | 80 collectibles, 12 trinkets and five pills registered. F2, F4, F8, F9, F11, F13 and F15 are fixed in source and F10 has offline cases; the rest and mechanism-by-mechanism native acceptance remain open. |
 | Compatibility | Source scanner and focused fixtures exist; candidate semantics, combinations and the native matrix remain open. |
 | Optional synergies | Proposal and rule approval required before implementation. |
 | Stability | Save/performance/integration hardening and one full run to Mom per family group remain open; green CI is not playability acceptance. |

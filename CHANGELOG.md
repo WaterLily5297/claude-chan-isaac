@@ -1,5 +1,10 @@
 # Changelog
 
+## DROP refusal audit (2026-10-27; documentation)
+
+- Add docs/DROP_REFUSALS.md: for all 22 forms, when a DROP tap is refused and whether any text explains it, plus the shared tap rules. Most refusals are silent; only Tainted Qwen-chan and Llama-chan explain one in words.
+- Link it from manual check 3. No code, value or cue changes; adding cues is a separate open change.
+
 ## Seahorse Emoji lifecycle cases (2026-10-27; offline evidence)
 
 - Add F10's offline owner and lifecycle cases: two players keep separate wisps, replacing one keeps the other, a wisp killed in combat is replaced, and game exit removes every tracked wisp without recreating any.
