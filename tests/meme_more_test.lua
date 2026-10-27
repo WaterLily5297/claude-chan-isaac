@@ -14,7 +14,7 @@ Isaac = {
 ModCallbacks = setmetatable({}, { __index = function(_, k) return k end })
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_FIREDELAY = 2, CACHE_SHOTSPEED = 4, CACHE_RANGE = 8,
     CACHE_SPEED = 16, CACHE_LUCK = 1024 }
-DamageFlag = { DAMAGE_FAKE = 1 << 21, DAMAGE_NO_PENALTIES = 1 << 28 }
+DamageFlag = { DAMAGE_EXPLOSION = 1 << 2, DAMAGE_FAKE = 1 << 21, DAMAGE_NO_PENALTIES = 1 << 28 }
 EntityFlag = { FLAG_FRIENDLY = 1 }
 EntityType = { ENTITY_PLAYER = 1 }
 UseFlag = { USE_CARBATTERY = 32 }
@@ -120,6 +120,10 @@ assert(hit(p1) == nil, "hit is not cancelled")
 assert(foe.frozen == 45 and foe.by == p1 and friend.frozen == nil and rockish.frozen == nil)
 foe.frozen = nil; hit(p1); assert(foe.frozen == nil, "once per room")
 fire("MC_POST_NEW_ROOM"); hit(p1); assert(foe.frozen == 45, "new room re-arms")
+foe.frozen = nil; fire("MC_POST_NEW_ROOM")
+hit(p1, DamageFlag.DAMAGE_EXPLOSION | DamageFlag.DAMAGE_NO_PENALTIES)
+assert(foe.frozen == nil, "a penalty-free blast neither triggers nor spends the room")
+hit(p1, DamageFlag.DAMAGE_EXPLOSION); assert(foe.frozen == 45, "own bomb blasts carry a penalty, so they count as real hits")
 print("PASS Disgrace Loop: real hits only, owner, eligibility, once per room, hit kept")
 
 -- Rolled Back -----------------------------------------------------------------------------------

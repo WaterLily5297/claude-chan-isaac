@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `02ec4cd162bff1684d75a2391238bb5208554622048da0fd84ec883a77c24d41`.
+110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `df84aaeeff85e2ab2e768596e787b2d3d332eddfa61f18157ca143e75a35671b`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1488,7 +1488,7 @@ Risk state roots: none detected.
 #### scripts/items/disgrace_loop.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/disgrace_loop.lua:17](../scripts/items/disgrace_loop.lua#L17)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/disgrace_loop.lua:19](../scripts/items/disgrace_loop.lua#L19)).
+Callbacks: `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/disgrace_loop.lua:18](../scripts/items/disgrace_loop.lua#L18)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/disgrace_loop.lua:20](../scripts/items/disgrace_loop.lua#L20)).
 
 
 Cache flag references: none detected.
@@ -1500,7 +1500,7 @@ Direct tracked-field writes: none detected.
 Risk state roots: none detected.
 
 
-Unresolved syntax: L25: dynamic field target requires manual review.
+Unresolved syntax: L26: dynamic field target requires manual review.
 
 
 #### scripts/items/em_dash.lua

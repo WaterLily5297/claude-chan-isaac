@@ -408,7 +408,7 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 | **Stuck in Mt. Moon** | 1フロアでクリア済みの部屋に6回入り直すとフロアのマップが表示される。1フロア1回。 |
 | **As an AI Language Model** | 各フロアで呪いを1つ拒否して取り除く。迷宮の呪いは取り除かない。 |
 | **System Prompt Leak** | 各フロアの特殊部屋を表示する。 |
-| **Disgrace Loop** | 部屋で最初に本当に被弾すると、すべての敵が1.5秒間凍結。自傷は数えない。 |
+| **Disgrace Loop** | 部屋で最初に本当に被弾すると、すべての敵が1.5秒間凍結。偽ダメージやペナルティのないダメージ（献血、IV Bag など）は数えないが、自分の爆弾は数える。 |
 
 ## 薬
 

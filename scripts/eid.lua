@@ -303,7 +303,7 @@ local trinketDescriptions = {
         en_us = { "System Prompt Leak", "Reveals the special rooms on each floor" },
     },
     [Constants.Trinket.DISGRACE_LOOP] = {
-        en_us = { "Disgrace Loop", "The first real hit you take in a room freezes all enemies for 1.5 seconds#You still take the hit; self-damage does not count" },
+        en_us = { "Disgrace Loop", "The first real hit you take in a room freezes all enemies for 1.5 seconds#You still take the hit#Fake and penalty-free damage (such as blood donations or IV Bag) does not count; your own bombs do" },
     },
     [Constants.Trinket.HARDCODED_OUTPUT] = {
         en_us = { "Hardcoded Output", "Every tear deals exactly 3.5 damage, the expected output#Great when weak, terrible when strong" },
