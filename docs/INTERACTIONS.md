@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `39672d07008ad9916b9b00f19d38865a3a86b62126f210b117a7bd2304ce4787`.
+110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `02ec4cd162bff1684d75a2391238bb5208554622048da0fd84ec883a77c24d41`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1090,7 +1090,7 @@ Unresolved syntax: L129: dynamic field target requires manual review; L182: dyna
 #### scripts/items/backlog/deepseek.lua
 
 
-Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:27](../scripts/items/backlog/deepseek.lua#L27)), `ModCallbacks.MC_PRE_PICKUP_COLLISION` (`default`, [items/backlog/deepseek.lua:48](../scripts/items/backlog/deepseek.lua#L48)), `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:78](../scripts/items/backlog/deepseek.lua#L78)).
+Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:27](../scripts/items/backlog/deepseek.lua#L27)), `ModCallbacks.MC_PRE_PICKUP_COLLISION` (`default`, [items/backlog/deepseek.lua:60](../scripts/items/backlog/deepseek.lua#L60)), `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:90](../scripts/items/backlog/deepseek.lua#L90)).
 
 
 Cache flag references: none detected.
@@ -1102,7 +1102,7 @@ Direct tracked-field writes: none detected.
 Risk state roots: none detected.
 
 
-Unresolved syntax: L62: dynamic field target requires manual review; L72: dynamic field target requires manual review.
+Unresolved syntax: L74: dynamic field target requires manual review; L84: dynamic field target requires manual review.
 
 
 #### scripts/items/backlog/doubao.lua
