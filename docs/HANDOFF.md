@@ -36,7 +36,7 @@ All are offline source/tooling/documentation work; none is installed or engine-a
 | Evidence only | #119, #127 | F12 [charged-use replacement](CHARGED_USE_AUDIT.md) reproduced, not fixed; [primary-tear composition](PRIMARY_TEAR_COMPOSITION.md) matrix, no defect found. |
 | Stability | #114, #117, #120, #125 | Usage/Limited load validation, GPT/Grok binding allocation ([PERFORMANCE.md](PERFORMANCE.md)), thumbnail exporter repair, scheduled [hardening](HARDENING_2026-10-27.md). |
 | Install record | #104 | Documentation sync installed as `8fd6a8c`. |
-| Documentation | #131, #133 | Handoff compacted (D2 in TESTING.md); [PUBLISHING.md](PUBLISHING.md) refreshed with current counts, an owner go-ahead item and an explicit "not authorized yet" note. |
+| Documentation | #131, #133, #138 | Handoff compacted (D2 in TESTING.md); [PUBLISHING.md](PUBLISHING.md) refreshed with current counts, an owner go-ahead item and an explicit "not authorized yet" note; CHANGELOG caught up for #130-#137. |
 
 ## Long-term completion gates
 

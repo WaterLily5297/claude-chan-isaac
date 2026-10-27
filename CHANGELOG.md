@@ -1,5 +1,39 @@
 # Changelog
 
+## Disgrace Loop text matches its filter (2026-10-27; offline text fix)
+
+- The English EID and all three READMEs said self-damage never triggers Disgrace Loop. The unchanged filter only skips fake and penalty-free damage, so your own bomb blasts do trigger it, and the text now says so.
+- A regression pins both cases. A penalty-free blast neither freezes enemies nor spends the room's trigger; a plain blast freezes them. Late cancellation, Continue restart and native flag sources remain open. Installed 8fd6a8c is untouched.
+
+## Last twelve designed item icons (2026-10-27; offline art)
+
+- Replace the last six collectible and six trinket placeholders with original drawings: a floor pin, a pipe valve, a ringed coin, a piggy bank, a needle through tears, blueberries, a slashed price tag, a rock on a plate, a moonlit mountain cave, an umbrella against curse drops, a leaking jar and an ice cube in a loop arrow.
+- All 92 registered icons are now designed. Review sheets now size to the batch, and earlier sheets stay byte-identical. Glyphs (Blueberry's "B") and the old Disgrace Loop face are gone. Mechanics, XML and installed 8fd6a8c are unchanged; the native look is unaccepted.
+
+## Eighth ten designed item icons (2026-10-27; offline art)
+
+- Replace ten collectible placeholders with original drawings, including a tungsten cube, a glued pizza slice, a strawberry, a bridge tower, a seahorse, a temperature knob, a book stack, a crossed-out letter, a rubber stamp and a cartridge. Add one shared red ramp.
+- Remove the cube's dots, the bridge's face-like cable and the envelope's flap lines during review. Eighty icons are designed and twelve remain placeholders. No mechanics change.
+
+## Seventh ten designed item icons (2026-10-27; offline art)
+
+- Replace six Claude collectibles and four trinkets with original drawings, including a speech-bubble heart, a fan-folded printout, an unlatched padlock, headphones with drops, a ticked clipboard, a wiped slate, a doormat, a status monitor, a ribboned form and a support headset.
+- Add one shared green ramp, plus an optional author argument so Claude-drawn records say so. Seventy icons are designed and 22 remain placeholders. No mechanics change.
+
+## Rice Cooker reward survives Continue (2026-10-27; offline fix)
+
+- MealBreak already saved Rice Cooker's lunch lockout, but the pending 2x reward was transient, so a Continue during lunch kept the lockout and lost the reward. The reward is now saved per player beside the lockout and restored on Continue (F15).
+- A real-module regression covers Continue mid-lunch, the 7-damage reward, no regrant after a second Continue and a new run dropping it. The baseline fails it. Other meals are not refunded or primed.
+
+## Handoff compaction and publishing refresh (2026-10-27; documentation)
+
+- Compact docs/HANDOFF.md to about 15 KB, with a size rule and a "Recent units" table. The previous text is archived verbatim in docs/HANDOFF_HISTORY_2026-10-27.md.
+- Refresh docs/PUBLISHING.md with current counts, an owner go-ahead item and an explicit note that Workshop release is not authorized yet.
+
+## Item text corrections (2026-10-27; offline text fix)
+
+- Subagent Swarm's EID in all three languages now says each paid attack costs double usage or Quota for Claude forms (F4). Sanity Test's pickup text now says three separate attacks (F5). Behaviour is unchanged.
+
 ## Sixth ten designed item icons (2026-10-27; offline art)
 
 - Replace ten Doubao/Kimi/GLM collectible placeholders with original megaphone, eraser, projection screen, thread spool, transparency stack, lectern, ticket roll, empty shielded crate, winding wheel and pass drawings.
