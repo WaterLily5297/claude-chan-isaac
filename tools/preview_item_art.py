@@ -90,6 +90,18 @@ BATCHES = {
         ('trinkets/appeal_form.png', 'Appeal Form'),
         ('collectibles/support_ticket.png', 'Support Ticket'),
     ),
+    '08': (
+        ('collectibles/tungsten_cube.png', 'Tungsten Cube'),
+        ('collectibles/pizza_glue.png', 'Pizza Glue'),
+        ('collectibles/strawberry.png', 'Strawberry'),
+        ('collectibles/golden_gate.png', 'Golden Gate Claude'),
+        ('collectibles/seahorse_emoji.png', 'Seahorse Emoji'),
+        ('collectibles/temperature_dial.png', 'Temperature Dial'),
+        ('collectibles/deep_research.png', 'Deep Research'),
+        ('collectibles/rejection_letter.png', 'Rejection Letter'),
+        ('collectibles/red_stamp.png', "Dario's Red Stamp"),
+        ('collectibles/cache_cartridge.png', 'Cache Cartridge'),
+    ),
 }
 LIGHT, DARK = (221,205,175,255), (37,31,32,255)
 PAGE, TEXT = (238,229,209,255), (47,37,35,255)

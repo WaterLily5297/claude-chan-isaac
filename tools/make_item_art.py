@@ -50,6 +50,7 @@ PINK = ('#874155', '#d28289', '#ffbdaf')
 PURPLE = ('#44324e', '#826b93', '#c4abc9')
 YELLOW = ('#9c682e', '#f5c84a', '#fff1a5')
 GREEN = ('#2f5b3a', '#5f9a4f', '#b5d98a')
+RED = ('#7a1f2b', '#c83a3f', '#f08a7a')
 
 
 class Canvas:
@@ -1216,6 +1217,135 @@ def support_art():
     return c.finish()
 
 
+def tungsten_art():
+    c = Canvas()
+    # A dense isometric metal cube with a heavy shadow face.
+    c.poly([(16,4),(28,10),(16,16),(4,10)],STEEL[2])
+    c.poly([(4,10),(16,16),(16,29),(4,23)],STEEL[1])
+    c.poly([(16,16),(28,10),(28,23),(16,29)],STEEL[0])
+    c.line(16,5,26,10,STEEL[1]); c.line(6,11,15,15,STEEL[2])
+    c.line(5,11,5,22,STEEL[2])
+    return c.finish()
+
+
+def pizza_art():
+    c = Canvas()
+    # A pizza slice with white glue strands dripping from its tip.
+    c.poly([(4,6),(27,4),(14,26)],GOLD[0])
+    c.poly([(5,8),(26,6),(14,24)],YELLOW[1])
+    c.poly([(4,5),(27,3),(27,6),(4,8)],GOLD[1]); c.line(5,5,26,3,GOLD[2])
+    for x,y in ((11,11),(19,10),(15,17)):
+        c.oval(x,y,2,2,RED[1]); c.rect(x-1,y-1,x-1,y-1,RED[2])
+    c.line(8,9,13,15,YELLOW[2])
+    c.line(14,24,14,28,PAPER[2],2); c.line(18,17,20,23,PAPER[2]); c.oval(20,24,1,1.5,PAPER[2])
+    c.oval(14,28,1.5,1.5,PAPER[1])
+    return c.finish()
+
+
+def strawberry_art():
+    c = Canvas()
+    # A plain strawberry with seeds and a green crown; no lettering.
+    c.poly([(5,11),(16,8),(27,11),(26,19),(20,27),(16,29),(12,27),(6,19)],RED[0])
+    c.poly([(6,12),(16,9),(26,12),(25,18),(19,26),(16,27),(13,26),(7,18)],RED[1])
+    c.poly([(7,12),(12,10),(10,17),(8,16)],RED[2])
+    for x,y in ((11,14),(16,13),(21,14),(13,19),(19,19),(16,23),(23,17),(9,17)):
+        c.rect(x,y,x,y,YELLOW[1])
+    c.poly([(9,9),(13,4),(16,7),(19,4),(23,9),(16,11)],GREEN[0])
+    c.poly([(11,8),(13,5),(16,8),(19,5),(21,8),(16,10)],GREEN[1])
+    c.line(16,3,16,7,GREEN[0]); c.rect(13,6,14,6,GREEN[2])
+    return c.finish()
+
+
+def gate_art():
+    c = Canvas()
+    # A generic orange suspension-bridge tower over blue water.
+    c.rect(2,22,29,28,BLUE[0]); c.rect(3,23,28,27,BLUE[1])
+    for x in (5,12,20,26): c.line(x,25,x+2,25,BLUE[2])
+    c.rect(9,4,11,23,ORANGE[0]); c.rect(20,4,22,23,ORANGE[0])
+    c.rect(9,4,9,22,ORANGE[2]); c.rect(20,4,20,22,ORANGE[2])
+    c.rect(10,5,10,22,ORANGE[1]); c.rect(21,5,21,22,ORANGE[1])
+    c.rect(9,8,22,9,ORANGE[1]); c.rect(9,14,22,15,ORANGE[1])
+    c.line(2,18,9,5,ORANGE[0]); c.line(22,5,29,18,ORANGE[0])
+    c.rect(2,19,29,20,ORANGE[0]); c.line(2,19,29,19,ORANGE[2])
+    for x,y in ((4,15),(6,12),(25,12),(27,15)): c.line(x,y,x,18,ORANGE[1])
+    return c.finish()
+
+
+def seahorse_art():
+    c = Canvas()
+    # A golden seahorse with a curled tail inside a faint blue wisp.
+    c.oval(16,16,12,13,BLUE[0]); c.oval(16,16,11,12,BLUE[1])
+    c.rect(5,5,6,6,'.'); c.rect(26,26,27,27,'.')
+    c.poly([(13,6),(18,5),(21,8),(26,9),(26,11),(20,12),(19,16),(20,21),(17,26),(13,27),(11,24),(14,23),(15,21),(13,17),(12,12)],GOLD[0])
+    c.poly([(14,7),(18,6),(20,9),(25,10),(19,11),(18,16),(19,21),(16,25),(13,25),(15,22),(14,17),(13,12)],GOLD[1])
+    c.line(15,8,14,14,GOLD[2]); c.rect(17,8,17,8,INK)
+    for y in (12,15,18): c.rect(12,y,12,y,GOLD[0])
+    c.oval(10,23,2,2,BLUE[1]); c.rect(9,22,10,23,GOLD[0]); c.rect(10,22,10,22,BLUE[2])
+    c.rect(8,6,9,7,BLUE[2]); c.rect(24,20,24,21,BLUE[2])
+    return c.finish()
+
+
+def dial_art():
+    c = Canvas()
+    # A round knob whose scale runs from cool blue to hot orange.
+    c.oval(16,17,12,12,STEEL[0])
+    for i,(x,y) in enumerate(((6,22),(5,17),(7,11),(11,7),(16,5),(21,7),(25,11),(27,17),(26,22))):
+        ramp = BLUE if i < 4 else (GOLD if i == 4 else ORANGE)
+        c.rect(x,y,x+1,y+1,ramp[1])
+    c.oval(16,17,8,8,STEEL[1]); c.oval(15,16,6,6,STEEL[2]); c.oval(16,17,4,4,STEEL[1])
+    c.line(16,17,21,11,INK,2); c.line(16,17,20,12,ORANGE[1])
+    c.rect(13,28,19,29,STEEL[0])
+    return c.finish()
+
+
+def research_art():
+    c = Canvas()
+    # A tall leaning stack of books topped by a rolled map.
+    books = ((4,24,26,28,BLUE),(6,19,25,23,RED),(5,14,24,18,GREEN),(7,9,25,13,PURPLE))
+    for x0,y0,x1,y1,ramp in books:
+        c.rect(x0,y0,x1,y1,ramp[0]); c.rect(x0+1,y0+1,x1-1,y1-1,ramp[1]); c.line(x0+1,y0+1,x1-2,y0+1,ramp[2])
+        c.rect(x1-3,y0+1,x1-1,y1-1,PAPER[1]); c.line(x1-3,y0+2,x1-1,y0+2,PAPER[0])
+    c.rect(8,4,26,7,PAPER[0]); c.rect(9,4,25,6,PAPER[1]); c.line(9,4,24,4,PAPER[2])
+    c.oval(8,6,2,2,PAPER[0]); c.oval(26,6,2,2,PAPER[0]); c.rect(15,4,16,7,RED[1])
+    return c.finish()
+
+
+def rejection_art():
+    c = Canvas()
+    # An opened envelope with a letter crossed out in red.
+    c.poly([(3,12),(29,12),(29,28),(3,28)],PAPER[0])
+    c.poly([(7,3),(25,3),(25,20),(7,20)],PAPER[1]); c.line(7,3,24,3,PAPER[2])
+    for y in (7,10,13): c.line(10,y,22,y,PAPER[0])
+    c.line(10,6,22,17,RED[1],2); c.line(22,6,10,17,RED[1],2); c.rect(11,6,11,6,RED[2])
+    c.poly([(3,13),(16,21),(29,13),(29,28),(3,28)],PAPER[1])
+    c.line(4,14,15,21,PAPER[2])
+    return c.finish()
+
+
+def stamp_art():
+    c = Canvas()
+    # A rubber stamp with a wooden knob and a red mark beneath it.
+    c.oval(16,6,5,4,WOOD[0]); c.oval(15,5,4,3,WOOD[1]); c.rect(13,4,14,4,WOOD[2])
+    c.rect(14,9,18,13,WOOD[0]); c.rect(15,9,16,12,WOOD[1])
+    c.rect(7,13,25,17,STEEL[0]); c.rect(8,13,24,15,STEEL[1]); c.line(8,13,24,13,STEEL[2])
+    c.rect(8,18,24,20,RED[0]); c.rect(9,18,23,19,RED[1])
+    c.poly([(5,23),(27,23),(26,29),(6,29)],RED[1]); c.poly([(8,25),(24,25),(23,27),(9,27)],PAPER[2])
+    c.rect(12,25,20,27,RED[0])
+    return c.finish()
+
+
+def cartridge_art():
+    c = Canvas()
+    # A game cartridge with a blank label and speed lines.
+    c.poly([(9,4),(27,4),(27,26),(25,28),(9,28)],STEEL[0])
+    c.rect(10,5,26,26,STEEL[1]); c.line(10,5,26,5,STEEL[2]); c.line(10,6,10,26,STEEL[2])
+    c.rect(12,8,24,18,BLUE[0]); c.rect(13,9,23,17,BLUE[1]); c.line(13,9,22,9,BLUE[2])
+    c.rect(15,12,21,14,PAPER[1])
+    for x in (13,16,19,22): c.rect(x,22,x+1,26,GOLD[1])
+    c.line(2,10,6,10,BLUE[1]); c.line(3,14,7,14,BLUE[2]); c.line(2,18,6,18,BLUE[1])
+    return c.finish()
+
+
 CLAUDE_ART = 'Original project artwork, Claude-assisted'
 
 
@@ -1297,6 +1427,16 @@ DESIGNS = {
     'trinkets/status_page.png': design(status_art, (*STEEL,*BLUE,*GREEN,*ORANGE), 'A monitor showing three healthy green lights while a small flame burns at its corner; slower risk with an always-calm display.', '07', CLAUDE_ART),
     'trinkets/appeal_form.png': design(appeal_art, (*PAPER,*BLUE,WOOD[0]), 'A folded form tied with a blue ribbon beside a quill; one filed appeal that survives a suspension.', '07', CLAUDE_ART),
     'collectibles/support_ticket.png': design(support_art, (*STEEL,*BLUE,*GOLD), 'A support headset with a boom microphone and a brass coin; paying coins for a human to lower risk.', '07', CLAUDE_ART),
+    'collectibles/tungsten_cube.png': design(tungsten_art, (*STEEL,), 'A dense grey metal cube with a heavy shadow face; more damage and knockback for a slower carrier.', '08', CLAUDE_ART),
+    'collectibles/pizza_glue.png': design(pizza_art, (*GOLD,*YELLOW,*RED,*PAPER), 'A pizza slice with white glue strands dripping from its tip; sticky tears that sometimes slow.', '08', CLAUDE_ART),
+    'collectibles/strawberry.png': design(strawberry_art, (*RED,*YELLOW,*GREEN), 'A plain strawberry with yellow seeds and a green crown, and no lettering; every third tear counts double.', '08', CLAUDE_ART),
+    'collectibles/golden_gate.png': design(gate_art, (*ORANGE,*BLUE), 'A generic orange suspension-bridge tower over blue water; spectral tears that pass over obstacles like a bridge.', '08', CLAUDE_ART),
+    'collectibles/seahorse_emoji.png': design(seahorse_art, (*GOLD,*BLUE), 'A golden seahorse with a curled tail inside a faint blue wisp; summoning something that definitely exists.', '08', CLAUDE_ART),
+    'collectibles/temperature_dial.png': design(dial_art, (*STEEL,*BLUE,*GOLD,*ORANGE), 'A round knob whose scale runs from cool blue to hot orange; a toggle between steady damage and random tear effects.', '08', CLAUDE_ART),
+    'collectibles/deep_research.png': design(research_art, (*BLUE,*RED,*GREEN,*PURPLE,*PAPER), 'A tall stack of coloured books topped by a rolled map; reading many sources to reveal the floor.', '08', CLAUDE_ART),
+    'collectibles/rejection_letter.png': design(rejection_art, (*PAPER,*RED), 'An opened envelope holding a letter crossed out in red; a hit that clears nearby bullets.', '08', CLAUDE_ART),
+    'collectibles/red_stamp.png': design(stamp_art, (*WOOD,*STEEL,*RED,PAPER[2]), 'A rubber stamp with a wooden knob above a red mark; stamping an enemy so it slows and cannot hurt on contact.', '08', CLAUDE_ART),
+    'collectibles/cache_cartridge.png': design(cartridge_art, (*STEEL,*BLUE,*PAPER,GOLD[1]), 'A game cartridge with a blank label, gold contacts and speed lines; faster movement in rooms already cached.', '08', CLAUDE_ART),
 }
 
 
