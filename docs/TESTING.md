@@ -355,6 +355,12 @@ The expanded `tests/drop_tap_test.lua` fails on main `2182cb1` at card + pocket 
 
 All character ability instructions below assume at most one pocket item. E4 must additionally test card + pocket active, multiple cards/pills, both pocket actives, slot 2/3 contents, item use/pickup during a press, keyboard/controller, long holds, pause, room changes, death/ghost, co-op and rearming after inventory reduction. Check ordinary cycling/use/drop, MAP/EID readability, Schoolbag/Marked and both supported game variants separately. The full gate passes 67 suites, 177 tracked Lua files, five XML files and deterministic assets; five focused mutations fail the pocket regression. This is offline only; no deployment was performed during that audit. Game version: not exercised in this audit.
 
+## D2: second handoff compaction (2026-10-27; documentation only)
+
+The canonical `docs/HANDOFF.md` from main `61f7f17` (after #130) is retained in full after the archive preface in `docs/HANDOFF_HISTORY_2026-10-27.md`. A byte comparison verifies all 51918 original bytes, SHA-256 `3715290315b7166adeeeecd58dab33da5c7218c98121a38c7bf5e1bdbce83012`, including every dated entry for #104-#130. Older archives are unchanged.
+
+The current handoff is about 15 KB. Twenty-seven dated entries become one "Recent units" table that links each audit. The queue, decided rules, open owner decisions and an E6 full-run row are stated once, together with a size rule for future entries. No gameplay, assets, saves or installed files change, and no engine or visual acceptance is added. The complete offline gate passes.
+
 ## D1: handoff compaction (2026-10-26; documentation only)
 
 The canonical `docs/HANDOFF.md` from main `a1d4d7a` is retained in full after the archive preface in `docs/HANDOFF_HISTORY_2026-10-25.md`. A byte comparison verifies all 104075 original bytes, SHA-256 `710299327fb32162c5657ef9fa91601d927ce61892a3f98014b90be1d6f8553a`. This includes every dated log older than 2026-10-25 and the full recent notes; no historical wording or old evidence is rewritten. The older 2026-10-24 archive is unchanged.
