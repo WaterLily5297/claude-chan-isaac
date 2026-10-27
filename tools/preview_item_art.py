@@ -102,6 +102,20 @@ BATCHES = {
         ('collectibles/red_stamp.png', "Dario's Red Stamp"),
         ('collectibles/cache_cartridge.png', 'Cache Cartridge'),
     ),
+    '09': (
+        ('collectibles/checkpoint_pin.png', 'Checkpoint Pin'),
+        ('collectibles/rate_limit_valve.png', 'Rate-Limit Valve'),
+        ('collectibles/consensus_coin.png', 'Consensus Coin'),
+        ('collectibles/error_budget.png', 'Error Budget'),
+        ('collectibles/em_dash.png', 'Em Dash'),
+        ('collectibles/blueberry.png', 'Blueberry'),
+        ('trinkets/claudius_discount.png', "Claudius's Discount"),
+        ('trinkets/small_rock.png', 'One Small Rock a Day'),
+        ('trinkets/mt_moon.png', 'Stuck in Mt. Moon'),
+        ('trinkets/ai_language_model.png', 'As an AI Language Model'),
+        ('trinkets/prompt_leak.png', 'System Prompt Leak'),
+        ('trinkets/disgrace_loop.png', 'Disgrace Loop'),
+    ),
 }
 LIGHT, DARK = (221,205,175,255), (37,31,32,255)
 PAGE, TEXT = (238,229,209,255), (47,37,35,255)
@@ -198,7 +212,8 @@ def sheet(scale, batch='01'):
     card_h = size + 48
     width = card_w * 2 + 24
     top, bottom = 66, size + 58
-    height = top + card_h * 5 + bottom
+    rows = (len(BATCHES[batch]) + 1) // 2
+    height = top + card_h * rows + bottom
     canvas = [[PAGE for _ in range(width)] for _ in range(height)]
     label(canvas,16,12,f'ITEM ART - BATCH {batch} - {scale}X',2)
     label(canvas,16,35,'OLD / NEW ON LIGHT AND DARK BACKGROUNDS')
@@ -215,7 +230,7 @@ def sheet(scale, batch='01'):
             px,py = start+j*panel,y+26
             fill(canvas,px,py,size+4,size+4,LIGHT if j%2==0 else DARK)
             paste(canvas,pixels,px+2,py+2,scale)
-    y = top + card_h*5
+    y = top + card_h*rows
     label(canvas,16,y+4,'ORIGINAL PROJECT REFERENCE SHAPES - NOT GAME ASSETS')
     for i,pixels in enumerate(references()):
         for j,bg in enumerate((LIGHT,DARK)):

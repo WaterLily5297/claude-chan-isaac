@@ -2923,15 +2923,15 @@
     {
       "name": "Checkpoint Pin",
       "gfx": "collectibles/checkpoint_pin.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "checkpoint_pin",
+        "file": "tools/make_item_art.py",
+        "function": "pin_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2942,28 +2942,30 @@
       ],
       "palette": [
         "#080000",
-        "#a30000",
-        "#d8d2c4",
-        "#e70000",
-        "#ff5a4a"
+        "#7a1f2b",
+        "#c83a3f",
+        "#f08a7a",
+        "#fff1d0",
+        "#4e4955",
+        "#4c9ba8"
       ],
       "palette_exception": "",
-      "sha256": "7c3d055f7413deeaae30d581e1005289a46999eb11498484b6842d64c0378e66",
-      "description": "Legacy placeholder for Checkpoint Pin; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "dbf9e9631904fa1713a8e6e52810c975cf9a16af4fead8ce05d426b50dbe7658",
+      "description": "A red map pin pushed into the floor with a dashed return arc; pin a spot, then teleport back to it.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Rate-Limit Valve",
       "gfx": "collectibles/rate_limit_valve.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "rate_limit_valve",
+        "file": "tools/make_item_art.py",
+        "function": "valve_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -2974,30 +2976,30 @@
       ],
       "palette": [
         "#080000",
-        "#3a3a3a",
-        "#777777",
-        "#a30000",
-        "#a7a7a7",
-        "#e70000",
-        "#ff5a4a"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#7a1f2b",
+        "#c83a3f",
+        "#f08a7a"
       ],
       "palette_exception": "",
-      "sha256": "bae6bf89e6613a503204c3b6f00febb2e6da0dcb765980924806e7979f24a90e",
-      "description": "Legacy placeholder for Rate-Limit Valve; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "1e9e351eace0953989903d3625e324cb3be43dd909a421ce2599318cd9a9a350",
+      "description": "A steel pipe joint closed by a round red handwheel; pausing your attacks builds a stronger next shot.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Consensus Coin",
       "gfx": "collectibles/consensus_coin.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "consensus_coin",
+        "file": "tools/make_item_art.py",
+        "function": "consensus_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3008,27 +3010,27 @@
       ],
       "palette": [
         "#080000",
-        "#b08a24",
-        "#d8d2c4",
-        "#f0c849"
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "0e35d64c88d85c621ebc2bdaf1c1b6e52ff8a690e1945d80d0c7582d7ea3005d",
-      "description": "Legacy placeholder for Consensus Coin; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "f121ab9be147791f6ac7fc768742ee0f0912b4598ef4f349f7d51e3ed623afeb",
+      "description": "A gold coin embossed with three overlapping rings that agree in the middle; different damage sources that agree add a pulse.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Error Budget",
       "gfx": "collectibles/error_budget.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "error_budget",
+        "file": "tools/make_item_art.py",
+        "function": "budget_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3039,31 +3041,30 @@
       ],
       "palette": [
         "#080000",
-        "#222222",
-        "#3a3a3a",
-        "#575757",
-        "#79c07a",
-        "#a86c1c",
-        "#e70000",
-        "#e8a33d"
+        "#874155",
+        "#d28289",
+        "#ffbdaf",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "4cb69cdd682e38bf0164cc1386e8613668d50b053ae47c51b873d92b807d55b1",
-      "description": "Legacy placeholder for Error Budget; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "2025411b6e6bc9d70311ea96028c5648ac59bde8387e69edb83bf174b5cc7872",
+      "description": "A pink piggy bank with a coin dropping in and a small crack; the first hit each floor spends the budget for speed.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Claudius's Discount",
       "gfx": "trinkets/claudius_discount.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "claudius_discount",
+        "file": "tools/make_item_art.py",
+        "function": "discount_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3074,30 +3075,32 @@
       ],
       "palette": [
         "#080000",
-        "#5b734b",
-        "#636363",
-        "#a34d27",
-        "#b39568",
-        "#e0713f",
-        "#e1c399"
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#a76b43",
+        "#c83a3f",
+        "#8e5c27",
+        "#d5a044",
+        "#ffe091"
       ],
       "palette_exception": "",
-      "sha256": "292b9fb64a38da1882c0b1aca79d4b5411901851fafb66b8368fcbfa07dfd31f",
-      "description": "Legacy placeholder for Claudius's Discount; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "4c4bc2f7516f17969527da303cbf84d9e54de62438eb6acfcb1a12e527a79835",
+      "description": "A paper price tag on a string, slashed in red, beside a brass coin; shop refunds paid for by floor fees.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "One Small Rock a Day",
       "gfx": "trinkets/small_rock.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "small_rock",
+        "file": "tools/make_item_art.py",
+        "function": "rock_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3108,32 +3111,31 @@
       ],
       "palette": [
         "#080000",
-        "#3a3a3a",
-        "#404040",
-        "#636363",
-        "#8a8a8a",
-        "#a8a191",
-        "#cbcbcb",
-        "#d8d2c4",
-        "#f2eee4"
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#285362"
       ],
       "palette_exception": "",
-      "sha256": "b6505d744a139ad8a2bd87a1541dc4ba190f5a43add95e96aaa660fb1e50974d",
-      "description": "Legacy placeholder for One Small Rock a Day; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "66761bce1e8d66a40589c35cf94bbde6e114e31a5015435e7ef02975ca184780",
+      "description": "One small angular grey rock served on a plate with a spoon; breaking rocks heals.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Stuck in Mt. Moon",
       "gfx": "trinkets/mt_moon.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "mt_moon",
+        "file": "tools/make_item_art.py",
+        "function": "moon_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3144,31 +3146,29 @@
       ],
       "palette": [
         "#080000",
-        "#161616",
-        "#2b2b2b",
-        "#404040",
-        "#454545",
-        "#636363",
-        "#b08a24",
-        "#f0c849"
+        "#44324e",
+        "#826b93",
+        "#fff1d0",
+        "#f5c84a",
+        "#fff1a5"
       ],
       "palette_exception": "",
-      "sha256": "3b7672d9430dfe4eb213654717762d4bfdf84bb762562898d4060fe45c845a8e",
-      "description": "Legacy placeholder for Stuck in Mt. Moon; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "8ba6e0d2261cb746770320c73494519b9d71bdd759463fe463200f8288922c05",
+      "description": "A dark mountain with a cave mouth under a pale crescent moon; revisiting rooms in the cave maps the floor.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "As an AI Language Model",
       "gfx": "trinkets/ai_language_model.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "ai_language_model",
+        "file": "tools/make_item_art.py",
+        "function": "model_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3179,32 +3179,30 @@
       ],
       "palette": [
         "#080000",
-        "#636363",
-        "#c9bba4",
-        "#e70000",
-        "#f3d9b5",
-        "#f3e7d6",
-        "#ff5a4a",
-        "#ffeecd",
-        "#fffaf0"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#4e4955",
+        "#826b93",
+        "#c4abc9"
       ],
       "palette_exception": "",
-      "sha256": "fe940cc0e330d13b4401bddfc6ed36c36487e1c0df3606d7bd434a13087e6a3c",
-      "description": "Legacy placeholder for As an AI Language Model; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "4510783f729d832b1b8014a3dbed0af1e70ac3ef8314fbc8b09fa0c238b93ba5",
+      "description": "A blue umbrella deflecting purple curse drops; refusing one curse each floor.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "System Prompt Leak",
       "gfx": "trinkets/prompt_leak.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "prompt_leak",
+        "file": "tools/make_item_art.py",
+        "function": "leak_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3215,32 +3213,32 @@
       ],
       "palette": [
         "#080000",
-        "#2b2b2b",
-        "#2e8391",
-        "#4fb8c9",
-        "#7d5028",
-        "#a9743f",
-        "#c69355",
-        "#e1c399",
-        "#f3dcb8"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#9f896a",
+        "#d9c9a4",
+        "#fff1d0",
+        "#684033",
+        "#a76b43"
       ],
       "palette_exception": "",
-      "sha256": "ed77b5287c9d8ab84f6bb6836e23f26cf2b0bba6dfd0d87163d7533023a25dac",
-      "description": "Legacy placeholder for System Prompt Leak; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "5950d2851b2f3a1f5adb7d490daedc9e567007e80e56daff955e5db85dc9376c",
+      "description": "A cracked glass jar holding a rolled note, leaking a blue drip; the floor reveals its special rooms.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Disgrace Loop",
       "gfx": "trinkets/disgrace_loop.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "disgrace_loop",
+        "file": "tools/make_item_art.py",
+        "function": "disgrace_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3251,29 +3249,29 @@
       ],
       "palette": [
         "#080000",
-        "#5b3a7c",
-        "#8a5bb5",
-        "#c9a87f",
-        "#f3d9b5",
-        "#ffeecd"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#44324e",
+        "#826b93"
       ],
       "palette_exception": "",
-      "sha256": "9a1f9d130bebd73e4a47a3c3d4263a0101f80a61fd0fb79498e68f28eebefe30",
-      "description": "Legacy placeholder for Disgrace Loop; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "7da27ba2a140a4d3e1254eab7b412b786c18e9f2e446ffa259345aac3db2234c",
+      "description": "A pale ice cube ringed by a purple looping arrow; the first hit in a room freezes every enemy.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Em Dash",
       "gfx": "collectibles/em_dash.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "em_dash",
+        "file": "tools/make_item_art.py",
+        "function": "dash_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3284,31 +3282,30 @@
       ],
       "palette": [
         "#080000",
-        "#161616",
-        "#2b2b2b",
-        "#454545",
-        "#636363",
-        "#c9bba4",
-        "#f3e7d6",
-        "#fffaf0"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#4e4955",
+        "#96929b",
+        "#d9d4cf"
       ],
       "palette_exception": "",
-      "sha256": "c0c1e0ea0afbd8471ed6e5123d0bda71d00defcceea5acd6925bd4f3fdc36285",
-      "description": "Legacy placeholder for Em Dash; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "2015eaddaaa2b716c82bbe453c4652eaf4013f0628fa983dcbdd0345bc785531",
+      "description": "A long steel needle piercing straight through two blue tears; piercing tears drawn without any glyph.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Blueberry",
       "gfx": "collectibles/blueberry.png",
-      "status": "placeholder",
+      "status": "designed",
       "drawing": {
-        "file": "tools/make_placeholders.py",
-        "function": "blueberry",
+        "file": "tools/make_item_art.py",
+        "function": "blueberry_art",
         "version": 1
       },
-      "author": "Project contributors; see resources/ART_LICENSE.md",
+      "author": "Original project artwork, Claude-assisted",
       "license": "MIT",
-      "provenance": "Existing original procedural placeholder; no external pixels.",
+      "provenance": "Original pixel geometry and material shading authored in make_item_art.py; no external pixels.",
       "size": [
         32,
         32
@@ -3319,17 +3316,18 @@
       ],
       "palette": [
         "#080000",
-        "#2e3b85",
-        "#4a5fc1",
-        "#5b3a7c",
-        "#8a5bb5",
-        "#d8d2c4",
-        "#f2eee4"
+        "#285362",
+        "#4c9ba8",
+        "#a0dfd6",
+        "#44324e",
+        "#826b93",
+        "#2f5b3a",
+        "#5f9a4f"
       ],
       "palette_exception": "",
-      "sha256": "2ff7b84246c5101f81f672bc33c04dde1b9db22794894915f4fa65cf00aae07f",
-      "description": "Legacy placeholder for Blueberry; designed artwork pending.",
-      "contact_sheet": null
+      "sha256": "ad73a375e30d2cc386aef3ff9901146fbbf880087b62d54caeeb76c7753a9210",
+      "description": "Three dusty blueberries with dark star-shaped crowns, and no lettering; every third tear splits.",
+      "contact_sheet": "docs/art/item-batch-09-4x.png"
     },
     {
       "name": "Benchmaxxed",

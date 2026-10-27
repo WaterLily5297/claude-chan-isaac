@@ -2,7 +2,7 @@
 
 Updated 2026-10-26 from source `8fd6a8c`. The roster has **11 families / 22 forms, 80 collectibles, 12 trinkets and five pill effects**. [ART_STATUS.md](ART_STATUS.md) inventories every bundled image/animation and the native presentations without custom files. That document is the art queue; this one defines how replacements are produced and checked.
 
-The designed-icon registry, producer and validator are now implemented in source. The pipeline migration preserved all 92 PNGs. The [first](ITEM_ART_BATCH_01.md), [second](ITEM_ART_BATCH_02.md), [third](ITEM_ART_BATCH_03.md), [fourth](ITEM_ART_BATCH_04.md), [fifth](ITEM_ART_BATCH_05.md) and [sixth](ITEM_ART_BATCH_06.md) batches supply sixty designed icons and 1x/4x before-after sheets; 32 icons remain placeholders. Native art acceptance remains pending.
+The designed-icon registry, producer and validator are now implemented in source. The pipeline migration preserved all 92 PNGs. The [first](ITEM_ART_BATCH_01.md), [second](ITEM_ART_BATCH_02.md), [third](ITEM_ART_BATCH_03.md), [fourth](ITEM_ART_BATCH_04.md), [fifth](ITEM_ART_BATCH_05.md), [sixth](ITEM_ART_BATCH_06.md), [seventh](ITEM_ART_BATCH_07.md), [eighth](ITEM_ART_BATCH_08.md) and [ninth](ITEM_ART_BATCH_09.md) batches supply all 92 designed icons and 1x/4x before-after sheets; no placeholder icon remains. Native art acceptance remains pending.
 
 ## Identity, compatibility and rights
 
