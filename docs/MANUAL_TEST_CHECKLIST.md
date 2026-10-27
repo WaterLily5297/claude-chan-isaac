@@ -8,7 +8,7 @@ The character-specific B1 conditions are now installed. Item 14 asks whether the
 |---|---|---|
 | 1 | Pick forms you want to try: Claude, DeepSeek, tainted DeepSeek, GPT or another family. | The selected normal/tainted form starts a run; report which ones you actually tried. |
 | 2 | First room: body, head and HUD. | One correctly sized character; readable hearts, resource text and story caption. |
-| 3 | Tap DROP with one pocket item, when the ability is ready. | The described ability activates once on release and spends only its stated resource. |
+| 3 | Tap DROP with one pocket item, when the ability is ready ([when DROP does nothing](DROP_REFUSALS.md)). | The described ability activates once on release and spends only its stated resource. |
 | 4 | Tap DROP with two pocket items. | Native pocket selection cycles; the character ability does not fire or spend a resource. |
 | 5 | Hold DROP with a droppable card/pill/trinket. | Native dropping still works; releasing the long hold does not trigger the ability. |
 | 6 | Use Let's Delve if found. | One native shovel effect where allowed; one six-charge use, including a blocked dig. |
