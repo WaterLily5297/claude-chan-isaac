@@ -9,6 +9,7 @@ from collections import Counter
 from dataclasses import dataclass
 import hashlib
 import json
+import math
 from pathlib import Path, PurePosixPath
 import re
 import struct
@@ -1346,6 +1347,157 @@ def cartridge_art():
     return c.finish()
 
 
+def pin_art():
+    c = Canvas()
+    # A red map pin pushed into the floor with a dashed return arc.
+    c.oval(16,27,8,2,STEEL[0])
+    c.poly([(16,26),(10,15),(22,15)],RED[0])
+    c.oval(16,11,7,7,RED[0]); c.oval(16,11,6,6,RED[1]); c.oval(14,9,2,2,RED[2])
+    c.poly([(16,24),(12,16),(20,16)],RED[1])
+    c.oval(16,11,2,2,PAPER[2])
+    for x,y in ((4,20),(3,16),(4,12),(6,8)): c.rect(x,y,x+1,y+1,BLUE[1])
+    c.poly([(7,4),(10,6),(7,8)],BLUE[1])
+    return c.finish()
+
+
+def valve_art():
+    c = Canvas()
+    # A steel pipe joint closed by a round red handwheel.
+    c.rect(2,21,29,27,STEEL[0]); c.rect(2,22,29,25,STEEL[1]); c.line(2,22,29,22,STEEL[2])
+    c.rect(12,18,20,28,STEEL[0]); c.rect(13,19,19,27,STEEL[1]); c.line(13,19,19,19,STEEL[2])
+    c.rect(15,14,17,18,STEEL[0]); c.rect(16,14,16,17,STEEL[2])
+    c.oval(16,9,8,7,RED[0]); c.oval(16,9,7,6,RED[1]); c.oval(16,9,5,4,RED[0])
+    c.line(10,5,14,3,RED[2])
+    c.line(11,9,21,9,RED[1],2); c.line(16,4,16,14,RED[1],2)
+    c.rect(15,8,17,10,STEEL[1]); c.rect(15,8,15,8,STEEL[2])
+    return c.finish()
+
+
+def consensus_art():
+    c = Canvas()
+    # A gold coin embossed with three overlapping rings that agree in the middle.
+    c.oval(16,16,13,13,GOLD[0]); c.oval(16,15,12,12,GOLD[1]); c.oval(15,14,10,10,GOLD[2]); c.oval(16,15,10,10,GOLD[1])
+    for cx,cy in ((13.5,13),(18.5,13),(16,17.5)):
+        for k in range(48):
+            a = k * math.pi / 24
+            x, y = round(cx + 4.5*math.cos(a)), round(cy + 4.5*math.sin(a))
+            c.rect(x,y,x,y,GOLD[0])
+    c.rect(15,14,17,15,GOLD[2])
+    c.line(8,7,12,4,GOLD[2])
+    return c.finish()
+
+
+def budget_art():
+    c = Canvas()
+    # A pink piggy bank with a coin dropping in and a small crack.
+    c.oval(16,18,12,9,PINK[0]); c.oval(15,17,11,8,PINK[1]); c.oval(12,14,5,3,PINK[2])
+    c.oval(27,18,3,3,PINK[0]); c.oval(27,18,2,2,PINK[1]); c.rect(26,17,26,18,PINK[0]); c.rect(28,17,28,18,PINK[0])
+    c.poly([(19,9),(23,7),(23,12)],PINK[0])
+    c.rect(9,25,11,29,PINK[0]); c.rect(19,25,21,29,PINK[0])
+    c.rect(22,15,22,15,INK)
+    c.rect(13,9,18,9,PINK[0])
+    c.oval(15,5,3,3,GOLD[0]); c.oval(15,5,2,2,GOLD[1]); c.rect(14,4,14,4,GOLD[2])
+    c.line(7,19,9,21,PINK[0]); c.line(9,21,8,23,PINK[0])
+    return c.finish()
+
+
+def dash_art():
+    c = Canvas()
+    # A long steel needle piercing straight through two blue tears.
+    for cx in (11,21):
+        c.oval(cx,17,5,6,BLUE[0]); c.oval(cx,17,4,5,BLUE[1]); c.poly([(cx-4,15),(cx,7),(cx+4,15)],BLUE[1])
+        c.poly([(cx-5,15),(cx,6),(cx+5,15)],BLUE[0]); c.oval(cx,17,4,5,BLUE[1]); c.poly([(cx-3,15),(cx,8),(cx+3,15)],BLUE[1])
+        c.rect(cx-2,14,cx-1,16,BLUE[2])
+    c.rect(3,18,27,19,STEEL[1]); c.line(3,18,27,18,STEEL[2])
+    c.poly([(27,17),(30,18),(27,20)],STEEL[1]); c.rect(2,17,4,20,STEEL[0])
+    return c.finish()
+
+
+def blueberry_art():
+    c = Canvas()
+    # Three dusty blueberries in a cluster, each with a dark star-shaped crown.
+    for cx,cy in ((10,12),(22,13),(16,22)):
+        c.oval(cx,cy,7,7,BLUE[0]); c.oval(cx-1,cy-1,6,6,BLUE[1]); c.oval(cx-3,cy-3,2,2,BLUE[2])
+        c.rect(cx,cy-2,cx,cy+2,PURPLE[0]); c.rect(cx-2,cy,cx+2,cy,PURPLE[0]); c.rect(cx-1,cy-1,cx+1,cy+1,PURPLE[0])
+        c.rect(cx,cy,cx,cy,PURPLE[1])
+    c.line(15,3,18,6,GREEN[0]); c.poly([(18,5),(24,2),(22,7)],GREEN[1])
+    return c.finish()
+
+
+def discount_art():
+    c = Canvas()
+    # A paper price tag on a string, slashed in red, beside a brass coin.
+    c.poly([(5,10),(12,4),(27,4),(27,18),(12,18)],PAPER[0])
+    c.poly([(6,10),(12,5),(26,5),(26,17),(12,17)],PAPER[1]); c.line(12,5,25,5,PAPER[2])
+    c.oval(11,11,1,1,'.'); c.rect(10,10,12,10,PAPER[0])
+    c.line(2,4,10,10,WOOD[1])
+    c.rect(15,9,23,9,PAPER[0]); c.rect(15,13,21,13,PAPER[0])
+    c.line(14,15,24,7,RED[1],2)
+    c.oval(21,24,6,6,GOLD[0]); c.oval(21,24,5,5,GOLD[1]); c.oval(20,23,2,2,GOLD[2]); c.rect(21,22,21,26,GOLD[0])
+    return c.finish()
+
+
+def rock_art():
+    c = Canvas()
+    # One small angular grey rock served on a blue-rimmed plate with a spoon.
+    c.oval(15,22,13,6,BLUE[0]); c.oval(15,21,12,5,PAPER[2]); c.oval(15,21,8,3,PAPER[1])
+    c.poly([(10,20),(11,15),(15,12),(20,14),(21,20),(16,22)],STEEL[0])
+    c.poly([(11,19),(12,15),(15,13),(19,15),(19,19)],STEEL[1]); c.poly([(12,15),(15,13),(16,16),(13,17)],STEEL[2])
+    c.line(26,7,28,22,STEEL[1]); c.oval(25,5,2,3,STEEL[1]); c.rect(24,4,24,5,STEEL[2])
+    return c.finish()
+
+
+def moon_art():
+    c = Canvas()
+    # A dark mountain with a cave mouth under a pale crescent moon.
+    c.poly([(2,28),(11,9),(15,14),(20,6),(30,28)],PURPLE[0])
+    c.poly([(3,27),(11,11),(15,16),(20,8),(29,27)],PURPLE[1])
+    c.poly([(20,8),(23,13),(21,12),(19,14),(17,12)],PAPER[2]); c.poly([(11,11),(13,14),(11,13),(9,14)],PAPER[2])
+    c.oval(16,25,4,4,INK); c.rect(12,25,20,28,INK)
+    c.oval(6,6,4,4,YELLOW[1]); c.oval(8,5,3,3,'.'); c.rect(3,5,3,6,YELLOW[2])
+    c.rect(27,4,27,4,YELLOW[2]); c.rect(24,2,24,2,YELLOW[2])
+    return c.finish()
+
+
+def model_art():
+    c = Canvas()
+    # A blue umbrella deflecting purple curse drops.
+    for x,y in ((5,4),(13,4),(22,4),(28,7),(3,10)):
+        c.oval(x,y,1.5,2,PURPLE[1]); c.rect(x,y-1,x,y-1,PURPLE[2])
+    c.poly([(3,17),(7,10),(16,7),(25,10),(29,17)],BLUE[0])
+    c.poly([(5,16),(8,11),(16,8),(24,11),(27,16)],BLUE[1])
+    c.poly([(9,15),(12,10),(16,8),(14,15)],BLUE[2])
+    for x in (3,10,16,22,29): c.rect(x,16,x,17,BLUE[0])
+    c.rect(16,6,16,7,STEEL[0])
+    c.line(16,17,16,26,STEEL[0],2); c.line(16,26,13,28,STEEL[0],2); c.rect(12,26,12,27,STEEL[0])
+    c.oval(7,22,1.5,2,PURPLE[1]); c.oval(26,23,1.5,2,PURPLE[1])
+    return c.finish()
+
+
+def leak_art():
+    c = Canvas()
+    # A cracked glass jar holding a rolled note, leaking a blue drip.
+    c.rect(10,4,22,7,WOOD[0]); c.rect(11,5,21,6,WOOD[1])
+    c.poly([(8,8),(24,8),(25,25),(22,28),(10,28),(7,25)],BLUE[0])
+    c.poly([(9,9),(23,9),(24,24),(21,27),(11,27),(8,24)],BLUE[1])
+    c.rect(10,10,11,22,BLUE[2])
+    c.rect(13,12,19,24,PAPER[1]); c.rect(13,12,19,13,PAPER[2]); c.rect(13,23,19,24,PAPER[0])
+    c.line(20,13,22,16,INK); c.line(22,16,20,18,INK); c.line(20,18,23,21,INK)
+    c.oval(26,23,1.5,2,BLUE[1]); c.rect(26,21,26,21,BLUE[1]); c.oval(28,29,2,1,BLUE[1])
+    return c.finish()
+
+
+def disgrace_art():
+    c = Canvas()
+    # A pale ice cube ringed by a purple looping arrow.
+    c.oval(16,16,13,13,PURPLE[0]); c.oval(16,16,11,11,PURPLE[1]); c.oval(16,16,9,9,'.')
+    c.poly([(20,1),(31,1),(31,12),(24,12)],'.')
+    c.poly([(19,2),(28,6),(19,10)],PURPLE[0]); c.poly([(20,4),(26,6),(20,8)],PURPLE[1])
+    c.rect(10,10,22,22,BLUE[0]); c.rect(11,11,21,21,BLUE[1]); c.rect(11,11,21,12,BLUE[2]); c.rect(11,13,12,20,BLUE[2])
+    c.line(15,15,19,19,BLUE[2]); c.rect(18,14,19,15,BLUE[2])
+    return c.finish()
+
+
 CLAUDE_ART = 'Original project artwork, Claude-assisted'
 
 
@@ -1437,6 +1589,18 @@ DESIGNS = {
     'collectibles/rejection_letter.png': design(rejection_art, (*PAPER,*RED), 'An opened envelope holding a letter crossed out in red; a hit that clears nearby bullets.', '08', CLAUDE_ART),
     'collectibles/red_stamp.png': design(stamp_art, (*WOOD,*STEEL,*RED,PAPER[2]), 'A rubber stamp with a wooden knob above a red mark; stamping an enemy so it slows and cannot hurt on contact.', '08', CLAUDE_ART),
     'collectibles/cache_cartridge.png': design(cartridge_art, (*STEEL,*BLUE,*PAPER,GOLD[1]), 'A game cartridge with a blank label, gold contacts and speed lines; faster movement in rooms already cached.', '08', CLAUDE_ART),
+    'collectibles/checkpoint_pin.png': design(pin_art, (*RED,PAPER[2],STEEL[0],BLUE[1]), 'A red map pin pushed into the floor with a dashed return arc; pin a spot, then teleport back to it.', '09', CLAUDE_ART),
+    'collectibles/rate_limit_valve.png': design(valve_art, (*STEEL,*RED), 'A steel pipe joint closed by a round red handwheel; pausing your attacks builds a stronger next shot.', '09', CLAUDE_ART),
+    'collectibles/consensus_coin.png': design(consensus_art, (*GOLD,), 'A gold coin embossed with three overlapping rings that agree in the middle; different damage sources that agree add a pulse.', '09', CLAUDE_ART),
+    'collectibles/error_budget.png': design(budget_art, (*PINK,*GOLD), 'A pink piggy bank with a coin dropping in and a small crack; the first hit each floor spends the budget for speed.', '09', CLAUDE_ART),
+    'collectibles/em_dash.png': design(dash_art, (*BLUE,*STEEL), 'A long steel needle piercing straight through two blue tears; piercing tears drawn without any glyph.', '09', CLAUDE_ART),
+    'collectibles/blueberry.png': design(blueberry_art, (*BLUE,PURPLE[0],PURPLE[1],GREEN[0],GREEN[1]), 'Three dusty blueberries with dark star-shaped crowns, and no lettering; every third tear splits.', '09', CLAUDE_ART),
+    'trinkets/claudius_discount.png': design(discount_art, (*PAPER,WOOD[1],RED[1],*GOLD), 'A paper price tag on a string, slashed in red, beside a brass coin; shop refunds paid for by floor fees.', '09', CLAUDE_ART),
+    'trinkets/small_rock.png': design(rock_art, (*STEEL,*PAPER,BLUE[0]), 'One small angular grey rock served on a plate with a spoon; breaking rocks heals.', '09', CLAUDE_ART),
+    'trinkets/mt_moon.png': design(moon_art, (PURPLE[0],PURPLE[1],PAPER[2],YELLOW[1],YELLOW[2]), 'A dark mountain with a cave mouth under a pale crescent moon; revisiting rooms in the cave maps the floor.', '09', CLAUDE_ART),
+    'trinkets/ai_language_model.png': design(model_art, (*BLUE,STEEL[0],PURPLE[1],PURPLE[2]), 'A blue umbrella deflecting purple curse drops; refusing one curse each floor.', '09', CLAUDE_ART),
+    'trinkets/prompt_leak.png': design(leak_art, (*BLUE,*PAPER,WOOD[0],WOOD[1]), 'A cracked glass jar holding a rolled note, leaking a blue drip; the floor reveals its special rooms.', '09', CLAUDE_ART),
+    'trinkets/disgrace_loop.png': design(disgrace_art, (*BLUE,PURPLE[0],PURPLE[1]), 'A pale ice cube ringed by a purple looping arrow; the first hit in a room freezes every enemy.', '09', CLAUDE_ART),
 }
 
 
