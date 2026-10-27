@@ -1,5 +1,10 @@
 # Changelog
 
+## Seahorse Emoji lifecycle cases (2026-10-27; offline evidence)
+
+- Add F10's offline owner and lifecycle cases: two players keep separate wisps, replacing one keeps the other, a wisp killed in combat is replaced, and game exit removes every tracked wisp without recreating any.
+- Production already passes. Faults that share one owner key or skip pre-exit removal fail the suite. Native save/reload ordering stays open; no behaviour changes and installed 8fd6a8c is untouched.
+
 ## Disgrace Loop text matches its filter (2026-10-27; offline text fix)
 
 - The English EID and all three READMEs said self-damage never triggers Disgrace Loop. The unchanged filter only skips fake and penalty-free damage, so your own bomb blasts do trigger it, and the text now says so.

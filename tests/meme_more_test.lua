@@ -139,20 +139,30 @@ print("PASS Rolled Back: one-room stats, owner, horse, cap and rollback")
 
 -- Seahorse Emoji ---------------------------------------------------------------------------------
 local made = {}
-function p1:AddWisp(id)
-    local w = { id = id, alive = true }
+local function addWisp(self, id)
+    local w = { id = id, alive = true, owner = self }
     function w:Exists() return self.alive end
     function w:Remove() self.alive = false end
     made[#made + 1] = w
     return w
 end
+p1.AddWisp, p2.AddWisp = addWisp, addWisp
 local rng = { RandomInt = function(_, n) return n - 1 end }
 local function use(id, p, flags) return fire("MC_USE_ITEM", id, id, rng, p, flags or 0) end
 assert(use(910, p1).Discharge and #made == 1 and (made[1].id == 34 or made[1].id == 35))
 assert(not use(910, p1, 32).Discharge and #made == 1, "Car Battery adds none")
 assert(use(910, p1).Discharge and #made == 2 and not made[1].alive and made[2].alive, "replaces")
 fire("MC_POST_NEW_ROOM"); assert(not made[2].alive, "vanishes on room exit")
-print("PASS Seahorse Emoji: one wisp per player, replace, Car Battery and room exit")
+-- F10 offline lifecycle: per-player ownership, a wisp that already died, game exit.
+assert(use(910, p1).Discharge and use(910, p2).Discharge and #made == 4)
+assert(made[3].owner == p1 and made[4].owner == p2 and made[3].alive and made[4].alive, "one wisp each")
+assert(use(910, p2).Discharge and #made == 5 and made[3].alive and not made[4].alive, "replacing one player's wisp keeps the other's")
+made[3].alive = false
+assert(use(910, p1).Discharge and #made == 6 and made[6].alive, "a wisp killed in combat is simply replaced")
+fire("MC_PRE_GAME_EXIT", nil, true)
+assert(not made[5].alive and not made[6].alive, "game exit removes every tracked wisp")
+fire("MC_POST_NEW_ROOM"); assert(#made == 6, "nothing is recreated after exit")
+print("PASS Seahorse Emoji: one wisp per player, replace, Car Battery, room exit, co-op and game exit")
 
 -- Temperature Dial ---------------------------------------------------------------------------------
 p2.items[911] = true
