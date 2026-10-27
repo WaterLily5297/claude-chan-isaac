@@ -1,5 +1,11 @@
 # Changelog
 
+## Pose-cell leftovers cleaned (2026-10-27; offline art fix)
+
+- Remove 219 crop-leftover pixels from the complete-pose cells of Tainted Claude, Qwen, Mistral and Doubao (and their tainted skins): neighbour slivers at cell edges and two stray lines under Qwen's feet. Only those pixels change, to transparent.
+- tools/clean_pose_cells.py runs as the packer's last step, and the pose geometry gate now fails on any new leftover.
+- docs/SPRITE_AUDIT_2026-10-27.md lists poses cut by their source crop on Tainted Claude, Claude, Llama and Doubao. These need the private source atlases and stay open. Installed 8fd6a8c is untouched; no engine check.
+
 ## DROP refusal audit (2026-10-27; documentation)
 
 - Add docs/DROP_REFUSALS.md: for all 22 forms, when a DROP tap is refused and whether any text explains it, plus the shared tap rules. Most refusals are silent; only Tainted Qwen-chan and Llama-chan explain one in words.

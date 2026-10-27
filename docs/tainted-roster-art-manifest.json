@@ -48,8 +48,8 @@
     },
     "resources/gfx/characters/costumes/character_qwenchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_qwenchan.png",
-      "source_sha256": "df65fb052a917a2088a79a1333cf2d986106db9246930dc434f0fc3667c52b40",
-      "sha256": "c6adb16bb6396d6505736140c8e3aa7691dd5f149f8bf81fa2bf32126bf7f190"
+      "source_sha256": "1e698bc02055f3b811cf46201dec9b759f39a7bfde16ad70bd4cdde53b1a7725",
+      "sha256": "01bb358b632eef9cc70189fadbb9701b8be9818f710806c0e9977884cb33ce97"
     },
     "resources/gfx/ui/stage/playerportrait_qwenchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_qwenchan.png",
@@ -78,8 +78,8 @@
     },
     "resources/gfx/characters/costumes/character_mistralchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_mistralchan.png",
-      "source_sha256": "0cda474c3d8a14ece393935f058f0e183e102274ee7bfa28e247c57e8264aa83",
-      "sha256": "068f4ce2a3a135ba1c5d434394ff72930a22f0d07789f46577a3d33ec8d120a4"
+      "source_sha256": "77ad022ea3e9c1f90fd7fa7d688ef0769fefc552e14d44346fe5cd68a5b482a4",
+      "sha256": "1f6661ef1cfe4a4cd9e5ffdabcfdc78e1c16907abc88f0a18c99b9ded0d0a083"
     },
     "resources/gfx/ui/stage/playerportrait_mistralchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_mistralchan.png",
@@ -93,8 +93,8 @@
     },
     "resources/gfx/characters/costumes/character_doubaochan_b.png": {
       "source": "resources/gfx/characters/costumes/character_doubaochan.png",
-      "source_sha256": "149072ac679ff17cc499d0ee271453448980896f93687d57e5cc75adf863a578",
-      "sha256": "c059aa17857a831fc3679019664359e89f5bdd93ecea39681afca9e450dbed73"
+      "source_sha256": "6795df41ebfb3cb68168fc30242b640d4e0d619b4b2157e852279c0f2caaa50b",
+      "sha256": "8a72a5399da156f24f34cd8381b77b3b3ec35db1a98e92717025b406c74f8b66"
     },
     "resources/gfx/ui/stage/playerportrait_doubaochan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_doubaochan.png",

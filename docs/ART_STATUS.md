@@ -306,7 +306,7 @@ All 12 trinkets are 32x32 RGBA and I-D designed (batches 02, 07 and 09), validat
 
 ## Native presentation and missing bespoke art
 
-These rows are outside the 206-file count. An absent custom pill icon is not a missing registration: `pocketitems.xml` registers effects and the engine supplies random pill appearances.
+These rows are outside the 216-file count. An absent custom pill icon is not a missing registration: `pocketitems.xml` registers effects and the engine supplies random pill appearances.
 
 | Feature | Source | Current presentation/status | Target and acceptance limit |
 |---|---|---|---|
@@ -328,8 +328,8 @@ Let's Delve is already counted among the 80 collectible icons; Six Seven is alre
 |---|---|---|
 | W1.1 inventory | Keep this list reconciled with tracked art and XML whenever an asset changes. | Source inventory complete at the audited baseline; no new visual acceptance. |
 | W1.2 style/pipeline | Apply [ART_SPEC.md](ART_SPEC.md) through a designed-icon manifest and deliberate validator migration. | Source pipeline and thirteen regression groups implemented. It preserved all PNGs during migration; the subsequent first batch changes exactly ten. Fixtures are not native acceptance. |
-| W1.3 item batches | About ten icons per batch, effect-specific silhouette, original reference shapes, 1x/4x sheet, provenance and checks. | First sixty I-D icons reviewed and checked; 32 I-P icons remain. Generic-placeholder replacements are authorized; respect any subsequently approved look. Native acceptance remains open. |
-| W1.4 mechanics | Correct 18 narrowed-front side profiles and two seated GLM fallen poses; inspect shared special animations and walk consistency. | Preserve selected identity; geometric fixes do not imply native acceptance. |
+| W1.3 item batches | About ten icons per batch, effect-specific silhouette, original reference shapes, 1x/4x sheet, provenance and checks. | All 92 icons are I-D, reviewed in nine batches; no I-P icon remains. Generic-placeholder replacements are authorized; respect any subsequently approved look. Native acceptance remains open. |
+| W1.4 mechanics | Correct 18 narrowed-front side profiles and two seated GLM fallen poses; re-crop the cut complete poses listed in [SPRITE_AUDIT_2026-10-27.md](SPRITE_AUDIT_2026-10-27.md) (Tainted Claude, Claude, Llama, Doubao; needs the private source atlases); inspect shared special animations and walk consistency. Crop leftovers in pose cells are cleaned and gated. | Preserve selected identity; geometric fixes do not imply native acceptance. |
 | W1.5 tainted identities | Nine sets: portrait, front, side, back and hurt preview together. | Owner approval required before replacing identities. Do not overwrite C-T Claude/DeepSeek. |
 | W1.6 Relay Slime | Original fictional creature art, animation/registration, split-stage readability. | Bespoke art pending; preserve approved gameplay unless a new rule is separately approved. |
 | Tool hardening | Keep preview generation compatible with the registered item-art pipeline. | Repaired with six regression groups, explicit output and read-only comparison. Temporary preview inspected; all tracked images remain unchanged. Final cover/publication remain pending. |
