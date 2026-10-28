@@ -16,8 +16,13 @@ function Disgrace:Init(mod)
     local used = {}
 
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function() used = {} end)
+    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() used = {} end)
+    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() used = {} end)
 
-    mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, _, flags)
+    -- Observe after ordinary blockers (Sold Out, Red Stamp, Constitution), as
+    -- You're Absolutely Right! does: a blocked hit neither freezes enemies nor
+    -- spends the room's reaction. A veto after LATE cannot be observed here.
+    mod:AddPriorityCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, CallbackPriority.LATE, function(_, entity, _, flags)
         local player = entity:ToPlayer()
         if not player or not player:HasTrinket(Constants.Trinket.DISGRACE_LOOP) then return end
         if (flags & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES)) ~= 0 then return end

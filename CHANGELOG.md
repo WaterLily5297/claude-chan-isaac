@@ -1,5 +1,11 @@
 # Changelog
 
+## Disgrace Loop ignores blocked hits (2026-10-28; offline fix)
+
+- A hit blocked by Sold Out, Red Stamp or Constitution still froze every enemy and used up Disgrace Loop's once-per-room reaction. It now reacts only to a hit those shields let through, the same order You're Absolutely Right! uses since F9.
+- The room's reaction list is also cleared on game start and exit. The flag filter, freeze length and once-per-room rule are unchanged.
+- tests/disgrace_order_test.lua fails on the old code. Native freeze timing is still unobserved. Installed 8fd6a8c is untouched.
+
 ## Saved item state stays with its player (2026-10-28; offline fix)
 
 - Backlog items and the meme extras saved their per-player values by slot only. A new player entity in an old slot (for example after a co-op player leaves and another joins) inherited the old owner's Anniversary Cake, 9.11 > 9.9 and other saved values.
