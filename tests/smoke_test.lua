@@ -284,6 +284,18 @@ print("  projectile removed:", proj.removed, "enemy confused:", foe.confused, "u
 assert(pdata.ccUsage.value == 60, "Compact costs Claude 50 usage")
 fire("MC_USE_ITEM", 735, 735, nil, player, UseFlag.USE_CARBATTERY)
 assert(pdata.ccUsage.value == 60, "Car Battery's repeat use must not bill Compact again")
+-- F1: reaching 100 through Compact starts Limited at once, with the same
+-- countdown as the attack path above; below 100 it stays a plain cost.
+assert(pdata.ccUsage.limited == 0, "Compact below the cap must not start Limited")
+fire("MC_USE_ITEM", 735, 735, nil, player)
+assert(pdata.ccUsage.value == 100 and pdata.ccUsage.limited == 150, "Compact reaching 100 starts Limited")
+FRAME = FRAME + 1; fire("MC_POST_PEFFECT_UPDATE", nil, player)
+assert(player.Damage < 3.5, "the Limited penalty applies on the next update")
+fire("MC_USE_ITEM", 735, 735, nil, player)
+assert(pdata.ccUsage.limited == 149, "Compact during Limited neither bills nor restarts it")
+pdata.ccUsage.limited = 0; pdata.ccUsage.value = 0
+FRAME = FRAME + 1; fire("MC_POST_PEFFECT_UPDATE", nil, player)
+assert(player.Damage == 3.5, "clearing Limited restores damage")
 
 print("== absolutely right")
 playerItems[736] = true

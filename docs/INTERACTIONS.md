@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 404 callback registrations; 109 candidate direct field writes. Source fingerprint: `14fd599fe734b46beacccd48793a396c186f3b951e2e46fe0cd6ba112d7b9025`.
+111 files; 404 callback registrations; 109 candidate direct field writes. Source fingerprint: `ffc375c73ae85fafcbf280cc77f05d61ed5511697a899a46d172607dcb70af22`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1415,7 +1415,7 @@ Unresolved syntax: L41: dynamic field target requires manual review; L43: dynami
 #### scripts/items/compact.lua
 
 
-Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/compact.lua:15](../scripts/items/compact.lua#L15)).
+Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/compact.lua:18](../scripts/items/compact.lua#L18)).
 
 
 Cache flag references: none detected.
