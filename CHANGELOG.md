@@ -1,5 +1,10 @@
 # Changelog
 
+## Open item rules decided (2026-10-28; documentation)
+
+- The owner delegated the remaining rule questions. The implemented rules stand for F3 (Herd Bell, Tibo Reset, Nano Banana, One Small Rock a Day), F5 (Same Model Badge restarts on every uncleared entry) and F14 (Token Recall takes your blue and blood tears). The design table now matches the code.
+- No gameplay change. F1 and F7 were decided with code changes in #146 and #147.
+
 ## Opus Mode remembers its partial bill (2026-10-28; offline fix)
 
 - Opus Mode counted attacks toward its next coin only in entity data, so saving and continuing reset the count and skipped coins. The count is now saved per player slot and follows its live player, like the F6 fix.

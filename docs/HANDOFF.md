@@ -15,7 +15,7 @@ Updated 2026-10-28. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIB
 
 Pick the top unit that is not gated. A bug the owner reports beats everything.
 
-1. **Owner-visible correctness first.** Remaining [ITEM_COMPLETION.md](ITEM_COMPLETION.md) findings F14 and F10's native save/reload case; F12 waits for native completion/removal evidence. Same Model Badge re-entry (F5 remainder) and F3 target gaps are rule decisions.
+1. **Owner-visible correctness first.** Remaining [ITEM_COMPLETION.md](ITEM_COMPLETION.md) finding F10's native save/reload case; F12 waits for native completion/removal evidence. F1, F3, F5, F7 and F14 were decided on 2026-10-28 (owner delegated).
 2. **Art.** All 92 icons are designed offline; their native pedestal/EID look is unreviewed ([ART_STATUS.md](ART_STATUS.md)). Character work: proper side profiles for the nine newer families, GLM's fallen pose, special poses, Relay Slime and `thumb.png`. Distinct designs for the nine derived tainted families need an owner preview first.
 3. **Characters.** [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) keeps all 22 rows open on shared gaps G1-G7 and special cases S1-S4; W2.4 refusal conditions are audited in [DROP_REFUSALS.md](DROP_REFUSALS.md) and narrow-screen HUD text in [HUD_TEXT_AUDIT.md](HUD_TEXT_AUDIT.md); refusal cues and native HUD-corner checks remain.
 4. **Compatibility and stability.** Interaction candidates in [INTERACTIONS.md](INTERACTIONS.md), the wider vanilla matrix (special characters, Greed, challenges), seeded mod-item combination invariants, O6 save/continue audit and a whole-mod performance budget ([PERFORMANCE.md](PERFORMANCE.md)).
@@ -23,7 +23,7 @@ Pick the top unit that is not gated. A bug the owner reports beats everything.
 
 No further child-laser/Parent/derived-shot billing PR without native E2 evidence. Repeat a scheduled hardening review after three to five substantive units or a concrete failure.
 
-## Recent units (#104-#147)
+## Recent units (#104-#148)
 
 All are offline source/tooling/documentation work; none is installed or engine-accepted. Full entries: [history](HANDOFF_HISTORY_2026-10-27.md).
 
@@ -37,7 +37,7 @@ All are offline source/tooling/documentation work; none is installed or engine-a
 | Evidence only | #119, #127 | F12 [charged-use replacement](CHARGED_USE_AUDIT.md) reproduced, not fixed; [primary-tear composition](PRIMARY_TEAR_COMPOSITION.md) matrix, no defect found. |
 | Stability | #114, #117, #120, #125 | Usage/Limited load validation, GPT/Grok binding allocation ([PERFORMANCE.md](PERFORMANCE.md)), thumbnail exporter repair, scheduled [hardening](HARDENING_2026-10-27.md). |
 | Install record | #104 | Documentation sync installed as `8fd6a8c`. |
-| Documentation | #131, #133, #138 | Handoff compacted (D2 in TESTING.md), [PUBLISHING.md](PUBLISHING.md) refreshed (Workshop still not authorized), CHANGELOG caught up. |
+| Documentation | #131, #133, #138, #148 | Handoff compacted (D2 in TESTING.md), [PUBLISHING.md](PUBLISHING.md) refreshed (Workshop still not authorized), CHANGELOG caught up, F3/F5/F14 decided as coded. |
 
 ## Long-term completion gates
 
