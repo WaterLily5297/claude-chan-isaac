@@ -209,7 +209,7 @@ function Gemini:Init(mod, Risk)
                 text = text..(drying > 0 and string.format("  Drying %ds", math.ceil(drying / 30))
                     or string.format("  Edit %ds", math.ceil(b.mark.remaining / 30)))
             end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.7, 0.6, 1, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.7, 0.6, 1, 0.9)
         end)
     end)
 end

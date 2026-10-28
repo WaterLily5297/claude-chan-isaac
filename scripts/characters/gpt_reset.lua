@@ -206,7 +206,7 @@ function Reset:Init(mod, Risk)
             local text = string.format("Credits %d/%d  %s  ", s.credits, cap(p), s.fullSend and "Full Send" or "Standard")
             text = text..(s.ready and (Game():GetRoom():IsClear() and "Tibo: Reset Ready" or "Tibo: after combat")
                 or string.format("Next Reset %d/%d", s.clears, CLEARS_PER_RESET))
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.3, 0.85, 0.6, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.3, 0.85, 0.6, 0.9)
         end)
     end)
 end

@@ -45,7 +45,7 @@ function Game() return {
     GetHUD=function() return {IsVisible=function() return true end,
         ShowItemText=function(_,_,text) texts[#texts+1]=text end} end,
 } end
-Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,
+Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,GetScreenWidth=function() return 480 end,
     GetPlayerTypeByName=function(name,tainted) return name=="Kimi-chan" and (tainted and 158 or 58) or -1 end,
     Spawn=function(kind,variant,_,pos,_,owner)
         local e={Type=kind,Variant=variant,Position=pos,SpawnerEntity=owner,removed=false}

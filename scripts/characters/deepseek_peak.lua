@@ -321,7 +321,7 @@ function Peak:Init(mod, Risk)
             local text = string.format("Compute %d/%d  %s %.1fs  %s", s.compute, cap(p),
                 s.phase == "peak" and "Peak" or "Valley", s.remaining / 30, s.saving and "Saving" or "Forks On")
             if s.reserved > 0 then text = text..string.format("  Reserved %d", s.reserved) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.45, 1, 0.95, 1)
+            HudLayout.DrawPlayer(HudText, i, text, 0.45, 1, 0.95, 1)
         end)
     end)
 end

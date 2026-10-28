@@ -173,7 +173,7 @@ function Edit:Init(mod, Risk)
                 if b.chain.step > 0 then text = text.."  Move 30deg" end
             elseif b.state.doneRoom == room then text = "Gemini-chan: Exported"
             else text = "Gemini-chan: DROP: start an edit" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.55, 0.45, 0.9, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.55, 0.45, 0.9, 0.9)
         end)
     end)
 end

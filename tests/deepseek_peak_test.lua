@@ -36,7 +36,7 @@ function Game() return {
     } end,
     GetHUD=function() return {IsVisible=function() return true end} end,
 } end
-Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,
+Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,GetScreenWidth=function() return 480 end,
     Spawn=function(_,variant,_,_,velocity,owner)
         local data={}
         local t={Variant=variant,Velocity=velocity,SpawnerEntity=owner,TearFlags=0,Scale=1}

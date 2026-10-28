@@ -176,7 +176,7 @@ function Hype:Init(mod, Risk, Backlog)
             local text = string.format("Llama-chan: Hype %d/%d", b.state.hype, HYPE_CAP)
             if b.helper then text = text..string.format("  Helper %ds", math.ceil(b.helper.remaining / 30)) end
             if b.helper and p.Position:Distance(b.helper.position) > OWNER_RANGE then text = text.."  Return to demo" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.6, 0.95, 0.45, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.6, 0.95, 0.45, 0.9)
         end)
     end)
 end

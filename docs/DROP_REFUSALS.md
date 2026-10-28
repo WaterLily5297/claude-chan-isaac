@@ -45,4 +45,4 @@ Most refusals rely on the resource text already drawn in the HUD (Appeals, Quota
 
 ## Open follow-up
 
-Adding refusal cues is a later, separate change. It touches the shared tap rule. Today a press during a refused state is forgotten, so a cue would need the tap to be accepted first and then explained. It also needs a decision on how noisy the HUD may be in co-op. Any cue would be text only: no value, cost or cooldown would change. The narrow-screen and co-op string-overlap audit (the other half of W2.4) is not covered here.
+Adding refusal cues is a later, separate change. It touches the shared tap rule. Today a press during a refused state is forgotten, so a cue would need the tap to be accepted first and then explained. It also needs a decision on how noisy the HUD may be in co-op. Any cue would be text only: no value, cost or cooldown would change. The narrow-screen and co-op string audit (the other half of W2.4) is in [HUD_TEXT_AUDIT.md](HUD_TEXT_AUDIT.md).

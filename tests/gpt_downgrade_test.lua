@@ -40,7 +40,7 @@ function Game() return {
     GetHUD=function() return {IsVisible=function() return true end,
         ShowItemText=function(_,_,text) texts[#texts+1]=text end} end,
 } end
-Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,
+Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,GetScreenWidth=function() return 480 end,
     GetPlayerTypeByName=function(name) return name=="GPT-chan" and 51 or -1 end,
     FindInRadius=function(pos,radius)
         local found={}

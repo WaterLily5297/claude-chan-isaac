@@ -172,7 +172,7 @@ function Mistral:Init(mod, Risk)
             if b.state.ready then text = "Mistral-chan: Pounce Ready "..direction(b.state)
             elseif b.cooldown > 0 then text = string.format("Mistral-chan: Cooldown %ds", math.ceil(b.cooldown / 30))
             else text = string.format("Mistral-chan: Charge %d%%", math.floor(b.charge * 100 / CHARGE_FRAMES)) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.3, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 1, 0.7, 0.3, 0.9)
         end)
     end)
 end

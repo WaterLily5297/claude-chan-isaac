@@ -37,7 +37,7 @@ function Game() return {
     } end,
     GetHUD=function() return {IsVisible=function() return true end} end,
 } end
-Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end}
+Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end,GetScreenWidth=function() return 480 end}
 local mod={AddCallback=function(_,id,fn) callbacks[#callbacks+1]={id=id,fn=fn} end}
 function mod:SaveData(s) self.saved=s end
 function mod:LoadData() return self.saved end

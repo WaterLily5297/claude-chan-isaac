@@ -210,7 +210,7 @@ function Manager:Init(mod, Risk)
             local paused = 0
             for _, task in ipairs(b.tasks) do if (task.pause or 0) > 0 then paused = paused + 1 end end
             if paused > 0 then text = text..string.format("  Micromanaged %d", paused) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.45, 0.6, 1, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.45, 0.6, 1, 0.9)
         end)
     end)
 end

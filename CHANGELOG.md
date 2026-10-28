@@ -1,5 +1,11 @@
 # Changelog
 
+## HUD text fits narrow screens (2026-10-28; offline layout fix)
+
+- A form's HUD line that would run past the screen edge now moves its trailing parts to the second row of the same player's band. At 480 wide only Qwen-chan's longest line (74 characters) wraps; text, colour and order are unchanged.
+- Dossier cards keep the portrait clear of the text column and shrink it on narrow screens. At 640 wide and above the placement is unchanged.
+- docs/HUD_TEXT_AUDIT.md records the estimates (6 px per glyph) and the open native checks (HUD corners, offset, real font widths). No gameplay change; installed 8fd6a8c is untouched.
+
 ## Pose-cell leftovers cleaned (2026-10-27; offline art fix)
 
 - Remove 219 crop-leftover pixels from the complete-pose cells of Tainted Claude, Qwen, Mistral and Doubao (and their tainted skins): neighbour slivers at cell edges and two stray lines under Qwen's feet. Only those pixels change, to transparent.

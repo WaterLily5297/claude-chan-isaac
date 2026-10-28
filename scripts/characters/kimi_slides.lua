@@ -215,7 +215,7 @@ function Kimi:Init(mod, Risk)
         each(function(p, b, i)
             local text = string.format("Kimi-chan: Slides %d/%d  Cost %d", b.state.slides, SLIDE_CAP, cost(p))
             if b.show then text = text..string.format("  Presenting %ds", math.ceil(b.show.remaining / 30)) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.55, 0.65, 1, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.55, 0.65, 1, 0.9)
         end)
     end)
 end

@@ -218,7 +218,7 @@ function Qwen:Init(mod, Risk)
             local text = string.format("Qwen-chan: Adapters %d/%d  Next %s  Active %s",
                 s.adapters, cap(p), KINDS[s.selected], kind and KINDS[kind] or "none")
             if s.activeRoom == roomKey() and s.install > 0 then text = text.."  Installing: stop firing" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.8, 0.5, 1, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.8, 0.5, 1, 0.9)
         end)
     end)
 end

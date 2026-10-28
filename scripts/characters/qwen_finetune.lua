@@ -189,7 +189,7 @@ function FineTune:Init(mod, Risk)
             local text = string.format("Qwen-chan: %s  Variants %d/%d  Awards %d/%d", BUILDS[s.build].name,
                 count(s.used), #BUILDS, s.awards, AWARD_CAP)
             if s.pinned > 0 then text = text..string.format("  Pinned: %d clears", s.pinned) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.75, 0.45, 1, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.75, 0.45, 1, 0.9)
         end)
     end)
 end
