@@ -23,7 +23,7 @@ Pick the top unit that is not gated. A bug the owner reports beats everything.
 
 No further child-laser/Parent/derived-shot billing PR without native E2 evidence. Repeat a scheduled hardening review after three to five substantive units or a concrete failure.
 
-## Recent units (#104-#142)
+## Recent units (#104-#143)
 
 All are offline source/tooling/documentation work; none is installed or engine-accepted. Full entries: [history](HANDOFF_HISTORY_2026-10-27.md).
 
@@ -31,7 +31,7 @@ All are offline source/tooling/documentation work; none is installed or engine-a
 |---|---|---|
 | Audits | #105, #106, #108, #110 | [ART_STATUS.md](ART_STATUS.md), [INTERACTIONS.md](INTERACTIONS.md) scanner, [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) (22 forms, G1-G7/S1-S4), [ITEM_COMPLETION.md](ITEM_COMPLETION.md) (97 registrations, F1-F15). |
 | Item art | #111, #112, #115, #118, #122, #126, #129, #134, #135, #136 | Icon pipeline and validator ([make_item_art.py](../tools/make_item_art.py)); all 92 icons designed with 1x/4x review sheets ([batch 01](ITEM_ART_BATCH_01.md) to [09](ITEM_ART_BATCH_09.md)). |
-| Item fixes | #113, #116, #121, #124, #128, #130, #132, #137, #139 | F8, F13, F11, F2, F9 [charm after shields](CHARM_DAMAGE_ORDER.md), F4/F5 text, F15 Rice Cooker Continue, Disgrace Loop text (own bombs count), F10 Seahorse co-op/exit tests. Details in [ITEM_COMPLETION.md](ITEM_COMPLETION.md). |
+| Item fixes | #113, #116, #121, #124, #128, #130, #132, #137, #139, #143 | F8, F13, F11, F2, F9 [charm after shields](CHARM_DAMAGE_ORDER.md), F4/F5 text, F15 Rice Cooker Continue, Disgrace Loop text (own bombs count), F10 Seahorse co-op/exit tests, F6 saved item state follows its live owner. Details in [ITEM_COMPLETION.md](ITEM_COMPLETION.md). |
 | Character art | #141 | [Sprite audit](SPRITE_AUDIT_2026-10-27.md): crop leftovers removed from 7 sheets and gated; cut poses on 4 families need source re-crops. |
 | Characters | #107, #109, #123, #140, #142 | Normal Claude live-owner isolation, T1/T2 text, [Birthright timing](BIRTHRIGHT_TIMING.md) for four tainted forms, [DROP refusal audit](DROP_REFUSALS.md), [HUD text audit](HUD_TEXT_AUDIT.md) (long lines wrap to row 1, dossier portraits clear the text). |
 | Evidence only | #119, #127 | F12 [charged-use replacement](CHARGED_USE_AUDIT.md) reproduced, not fixed; [primary-tear composition](PRIMARY_TEAR_COMPOSITION.md) matrix, no defect found. |

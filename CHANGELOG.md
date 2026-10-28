@@ -1,5 +1,11 @@
 # Changelog
 
+## Saved item state stays with its player (2026-10-28; offline fix)
+
+- Backlog items and the meme extras saved their per-player values by slot only. A new player entity in an old slot (for example after a co-op player leaves and another joins) inherited the old owner's Anniversary Cake, 9.11 > 9.9 and other saved values.
+- The slot's live pointer and seed are now tracked for the session, never saved. A replacement or later join starts fresh, reordered players keep their own values with refreshed stats, a removed player's values are not saved, and Continue restores slots as before.
+- tests/slot_owner_state_test.lua fails on the old code. Native revival, co-op join and Tainted Lazarus Flip ordering are still unobserved. Installed 8fd6a8c is untouched.
+
 ## HUD text fits narrow screens (2026-10-28; offline layout fix)
 
 - A form's HUD line that would run past the screen edge now moves its trailing parts to the second row of the same player's band. At 480 wide only Qwen-chan's longest line (74 characters) wraps; text, colour and order are unchanged.

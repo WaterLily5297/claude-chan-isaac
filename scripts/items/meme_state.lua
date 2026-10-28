@@ -1,11 +1,15 @@
 -- Saved per-player state shared by the meme extras (trinkets and pill).
 -- Lives in Risk.state.memeExtras, so it is written with the normal save,
 -- restored on continue and dropped on a new run. Keyed by player slot;
--- no entity references are stored.
+-- no entity references are stored. Slot tables follow their live owner
+-- within a session (scripts/items/slot_owners.lua).
+
+local SlotOwners = include("scripts.items.slot_owners")
 
 local MemeState = {}
 
 local VERSION = 1
+local owners = SlotOwners.New()
 
 function MemeState.FloorKey()
     local level = Game():GetLevel()
@@ -19,6 +23,13 @@ local function slot(player)
     end
 end
 
+local function saved(Risk)
+    local all = Risk.state.memeExtras
+    if type(all) ~= "table" or all.version ~= VERSION or type(all.players) ~= "table" then return nil end
+    owners:Observe(all.players)
+    return all.players
+end
+
 local function number(v, default)
     return (type(v) == "number" and v == v and v >= 0 and v < 1e6) and v or default
 end
@@ -27,13 +38,13 @@ end
 function MemeState.For(Risk, player)
     local key = slot(player)
     if not key then return nil end
-    local all = Risk.state.memeExtras
-    if type(all) ~= "table" or all.version ~= VERSION or type(all.players) ~= "table" then
-        all = { version = VERSION, players = {} }
-        Risk.state.memeExtras = all
+    local players = saved(Risk)
+    if not players then
+        Risk.state.memeExtras = { version = VERSION, players = {} }
+        players = saved(Risk)
     end
-    local s = all.players[key]
-    if type(s) ~= "table" then s = {}; all.players[key] = s end
+    local s = players[key]
+    if type(s) ~= "table" then s = {}; players[key] = s end
     s.decimal = number(s.decimal, 0)
     s.temperature = s.temperature == 1 and 1 or 0
     local floor = MemeState.FloorKey()
@@ -47,11 +58,18 @@ end
 
 -- Saved run-wide damage bonus without creating or rewriting any state.
 function MemeState.Decimal(Risk, player)
-    local all = Risk.state.memeExtras
-    if type(all) ~= "table" or all.version ~= VERSION or type(all.players) ~= "table" then return 0 end
+    local players = saved(Risk)
+    if not players then return 0 end
     local key = slot(player)
-    local s = key and all.players[key]
+    local s = key and players[key]
     return type(s) == "table" and number(s.decimal, 0) or 0
+end
+
+-- Slot keys whose saved table changed owner since the last call. Their
+-- damage cache (9.11 > 9.9, Temperature Dial) must be evaluated again.
+function MemeState.TakeMoved(Risk)
+    if not saved(Risk) then return {} end
+    return owners:TakeMoved()
 end
 
 function MemeState.Holders(trinket)
