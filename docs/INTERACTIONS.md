@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 402 callback registrations; 109 candidate direct field writes. Source fingerprint: `200c70d828ea7900622f6300cea1f5781fb07052a6224f31c81fbc0989a3e78b`.
+111 files; 404 callback registrations; 109 candidate direct field writes. Source fingerprint: `4baa1053f750acbb3f4211b544c88010d1bd0e6c2fed3724e3a9649b22ac560a`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1488,7 +1488,7 @@ Risk state roots: none detected.
 #### scripts/items/disgrace_loop.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/disgrace_loop.lua:18](../scripts/items/disgrace_loop.lua#L18)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/disgrace_loop.lua:20](../scripts/items/disgrace_loop.lua#L20)).
+Callbacks: `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/disgrace_loop.lua:18](../scripts/items/disgrace_loop.lua#L18)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/disgrace_loop.lua:19](../scripts/items/disgrace_loop.lua#L19)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/disgrace_loop.lua:20](../scripts/items/disgrace_loop.lua#L20)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`CallbackPriority.LATE`, [items/disgrace_loop.lua:25](../scripts/items/disgrace_loop.lua#L25)).
 
 
 Cache flag references: none detected.
@@ -1500,7 +1500,7 @@ Direct tracked-field writes: none detected.
 Risk state roots: none detected.
 
 
-Unresolved syntax: L26: dynamic field target requires manual review.
+Unresolved syntax: L31: dynamic field target requires manual review.
 
 
 #### scripts/items/em_dash.lua

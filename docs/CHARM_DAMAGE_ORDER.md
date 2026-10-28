@@ -30,6 +30,6 @@ The full gate passes 73 Lua suites, 11 scanner cases, 13 item-art groups and six
 
 ## Open acceptance
 
-This correction covers blockers that run before the late observer. It cannot observe a later veto, an earlier non-nil allow, native invulnerability decisions or status immunity as final health loss. Other F9 reactions, including Disgrace Loop, retain their separate unresolved cases. No blanket fake/self-damage policy is introduced.
+This correction covers blockers that run before the late observer. It cannot observe a later veto, an earlier non-nil allow, native invulnerability decisions or status immunity as final health loss. Disgrace Loop received the same LATE correction on 2026-10-28 ([regression](../tests/disgrace_order_test.lua)); other F9 reactions keep their separate cases. No blanket fake/self-damage policy is introduced.
 
 During a future authorized engine window, combine the item with Sold Out, Red Stamp and Constitution, observe health/guard/charm/caption separately, then repeat unguarded contact/projectiles and two-owner cases. Check native flags, actual charm timing, immunity, external blockers and representative special-player forms. Installed 8fd6a8c remains owner-untried and untouched; no runtime/game/settings/save access occurs in this unit. All broad item/character completion rows stay open.
