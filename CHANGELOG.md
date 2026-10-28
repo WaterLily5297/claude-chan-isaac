@@ -1,5 +1,11 @@
 # Changelog
 
+## Compact can start Limited (2026-10-28; offline rule fix)
+
+- When Compact's 50 usage took Claude-chan to 100, she stayed un-Limited until her next attack. Compact now starts Limited at once, like every other paid action, and shows "Usage limit reached".
+- Compact during Limited still costs nothing and does not restart the countdown. Car Battery still bills once.
+- The owner delegated this rule decision (F1); it follows the long-term plan's recommendation. Installed 8fd6a8c is untouched.
+
 ## Vibe Coding bills the right player (2026-10-28; offline fix)
 
 - Vibe Coding saved "took a hit this floor" by player slot only. If another player took over that slot during the floor, or co-op slots were reordered, the next floor's API bill went to the wrong player.
