@@ -6,6 +6,7 @@ CacheFlag = { CACHE_DAMAGE = 1, CACHE_SPEED = 2 }
 local paid
 function include(name)
     if name == "scripts.characters.paid_attacks" then return { Observe = function(_, fn) paid = fn end } end
+    if name == "scripts.items.slot_owners" then return dofile(root .. "/scripts/items/slot_owners.lua") end
     return { Item = { OPUS_MODE = 747 } }
 end
 EntityType = { ENTITY_LASER = 7 }
