@@ -167,7 +167,7 @@ function Again:Init(mod, Risk)
             local s, text = b.state, "Doubao-chan: Ready to promise"
             if s.phase == "confident" then text = string.format("Doubao-chan: Confident %ds  Clear -> Apology", math.ceil(s.remaining / 30))
             elseif s.phase == "apology" then text = string.format("Doubao-chan: Apology %ds", math.ceil(s.remaining / 30)) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.6, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 1, 0.7, 0.6, 0.9)
         end)
     end)
 end

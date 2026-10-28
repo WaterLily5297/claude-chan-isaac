@@ -174,7 +174,7 @@ function Retry:Init(mod, Risk)
             elseif b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
             local target = b.request and b.request.ref.Ref
             if target and target:Exists() and not connected(p, target) then text = text.."  Restore connection" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.4, 0.8, 1, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.4, 0.8, 1, 0.9)
         end)
     end)
 end

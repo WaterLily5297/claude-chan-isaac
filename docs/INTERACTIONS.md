@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `df84aaeeff85e2ab2e768596e787b2d3d332eddfa61f18157ca143e75a35671b`.
+110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `b6dcdcce3e6f9f530505cb97a390f78d20ce8512433a53dce59201b65aa2e862`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -303,7 +303,7 @@ Unresolved syntax: L39: dynamic field target requires manual review; L44: dynami
 #### scripts/characters/dossiers.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/dossiers.lua:36](../scripts/characters/dossiers.lua#L36)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/dossiers.lua:37](../scripts/characters/dossiers.lua#L37)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/dossiers.lua:38](../scripts/characters/dossiers.lua#L38)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/dossiers.lua:50](../scripts/characters/dossiers.lua#L50)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/dossiers.lua:51](../scripts/characters/dossiers.lua#L51)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/dossiers.lua:52](../scripts/characters/dossiers.lua#L52)).
 
 
 Cache flag references: none detected.
@@ -312,7 +312,7 @@ Cache flag references: none detected.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/dossiers.lua:60](../scripts/characters/dossiers.lua#L60) | `sprite.Scale` | `Vector(scale,scale)` | indirect |
+| [characters/dossiers.lua:74](../scripts/characters/dossiers.lua#L74) | `sprite.Scale` | `Vector(scale,scale)` | indirect |
 
 
 

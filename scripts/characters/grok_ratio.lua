@@ -189,7 +189,7 @@ function Ratio:Init(mod, Risk)
             elseif b.state.cooldown > 0 then
                 text = string.format("Grok-chan: Cooldown %ds", math.ceil(b.state.cooldown / 30))
             else text = "Grok-chan: DROP: quote someone" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.35, 0.3, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 1, 0.35, 0.3, 0.9)
         end)
     end)
 end

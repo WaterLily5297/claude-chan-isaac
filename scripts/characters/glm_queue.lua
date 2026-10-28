@@ -184,7 +184,7 @@ function GLM:Init(mod, Risk)
             elseif s.pass > 0 then text = string.format("GLM-chan: Access %d room(s)", s.pass)
             elseif s.queue >= QUEUE_MAX then text = "GLM-chan: Ticket ready! Tap DROP before next fight"
             else text = string.format("GLM-chan: Number in queue %d/%d", s.queue, QUEUE_MAX) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.3, 0.95, 0.7, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.3, 0.95, 0.7, 0.9)
         end)
     end)
 end

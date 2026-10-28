@@ -167,7 +167,7 @@ function Baguette:Init(mod, Risk)
             local text = string.format("Mistral-chan: Baguettes %d/%d", b.state.baguettes, BAGUETTE_CAP)
             if b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
             if Game():GetRoom():IsClear() and b.state.baguettes < BAGUETTE_CAP then text = text.."  Combat to bake" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.3, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 1, 0.7, 0.3, 0.9)
         end)
     end)
 end

@@ -221,7 +221,7 @@ function Grok:Init(mod, Risk)
             elseif s.verifiedRoom == room then text = "Grok-chan: Verified"
             elseif s.checkRoom == room then text = "Grok-chan: Unverified"
             else text = "Grok-chan: DROP: Is this true?" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.3, 0.35, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 1, 0.3, 0.35, 0.9)
         end)
     end)
 end

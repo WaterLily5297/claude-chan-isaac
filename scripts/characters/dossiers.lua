@@ -30,6 +30,20 @@ local originals={
     {id=C.Player.GLM_CHAN_B,key="glm_b",name="Tainted GLM-chan",title="Please Retry",
      lines={"2s request: stay within 200 and in sight.", "Target survives: 2x, +1x per Retry.", "Target dies first: +1 Retry (max 3)."}},
 }
+local FOOTER={"DROP ability: carry at most one pocket item","Release MAP to close",
+    "Design: ZipZipPipe | Non-commercial fan art","Whale girl: Shangshan Wuxing | CC BY-NC-SA 4.0"}
+-- Portrait centre x and scale. The 384x576 portrait (centre pivot) keeps its
+-- left edge clear of the text, estimated at 6px per glyph from x=50; on a
+-- narrow screen it shrinks instead of covering the lines.
+Dossiers.originals=originals
+function Dossiers.Placement(def,width,height)
+    local widest=math.max(#def.name,#def.title)
+    for _,line in ipairs(def.lines) do widest=math.max(widest,#line) end
+    for _,line in ipairs(FOOTER) do widest=math.max(widest,#line) end
+    local textRight=50+6*widest+8
+    local scale=math.max(0.1,math.min(0.42,(height-48)/576,(width-textRight-8)/384))
+    return math.max(width-100,textRight+192*scale),scale
+end
 function Dossiers:Init(mod)
     local ready=false
     local sprites={}
@@ -56,9 +70,9 @@ function Dossiers:Init(mod)
                     end
                     local width,height=Isaac.GetScreenWidth(),Isaac.GetScreenHeight()
                     local sprite=sprites[def.key]
-                    local scale=math.min(0.42,(height-48)/576)
+                    local x,scale=Dossiers.Placement(def,width,height)
                     sprite.Scale=Vector(scale,scale)
-                    sprite:Render(Vector(width-100,height/2),Vector.Zero,Vector.Zero)
+                    sprite:Render(Vector(x,height/2),Vector.Zero,Vector.Zero)
                     Isaac.RenderText(def.name,50,70,1,0.9,0.7,1)
                     Isaac.RenderText(def.title,50,86,1,1,1,1)
                     for n,line in ipairs(def.lines) do Isaac.RenderText(line,50,98+n*12,1,1,1,1) end

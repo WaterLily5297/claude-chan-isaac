@@ -167,7 +167,7 @@ function Llama:Init(mod, Risk)
             local text = string.format("Llama-chan: Releases %d/%d  Next %d/%d", s.releases, RELEASE_CAP,
                 s.clears, CLEARS_PER_RELEASE)
             if s.releases > 0 and not Game():GetRoom():IsClear() then text = text.."  Between fights" end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 0.65, 1, 0.5, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 0.65, 1, 0.5, 0.9)
         end)
     end)
 end

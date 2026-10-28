@@ -179,7 +179,7 @@ function Doubao:Init(mod, Risk)
             if s.token == 0 then text = "Doubao-chan: Apology Ready"
             elseif s.token then text = string.format("Doubao-chan: Apology Ready %ds", math.ceil(s.token / 30)) end
             if s.token then text = text.."  Aim "..direction(s) end
-            HudText:Draw(text, 50, HudLayout.PlayerRow(i), 1, 0.7, 0.6, 0.9)
+            HudLayout.DrawPlayer(HudText, i, text, 1, 0.7, 0.6, 0.9)
         end)
     end)
 end

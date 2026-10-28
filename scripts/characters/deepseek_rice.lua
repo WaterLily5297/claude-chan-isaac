@@ -262,7 +262,7 @@ function Rice:Init(mod, Risk, Meal)
             local s=b.state
             local text=string.format("Thought %.1fs  Rice %d/2",s.thought/30,s.bowls)
             if s.lunch then text=text..string.format("  Lunch %.1fs: stay still",Meal:Remaining(p)/30) end
-            HudText:Draw(text,50,HudLayout.PlayerRow(i),0.45,0.75,1,1)
+            HudLayout.DrawPlayer(HudText, i, text, 0.45,0.75,1,1)
         end)
     end)
 end
