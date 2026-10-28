@@ -1,5 +1,11 @@
 # Changelog
 
+## Opus Mode remembers its partial bill (2026-10-28; offline fix)
+
+- Opus Mode counted attacks toward its next coin only in entity data, so saving and continuing reset the count and skipped coins. The count is now saved per player slot and follows its live player, like the F6 fix.
+- The other F7 counters (Strawberry/Blueberry, Cheap Relay, Ultrathink, room bonuses) stay transient by design; the owner delegated this decision and it follows the long-term plan.
+- tests/opus_continue_test.lua fails on the old code. Installed 8fd6a8c is untouched.
+
 ## Compact can start Limited (2026-10-28; offline rule fix)
 
 - When Compact's 50 usage took Claude-chan to 100, she stayed un-Limited until her next attack. Compact now starts Limited at once, like every other paid action, and shows "Usage limit reached".

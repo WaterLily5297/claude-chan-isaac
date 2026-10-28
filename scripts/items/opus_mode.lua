@@ -4,10 +4,12 @@
 -- paid-attack observer bills (each held-beam or Ludovico window, knife throw,
 -- swing and Epic Fetus rocket), so Brimstone or Mom's Knife never run free.
 -- Out of coins, you fall back to the cheap model: damage x0.6 until you have
--- money again.
+-- money again. The partial ten-attack count is saved per player slot, so
+-- Continue does not wipe a nearly finished bill.
 
 local Constants = include("scripts.constants")
 local PaidAttacks = include("scripts.characters.paid_attacks")
+local SlotOwners = include("scripts.items.slot_owners")
 
 local OpusMode = {}
 
@@ -20,13 +22,36 @@ local function refresh(player)
     player:EvaluateItems()
 end
 
-function OpusMode:Init(mod)
+-- Risk is optional so standalone billing fixtures can omit saved state.
+function OpusMode:Init(mod, Risk)
+    local owners = SlotOwners.New()
+    if Risk then
+        mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() owners:Reset() end)
+        mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() owners:Reset() end)
+    end
+    -- Saved count map and this player's slot key; it follows the live owner (F6).
+    local function saved(player)
+        if not Risk then return nil end
+        if type(Risk.state.opusTears) ~= "table" then Risk.state.opusTears = {} end
+        local all = Risk.state.opusTears
+        owners:Observe(all)
+        for i = 0, Game():GetNumPlayers() - 1 do
+            if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then return all, tostring(i) end
+        end
+    end
+
     local function bill(player)
         if not player or not player:HasCollectible(Constants.Item.OPUS_MODE) then
             return
         end
 
         local data = player:GetData()
+        local all, key = saved(player)
+        if data.ccOpusTears == nil and key then
+            -- Entity data is gone after Continue; resume from the saved count.
+            local v = all[key]
+            data.ccOpusTears = (type(v) == "number" and v >= 0 and v < TEARS_PER_COIN and v == math.floor(v)) and v or 0
+        end
         data.ccOpusTears = (data.ccOpusTears or 0) + 1
         if data.ccOpusTears >= TEARS_PER_COIN then
             data.ccOpusTears = 0
@@ -34,6 +59,7 @@ function OpusMode:Init(mod)
                 player:AddCoins(-1)
             end
         end
+        if key then all[key] = data.ccOpusTears end
     end
     local function spawner(entity)
         return entity.SpawnerEntity and entity.SpawnerEntity:ToPlayer()

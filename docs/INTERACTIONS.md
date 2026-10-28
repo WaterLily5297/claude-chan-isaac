@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 404 callback registrations; 109 candidate direct field writes. Source fingerprint: `ffc375c73ae85fafcbf280cc77f05d61ed5511697a899a46d172607dcb70af22`.
+111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `d01eeebbf70a281b075d734edb8223e28aaf2239cc93f2934f2de000d4eb0855`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1688,7 +1688,7 @@ Risk state roots: none detected.
 #### scripts/items/opus_mode.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [items/opus_mode.lua:42](../scripts/items/opus_mode.lua#L42)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [items/opus_mode.lua:50](../scripts/items/opus_mode.lua#L50)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [items/opus_mode.lua:55](../scripts/items/opus_mode.lua#L55)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [items/opus_mode.lua:61](../scripts/items/opus_mode.lua#L61)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/opus_mode.lua:75](../scripts/items/opus_mode.lua#L75)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/opus_mode.lua:29](../scripts/items/opus_mode.lua#L29)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/opus_mode.lua:30](../scripts/items/opus_mode.lua#L30)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [items/opus_mode.lua:68](../scripts/items/opus_mode.lua#L68)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [items/opus_mode.lua:76](../scripts/items/opus_mode.lua#L76)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [items/opus_mode.lua:81](../scripts/items/opus_mode.lua#L81)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [items/opus_mode.lua:87](../scripts/items/opus_mode.lua#L87)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/opus_mode.lua:101](../scripts/items/opus_mode.lua#L101)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -1697,11 +1697,14 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [items/opus_mode.lua:79](../scripts/items/opus_mode.lua#L79) | `player.Damage` | `player.Damage*mult` | self-dependent |
+| [items/opus_mode.lua:105](../scripts/items/opus_mode.lua#L105) | `player.Damage` | `player.Damage*mult` | self-dependent |
 
 
 
-Risk state roots: none detected.
+Risk state roots: `opusTears` direct write at L35; `opusTears` read/alias at L35, L36.
+
+
+Unresolved syntax: L62: dynamic field target requires manual review.
 
 
 #### scripts/items/overloaded.lua
