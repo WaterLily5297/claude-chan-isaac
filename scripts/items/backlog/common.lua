@@ -11,7 +11,10 @@
 -- That keeps other damage writers and continuous weapons bounded.
 --
 -- Saved state lives in Risk.state.backlog, keyed by player slot, versioned,
--- with a floor-scoped sub-table. No entity reference is ever saved.
+-- with a floor-scoped sub-table. No entity reference is ever saved. Slot
+-- tables follow their live owner within a session (scripts/items/slot_owners.lua).
+
+local SlotOwners = include("scripts.items.slot_owners")
 
 local Common = {}
 
@@ -177,6 +180,14 @@ function Common:Init(mod, Risk)
     local pendingUse, hitThisRoom, lastAttack = {}, {}, {}
     local dealing = false
     local started = false
+    local owners = SlotOwners.New()
+
+    local function savedPlayers()
+        local all = Risk.state.backlog
+        if type(all) ~= "table" or all.version ~= VERSION or type(all.players) ~= "table" then return nil end
+        owners:Observe(all.players)
+        return all.players
+    end
 
     function self.On(name, fn)
         listeners[name] = listeners[name] or {}
@@ -190,13 +201,13 @@ function Common:Init(mod, Risk)
     function self.State(player)
         local key = slot(player)
         if not key then return nil end
-        local all = Risk.state.backlog
-        if type(all) ~= "table" or all.version ~= VERSION or type(all.players) ~= "table" then
-            all = { version = VERSION, players = {}, cleared = {} }
-            Risk.state.backlog = all
+        local players = savedPlayers()
+        if not players then
+            Risk.state.backlog = { version = VERSION, players = {}, cleared = {} }
+            players = savedPlayers()
         end
-        local s = all.players[key]
-        if type(s) ~= "table" then s = {}; all.players[key] = s end
+        local s = players[key]
+        if type(s) ~= "table" then s = {}; players[key] = s end
         local floor = Common.FloorKey()
         if s.floorKey ~= floor or type(s.floor) ~= "table" then
             local previous, old = s.floorKey, s.floor
@@ -208,9 +219,8 @@ function Common:Init(mod, Risk)
 
     -- Existing saved table only; never creates state for players without it.
     function self.Peek(player)
-        local all, key = Risk.state.backlog, slot(player)
-        if type(all) ~= "table" or all.version ~= VERSION or type(all.players) ~= "table"
-            or not key or type(all.players[key]) ~= "table" then return nil end
+        local players, key = savedPlayers(), slot(player)
+        if not players or not key or type(players[key]) ~= "table" then return nil end
         return self.State(player)
     end
 
@@ -546,6 +556,7 @@ function Common:Init(mod, Risk)
         -- This is cleanup only: never synthesize a room-entry reward event.
         emit("runReset")
         started = true
+        owners:Reset()
         leases, volleys, guards, timers, helpers, labels, pendingUse, hitThisRoom, lastAttack = {}, {}, {}, {}, {}, {}, {}, {}, {}
         for _, p in ipairs(Common.Players()) do p:GetData().ccBacklog = nil end
         emit("started", continued)
@@ -554,6 +565,7 @@ function Common:Init(mod, Risk)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
         started = false
         emit("runReset")
+        owners:Reset()
         timers, pendingUse = {}, {}
     end)
 
@@ -573,11 +585,11 @@ function Common:Init(mod, Risk)
 
     -- Settle floor-scoped state for every player as soon as a floor begins.
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
-        local all = Risk.state.backlog
-        if not started or type(all) ~= "table" or type(all.players) ~= "table" then return end
+        local players = started and savedPlayers()
+        if not players then return end
         for _, p in ipairs(Common.Players()) do
             local key = slot(p)
-            if key and all.players[key] then self.State(p) end
+            if key and players[key] then self.State(p) end
         end
     end)
 
@@ -621,6 +633,14 @@ function Common:Init(mod, Risk)
 
     mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
         if not started then return end
+        -- Notice a changed slot owner before anything saves, and give both
+        -- players of a moved table the stats of their own state.
+        if savedPlayers() then
+            for key in pairs(owners:TakeMoved()) do
+                local p = Isaac.GetPlayer(tonumber(key))
+                if p then self.Refresh(p) end
+            end
+        end
         local frame = now()
         -- Include The Battery's second bar; moving charge between bars is not a use.
         for i = #pendingUse, 1, -1 do

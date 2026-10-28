@@ -35,6 +35,15 @@ function Decimal:Init(mod, Risk)
         end
     end)
 
+    -- A saved table that moved to another live owner changes both players'
+    -- damage. This also covers Temperature Dial, which reads the same table.
+    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+        for key in pairs(MemeState.TakeMoved(Risk)) do
+            local player = Isaac.GetPlayer(tonumber(key))
+            if player then refresh(player) end
+        end
+    end)
+
     mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, function(_, player, flag)
         if flag ~= CacheFlag.CACHE_DAMAGE then return end
         local bonus = MemeState.Decimal(Risk, player)

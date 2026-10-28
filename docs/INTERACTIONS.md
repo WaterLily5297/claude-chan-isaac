@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-110 files; 401 callback registrations; 109 candidate direct field writes. Source fingerprint: `b6dcdcce3e6f9f530505cb97a390f78d20ce8512433a53dce59201b65aa2e862`.
+111 files; 402 callback registrations; 109 candidate direct field writes. Source fingerprint: `200c70d828ea7900622f6300cea1f5781fb07052a6224f31c81fbc0989a3e78b`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1062,7 +1062,7 @@ Risk state roots: none detected.
 #### scripts/items/backlog/common.lua
 
 
-Callbacks: `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/backlog/common.lua:239](../scripts/items/backlog/common.lua#L239)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [items/backlog/common.lua:370](../scripts/items/backlog/common.lua#L370)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [items/backlog/common.lua:381](../scripts/items/backlog/common.lua#L381)), `ModCallbacks.MC_POST_LASER_UPDATE` (`default`, [items/backlog/common.lua:386](../scripts/items/backlog/common.lua#L386)), `ModCallbacks.MC_POST_KNIFE_UPDATE` (`default`, [items/backlog/common.lua:392](../scripts/items/backlog/common.lua#L392)), `ModCallbacks.MC_POST_BOMB_UPDATE` (`default`, [items/backlog/common.lua:401](../scripts/items/backlog/common.lua#L401)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/backlog/common.lua:454](../scripts/items/backlog/common.lua#L454)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [items/backlog/common.lua:511](../scripts/items/backlog/common.lua#L511)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/backlog/common.lua:544](../scripts/items/backlog/common.lua#L544)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/backlog/common.lua:554](../scripts/items/backlog/common.lua#L554)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/backlog/common.lua:560](../scripts/items/backlog/common.lua#L560)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [items/backlog/common.lua:575](../scripts/items/backlog/common.lua#L575)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [items/backlog/common.lua:594](../scripts/items/backlog/common.lua#L594)), `ModCallbacks.MC_PRE_USE_ITEM` (`default`, [items/backlog/common.lua:610](../scripts/items/backlog/common.lua#L610)), `ModCallbacks.MC_POST_UPDATE` (`default`, [items/backlog/common.lua:622](../scripts/items/backlog/common.lua#L622)), `ModCallbacks.MC_POST_RENDER` (`default`, [items/backlog/common.lua:643](../scripts/items/backlog/common.lua#L643)).
+Callbacks: `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/backlog/common.lua:249](../scripts/items/backlog/common.lua#L249)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [items/backlog/common.lua:380](../scripts/items/backlog/common.lua#L380)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [items/backlog/common.lua:391](../scripts/items/backlog/common.lua#L391)), `ModCallbacks.MC_POST_LASER_UPDATE` (`default`, [items/backlog/common.lua:396](../scripts/items/backlog/common.lua#L396)), `ModCallbacks.MC_POST_KNIFE_UPDATE` (`default`, [items/backlog/common.lua:402](../scripts/items/backlog/common.lua#L402)), `ModCallbacks.MC_POST_BOMB_UPDATE` (`default`, [items/backlog/common.lua:411](../scripts/items/backlog/common.lua#L411)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/backlog/common.lua:464](../scripts/items/backlog/common.lua#L464)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [items/backlog/common.lua:521](../scripts/items/backlog/common.lua#L521)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/backlog/common.lua:554](../scripts/items/backlog/common.lua#L554)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/backlog/common.lua:565](../scripts/items/backlog/common.lua#L565)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [items/backlog/common.lua:572](../scripts/items/backlog/common.lua#L572)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [items/backlog/common.lua:587](../scripts/items/backlog/common.lua#L587)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [items/backlog/common.lua:606](../scripts/items/backlog/common.lua#L606)), `ModCallbacks.MC_PRE_USE_ITEM` (`default`, [items/backlog/common.lua:622](../scripts/items/backlog/common.lua#L622)), `ModCallbacks.MC_POST_UPDATE` (`default`, [items/backlog/common.lua:634](../scripts/items/backlog/common.lua#L634)), `ModCallbacks.MC_POST_RENDER` (`default`, [items/backlog/common.lua:663](../scripts/items/backlog/common.lua#L663)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_SPEED`.
@@ -1071,20 +1071,20 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [items/backlog/common.lua:243](../scripts/items/backlog/common.lua#L243) | `player.Damage` | `player.Damage*m` | self-dependent |
+| [items/backlog/common.lua:253](../scripts/items/backlog/common.lua#L253) | `player.Damage` | `player.Damage*m` | self-dependent |
 
-| [items/backlog/common.lua:247](../scripts/items/backlog/common.lua#L247) | `player.MoveSpeed` | `player.MoveSpeed+add` | self-dependent |
+| [items/backlog/common.lua:257](../scripts/items/backlog/common.lua#L257) | `player.MoveSpeed` | `player.MoveSpeed+add` | self-dependent |
 
-| [items/backlog/common.lua:251](../scripts/items/backlog/common.lua#L251) | `player.TearRange` | `player.TearRange+add` | self-dependent |
+| [items/backlog/common.lua:261](../scripts/items/backlog/common.lua#L261) | `player.TearRange` | `player.TearRange+add` | self-dependent |
 
-| [items/backlog/common.lua:255](../scripts/items/backlog/common.lua#L255) | `player.ShotSpeed` | `player.ShotSpeed+add` | self-dependent |
-
-
-
-Risk state roots: `backlog` direct write at L196; `backlog` read/alias at L193, L211, L576, L596, L599.
+| [items/backlog/common.lua:265](../scripts/items/backlog/common.lua#L265) | `player.ShotSpeed` | `player.ShotSpeed+add` | self-dependent |
 
 
-Unresolved syntax: L129: dynamic field target requires manual review; L182: dynamic field target requires manual review; L199: dynamic field target requires manual review; L263: dynamic field target requires manual review; L272: dynamic field target requires manual review; L286: dynamic field target requires manual review; L289: dynamic field target requires manual review; L290: dynamic field target requires manual review; L306: dynamic field target requires manual review; L313: dynamic field target requires manual review; L321: dynamic field target requires manual review; L434: dynamic field target requires manual review; L524: dynamic field target requires manual review; L539: dynamic field target requires manual review; L606: dynamic field target requires manual review; L94: dynamic field target requires manual review.
+
+Risk state roots: `backlog` direct write at L206; `backlog` read/alias at L186, L608, L611.
+
+
+Unresolved syntax: L132: dynamic field target requires manual review; L193: dynamic field target requires manual review; L210: dynamic field target requires manual review; L273: dynamic field target requires manual review; L282: dynamic field target requires manual review; L296: dynamic field target requires manual review; L299: dynamic field target requires manual review; L300: dynamic field target requires manual review; L316: dynamic field target requires manual review; L323: dynamic field target requires manual review; L331: dynamic field target requires manual review; L444: dynamic field target requires manual review; L534: dynamic field target requires manual review; L549: dynamic field target requires manual review; L618: dynamic field target requires manual review; L97: dynamic field target requires manual review.
 
 
 #### scripts/items/backlog/deepseek.lua
@@ -1454,7 +1454,7 @@ Unresolved syntax: L60: dynamic field target requires manual review; L92: dynami
 #### scripts/items/decimal_pill.lua
 
 
-Callbacks: `ModCallbacks.MC_USE_PILL` (`default`, [items/decimal_pill.lua:19](../scripts/items/decimal_pill.lua#L19)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/decimal_pill.lua:31](../scripts/items/decimal_pill.lua#L31)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/decimal_pill.lua:38](../scripts/items/decimal_pill.lua#L38)).
+Callbacks: `ModCallbacks.MC_USE_PILL` (`default`, [items/decimal_pill.lua:19](../scripts/items/decimal_pill.lua#L19)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/decimal_pill.lua:31](../scripts/items/decimal_pill.lua#L31)), `ModCallbacks.MC_POST_UPDATE` (`default`, [items/decimal_pill.lua:40](../scripts/items/decimal_pill.lua#L40)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/decimal_pill.lua:47](../scripts/items/decimal_pill.lua#L47)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -1463,7 +1463,7 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [items/decimal_pill.lua:41](../scripts/items/decimal_pill.lua#L41) | `player.Damage` | `player.Damage+bonus` | self-dependent |
+| [items/decimal_pill.lua:50](../scripts/items/decimal_pill.lua#L50) | `player.Damage` | `player.Damage+bonus` | self-dependent |
 
 
 
@@ -1643,10 +1643,10 @@ Cache flag references: none detected.
 Direct tracked-field writes: none detected.
 
 
-Risk state roots: `memeExtras` direct write at L33; `memeExtras` read/alias at L30, L50.
+Risk state roots: `memeExtras` direct write at L43; `memeExtras` read/alias at L27.
 
 
-Unresolved syntax: L36: dynamic field target requires manual review.
+Unresolved syntax: L47: dynamic field target requires manual review.
 
 
 #### scripts/items/million_context.lua
@@ -1873,6 +1873,24 @@ Direct tracked-field writes: none detected.
 
 
 Risk state roots: none detected.
+
+
+#### scripts/items/slot_owners.lua
+
+
+Callbacks: none detected.
+
+
+Cache flag references: none detected.
+
+
+Direct tracked-field writes: none detected.
+
+
+Risk state roots: none detected.
+
+
+Unresolved syntax: L38: dynamic field target requires manual review; L39: dynamic field target requires manual review; L47: dynamic field target requires manual review; L48: dynamic field target requires manual review; L50: dynamic field target requires manual review.
 
 
 #### scripts/items/small_rock.lua
