@@ -5,6 +5,7 @@
 -- mistakes" (took no hit) on the floor you just left: then it's waived.
 
 local Constants = include("scripts.constants")
+local SlotOwners = include("scripts.items.slot_owners")
 
 local VibeCoding = {}
 
@@ -22,19 +23,24 @@ local EFFECTS = {
 function VibeCoding:Init(mod, Risk)
     local rng = RNG()
     local started = false
+    local owners = SlotOwners.New()
 
+    -- Saved by player slot; a slot's mark follows its live owner (F6).
     local function mistakes()
-        Risk.state.vibeMistakes = Risk.state.vibeMistakes or {}
+        if type(Risk.state.vibeMistakes) ~= "table" then Risk.state.vibeMistakes = {} end
+        owners:Observe(Risk.state.vibeMistakes)
         return Risk.state.vibeMistakes
     end
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         rng:SetSeed(math.max(1, Game():GetSeeds():GetStartSeed() + 1986), 35)
+        owners:Reset()
         started = true -- Risk has already reset or loaded the shared run state.
     end)
 
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
         started = false
+        owners:Reset()
     end)
 
     mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, function(_, tear)
@@ -56,10 +62,11 @@ function VibeCoding:Init(mod, Risk)
         local player = entity:ToPlayer()
         if not player or not started then return end
         if ((flags or 0) & (DamageFlag.DAMAGE_FAKE | DamageFlag.DAMAGE_NO_PENALTIES)) ~= 0 then return end
+        local hit = mistakes()
         for i = 0, Game():GetNumPlayers() - 1 do
             if GetPtrHash(Isaac.GetPlayer(i)) == GetPtrHash(player) then
                 -- Save by player slot; entity pointers and GetData do not survive continue.
-                mistakes()[tostring(i)] = true
+                hit[tostring(i)] = true
                 break
             end
         end

@@ -1,5 +1,11 @@
 # Changelog
 
+## Vibe Coding bills the right player (2026-10-28; offline fix)
+
+- Vibe Coding saved "took a hit this floor" by player slot only. If another player took over that slot during the floor, or co-op slots were reordered, the next floor's API bill went to the wrong player.
+- The mark now follows its live owner within the session, using the same tracking as the F6 fix. Continue and the bill itself are unchanged.
+- tests/vibe_persistence_test.lua gains replacement and reorder cases that fail on the old code. Installed 8fd6a8c is untouched.
+
 ## Disgrace Loop ignores blocked hits (2026-10-28; offline fix)
 
 - A hit blocked by Sold Out, Red Stamp or Constitution still froze every enemy and used up Disgrace Loop's once-per-room reaction. It now reacts only to a hit those shields let through, the same order You're Absolutely Right! uses since F9.

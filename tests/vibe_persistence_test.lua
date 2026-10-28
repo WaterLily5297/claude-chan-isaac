@@ -9,7 +9,10 @@ CallbackPriority = {LATE=1000}
 DamageFlag = {DAMAGE_FAKE=1<<21,DAMAGE_NO_PENALTIES=1<<28}
 EntityType = { ENTITY_PLAYER = 1 }
 TearFlags = { TEAR_HOMING = 1, TEAR_PIERCING = 2, TEAR_SPECTRAL = 4, TEAR_POISON = 8, TEAR_SLOW = 16 }
-function include() return { Item = { VIBE_CODING = 743 } } end
+function include(name)
+    if name == "scripts.constants" then return { Item = { VIBE_CODING = 743 } } end
+    return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua")
+end
 function RNG() return { SetSeed = function() end } end
 function GetPtrHash(entity) return entity.identity end
 Isaac = { GetPlayer = function(i) return players[i + 1] end }
@@ -61,4 +64,19 @@ risk.state = {} -- Risk resets the shared state before Vibe Coding starts a new 
 fire("MC_POST_GAME_STARTED", false)
 fire("MC_POST_NEW_LEVEL")
 assert(players[1].coins == 30, "a new run must not inherit the previous run's mistakes")
-print("OK: Vibe Coding continue, startup ordering, per-player billing and fresh runs")
+
+-- A slot's mark follows its live owner within the floor (F6).
+players = { player(5), player(6) }
+fire("MC_POST_GAME_STARTED", false)
+fire("MC_ENTITY_TAKE_DMG", players[1])
+players[1] = player(7) -- a different entity now holds slot 0
+fire("MC_POST_NEW_LEVEL")
+assert(players[1].coins == 40, "a replacement must not pay the departed player's bill")
+local hurt, clean = player(8), player(9)
+players = { hurt, clean }
+fire("MC_POST_NEW_LEVEL")
+fire("MC_ENTITY_TAKE_DMG", hurt)
+players = { clean, hurt } -- reordered slots
+fire("MC_POST_NEW_LEVEL")
+assert(hurt.coins == 30 and clean.coins == 40, "reordered players keep their own floor record")
+print("OK: Vibe Coding continue, startup ordering, per-player billing, fresh runs and live slot owners")

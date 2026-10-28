@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 404 callback registrations; 109 candidate direct field writes. Source fingerprint: `4baa1053f750acbb3f4211b544c88010d1bd0e6c2fed3724e3a9649b22ac560a`.
+111 files; 404 callback registrations; 109 candidate direct field writes. Source fingerprint: `14fd599fe734b46beacccd48793a396c186f3b951e2e46fe0cd6ba112d7b9025`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -2077,7 +2077,7 @@ Risk state roots: none detected.
 #### scripts/items/vibe_coding.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/vibe_coding.lua:31](../scripts/items/vibe_coding.lua#L31)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/vibe_coding.lua:36](../scripts/items/vibe_coding.lua#L36)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [items/vibe_coding.lua:40](../scripts/items/vibe_coding.lua#L40)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`CallbackPriority.LATE`, [items/vibe_coding.lua:55](../scripts/items/vibe_coding.lua#L55)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [items/vibe_coding.lua:68](../scripts/items/vibe_coding.lua#L68)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/vibe_coding.lua:35](../scripts/items/vibe_coding.lua#L35)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/vibe_coding.lua:41](../scripts/items/vibe_coding.lua#L41)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [items/vibe_coding.lua:46](../scripts/items/vibe_coding.lua#L46)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`CallbackPriority.LATE`, [items/vibe_coding.lua:61](../scripts/items/vibe_coding.lua#L61)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [items/vibe_coding.lua:75](../scripts/items/vibe_coding.lua#L75)).
 
 
 Cache flag references: none detected.
@@ -2086,14 +2086,14 @@ Cache flag references: none detected.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [items/vibe_coding.lua:47](../scripts/items/vibe_coding.lua#L47) | `tear.Velocity` | `tear.Velocity*-1` | self-dependent |
+| [items/vibe_coding.lua:53](../scripts/items/vibe_coding.lua#L53) | `tear.Velocity` | `tear.Velocity*-1` | self-dependent |
 
 
 
-Mutator calls: `AddTearFlags` ([items/vibe_coding.lua:49](../scripts/items/vibe_coding.lua#L49)).
+Mutator calls: `AddTearFlags` ([items/vibe_coding.lua:55](../scripts/items/vibe_coding.lua#L55)).
 
 
-Risk state roots: `vibeMistakes` direct write at L27, L84; `vibeMistakes` read/alias at L27, L28.
+Risk state roots: `vibeMistakes` direct write at L30, L91; `vibeMistakes` read/alias at L30, L31, L32.
 
 
 #### scripts/meal_break.lua
